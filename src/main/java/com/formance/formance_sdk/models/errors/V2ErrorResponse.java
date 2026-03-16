@@ -10,168 +10,232 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.models.shared.V2ErrorsEnum;
 import com.formance.formance_sdk.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 @SuppressWarnings("serial")
-public class V2ErrorResponse extends RuntimeException {
+public class V2ErrorResponse extends SDKBaseError {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("details")
-    private Optional<String> details;
+    @Nullable
+    private final Data data;
 
+    @Nullable
+    private final Throwable deserializationException;
 
-    @JsonProperty("errorCode")
-    private V2ErrorsEnum errorCode;
-
-
-    @JsonProperty("errorMessage")
-    private String errorMessage;
-
-    @JsonCreator
     public V2ErrorResponse(
-            @JsonProperty("details") Optional<String> details,
-            @JsonProperty("errorCode") V2ErrorsEnum errorCode,
-            @JsonProperty("errorMessage") String errorMessage) {
-        super("API error occurred");
-        Utils.checkNotNull(details, "details");
-        Utils.checkNotNull(errorCode, "errorCode");
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.details = details;
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
-    }
-    
-    public V2ErrorResponse(
-            V2ErrorsEnum errorCode,
-            String errorMessage) {
-        this(Optional.empty(), errorCode, errorMessage);
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
-    @JsonIgnore
+    /**
+    * Parse a response into an instance of V2ErrorResponse. If deserialization of the response body fails,
+    * the resulting V2ErrorResponse instance will have a null data() value and a non-null deserializationException().
+    */
+    public static V2ErrorResponse from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new V2ErrorResponse(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new V2ErrorResponse(response.statusCode(), null, response, null, e);
+        }
+    }
+
+    @Deprecated
     public Optional<String> details() {
-        return details;
+        return data().flatMap(Data::details);
     }
 
-    @JsonIgnore
-    public V2ErrorsEnum errorCode() {
-        return errorCode;
+    @Deprecated
+    public Optional<V2ErrorsEnum> errorCode() {
+        return data().map(Data::errorCode);
     }
 
-    @JsonIgnore
-    public String errorMessage() {
-        return errorMessage;
+    @Deprecated
+    public Optional<String> errorMessage() {
+        return data().map(Data::errorMessage);
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
-
-    public V2ErrorResponse withDetails(String details) {
-        Utils.checkNotNull(details, "details");
-        this.details = Optional.ofNullable(details);
-        return this;
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
 
+    public static class Data {
 
-    public V2ErrorResponse withDetails(Optional<String> details) {
-        Utils.checkNotNull(details, "details");
-        this.details = details;
-        return this;
-    }
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("details")
+        private Optional<String> details;
 
-    public V2ErrorResponse withErrorCode(V2ErrorsEnum errorCode) {
-        Utils.checkNotNull(errorCode, "errorCode");
-        this.errorCode = errorCode;
-        return this;
-    }
 
-    public V2ErrorResponse withErrorMessage(String errorMessage) {
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorMessage = errorMessage;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        V2ErrorResponse other = (V2ErrorResponse) o;
-        return 
-            Utils.enhancedDeepEquals(this.details, other.details) &&
-            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
-            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            details, errorCode, errorMessage);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(V2ErrorResponse.class,
-                "details", details,
-                "errorCode", errorCode,
-                "errorMessage", errorMessage);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
-
-        private Optional<String> details = Optional.empty();
-
+        @JsonProperty("errorCode")
         private V2ErrorsEnum errorCode;
 
+
+        @JsonProperty("errorMessage")
         private String errorMessage;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("details") Optional<String> details,
+                @JsonProperty("errorCode") V2ErrorsEnum errorCode,
+                @JsonProperty("errorMessage") String errorMessage) {
+            Utils.checkNotNull(details, "details");
+            Utils.checkNotNull(errorCode, "errorCode");
+            Utils.checkNotNull(errorMessage, "errorMessage");
+            this.details = details;
+            this.errorCode = errorCode;
+            this.errorMessage = errorMessage;
+        }
+        
+        public Data(
+                V2ErrorsEnum errorCode,
+                String errorMessage) {
+            this(Optional.empty(), errorCode, errorMessage);
+        }
+
+        @JsonIgnore
+        public Optional<String> details() {
+            return details;
+        }
+
+        @JsonIgnore
+        public V2ErrorsEnum errorCode() {
+            return errorCode;
+        }
+
+        @JsonIgnore
+        public String errorMessage() {
+            return errorMessage;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
-        public Builder details(String details) {
+        public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
         }
 
-        public Builder details(Optional<String> details) {
+
+        public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
-
-        public Builder errorCode(V2ErrorsEnum errorCode) {
+        public Data withErrorCode(V2ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
-
-        public Builder errorMessage(String errorMessage) {
+        public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
 
-        public V2ErrorResponse build() {
-
-            return new V2ErrorResponse(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.details, other.details) &&
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+                Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 details, errorCode, errorMessage);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "details", details,
+                    "errorCode", errorCode,
+                    "errorMessage", errorMessage);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<String> details = Optional.empty();
+
+            private V2ErrorsEnum errorCode;
+
+            private String errorMessage;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            public Builder details(String details) {
+                Utils.checkNotNull(details, "details");
+                this.details = Optional.ofNullable(details);
+                return this;
+            }
+
+            public Builder details(Optional<String> details) {
+                Utils.checkNotNull(details, "details");
+                this.details = details;
+                return this;
+            }
+
+
+            public Builder errorCode(V2ErrorsEnum errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+
+            public Builder errorMessage(String errorMessage) {
+                Utils.checkNotNull(errorMessage, "errorMessage");
+                this.errorMessage = errorMessage;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    details, errorCode, errorMessage);
+            }
+
+        }
     }
+
 }
 

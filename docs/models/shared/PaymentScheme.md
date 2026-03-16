@@ -1,5 +1,13 @@
 # PaymentScheme
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.PaymentScheme;
+
+PaymentScheme value = PaymentScheme.UNKNOWN;
+```
+
 
 ## Values
 

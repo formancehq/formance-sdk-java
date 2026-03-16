@@ -8,19 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class V2GetBalancesAggregatedRequest {
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Map<String, Object> requestBody;
-
     /**
      * Name of the ledger.
      */
@@ -39,31 +33,20 @@ public class V2GetBalancesAggregatedRequest {
 
     @JsonCreator
     public V2GetBalancesAggregatedRequest(
-            Map<String, Object> requestBody,
             String ledger,
             Optional<OffsetDateTime> pit,
             Optional<Boolean> useInsertionDate) {
-        requestBody = Utils.emptyMapIfNull(requestBody);
-        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
-        this.requestBody = requestBody;
         this.ledger = ledger;
         this.pit = pit;
         this.useInsertionDate = useInsertionDate;
     }
     
     public V2GetBalancesAggregatedRequest(
-            Map<String, Object> requestBody,
             String ledger) {
-        this(requestBody, ledger, Optional.empty(),
-            Optional.empty());
-    }
-
-    @JsonIgnore
-    public Map<String, Object> requestBody() {
-        return requestBody;
+        this(ledger, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -91,12 +74,6 @@ public class V2GetBalancesAggregatedRequest {
         return new Builder();
     }
 
-
-    public V2GetBalancesAggregatedRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
 
     /**
      * Name of the ledger.
@@ -149,7 +126,6 @@ public class V2GetBalancesAggregatedRequest {
         }
         V2GetBalancesAggregatedRequest other = (V2GetBalancesAggregatedRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.pit, other.pit) &&
             Utils.enhancedDeepEquals(this.useInsertionDate, other.useInsertionDate);
@@ -158,14 +134,12 @@ public class V2GetBalancesAggregatedRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, ledger, pit,
-            useInsertionDate);
+            ledger, pit, useInsertionDate);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetBalancesAggregatedRequest.class,
-                "requestBody", requestBody,
                 "ledger", ledger,
                 "pit", pit,
                 "useInsertionDate", useInsertionDate);
@@ -173,8 +147,6 @@ public class V2GetBalancesAggregatedRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Map<String, Object> requestBody;
 
         private String ledger;
 
@@ -184,13 +156,6 @@ public class V2GetBalancesAggregatedRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
         }
 
 
@@ -238,8 +203,7 @@ public class V2GetBalancesAggregatedRequest {
         public V2GetBalancesAggregatedRequest build() {
 
             return new V2GetBalancesAggregatedRequest(
-                requestBody, ledger, pit,
-                useInsertionDate);
+                ledger, pit, useInsertionDate);
         }
 
     }

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListTransactions;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListTransactionsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListTransactionsRequestBuilder {
         return this;
     }
 
-    public ListTransactionsResponse call() throws Exception {
+    public ListTransactionsResponse call() {
         
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactions.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetAccountBalances;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetAccountBalancesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetAccountBalancesRequestBuilder {
         return this;
     }
 
-    public GetAccountBalancesResponse call() throws Exception {
+    public GetAccountBalancesResponse call() {
         
         RequestOperation<GetAccountBalancesRequest, GetAccountBalancesResponse> operation
               = new GetAccountBalances.Sync(sdkConfiguration, _headers);

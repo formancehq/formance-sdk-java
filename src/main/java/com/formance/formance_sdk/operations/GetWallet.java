@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -12,7 +13,6 @@ import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetWalletRequest;
 import com.formance.formance_sdk.models.operations.GetWalletResponse;
-import com.formance.formance_sdk.models.shared.ActivityGetWalletOutput;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -55,7 +55,7 @@ public class GetWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:read")),
+                    java.util.Optional.of(java.util.List.of("wallets:read")),
                     securitySource());
         }
 
@@ -64,7 +64,7 @@ public class GetWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:read")),
+                    java.util.Optional.of(java.util.List.of("wallets:read")),
                     securitySource());
         }
 
@@ -73,7 +73,7 @@ public class GetWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:read")),
+                    java.util.Optional.of(java.util.List.of("wallets:read")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -115,8 +115,8 @@ public class GetWallet {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetWalletRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(GetWalletRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -126,7 +126,7 @@ public class GetWallet {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -134,7 +134,7 @@ public class GetWallet {
 
 
         @Override
-        public GetWalletResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public GetWalletResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -150,47 +150,23 @@ public class GetWallet {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ActivityGetWalletOutput out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withActivityGetWalletOutput(out);
-                    return res;
+                    return res.withGetWalletResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.GetWalletResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    WalletsErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw WalletsErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

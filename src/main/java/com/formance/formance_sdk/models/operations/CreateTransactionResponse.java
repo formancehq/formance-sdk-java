@@ -14,6 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -22,6 +24,9 @@ public class CreateTransactionResponse implements Response {
      * HTTP response content type for this operation
      */
     private String contentType;
+
+
+    private Map<String, List<String>> headers;
 
     /**
      * HTTP response status code for this operation
@@ -41,14 +46,18 @@ public class CreateTransactionResponse implements Response {
     @JsonCreator
     public CreateTransactionResponse(
             String contentType,
+            Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends TransactionsResponse> transactionsResponse) {
         Utils.checkNotNull(contentType, "contentType");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(transactionsResponse, "transactionsResponse");
         this.contentType = contentType;
+        this.headers = headers;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.transactionsResponse = transactionsResponse;
@@ -56,10 +65,11 @@ public class CreateTransactionResponse implements Response {
     
     public CreateTransactionResponse(
             String contentType,
+            Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
+        this(contentType, headers, statusCode,
+            rawResponse, Optional.empty());
     }
 
     /**
@@ -68,6 +78,11 @@ public class CreateTransactionResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     /**
@@ -106,6 +121,12 @@ public class CreateTransactionResponse implements Response {
     public CreateTransactionResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    public CreateTransactionResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
         return this;
     }
 
@@ -157,6 +178,7 @@ public class CreateTransactionResponse implements Response {
         CreateTransactionResponse other = (CreateTransactionResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.transactionsResponse, other.transactionsResponse);
@@ -165,14 +187,15 @@ public class CreateTransactionResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            transactionsResponse);
+            contentType, headers, statusCode,
+            rawResponse, transactionsResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateTransactionResponse.class,
                 "contentType", contentType,
+                "headers", headers,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "transactionsResponse", transactionsResponse);
@@ -182,6 +205,8 @@ public class CreateTransactionResponse implements Response {
     public final static class Builder {
 
         private String contentType;
+
+        private Map<String, List<String>> headers;
 
         private Integer statusCode;
 
@@ -200,6 +225,13 @@ public class CreateTransactionResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
             return this;
         }
 
@@ -245,8 +277,8 @@ public class CreateTransactionResponse implements Response {
         public CreateTransactionResponse build() {
 
             return new CreateTransactionResponse(
-                contentType, statusCode, rawResponse,
-                transactionsResponse);
+                contentType, headers, statusCode,
+                rawResponse, transactionsResponse);
         }
 
     }

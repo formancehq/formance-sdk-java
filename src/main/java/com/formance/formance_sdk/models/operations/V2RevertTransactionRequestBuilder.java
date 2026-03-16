@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2RevertTransaction;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2RevertTransactionRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2RevertTransactionRequestBuilder {
         return this;
     }
 
-    public V2RevertTransactionResponse call() throws Exception {
+    public V2RevertTransactionResponse call() {
         
         RequestOperation<V2RevertTransactionRequest, V2RevertTransactionResponse> operation
               = new V2RevertTransaction.Sync(sdkConfiguration, _headers);

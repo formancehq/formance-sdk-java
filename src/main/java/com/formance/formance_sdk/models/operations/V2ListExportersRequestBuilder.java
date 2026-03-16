@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListExporters;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class V2ListExportersRequestBuilder {
 
@@ -19,7 +18,7 @@ public class V2ListExportersRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V2ListExportersResponse call() throws Exception {
+    public V2ListExportersResponse call() {
         
         RequestlessOperation<V2ListExportersResponse> operation
             = new V2ListExporters.Sync(sdkConfiguration, _headers);

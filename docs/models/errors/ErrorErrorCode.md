@@ -1,5 +1,13 @@
 # ErrorErrorCode
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.errors.ErrorErrorCode;
+
+ErrorErrorCode value = ErrorErrorCode.VALIDATION;
+```
+
 
 ## Values
 

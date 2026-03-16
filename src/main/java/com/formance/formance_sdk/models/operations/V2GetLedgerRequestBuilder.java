@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetLedger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetLedgerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetLedgerRequestBuilder {
         return this;
     }
 
-    public V2GetLedgerResponse call() throws Exception {
+    public V2GetLedgerResponse call() {
         
         RequestOperation<V2GetLedgerRequest, V2GetLedgerResponse> operation
               = new V2GetLedger.Sync(sdkConfiguration, _headers);

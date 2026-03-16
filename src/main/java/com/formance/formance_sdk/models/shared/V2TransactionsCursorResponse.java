@@ -5,10 +5,14 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class V2TransactionsCursorResponse {
@@ -16,16 +20,35 @@ public class V2TransactionsCursorResponse {
     @JsonProperty("cursor")
     private V2TransactionsCursorResponseCursor cursor;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("resource")
+    private Optional<? extends V2TransactionsCursorResponseResource> resource;
+
     @JsonCreator
     public V2TransactionsCursorResponse(
-            @JsonProperty("cursor") V2TransactionsCursorResponseCursor cursor) {
+            @JsonProperty("cursor") V2TransactionsCursorResponseCursor cursor,
+            @JsonProperty("resource") Optional<? extends V2TransactionsCursorResponseResource> resource) {
         Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(resource, "resource");
         this.cursor = cursor;
+        this.resource = resource;
+    }
+    
+    public V2TransactionsCursorResponse(
+            V2TransactionsCursorResponseCursor cursor) {
+        this(cursor, Optional.empty());
     }
 
     @JsonIgnore
     public V2TransactionsCursorResponseCursor cursor() {
         return cursor;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2TransactionsCursorResponseResource> resource() {
+        return (Optional<V2TransactionsCursorResponseResource>) resource;
     }
 
     public static Builder builder() {
@@ -39,6 +62,19 @@ public class V2TransactionsCursorResponse {
         return this;
     }
 
+    public V2TransactionsCursorResponse withResource(V2TransactionsCursorResponseResource resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = Optional.ofNullable(resource);
+        return this;
+    }
+
+
+    public V2TransactionsCursorResponse withResource(Optional<? extends V2TransactionsCursorResponseResource> resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = resource;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,25 +85,29 @@ public class V2TransactionsCursorResponse {
         }
         V2TransactionsCursorResponse other = (V2TransactionsCursorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor);
+            cursor, resource);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2TransactionsCursorResponse.class,
-                "cursor", cursor);
+                "cursor", cursor,
+                "resource", resource);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private V2TransactionsCursorResponseCursor cursor;
+
+        private Optional<? extends V2TransactionsCursorResponseResource> resource = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -80,10 +120,23 @@ public class V2TransactionsCursorResponse {
             return this;
         }
 
+
+        public Builder resource(V2TransactionsCursorResponseResource resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = Optional.ofNullable(resource);
+            return this;
+        }
+
+        public Builder resource(Optional<? extends V2TransactionsCursorResponseResource> resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = resource;
+            return this;
+        }
+
         public V2TransactionsCursorResponse build() {
 
             return new V2TransactionsCursorResponse(
-                cursor);
+                cursor, resource);
         }
 
     }

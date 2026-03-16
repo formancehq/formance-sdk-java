@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.VoidHold;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class VoidHoldRequestBuilder {
 
@@ -27,7 +26,7 @@ public class VoidHoldRequestBuilder {
         return this;
     }
 
-    public VoidHoldResponse call() throws Exception {
+    public VoidHoldResponse call() {
         
         RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
               = new VoidHold.Sync(sdkConfiguration, _headers);

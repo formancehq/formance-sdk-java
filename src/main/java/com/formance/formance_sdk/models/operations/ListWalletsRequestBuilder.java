@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListWallets;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListWalletsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListWalletsRequestBuilder {
         return this;
     }
 
-    public ListWalletsResponse call() throws Exception {
+    public ListWalletsResponse call() {
         
         RequestOperation<ListWalletsRequest, ListWalletsResponse> operation
               = new ListWallets.Sync(sdkConfiguration, _headers);

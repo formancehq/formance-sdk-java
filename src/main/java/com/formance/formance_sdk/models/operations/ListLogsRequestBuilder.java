@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListLogs;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListLogsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListLogsRequestBuilder {
         return this;
     }
 
-    public ListLogsResponse call() throws Exception {
+    public ListLogsResponse call() {
         
         RequestOperation<ListLogsRequest, ListLogsResponse> operation
               = new ListLogs.Sync(sdkConfiguration, _headers);

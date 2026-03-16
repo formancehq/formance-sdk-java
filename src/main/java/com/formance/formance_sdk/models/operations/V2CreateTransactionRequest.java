@@ -9,7 +9,6 @@ import com.formance.formance_sdk.models.shared.V2PostTransaction;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -39,11 +38,8 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=force")
-    @Deprecated
     private Optional<Boolean> force;
 
     /**
@@ -52,30 +48,39 @@ public class V2CreateTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    /**
+     * Schema version to use for validation
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")
+    private Optional<String> schemaVersion;
+
     @JsonCreator
     public V2CreateTransactionRequest(
             Optional<String> idempotencyKey,
             V2PostTransaction v2PostTransaction,
             Optional<Boolean> dryRun,
             Optional<Boolean> force,
-            String ledger) {
+            String ledger,
+            Optional<String> schemaVersion) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(ledger, "ledger");
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
         this.idempotencyKey = idempotencyKey;
         this.v2PostTransaction = v2PostTransaction;
         this.dryRun = dryRun;
         this.force = force;
         this.ledger = ledger;
+        this.schemaVersion = schemaVersion;
     }
     
     public V2CreateTransactionRequest(
             V2PostTransaction v2PostTransaction,
             String ledger) {
         this(Optional.empty(), v2PostTransaction, Optional.empty(),
-            Optional.empty(), ledger);
+            Optional.empty(), ledger, Optional.empty());
     }
 
     /**
@@ -107,10 +112,7 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    @Deprecated
     @JsonIgnore
     public Optional<Boolean> force() {
         return force;
@@ -122,6 +124,14 @@ public class V2CreateTransactionRequest {
     @JsonIgnore
     public String ledger() {
         return ledger;
+    }
+
+    /**
+     * Schema version to use for validation
+     */
+    @JsonIgnore
+    public Optional<String> schemaVersion() {
+        return schemaVersion;
     }
 
     public static Builder builder() {
@@ -182,10 +192,7 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    @Deprecated
     public V2CreateTransactionRequest withForce(boolean force) {
         Utils.checkNotNull(force, "force");
         this.force = Optional.ofNullable(force);
@@ -195,10 +202,7 @@ public class V2CreateTransactionRequest {
 
     /**
      * Disable balance checks when passing postings
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    @Deprecated
     public V2CreateTransactionRequest withForce(Optional<Boolean> force) {
         Utils.checkNotNull(force, "force");
         this.force = force;
@@ -211,6 +215,25 @@ public class V2CreateTransactionRequest {
     public V2CreateTransactionRequest withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
+        return this;
+    }
+
+    /**
+     * Schema version to use for validation
+     */
+    public V2CreateTransactionRequest withSchemaVersion(String schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = Optional.ofNullable(schemaVersion);
+        return this;
+    }
+
+
+    /**
+     * Schema version to use for validation
+     */
+    public V2CreateTransactionRequest withSchemaVersion(Optional<String> schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = schemaVersion;
         return this;
     }
 
@@ -228,14 +251,15 @@ public class V2CreateTransactionRequest {
             Utils.enhancedDeepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
             Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
             Utils.enhancedDeepEquals(this.force, other.force) &&
-            Utils.enhancedDeepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.schemaVersion, other.schemaVersion);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idempotencyKey, v2PostTransaction, dryRun,
-            force, ledger);
+            force, ledger, schemaVersion);
     }
     
     @Override
@@ -245,7 +269,8 @@ public class V2CreateTransactionRequest {
                 "v2PostTransaction", v2PostTransaction,
                 "dryRun", dryRun,
                 "force", force,
-                "ledger", ledger);
+                "ledger", ledger,
+                "schemaVersion", schemaVersion);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -257,10 +282,11 @@ public class V2CreateTransactionRequest {
 
         private Optional<Boolean> dryRun = Optional.empty();
 
-        @Deprecated
         private Optional<Boolean> force = Optional.empty();
 
         private String ledger;
+
+        private Optional<String> schemaVersion = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -321,10 +347,7 @@ public class V2CreateTransactionRequest {
 
         /**
          * Disable balance checks when passing postings
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
-        @Deprecated
         public Builder force(boolean force) {
             Utils.checkNotNull(force, "force");
             this.force = Optional.ofNullable(force);
@@ -333,10 +356,7 @@ public class V2CreateTransactionRequest {
 
         /**
          * Disable balance checks when passing postings
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
-        @Deprecated
         public Builder force(Optional<Boolean> force) {
             Utils.checkNotNull(force, "force");
             this.force = force;
@@ -353,11 +373,30 @@ public class V2CreateTransactionRequest {
             return this;
         }
 
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(String schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = Optional.ofNullable(schemaVersion);
+            return this;
+        }
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(Optional<String> schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = schemaVersion;
+            return this;
+        }
+
         public V2CreateTransactionRequest build() {
 
             return new V2CreateTransactionRequest(
                 idempotencyKey, v2PostTransaction, dryRun,
-                force, ledger);
+                force, ledger, schemaVersion);
         }
 
     }

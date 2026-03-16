@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CountTransactions;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CountTransactionsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CountTransactionsRequestBuilder {
         return this;
     }
 
-    public CountTransactionsResponse call() throws Exception {
+    public CountTransactionsResponse call() {
         
         RequestOperation<CountTransactionsRequest, CountTransactionsResponse> operation
               = new CountTransactions.Sync(sdkConfiguration, _headers);

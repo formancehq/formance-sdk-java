@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeleteClient;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteClientRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeleteClientRequestBuilder {
         return this;
     }
 
-    public DeleteClientResponse call() throws Exception {
+    public DeleteClientResponse call() {
         
         RequestOperation<DeleteClientRequest, DeleteClientResponse> operation
               = new DeleteClient.Sync(sdkConfiguration, _headers);

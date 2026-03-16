@@ -10,20 +10,14 @@ import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class PaymentslistAccountsRequest {
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, Object>> requestBody;
-
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -53,17 +47,14 @@ public class PaymentslistAccountsRequest {
 
     @JsonCreator
     public PaymentslistAccountsRequest(
-            Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
             Optional<Long> pageSize,
             Optional<String> query,
             Optional<? extends List<String>> sort) {
-        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(query, "query");
         Utils.checkNotNull(sort, "sort");
-        this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
         this.query = query;
@@ -72,13 +63,7 @@ public class PaymentslistAccountsRequest {
     
     public PaymentslistAccountsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, Object>> requestBody() {
-        return (Optional<Map<String, Object>>) requestBody;
+            Optional.empty());
     }
 
     /**
@@ -121,19 +106,6 @@ public class PaymentslistAccountsRequest {
         return new Builder();
     }
 
-
-    public PaymentslistAccountsRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-
-    public PaymentslistAccountsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -227,7 +199,6 @@ public class PaymentslistAccountsRequest {
         }
         PaymentslistAccountsRequest other = (PaymentslistAccountsRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.query, other.query) &&
@@ -237,14 +208,13 @@ public class PaymentslistAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, cursor, pageSize,
-            query, sort);
+            cursor, pageSize, query,
+            sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentslistAccountsRequest.class,
-                "requestBody", requestBody,
                 "cursor", cursor,
                 "pageSize", pageSize,
                 "query", query,
@@ -253,8 +223,6 @@ public class PaymentslistAccountsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
 
@@ -266,19 +234,6 @@ public class PaymentslistAccountsRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
         }
 
 
@@ -369,8 +324,8 @@ public class PaymentslistAccountsRequest {
             }
 
             return new PaymentslistAccountsRequest(
-                requestBody, cursor, pageSize,
-                query, sort);
+                cursor, pageSize, query,
+                sort);
         }
 
 

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ResetConnectorV1;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ResetConnectorV1RequestBuilder {
 
@@ -27,7 +26,7 @@ public class ResetConnectorV1RequestBuilder {
         return this;
     }
 
-    public ResetConnectorV1Response call() throws Exception {
+    public ResetConnectorV1Response call() {
         
         RequestOperation<ResetConnectorV1Request, ResetConnectorV1Response> operation
               = new ResetConnectorV1.Sync(sdkConfiguration, _headers);

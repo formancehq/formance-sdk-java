@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetConnectorTask;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetConnectorTaskRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetConnectorTaskRequestBuilder {
         return this;
     }
 
-    public GetConnectorTaskResponse call() throws Exception {
+    public GetConnectorTaskResponse call() {
         
         RequestOperation<GetConnectorTaskRequest, GetConnectorTaskResponse> operation
               = new GetConnectorTask.Sync(sdkConfiguration, _headers);

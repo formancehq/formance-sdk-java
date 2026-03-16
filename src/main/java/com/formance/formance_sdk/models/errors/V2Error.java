@@ -7,122 +7,182 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
+import java.util.Optional;
 
-/**
- * V2Error
- * 
- * <p>General error
- */
 @SuppressWarnings("serial")
-public class V2Error extends RuntimeException {
+public class V2Error extends SDKBaseError {
 
-    @JsonProperty("errorCode")
-    private V2ErrorErrorCode errorCode;
+    @Nullable
+    private final Data data;
 
+    @Nullable
+    private final Throwable deserializationException;
 
-    @JsonProperty("errorMessage")
-    private String errorMessage;
-
-    @JsonCreator
     public V2Error(
-            @JsonProperty("errorCode") V2ErrorErrorCode errorCode,
-            @JsonProperty("errorMessage") String errorMessage) {
-        super("API error occurred");
-        Utils.checkNotNull(errorCode, "errorCode");
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
-    @JsonIgnore
-    public V2ErrorErrorCode errorCode() {
-        return errorCode;
-    }
-
-    @JsonIgnore
-    public String errorMessage() {
-        return errorMessage;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    public V2Error withErrorCode(V2ErrorErrorCode errorCode) {
-        Utils.checkNotNull(errorCode, "errorCode");
-        this.errorCode = errorCode;
-        return this;
-    }
-
-    public V2Error withErrorMessage(String errorMessage) {
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorMessage = errorMessage;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+    /**
+    * Parse a response into an instance of V2Error. If deserialization of the response body fails,
+    * the resulting V2Error instance will have a null data() value and a non-null deserializationException().
+    */
+    public static V2Error from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new V2Error(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new V2Error(response.statusCode(), null, response, null, e);
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        V2Error other = (V2Error) o;
-        return 
-            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
-            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            errorCode, errorMessage);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(V2Error.class,
-                "errorCode", errorCode,
-                "errorMessage", errorMessage);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+    @Deprecated
+    public Optional<V2ErrorErrorCode> errorCode() {
+        return data().map(Data::errorCode);
+    }
 
+    @Deprecated
+    public Optional<String> errorMessage() {
+        return data().map(Data::errorMessage);
+    }
+
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
+    }
+
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
+    }
+    /**
+     * Data
+     * 
+     * <p>General error
+     */
+    public static class Data {
+
+        @JsonProperty("errorCode")
         private V2ErrorErrorCode errorCode;
 
+
+        @JsonProperty("errorMessage")
         private String errorMessage;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("errorCode") V2ErrorErrorCode errorCode,
+                @JsonProperty("errorMessage") String errorMessage) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            Utils.checkNotNull(errorMessage, "errorMessage");
+            this.errorCode = errorCode;
+            this.errorMessage = errorMessage;
+        }
+
+        @JsonIgnore
+        public V2ErrorErrorCode errorCode() {
+            return errorCode;
+        }
+
+        @JsonIgnore
+        public String errorMessage() {
+            return errorMessage;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
-        public Builder errorCode(V2ErrorErrorCode errorCode) {
+        public Data withErrorCode(V2ErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
-
-        public Builder errorMessage(String errorMessage) {
+        public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
 
-        public V2Error build() {
-
-            return new V2Error(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+                Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 errorCode, errorMessage);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "errorCode", errorCode,
+                    "errorMessage", errorMessage);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private V2ErrorErrorCode errorCode;
+
+            private String errorMessage;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            public Builder errorCode(V2ErrorErrorCode errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+
+            public Builder errorMessage(String errorMessage) {
+                Utils.checkNotNull(errorMessage, "errorMessage");
+                this.errorMessage = errorMessage;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    errorCode, errorMessage);
+            }
+
+        }
     }
+
 }
 

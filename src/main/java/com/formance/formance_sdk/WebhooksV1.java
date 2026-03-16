@@ -38,7 +38,6 @@ import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.operations.UpdateConfig;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 
 public class WebhooksV1 {
@@ -67,9 +66,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ActivateConfigResponse activateConfig(ActivateConfigRequest request) throws Exception {
+    public ActivateConfigResponse activateConfig(ActivateConfigRequest request) {
         RequestOperation<ActivateConfigRequest, ActivateConfigResponse> operation
               = new ActivateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -99,9 +98,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ChangeConfigSecretResponse changeConfigSecret(ChangeConfigSecretRequest request) throws Exception {
+    public ChangeConfigSecretResponse changeConfigSecret(ChangeConfigSecretRequest request) {
         RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
               = new ChangeConfigSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -125,9 +124,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeactivateConfigResponse deactivateConfig(DeactivateConfigRequest request) throws Exception {
+    public DeactivateConfigResponse deactivateConfig(DeactivateConfigRequest request) {
         RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
               = new DeactivateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -151,9 +150,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteConfigResponse deleteConfig(DeleteConfigRequest request) throws Exception {
+    public DeleteConfigResponse deleteConfig(DeleteConfigRequest request) {
         RequestOperation<DeleteConfigRequest, DeleteConfigResponse> operation
               = new DeleteConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -177,9 +176,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetManyConfigsResponse getManyConfigs(GetManyConfigsRequest request) throws Exception {
+    public GetManyConfigsResponse getManyConfigs(GetManyConfigsRequest request) {
         RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
               = new GetManyConfigs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -219,9 +218,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public InsertConfigResponse insertConfig(ConfigUser request) throws Exception {
+    public InsertConfigResponse insertConfig(ConfigUser request) {
         RequestOperation<ConfigUser, InsertConfigResponse> operation
               = new InsertConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -245,9 +244,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public TestConfigResponse testConfig(TestConfigRequest request) throws Exception {
+    public TestConfigResponse testConfig(TestConfigRequest request) {
         RequestOperation<TestConfigRequest, TestConfigResponse> operation
               = new TestConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -271,9 +270,9 @@ public class WebhooksV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateConfigResponse updateConfig(UpdateConfigRequest request) throws Exception {
+    public UpdateConfigResponse updateConfig(UpdateConfigRequest request) {
         RequestOperation<UpdateConfigRequest, UpdateConfigResponse> operation
               = new UpdateConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

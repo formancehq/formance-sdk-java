@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -12,7 +13,6 @@ import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
-import com.formance.formance_sdk.models.shared.V2CreateTransactionResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -58,7 +58,7 @@ public class V2RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RevertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -67,7 +67,7 @@ public class V2RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RevertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -76,7 +76,7 @@ public class V2RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RevertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -104,6 +104,7 @@ public class V2RevertTransaction {
                     klass,
                     request,
                     null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -133,8 +134,8 @@ public class V2RevertTransaction {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2RevertTransactionRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2RevertTransactionRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -144,7 +145,7 @@ public class V2RevertTransaction {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -152,7 +153,7 @@ public class V2RevertTransaction {
 
 
         @Override
-        public V2RevertTransactionResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2RevertTransactionResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -167,43 +168,21 @@ public class V2RevertTransaction {
             V2RevertTransactionResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2CreateTransactionResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2CreateTransactionResponse(out);
-                    return res;
+                    return res.withV2RevertTransactionResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

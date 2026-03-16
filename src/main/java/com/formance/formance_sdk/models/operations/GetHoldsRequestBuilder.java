@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetHolds;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetHoldsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetHoldsRequestBuilder {
         return this;
     }
 
-    public GetHoldsResponse call() throws Exception {
+    public GetHoldsResponse call() {
         
         RequestOperation<GetHoldsRequest, GetHoldsResponse> operation
               = new GetHolds.Sync(sdkConfiguration, _headers);

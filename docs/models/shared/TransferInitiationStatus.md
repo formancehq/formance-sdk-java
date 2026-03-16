@@ -1,5 +1,13 @@
 # TransferInitiationStatus
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.TransferInitiationStatus;
+
+TransferInitiationStatus value = TransferInitiationStatus.WAITING_FOR_VALIDATION;
+```
+
 
 ## Values
 

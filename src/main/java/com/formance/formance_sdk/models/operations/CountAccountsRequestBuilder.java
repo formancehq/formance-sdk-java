@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CountAccounts;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CountAccountsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CountAccountsRequestBuilder {
         return this;
     }
 
-    public CountAccountsResponse call() throws Exception {
+    public CountAccountsResponse call() {
         
         RequestOperation<CountAccountsRequest, CountAccountsResponse> operation
               = new CountAccounts.Sync(sdkConfiguration, _headers);

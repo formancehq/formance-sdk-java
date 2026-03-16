@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -128,8 +129,8 @@ public class V2CreatePipeline {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2CreatePipelineRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2CreatePipelineRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -139,7 +140,7 @@ public class V2CreatePipeline {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -147,7 +148,7 @@ public class V2CreatePipeline {
 
 
         @Override
-        public V2CreatePipelineResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2CreatePipelineResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -163,42 +164,19 @@ public class V2CreatePipeline {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2CreatePipelineResponseBody out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withObject(out);
-                    return res;
+                    return res.withObject(Utils.unmarshal(response, new TypeReference<V2CreatePipelineResponseBody>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

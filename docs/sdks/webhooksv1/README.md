@@ -1,5 +1,4 @@
-# WebhooksV1
-(*webhooks().v1()*)
+# Webhooks.V1
 
 ## Overview
 
@@ -51,7 +50,7 @@ public class Application {
                 .call();
 
         if (res.configResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configResponse().get());
         }
     }
 }
@@ -119,7 +118,7 @@ public class Application {
                 .call();
 
         if (res.configResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configResponse().get());
         }
     }
 }
@@ -179,7 +178,7 @@ public class Application {
                 .call();
 
         if (res.configResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configResponse().get());
         }
     }
 }
@@ -298,7 +297,7 @@ public class Application {
                 .call();
 
         if (res.configsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configsResponse().get());
         }
     }
 }
@@ -373,7 +372,7 @@ public class Application {
                 .call();
 
         if (res.configResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configResponse().get());
         }
     }
 }
@@ -433,7 +432,7 @@ public class Application {
                 .call();
 
         if (res.attemptResponse().isPresent()) {
-            // handle response
+            System.out.println(res.attemptResponse().get());
         }
     }
 }

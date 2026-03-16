@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
 import com.formance.formance_sdk.operations.V3CreatePayment;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3CreatePaymentRequestBuilder {
@@ -35,7 +34,7 @@ public class V3CreatePaymentRequestBuilder {
         return this;
     }
 
-    public V3CreatePaymentResponse call() throws Exception {
+    public V3CreatePaymentResponse call() {
         
         RequestOperation<Optional<? extends V3CreatePaymentRequest>, V3CreatePaymentResponse> operation
               = new V3CreatePayment.Sync(sdkConfiguration, _headers);

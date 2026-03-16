@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ChangeConfigSecret;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ChangeConfigSecretRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ChangeConfigSecretRequestBuilder {
         return this;
     }
 
-    public ChangeConfigSecretResponse call() throws Exception {
+    public ChangeConfigSecretResponse call() {
         
         RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
               = new ChangeConfigSecret.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetInstance;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetInstanceRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetInstanceRequestBuilder {
         return this;
     }
 
-    public GetInstanceResponse call() throws Exception {
+    public GetInstanceResponse call() {
         
         RequestOperation<GetInstanceRequest, GetInstanceResponse> operation
               = new GetInstance.Sync(sdkConfiguration, _headers);

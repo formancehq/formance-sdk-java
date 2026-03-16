@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3AddAccountToPool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3AddAccountToPoolRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3AddAccountToPoolRequestBuilder {
         return this;
     }
 
-    public V3AddAccountToPoolResponse call() throws Exception {
+    public V3AddAccountToPoolResponse call() {
         
         RequestOperation<V3AddAccountToPoolRequest, V3AddAccountToPoolResponse> operation
               = new V3AddAccountToPool.Sync(sdkConfiguration, _headers);

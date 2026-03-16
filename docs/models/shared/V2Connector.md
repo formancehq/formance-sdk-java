@@ -1,5 +1,13 @@
 # V2Connector
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V2Connector;
+
+V2Connector value = V2Connector.STRIPE;
+```
+
 
 ## Values
 

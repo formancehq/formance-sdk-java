@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3InitiatePayment;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3InitiatePaymentRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3InitiatePaymentRequestBuilder {
         return this;
     }
 
-    public V3InitiatePaymentResponse call() throws Exception {
+    public V3InitiatePaymentResponse call() {
         
         RequestOperation<V3InitiatePaymentRequest, V3InitiatePaymentResponse> operation
               = new V3InitiatePayment.Sync(sdkConfiguration, _headers);

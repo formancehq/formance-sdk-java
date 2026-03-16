@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3InstallConnector;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3InstallConnectorRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3InstallConnectorRequestBuilder {
         return this;
     }
 
-    public V3InstallConnectorResponse call() throws Exception {
+    public V3InstallConnectorResponse call() {
         
         RequestOperation<V3InstallConnectorRequest, V3InstallConnectorResponse> operation
               = new V3InstallConnector.Sync(sdkConfiguration, _headers);

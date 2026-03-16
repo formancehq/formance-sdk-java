@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetVolumesWithBalances;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetVolumesWithBalancesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetVolumesWithBalancesRequestBuilder {
         return this;
     }
 
-    public V2GetVolumesWithBalancesResponse call() throws Exception {
+    public V2GetVolumesWithBalancesResponse call() {
         
         RequestOperation<V2GetVolumesWithBalancesRequest, V2GetVolumesWithBalancesResponse> operation
               = new V2GetVolumesWithBalances.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.RunWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class RunWorkflowRequestBuilder {
 
@@ -27,7 +26,7 @@ public class RunWorkflowRequestBuilder {
         return this;
     }
 
-    public RunWorkflowResponse call() throws Exception {
+    public RunWorkflowResponse call() {
         
         RequestOperation<RunWorkflowRequest, RunWorkflowResponse> operation
               = new RunWorkflow.Sync(sdkConfiguration, _headers);

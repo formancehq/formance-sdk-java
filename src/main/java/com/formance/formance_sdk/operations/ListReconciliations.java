@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -55,7 +56,7 @@ public class ListReconciliations {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "listReconciliations",
-                    java.util.Optional.of(java.util.List.of("auth:read", "reconciliation:read")),
+                    java.util.Optional.of(java.util.List.of("reconciliation:read")),
                     securitySource());
         }
 
@@ -64,7 +65,7 @@ public class ListReconciliations {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "listReconciliations",
-                    java.util.Optional.of(java.util.List.of("auth:read", "reconciliation:read")),
+                    java.util.Optional.of(java.util.List.of("reconciliation:read")),
                     securitySource());
         }
 
@@ -73,7 +74,7 @@ public class ListReconciliations {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "listReconciliations",
-                    java.util.Optional.of(java.util.List.of("auth:read", "reconciliation:read")),
+                    java.util.Optional.of(java.util.List.of("reconciliation:read")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -118,8 +119,8 @@ public class ListReconciliations {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ListReconciliationsRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(ListReconciliationsRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -129,7 +130,7 @@ public class ListReconciliations {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -137,7 +138,7 @@ public class ListReconciliations {
 
 
         @Override
-        public ListReconciliationsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public ListReconciliationsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -153,42 +154,19 @@ public class ListReconciliations {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ReconciliationsCursorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withReconciliationsCursorResponse(out);
-                    return res;
+                    return res.withReconciliationsCursorResponse(Utils.unmarshal(response, new TypeReference<ReconciliationsCursorResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ReconciliationErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw ReconciliationErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

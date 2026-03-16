@@ -1,5 +1,4 @@
-# PaymentsV1
-(*payments().v1()*)
+# Payments.V1
 
 ## Overview
 
@@ -48,6 +47,7 @@
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
+* [updatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
 ## addAccountToPool
@@ -155,7 +155,7 @@ public class Application {
                 .call();
 
         if (res.transferResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transferResponse().get());
         }
     }
 }
@@ -218,7 +218,7 @@ public class Application {
                 .call();
 
         if (res.paymentsAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.paymentsAccountResponse().get());
         }
     }
 }
@@ -279,7 +279,7 @@ public class Application {
                 .call();
 
         if (res.bankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.bankAccountResponse().get());
         }
     }
 }
@@ -347,7 +347,7 @@ public class Application {
                 .call();
 
         if (res.paymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.paymentResponse().get());
         }
     }
 }
@@ -386,7 +386,6 @@ import com.formance.formance_sdk.models.operations.CreatePoolResponse;
 import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -400,9 +399,6 @@ public class Application {
             .build();
 
         PoolRequest req = PoolRequest.builder()
-                .accountIDs(List.of(
-                    "<value 1>",
-                    "<value 2>"))
                 .name("<value>")
                 .build();
 
@@ -411,7 +407,7 @@ public class Application {
                 .call();
 
         if (res.poolResponse().isPresent()) {
-            // handle response
+            System.out.println(res.poolResponse().get());
         }
     }
 }
@@ -480,7 +476,7 @@ public class Application {
                 .call();
 
         if (res.transferInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transferInitiationResponse().get());
         }
     }
 }
@@ -659,7 +655,7 @@ public class Application {
                 .call();
 
         if (res.bankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.bankAccountResponse().get());
         }
     }
 }
@@ -725,7 +721,7 @@ public class Application {
                 .call();
 
         if (res.balancesCursor().isPresent()) {
-            // handle response
+            System.out.println(res.balancesCursor().get());
         }
     }
 }
@@ -785,7 +781,7 @@ public class Application {
                 .call();
 
         if (res.bankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.bankAccountResponse().get());
         }
     }
 }
@@ -849,7 +845,7 @@ public class Application {
                 .call();
 
         if (res.taskResponse().isPresent()) {
-            // handle response
+            System.out.println(res.taskResponse().get());
         }
     }
 }
@@ -912,7 +908,7 @@ public class Application {
                 .call();
 
         if (res.taskResponse().isPresent()) {
-            // handle response
+            System.out.println(res.taskResponse().get());
         }
     }
 }
@@ -972,7 +968,7 @@ public class Application {
                 .call();
 
         if (res.paymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.paymentResponse().get());
         }
     }
 }
@@ -1032,7 +1028,7 @@ public class Application {
                 .call();
 
         if (res.poolResponse().isPresent()) {
-            // handle response
+            System.out.println(res.poolResponse().get());
         }
     }
 }
@@ -1094,7 +1090,7 @@ public class Application {
                 .call();
 
         if (res.poolBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.poolBalancesResponse().get());
         }
     }
 }
@@ -1153,8 +1149,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.poolBalancesResponse().isPresent()) {
-            // handle response
+        if (res.poolBalancesLatestResponse().isPresent()) {
+            System.out.println(res.poolBalancesLatestResponse().get());
         }
     }
 }
@@ -1214,7 +1210,7 @@ public class Application {
                 .call();
 
         if (res.transferInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transferInitiationResponse().get());
         }
     }
 }
@@ -1280,7 +1276,7 @@ public class Application {
                 .call();
 
         if (res.connectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.connectorResponse().get());
         }
     }
 }
@@ -1334,7 +1330,7 @@ public class Application {
                 .call();
 
         if (res.connectorsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.connectorsResponse().get());
         }
     }
 }
@@ -1393,7 +1389,7 @@ public class Application {
                 .call();
 
         if (res.bankAccountsCursor().isPresent()) {
-            // handle response
+            System.out.println(res.bankAccountsCursor().get());
         }
     }
 }
@@ -1447,7 +1443,7 @@ public class Application {
                 .call();
 
         if (res.connectorsConfigsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.connectorsConfigsResponse().get());
         }
     }
 }
@@ -1506,7 +1502,7 @@ public class Application {
                 .call();
 
         if (res.tasksCursor().isPresent()) {
-            // handle response
+            System.out.println(res.tasksCursor().get());
         }
     }
 }
@@ -1570,7 +1566,7 @@ public class Application {
                 .call();
 
         if (res.tasksCursor().isPresent()) {
-            // handle response
+            System.out.println(res.tasksCursor().get());
         }
     }
 }
@@ -1635,7 +1631,7 @@ public class Application {
                 .call();
 
         if (res.paymentsCursor().isPresent()) {
-            // handle response
+            System.out.println(res.paymentsCursor().get());
         }
     }
 }
@@ -1700,7 +1696,7 @@ public class Application {
                 .call();
 
         if (res.poolsCursor().isPresent()) {
-            // handle response
+            System.out.println(res.poolsCursor().get());
         }
     }
 }
@@ -1765,7 +1761,7 @@ public class Application {
                 .call();
 
         if (res.transferInitiationsCursor().isPresent()) {
-            // handle response
+            System.out.println(res.transferInitiationsCursor().get());
         }
     }
 }
@@ -1825,7 +1821,7 @@ public class Application {
                 .call();
 
         if (res.paymentsAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.paymentsAccountResponse().get());
         }
     }
 }
@@ -1879,7 +1875,7 @@ public class Application {
                 .call();
 
         if (res.paymentsServerInfo().isPresent()) {
-            // handle response
+            System.out.println(res.paymentsServerInfo().get());
         }
     }
 }
@@ -1938,7 +1934,7 @@ public class Application {
                 .call();
 
         if (res.accountsCursor().isPresent()) {
-            // handle response
+            System.out.println(res.accountsCursor().get());
         }
     }
 }
@@ -2001,7 +1997,7 @@ public class Application {
                 .call();
 
         if (res.connectorConfigResponse().isPresent()) {
-            // handle response
+            System.out.println(res.connectorConfigResponse().get());
         }
     }
 }
@@ -2063,7 +2059,7 @@ public class Application {
                 .call();
 
         if (res.connectorConfigResponse().isPresent()) {
-            // handle response
+            System.out.println(res.connectorConfigResponse().get());
         }
     }
 }
@@ -2700,6 +2696,69 @@ public class Application {
 ### Response
 
 **[UpdateMetadataResponse](../../models/operations/UpdateMetadataResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## updatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="updatePoolQuery" method="patch" path="/api/payments/pools/{poolId}/query" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.operations.UpdatePoolQueryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        com.formance.formance_sdk.models.operations.UpdatePoolQueryRequest req = com.formance.formance_sdk.models.operations.UpdatePoolQueryRequest.builder()
+                .updatePoolQueryRequest(UpdatePoolQueryRequest.builder()
+                    .query(Map.ofEntries(
+                        Map.entry("key", "<value>")))
+                    .build())
+                .poolId("XXX")
+                .build();
+
+        UpdatePoolQueryResponse res = sdk.payments().v1().updatePoolQuery()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [UpdatePoolQueryRequest](../../models/operations/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[UpdatePoolQueryResponse](../../models/operations/UpdatePoolQueryResponse.md)**
 
 ### Errors
 

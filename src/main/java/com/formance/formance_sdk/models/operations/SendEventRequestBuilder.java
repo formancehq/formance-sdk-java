@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.SendEvent;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class SendEventRequestBuilder {
 
@@ -27,7 +26,7 @@ public class SendEventRequestBuilder {
         return this;
     }
 
-    public SendEventResponse call() throws Exception {
+    public SendEventResponse call() {
         
         RequestOperation<SendEventRequest, SendEventResponse> operation
               = new SendEvent.Sync(sdkConfiguration, _headers);

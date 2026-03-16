@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -30,9 +31,13 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
+    @Deprecated
     private Optional<Long> pageSize;
 
 
@@ -90,6 +95,11 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
         return name;
     }
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
@@ -129,6 +139,11 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     public V3GenericConfig withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = Optional.ofNullable(pageSize);
@@ -136,6 +151,11 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
     }
 
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     public V3GenericConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -213,6 +233,7 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
 
         private String name;
 
+        @Deprecated
         private Optional<Long> pageSize;
 
         private Optional<String> pollingPeriod;
@@ -245,12 +266,22 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
         }
 
 
+        /**
+         * 
+         * @deprecated field: From v3.1, this parameter will be ignored.
+         */
+        @Deprecated
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
+        /**
+         * 
+         * @deprecated field: From v3.1, this parameter will be ignored.
+         */
+        @Deprecated
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
@@ -303,13 +334,13 @@ public class V3GenericConfig implements V3InstallConnectorRequest {
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
-                        "\"25\"",
+                        "25",
                         new TypeReference<Optional<Long>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
-                        "\"2m\"",
+                        "\"30m\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

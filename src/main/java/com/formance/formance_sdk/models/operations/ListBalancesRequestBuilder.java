@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListBalances;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListBalancesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListBalancesRequestBuilder {
         return this;
     }
 
-    public ListBalancesResponse call() throws Exception {
+    public ListBalancesResponse call() {
         
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
               = new ListBalances.Sync(sdkConfiguration, _headers);

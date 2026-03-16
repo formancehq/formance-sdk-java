@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DebitWallet;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DebitWalletRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DebitWalletRequestBuilder {
         return this;
     }
 
-    public DebitWalletResponse call() throws Exception {
+    public DebitWalletResponse call() {
         
         RequestOperation<DebitWalletRequest, DebitWalletResponse> operation
               = new DebitWallet.Sync(sdkConfiguration, _headers);

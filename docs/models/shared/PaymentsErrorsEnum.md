@@ -1,5 +1,13 @@
 # PaymentsErrorsEnum
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.PaymentsErrorsEnum;
+
+PaymentsErrorsEnum value = PaymentsErrorsEnum.INTERNAL;
+```
+
 
 ## Values
 

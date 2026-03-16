@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class TestConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class TestConfigRequestBuilder {
         return this;
     }
 
-    public TestConfigResponse call() throws Exception {
+    public TestConfigResponse call() {
         
         RequestOperation<TestConfigRequest, TestConfigResponse> operation
               = new TestConfig.Sync(sdkConfiguration, _headers);

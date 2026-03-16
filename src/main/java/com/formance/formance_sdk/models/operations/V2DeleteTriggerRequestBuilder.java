@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeleteTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2DeleteTriggerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2DeleteTriggerRequestBuilder {
         return this;
     }
 
-    public V2DeleteTriggerResponse call() throws Exception {
+    public V2DeleteTriggerResponse call() {
         
         RequestOperation<V2DeleteTriggerRequest, V2DeleteTriggerResponse> operation
               = new V2DeleteTrigger.Sync(sdkConfiguration, _headers);

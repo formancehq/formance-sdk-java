@@ -19,7 +19,7 @@ public class WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
-    private Optional<? extends ActivityCreateTransactionOutput> createTransaction;
+    private Optional<? extends RevertTransactionResponse> createTransaction;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -49,17 +49,17 @@ public class WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("RevertTransaction")
-    private Optional<? extends ActivityCreateTransactionOutput> revertTransaction;
+    private Optional<? extends RevertTransactionResponse> revertTransaction;
 
     @JsonCreator
     public WorkflowInstanceHistoryStageOutput(
-            @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransactionOutput> createTransaction,
+            @JsonProperty("CreateTransaction") Optional<? extends RevertTransactionResponse> createTransaction,
             @JsonProperty("DebitWallet") Optional<? extends ActivityDebitWalletOutput> debitWallet,
             @JsonProperty("GetAccount") Optional<? extends ActivityGetAccountOutput> getAccount,
             @JsonProperty("GetPayment") Optional<? extends ActivityGetPaymentOutput> getPayment,
             @JsonProperty("GetWallet") Optional<? extends ActivityGetWalletOutput> getWallet,
             @JsonProperty("ListWallets") Optional<? extends OrchestrationListWalletsResponse> listWallets,
-            @JsonProperty("RevertTransaction") Optional<? extends ActivityCreateTransactionOutput> revertTransaction) {
+            @JsonProperty("RevertTransaction") Optional<? extends RevertTransactionResponse> revertTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         Utils.checkNotNull(debitWallet, "debitWallet");
         Utils.checkNotNull(getAccount, "getAccount");
@@ -84,8 +84,8 @@ public class WorkflowInstanceHistoryStageOutput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ActivityCreateTransactionOutput> createTransaction() {
-        return (Optional<ActivityCreateTransactionOutput>) createTransaction;
+    public Optional<RevertTransactionResponse> createTransaction() {
+        return (Optional<RevertTransactionResponse>) createTransaction;
     }
 
     @SuppressWarnings("unchecked")
@@ -120,8 +120,8 @@ public class WorkflowInstanceHistoryStageOutput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ActivityCreateTransactionOutput> revertTransaction() {
-        return (Optional<ActivityCreateTransactionOutput>) revertTransaction;
+    public Optional<RevertTransactionResponse> revertTransaction() {
+        return (Optional<RevertTransactionResponse>) revertTransaction;
     }
 
     public static Builder builder() {
@@ -129,14 +129,14 @@ public class WorkflowInstanceHistoryStageOutput {
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransaction(ActivityCreateTransactionOutput createTransaction) {
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(RevertTransactionResponse createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends ActivityCreateTransactionOutput> createTransaction) {
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends RevertTransactionResponse> createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = createTransaction;
         return this;
@@ -207,14 +207,14 @@ public class WorkflowInstanceHistoryStageOutput {
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withRevertTransaction(ActivityCreateTransactionOutput revertTransaction) {
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(RevertTransactionResponse revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = Optional.ofNullable(revertTransaction);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withRevertTransaction(Optional<? extends ActivityCreateTransactionOutput> revertTransaction) {
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(Optional<? extends RevertTransactionResponse> revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = revertTransaction;
         return this;
@@ -262,7 +262,7 @@ public class WorkflowInstanceHistoryStageOutput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ActivityCreateTransactionOutput> createTransaction = Optional.empty();
+        private Optional<? extends RevertTransactionResponse> createTransaction = Optional.empty();
 
         private Optional<? extends ActivityDebitWalletOutput> debitWallet = Optional.empty();
 
@@ -274,20 +274,20 @@ public class WorkflowInstanceHistoryStageOutput {
 
         private Optional<? extends OrchestrationListWalletsResponse> listWallets = Optional.empty();
 
-        private Optional<? extends ActivityCreateTransactionOutput> revertTransaction = Optional.empty();
+        private Optional<? extends RevertTransactionResponse> revertTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder createTransaction(ActivityCreateTransactionOutput createTransaction) {
+        public Builder createTransaction(RevertTransactionResponse createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = Optional.ofNullable(createTransaction);
             return this;
         }
 
-        public Builder createTransaction(Optional<? extends ActivityCreateTransactionOutput> createTransaction) {
+        public Builder createTransaction(Optional<? extends RevertTransactionResponse> createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = createTransaction;
             return this;
@@ -359,13 +359,13 @@ public class WorkflowInstanceHistoryStageOutput {
         }
 
 
-        public Builder revertTransaction(ActivityCreateTransactionOutput revertTransaction) {
+        public Builder revertTransaction(RevertTransactionResponse revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = Optional.ofNullable(revertTransaction);
             return this;
         }
 
-        public Builder revertTransaction(Optional<? extends ActivityCreateTransactionOutput> revertTransaction) {
+        public Builder revertTransaction(Optional<? extends RevertTransactionResponse> revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = revertTransaction;
             return this;

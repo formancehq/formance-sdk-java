@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetInstanceHistory;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetInstanceHistoryRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetInstanceHistoryRequestBuilder {
         return this;
     }
 
-    public GetInstanceHistoryResponse call() throws Exception {
+    public GetInstanceHistoryResponse call() {
         
         RequestOperation<GetInstanceHistoryRequest, GetInstanceHistoryResponse> operation
               = new GetInstanceHistory.Sync(sdkConfiguration, _headers);

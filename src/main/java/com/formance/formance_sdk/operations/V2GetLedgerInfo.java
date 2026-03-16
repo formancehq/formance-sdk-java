@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -55,7 +56,7 @@ public class V2GetLedgerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetLedgerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -64,7 +65,7 @@ public class V2GetLedgerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetLedgerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -73,7 +74,7 @@ public class V2GetLedgerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetLedgerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -115,8 +116,8 @@ public class V2GetLedgerInfo {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2GetLedgerInfoRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2GetLedgerInfoRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -126,7 +127,7 @@ public class V2GetLedgerInfo {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -134,7 +135,7 @@ public class V2GetLedgerInfo {
 
 
         @Override
-        public V2GetLedgerInfoResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2GetLedgerInfoResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -150,42 +151,19 @@ public class V2GetLedgerInfo {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2LedgerInfoResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2LedgerInfoResponse(out);
-                    return res;
+                    return res.withV2LedgerInfoResponse(Utils.unmarshal(response, new TypeReference<V2LedgerInfoResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

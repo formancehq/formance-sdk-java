@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetVersions;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class GetVersionsRequestBuilder {
 
@@ -19,7 +18,7 @@ public class GetVersionsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetVersionsResponse call() throws Exception {
+    public GetVersionsResponse call() {
         
         RequestlessOperation<GetVersionsResponse> operation
             = new GetVersions.Sync(sdkConfiguration, _headers);

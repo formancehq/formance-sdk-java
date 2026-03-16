@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetAccountRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetAccountRequestBuilder {
         return this;
     }
 
-    public V2GetAccountResponse call() throws Exception {
+    public V2GetAccountResponse call() {
         
         RequestOperation<V2GetAccountRequest, V2GetAccountResponse> operation
               = new V2GetAccount.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.TestTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class TestTriggerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class TestTriggerRequestBuilder {
         return this;
     }
 
-    public TestTriggerResponse call() throws Exception {
+    public TestTriggerResponse call() {
         
         RequestOperation<TestTriggerRequest, TestTriggerResponse> operation
               = new TestTrigger.Sync(sdkConfiguration, _headers);

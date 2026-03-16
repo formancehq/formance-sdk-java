@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadConnectorConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReadConnectorConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReadConnectorConfigRequestBuilder {
         return this;
     }
 
-    public ReadConnectorConfigResponse call() throws Exception {
+    public ReadConnectorConfigResponse call() {
         
         RequestOperation<ReadConnectorConfigRequest, ReadConnectorConfigResponse> operation
               = new ReadConnectorConfig.Sync(sdkConfiguration, _headers);

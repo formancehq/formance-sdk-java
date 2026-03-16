@@ -4,8 +4,8 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.Error;
@@ -54,7 +54,7 @@ public class DeleteTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "deleteTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -63,7 +63,7 @@ public class DeleteTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "deleteTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -72,7 +72,7 @@ public class DeleteTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "deleteTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -114,8 +114,8 @@ public class DeleteTrigger {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(DeleteTriggerRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(DeleteTriggerRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -125,7 +125,7 @@ public class DeleteTrigger {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -133,7 +133,7 @@ public class DeleteTrigger {
 
 
         @Override
-        public DeleteTriggerResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public DeleteTriggerResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -151,28 +151,14 @@ public class DeleteTrigger {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

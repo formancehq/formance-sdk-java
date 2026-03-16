@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3DeletePaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3DeletePaymentInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3DeletePaymentInitiationRequestBuilder {
         return this;
     }
 
-    public V3DeletePaymentInitiationResponse call() throws Exception {
+    public V3DeletePaymentInitiationResponse call() {
         
         RequestOperation<V3DeletePaymentInitiationRequest, V3DeletePaymentInitiationResponse> operation
               = new V3DeletePaymentInitiation.Sync(sdkConfiguration, _headers);

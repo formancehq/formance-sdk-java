@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeleteExporter;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2DeleteExporterRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2DeleteExporterRequestBuilder {
         return this;
     }
 
-    public V2DeleteExporterResponse call() throws Exception {
+    public V2DeleteExporterResponse call() {
         
         RequestOperation<V2DeleteExporterRequest, V2DeleteExporterResponse> operation
               = new V2DeleteExporter.Sync(sdkConfiguration, _headers);

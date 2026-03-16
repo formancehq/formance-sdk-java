@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetManyConfigs;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetManyConfigsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetManyConfigsRequestBuilder {
         return this;
     }
 
-    public GetManyConfigsResponse call() throws Exception {
+    public GetManyConfigsResponse call() {
         
         RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
               = new GetManyConfigs.Sync(sdkConfiguration, _headers);

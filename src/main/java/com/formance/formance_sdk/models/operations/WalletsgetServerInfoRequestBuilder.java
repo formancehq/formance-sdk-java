@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.WalletsgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class WalletsgetServerInfoRequestBuilder {
 
@@ -19,7 +18,7 @@ public class WalletsgetServerInfoRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public WalletsgetServerInfoResponse call() throws Exception {
+    public WalletsgetServerInfoResponse call() {
         
         RequestlessOperation<WalletsgetServerInfoResponse> operation
             = new WalletsgetServerInfo.Sync(sdkConfiguration, _headers);

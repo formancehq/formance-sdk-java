@@ -1,5 +1,4 @@
-# LedgerV2
-(*ledger().v2()*)
+# Ledger.V2
 
 ## Overview
 
@@ -15,6 +14,7 @@
 * [createPipeline](#createpipeline) - Create pipeline
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](#deleteaccountmetadata) - Delete metadata by key
+* [deleteBucket](#deletebucket) - Delete bucket
 * [deleteExporter](#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
 * [deletePipeline](#deletepipeline) - Delete pipeline
@@ -26,20 +26,26 @@
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getPipelineState](#getpipelinestate) - Get pipeline state
+* [getSchema](#getschema) - Get a schema for a ledger by version
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
+* [insertSchema](#insertschema) - Insert a schema for a ledger
 * [listAccounts](#listaccounts) - List accounts from a ledger
 * [listExporters](#listexporters) - List exporters
 * [listLedgers](#listledgers) - List ledgers
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listPipelines](#listpipelines) - List pipelines
+* [listSchemas](#listschemas) - List all schemas for a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
 * [resetPipeline](#resetpipeline) - Reset pipeline
+* [restoreBucket](#restorebucket) - Restore bucket
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [runQuery](#runquery) - Run a query template
 * [startPipeline](#startpipeline) - Start pipeline
 * [stopPipeline](#stoppipeline) - Stop pipeline
+* [updateExporter](#updateexporter) - Update exporter
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 
 ## addMetadataOnTransaction
@@ -78,6 +84,7 @@ public class Application {
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
                 .dryRun(true)
+                .schemaVersion("v1.0.0")
                 .build();
 
         V2AddMetadataOnTransactionResponse res = sdk.ledger().v2().addMetadataOnTransaction()
@@ -141,6 +148,7 @@ public class Application {
                 .address("users:001")
                 .ledger("ledger001")
                 .dryRun(true)
+                .schemaVersion("v1.0.0")
                 .build();
 
         V2AddMetadataToAccountResponse res = sdk.ledger().v2().addMetadataToAccount()
@@ -185,7 +193,6 @@ import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -199,9 +206,6 @@ public class Application {
             .build();
 
         V2CountAccountsRequest req = V2CountAccountsRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>"),
-                    Map.entry("key1", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -247,7 +251,6 @@ import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -261,8 +264,6 @@ public class Application {
             .build();
 
         V2CountTransactionsRequest req = V2CountTransactionsRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -331,6 +332,7 @@ public class Application {
                 .atomic(true)
                 .continueOnFailure(true)
                 .parallel(true)
+                .schemaVersion("v1.0.0")
                 .build();
 
         V2CreateBulkResponse res = sdk.ledger().v2().createBulk()
@@ -338,7 +340,7 @@ public class Application {
                 .call();
 
         if (res.v2BulkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2BulkResponse().get());
         }
     }
 }
@@ -375,7 +377,7 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2ExporterConfiguration;
+import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -390,7 +392,7 @@ public class Application {
                     .build())
             .build();
 
-        V2ExporterConfiguration req = V2ExporterConfiguration.builder()
+        V2CreateExporterRequest req = V2CreateExporterRequest.builder()
                 .config(Map.ofEntries(
                     Map.entry("key", "<value>")))
                 .driver("<value>")
@@ -401,7 +403,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -411,7 +413,7 @@ public class Application {
 
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [V2ExporterConfiguration](../../models/shared/V2ExporterConfiguration.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `request`                                                                 | [V2CreateExporterRequest](../../models/shared/V2CreateExporterRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -524,7 +526,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -598,7 +600,8 @@ public class Application {
                             .build()))
                     .reference("ref:001")
                     .script(V2PostTransactionScript.builder()
-                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
+                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n")
+                        .template("CUSTOMER_DEPOSIT")
                         .vars(Map.ofEntries(
                             Map.entry("user", "users:042")))
                         .build())
@@ -606,6 +609,7 @@ public class Application {
                 .ledger("ledger001")
                 .dryRun(true)
                 .force(true)
+                .schemaVersion("v1.0.0")
                 .build();
 
         V2CreateTransactionResponse res = sdk.ledger().v2().createTransaction()
@@ -613,7 +617,7 @@ public class Application {
                 .call();
 
         if (res.v2CreateTransactionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2CreateTransactionResponse().get());
         }
     }
 }
@@ -688,6 +692,66 @@ public class Application {
 ### Response
 
 **[V2DeleteAccountMetadataResponse](../../models/operations/V2DeleteAccountMetadataResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## deleteBucket
+
+Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2DeleteBucket" method="delete" path="/api/ledger/v2/_/buckets/{bucket}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteBucketRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteBucketResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2DeleteBucketRequest req = V2DeleteBucketRequest.builder()
+                .bucket("<value>")
+                .build();
+
+        V2DeleteBucketResponse res = sdk.ledger().v2().deleteBucket()
+                .request(req)
+                .call();
+
+        if (res.v2ErrorResponse().isPresent()) {
+            System.out.println(res.v2ErrorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2DeleteBucketRequest](../../models/operations/V2DeleteBucketRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[V2DeleteBucketResponse](../../models/operations/V2DeleteBucketResponse.md)**
 
 ### Errors
 
@@ -1027,7 +1091,7 @@ public class Application {
                 .call();
 
         if (res.v2AccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2AccountResponse().get());
         }
     }
 }
@@ -1066,7 +1130,6 @@ import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedReques
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1080,10 +1143,6 @@ public class Application {
             .build();
 
         V2GetBalancesAggregatedRequest req = V2GetBalancesAggregatedRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>"),
-                    Map.entry("key1", "<value>"),
-                    Map.entry("key2", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -1092,7 +1151,7 @@ public class Application {
                 .call();
 
         if (res.v2AggregateBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2AggregateBalancesResponse().get());
         }
     }
 }
@@ -1152,7 +1211,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1212,7 +1271,7 @@ public class Application {
                 .call();
 
         if (res.v2GetLedgerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2GetLedgerResponse().get());
         }
     }
 }
@@ -1272,7 +1331,7 @@ public class Application {
                 .call();
 
         if (res.v2LedgerInfoResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2LedgerInfoResponse().get());
         }
     }
 }
@@ -1333,7 +1392,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1348,6 +1407,67 @@ public class Application {
 ### Response
 
 **[V2GetPipelineStateResponse](../../models/operations/V2GetPipelineStateResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## getSchema
+
+Get a schema for a ledger by version
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2GetSchema" method="get" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2GetSchemaRequest;
+import com.formance.formance_sdk.models.operations.V2GetSchemaResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2GetSchemaRequest req = V2GetSchemaRequest.builder()
+                .ledger("ledger001")
+                .version("v1.0.0")
+                .build();
+
+        V2GetSchemaResponse res = sdk.ledger().v2().getSchema()
+                .request(req)
+                .call();
+
+        if (res.v2SchemaResponse().isPresent()) {
+            System.out.println(res.v2SchemaResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [V2GetSchemaRequest](../../models/operations/V2GetSchemaRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+### Response
+
+**[V2GetSchemaResponse](../../models/operations/V2GetSchemaResponse.md)**
 
 ### Errors
 
@@ -1395,7 +1515,7 @@ public class Application {
                 .call();
 
         if (res.v2GetTransactionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2GetTransactionResponse().get());
         }
     }
 }
@@ -1434,7 +1554,6 @@ import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesReque
 import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1448,8 +1567,6 @@ public class Application {
             .build();
 
         V2GetVolumesWithBalancesRequest req = V2GetVolumesWithBalancesRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .groupBy(3L)
@@ -1462,7 +1579,7 @@ public class Application {
                 .call();
 
         if (res.v2VolumesWithBalanceCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2VolumesWithBalanceCursorResponse().get());
         }
     }
 }
@@ -1542,6 +1659,83 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## insertSchema
+
+Insert a schema for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2InsertSchema" method="post" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2InsertSchemaRequest;
+import com.formance.formance_sdk.models.operations.V2InsertSchemaResponse;
+import com.formance.formance_sdk.models.shared.*;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2InsertSchemaRequest req = V2InsertSchemaRequest.builder()
+                .v2SchemaData(V2SchemaData.builder()
+                    .chart(Map.ofEntries(
+                        Map.entry("users", V2ChartSegment.builder()
+                            .additionalProperties(Map.ofEntries(
+                                Map.entry("$userID", V2ChartSegment.builder()
+                                    .dotPattern("^[0-9]{16}$")
+                                    .build())))
+                            .build())))
+                    .queries(Map.ofEntries(
+                        Map.entry("key", V2QueryTemplate.builder()
+                            .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                                .pageSize(100L)
+                                .sort("id:desc")
+                                .build()))
+                            .build())))
+                    .build())
+                .ledger("ledger001")
+                .version("v1.0.0")
+                .build();
+
+        V2InsertSchemaResponse res = sdk.ledger().v2().insertSchema()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2InsertSchemaRequest](../../models/operations/V2InsertSchemaRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[V2InsertSchemaResponse](../../models/operations/V2InsertSchemaResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## listAccounts
 
 List accounts from a ledger, sorted by address in descending order.
@@ -1558,7 +1752,6 @@ import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1572,8 +1765,6 @@ public class Application {
             .build();
 
         V2ListAccountsRequest req = V2ListAccountsRequest.builder()
-                .requestBody(Map.ofEntries(
-                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1585,7 +1776,7 @@ public class Application {
                 .call();
 
         if (res.v2AccountsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2AccountsCursorResponse().get());
         }
     }
 }
@@ -1639,7 +1830,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1672,7 +1863,6 @@ import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
 import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1686,10 +1876,6 @@ public class Application {
             .build();
 
         V2ListLedgersRequest req = V2ListLedgersRequest.builder()
-                .requestBody(Map.ofEntries(
-                    Map.entry("key", "<value>"),
-                    Map.entry("key1", "<value>"),
-                    Map.entry("key2", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort("id:desc")
@@ -1700,7 +1886,7 @@ public class Application {
                 .call();
 
         if (res.v2LedgerListResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2LedgerListResponse().get());
         }
     }
 }
@@ -1739,7 +1925,6 @@ import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1753,8 +1938,6 @@ public class Application {
             .build();
 
         V2ListLogsRequest req = V2ListLogsRequest.builder()
-                .requestBody(Map.ofEntries(
-                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1766,7 +1949,7 @@ public class Application {
                 .call();
 
         if (res.v2LogsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2LogsCursorResponse().get());
         }
     }
 }
@@ -1826,7 +2009,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1841,6 +2024,66 @@ public class Application {
 ### Response
 
 **[V2ListPipelinesResponse](../../models/operations/V2ListPipelinesResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## listSchemas
+
+List all schemas for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2ListSchemas" method="get" path="/api/ledger/v2/{ledger}/schemas" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2ListSchemasRequest;
+import com.formance.formance_sdk.models.operations.V2ListSchemasResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ListSchemasRequest req = V2ListSchemasRequest.builder()
+                .ledger("ledger001")
+                .build();
+
+        V2ListSchemasResponse res = sdk.ledger().v2().listSchemas()
+                .request(req)
+                .call();
+
+        if (res.v2SchemasCursorResponse().isPresent()) {
+            System.out.println(res.v2SchemasCursorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [V2ListSchemasRequest](../../models/operations/V2ListSchemasRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[V2ListSchemasResponse](../../models/operations/V2ListSchemasResponse.md)**
 
 ### Errors
 
@@ -1865,7 +2108,6 @@ import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.Map;
 
 public class Application {
 
@@ -1879,8 +2121,6 @@ public class Application {
             .build();
 
         V2ListTransactionsRequest req = V2ListTransactionsRequest.builder()
-                .requestBody(Map.ofEntries(
-                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1892,7 +2132,7 @@ public class Application {
                 .call();
 
         if (res.v2TransactionsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2TransactionsCursorResponse().get());
         }
     }
 }
@@ -1953,7 +2193,7 @@ public class Application {
                 .call();
 
         if (res.v2StatsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2StatsResponse().get());
         }
     }
 }
@@ -2035,6 +2275,66 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## restoreBucket
+
+Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2RestoreBucket" method="post" path="/api/ledger/v2/_/buckets/{bucket}/restore" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2RestoreBucketRequest;
+import com.formance.formance_sdk.models.operations.V2RestoreBucketResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2RestoreBucketRequest req = V2RestoreBucketRequest.builder()
+                .bucket("<value>")
+                .build();
+
+        V2RestoreBucketResponse res = sdk.ledger().v2().restoreBucket()
+                .request(req)
+                .call();
+
+        if (res.v2ErrorResponse().isPresent()) {
+            System.out.println(res.v2ErrorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2RestoreBucketRequest](../../models/operations/V2RestoreBucketRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[V2RestoreBucketResponse](../../models/operations/V2RestoreBucketResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## revertTransaction
 
 Revert a ledger transaction by its ID
@@ -2068,14 +2368,15 @@ public class Application {
                 .id(new BigInteger("1234"))
                 .ledger("ledger001")
                 .dryRun(true)
+                .schemaVersion("v1.0.0")
                 .build();
 
         V2RevertTransactionResponse res = sdk.ledger().v2().revertTransaction()
                 .request(req)
                 .call();
 
-        if (res.v2CreateTransactionResponse().isPresent()) {
-            // handle response
+        if (res.v2RevertTransactionResponse().isPresent()) {
+            System.out.println(res.v2RevertTransactionResponse().get());
         }
     }
 }
@@ -2090,6 +2391,94 @@ public class Application {
 ### Response
 
 **[V2RevertTransactionResponse](../../models/operations/V2RevertTransactionResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## runQuery
+
+Run a query template on a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2RunQuery" method="post" path="/api/ledger/v2/{ledger}/queries/{id}/run" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.shared.*;
+import java.lang.Exception;
+import java.lang.Object;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2RunQueryRequest req = V2RunQueryRequest.builder()
+                .requestBody(V2RunQueryRequestBody.builder()
+                    .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                        .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                        .pageSize(100L)
+                        .sort("id:desc")
+                        .build()))
+                    .build())
+                .id("CUSTOMER_DEPOSIT")
+                .ledger("ledger001")
+                .schemaVersion("v1.0.0")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(100L)
+                .sort("id:desc")
+                .build();
+
+        V2RunQueryResponse res = sdk.ledger().v2().runQuery()
+                .request(req)
+                .call();
+
+        if (res.oneOf().isPresent()) {
+            V2RunQueryResponseBody unionValue = res.oneOf().get();
+            Object raw = unionValue.value();
+            if (raw instanceof V2TransactionsCursorResponse) {
+                V2TransactionsCursorResponse v2TransactionsCursorResponseValue = (V2TransactionsCursorResponse) raw;
+                // Handle v2TransactionsCursorResponse variant
+            } else if (raw instanceof V2AccountsCursorResponse) {
+                V2AccountsCursorResponse v2AccountsCursorResponseValue = (V2AccountsCursorResponse) raw;
+                // Handle v2AccountsCursorResponse variant
+            } else if (raw instanceof V2LogsCursorResponse) {
+                V2LogsCursorResponse v2LogsCursorResponseValue = (V2LogsCursorResponse) raw;
+                // Handle v2LogsCursorResponse variant
+            } else if (raw instanceof V2VolumesWithBalanceCursorResponse) {
+                V2VolumesWithBalanceCursorResponse v2VolumesWithBalanceCursorResponseValue = (V2VolumesWithBalanceCursorResponse) raw;
+                // Handle v2VolumesWithBalanceCursorResponse variant
+            } else {
+                // Unknown or unsupported variant
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [V2RunQueryRequest](../../models/operations/V2RunQueryRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[V2RunQueryResponse](../../models/operations/V2RunQueryResponse.md)**
 
 ### Errors
 
@@ -2216,6 +2605,73 @@ public class Application {
 | models/errors/V2ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## updateExporter
+
+Update exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2UpdateExporter" method="put" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2UpdateExporterRequest;
+import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws V2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2UpdateExporterRequest req = V2UpdateExporterRequest.builder()
+                .v2CreateExporterRequest(V2CreateExporterRequest.builder()
+                    .config(Map.ofEntries(
+                        Map.entry("key", "<value>"),
+                        Map.entry("key1", "<value>"),
+                        Map.entry("key2", "<value>")))
+                    .driver("<value>")
+                    .build())
+                .exporterID("<id>")
+                .build();
+
+        V2UpdateExporterResponse res = sdk.ledger().v2().updateExporter()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2UpdateExporterRequest](../../models/operations/V2UpdateExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[V2UpdateExporterResponse](../../models/operations/V2UpdateExporterResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V2ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## updateLedgerMetadata
 
 Update ledger metadata
@@ -2256,7 +2712,7 @@ public class Application {
                 .call();
 
         if (res.v2ErrorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2ErrorResponse().get());
         }
     }
 }

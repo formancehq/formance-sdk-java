@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetWorkflowRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetWorkflowRequestBuilder {
         return this;
     }
 
-    public V2GetWorkflowResponse call() throws Exception {
+    public V2GetWorkflowResponse call() {
         
         RequestOperation<V2GetWorkflowRequest, V2GetWorkflowResponse> operation
               = new V2GetWorkflow.Sync(sdkConfiguration, _headers);

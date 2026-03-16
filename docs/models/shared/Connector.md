@@ -1,5 +1,13 @@
 # Connector
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.Connector;
+
+Connector value = Connector.STRIPE;
+```
+
 
 ## Values
 

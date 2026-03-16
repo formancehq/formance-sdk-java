@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.TriggerData;
 import com.formance.formance_sdk.operations.CreateTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class CreateTriggerRequestBuilder {
@@ -35,7 +34,7 @@ public class CreateTriggerRequestBuilder {
         return this;
     }
 
-    public CreateTriggerResponse call() throws Exception {
+    public CreateTriggerResponse call() {
         
         RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> operation
               = new CreateTrigger.Sync(sdkConfiguration, _headers);

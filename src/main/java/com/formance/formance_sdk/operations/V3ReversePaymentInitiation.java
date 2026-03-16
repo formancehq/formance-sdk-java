@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -57,7 +58,7 @@ public class V3ReversePaymentInitiation {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ReversePaymentInitiation",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:write")),
+                    java.util.Optional.of(java.util.List.of("payments:write")),
                     securitySource());
         }
 
@@ -66,7 +67,7 @@ public class V3ReversePaymentInitiation {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ReversePaymentInitiation",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:write")),
+                    java.util.Optional.of(java.util.List.of("payments:write")),
                     securitySource());
         }
 
@@ -75,7 +76,7 @@ public class V3ReversePaymentInitiation {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ReversePaymentInitiation",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:write")),
+                    java.util.Optional.of(java.util.List.of("payments:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -127,8 +128,8 @@ public class V3ReversePaymentInitiation {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V3ReversePaymentInitiationRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V3ReversePaymentInitiationRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -138,7 +139,7 @@ public class V3ReversePaymentInitiation {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -146,7 +147,7 @@ public class V3ReversePaymentInitiation {
 
 
         @Override
-        public V3ReversePaymentInitiationResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3ReversePaymentInitiationResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -162,42 +163,19 @@ public class V3ReversePaymentInitiation {
             
             if (Utils.statusCodeMatches(response.statusCode(), "202")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV3ReversePaymentInitiationResponse(out);
-                    return res;
+                    return res.withV3ReversePaymentInitiationResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V3ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V3ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

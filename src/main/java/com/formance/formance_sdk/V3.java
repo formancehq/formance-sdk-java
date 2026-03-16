@@ -19,6 +19,9 @@ import com.formance.formance_sdk.models.operations.V3CreateAccountRequestBuilder
 import com.formance.formance_sdk.models.operations.V3CreateAccountResponse;
 import com.formance.formance_sdk.models.operations.V3CreateBankAccountRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3CreateBankAccountResponse;
+import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentServiceUserRequestBuilder;
@@ -28,6 +31,15 @@ import com.formance.formance_sdk.models.operations.V3CreatePoolResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePoolRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePoolRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3DeletePoolResponse;
@@ -37,6 +49,9 @@ import com.formance.formance_sdk.models.operations.V3ForwardBankAccountResponse;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountResponse;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderRequest;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderResponse;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesResponse;
@@ -58,6 +73,9 @@ import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationRespons
 import com.formance.formance_sdk.models.operations.V3GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetPaymentResponse;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserResponse;
@@ -105,6 +123,15 @@ import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationRelate
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersResponse;
@@ -138,9 +165,15 @@ import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataRe
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigResponse;
+import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest;
+import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataResponse;
+import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryRequest;
+import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryResponse;
 import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreateBankAccountRequest;
 import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
@@ -151,13 +184,18 @@ import com.formance.formance_sdk.operations.V3AddBankAccountToPaymentServiceUser
 import com.formance.formance_sdk.operations.V3ApprovePaymentInitiation;
 import com.formance.formance_sdk.operations.V3CreateAccount;
 import com.formance.formance_sdk.operations.V3CreateBankAccount;
+import com.formance.formance_sdk.operations.V3CreateLinkForPaymentServiceUser;
 import com.formance.formance_sdk.operations.V3CreatePayment;
 import com.formance.formance_sdk.operations.V3CreatePaymentServiceUser;
 import com.formance.formance_sdk.operations.V3CreatePool;
 import com.formance.formance_sdk.operations.V3DeletePaymentInitiation;
+import com.formance.formance_sdk.operations.V3DeletePaymentServiceUser;
+import com.formance.formance_sdk.operations.V3DeletePaymentServiceUserConnectionFromConnectorID;
+import com.formance.formance_sdk.operations.V3DeletePaymentServiceUserConnector;
 import com.formance.formance_sdk.operations.V3DeletePool;
 import com.formance.formance_sdk.operations.V3ForwardBankAccount;
 import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserBankAccount;
+import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserToProvider;
 import com.formance.formance_sdk.operations.V3GetAccount;
 import com.formance.formance_sdk.operations.V3GetAccountBalances;
 import com.formance.formance_sdk.operations.V3GetBankAccount;
@@ -166,6 +204,7 @@ import com.formance.formance_sdk.operations.V3GetConnectorSchedule;
 import com.formance.formance_sdk.operations.V3GetPayment;
 import com.formance.formance_sdk.operations.V3GetPaymentInitiation;
 import com.formance.formance_sdk.operations.V3GetPaymentServiceUser;
+import com.formance.formance_sdk.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorID;
 import com.formance.formance_sdk.operations.V3GetPool;
 import com.formance.formance_sdk.operations.V3GetPoolBalances;
 import com.formance.formance_sdk.operations.V3GetPoolBalancesLatest;
@@ -181,6 +220,9 @@ import com.formance.formance_sdk.operations.V3ListConnectors;
 import com.formance.formance_sdk.operations.V3ListPaymentInitiationAdjustments;
 import com.formance.formance_sdk.operations.V3ListPaymentInitiationRelatedPayments;
 import com.formance.formance_sdk.operations.V3ListPaymentInitiations;
+import com.formance.formance_sdk.operations.V3ListPaymentServiceUserConnections;
+import com.formance.formance_sdk.operations.V3ListPaymentServiceUserConnectionsFromConnectorID;
+import com.formance.formance_sdk.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorID;
 import com.formance.formance_sdk.operations.V3ListPaymentServiceUsers;
 import com.formance.formance_sdk.operations.V3ListPayments;
 import com.formance.formance_sdk.operations.V3ListPools;
@@ -192,9 +234,10 @@ import com.formance.formance_sdk.operations.V3ReversePaymentInitiation;
 import com.formance.formance_sdk.operations.V3UninstallConnector;
 import com.formance.formance_sdk.operations.V3UpdateBankAccountMetadata;
 import com.formance.formance_sdk.operations.V3UpdateConnectorConfig;
+import com.formance.formance_sdk.operations.V3UpdateLinkForPaymentServiceUserOnConnector;
 import com.formance.formance_sdk.operations.V3UpdatePaymentMetadata;
+import com.formance.formance_sdk.operations.V3UpdatePoolQuery;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -220,9 +263,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3AddAccountToPoolResponse addAccountToPool(V3AddAccountToPoolRequest request) throws Exception {
+    public V3AddAccountToPoolResponse addAccountToPool(V3AddAccountToPoolRequest request) {
         RequestOperation<V3AddAccountToPoolRequest, V3AddAccountToPoolResponse> operation
               = new V3AddAccountToPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -242,9 +285,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3AddBankAccountToPaymentServiceUserResponse addBankAccountToPaymentServiceUser(V3AddBankAccountToPaymentServiceUserRequest request) throws Exception {
+    public V3AddBankAccountToPaymentServiceUserResponse addBankAccountToPaymentServiceUser(V3AddBankAccountToPaymentServiceUserRequest request) {
         RequestOperation<V3AddBankAccountToPaymentServiceUserRequest, V3AddBankAccountToPaymentServiceUserResponse> operation
               = new V3AddBankAccountToPaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -264,9 +307,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ApprovePaymentInitiationResponse approvePaymentInitiation(V3ApprovePaymentInitiationRequest request) throws Exception {
+    public V3ApprovePaymentInitiationResponse approvePaymentInitiation(V3ApprovePaymentInitiationRequest request) {
         RequestOperation<V3ApprovePaymentInitiationRequest, V3ApprovePaymentInitiationResponse> operation
               = new V3ApprovePaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -287,9 +330,9 @@ public class V3 {
      * used for internal purposes.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreateAccountResponse createAccountDirect() throws Exception {
+    public V3CreateAccountResponse createAccountDirect() {
         return createAccount(Optional.empty());
     }
 
@@ -299,9 +342,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreateAccountResponse createAccount(Optional<? extends V3CreateAccountRequest> request) throws Exception {
+    public V3CreateAccountResponse createAccount(Optional<? extends V3CreateAccountRequest> request) {
         RequestOperation<Optional<? extends V3CreateAccountRequest>, V3CreateAccountResponse> operation
               = new V3CreateAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -322,9 +365,9 @@ public class V3 {
      * called the forwardBankAccount method.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreateBankAccountResponse createBankAccountDirect() throws Exception {
+    public V3CreateBankAccountResponse createBankAccountDirect() {
         return createBankAccount(Optional.empty());
     }
 
@@ -334,11 +377,33 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreateBankAccountResponse createBankAccount(Optional<? extends V3CreateBankAccountRequest> request) throws Exception {
+    public V3CreateBankAccountResponse createBankAccount(Optional<? extends V3CreateBankAccountRequest> request) {
         RequestOperation<Optional<? extends V3CreateBankAccountRequest>, V3CreateBankAccountResponse> operation
               = new V3CreateBankAccount.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create an authentication link for a payment service user on a connector, for oauth flow
+     * 
+     * @return The call builder
+     */
+    public V3CreateLinkForPaymentServiceUserRequestBuilder createLinkForPaymentServiceUser() {
+        return new V3CreateLinkForPaymentServiceUserRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create an authentication link for a payment service user on a connector, for oauth flow
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3CreateLinkForPaymentServiceUserResponse createLinkForPaymentServiceUser(V3CreateLinkForPaymentServiceUserRequest request) {
+        RequestOperation<V3CreateLinkForPaymentServiceUserRequest, V3CreateLinkForPaymentServiceUserResponse> operation
+              = new V3CreateLinkForPaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -357,9 +422,9 @@ public class V3 {
      * used for internal purposes.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePaymentResponse createPaymentDirect() throws Exception {
+    public V3CreatePaymentResponse createPaymentDirect() {
         return createPayment(Optional.empty());
     }
 
@@ -369,9 +434,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePaymentResponse createPayment(Optional<? extends V3CreatePaymentRequest> request) throws Exception {
+    public V3CreatePaymentResponse createPayment(Optional<? extends V3CreatePaymentRequest> request) {
         RequestOperation<Optional<? extends V3CreatePaymentRequest>, V3CreatePaymentResponse> operation
               = new V3CreatePayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -390,9 +455,9 @@ public class V3 {
      * Create a formance payment service user object
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePaymentServiceUserResponse createPaymentServiceUserDirect() throws Exception {
+    public V3CreatePaymentServiceUserResponse createPaymentServiceUserDirect() {
         return createPaymentServiceUser(Optional.empty());
     }
 
@@ -401,9 +466,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePaymentServiceUserResponse createPaymentServiceUser(Optional<? extends V3CreatePaymentServiceUserRequest> request) throws Exception {
+    public V3CreatePaymentServiceUserResponse createPaymentServiceUser(Optional<? extends V3CreatePaymentServiceUserRequest> request) {
         RequestOperation<Optional<? extends V3CreatePaymentServiceUserRequest>, V3CreatePaymentServiceUserResponse> operation
               = new V3CreatePaymentServiceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -422,9 +487,9 @@ public class V3 {
      * Create a formance pool object
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePoolResponse createPoolDirect() throws Exception {
+    public V3CreatePoolResponse createPoolDirect() {
         return createPool(Optional.empty());
     }
 
@@ -433,9 +498,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3CreatePoolResponse createPool(Optional<? extends V3CreatePoolRequest> request) throws Exception {
+    public V3CreatePoolResponse createPool(Optional<? extends V3CreatePoolRequest> request) {
         RequestOperation<Optional<? extends V3CreatePoolRequest>, V3CreatePoolResponse> operation
               = new V3CreatePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -455,11 +520,77 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DeletePaymentInitiationResponse deletePaymentInitiation(V3DeletePaymentInitiationRequest request) throws Exception {
+    public V3DeletePaymentInitiationResponse deletePaymentInitiation(V3DeletePaymentInitiationRequest request) {
         RequestOperation<V3DeletePaymentInitiationRequest, V3DeletePaymentInitiationResponse> operation
               = new V3DeletePaymentInitiation.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete a payment service user by ID
+     * 
+     * @return The call builder
+     */
+    public V3DeletePaymentServiceUserRequestBuilder deletePaymentServiceUser() {
+        return new V3DeletePaymentServiceUserRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete a payment service user by ID
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3DeletePaymentServiceUserResponse deletePaymentServiceUser(V3DeletePaymentServiceUserRequest request) {
+        RequestOperation<V3DeletePaymentServiceUserRequest, V3DeletePaymentServiceUserResponse> operation
+              = new V3DeletePaymentServiceUser.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete a connection for a payment service user on a connector
+     * 
+     * @return The call builder
+     */
+    public V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder deletePaymentServiceUserConnectionFromConnectorID() {
+        return new V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete a connection for a payment service user on a connector
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3DeletePaymentServiceUserConnectionFromConnectorIDResponse deletePaymentServiceUserConnectionFromConnectorID(V3DeletePaymentServiceUserConnectionFromConnectorIDRequest request) {
+        RequestOperation<V3DeletePaymentServiceUserConnectionFromConnectorIDRequest, V3DeletePaymentServiceUserConnectionFromConnectorIDResponse> operation
+              = new V3DeletePaymentServiceUserConnectionFromConnectorID.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Remove a payment service user from a connector, the PSU will still exist in Formance
+     * 
+     * @return The call builder
+     */
+    public V3DeletePaymentServiceUserConnectorRequestBuilder deletePaymentServiceUserConnector() {
+        return new V3DeletePaymentServiceUserConnectorRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Remove a payment service user from a connector, the PSU will still exist in Formance
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3DeletePaymentServiceUserConnectorResponse deletePaymentServiceUserConnector(V3DeletePaymentServiceUserConnectorRequest request) {
+        RequestOperation<V3DeletePaymentServiceUserConnectorRequest, V3DeletePaymentServiceUserConnectorResponse> operation
+              = new V3DeletePaymentServiceUserConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -477,9 +608,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3DeletePoolResponse deletePool(V3DeletePoolRequest request) throws Exception {
+    public V3DeletePoolResponse deletePool(V3DeletePoolRequest request) {
         RequestOperation<V3DeletePoolRequest, V3DeletePoolResponse> operation
               = new V3DeletePool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -499,9 +630,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ForwardBankAccountResponse forwardBankAccount(V3ForwardBankAccountRequest request) throws Exception {
+    public V3ForwardBankAccountResponse forwardBankAccount(V3ForwardBankAccountRequest request) {
         RequestOperation<V3ForwardBankAccountRequest, V3ForwardBankAccountResponse> operation
               = new V3ForwardBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -521,11 +652,33 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ForwardPaymentServiceUserBankAccountResponse forwardPaymentServiceUserBankAccount(V3ForwardPaymentServiceUserBankAccountRequest request) throws Exception {
+    public V3ForwardPaymentServiceUserBankAccountResponse forwardPaymentServiceUserBankAccount(V3ForwardPaymentServiceUserBankAccountRequest request) {
         RequestOperation<V3ForwardPaymentServiceUserBankAccountRequest, V3ForwardPaymentServiceUserBankAccountResponse> operation
               = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Register/forward a payment service user on/to a connector
+     * 
+     * @return The call builder
+     */
+    public V3ForwardPaymentServiceUserToProviderRequestBuilder forwardPaymentServiceUserToProvider() {
+        return new V3ForwardPaymentServiceUserToProviderRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Register/forward a payment service user on/to a connector
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3ForwardPaymentServiceUserToProviderResponse forwardPaymentServiceUserToProvider(V3ForwardPaymentServiceUserToProviderRequest request) {
+        RequestOperation<V3ForwardPaymentServiceUserToProviderRequest, V3ForwardPaymentServiceUserToProviderResponse> operation
+              = new V3ForwardPaymentServiceUserToProvider.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -543,9 +696,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetAccountResponse getAccount(V3GetAccountRequest request) throws Exception {
+    public V3GetAccountResponse getAccount(V3GetAccountRequest request) {
         RequestOperation<V3GetAccountRequest, V3GetAccountResponse> operation
               = new V3GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -565,9 +718,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetAccountBalancesResponse getAccountBalances(V3GetAccountBalancesRequest request) throws Exception {
+    public V3GetAccountBalancesResponse getAccountBalances(V3GetAccountBalancesRequest request) {
         RequestOperation<V3GetAccountBalancesRequest, V3GetAccountBalancesResponse> operation
               = new V3GetAccountBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -587,9 +740,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetBankAccountResponse getBankAccount(V3GetBankAccountRequest request) throws Exception {
+    public V3GetBankAccountResponse getBankAccount(V3GetBankAccountRequest request) {
         RequestOperation<V3GetBankAccountRequest, V3GetBankAccountResponse> operation
               = new V3GetBankAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -609,9 +762,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetConnectorConfigResponse getConnectorConfig(V3GetConnectorConfigRequest request) throws Exception {
+    public V3GetConnectorConfigResponse getConnectorConfig(V3GetConnectorConfigRequest request) {
         RequestOperation<V3GetConnectorConfigRequest, V3GetConnectorConfigResponse> operation
               = new V3GetConnectorConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -631,9 +784,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetConnectorScheduleResponse getConnectorSchedule(V3GetConnectorScheduleRequest request) throws Exception {
+    public V3GetConnectorScheduleResponse getConnectorSchedule(V3GetConnectorScheduleRequest request) {
         RequestOperation<V3GetConnectorScheduleRequest, V3GetConnectorScheduleResponse> operation
               = new V3GetConnectorSchedule.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -653,9 +806,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPaymentResponse getPayment(V3GetPaymentRequest request) throws Exception {
+    public V3GetPaymentResponse getPayment(V3GetPaymentRequest request) {
         RequestOperation<V3GetPaymentRequest, V3GetPaymentResponse> operation
               = new V3GetPayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -675,9 +828,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPaymentInitiationResponse getPaymentInitiation(V3GetPaymentInitiationRequest request) throws Exception {
+    public V3GetPaymentInitiationResponse getPaymentInitiation(V3GetPaymentInitiationRequest request) {
         RequestOperation<V3GetPaymentInitiationRequest, V3GetPaymentInitiationResponse> operation
               = new V3GetPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -697,11 +850,33 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPaymentServiceUserResponse getPaymentServiceUser(V3GetPaymentServiceUserRequest request) throws Exception {
+    public V3GetPaymentServiceUserResponse getPaymentServiceUser(V3GetPaymentServiceUserRequest request) {
         RequestOperation<V3GetPaymentServiceUserRequest, V3GetPaymentServiceUserResponse> operation
               = new V3GetPaymentServiceUser.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get a link attempt for a payment service user on a connector
+     * 
+     * @return The call builder
+     */
+    public V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestBuilder getPaymentServiceUserLinkAttemptFromConnectorID() {
+        return new V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a link attempt for a payment service user on a connector
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse getPaymentServiceUserLinkAttemptFromConnectorID(V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest request) {
+        RequestOperation<V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest, V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse> operation
+              = new V3GetPaymentServiceUserLinkAttemptFromConnectorID.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -719,9 +894,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPoolResponse getPool(V3GetPoolRequest request) throws Exception {
+    public V3GetPoolResponse getPool(V3GetPoolRequest request) {
         RequestOperation<V3GetPoolRequest, V3GetPoolResponse> operation
               = new V3GetPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -741,9 +916,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPoolBalancesResponse getPoolBalances(V3GetPoolBalancesRequest request) throws Exception {
+    public V3GetPoolBalancesResponse getPoolBalances(V3GetPoolBalancesRequest request) {
         RequestOperation<V3GetPoolBalancesRequest, V3GetPoolBalancesResponse> operation
               = new V3GetPoolBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -763,9 +938,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetPoolBalancesLatestResponse getPoolBalancesLatest(V3GetPoolBalancesLatestRequest request) throws Exception {
+    public V3GetPoolBalancesLatestResponse getPoolBalancesLatest(V3GetPoolBalancesLatestRequest request) {
         RequestOperation<V3GetPoolBalancesLatestRequest, V3GetPoolBalancesLatestResponse> operation
               = new V3GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -785,9 +960,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3GetTaskResponse getTask(V3GetTaskRequest request) throws Exception {
+    public V3GetTaskResponse getTask(V3GetTaskRequest request) {
         RequestOperation<V3GetTaskRequest, V3GetTaskResponse> operation
               = new V3GetTask.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -807,9 +982,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3InitiatePaymentResponse initiatePayment(V3InitiatePaymentRequest request) throws Exception {
+    public V3InitiatePaymentResponse initiatePayment(V3InitiatePaymentRequest request) {
         RequestOperation<V3InitiatePaymentRequest, V3InitiatePaymentResponse> operation
               = new V3InitiatePayment.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -829,9 +1004,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3InstallConnectorResponse installConnector(V3InstallConnectorRequest request) throws Exception {
+    public V3InstallConnectorResponse installConnector(V3InstallConnectorRequest request) {
         RequestOperation<V3InstallConnectorRequest, V3InstallConnectorResponse> operation
               = new V3InstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -851,9 +1026,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListAccountsResponse listAccounts(V3ListAccountsRequest request) throws Exception {
+    public V3ListAccountsResponse listAccounts(V3ListAccountsRequest request) {
         RequestOperation<V3ListAccountsRequest, V3ListAccountsResponse> operation
               = new V3ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -873,9 +1048,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListBankAccountsResponse listBankAccounts(V3ListBankAccountsRequest request) throws Exception {
+    public V3ListBankAccountsResponse listBankAccounts(V3ListBankAccountsRequest request) {
         RequestOperation<V3ListBankAccountsRequest, V3ListBankAccountsResponse> operation
               = new V3ListBankAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -894,9 +1069,9 @@ public class V3 {
      * List all connector configurations
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListConnectorConfigsResponse listConnectorConfigsDirect() throws Exception {
+    public V3ListConnectorConfigsResponse listConnectorConfigsDirect() {
         RequestlessOperation<V3ListConnectorConfigsResponse> operation
             = new V3ListConnectorConfigs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -916,9 +1091,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListConnectorScheduleInstancesResponse listConnectorScheduleInstances(V3ListConnectorScheduleInstancesRequest request) throws Exception {
+    public V3ListConnectorScheduleInstancesResponse listConnectorScheduleInstances(V3ListConnectorScheduleInstancesRequest request) {
         RequestOperation<V3ListConnectorScheduleInstancesRequest, V3ListConnectorScheduleInstancesResponse> operation
               = new V3ListConnectorScheduleInstances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -938,9 +1113,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListConnectorSchedulesResponse listConnectorSchedules(V3ListConnectorSchedulesRequest request) throws Exception {
+    public V3ListConnectorSchedulesResponse listConnectorSchedules(V3ListConnectorSchedulesRequest request) {
         RequestOperation<V3ListConnectorSchedulesRequest, V3ListConnectorSchedulesResponse> operation
               = new V3ListConnectorSchedules.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -960,9 +1135,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListConnectorsResponse listConnectors(V3ListConnectorsRequest request) throws Exception {
+    public V3ListConnectorsResponse listConnectors(V3ListConnectorsRequest request) {
         RequestOperation<V3ListConnectorsRequest, V3ListConnectorsResponse> operation
               = new V3ListConnectors.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -982,9 +1157,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPaymentInitiationAdjustmentsResponse listPaymentInitiationAdjustments(V3ListPaymentInitiationAdjustmentsRequest request) throws Exception {
+    public V3ListPaymentInitiationAdjustmentsResponse listPaymentInitiationAdjustments(V3ListPaymentInitiationAdjustmentsRequest request) {
         RequestOperation<V3ListPaymentInitiationAdjustmentsRequest, V3ListPaymentInitiationAdjustmentsResponse> operation
               = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1004,9 +1179,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPaymentInitiationRelatedPaymentsResponse listPaymentInitiationRelatedPayments(V3ListPaymentInitiationRelatedPaymentsRequest request) throws Exception {
+    public V3ListPaymentInitiationRelatedPaymentsResponse listPaymentInitiationRelatedPayments(V3ListPaymentInitiationRelatedPaymentsRequest request) {
         RequestOperation<V3ListPaymentInitiationRelatedPaymentsRequest, V3ListPaymentInitiationRelatedPaymentsResponse> operation
               = new V3ListPaymentInitiationRelatedPayments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1026,11 +1201,81 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPaymentInitiationsResponse listPaymentInitiations(V3ListPaymentInitiationsRequest request) throws Exception {
+    public V3ListPaymentInitiationsResponse listPaymentInitiations(V3ListPaymentInitiationsRequest request) {
         RequestOperation<V3ListPaymentInitiationsRequest, V3ListPaymentInitiationsResponse> operation
               = new V3ListPaymentInitiations.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List all connections for a payment service user
+     * 
+     * @return The call builder
+     */
+    public V3ListPaymentServiceUserConnectionsRequestBuilder listPaymentServiceUserConnections() {
+        return new V3ListPaymentServiceUserConnectionsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List all connections for a payment service user
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3ListPaymentServiceUserConnectionsResponse listPaymentServiceUserConnections(V3ListPaymentServiceUserConnectionsRequest request) {
+        RequestOperation<V3ListPaymentServiceUserConnectionsRequest, V3ListPaymentServiceUserConnectionsResponse> operation
+              = new V3ListPaymentServiceUserConnections.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser
+     * has enabled on the connector)
+     * 
+     * @return The call builder
+     */
+    public V3ListPaymentServiceUserConnectionsFromConnectorIDRequestBuilder listPaymentServiceUserConnectionsFromConnectorID() {
+        return new V3ListPaymentServiceUserConnectionsFromConnectorIDRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser
+     * has enabled on the connector)
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3ListPaymentServiceUserConnectionsFromConnectorIDResponse listPaymentServiceUserConnectionsFromConnectorID(V3ListPaymentServiceUserConnectionsFromConnectorIDRequest request) {
+        RequestOperation<V3ListPaymentServiceUserConnectionsFromConnectorIDRequest, V3ListPaymentServiceUserConnectionsFromConnectorIDResponse> operation
+              = new V3ListPaymentServiceUserConnectionsFromConnectorID.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List all link attempts for a payment service user on a connector.
+     * Allows to check if users used the link and completed the oauth flow.
+     * 
+     * @return The call builder
+     */
+    public V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder listPaymentServiceUserLinkAttemptsFromConnectorID() {
+        return new V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List all link attempts for a payment service user on a connector.
+     * Allows to check if users used the link and completed the oauth flow.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse listPaymentServiceUserLinkAttemptsFromConnectorID(V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest request) {
+        RequestOperation<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest, V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse> operation
+              = new V3ListPaymentServiceUserLinkAttemptsFromConnectorID.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1048,9 +1293,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPaymentServiceUsersResponse listPaymentServiceUsers(V3ListPaymentServiceUsersRequest request) throws Exception {
+    public V3ListPaymentServiceUsersResponse listPaymentServiceUsers(V3ListPaymentServiceUsersRequest request) {
         RequestOperation<V3ListPaymentServiceUsersRequest, V3ListPaymentServiceUsersResponse> operation
               = new V3ListPaymentServiceUsers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1070,9 +1315,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPaymentsResponse listPayments(V3ListPaymentsRequest request) throws Exception {
+    public V3ListPaymentsResponse listPayments(V3ListPaymentsRequest request) {
         RequestOperation<V3ListPaymentsRequest, V3ListPaymentsResponse> operation
               = new V3ListPayments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1092,9 +1337,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ListPoolsResponse listPools(V3ListPoolsRequest request) throws Exception {
+    public V3ListPoolsResponse listPools(V3ListPoolsRequest request) {
         RequestOperation<V3ListPoolsRequest, V3ListPoolsResponse> operation
               = new V3ListPools.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1114,9 +1359,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3RejectPaymentInitiationResponse rejectPaymentInitiation(V3RejectPaymentInitiationRequest request) throws Exception {
+    public V3RejectPaymentInitiationResponse rejectPaymentInitiation(V3RejectPaymentInitiationRequest request) {
         RequestOperation<V3RejectPaymentInitiationRequest, V3RejectPaymentInitiationResponse> operation
               = new V3RejectPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1136,9 +1381,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3RemoveAccountFromPoolResponse removeAccountFromPool(V3RemoveAccountFromPoolRequest request) throws Exception {
+    public V3RemoveAccountFromPoolResponse removeAccountFromPool(V3RemoveAccountFromPoolRequest request) {
         RequestOperation<V3RemoveAccountFromPoolRequest, V3RemoveAccountFromPoolResponse> operation
               = new V3RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1160,9 +1405,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ResetConnectorResponse resetConnector(V3ResetConnectorRequest request) throws Exception {
+    public V3ResetConnectorResponse resetConnector(V3ResetConnectorRequest request) {
         RequestOperation<V3ResetConnectorRequest, V3ResetConnectorResponse> operation
               = new V3ResetConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1182,9 +1427,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3RetryPaymentInitiationResponse retryPaymentInitiation(V3RetryPaymentInitiationRequest request) throws Exception {
+    public V3RetryPaymentInitiationResponse retryPaymentInitiation(V3RetryPaymentInitiationRequest request) {
         RequestOperation<V3RetryPaymentInitiationRequest, V3RetryPaymentInitiationResponse> operation
               = new V3RetryPaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1204,9 +1449,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3ReversePaymentInitiationResponse reversePaymentInitiation(V3ReversePaymentInitiationRequest request) throws Exception {
+    public V3ReversePaymentInitiationResponse reversePaymentInitiation(V3ReversePaymentInitiationRequest request) {
         RequestOperation<V3ReversePaymentInitiationRequest, V3ReversePaymentInitiationResponse> operation
               = new V3ReversePaymentInitiation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1226,9 +1471,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3UninstallConnectorResponse uninstallConnector(V3UninstallConnectorRequest request) throws Exception {
+    public V3UninstallConnectorResponse uninstallConnector(V3UninstallConnectorRequest request) {
         RequestOperation<V3UninstallConnectorRequest, V3UninstallConnectorResponse> operation
               = new V3UninstallConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -1248,11 +1493,33 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3UpdateBankAccountMetadataResponse updateBankAccountMetadata(V3UpdateBankAccountMetadataRequest request) throws Exception {
+    public V3UpdateBankAccountMetadataResponse updateBankAccountMetadata(V3UpdateBankAccountMetadataRequest request) {
         RequestOperation<V3UpdateBankAccountMetadataRequest, V3UpdateBankAccountMetadataResponse> operation
               = new V3UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update/Regenerate a link for a payment service user on a connector
+     * 
+     * @return The call builder
+     */
+    public V3UpdateLinkForPaymentServiceUserOnConnectorRequestBuilder updateLinkForPaymentServiceUserOnConnector() {
+        return new V3UpdateLinkForPaymentServiceUserOnConnectorRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update/Regenerate a link for a payment service user on a connector
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3UpdateLinkForPaymentServiceUserOnConnectorResponse updateLinkForPaymentServiceUserOnConnector(V3UpdateLinkForPaymentServiceUserOnConnectorRequest request) {
+        RequestOperation<V3UpdateLinkForPaymentServiceUserOnConnectorRequest, V3UpdateLinkForPaymentServiceUserOnConnectorResponse> operation
+              = new V3UpdateLinkForPaymentServiceUserOnConnector.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1270,11 +1537,33 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3UpdatePaymentMetadataResponse updatePaymentMetadata(V3UpdatePaymentMetadataRequest request) throws Exception {
+    public V3UpdatePaymentMetadataResponse updatePaymentMetadata(V3UpdatePaymentMetadataRequest request) {
         RequestOperation<V3UpdatePaymentMetadataRequest, V3UpdatePaymentMetadataResponse> operation
               = new V3UpdatePaymentMetadata.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update the query of a pool
+     * 
+     * @return The call builder
+     */
+    public V3UpdatePoolQueryRequestBuilder updatePoolQuery() {
+        return new V3UpdatePoolQueryRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update the query of a pool
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3UpdatePoolQueryResponse updatePoolQuery(V3UpdatePoolQueryRequest request) {
+        RequestOperation<V3UpdatePoolQueryRequest, V3UpdatePoolQueryResponse> operation
+              = new V3UpdatePoolQuery.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1296,9 +1585,9 @@ public class V3 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V3UpdateConnectorConfigResponse v3UpdateConnectorConfig(V3UpdateConnectorConfigRequest request) throws Exception {
+    public V3UpdateConnectorConfigResponse v3UpdateConnectorConfig(V3UpdateConnectorConfigRequest request) {
         RequestOperation<V3UpdateConnectorConfigRequest, V3UpdateConnectorConfigResponse> operation
               = new V3UpdateConnectorConfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

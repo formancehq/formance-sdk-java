@@ -1,5 +1,13 @@
 # OrchestrationConnector
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.OrchestrationConnector;
+
+OrchestrationConnector value = OrchestrationConnector.STRIPE;
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # OrchestrationPaymentScheme
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.OrchestrationPaymentScheme;
+
+OrchestrationPaymentScheme value = OrchestrationPaymentScheme.VISA;
+```
+
 
 ## Values
 

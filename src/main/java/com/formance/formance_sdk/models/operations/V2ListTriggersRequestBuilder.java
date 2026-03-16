@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListTriggers;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ListTriggersRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ListTriggersRequestBuilder {
         return this;
     }
 
-    public V2ListTriggersResponse call() throws Exception {
+    public V2ListTriggersResponse call() {
         
         RequestOperation<V2ListTriggersRequest, V2ListTriggersResponse> operation
               = new V2ListTriggers.Sync(sdkConfiguration, _headers);

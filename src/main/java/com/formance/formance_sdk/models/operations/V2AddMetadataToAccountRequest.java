@@ -49,24 +49,33 @@ public class V2AddMetadataToAccountRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    /**
+     * Schema version to use for validation
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")
+    private Optional<String> schemaVersion;
+
     @JsonCreator
     public V2AddMetadataToAccountRequest(
             Optional<String> idempotencyKey,
             Map<String, String> requestBody,
             String address,
             Optional<Boolean> dryRun,
-            String ledger) {
+            String ledger,
+            Optional<String> schemaVersion) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         requestBody = Utils.emptyMapIfNull(requestBody);
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(ledger, "ledger");
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
         this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
         this.address = address;
         this.dryRun = dryRun;
         this.ledger = ledger;
+        this.schemaVersion = schemaVersion;
     }
     
     public V2AddMetadataToAccountRequest(
@@ -74,7 +83,7 @@ public class V2AddMetadataToAccountRequest {
             String address,
             String ledger) {
         this(Optional.empty(), requestBody, address,
-            Optional.empty(), ledger);
+            Optional.empty(), ledger, Optional.empty());
     }
 
     /**
@@ -119,6 +128,14 @@ public class V2AddMetadataToAccountRequest {
     @JsonIgnore
     public String ledger() {
         return ledger;
+    }
+
+    /**
+     * Schema version to use for validation
+     */
+    @JsonIgnore
+    public Optional<String> schemaVersion() {
+        return schemaVersion;
     }
 
     public static Builder builder() {
@@ -196,6 +213,25 @@ public class V2AddMetadataToAccountRequest {
         return this;
     }
 
+    /**
+     * Schema version to use for validation
+     */
+    public V2AddMetadataToAccountRequest withSchemaVersion(String schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = Optional.ofNullable(schemaVersion);
+        return this;
+    }
+
+
+    /**
+     * Schema version to use for validation
+     */
+    public V2AddMetadataToAccountRequest withSchemaVersion(Optional<String> schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = schemaVersion;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -210,14 +246,15 @@ public class V2AddMetadataToAccountRequest {
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
-            Utils.enhancedDeepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.schemaVersion, other.schemaVersion);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idempotencyKey, requestBody, address,
-            dryRun, ledger);
+            dryRun, ledger, schemaVersion);
     }
     
     @Override
@@ -227,7 +264,8 @@ public class V2AddMetadataToAccountRequest {
                 "requestBody", requestBody,
                 "address", address,
                 "dryRun", dryRun,
-                "ledger", ledger);
+                "ledger", ledger,
+                "schemaVersion", schemaVersion);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -242,6 +280,8 @@ public class V2AddMetadataToAccountRequest {
         private Optional<Boolean> dryRun = Optional.empty();
 
         private String ledger;
+
+        private Optional<String> schemaVersion = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -320,11 +360,30 @@ public class V2AddMetadataToAccountRequest {
             return this;
         }
 
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(String schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = Optional.ofNullable(schemaVersion);
+            return this;
+        }
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(Optional<String> schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = schemaVersion;
+            return this;
+        }
+
         public V2AddMetadataToAccountRequest build() {
 
             return new V2AddMetadataToAccountRequest(
                 idempotencyKey, requestBody, address,
-                dryRun, ledger);
+                dryRun, ledger, schemaVersion);
         }
 
     }

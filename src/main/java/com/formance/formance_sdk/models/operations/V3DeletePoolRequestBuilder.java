@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3DeletePool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3DeletePoolRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3DeletePoolRequestBuilder {
         return this;
     }
 
-    public V3DeletePoolResponse call() throws Exception {
+    public V3DeletePoolResponse call() {
         
         RequestOperation<V3DeletePoolRequest, V3DeletePoolResponse> operation
               = new V3DeletePool.Sync(sdkConfiguration, _headers);

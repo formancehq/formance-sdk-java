@@ -15,7 +15,6 @@ import com.formance.formance_sdk.operations.Search;
 import com.formance.formance_sdk.operations.SearchgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 
 
 public class SearchV1 {
@@ -46,11 +45,11 @@ public class SearchV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SearchResponse search(Query request) throws Exception {
+    public SearchResponse search(Query request) {
         RequestOperation<Query, SearchResponse> operation
               = new Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -71,11 +70,11 @@ public class SearchV1 {
      * Get server info
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SearchgetServerInfoResponse searchgetServerInfoDirect() throws Exception {
+    public SearchgetServerInfoResponse searchgetServerInfoDirect() {
         RequestlessOperation<SearchgetServerInfoResponse> operation
             = new SearchgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

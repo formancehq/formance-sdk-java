@@ -1,0 +1,15 @@
+# V3CoinbaseprimeConfig
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `apiKey`                                                                | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `apiSecret`                                                             | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `name`                                                                  | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`pageSize`~~                                                          | *Optional\<Long>*                                                       | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `passphrase`                                                            | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `pollingPeriod`                                                         | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `portfolioId`                                                           | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `provider`                                                              | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |

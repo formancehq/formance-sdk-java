@@ -14,10 +14,16 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3Account {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("connector")
+    private Optional<? extends V3ConnectorBase> connector;
+
 
     @JsonProperty("connectorID")
     private String connectorID;
@@ -63,6 +69,7 @@ public class V3Account {
 
     @JsonCreator
     public V3Account(
+            @JsonProperty("connector") Optional<? extends V3ConnectorBase> connector,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("defaultAsset") JsonNullable<String> defaultAsset,
@@ -73,6 +80,7 @@ public class V3Account {
             @JsonProperty("raw") V3AccountRaw raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("type") V3AccountTypeEnum type) {
+        Utils.checkNotNull(connector, "connector");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(defaultAsset, "defaultAsset");
@@ -83,6 +91,7 @@ public class V3Account {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(type, "type");
+        this.connector = connector;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.defaultAsset = defaultAsset;
@@ -103,10 +112,16 @@ public class V3Account {
             V3AccountRaw raw,
             String reference,
             V3AccountTypeEnum type) {
-        this(connectorID, createdAt, JsonNullable.undefined(),
-            id, JsonNullable.undefined(), JsonNullable.undefined(),
-            provider, raw, reference,
-            type);
+        this(Optional.empty(), connectorID, createdAt,
+            JsonNullable.undefined(), id, JsonNullable.undefined(),
+            JsonNullable.undefined(), provider, raw,
+            reference, type);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V3ConnectorBase> connector() {
+        return (Optional<V3ConnectorBase>) connector;
     }
 
     @JsonIgnore
@@ -164,6 +179,19 @@ public class V3Account {
         return new Builder();
     }
 
+
+    public V3Account withConnector(V3ConnectorBase connector) {
+        Utils.checkNotNull(connector, "connector");
+        this.connector = Optional.ofNullable(connector);
+        return this;
+    }
+
+
+    public V3Account withConnector(Optional<? extends V3ConnectorBase> connector) {
+        Utils.checkNotNull(connector, "connector");
+        this.connector = connector;
+        return this;
+    }
 
     public V3Account withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -253,6 +281,7 @@ public class V3Account {
         }
         V3Account other = (V3Account) o;
         return 
+            Utils.enhancedDeepEquals(this.connector, other.connector) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
@@ -268,15 +297,16 @@ public class V3Account {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connectorID, createdAt, defaultAsset,
-            id, metadata, name,
-            provider, raw, reference,
-            type);
+            connector, connectorID, createdAt,
+            defaultAsset, id, metadata,
+            name, provider, raw,
+            reference, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Account.class,
+                "connector", connector,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "defaultAsset", defaultAsset,
@@ -291,6 +321,8 @@ public class V3Account {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends V3ConnectorBase> connector = Optional.empty();
 
         private String connectorID;
 
@@ -314,6 +346,19 @@ public class V3Account {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder connector(V3ConnectorBase connector) {
+            Utils.checkNotNull(connector, "connector");
+            this.connector = Optional.ofNullable(connector);
+            return this;
+        }
+
+        public Builder connector(Optional<? extends V3ConnectorBase> connector) {
+            Utils.checkNotNull(connector, "connector");
+            this.connector = connector;
+            return this;
         }
 
 
@@ -407,10 +452,10 @@ public class V3Account {
         public V3Account build() {
 
             return new V3Account(
-                connectorID, createdAt, defaultAsset,
-                id, metadata, name,
-                provider, raw, reference,
-                type);
+                connector, connectorID, createdAt,
+                defaultAsset, id, metadata,
+                name, provider, raw,
+                reference, type);
         }
 
     }

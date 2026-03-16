@@ -12,7 +12,6 @@ import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.operations.GetMetrics;
 import com.formance.formance_sdk.operations.V2GetInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 
 public class Ledger {
@@ -48,9 +47,9 @@ public class Ledger {
      * Show server information
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetInfoResponse getInfoDirect() throws Exception {
+    public V2GetInfoResponse getInfoDirect() {
         RequestlessOperation<V2GetInfoResponse> operation
             = new V2GetInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -69,9 +68,9 @@ public class Ledger {
      * Read in memory metrics
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMetricsResponse getMetricsDirect() throws Exception {
+    public GetMetricsResponse getMetricsDirect() {
         RequestlessOperation<GetMetricsResponse> operation
             = new GetMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

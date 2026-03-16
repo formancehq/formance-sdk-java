@@ -20,7 +20,7 @@ import java.math.BigInteger;
 public class V2TargetId {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private V2TargetId(TypedObject value) {
         this.value = value;
@@ -28,12 +28,12 @@ public class V2TargetId {
 
     public static V2TargetId of(String value) {
         Utils.checkNotNull(value, "value");
-        return new V2TargetId(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new V2TargetId(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static V2TargetId of(BigInteger value) {
         Utils.checkNotNull(value, "value");
-        return new V2TargetId(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<BigInteger>(){}));
+        return new V2TargetId(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -56,7 +56,7 @@ public class V2TargetId {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -67,7 +67,7 @@ public class V2TargetId {
             return false;
         }
         V2TargetId other = (V2TargetId) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -80,8 +80,8 @@ public class V2TargetId {
 
         public _Deserializer() {
             super(V2TargetId.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<BigInteger>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<BigInteger>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -90,6 +90,6 @@ public class V2TargetId {
         return Utils.toString(V2TargetId.class,
                 "value", value);
     }
- 
+
 }
 

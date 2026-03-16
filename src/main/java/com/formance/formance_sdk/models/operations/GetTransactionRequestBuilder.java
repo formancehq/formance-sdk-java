@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetTransaction;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetTransactionRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetTransactionRequestBuilder {
         return this;
     }
 
-    public GetTransactionResponse call() throws Exception {
+    public GetTransactionResponse call() {
         
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
               = new GetTransaction.Sync(sdkConfiguration, _headers);

@@ -38,7 +38,6 @@ import com.formance.formance_sdk.operations.ListReconciliations;
 import com.formance.formance_sdk.operations.Reconcile;
 import com.formance.formance_sdk.operations.ReconciliationgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 
 public class ReconciliationV1 {
@@ -67,9 +66,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePolicyResponse createPolicy(PolicyRequest request) throws Exception {
+    public CreatePolicyResponse createPolicy(PolicyRequest request) {
         RequestOperation<PolicyRequest, CreatePolicyResponse> operation
               = new CreatePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -93,9 +92,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) throws Exception {
+    public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) {
         RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
               = new DeletePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -115,9 +114,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPolicyResponse getPolicy(GetPolicyRequest request) throws Exception {
+    public GetPolicyResponse getPolicy(GetPolicyRequest request) {
         RequestOperation<GetPolicyRequest, GetPolicyResponse> operation
               = new GetPolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -137,9 +136,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetReconciliationResponse getReconciliation(GetReconciliationRequest request) throws Exception {
+    public GetReconciliationResponse getReconciliation(GetReconciliationRequest request) {
         RequestOperation<GetReconciliationRequest, GetReconciliationResponse> operation
               = new GetReconciliation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -159,9 +158,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPoliciesResponse listPolicies(ListPoliciesRequest request) throws Exception {
+    public ListPoliciesResponse listPolicies(ListPoliciesRequest request) {
         RequestOperation<ListPoliciesRequest, ListPoliciesResponse> operation
               = new ListPolicies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -181,9 +180,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListReconciliationsResponse listReconciliations(ListReconciliationsRequest request) throws Exception {
+    public ListReconciliationsResponse listReconciliations(ListReconciliationsRequest request) {
         RequestOperation<ListReconciliationsRequest, ListReconciliationsResponse> operation
               = new ListReconciliations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -207,9 +206,9 @@ public class ReconciliationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReconcileResponse reconcile(ReconcileRequest request) throws Exception {
+    public ReconcileResponse reconcile(ReconcileRequest request) {
         RequestOperation<ReconcileRequest, ReconcileResponse> operation
               = new Reconcile.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class ReconciliationV1 {
      * Get server info
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() throws Exception {
+    public ReconciliationgetServerInfoResponse reconciliationgetServerInfoDirect() {
         RequestlessOperation<ReconciliationgetServerInfoResponse> operation
             = new ReconciliationgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

@@ -16,6 +16,12 @@ import java.util.Optional;
 
 
 public class V2RevertTransactionRequest {
+    /**
+     * Use an idempotency key
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest;
@@ -51,33 +57,54 @@ public class V2RevertTransactionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ledger")
     private String ledger;
 
+    /**
+     * Schema version to use for validation
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")
+    private Optional<String> schemaVersion;
+
     @JsonCreator
     public V2RevertTransactionRequest(
+            Optional<String> idempotencyKey,
             Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest,
             Optional<Boolean> atEffectiveDate,
             Optional<Boolean> dryRun,
             Optional<Boolean> force,
             BigInteger id,
-            String ledger) {
+            String ledger,
+            Optional<String> schemaVersion) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         Utils.checkNotNull(dryRun, "dryRun");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.idempotencyKey = idempotencyKey;
         this.v2RevertTransactionRequest = v2RevertTransactionRequest;
         this.atEffectiveDate = atEffectiveDate;
         this.dryRun = dryRun;
         this.force = force;
         this.id = id;
         this.ledger = ledger;
+        this.schemaVersion = schemaVersion;
     }
     
     public V2RevertTransactionRequest(
             BigInteger id,
             String ledger) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), id, ledger);
+            Optional.empty(), Optional.empty(), id,
+            ledger, Optional.empty());
+    }
+
+    /**
+     * Use an idempotency key
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -127,10 +154,37 @@ public class V2RevertTransactionRequest {
         return ledger;
     }
 
+    /**
+     * Schema version to use for validation
+     */
+    @JsonIgnore
+    public Optional<String> schemaVersion() {
+        return schemaVersion;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
+
+    /**
+     * Use an idempotency key
+     */
+    public V2RevertTransactionRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * Use an idempotency key
+     */
+    public V2RevertTransactionRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
 
     public V2RevertTransactionRequest withV2RevertTransactionRequest(com.formance.formance_sdk.models.shared.V2RevertTransactionRequest v2RevertTransactionRequest) {
         Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
@@ -230,6 +284,25 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
+    /**
+     * Schema version to use for validation
+     */
+    public V2RevertTransactionRequest withSchemaVersion(String schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = Optional.ofNullable(schemaVersion);
+        return this;
+    }
+
+
+    /**
+     * Schema version to use for validation
+     */
+    public V2RevertTransactionRequest withSchemaVersion(Optional<String> schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = schemaVersion;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -240,34 +313,41 @@ public class V2RevertTransactionRequest {
         }
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.v2RevertTransactionRequest, other.v2RevertTransactionRequest) &&
             Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
             Utils.enhancedDeepEquals(this.dryRun, other.dryRun) &&
             Utils.enhancedDeepEquals(this.force, other.force) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.ledger, other.ledger);
+            Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
+            Utils.enhancedDeepEquals(this.schemaVersion, other.schemaVersion);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2RevertTransactionRequest, atEffectiveDate, dryRun,
-            force, id, ledger);
+            idempotencyKey, v2RevertTransactionRequest, atEffectiveDate,
+            dryRun, force, id,
+            ledger, schemaVersion);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RevertTransactionRequest.class,
+                "idempotencyKey", idempotencyKey,
                 "v2RevertTransactionRequest", v2RevertTransactionRequest,
                 "atEffectiveDate", atEffectiveDate,
                 "dryRun", dryRun,
                 "force", force,
                 "id", id,
-                "ledger", ledger);
+                "ledger", ledger,
+                "schemaVersion", schemaVersion);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest = Optional.empty();
 
@@ -281,8 +361,29 @@ public class V2RevertTransactionRequest {
 
         private String ledger;
 
+        private Optional<String> schemaVersion = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * Use an idempotency key
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
         }
 
 
@@ -385,11 +486,31 @@ public class V2RevertTransactionRequest {
             return this;
         }
 
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(String schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = Optional.ofNullable(schemaVersion);
+            return this;
+        }
+
+        /**
+         * Schema version to use for validation
+         */
+        public Builder schemaVersion(Optional<String> schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = schemaVersion;
+            return this;
+        }
+
         public V2RevertTransactionRequest build() {
 
             return new V2RevertTransactionRequest(
-                v2RevertTransactionRequest, atEffectiveDate, dryRun,
-                force, id, ledger);
+                idempotencyKey, v2RevertTransactionRequest, atEffectiveDate,
+                dryRun, force, id,
+                ledger, schemaVersion);
         }
 
     }

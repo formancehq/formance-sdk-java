@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -23,12 +25,21 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
     private String directory;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("linkFlowError")
+    private Optional<Boolean> linkFlowError;
+
+
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
+    @Deprecated
     private Optional<Long> pageSize;
 
 
@@ -41,30 +52,42 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
     @JsonProperty("provider")
     private Optional<String> provider;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updateLinkFlowError")
+    private Optional<Boolean> updateLinkFlowError;
+
     @JsonCreator
     public V3DummypayConfig(
             @JsonProperty("directory") String directory,
+            @JsonProperty("linkFlowError") Optional<Boolean> linkFlowError,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
-            @JsonProperty("provider") Optional<String> provider) {
+            @JsonProperty("provider") Optional<String> provider,
+            @JsonProperty("updateLinkFlowError") Optional<Boolean> updateLinkFlowError) {
         Utils.checkNotNull(directory, "directory");
+        Utils.checkNotNull(linkFlowError, "linkFlowError");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         Utils.checkNotNull(provider, "provider");
+        Utils.checkNotNull(updateLinkFlowError, "updateLinkFlowError");
         this.directory = directory;
+        this.linkFlowError = linkFlowError;
         this.name = name;
         this.pageSize = pageSize;
         this.pollingPeriod = pollingPeriod;
         this.provider = provider;
+        this.updateLinkFlowError = updateLinkFlowError;
     }
     
     public V3DummypayConfig(
             String directory,
             String name) {
-        this(directory, name, Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(directory, Optional.empty(), name,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -73,10 +96,20 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
     }
 
     @JsonIgnore
+    public Optional<Boolean> linkFlowError() {
+        return linkFlowError;
+    }
+
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
@@ -93,6 +126,11 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         return Utils.discriminatorToString(provider);
     }
 
+    @JsonIgnore
+    public Optional<Boolean> updateLinkFlowError() {
+        return updateLinkFlowError;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -104,12 +142,30 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+    public V3DummypayConfig withLinkFlowError(boolean linkFlowError) {
+        Utils.checkNotNull(linkFlowError, "linkFlowError");
+        this.linkFlowError = Optional.ofNullable(linkFlowError);
+        return this;
+    }
+
+
+    public V3DummypayConfig withLinkFlowError(Optional<Boolean> linkFlowError) {
+        Utils.checkNotNull(linkFlowError, "linkFlowError");
+        this.linkFlowError = linkFlowError;
+        return this;
+    }
+
     public V3DummypayConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     public V3DummypayConfig withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = Optional.ofNullable(pageSize);
@@ -117,6 +173,11 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
     }
 
 
+    /**
+     * 
+     * @deprecated field: From v3.1, this parameter will be ignored.
+     */
+    @Deprecated
     public V3DummypayConfig withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
@@ -149,6 +210,19 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         return this;
     }
 
+    public V3DummypayConfig withUpdateLinkFlowError(boolean updateLinkFlowError) {
+        Utils.checkNotNull(updateLinkFlowError, "updateLinkFlowError");
+        this.updateLinkFlowError = Optional.ofNullable(updateLinkFlowError);
+        return this;
+    }
+
+
+    public V3DummypayConfig withUpdateLinkFlowError(Optional<Boolean> updateLinkFlowError) {
+        Utils.checkNotNull(updateLinkFlowError, "updateLinkFlowError");
+        this.updateLinkFlowError = updateLinkFlowError;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,27 +234,32 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         V3DummypayConfig other = (V3DummypayConfig) o;
         return 
             Utils.enhancedDeepEquals(this.directory, other.directory) &&
+            Utils.enhancedDeepEquals(this.linkFlowError, other.linkFlowError) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
-            Utils.enhancedDeepEquals(this.provider, other.provider);
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.updateLinkFlowError, other.updateLinkFlowError);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            directory, name, pageSize,
-            pollingPeriod, provider);
+            directory, linkFlowError, name,
+            pageSize, pollingPeriod, provider,
+            updateLinkFlowError);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3DummypayConfig.class,
                 "directory", directory,
+                "linkFlowError", linkFlowError,
                 "name", name,
                 "pageSize", pageSize,
                 "pollingPeriod", pollingPeriod,
-                "provider", provider);
+                "provider", provider,
+                "updateLinkFlowError", updateLinkFlowError);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -188,13 +267,18 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
 
         private String directory;
 
+        private Optional<Boolean> linkFlowError = Optional.empty();
+
         private String name;
 
+        @Deprecated
         private Optional<Long> pageSize;
 
         private Optional<String> pollingPeriod;
 
         private Optional<String> provider;
+
+        private Optional<Boolean> updateLinkFlowError = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -208,6 +292,19 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         }
 
 
+        public Builder linkFlowError(boolean linkFlowError) {
+            Utils.checkNotNull(linkFlowError, "linkFlowError");
+            this.linkFlowError = Optional.ofNullable(linkFlowError);
+            return this;
+        }
+
+        public Builder linkFlowError(Optional<Boolean> linkFlowError) {
+            Utils.checkNotNull(linkFlowError, "linkFlowError");
+            this.linkFlowError = linkFlowError;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -215,12 +312,22 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
         }
 
 
+        /**
+         * 
+         * @deprecated field: From v3.1, this parameter will be ignored.
+         */
+        @Deprecated
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
+        /**
+         * 
+         * @deprecated field: From v3.1, this parameter will be ignored.
+         */
+        @Deprecated
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
@@ -253,6 +360,19 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
             return this;
         }
 
+
+        public Builder updateLinkFlowError(boolean updateLinkFlowError) {
+            Utils.checkNotNull(updateLinkFlowError, "updateLinkFlowError");
+            this.updateLinkFlowError = Optional.ofNullable(updateLinkFlowError);
+            return this;
+        }
+
+        public Builder updateLinkFlowError(Optional<Boolean> updateLinkFlowError) {
+            Utils.checkNotNull(updateLinkFlowError, "updateLinkFlowError");
+            this.updateLinkFlowError = updateLinkFlowError;
+            return this;
+        }
+
         public V3DummypayConfig build() {
             if (pageSize == null) {
                 pageSize = _SINGLETON_VALUE_PageSize.value();
@@ -265,21 +385,22 @@ public class V3DummypayConfig implements V3InstallConnectorRequest {
             }
 
             return new V3DummypayConfig(
-                directory, name, pageSize,
-                pollingPeriod, provider);
+                directory, linkFlowError, name,
+                pageSize, pollingPeriod, provider,
+                updateLinkFlowError);
         }
 
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
-                        "\"25\"",
+                        "25",
                         new TypeReference<Optional<Long>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
-                        "\"2m\"",
+                        "\"30m\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

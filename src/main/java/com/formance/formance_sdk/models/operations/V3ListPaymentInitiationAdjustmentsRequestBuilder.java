@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPaymentInitiationAdjustments;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ListPaymentInitiationAdjustmentsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ListPaymentInitiationAdjustmentsRequestBuilder {
         return this;
     }
 
-    public V3ListPaymentInitiationAdjustmentsResponse call() throws Exception {
+    public V3ListPaymentInitiationAdjustmentsResponse call() {
         
         RequestOperation<V3ListPaymentInitiationAdjustmentsRequest, V3ListPaymentInitiationAdjustmentsResponse> operation
               = new V3ListPaymentInitiationAdjustments.Sync(sdkConfiguration, _headers);

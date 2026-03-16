@@ -5,11 +5,16 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PoolBalance {
@@ -21,14 +26,28 @@ public class PoolBalance {
     @JsonProperty("asset")
     private String asset;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("relatedAccounts")
+    private JsonNullable<? extends List<String>> relatedAccounts;
+
     @JsonCreator
     public PoolBalance(
             @JsonProperty("amount") BigInteger amount,
-            @JsonProperty("asset") String asset) {
+            @JsonProperty("asset") String asset,
+            @JsonProperty("relatedAccounts") JsonNullable<? extends List<String>> relatedAccounts) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
+        Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.amount = amount;
         this.asset = asset;
+        this.relatedAccounts = relatedAccounts;
+    }
+    
+    public PoolBalance(
+            BigInteger amount,
+            String asset) {
+        this(amount, asset, JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -39,6 +58,12 @@ public class PoolBalance {
     @JsonIgnore
     public String asset() {
         return asset;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> relatedAccounts() {
+        return (JsonNullable<List<String>>) relatedAccounts;
     }
 
     public static Builder builder() {
@@ -63,6 +88,18 @@ public class PoolBalance {
         return this;
     }
 
+    public PoolBalance withRelatedAccounts(List<String> relatedAccounts) {
+        Utils.checkNotNull(relatedAccounts, "relatedAccounts");
+        this.relatedAccounts = JsonNullable.of(relatedAccounts);
+        return this;
+    }
+
+    public PoolBalance withRelatedAccounts(JsonNullable<? extends List<String>> relatedAccounts) {
+        Utils.checkNotNull(relatedAccounts, "relatedAccounts");
+        this.relatedAccounts = relatedAccounts;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,20 +111,22 @@ public class PoolBalance {
         PoolBalance other = (PoolBalance) o;
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.asset, other.asset);
+            Utils.enhancedDeepEquals(this.asset, other.asset) &&
+            Utils.enhancedDeepEquals(this.relatedAccounts, other.relatedAccounts);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, asset);
+            amount, asset, relatedAccounts);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PoolBalance.class,
                 "amount", amount,
-                "asset", asset);
+                "asset", asset,
+                "relatedAccounts", relatedAccounts);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -96,6 +135,8 @@ public class PoolBalance {
         private BigInteger amount;
 
         private String asset;
+
+        private JsonNullable<? extends List<String>> relatedAccounts = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -120,10 +161,23 @@ public class PoolBalance {
             return this;
         }
 
+
+        public Builder relatedAccounts(List<String> relatedAccounts) {
+            Utils.checkNotNull(relatedAccounts, "relatedAccounts");
+            this.relatedAccounts = JsonNullable.of(relatedAccounts);
+            return this;
+        }
+
+        public Builder relatedAccounts(JsonNullable<? extends List<String>> relatedAccounts) {
+            Utils.checkNotNull(relatedAccounts, "relatedAccounts");
+            this.relatedAccounts = relatedAccounts;
+            return this;
+        }
+
         public PoolBalance build() {
 
             return new PoolBalance(
-                amount, asset);
+                amount, asset, relatedAccounts);
         }
 
     }

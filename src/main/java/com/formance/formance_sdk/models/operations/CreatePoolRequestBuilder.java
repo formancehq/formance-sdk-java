@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.PoolRequest;
 import com.formance.formance_sdk.operations.CreatePool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreatePoolRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreatePoolRequestBuilder {
         return this;
     }
 
-    public CreatePoolResponse call() throws Exception {
+    public CreatePoolResponse call() {
         
         RequestOperation<PoolRequest, CreatePoolResponse> operation
               = new CreatePool.Sync(sdkConfiguration, _headers);

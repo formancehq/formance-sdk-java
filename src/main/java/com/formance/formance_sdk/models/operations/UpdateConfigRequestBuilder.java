@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class UpdateConfigRequestBuilder {
         return this;
     }
 
-    public UpdateConfigResponse call() throws Exception {
+    public UpdateConfigResponse call() {
         
         RequestOperation<UpdateConfigRequest, UpdateConfigResponse> operation
               = new UpdateConfig.Sync(sdkConfiguration, _headers);

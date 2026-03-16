@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.AddMetadataOnTransaction;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class AddMetadataOnTransactionRequestBuilder {
 
@@ -27,7 +26,7 @@ public class AddMetadataOnTransactionRequestBuilder {
         return this;
     }
 
-    public AddMetadataOnTransactionResponse call() throws Exception {
+    public AddMetadataOnTransactionResponse call() {
         
         RequestOperation<AddMetadataOnTransactionRequest, AddMetadataOnTransactionResponse> operation
               = new AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);

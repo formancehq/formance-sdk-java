@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CreateTransaction;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2CreateTransactionRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2CreateTransactionRequestBuilder {
         return this;
     }
 
-    public V2CreateTransactionResponse call() throws Exception {
+    public V2CreateTransactionResponse call() {
         
         RequestOperation<V2CreateTransactionRequest, V2CreateTransactionResponse> operation
               = new V2CreateTransaction.Sync(sdkConfiguration, _headers);

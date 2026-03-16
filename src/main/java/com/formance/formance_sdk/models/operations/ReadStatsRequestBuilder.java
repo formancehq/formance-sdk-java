@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadStats;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReadStatsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReadStatsRequestBuilder {
         return this;
     }
 
-    public ReadStatsResponse call() throws Exception {
+    public ReadStatsResponse call() {
         
         RequestOperation<ReadStatsRequest, ReadStatsResponse> operation
               = new ReadStats.Sync(sdkConfiguration, _headers);

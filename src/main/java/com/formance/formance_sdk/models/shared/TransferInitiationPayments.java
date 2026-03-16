@@ -31,14 +31,14 @@ public class TransferInitiationPayments {
 
 
     @JsonProperty("status")
-    private PaymentStatus status;
+    private LegacyPaymentStatus status;
 
     @JsonCreator
     public TransferInitiationPayments(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("paymentID") String paymentID,
-            @JsonProperty("status") PaymentStatus status) {
+            @JsonProperty("status") LegacyPaymentStatus status) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(paymentID, "paymentID");
@@ -52,7 +52,7 @@ public class TransferInitiationPayments {
     public TransferInitiationPayments(
             OffsetDateTime createdAt,
             String paymentID,
-            PaymentStatus status) {
+            LegacyPaymentStatus status) {
         this(createdAt, JsonNullable.undefined(), paymentID,
             status);
     }
@@ -73,7 +73,7 @@ public class TransferInitiationPayments {
     }
 
     @JsonIgnore
-    public PaymentStatus status() {
+    public LegacyPaymentStatus status() {
         return status;
     }
 
@@ -106,7 +106,7 @@ public class TransferInitiationPayments {
         return this;
     }
 
-    public TransferInitiationPayments withStatus(PaymentStatus status) {
+    public TransferInitiationPayments withStatus(LegacyPaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -153,7 +153,7 @@ public class TransferInitiationPayments {
 
         private String paymentID;
 
-        private PaymentStatus status;
+        private LegacyPaymentStatus status;
 
         private Builder() {
           // force use of static builder() method
@@ -187,7 +187,7 @@ public class TransferInitiationPayments {
         }
 
 
-        public Builder status(PaymentStatus status) {
+        public Builder status(LegacyPaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

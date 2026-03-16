@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -56,7 +57,7 @@ public class CreateSecret {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createSecret",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:write")),
+                    java.util.Optional.of(java.util.List.of("auth:write")),
                     securitySource());
         }
 
@@ -65,7 +66,7 @@ public class CreateSecret {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createSecret",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:write")),
+                    java.util.Optional.of(java.util.List.of("auth:write")),
                     securitySource());
         }
 
@@ -74,7 +75,7 @@ public class CreateSecret {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createSecret",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:write")),
+                    java.util.Optional.of(java.util.List.of("auth:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -126,8 +127,8 @@ public class CreateSecret {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(CreateSecretRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(CreateSecretRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -137,7 +138,7 @@ public class CreateSecret {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -145,7 +146,7 @@ public class CreateSecret {
 
 
         @Override
-        public CreateSecretResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public CreateSecretResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -161,35 +162,16 @@ public class CreateSecret {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.CreateSecretResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withCreateSecretResponse(out);
-                    return res;
+                    return res.withCreateSecretResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.CreateSecretResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPaymentServiceUsers;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ListPaymentServiceUsersRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ListPaymentServiceUsersRequestBuilder {
         return this;
     }
 
-    public V3ListPaymentServiceUsersResponse call() throws Exception {
+    public V3ListPaymentServiceUsersResponse call() {
         
         RequestOperation<V3ListPaymentServiceUsersRequest, V3ListPaymentServiceUsersResponse> operation
               = new V3ListPaymentServiceUsers.Sync(sdkConfiguration, _headers);

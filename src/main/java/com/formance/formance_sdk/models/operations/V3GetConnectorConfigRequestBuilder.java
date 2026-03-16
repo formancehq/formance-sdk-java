@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetConnectorConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3GetConnectorConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3GetConnectorConfigRequestBuilder {
         return this;
     }
 
-    public V3GetConnectorConfigResponse call() throws Exception {
+    public V3GetConnectorConfigResponse call() {
         
         RequestOperation<V3GetConnectorConfigRequest, V3GetConnectorConfigResponse> operation
               = new V3GetConnectorConfig.Sync(sdkConfiguration, _headers);

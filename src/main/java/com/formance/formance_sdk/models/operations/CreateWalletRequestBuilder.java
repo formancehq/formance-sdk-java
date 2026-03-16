@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CreateWallet;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreateWalletRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CreateWalletRequestBuilder {
         return this;
     }
 
-    public CreateWalletResponse call() throws Exception {
+    public CreateWalletResponse call() {
         
         RequestOperation<CreateWalletRequest, CreateWalletResponse> operation
               = new CreateWallet.Sync(sdkConfiguration, _headers);

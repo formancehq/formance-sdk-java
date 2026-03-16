@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class V2GetInfoRequestBuilder {
 
@@ -19,7 +18,7 @@ public class V2GetInfoRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V2GetInfoResponse call() throws Exception {
+    public V2GetInfoResponse call() {
         
         RequestlessOperation<V2GetInfoResponse> operation
             = new V2GetInfo.Sync(sdkConfiguration, _headers);

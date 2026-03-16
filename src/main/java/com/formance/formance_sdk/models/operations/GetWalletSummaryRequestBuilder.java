@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetWalletSummary;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetWalletSummaryRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetWalletSummaryRequestBuilder {
         return this;
     }
 
-    public GetWalletSummaryResponse call() throws Exception {
+    public GetWalletSummaryResponse call() {
         
         RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
               = new GetWalletSummary.Sync(sdkConfiguration, _headers);

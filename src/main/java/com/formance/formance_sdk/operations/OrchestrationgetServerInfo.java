@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -54,7 +55,7 @@ public class OrchestrationgetServerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "orchestrationgetServerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:read")),
+                    java.util.Optional.of(java.util.List.of("orchestration:read")),
                     securitySource());
         }
 
@@ -63,7 +64,7 @@ public class OrchestrationgetServerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "orchestrationgetServerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:read")),
+                    java.util.Optional.of(java.util.List.of("orchestration:read")),
                     securitySource());
         }
 
@@ -72,7 +73,7 @@ public class OrchestrationgetServerInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "orchestrationgetServerInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:read")),
+                    java.util.Optional.of(java.util.List.of("orchestration:read")),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {
@@ -112,8 +113,8 @@ public class OrchestrationgetServerInfo {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -123,7 +124,7 @@ public class OrchestrationgetServerInfo {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -131,7 +132,7 @@ public class OrchestrationgetServerInfo {
 
 
         @Override
-        public OrchestrationgetServerInfoResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public OrchestrationgetServerInfoResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -147,42 +148,19 @@ public class OrchestrationgetServerInfo {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ServerInfo out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withServerInfo(out);
-                    return res;
+                    return res.withServerInfo(Utils.unmarshal(response, new TypeReference<ServerInfo>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw Error.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

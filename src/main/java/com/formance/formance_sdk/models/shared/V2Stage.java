@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class V2Stage {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private V2Stage(TypedObject value) {
         this.value = value;
@@ -27,22 +27,22 @@ public class V2Stage {
 
     public static V2Stage of(V2StageSend value) {
         Utils.checkNotNull(value, "value");
-        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2StageSend>(){}));
+        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static V2Stage of(V2StageDelay value) {
         Utils.checkNotNull(value, "value");
-        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2StageDelay>(){}));
+        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static V2Stage of(V2StageWaitEvent value) {
         Utils.checkNotNull(value, "value");
-        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2StageWaitEvent>(){}));
+        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static V2Stage of(V2Update value) {
         Utils.checkNotNull(value, "value");
-        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<V2Update>(){}));
+        return new V2Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -67,7 +67,7 @@ public class V2Stage {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -78,7 +78,7 @@ public class V2Stage {
             return false;
         }
         V2Stage other = (V2Stage) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -93,8 +93,8 @@ public class V2Stage {
             super(V2Stage.class, false,
                   TypeReferenceWithShape.of(new TypeReference<V2StageSend>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<V2StageDelay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V2Update>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<V2StageWaitEvent>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2Update>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -103,6 +103,6 @@ public class V2Stage {
         return Utils.toString(V2Stage.class,
                 "value", value);
     }
- 
+
 }
 

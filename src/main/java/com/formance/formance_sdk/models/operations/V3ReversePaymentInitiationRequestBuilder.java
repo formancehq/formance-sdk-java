@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ReversePaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ReversePaymentInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ReversePaymentInitiationRequestBuilder {
         return this;
     }
 
-    public V3ReversePaymentInitiationResponse call() throws Exception {
+    public V3ReversePaymentInitiationResponse call() {
         
         RequestOperation<V3ReversePaymentInitiationRequest, V3ReversePaymentInitiationResponse> operation
               = new V3ReversePaymentInitiation.Sync(sdkConfiguration, _headers);

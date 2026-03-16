@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -53,7 +54,7 @@ public class ReadUser {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "readUser",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
 
@@ -62,7 +63,7 @@ public class ReadUser {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "readUser",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
 
@@ -71,7 +72,7 @@ public class ReadUser {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "readUser",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -113,8 +114,8 @@ public class ReadUser {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ReadUserRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(ReadUserRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -124,7 +125,7 @@ public class ReadUser {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -132,7 +133,7 @@ public class ReadUser {
 
 
         @Override
-        public ReadUserResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public ReadUserResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -148,35 +149,16 @@ public class ReadUser {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.ReadUserResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withReadUserResponse(out);
-                    return res;
+                    return res.withReadUserResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.ReadUserResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

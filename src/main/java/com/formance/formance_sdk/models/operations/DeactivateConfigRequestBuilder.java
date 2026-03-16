@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeactivateConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeactivateConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeactivateConfigRequestBuilder {
         return this;
     }
 
-    public DeactivateConfigResponse call() throws Exception {
+    public DeactivateConfigResponse call() {
         
         RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
               = new DeactivateConfig.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateTransferInitiationStatus;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateTransferInitiationStatusRequestBuilder {
 
@@ -27,7 +26,7 @@ public class UpdateTransferInitiationStatusRequestBuilder {
         return this;
     }
 
-    public UpdateTransferInitiationStatusResponse call() throws Exception {
+    public UpdateTransferInitiationStatusResponse call() {
         
         RequestOperation<UpdateTransferInitiationStatusRequest, UpdateTransferInitiationStatusResponse> operation
               = new UpdateTransferInitiationStatus.Sync(sdkConfiguration, _headers);

@@ -14,6 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -22,6 +24,9 @@ public class RevertTransactionResponse implements Response {
      * HTTP response content type for this operation
      */
     private String contentType;
+
+
+    private Map<String, List<String>> headers;
 
     /**
      * HTTP response status code for this operation
@@ -41,14 +46,18 @@ public class RevertTransactionResponse implements Response {
     @JsonCreator
     public RevertTransactionResponse(
             String contentType,
+            Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends TransactionResponse> transactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(transactionResponse, "transactionResponse");
         this.contentType = contentType;
+        this.headers = headers;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.transactionResponse = transactionResponse;
@@ -56,10 +65,11 @@ public class RevertTransactionResponse implements Response {
     
     public RevertTransactionResponse(
             String contentType,
+            Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
+        this(contentType, headers, statusCode,
+            rawResponse, Optional.empty());
     }
 
     /**
@@ -68,6 +78,11 @@ public class RevertTransactionResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     /**
@@ -106,6 +121,12 @@ public class RevertTransactionResponse implements Response {
     public RevertTransactionResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    public RevertTransactionResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
         return this;
     }
 
@@ -157,6 +178,7 @@ public class RevertTransactionResponse implements Response {
         RevertTransactionResponse other = (RevertTransactionResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.transactionResponse, other.transactionResponse);
@@ -165,14 +187,15 @@ public class RevertTransactionResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            transactionResponse);
+            contentType, headers, statusCode,
+            rawResponse, transactionResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RevertTransactionResponse.class,
                 "contentType", contentType,
+                "headers", headers,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "transactionResponse", transactionResponse);
@@ -182,6 +205,8 @@ public class RevertTransactionResponse implements Response {
     public final static class Builder {
 
         private String contentType;
+
+        private Map<String, List<String>> headers;
 
         private Integer statusCode;
 
@@ -200,6 +225,13 @@ public class RevertTransactionResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
             return this;
         }
 
@@ -245,8 +277,8 @@ public class RevertTransactionResponse implements Response {
         public RevertTransactionResponse build() {
 
             return new RevertTransactionResponse(
-                contentType, statusCode, rawResponse,
-                transactionResponse);
+                contentType, headers, statusCode,
+                rawResponse, transactionResponse);
         }
 
     }

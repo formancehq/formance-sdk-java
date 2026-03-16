@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ForwardBankAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ForwardBankAccountRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ForwardBankAccountRequestBuilder {
         return this;
     }
 
-    public V3ForwardBankAccountResponse call() throws Exception {
+    public V3ForwardBankAccountResponse call() {
         
         RequestOperation<V3ForwardBankAccountRequest, V3ForwardBankAccountResponse> operation
               = new V3ForwardBankAccount.Sync(sdkConfiguration, _headers);

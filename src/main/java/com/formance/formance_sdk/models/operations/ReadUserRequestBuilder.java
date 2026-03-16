@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReadUserRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReadUserRequestBuilder {
         return this;
     }
 
-    public ReadUserResponse call() throws Exception {
+    public ReadUserResponse call() {
         
         RequestOperation<ReadUserRequest, ReadUserResponse> operation
               = new ReadUser.Sync(sdkConfiguration, _headers);

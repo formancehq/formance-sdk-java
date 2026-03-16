@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetPool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3GetPoolRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3GetPoolRequestBuilder {
         return this;
     }
 
-    public V3GetPoolResponse call() throws Exception {
+    public V3GetPoolResponse call() {
         
         RequestOperation<V3GetPoolRequest, V3GetPoolResponse> operation
               = new V3GetPool.Sync(sdkConfiguration, _headers);

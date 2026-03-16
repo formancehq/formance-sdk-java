@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -19,12 +20,9 @@ import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.SerializedBody;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -58,7 +56,7 @@ public class V3ListPaymentInitiationAdjustments {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ListPaymentInitiationAdjustments",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
 
@@ -67,7 +65,7 @@ public class V3ListPaymentInitiationAdjustments {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ListPaymentInitiationAdjustments",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
 
@@ -76,26 +74,16 @@ public class V3ListPaymentInitiationAdjustments {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3ListPaymentInitiationAdjustments",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
                     "/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
-            Object convertedRequest = Utils.convertToShape(
-                    request,
-                    JsonShape.DEFAULT,
-                    typeReference);
-            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
-                    convertedRequest,
-                    "requestBody",
-                    "json",
-                    false);
-            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -117,7 +105,7 @@ public class V3ListPaymentInitiationAdjustments {
         }
 
         private HttpRequest onBuildRequest(V3ListPaymentInitiationAdjustmentsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, V3ListPaymentInitiationAdjustmentsRequest.class, new TypeReference<V3ListPaymentInitiationAdjustmentsRequest>() {});
+            HttpRequest req = buildRequest(request, V3ListPaymentInitiationAdjustmentsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -133,8 +121,8 @@ public class V3ListPaymentInitiationAdjustments {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V3ListPaymentInitiationAdjustmentsRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V3ListPaymentInitiationAdjustmentsRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -144,7 +132,7 @@ public class V3ListPaymentInitiationAdjustments {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -152,7 +140,7 @@ public class V3ListPaymentInitiationAdjustments {
 
 
         @Override
-        public V3ListPaymentInitiationAdjustmentsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V3ListPaymentInitiationAdjustmentsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -168,42 +156,19 @@ public class V3ListPaymentInitiationAdjustments {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V3PaymentInitiationAdjustmentsCursorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV3PaymentInitiationAdjustmentsCursorResponse(out);
-                    return res;
+                    return res.withV3PaymentInitiationAdjustmentsCursorResponse(Utils.unmarshal(response, new TypeReference<V3PaymentInitiationAdjustmentsCursorResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V3ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V3ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

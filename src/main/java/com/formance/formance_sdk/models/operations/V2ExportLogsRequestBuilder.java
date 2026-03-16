@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ExportLogs;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ExportLogsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ExportLogsRequestBuilder {
         return this;
     }
 
-    public V2ExportLogsResponse call() throws Exception {
+    public V2ExportLogsResponse call() {
         
         RequestOperation<V2ExportLogsRequest, V2ExportLogsResponse> operation
               = new V2ExportLogs.Sync(sdkConfiguration, _headers);

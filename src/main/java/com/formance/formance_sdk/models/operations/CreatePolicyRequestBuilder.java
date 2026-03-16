@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.PolicyRequest;
 import com.formance.formance_sdk.operations.CreatePolicy;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreatePolicyRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreatePolicyRequestBuilder {
         return this;
     }
 
-    public CreatePolicyResponse call() throws Exception {
+    public CreatePolicyResponse call() {
         
         RequestOperation<PolicyRequest, CreatePolicyResponse> operation
               = new CreatePolicy.Sync(sdkConfiguration, _headers);

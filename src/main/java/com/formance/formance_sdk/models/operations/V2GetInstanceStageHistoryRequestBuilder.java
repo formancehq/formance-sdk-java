@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInstanceStageHistory;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetInstanceStageHistoryRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetInstanceStageHistoryRequestBuilder {
         return this;
     }
 
-    public V2GetInstanceStageHistoryResponse call() throws Exception {
+    public V2GetInstanceStageHistoryResponse call() {
         
         RequestOperation<V2GetInstanceStageHistoryRequest, V2GetInstanceStageHistoryResponse> operation
               = new V2GetInstanceStageHistory.Sync(sdkConfiguration, _headers);

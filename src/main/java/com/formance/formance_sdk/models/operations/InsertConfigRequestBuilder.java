@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class InsertConfigRequestBuilder {
 
@@ -28,7 +27,7 @@ public class InsertConfigRequestBuilder {
         return this;
     }
 
-    public InsertConfigResponse call() throws Exception {
+    public InsertConfigResponse call() {
         
         RequestOperation<ConfigUser, InsertConfigResponse> operation
               = new InsertConfig.Sync(sdkConfiguration, _headers);

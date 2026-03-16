@@ -10,20 +10,14 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListTransactionsRequest {
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Map<String, Object> requestBody;
-
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -50,7 +44,7 @@ public class V2ListTransactionsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=order")
     @Deprecated
-    private Optional<? extends Order> order;
+    private Optional<? extends V2ListTransactionsOrder> order;
 
     /**
      * The maximum number of results to return per page.
@@ -76,17 +70,14 @@ public class V2ListTransactionsRequest {
 
     @JsonCreator
     public V2ListTransactionsRequest(
-            Map<String, Object> requestBody,
             Optional<String> cursor,
             Optional<String> expand,
             String ledger,
-            Optional<? extends Order> order,
+            Optional<? extends V2ListTransactionsOrder> order,
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
             Optional<Boolean> reverse,
             Optional<String> sort) {
-        requestBody = Utils.emptyMapIfNull(requestBody);
-        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -95,7 +86,6 @@ public class V2ListTransactionsRequest {
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(reverse, "reverse");
         Utils.checkNotNull(sort, "sort");
-        this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
         this.ledger = ledger;
@@ -107,16 +97,10 @@ public class V2ListTransactionsRequest {
     }
     
     public V2ListTransactionsRequest(
-            Map<String, Object> requestBody,
             String ledger) {
-        this(requestBody, Optional.empty(), Optional.empty(),
-            ledger, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    @JsonIgnore
-    public Map<String, Object> requestBody() {
-        return requestBody;
+        this(Optional.empty(), Optional.empty(), ledger,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -151,8 +135,8 @@ public class V2ListTransactionsRequest {
     @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Order> order() {
-        return (Optional<Order>) order;
+    public Optional<V2ListTransactionsOrder> order() {
+        return (Optional<V2ListTransactionsOrder>) order;
     }
 
     /**
@@ -187,12 +171,6 @@ public class V2ListTransactionsRequest {
         return new Builder();
     }
 
-
-    public V2ListTransactionsRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -247,7 +225,7 @@ public class V2ListTransactionsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public V2ListTransactionsRequest withOrder(Order order) {
+    public V2ListTransactionsRequest withOrder(V2ListTransactionsOrder order) {
         Utils.checkNotNull(order, "order");
         this.order = Optional.ofNullable(order);
         return this;
@@ -260,7 +238,7 @@ public class V2ListTransactionsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public V2ListTransactionsRequest withOrder(Optional<? extends Order> order) {
+    public V2ListTransactionsRequest withOrder(Optional<? extends V2ListTransactionsOrder> order) {
         Utils.checkNotNull(order, "order");
         this.order = order;
         return this;
@@ -344,7 +322,6 @@ public class V2ListTransactionsRequest {
         }
         V2ListTransactionsRequest other = (V2ListTransactionsRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
@@ -358,15 +335,14 @@ public class V2ListTransactionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, cursor, expand,
-            ledger, order, pageSize,
-            pit, reverse, sort);
+            cursor, expand, ledger,
+            order, pageSize, pit,
+            reverse, sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListTransactionsRequest.class,
-                "requestBody", requestBody,
                 "cursor", cursor,
                 "expand", expand,
                 "ledger", ledger,
@@ -380,8 +356,6 @@ public class V2ListTransactionsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, Object> requestBody;
-
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> expand = Optional.empty();
@@ -389,7 +363,7 @@ public class V2ListTransactionsRequest {
         private String ledger;
 
         @Deprecated
-        private Optional<? extends Order> order = Optional.empty();
+        private Optional<? extends V2ListTransactionsOrder> order = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
 
@@ -401,13 +375,6 @@ public class V2ListTransactionsRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
         }
 
 
@@ -465,7 +432,7 @@ public class V2ListTransactionsRequest {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder order(Order order) {
+        public Builder order(V2ListTransactionsOrder order) {
             Utils.checkNotNull(order, "order");
             this.order = Optional.ofNullable(order);
             return this;
@@ -477,7 +444,7 @@ public class V2ListTransactionsRequest {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder order(Optional<? extends Order> order) {
+        public Builder order(Optional<? extends V2ListTransactionsOrder> order) {
             Utils.checkNotNull(order, "order");
             this.order = order;
             return this;
@@ -554,9 +521,9 @@ public class V2ListTransactionsRequest {
         public V2ListTransactionsRequest build() {
 
             return new V2ListTransactionsRequest(
-                requestBody, cursor, expand,
-                ledger, order, pageSize,
-                pit, reverse, sort);
+                cursor, expand, ledger,
+                order, pageSize, pit,
+                reverse, sort);
         }
 
     }

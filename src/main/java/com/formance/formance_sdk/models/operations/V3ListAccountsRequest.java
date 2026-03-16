@@ -8,19 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListAccountsRequest {
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Map<String, Object>> requestBody;
-
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
      * the value of previous for the previous page of results.
@@ -38,25 +31,16 @@ public class V3ListAccountsRequest {
 
     @JsonCreator
     public V3ListAccountsRequest(
-            Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
             Optional<Long> pageSize) {
-        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
-        this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
     }
     
     public V3ListAccountsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, Object>> requestBody() {
-        return (Optional<Map<String, Object>>) requestBody;
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -82,19 +66,6 @@ public class V3ListAccountsRequest {
         return new Builder();
     }
 
-
-    public V3ListAccountsRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
-        return this;
-    }
-
-
-    public V3ListAccountsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
 
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
@@ -150,7 +121,6 @@ public class V3ListAccountsRequest {
         }
         V3ListAccountsRequest other = (V3ListAccountsRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
@@ -158,13 +128,12 @@ public class V3ListAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, cursor, pageSize);
+            cursor, pageSize);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ListAccountsRequest.class,
-                "requestBody", requestBody,
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
@@ -172,27 +141,12 @@ public class V3ListAccountsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
-
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
         }
 
 
@@ -242,7 +196,7 @@ public class V3ListAccountsRequest {
         public V3ListAccountsRequest build() {
 
             return new V3ListAccountsRequest(
-                requestBody, cursor, pageSize);
+                cursor, pageSize);
         }
 
     }

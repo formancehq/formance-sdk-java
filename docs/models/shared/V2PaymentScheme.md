@@ -1,5 +1,13 @@
 # V2PaymentScheme
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V2PaymentScheme;
+
+V2PaymentScheme value = V2PaymentScheme.VISA;
+```
+
 
 ## Values
 

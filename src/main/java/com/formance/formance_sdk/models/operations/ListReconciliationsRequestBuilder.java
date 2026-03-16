@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListReconciliations;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListReconciliationsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListReconciliationsRequestBuilder {
         return this;
     }
 
-    public ListReconciliationsResponse call() throws Exception {
+    public ListReconciliationsResponse call() {
         
         RequestOperation<ListReconciliationsRequest, ListReconciliationsResponse> operation
               = new ListReconciliations.Sync(sdkConfiguration, _headers);

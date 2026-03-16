@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListTransferInitiations;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListTransferInitiationsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListTransferInitiationsRequestBuilder {
         return this;
     }
 
-    public ListTransferInitiationsResponse call() throws Exception {
+    public ListTransferInitiationsResponse call() {
         
         RequestOperation<ListTransferInitiationsRequest, ListTransferInitiationsResponse> operation
               = new ListTransferInitiations.Sync(sdkConfiguration, _headers);
