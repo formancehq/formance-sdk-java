@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2RunWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2RunWorkflowRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2RunWorkflowRequestBuilder {
         return this;
     }
 
-    public V2RunWorkflowResponse call() throws Exception {
+    public V2RunWorkflowResponse call() {
         
         RequestOperation<V2RunWorkflowRequest, V2RunWorkflowResponse> operation
               = new V2RunWorkflow.Sync(sdkConfiguration, _headers);

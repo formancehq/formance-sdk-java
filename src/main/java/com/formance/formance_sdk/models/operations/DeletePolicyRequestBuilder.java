@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeletePolicy;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeletePolicyRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeletePolicyRequestBuilder {
         return this;
     }
 
-    public DeletePolicyResponse call() throws Exception {
+    public DeletePolicyResponse call() {
         
         RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
               = new DeletePolicy.Sync(sdkConfiguration, _headers);

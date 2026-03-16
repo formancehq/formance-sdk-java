@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserBankAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
         return this;
     }
 
-    public V3ForwardPaymentServiceUserBankAccountResponse call() throws Exception {
+    public V3ForwardPaymentServiceUserBankAccountResponse call() {
         
         RequestOperation<V3ForwardPaymentServiceUserBankAccountRequest, V3ForwardPaymentServiceUserBankAccountResponse> operation
               = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration, _headers);

@@ -11,10 +11,17 @@ generation:
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
@@ -22,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 java:
-  version: 7.3.0
+  version: 8.0.0
   additionalDependencies:
     - implementation:org.apache.httpcomponents.client5:httpclient5:5.4.2
   additionalPlugins: []
@@ -34,9 +41,16 @@ java:
   companyURL: https://www.formance.com
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableFormatting: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
+  explicitDocImports: false
   flattenGlobalSecurity: false
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
+  generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
+  generateUnionDocs: false
   githubURL: github.com/formancehq/formance-sdk-java
   groupID: com.formance
   imports:
@@ -47,6 +61,7 @@ java:
       operations: models/operations
       shared: models/shared
       webhooks: models/webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   languageVersion: 11
   license:
@@ -54,7 +69,13 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 0
+  multipartArrayFormat: legacy
   nullFriendlyParameters: false
+  operationScopedParams: true
   outputModelSuffix: output
+  prefixModeMethodNames: false
   projectName: formance-sdk
+  respectTitlesForPrimitiveUnionMembers: false
+  showSetterGetterTypesInDocs: false
   templateVersion: v2
+  unionStrategy: populated-fields

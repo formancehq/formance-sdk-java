@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeletePipeline;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2DeletePipelineRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2DeletePipelineRequestBuilder {
         return this;
     }
 
-    public V2DeletePipelineResponse call() throws Exception {
+    public V2DeletePipelineResponse call() {
         
         RequestOperation<V2DeletePipelineRequest, V2DeletePipelineResponse> operation
               = new V2DeletePipeline.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeleteTransactionMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2DeleteTransactionMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2DeleteTransactionMetadataRequestBuilder {
         return this;
     }
 
-    public V2DeleteTransactionMetadataResponse call() throws Exception {
+    public V2DeleteTransactionMetadataResponse call() {
         
         RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
               = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, _headers);

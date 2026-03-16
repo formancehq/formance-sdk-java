@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListAllConnectors;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class ListAllConnectorsRequestBuilder {
 
@@ -19,7 +18,7 @@ public class ListAllConnectorsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListAllConnectorsResponse call() throws Exception {
+    public ListAllConnectorsResponse call() {
         
         RequestlessOperation<ListAllConnectorsResponse> operation
             = new ListAllConnectors.Sync(sdkConfiguration, _headers);

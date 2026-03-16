@@ -4,8 +4,8 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
@@ -18,12 +18,9 @@ import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
-import com.formance.formance_sdk.utils.SerializedBody;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -57,7 +54,7 @@ public class V2CountAccounts {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CountAccounts",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -66,7 +63,7 @@ public class V2CountAccounts {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CountAccounts",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -75,29 +72,16 @@ public class V2CountAccounts {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CountAccounts",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
                     "/api/ledger/v2/{ledger}/accounts",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "HEAD");
-            Object convertedRequest = Utils.convertToShape(
-                    request,
-                    JsonShape.DEFAULT,
-                    typeReference);
-            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
-                    convertedRequest,
-                    "requestBody",
-                    "json",
-                    false);
-            if (serializedRequestBody == null) {
-                throw new Exception("Request body is required");
-            }
-            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -119,7 +103,7 @@ public class V2CountAccounts {
         }
 
         private HttpRequest onBuildRequest(V2CountAccountsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, V2CountAccountsRequest.class, new TypeReference<V2CountAccountsRequest>() {});
+            HttpRequest req = buildRequest(request, V2CountAccountsRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,8 +119,8 @@ public class V2CountAccounts {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2CountAccountsRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2CountAccountsRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -146,7 +130,7 @@ public class V2CountAccounts {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -154,7 +138,7 @@ public class V2CountAccounts {
 
 
         @Override
-        public V2CountAccountsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2CountAccountsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -173,28 +157,14 @@ public class V2CountAccounts {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

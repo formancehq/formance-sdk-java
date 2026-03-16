@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3UninstallConnector;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3UninstallConnectorRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3UninstallConnectorRequestBuilder {
         return this;
     }
 
-    public V3UninstallConnectorResponse call() throws Exception {
+    public V3UninstallConnectorResponse call() {
         
         RequestOperation<V3UninstallConnectorRequest, V3UninstallConnectorResponse> operation
               = new V3UninstallConnector.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -29,7 +28,7 @@ public class ClientSecret {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Map<String, String>> metadata;
 
 
     @JsonProperty("name")
@@ -39,7 +38,7 @@ public class ClientSecret {
     public ClientSecret(
             @JsonProperty("id") String id,
             @JsonProperty("lastDigits") String lastDigits,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(lastDigits, "lastDigits");
@@ -71,8 +70,8 @@ public class ClientSecret {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -97,13 +96,13 @@ public class ClientSecret {
         return this;
     }
 
-    public ClientSecret withMetadata(Map<String, Object> metadata) {
+    public ClientSecret withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    public ClientSecret withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
+    public ClientSecret withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -154,7 +153,7 @@ public class ClientSecret {
 
         private String lastDigits;
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
         private String name;
 
@@ -177,13 +176,13 @@ public class ClientSecret {
         }
 
 
-        public Builder metadata(Map<String, Object> metadata) {
+        public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

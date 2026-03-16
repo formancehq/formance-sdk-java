@@ -1,5 +1,13 @@
 # V3PaymentStatusEnum
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V3PaymentStatusEnum;
+
+V3PaymentStatusEnum value = V3PaymentStatusEnum.UNKNOWN;
+```
+
 
 ## Values
 

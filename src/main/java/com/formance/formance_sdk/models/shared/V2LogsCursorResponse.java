@@ -5,10 +5,14 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class V2LogsCursorResponse {
@@ -16,16 +20,35 @@ public class V2LogsCursorResponse {
     @JsonProperty("cursor")
     private V2LogsCursorResponseCursor cursor;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("resource")
+    private Optional<? extends V2LogsCursorResponseResource> resource;
+
     @JsonCreator
     public V2LogsCursorResponse(
-            @JsonProperty("cursor") V2LogsCursorResponseCursor cursor) {
+            @JsonProperty("cursor") V2LogsCursorResponseCursor cursor,
+            @JsonProperty("resource") Optional<? extends V2LogsCursorResponseResource> resource) {
         Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(resource, "resource");
         this.cursor = cursor;
+        this.resource = resource;
+    }
+    
+    public V2LogsCursorResponse(
+            V2LogsCursorResponseCursor cursor) {
+        this(cursor, Optional.empty());
     }
 
     @JsonIgnore
     public V2LogsCursorResponseCursor cursor() {
         return cursor;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2LogsCursorResponseResource> resource() {
+        return (Optional<V2LogsCursorResponseResource>) resource;
     }
 
     public static Builder builder() {
@@ -39,6 +62,19 @@ public class V2LogsCursorResponse {
         return this;
     }
 
+    public V2LogsCursorResponse withResource(V2LogsCursorResponseResource resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = Optional.ofNullable(resource);
+        return this;
+    }
+
+
+    public V2LogsCursorResponse withResource(Optional<? extends V2LogsCursorResponseResource> resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = resource;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,25 +85,29 @@ public class V2LogsCursorResponse {
         }
         V2LogsCursorResponse other = (V2LogsCursorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor);
+            cursor, resource);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2LogsCursorResponse.class,
-                "cursor", cursor);
+                "cursor", cursor,
+                "resource", resource);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private V2LogsCursorResponseCursor cursor;
+
+        private Optional<? extends V2LogsCursorResponseResource> resource = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -80,10 +120,23 @@ public class V2LogsCursorResponse {
             return this;
         }
 
+
+        public Builder resource(V2LogsCursorResponseResource resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = Optional.ofNullable(resource);
+            return this;
+        }
+
+        public Builder resource(Optional<? extends V2LogsCursorResponseResource> resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = resource;
+            return this;
+        }
+
         public V2LogsCursorResponse build() {
 
             return new V2LogsCursorResponse(
-                cursor);
+                cursor, resource);
         }
 
     }

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListTriggersOccurrences;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListTriggersOccurrencesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListTriggersOccurrencesRequestBuilder {
         return this;
     }
 
-    public ListTriggersOccurrencesResponse call() throws Exception {
+    public ListTriggersOccurrencesResponse call() {
         
         RequestOperation<ListTriggersOccurrencesRequest, ListTriggersOccurrencesResponse> operation
               = new ListTriggersOccurrences.Sync(sdkConfiguration, _headers);

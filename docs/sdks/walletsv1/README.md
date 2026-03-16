@@ -1,5 +1,4 @@
-# WalletsV1
-(*wallets().v1()*)
+# Wallets.V1
 
 ## Overview
 
@@ -122,7 +121,7 @@ public class Application {
                 .call();
 
         if (res.createBalanceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBalanceResponse().get());
         }
     }
 }
@@ -176,7 +175,7 @@ public class Application {
                 .call();
 
         if (res.createWalletResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createWalletResponse().get());
         }
     }
 }
@@ -319,7 +318,7 @@ public class Application {
                 .call();
 
         if (res.debitWalletResponse().isPresent()) {
-            // handle response
+            System.out.println(res.debitWalletResponse().get());
         }
     }
 }
@@ -380,7 +379,7 @@ public class Application {
                 .call();
 
         if (res.getBalanceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBalanceResponse().get());
         }
     }
 }
@@ -440,7 +439,7 @@ public class Application {
                 .call();
 
         if (res.getHoldResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getHoldResponse().get());
         }
     }
 }
@@ -505,7 +504,7 @@ public class Application {
                 .call();
 
         if (res.getHoldsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getHoldsResponse().get());
         }
     }
 }
@@ -565,7 +564,7 @@ public class Application {
                 .call();
 
         if (res.getTransactionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTransactionsResponse().get());
         }
     }
 }
@@ -624,8 +623,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.activityGetWalletOutput().isPresent()) {
-            // handle response
+        if (res.getWalletResponse().isPresent()) {
+            System.out.println(res.getWalletResponse().get());
         }
     }
 }
@@ -685,7 +684,7 @@ public class Application {
                 .call();
 
         if (res.getWalletSummaryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getWalletSummaryResponse().get());
         }
     }
 }
@@ -744,7 +743,7 @@ public class Application {
                 .call();
 
         if (res.listBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listBalancesResponse().get());
         }
     }
 }
@@ -809,7 +808,7 @@ public class Application {
                 .call();
 
         if (res.listWalletsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listWalletsResponse().get());
         }
     }
 }
@@ -979,7 +978,7 @@ public class Application {
                 .call();
 
         if (res.serverInfo().isPresent()) {
-            // handle response
+            System.out.println(res.serverInfo().get());
         }
     }
 }

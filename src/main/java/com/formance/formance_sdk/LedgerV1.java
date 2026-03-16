@@ -87,7 +87,6 @@ import com.formance.formance_sdk.operations.RunScript;
 import com.formance.formance_sdk.operations.UpdateMapping;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 
 
 public class LedgerV1 {
@@ -112,9 +111,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransactionsResponse createTransactions(CreateTransactionsRequest request) throws Exception {
+    public CreateTransactionsResponse createTransactions(CreateTransactionsRequest request) {
         RequestOperation<CreateTransactionsRequest, CreateTransactionsResponse> operation
               = new CreateTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -134,9 +133,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddMetadataOnTransactionResponse addMetadataOnTransaction(AddMetadataOnTransactionRequest request) throws Exception {
+    public AddMetadataOnTransactionResponse addMetadataOnTransaction(AddMetadataOnTransactionRequest request) {
         RequestOperation<AddMetadataOnTransactionRequest, AddMetadataOnTransactionResponse> operation
               = new AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -156,9 +155,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddMetadataToAccountResponse addMetadataToAccount(AddMetadataToAccountRequest request) throws Exception {
+    public AddMetadataToAccountResponse addMetadataToAccount(AddMetadataToAccountRequest request) {
         RequestOperation<AddMetadataToAccountRequest, AddMetadataToAccountResponse> operation
               = new AddMetadataToAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -178,9 +177,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CountAccountsResponse countAccounts(CountAccountsRequest request) throws Exception {
+    public CountAccountsResponse countAccounts(CountAccountsRequest request) {
         RequestOperation<CountAccountsRequest, CountAccountsResponse> operation
               = new CountAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -200,9 +199,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CountTransactionsResponse countTransactions(CountTransactionsRequest request) throws Exception {
+    public CountTransactionsResponse countTransactions(CountTransactionsRequest request) {
         RequestOperation<CountTransactionsRequest, CountTransactionsResponse> operation
               = new CountTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -222,9 +221,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransactionResponse createTransaction(CreateTransactionRequest request) throws Exception {
+    public CreateTransactionResponse createTransaction(CreateTransactionRequest request) {
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
               = new CreateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -244,9 +243,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAccountResponse getAccount(GetAccountRequest request) throws Exception {
+    public GetAccountResponse getAccount(GetAccountRequest request) {
         RequestOperation<GetAccountRequest, GetAccountResponse> operation
               = new GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -266,9 +265,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalancesResponse getBalances(GetBalancesRequest request) throws Exception {
+    public GetBalancesResponse getBalances(GetBalancesRequest request) {
         RequestOperation<GetBalancesRequest, GetBalancesResponse> operation
               = new GetBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -288,9 +287,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalancesAggregatedResponse getBalancesAggregated(GetBalancesAggregatedRequest request) throws Exception {
+    public GetBalancesAggregatedResponse getBalancesAggregated(GetBalancesAggregatedRequest request) {
         RequestOperation<GetBalancesAggregatedRequest, GetBalancesAggregatedResponse> operation
               = new GetBalancesAggregated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -309,9 +308,9 @@ public class LedgerV1 {
      * Show server information
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInfoResponse getInfoDirect() throws Exception {
+    public GetInfoResponse getInfoDirect() {
         RequestlessOperation<GetInfoResponse> operation
             = new GetInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -331,9 +330,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetLedgerInfoResponse getLedgerInfo(GetLedgerInfoRequest request) throws Exception {
+    public GetLedgerInfoResponse getLedgerInfo(GetLedgerInfoRequest request) {
         RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
               = new GetLedgerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -353,9 +352,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMappingResponse getMapping(GetMappingRequest request) throws Exception {
+    public GetMappingResponse getMapping(GetMappingRequest request) {
         RequestOperation<GetMappingRequest, GetMappingResponse> operation
               = new GetMapping.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -375,9 +374,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransactionResponse getTransaction(GetTransactionRequest request) throws Exception {
+    public GetTransactionResponse getTransaction(GetTransactionRequest request) {
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
               = new GetTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -401,9 +400,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAccountsResponse listAccounts(ListAccountsRequest request) throws Exception {
+    public ListAccountsResponse listAccounts(ListAccountsRequest request) {
         RequestOperation<ListAccountsRequest, ListAccountsResponse> operation
               = new ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -427,9 +426,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListLogsResponse listLogs(ListLogsRequest request) throws Exception {
+    public ListLogsResponse listLogs(ListLogsRequest request) {
         RequestOperation<ListLogsRequest, ListLogsResponse> operation
               = new ListLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -453,9 +452,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTransactionsResponse listTransactions(ListTransactionsRequest request) throws Exception {
+    public ListTransactionsResponse listTransactions(ListTransactionsRequest request) {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
               = new ListTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -479,9 +478,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReadStatsResponse readStats(ReadStatsRequest request) throws Exception {
+    public ReadStatsResponse readStats(ReadStatsRequest request) {
         RequestOperation<ReadStatsRequest, ReadStatsResponse> operation
               = new ReadStats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -501,9 +500,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RevertTransactionResponse revertTransaction(RevertTransactionRequest request) throws Exception {
+    public RevertTransactionResponse revertTransaction(RevertTransactionRequest request) {
         RequestOperation<RevertTransactionRequest, RevertTransactionResponse> operation
               = new RevertTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -529,11 +528,11 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public RunScriptResponse runScript(RunScriptRequest request) throws Exception {
+    public RunScriptResponse runScript(RunScriptRequest request) {
         RequestOperation<RunScriptRequest, RunScriptResponse> operation
               = new RunScript.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -553,9 +552,9 @@ public class LedgerV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateMappingResponse updateMapping(UpdateMappingRequest request) throws Exception {
+    public UpdateMappingResponse updateMapping(UpdateMappingRequest request) {
         RequestOperation<UpdateMappingRequest, UpdateMappingResponse> operation
               = new UpdateMapping.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

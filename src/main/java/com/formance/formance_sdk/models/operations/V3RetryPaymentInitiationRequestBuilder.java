@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3RetryPaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3RetryPaymentInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3RetryPaymentInitiationRequestBuilder {
         return this;
     }
 
-    public V3RetryPaymentInitiationResponse call() throws Exception {
+    public V3RetryPaymentInitiationResponse call() {
         
         RequestOperation<V3RetryPaymentInitiationRequest, V3RetryPaymentInitiationResponse> operation
               = new V3RetryPaymentInitiation.Sync(sdkConfiguration, _headers);

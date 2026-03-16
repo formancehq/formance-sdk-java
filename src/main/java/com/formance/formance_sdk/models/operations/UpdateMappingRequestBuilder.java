@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateMapping;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateMappingRequestBuilder {
 
@@ -27,7 +26,7 @@ public class UpdateMappingRequestBuilder {
         return this;
     }
 
-    public UpdateMappingResponse call() throws Exception {
+    public UpdateMappingResponse call() {
         
         RequestOperation<UpdateMappingRequest, UpdateMappingResponse> operation
               = new UpdateMapping.Sync(sdkConfiguration, _headers);

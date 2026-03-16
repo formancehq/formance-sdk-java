@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetLedgerInfo;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetLedgerInfoRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetLedgerInfoRequestBuilder {
         return this;
     }
 
-    public GetLedgerInfoResponse call() throws Exception {
+    public GetLedgerInfoResponse call() {
         
         RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
               = new GetLedgerInfo.Sync(sdkConfiguration, _headers);

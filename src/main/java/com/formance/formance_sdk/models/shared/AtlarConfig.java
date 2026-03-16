@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -65,9 +66,12 @@ public class AtlarConfig implements ConnectorConfig {
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
      * API.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferInitiationStatusPollingPeriod")
+    @Deprecated
     private Optional<String> transferInitiationStatusPollingPeriod;
 
     @JsonCreator
@@ -163,7 +167,10 @@ public class AtlarConfig implements ConnectorConfig {
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
      * API.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> transferInitiationStatusPollingPeriod() {
         return transferInitiationStatusPollingPeriod;
@@ -273,7 +280,10 @@ public class AtlarConfig implements ConnectorConfig {
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
      * API.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public AtlarConfig withTransferInitiationStatusPollingPeriod(String transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
         this.transferInitiationStatusPollingPeriod = Optional.ofNullable(transferInitiationStatusPollingPeriod);
@@ -284,7 +294,10 @@ public class AtlarConfig implements ConnectorConfig {
     /**
      * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
      * API.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public AtlarConfig withTransferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
         Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
         this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
@@ -349,6 +362,7 @@ public class AtlarConfig implements ConnectorConfig {
 
         private String secret;
 
+        @Deprecated
         private Optional<String> transferInitiationStatusPollingPeriod;
 
         private Builder() {
@@ -458,7 +472,10 @@ public class AtlarConfig implements ConnectorConfig {
         /**
          * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
          * API.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder transferInitiationStatusPollingPeriod(String transferInitiationStatusPollingPeriod) {
             Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
             this.transferInitiationStatusPollingPeriod = Optional.ofNullable(transferInitiationStatusPollingPeriod);
@@ -468,7 +485,10 @@ public class AtlarConfig implements ConnectorConfig {
         /**
          * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar
          * API.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder transferInitiationStatusPollingPeriod(Optional<String> transferInitiationStatusPollingPeriod) {
             Utils.checkNotNull(transferInitiationStatusPollingPeriod, "transferInitiationStatusPollingPeriod");
             this.transferInitiationStatusPollingPeriod = transferInitiationStatusPollingPeriod;
@@ -514,7 +534,7 @@ public class AtlarConfig implements ConnectorConfig {
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
-                        "\"120s\"",
+                        "\"30m\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

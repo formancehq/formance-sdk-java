@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetTask;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3GetTaskRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3GetTaskRequestBuilder {
         return this;
     }
 
-    public V3GetTaskResponse call() throws Exception {
+    public V3GetTaskResponse call() {
         
         RequestOperation<V3GetTaskRequest, V3GetTaskResponse> operation
               = new V3GetTask.Sync(sdkConfiguration, _headers);

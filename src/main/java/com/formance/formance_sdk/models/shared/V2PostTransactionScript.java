@@ -18,8 +18,14 @@ import java.util.Optional;
 
 public class V2PostTransactionScript {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("plain")
-    private String plain;
+    private Optional<String> plain;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("template")
+    private Optional<String> template;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -28,22 +34,29 @@ public class V2PostTransactionScript {
 
     @JsonCreator
     public V2PostTransactionScript(
-            @JsonProperty("plain") String plain,
+            @JsonProperty("plain") Optional<String> plain,
+            @JsonProperty("template") Optional<String> template,
             @JsonProperty("vars") Optional<? extends Map<String, String>> vars) {
         Utils.checkNotNull(plain, "plain");
+        Utils.checkNotNull(template, "template");
         Utils.checkNotNull(vars, "vars");
         this.plain = plain;
+        this.template = template;
         this.vars = vars;
     }
     
-    public V2PostTransactionScript(
-            String plain) {
-        this(plain, Optional.empty());
+    public V2PostTransactionScript() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public String plain() {
+    public Optional<String> plain() {
         return plain;
+    }
+
+    @JsonIgnore
+    public Optional<String> template() {
+        return template;
     }
 
     @SuppressWarnings("unchecked")
@@ -59,7 +72,27 @@ public class V2PostTransactionScript {
 
     public V2PostTransactionScript withPlain(String plain) {
         Utils.checkNotNull(plain, "plain");
+        this.plain = Optional.ofNullable(plain);
+        return this;
+    }
+
+
+    public V2PostTransactionScript withPlain(Optional<String> plain) {
+        Utils.checkNotNull(plain, "plain");
         this.plain = plain;
+        return this;
+    }
+
+    public V2PostTransactionScript withTemplate(String template) {
+        Utils.checkNotNull(template, "template");
+        this.template = Optional.ofNullable(template);
+        return this;
+    }
+
+
+    public V2PostTransactionScript withTemplate(Optional<String> template) {
+        Utils.checkNotNull(template, "template");
+        this.template = template;
         return this;
     }
 
@@ -87,26 +120,30 @@ public class V2PostTransactionScript {
         V2PostTransactionScript other = (V2PostTransactionScript) o;
         return 
             Utils.enhancedDeepEquals(this.plain, other.plain) &&
+            Utils.enhancedDeepEquals(this.template, other.template) &&
             Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            plain, vars);
+            plain, template, vars);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2PostTransactionScript.class,
                 "plain", plain,
+                "template", template,
                 "vars", vars);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String plain;
+        private Optional<String> plain = Optional.empty();
+
+        private Optional<String> template = Optional.empty();
 
         private Optional<? extends Map<String, String>> vars = Optional.empty();
 
@@ -117,7 +154,26 @@ public class V2PostTransactionScript {
 
         public Builder plain(String plain) {
             Utils.checkNotNull(plain, "plain");
+            this.plain = Optional.ofNullable(plain);
+            return this;
+        }
+
+        public Builder plain(Optional<String> plain) {
+            Utils.checkNotNull(plain, "plain");
             this.plain = plain;
+            return this;
+        }
+
+
+        public Builder template(String template) {
+            Utils.checkNotNull(template, "template");
+            this.template = Optional.ofNullable(template);
+            return this;
+        }
+
+        public Builder template(Optional<String> template) {
+            Utils.checkNotNull(template, "template");
+            this.template = template;
             return this;
         }
 
@@ -137,7 +193,7 @@ public class V2PostTransactionScript {
         public V2PostTransactionScript build() {
 
             return new V2PostTransactionScript(
-                plain, vars);
+                plain, template, vars);
         }
 
     }

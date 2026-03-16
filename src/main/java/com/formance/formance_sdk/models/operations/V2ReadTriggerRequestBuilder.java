@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ReadTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ReadTriggerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ReadTriggerRequestBuilder {
         return this;
     }
 
-    public V2ReadTriggerResponse call() throws Exception {
+    public V2ReadTriggerResponse call() {
         
         RequestOperation<V2ReadTriggerRequest, V2ReadTriggerResponse> operation
               = new V2ReadTrigger.Sync(sdkConfiguration, _headers);

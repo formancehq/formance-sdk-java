@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ReadStats;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ReadStatsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ReadStatsRequestBuilder {
         return this;
     }
 
-    public V2ReadStatsResponse call() throws Exception {
+    public V2ReadStatsResponse call() {
         
         RequestOperation<V2ReadStatsRequest, V2ReadStatsResponse> operation
               = new V2ReadStats.Sync(sdkConfiguration, _headers);

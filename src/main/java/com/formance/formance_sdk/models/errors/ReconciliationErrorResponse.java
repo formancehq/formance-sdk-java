@@ -9,172 +9,236 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Deprecated;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 
-/**
- * ReconciliationErrorResponse
- * 
- * <p>Error response
- */
 @SuppressWarnings("serial")
-public class ReconciliationErrorResponse extends RuntimeException {
+public class ReconciliationErrorResponse extends SDKBaseError {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("details")
-    private Optional<String> details;
+    @Nullable
+    private final Data data;
 
+    @Nullable
+    private final Throwable deserializationException;
 
-    @JsonProperty("errorCode")
-    private String errorCode;
-
-
-    @JsonProperty("errorMessage")
-    private String errorMessage;
-
-    @JsonCreator
     public ReconciliationErrorResponse(
-            @JsonProperty("details") Optional<String> details,
-            @JsonProperty("errorCode") String errorCode,
-            @JsonProperty("errorMessage") String errorMessage) {
-        super("API error occurred");
-        Utils.checkNotNull(details, "details");
-        Utils.checkNotNull(errorCode, "errorCode");
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.details = details;
-        this.errorCode = errorCode;
-        this.errorMessage = errorMessage;
-    }
-    
-    public ReconciliationErrorResponse(
-            String errorCode,
-            String errorMessage) {
-        this(Optional.empty(), errorCode, errorMessage);
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
-    @JsonIgnore
+    /**
+    * Parse a response into an instance of ReconciliationErrorResponse. If deserialization of the response body fails,
+    * the resulting ReconciliationErrorResponse instance will have a null data() value and a non-null deserializationException().
+    */
+    public static ReconciliationErrorResponse from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new ReconciliationErrorResponse(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new ReconciliationErrorResponse(response.statusCode(), null, response, null, e);
+        }
+    }
+
+    @Deprecated
     public Optional<String> details() {
-        return details;
+        return data().flatMap(Data::details);
     }
 
-    @JsonIgnore
-    public String errorCode() {
-        return errorCode;
+    @Deprecated
+    public Optional<String> errorCode() {
+        return data().map(Data::errorCode);
     }
 
-    @JsonIgnore
-    public String errorMessage() {
-        return errorMessage;
+    @Deprecated
+    public Optional<String> errorMessage() {
+        return data().map(Data::errorMessage);
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
-
-    public ReconciliationErrorResponse withDetails(String details) {
-        Utils.checkNotNull(details, "details");
-        this.details = Optional.ofNullable(details);
-        return this;
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
+    /**
+     * Data
+     * 
+     * <p>Error response
+     */
+    public static class Data {
+
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("details")
+        private Optional<String> details;
 
 
-    public ReconciliationErrorResponse withDetails(Optional<String> details) {
-        Utils.checkNotNull(details, "details");
-        this.details = details;
-        return this;
-    }
-
-    public ReconciliationErrorResponse withErrorCode(String errorCode) {
-        Utils.checkNotNull(errorCode, "errorCode");
-        this.errorCode = errorCode;
-        return this;
-    }
-
-    public ReconciliationErrorResponse withErrorMessage(String errorMessage) {
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorMessage = errorMessage;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ReconciliationErrorResponse other = (ReconciliationErrorResponse) o;
-        return 
-            Utils.enhancedDeepEquals(this.details, other.details) &&
-            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
-            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            details, errorCode, errorMessage);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(ReconciliationErrorResponse.class,
-                "details", details,
-                "errorCode", errorCode,
-                "errorMessage", errorMessage);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
-
-        private Optional<String> details = Optional.empty();
-
+        @JsonProperty("errorCode")
         private String errorCode;
 
+
+        @JsonProperty("errorMessage")
         private String errorMessage;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("details") Optional<String> details,
+                @JsonProperty("errorCode") String errorCode,
+                @JsonProperty("errorMessage") String errorMessage) {
+            Utils.checkNotNull(details, "details");
+            Utils.checkNotNull(errorCode, "errorCode");
+            Utils.checkNotNull(errorMessage, "errorMessage");
+            this.details = details;
+            this.errorCode = errorCode;
+            this.errorMessage = errorMessage;
+        }
+        
+        public Data(
+                String errorCode,
+                String errorMessage) {
+            this(Optional.empty(), errorCode, errorMessage);
+        }
+
+        @JsonIgnore
+        public Optional<String> details() {
+            return details;
+        }
+
+        @JsonIgnore
+        public String errorCode() {
+            return errorCode;
+        }
+
+        @JsonIgnore
+        public String errorMessage() {
+            return errorMessage;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
-        public Builder details(String details) {
+        public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
         }
 
-        public Builder details(Optional<String> details) {
+
+        public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
-
-        public Builder errorCode(String errorCode) {
+        public Data withErrorCode(String errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
-
-        public Builder errorMessage(String errorMessage) {
+        public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
             return this;
         }
 
-        public ReconciliationErrorResponse build() {
-
-            return new ReconciliationErrorResponse(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.details, other.details) &&
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+                Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 details, errorCode, errorMessage);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "details", details,
+                    "errorCode", errorCode,
+                    "errorMessage", errorMessage);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<String> details = Optional.empty();
+
+            private String errorCode;
+
+            private String errorMessage;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            public Builder details(String details) {
+                Utils.checkNotNull(details, "details");
+                this.details = Optional.ofNullable(details);
+                return this;
+            }
+
+            public Builder details(Optional<String> details) {
+                Utils.checkNotNull(details, "details");
+                this.details = details;
+                return this;
+            }
+
+
+            public Builder errorCode(String errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+
+            public Builder errorMessage(String errorMessage) {
+                Utils.checkNotNull(errorMessage, "errorMessage");
+                this.errorMessage = errorMessage;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    details, errorCode, errorMessage);
+            }
+
+        }
     }
+
 }
 

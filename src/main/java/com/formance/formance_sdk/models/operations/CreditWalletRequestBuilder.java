@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CreditWallet;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreditWalletRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CreditWalletRequestBuilder {
         return this;
     }
 
-    public CreditWalletResponse call() throws Exception {
+    public CreditWalletResponse call() {
         
         RequestOperation<CreditWalletRequest, CreditWalletResponse> operation
               = new CreditWallet.Sync(sdkConfiguration, _headers);

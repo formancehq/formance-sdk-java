@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetMapping;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetMappingRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetMappingRequestBuilder {
         return this;
     }
 
-    public GetMappingResponse call() throws Exception {
+    public GetMappingResponse call() {
         
         RequestOperation<GetMappingRequest, GetMappingResponse> operation
               = new GetMapping.Sync(sdkConfiguration, _headers);

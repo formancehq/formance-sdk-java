@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3UpdateBankAccountMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3UpdateBankAccountMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3UpdateBankAccountMetadataRequestBuilder {
         return this;
     }
 
-    public V3UpdateBankAccountMetadataResponse call() throws Exception {
+    public V3UpdateBankAccountMetadataResponse call() {
         
         RequestOperation<V3UpdateBankAccountMetadataRequest, V3UpdateBankAccountMetadataResponse> operation
               = new V3UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);

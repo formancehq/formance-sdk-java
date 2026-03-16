@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetPoolBalancesLatest;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3GetPoolBalancesLatestRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3GetPoolBalancesLatestRequestBuilder {
         return this;
     }
 
-    public V3GetPoolBalancesLatestResponse call() throws Exception {
+    public V3GetPoolBalancesLatestResponse call() {
         
         RequestOperation<V3GetPoolBalancesLatestRequest, V3GetPoolBalancesLatestResponse> operation
               = new V3GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);

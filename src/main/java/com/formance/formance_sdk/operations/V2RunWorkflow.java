@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -57,7 +58,7 @@ public class V2RunWorkflow {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RunWorkflow",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -66,7 +67,7 @@ public class V2RunWorkflow {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RunWorkflow",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -75,7 +76,7 @@ public class V2RunWorkflow {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2RunWorkflow",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -132,8 +133,8 @@ public class V2RunWorkflow {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2RunWorkflowRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2RunWorkflowRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -143,7 +144,7 @@ public class V2RunWorkflow {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -151,7 +152,7 @@ public class V2RunWorkflow {
 
 
         @Override
-        public V2RunWorkflowResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2RunWorkflowResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -167,42 +168,19 @@ public class V2RunWorkflow {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.V2RunWorkflowResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2RunWorkflowResponse(out);
-                    return res;
+                    return res.withV2RunWorkflowResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.V2RunWorkflowResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2Error.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

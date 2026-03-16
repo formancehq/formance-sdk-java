@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.Query;
 import com.formance.formance_sdk.operations.Search;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class SearchRequestBuilder {
 
@@ -28,7 +27,7 @@ public class SearchRequestBuilder {
         return this;
     }
 
-    public SearchResponse call() throws Exception {
+    public SearchResponse call() {
         
         RequestOperation<Query, SearchResponse> operation
               = new Search.Sync(sdkConfiguration, _headers);

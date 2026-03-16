@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.AddMetadataToAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class AddMetadataToAccountRequestBuilder {
 
@@ -27,7 +26,7 @@ public class AddMetadataToAccountRequestBuilder {
         return this;
     }
 
-    public AddMetadataToAccountResponse call() throws Exception {
+    public AddMetadataToAccountResponse call() {
         
         RequestOperation<AddMetadataToAccountRequest, AddMetadataToAccountResponse> operation
               = new AddMetadataToAccount.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReverseTransferInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReverseTransferInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReverseTransferInitiationRequestBuilder {
         return this;
     }
 
-    public ReverseTransferInitiationResponse call() throws Exception {
+    public ReverseTransferInitiationResponse call() {
         
         RequestOperation<ReverseTransferInitiationRequest, ReverseTransferInitiationResponse> operation
               = new ReverseTransferInitiation.Sync(sdkConfiguration, _headers);

@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
 public class V2Workflow {
 
     @JsonProperty("config")
-    private V2WorkflowConfig config;
+    private V2CreateWorkflowRequest config;
 
 
     @JsonProperty("createdAt")
@@ -31,7 +31,7 @@ public class V2Workflow {
 
     @JsonCreator
     public V2Workflow(
-            @JsonProperty("config") V2WorkflowConfig config,
+            @JsonProperty("config") V2CreateWorkflowRequest config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
@@ -46,7 +46,7 @@ public class V2Workflow {
     }
 
     @JsonIgnore
-    public V2WorkflowConfig config() {
+    public V2CreateWorkflowRequest config() {
         return config;
     }
 
@@ -70,7 +70,7 @@ public class V2Workflow {
     }
 
 
-    public V2Workflow withConfig(V2WorkflowConfig config) {
+    public V2Workflow withConfig(V2CreateWorkflowRequest config) {
         Utils.checkNotNull(config, "config");
         this.config = config;
         return this;
@@ -129,7 +129,7 @@ public class V2Workflow {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2WorkflowConfig config;
+        private V2CreateWorkflowRequest config;
 
         private OffsetDateTime createdAt;
 
@@ -142,7 +142,7 @@ public class V2Workflow {
         }
 
 
-        public Builder config(V2WorkflowConfig config) {
+        public Builder config(V2CreateWorkflowRequest config) {
             Utils.checkNotNull(config, "config");
             this.config = config;
             return this;

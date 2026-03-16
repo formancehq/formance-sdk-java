@@ -1,5 +1,13 @@
 # V2PaymentType
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V2PaymentType;
+
+V2PaymentType value = V2PaymentType.PAY_IN;
+```
+
 
 ## Values
 

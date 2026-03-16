@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -57,7 +58,7 @@ public class ConfirmHold {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "confirmHold",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
 
@@ -66,7 +67,7 @@ public class ConfirmHold {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "confirmHold",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
 
@@ -75,7 +76,7 @@ public class ConfirmHold {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "confirmHold",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -128,8 +129,8 @@ public class ConfirmHold {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ConfirmHoldRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(ConfirmHoldRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -139,7 +140,7 @@ public class ConfirmHold {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -147,7 +148,7 @@ public class ConfirmHold {
 
 
         @Override
-        public ConfirmHoldResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public ConfirmHoldResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -165,28 +166,14 @@ public class ConfirmHold {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    WalletsErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw WalletsErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

@@ -8,11 +8,17 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2LogType
+ * 
+ * <p>The type of operation this log represents
+ */
 public enum V2LogType {
     NEW_TRANSACTION("NEW_TRANSACTION"),
     SET_METADATA("SET_METADATA"),
     REVERTED_TRANSACTION("REVERTED_TRANSACTION"),
-    DELETE_METADATA("DELETE_METADATA");
+    DELETE_METADATA("DELETE_METADATA"),
+    INSERTED_SCHEMA("INSERTED_SCHEMA");
 
     @JsonValue
     private final String value;

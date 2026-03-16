@@ -70,7 +70,6 @@ import com.formance.formance_sdk.operations.UpdateWallet;
 import com.formance.formance_sdk.operations.VoidHold;
 import com.formance.formance_sdk.operations.WalletsgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 
 public class WalletsV1 {
@@ -95,9 +94,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConfirmHoldResponse confirmHold(ConfirmHoldRequest request) throws Exception {
+    public ConfirmHoldResponse confirmHold(ConfirmHoldRequest request) {
         RequestOperation<ConfirmHoldRequest, ConfirmHoldResponse> operation
               = new ConfirmHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -117,9 +116,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateBalanceResponse createBalance(CreateBalanceRequest request) throws Exception {
+    public CreateBalanceResponse createBalance(CreateBalanceRequest request) {
         RequestOperation<CreateBalanceRequest, CreateBalanceResponse> operation
               = new CreateBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -139,9 +138,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateWalletResponse createWallet(CreateWalletRequest request) throws Exception {
+    public CreateWalletResponse createWallet(CreateWalletRequest request) {
         RequestOperation<CreateWalletRequest, CreateWalletResponse> operation
               = new CreateWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -161,9 +160,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreditWalletResponse creditWallet(CreditWalletRequest request) throws Exception {
+    public CreditWalletResponse creditWallet(CreditWalletRequest request) {
         RequestOperation<CreditWalletRequest, CreditWalletResponse> operation
               = new CreditWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -183,9 +182,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DebitWalletResponse debitWallet(DebitWalletRequest request) throws Exception {
+    public DebitWalletResponse debitWallet(DebitWalletRequest request) {
         RequestOperation<DebitWalletRequest, DebitWalletResponse> operation
               = new DebitWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -205,9 +204,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalanceResponse getBalance(GetBalanceRequest request) throws Exception {
+    public GetBalanceResponse getBalance(GetBalanceRequest request) {
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
               = new GetBalance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -227,9 +226,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetHoldResponse getHold(GetHoldRequest request) throws Exception {
+    public GetHoldResponse getHold(GetHoldRequest request) {
         RequestOperation<GetHoldRequest, GetHoldResponse> operation
               = new GetHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -249,9 +248,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetHoldsResponse getHolds(GetHoldsRequest request) throws Exception {
+    public GetHoldsResponse getHolds(GetHoldsRequest request) {
         RequestOperation<GetHoldsRequest, GetHoldsResponse> operation
               = new GetHolds.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -271,9 +270,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransactionsResponse getTransactions(GetTransactionsRequest request) throws Exception {
+    public GetTransactionsResponse getTransactions(GetTransactionsRequest request) {
         RequestOperation<GetTransactionsRequest, GetTransactionsResponse> operation
               = new GetTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -293,9 +292,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetWalletResponse getWallet(GetWalletRequest request) throws Exception {
+    public GetWalletResponse getWallet(GetWalletRequest request) {
         RequestOperation<GetWalletRequest, GetWalletResponse> operation
               = new GetWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -315,9 +314,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetWalletSummaryResponse getWalletSummary(GetWalletSummaryRequest request) throws Exception {
+    public GetWalletSummaryResponse getWalletSummary(GetWalletSummaryRequest request) {
         RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
               = new GetWalletSummary.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -337,9 +336,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBalancesResponse listBalances(ListBalancesRequest request) throws Exception {
+    public ListBalancesResponse listBalances(ListBalancesRequest request) {
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
               = new ListBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -359,9 +358,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListWalletsResponse listWallets(ListWalletsRequest request) throws Exception {
+    public ListWalletsResponse listWallets(ListWalletsRequest request) {
         RequestOperation<ListWalletsRequest, ListWalletsResponse> operation
               = new ListWallets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -381,9 +380,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateWalletResponse updateWallet(UpdateWalletRequest request) throws Exception {
+    public UpdateWalletResponse updateWallet(UpdateWalletRequest request) {
         RequestOperation<UpdateWalletRequest, UpdateWalletResponse> operation
               = new UpdateWallet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -403,9 +402,9 @@ public class WalletsV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VoidHoldResponse voidHold(VoidHoldRequest request) throws Exception {
+    public VoidHoldResponse voidHold(VoidHoldRequest request) {
         RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
               = new VoidHold.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -424,9 +423,9 @@ public class WalletsV1 {
      * Get server info
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WalletsgetServerInfoResponse walletsgetServerInfoDirect() throws Exception {
+    public WalletsgetServerInfoResponse walletsgetServerInfoDirect() {
         RequestlessOperation<WalletsgetServerInfoResponse> operation
             = new WalletsgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

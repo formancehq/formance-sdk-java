@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListConnectorSchedules;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ListConnectorSchedulesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ListConnectorSchedulesRequestBuilder {
         return this;
     }
 
-    public V3ListConnectorSchedulesResponse call() throws Exception {
+    public V3ListConnectorSchedulesResponse call() {
         
         RequestOperation<V3ListConnectorSchedulesRequest, V3ListConnectorSchedulesResponse> operation
               = new V3ListConnectorSchedules.Sync(sdkConfiguration, _headers);

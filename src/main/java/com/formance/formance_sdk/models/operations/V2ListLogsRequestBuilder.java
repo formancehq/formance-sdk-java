@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListLogs;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ListLogsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ListLogsRequestBuilder {
         return this;
     }
 
-    public V2ListLogsResponse call() throws Exception {
+    public V2ListLogsResponse call() {
         
         RequestOperation<V2ListLogsRequest, V2ListLogsResponse> operation
               = new V2ListLogs.Sync(sdkConfiguration, _headers);

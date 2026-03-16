@@ -1,5 +1,4 @@
-# AuthV1
-(*auth().v1()*)
+# Auth.V1
 
 ## Overview
 
@@ -47,7 +46,7 @@ public class Application {
                 .call();
 
         if (res.createClientResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createClientResponse().get());
         }
     }
 }
@@ -55,9 +54,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [ClientOptions](../../models/shared/ClientOptions.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 ### Response
 
@@ -105,7 +104,7 @@ public class Application {
                 .call();
 
         if (res.createSecretResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSecretResponse().get());
         }
     }
 }
@@ -314,7 +313,7 @@ public class Application {
                 .call();
 
         if (res.serverInfo().isPresent()) {
-            // handle response
+            System.out.println(res.serverInfo().get());
         }
     }
 }
@@ -360,7 +359,7 @@ public class Application {
                 .call();
 
         if (res.listClientsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listClientsResponse().get());
         }
     }
 }
@@ -406,7 +405,7 @@ public class Application {
                 .call();
 
         if (res.listUsersResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listUsersResponse().get());
         }
     }
 }
@@ -458,7 +457,7 @@ public class Application {
                 .call();
 
         if (res.readClientResponse().isPresent()) {
-            // handle response
+            System.out.println(res.readClientResponse().get());
         }
     }
 }
@@ -516,7 +515,7 @@ public class Application {
                 .call();
 
         if (res.readUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.readUserResponse().get());
         }
     }
 }
@@ -573,8 +572,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.createClientResponse().isPresent()) {
-            // handle response
+        if (res.updateClientResponse().isPresent()) {
+            System.out.println(res.updateClientResponse().get());
         }
     }
 }

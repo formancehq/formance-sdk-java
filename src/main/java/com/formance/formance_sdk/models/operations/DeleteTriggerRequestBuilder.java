@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeleteTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteTriggerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeleteTriggerRequestBuilder {
         return this;
     }
 
-    public DeleteTriggerResponse call() throws Exception {
+    public DeleteTriggerResponse call() {
         
         RequestOperation<DeleteTriggerRequest, DeleteTriggerResponse> operation
               = new DeleteTrigger.Sync(sdkConfiguration, _headers);

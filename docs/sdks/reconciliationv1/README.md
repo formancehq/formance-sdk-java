@@ -1,5 +1,4 @@
-# ReconciliationV1
-(*reconciliation().v1()*)
+# Reconciliation.V1
 
 ## Overview
 
@@ -56,7 +55,7 @@ public class Application {
                 .call();
 
         if (res.policyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.policyResponse().get());
         }
     }
 }
@@ -174,7 +173,7 @@ public class Application {
                 .call();
 
         if (res.policyResponse().isPresent()) {
-            // handle response
+            System.out.println(res.policyResponse().get());
         }
     }
 }
@@ -234,7 +233,7 @@ public class Application {
                 .call();
 
         if (res.reconciliationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.reconciliationResponse().get());
         }
     }
 }
@@ -295,7 +294,7 @@ public class Application {
                 .call();
 
         if (res.policiesCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.policiesCursorResponse().get());
         }
     }
 }
@@ -356,7 +355,7 @@ public class Application {
                 .call();
 
         if (res.reconciliationsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.reconciliationsCursorResponse().get());
         }
     }
 }
@@ -422,7 +421,7 @@ public class Application {
                 .call();
 
         if (res.reconciliationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.reconciliationResponse().get());
         }
     }
 }
@@ -476,7 +475,7 @@ public class Application {
                 .call();
 
         if (res.serverInfo().isPresent()) {
-            // handle response
+            System.out.println(res.serverInfo().get());
         }
     }
 }

@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -39,7 +40,7 @@ public class GetVersions {
             this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-            this.securitySource = this.sdkConfiguration.securitySource();
+            this.securitySource = null;
             this.client = this.sdkConfiguration.client();
         }
 
@@ -52,7 +53,7 @@ public class GetVersions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getVersions",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -61,7 +62,7 @@ public class GetVersions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getVersions",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -70,7 +71,7 @@ public class GetVersions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getVersions",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {
@@ -81,7 +82,6 @@ public class GetVersions {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
         }
@@ -110,8 +110,8 @@ public class GetVersions {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -121,7 +121,7 @@ public class GetVersions {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -129,7 +129,7 @@ public class GetVersions {
 
 
         @Override
-        public GetVersionsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public GetVersionsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -145,35 +145,16 @@ public class GetVersions {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.GetVersionsResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withGetVersionsResponse(out);
-                    return res;
+                    return res.withGetVersionsResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.GetVersionsResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

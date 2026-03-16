@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class Stage {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Stage(TypedObject value) {
         this.value = value;
@@ -27,22 +27,22 @@ public class Stage {
 
     public static Stage of(StageSend value) {
         Utils.checkNotNull(value, "value");
-        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StageSend>(){}));
+        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Stage of(StageDelay value) {
         Utils.checkNotNull(value, "value");
-        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StageDelay>(){}));
+        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Stage of(StageWaitEvent value) {
         Utils.checkNotNull(value, "value");
-        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<StageWaitEvent>(){}));
+        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Stage of(Update value) {
         Utils.checkNotNull(value, "value");
-        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Update>(){}));
+        return new Stage(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -67,7 +67,7 @@ public class Stage {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -78,7 +78,7 @@ public class Stage {
             return false;
         }
         Stage other = (Stage) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -93,8 +93,8 @@ public class Stage {
             super(Stage.class, false,
                   TypeReferenceWithShape.of(new TypeReference<StageSend>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<StageDelay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Update>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<StageWaitEvent>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<StageWaitEvent>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Update>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -103,6 +103,6 @@ public class Stage {
         return Utils.toString(Stage.class,
                 "value", value);
     }
- 
+
 }
 

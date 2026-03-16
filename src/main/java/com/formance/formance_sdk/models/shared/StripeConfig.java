@@ -313,13 +313,13 @@ public class StripeConfig implements ConnectorConfig {
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
                 new LazySingletonValue<>(
                         "pageSize",
-                        "10",
+                        "100",
                         new TypeReference<Optional<Long>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
-                        "\"120s\"",
+                        "\"30m\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

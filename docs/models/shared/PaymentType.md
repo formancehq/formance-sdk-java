@@ -1,5 +1,13 @@
 # PaymentType
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.PaymentType;
+
+PaymentType value = PaymentType.PAY_IN;
+```
+
 
 ## Values
 

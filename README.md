@@ -35,7 +35,9 @@ and standard method from web, mobile and desktop applications.
   * [Server Selection](#server-selection)
   * [Error Handling](#error-handling)
   * [Authentication](#authentication-1)
+  * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -53,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:7.3.0'
+implementation 'com.formance:formance-sdk:8.0.0'
 ```
 
 Maven:
@@ -61,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>7.3.0</version>
+    <version>8.0.0</version>
 </dependency>
 ```
 
@@ -90,7 +92,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -98,21 +99,26 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         GetVersionsResponse res = sdk.getVersions()
                 .call();
 
         if (res.getVersionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getVersionsResponse().get());
         }
     }
 }
 ```
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -121,10 +127,11 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-### [auth()](docs/sdks/auth/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
+* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 
-#### [auth().v1()](docs/sdks/authv1/README.md)
+### [Auth.V1](docs/sdks/authv1/README.md)
 
 * [createClient](docs/sdks/authv1/README.md#createclient) - Create client
 * [createSecret](docs/sdks/authv1/README.md#createsecret) - Add a secret to a client
@@ -138,12 +145,12 @@ public class Application {
 * [readUser](docs/sdks/authv1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/authv1/README.md#updateclient) - Update client
 
-### [ledger()](docs/sdks/ledger/README.md)
+### [Ledger](docs/sdks/ledger/README.md)
 
 * [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
 * [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
-#### [ledger().v1()](docs/sdks/ledgerv1/README.md)
+#### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [createTransactions](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -166,7 +173,7 @@ public class Application {
 * [~~runScript~~](docs/sdks/ledgerv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/ledgerv1/README.md#updatemapping) - Update the mapping of a ledger
 
-#### [ledger().v2()](docs/sdks/ledgerv2/README.md)
+#### [Ledger.V2](docs/sdks/ledgerv2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/ledgerv2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/ledgerv2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -178,6 +185,7 @@ public class Application {
 * [createPipeline](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 * [createTransaction](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+* [deleteBucket](docs/sdks/ledgerv2/README.md#deletebucket) - Delete bucket
 * [deleteExporter](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
 * [deletePipeline](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
@@ -189,26 +197,29 @@ public class Application {
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
 * [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
+* [getSchema](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/ledgerv2/README.md#importlogs)
+* [insertSchema](docs/sdks/ledgerv2/README.md#insertschema) - Insert a schema for a ledger
 * [listAccounts](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
 * [listExporters](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 * [listLedgers](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 * [listLogs](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
 * [listPipelines](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
+* [listSchemas](docs/sdks/ledgerv2/README.md#listschemas) - List all schemas for a ledger
 * [listTransactions](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
 * [resetPipeline](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
+* [restoreBucket](docs/sdks/ledgerv2/README.md#restorebucket) - Restore bucket
 * [revertTransaction](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [runQuery](docs/sdks/ledgerv2/README.md#runquery) - Run a query template
 * [startPipeline](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
 * [stopPipeline](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
+* [updateExporter](docs/sdks/ledgerv2/README.md#updateexporter) - Update exporter
 * [updateLedgerMetadata](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 
-### [orchestration()](docs/sdks/orchestration/README.md)
-
-
-#### [orchestration().v1()](docs/sdks/orchestrationv1/README.md)
+### [Orchestration.V1](docs/sdks/orchestrationv1/README.md)
 
 * [cancelEvent](docs/sdks/orchestrationv1/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestrationv1/README.md#createtrigger) - Create trigger
@@ -228,7 +239,7 @@ public class Application {
 * [runWorkflow](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
 
-#### [orchestration().v2()](docs/sdks/orchestrationv2/README.md)
+### [Orchestration.V2](docs/sdks/orchestrationv2/README.md)
 
 * [cancelEvent](docs/sdks/orchestrationv2/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestrationv2/README.md#createtrigger) - Create trigger
@@ -249,10 +260,7 @@ public class Application {
 * [sendEvent](docs/sdks/orchestrationv2/README.md#sendevent) - Send an event to a running workflow
 * [testTrigger](docs/sdks/orchestrationv2/README.md#testtrigger) - Test trigger
 
-### [payments()](docs/sdks/payments/README.md)
-
-
-#### [payments().v1()](docs/sdks/paymentsv1/README.md)
+### [Payments.V1](docs/sdks/paymentsv1/README.md)
 
 * [addAccountToPool](docs/sdks/paymentsv1/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/paymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -297,9 +305,10 @@ public class Application {
 * [updateBankAccountMetadata](docs/sdks/paymentsv1/README.md#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](docs/sdks/paymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/paymentsv1/README.md#updatemetadata) - Update metadata
+* [updatePoolQuery](docs/sdks/paymentsv1/README.md#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](docs/sdks/paymentsv1/README.md#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
-#### [payments().v3()](docs/sdks/v3/README.md)
+### [Payments.V3](docs/sdks/v3/README.md)
 
 * [addAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
 * [addBankAccountToPaymentServiceUser](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
@@ -308,14 +317,19 @@ public class Application {
 
 * [createBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [createLinkForPaymentServiceUser](docs/sdks/v3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [createPayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [createPaymentServiceUser](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
 * [deletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePaymentServiceUser](docs/sdks/v3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
+* [deletePaymentServiceUserConnectionFromConnectorID](docs/sdks/v3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [deletePaymentServiceUserConnector](docs/sdks/v3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [deletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
 * [forwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
 * [forwardPaymentServiceUserBankAccount](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+* [forwardPaymentServiceUserToProvider](docs/sdks/v3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
 * [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 * [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
@@ -324,6 +338,7 @@ public class Application {
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+* [getPaymentServiceUserLinkAttemptFromConnectorID](docs/sdks/v3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
 * [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
 * [getPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
 * [getPoolBalancesLatest](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
@@ -339,6 +354,11 @@ public class Application {
 * [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUserConnections](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [listPaymentServiceUserConnectionsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [listPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [listPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 * [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
 * [listPools](docs/sdks/v3/README.md#listpools) - List all pools
@@ -349,13 +369,12 @@ public class Application {
 * [reversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
 * [uninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [updateLinkForPaymentServiceUserOnConnector](docs/sdks/v3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 * [updatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+* [updatePoolQuery](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
 * [v3UpdateConnectorConfig](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
 
-### [reconciliation()](docs/sdks/reconciliation/README.md)
-
-
-#### [reconciliation().v1()](docs/sdks/reconciliationv1/README.md)
+### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
 * [createPolicy](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
@@ -366,22 +385,12 @@ public class Application {
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
-### [SDK](docs/sdks/sdk/README.md)
-
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
-
-### [~~search()~~](docs/sdks/search/README.md)
-
-
-#### [~~search().v1()~~](docs/sdks/searchv1/README.md)
+### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
 * [~~search~~](docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
 * [~~searchgetServerInfo~~](docs/sdks/searchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
-### [wallets()](docs/sdks/wallets/README.md)
-
-
-#### [wallets().v1()](docs/sdks/walletsv1/README.md)
+### [Wallets.V1](docs/sdks/walletsv1/README.md)
 
 * [confirmHold](docs/sdks/walletsv1/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/walletsv1/README.md#createbalance) - Create a balance
@@ -400,10 +409,7 @@ public class Application {
 * [voidHold](docs/sdks/walletsv1/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/walletsv1/README.md#walletsgetserverinfo) - Get server info
 
-### [webhooks()](docs/sdks/webhooks/README.md)
-
-
-#### [webhooks().v1()](docs/sdks/webhooksv1/README.md)
+### [Webhooks.V1](docs/sdks/webhooksv1/README.md)
 
 * [activateConfig](docs/sdks/webhooksv1/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -431,10 +437,10 @@ You can override the default server globally using the `.serverIndex(int serverI
 
 If the selected server has variables, you may override its default values using the associated builder method(s):
 
-| Variable       | BuilderMethod                                | Supported Values                                      | Default           | Description                                                   |
-| -------------- | -------------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment(ServerEnvironment environment)` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
-| `organization` | `organization(String organization)`          | java.lang.String                                      | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | BuilderMethod                                | Supported Values                                         | Default           | Description                                                   |
+| -------------- | -------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment(ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization(String organization)`          | java.lang.String                                         | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -444,7 +450,6 @@ package hello.world;
 import com.formance.formance_sdk.SDK.Builder.ServerEnvironment;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -455,17 +460,13 @@ public class Application {
                 .serverIndex(1)
                 .environment(ServerEnvironment.US_EAST1)
                 .organization("<value>")
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         GetVersionsResponse res = sdk.getVersions()
                 .call();
 
         if (res.getVersionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getVersionsResponse().get());
         }
     }
 }
@@ -479,7 +480,6 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -487,18 +487,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         SDK sdk = SDK.builder()
-                .serverURL("https://orgID-stackID.sandbox.formance.cloud")
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
+                .serverURL("https://orgID-stackID.eu.sandbox.formance.cloud")
             .build();
 
         GetVersionsResponse res = sdk.getVersions()
                 .call();
 
         if (res.getVersionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getVersionsResponse().get());
         }
     }
 }
@@ -510,23 +506,32 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `getInfo` method throws the following exceptions:
 
-| Error Type                    | Status Code | Content Type     |
-| ----------------------------- | ----------- | ---------------- |
-| models/errors/V2ErrorResponse | default     | application/json |
-| models/errors/SDKError        | 4XX, 5XX    | \*/\*            |
+[`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.SDKBaseError;
 import com.formance.formance_sdk.models.errors.V2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.shared.V2ErrorsEnum;
+import java.io.UncheckedIOException;
 import java.lang.Exception;
+import java.lang.String;
+import java.util.Optional;
 
 public class Application {
 
@@ -538,16 +543,79 @@ public class Application {
                     .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
                     .build())
             .build();
+        try {
 
-        V2GetInfoResponse res = sdk.ledger().getInfo()
-                .call();
+            V2GetInfoResponse res = sdk.ledger().getInfo()
+                    .call();
 
-        if (res.v2ConfigInfoResponse().isPresent()) {
-            // handle response
-        }
-    }
+            if (res.v2ConfigInfoResponse().isPresent()) {
+                System.out.println(res.v2ConfigInfoResponse().get());
+            }
+        } catch (SDKBaseError ex) { // all SDK exceptions inherit from SDKBaseError
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof V2ErrorResponse) {
+                var e = (V2ErrorResponse) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      Optional<String> details = payload.details();
+                      V2ErrorsEnum errorCode = payload.errorCode();
+                      // ...
+                });
+            }
+
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
+
+### Error Classes
+**Primary error:**
+* [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java): The base class for HTTP error responses.
+
+<details><summary>Less common errors (15)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java)**:
+* [`com.formance.formance_sdk.models.errors.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V3ErrorResponse.java): Error. Applicable to 57 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.PaymentsErrorResponse.java): Error. Applicable to 46 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.V2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V2ErrorResponse.java): Applicable to 44 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.ErrorResponse.java): Applicable to 19 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V2Error.java): General error. Applicable to 18 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.Error.java): General error. Applicable to 17 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.WalletsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.WalletsErrorResponse.java): Applicable to 15 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.ReconciliationErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.ReconciliationErrorResponse.java): Error response. Applicable to 8 of 249 methods.*
+* [`com.formance.formance_sdk.models.errors.WebhooksErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.WebhooksErrorResponse.java): Error. Applicable to 8 of 249 methods.*
+
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Authentication [security] -->
@@ -557,9 +625,9 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         |
-| ----------------------------- | ------ | ------------------------------ |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
+| Name                                         | Type   | Scheme                         |
+| -------------------------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java
@@ -585,20 +653,147 @@ public class Application {
                 .call();
 
         if (res.getVersionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getVersionsResponse().get());
         }
     }
 }
 ```
 <!-- End Authentication [security] -->
 
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Java SDK makes API calls using an `HTTPClient` that wraps the native
+[HttpClient](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `HTTPClient` interface allows you to either use the default `SpeakeasyHTTPClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom executors, SSL context,
+connection pools, and other HTTP client settings.
+
+The interface provides synchronous (`send`) methods.
+
+The following example shows how to add a custom header and handle errors:
+
+```java
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.utils.HTTPClient;
+import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
+import com.formance.formance_sdk.utils.Utils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+
+public class Application {
+    public static void main(String[] args) {
+        // Create a custom HTTP client with hooks
+        HTTPClient httpClient = new HTTPClient() {
+            private final HTTPClient defaultClient = new SpeakeasyHTTPClient();
+            
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                // Add custom header and timeout using Utils.copy()
+                HttpRequest modifiedRequest = Utils.copy(request)
+                    .header("x-custom-header", "custom value")
+                    .timeout(Duration.ofSeconds(30))
+                    .build();
+                    
+                try {
+                    HttpResponse<InputStream> response = defaultClient.send(modifiedRequest);
+                    // Log successful response
+                    System.out.println("Request successful: " + response.statusCode());
+                    return response;
+                } catch (Exception error) {
+                    // Log error
+                    System.err.println("Request failed: " + error.getMessage());
+                    throw error;
+                }
+            }
+        };
+
+        SDK sdk = SDK.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+
+<details>
+<summary>Custom HTTP Client Configuration</summary>
+
+You can also provide a completely custom HTTP client with your own configuration:
+
+```java
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.utils.HTTPClient;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+
+public class Application {
+    public static void main(String[] args) {
+        // Custom HTTP client with custom configuration
+        HTTPClient customHttpClient = new HTTPClient() {
+            private final HttpClient client = HttpClient.newBuilder()
+                .executor(Executors.newFixedThreadPool(10))
+                .connectTimeout(Duration.ofSeconds(30))
+                // .sslContext(customSslContext) // Add custom SSL context if needed
+                .build();
+
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            }
+        };
+
+        SDK sdk = SDK.builder()
+            .client(customHttpClient)
+            .build();
+    }
+}
+```
+
+</details>
+
+You can also enable debug logging on the default `SpeakeasyHTTPClient`:
+
+```java
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
+
+public class Application {
+    public static void main(String[] args) {
+        SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+        httpClient.enableDebugLogging(true);
+
+        SDK sdk = SDK.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+<!-- End Custom HTTP Client [http-client] -->
+
 <!-- Start Debugging [debug] -->
 ## Debugging
 
 ### Debug
+
 You can setup your SDK to emit debug logs for SDK requests and responses.
 
 For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
+
 ```java
 SDK.builder()
     .enableHTTPDebugLogging(true)
@@ -616,12 +811,43 @@ Response body:
   "token": "global"
 }
 ```
-__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This logging should only be used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
 
 __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
 
+
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.formance.formance_sdk.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `FormanceSDKJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.formance.formance_sdk.utils.FormanceSDKJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new FormanceSDKJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

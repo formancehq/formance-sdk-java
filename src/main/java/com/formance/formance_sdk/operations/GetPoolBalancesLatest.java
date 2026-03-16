@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -12,7 +13,7 @@ import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesLatestRequest;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesLatestResponse;
-import com.formance.formance_sdk.models.shared.PoolBalancesResponse;
+import com.formance.formance_sdk.models.shared.PoolBalancesLatestResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -55,7 +56,7 @@ public class GetPoolBalancesLatest {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getPoolBalancesLatest",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
 
@@ -64,7 +65,7 @@ public class GetPoolBalancesLatest {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getPoolBalancesLatest",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
 
@@ -73,7 +74,7 @@ public class GetPoolBalancesLatest {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getPoolBalancesLatest",
-                    java.util.Optional.of(java.util.List.of("auth:read", "payments:read")),
+                    java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -115,8 +116,8 @@ public class GetPoolBalancesLatest {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetPoolBalancesLatestRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(GetPoolBalancesLatestRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -126,7 +127,7 @@ public class GetPoolBalancesLatest {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -134,7 +135,7 @@ public class GetPoolBalancesLatest {
 
 
         @Override
-        public GetPoolBalancesLatestResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public GetPoolBalancesLatestResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -150,42 +151,19 @@ public class GetPoolBalancesLatest {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    PoolBalancesResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withPoolBalancesResponse(out);
-                    return res;
+                    return res.withPoolBalancesLatestResponse(Utils.unmarshal(response, new TypeReference<PoolBalancesLatestResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    PaymentsErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw PaymentsErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

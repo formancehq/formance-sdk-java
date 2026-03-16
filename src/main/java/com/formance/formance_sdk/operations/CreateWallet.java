@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -57,7 +58,7 @@ public class CreateWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
 
@@ -66,7 +67,7 @@ public class CreateWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
 
@@ -75,7 +76,7 @@ public class CreateWallet {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createWallet",
-                    java.util.Optional.of(java.util.List.of("auth:read", "wallets:write")),
+                    java.util.Optional.of(java.util.List.of("wallets:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
@@ -126,8 +127,8 @@ public class CreateWallet {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(CreateWalletRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(CreateWalletRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -137,7 +138,7 @@ public class CreateWallet {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -145,7 +146,7 @@ public class CreateWallet {
 
 
         @Override
-        public CreateWalletResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public CreateWalletResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -161,42 +162,19 @@ public class CreateWallet {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.shared.CreateWalletResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withCreateWalletResponse(out);
-                    return res;
+                    return res.withCreateWalletResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.CreateWalletResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    WalletsErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw WalletsErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

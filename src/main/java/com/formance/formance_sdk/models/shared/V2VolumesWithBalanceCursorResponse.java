@@ -5,10 +5,14 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class V2VolumesWithBalanceCursorResponse {
@@ -16,16 +20,35 @@ public class V2VolumesWithBalanceCursorResponse {
     @JsonProperty("cursor")
     private V2VolumesWithBalanceCursorResponseCursor cursor;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("resource")
+    private Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource;
+
     @JsonCreator
     public V2VolumesWithBalanceCursorResponse(
-            @JsonProperty("cursor") V2VolumesWithBalanceCursorResponseCursor cursor) {
+            @JsonProperty("cursor") V2VolumesWithBalanceCursorResponseCursor cursor,
+            @JsonProperty("resource") Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource) {
         Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(resource, "resource");
         this.cursor = cursor;
+        this.resource = resource;
+    }
+    
+    public V2VolumesWithBalanceCursorResponse(
+            V2VolumesWithBalanceCursorResponseCursor cursor) {
+        this(cursor, Optional.empty());
     }
 
     @JsonIgnore
     public V2VolumesWithBalanceCursorResponseCursor cursor() {
         return cursor;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2VolumesWithBalanceCursorResponseResource> resource() {
+        return (Optional<V2VolumesWithBalanceCursorResponseResource>) resource;
     }
 
     public static Builder builder() {
@@ -39,6 +62,19 @@ public class V2VolumesWithBalanceCursorResponse {
         return this;
     }
 
+    public V2VolumesWithBalanceCursorResponse withResource(V2VolumesWithBalanceCursorResponseResource resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = Optional.ofNullable(resource);
+        return this;
+    }
+
+
+    public V2VolumesWithBalanceCursorResponse withResource(Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = resource;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -49,25 +85,29 @@ public class V2VolumesWithBalanceCursorResponse {
         }
         V2VolumesWithBalanceCursorResponse other = (V2VolumesWithBalanceCursorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor);
+            cursor, resource);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2VolumesWithBalanceCursorResponse.class,
-                "cursor", cursor);
+                "cursor", cursor,
+                "resource", resource);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private V2VolumesWithBalanceCursorResponseCursor cursor;
+
+        private Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -80,10 +120,23 @@ public class V2VolumesWithBalanceCursorResponse {
             return this;
         }
 
+
+        public Builder resource(V2VolumesWithBalanceCursorResponseResource resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = Optional.ofNullable(resource);
+            return this;
+        }
+
+        public Builder resource(Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = resource;
+            return this;
+        }
+
         public V2VolumesWithBalanceCursorResponse build() {
 
             return new V2VolumesWithBalanceCursorResponse(
-                cursor);
+                cursor, resource);
         }
 
     }

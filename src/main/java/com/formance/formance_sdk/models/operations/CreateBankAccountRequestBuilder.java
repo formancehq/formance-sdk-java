@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.BankAccountRequest;
 import com.formance.formance_sdk.operations.CreateBankAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreateBankAccountRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateBankAccountRequestBuilder {
         return this;
     }
 
-    public CreateBankAccountResponse call() throws Exception {
+    public CreateBankAccountResponse call() {
         
         RequestOperation<BankAccountRequest, CreateBankAccountResponse> operation
               = new CreateBankAccount.Sync(sdkConfiguration, _headers);

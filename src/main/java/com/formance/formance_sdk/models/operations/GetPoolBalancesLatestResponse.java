@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.PoolBalancesResponse;
+import com.formance.formance_sdk.models.shared.PoolBalancesLatestResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class GetPoolBalancesLatestResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends PoolBalancesResponse> poolBalancesResponse;
+    private Optional<? extends PoolBalancesLatestResponse> poolBalancesLatestResponse;
 
     /**
      * HTTP response status code for this operation
@@ -41,15 +41,15 @@ public class GetPoolBalancesLatestResponse implements Response {
     @JsonCreator
     public GetPoolBalancesLatestResponse(
             String contentType,
-            Optional<? extends PoolBalancesResponse> poolBalancesResponse,
+            Optional<? extends PoolBalancesLatestResponse> poolBalancesLatestResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
+        Utils.checkNotNull(poolBalancesLatestResponse, "poolBalancesLatestResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.poolBalancesResponse = poolBalancesResponse;
+        this.poolBalancesLatestResponse = poolBalancesLatestResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -75,8 +75,8 @@ public class GetPoolBalancesLatestResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PoolBalancesResponse> poolBalancesResponse() {
-        return (Optional<PoolBalancesResponse>) poolBalancesResponse;
+    public Optional<PoolBalancesLatestResponse> poolBalancesLatestResponse() {
+        return (Optional<PoolBalancesLatestResponse>) poolBalancesLatestResponse;
     }
 
     /**
@@ -112,9 +112,9 @@ public class GetPoolBalancesLatestResponse implements Response {
     /**
      * OK
      */
-    public GetPoolBalancesLatestResponse withPoolBalancesResponse(PoolBalancesResponse poolBalancesResponse) {
-        Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
-        this.poolBalancesResponse = Optional.ofNullable(poolBalancesResponse);
+    public GetPoolBalancesLatestResponse withPoolBalancesLatestResponse(PoolBalancesLatestResponse poolBalancesLatestResponse) {
+        Utils.checkNotNull(poolBalancesLatestResponse, "poolBalancesLatestResponse");
+        this.poolBalancesLatestResponse = Optional.ofNullable(poolBalancesLatestResponse);
         return this;
     }
 
@@ -122,9 +122,9 @@ public class GetPoolBalancesLatestResponse implements Response {
     /**
      * OK
      */
-    public GetPoolBalancesLatestResponse withPoolBalancesResponse(Optional<? extends PoolBalancesResponse> poolBalancesResponse) {
-        Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
-        this.poolBalancesResponse = poolBalancesResponse;
+    public GetPoolBalancesLatestResponse withPoolBalancesLatestResponse(Optional<? extends PoolBalancesLatestResponse> poolBalancesLatestResponse) {
+        Utils.checkNotNull(poolBalancesLatestResponse, "poolBalancesLatestResponse");
+        this.poolBalancesLatestResponse = poolBalancesLatestResponse;
         return this;
     }
 
@@ -157,7 +157,7 @@ public class GetPoolBalancesLatestResponse implements Response {
         GetPoolBalancesLatestResponse other = (GetPoolBalancesLatestResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
-            Utils.enhancedDeepEquals(this.poolBalancesResponse, other.poolBalancesResponse) &&
+            Utils.enhancedDeepEquals(this.poolBalancesLatestResponse, other.poolBalancesLatestResponse) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
@@ -165,7 +165,7 @@ public class GetPoolBalancesLatestResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, poolBalancesResponse, statusCode,
+            contentType, poolBalancesLatestResponse, statusCode,
             rawResponse);
     }
     
@@ -173,7 +173,7 @@ public class GetPoolBalancesLatestResponse implements Response {
     public String toString() {
         return Utils.toString(GetPoolBalancesLatestResponse.class,
                 "contentType", contentType,
-                "poolBalancesResponse", poolBalancesResponse,
+                "poolBalancesLatestResponse", poolBalancesLatestResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -183,7 +183,7 @@ public class GetPoolBalancesLatestResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends PoolBalancesResponse> poolBalancesResponse = Optional.empty();
+        private Optional<? extends PoolBalancesLatestResponse> poolBalancesLatestResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -207,18 +207,18 @@ public class GetPoolBalancesLatestResponse implements Response {
         /**
          * OK
          */
-        public Builder poolBalancesResponse(PoolBalancesResponse poolBalancesResponse) {
-            Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
-            this.poolBalancesResponse = Optional.ofNullable(poolBalancesResponse);
+        public Builder poolBalancesLatestResponse(PoolBalancesLatestResponse poolBalancesLatestResponse) {
+            Utils.checkNotNull(poolBalancesLatestResponse, "poolBalancesLatestResponse");
+            this.poolBalancesLatestResponse = Optional.ofNullable(poolBalancesLatestResponse);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder poolBalancesResponse(Optional<? extends PoolBalancesResponse> poolBalancesResponse) {
-            Utils.checkNotNull(poolBalancesResponse, "poolBalancesResponse");
-            this.poolBalancesResponse = poolBalancesResponse;
+        public Builder poolBalancesLatestResponse(Optional<? extends PoolBalancesLatestResponse> poolBalancesLatestResponse) {
+            Utils.checkNotNull(poolBalancesLatestResponse, "poolBalancesLatestResponse");
+            this.poolBalancesLatestResponse = poolBalancesLatestResponse;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class GetPoolBalancesLatestResponse implements Response {
         public GetPoolBalancesLatestResponse build() {
 
             return new GetPoolBalancesLatestResponse(
-                contentType, poolBalancesResponse, statusCode,
+                contentType, poolBalancesLatestResponse, statusCode,
                 rawResponse);
         }
 

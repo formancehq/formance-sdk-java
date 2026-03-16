@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -23,6 +24,7 @@ import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.IllegalArgumentException;
 import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
@@ -57,7 +59,7 @@ public class AddMetadataOnTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "addMetadataOnTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -66,7 +68,7 @@ public class AddMetadataOnTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "addMetadataOnTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -75,7 +77,7 @@ public class AddMetadataOnTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "addMetadataOnTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -95,7 +97,7 @@ public class AddMetadataOnTransaction {
                     "json",
                     true);
             if (serializedRequestBody == null) {
-                throw new Exception("Request body is required");
+                throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
@@ -130,8 +132,8 @@ public class AddMetadataOnTransaction {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(AddMetadataOnTransactionRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(AddMetadataOnTransactionRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -141,7 +143,7 @@ public class AddMetadataOnTransaction {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -149,7 +151,7 @@ public class AddMetadataOnTransaction {
 
 
         @Override
-        public AddMetadataOnTransactionResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public AddMetadataOnTransactionResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -164,31 +166,18 @@ public class AddMetadataOnTransaction {
             AddMetadataOnTransactionResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
+                res.withHeaders(response.headers().map());
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

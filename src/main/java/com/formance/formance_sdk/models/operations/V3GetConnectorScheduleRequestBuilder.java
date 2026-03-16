@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetConnectorSchedule;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3GetConnectorScheduleRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3GetConnectorScheduleRequestBuilder {
         return this;
     }
 
-    public V3GetConnectorScheduleResponse call() throws Exception {
+    public V3GetConnectorScheduleResponse call() {
         
         RequestOperation<V3GetConnectorScheduleRequest, V3GetConnectorScheduleResponse> operation
               = new V3GetConnectorSchedule.Sync(sdkConfiguration, _headers);

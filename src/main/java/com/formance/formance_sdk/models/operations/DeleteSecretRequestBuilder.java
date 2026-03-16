@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeleteSecret;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteSecretRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeleteSecretRequestBuilder {
         return this;
     }
 
-    public DeleteSecretResponse call() throws Exception {
+    public DeleteSecretResponse call() {
         
         RequestOperation<DeleteSecretRequest, DeleteSecretResponse> operation
               = new DeleteSecret.Sync(sdkConfiguration, _headers);

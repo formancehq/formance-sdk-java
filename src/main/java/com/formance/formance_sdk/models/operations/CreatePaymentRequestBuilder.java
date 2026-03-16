@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.PaymentRequest;
 import com.formance.formance_sdk.operations.CreatePayment;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreatePaymentRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreatePaymentRequestBuilder {
         return this;
     }
 
-    public CreatePaymentResponse call() throws Exception {
+    public CreatePaymentResponse call() {
         
         RequestOperation<PaymentRequest, CreatePaymentResponse> operation
               = new CreatePayment.Sync(sdkConfiguration, _headers);

@@ -6,16 +6,15 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.ClientOptions;
+import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class CreateClientRequestBuilder {
 
-    private Optional<? extends ClientOptions> request = Optional.empty();
+    private Optional<? extends CreateClientRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -23,21 +22,21 @@ public class CreateClientRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateClientRequestBuilder request(ClientOptions request) {
+    public CreateClientRequestBuilder request(CreateClientRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateClientRequestBuilder request(Optional<? extends ClientOptions> request) {
+    public CreateClientRequestBuilder request(Optional<? extends CreateClientRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public CreateClientResponse call() throws Exception {
+    public CreateClientResponse call() {
         
-        RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
+        RequestOperation<Optional<? extends CreateClientRequest>, CreateClientResponse> operation
               = new CreateClient.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));

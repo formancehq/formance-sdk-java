@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReadTriggerRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReadTriggerRequestBuilder {
         return this;
     }
 
-    public ReadTriggerResponse call() throws Exception {
+    public ReadTriggerResponse call() {
         
         RequestOperation<ReadTriggerRequest, ReadTriggerResponse> operation
               = new ReadTrigger.Sync(sdkConfiguration, _headers);

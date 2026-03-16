@@ -461,7 +461,7 @@ public class FormanceSDKAutoConfigProperties {
         /**
          * The environment name. Defaults to the production environment.
          */
-        private ServerEnvironment environment = ServerEnvironment.SANDBOX;
+        private ServerEnvironment environment = ServerEnvironment.EU_SANDBOX;
 
         /**
          * Gets the environment server variable for URL substitution.

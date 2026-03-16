@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListConnectorTasks;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListConnectorTasksRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListConnectorTasksRequestBuilder {
         return this;
     }
 
-    public ListConnectorTasksResponse call() throws Exception {
+    public ListConnectorTasksResponse call() {
         
         RequestOperation<ListConnectorTasksRequest, ListConnectorTasksResponse> operation
               = new ListConnectorTasks.Sync(sdkConfiguration, _headers);

@@ -70,7 +70,6 @@ public class FormanceSDKAutoConfig {
         // Default retry config for other strategies
         return RetryConfig.builder().build();
     }
-
     /**
      * Creates a {@code Consumer<String>} bean for HTTP debug logging if none exists.
      * This logger is used by the SpeakeasyHTTPClient for debug output when debug logging is enabled.
@@ -83,7 +82,6 @@ public class FormanceSDKAutoConfig {
     public Consumer<String> httpLogger() {
         return System.out::println;
     }
-
     /**
      * Creates an HTTPClient bean if none exists.
      *

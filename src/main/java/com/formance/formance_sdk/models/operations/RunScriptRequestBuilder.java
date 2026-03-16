@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.RunScript;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class RunScriptRequestBuilder {
 
@@ -27,7 +26,7 @@ public class RunScriptRequestBuilder {
         return this;
     }
 
-    public RunScriptResponse call() throws Exception {
+    public RunScriptResponse call() {
         
         RequestOperation<RunScriptRequest, RunScriptResponse> operation
               = new RunScript.Sync(sdkConfiguration, _headers);

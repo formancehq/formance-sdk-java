@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.AddAccountToPool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class AddAccountToPoolRequestBuilder {
 
@@ -27,7 +26,7 @@ public class AddAccountToPoolRequestBuilder {
         return this;
     }
 
-    public AddAccountToPoolResponse call() throws Exception {
+    public AddAccountToPoolResponse call() {
         
         RequestOperation<AddAccountToPoolRequest, AddAccountToPoolResponse> operation
               = new AddAccountToPool.Sync(sdkConfiguration, _headers);

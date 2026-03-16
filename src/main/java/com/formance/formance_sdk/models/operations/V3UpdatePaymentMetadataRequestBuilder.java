@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3UpdatePaymentMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3UpdatePaymentMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3UpdatePaymentMetadataRequestBuilder {
         return this;
     }
 
-    public V3UpdatePaymentMetadataResponse call() throws Exception {
+    public V3UpdatePaymentMetadataResponse call() {
         
         RequestOperation<V3UpdatePaymentMetadataRequest, V3UpdatePaymentMetadataResponse> operation
               = new V3UpdatePaymentMetadata.Sync(sdkConfiguration, _headers);

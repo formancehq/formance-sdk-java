@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPools;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ListPoolsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ListPoolsRequestBuilder {
         return this;
     }
 
-    public V3ListPoolsResponse call() throws Exception {
+    public V3ListPoolsResponse call() {
         
         RequestOperation<V3ListPoolsRequest, V3ListPoolsResponse> operation
               = new V3ListPools.Sync(sdkConfiguration, _headers);

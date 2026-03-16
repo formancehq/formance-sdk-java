@@ -1,5 +1,7 @@
-# SearchV1
-(*search().v1()*)
+# ~~Search.V1~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 
@@ -56,7 +58,7 @@ public class Application {
                 .call();
 
         if (res.response().isPresent()) {
-            // handle response
+            System.out.println(res.response().get());
         }
     }
 }
@@ -110,7 +112,7 @@ public class Application {
                 .call();
 
         if (res.serverInfo().isPresent()) {
-            // handle response
+            System.out.println(res.serverInfo().get());
         }
     }
 }

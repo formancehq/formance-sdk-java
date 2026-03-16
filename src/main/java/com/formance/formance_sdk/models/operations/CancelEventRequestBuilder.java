@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CancelEvent;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CancelEventRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CancelEventRequestBuilder {
         return this;
     }
 
-    public CancelEventResponse call() throws Exception {
+    public CancelEventResponse call() {
         
         RequestOperation<CancelEventRequest, CancelEventResponse> operation
               = new CancelEvent.Sync(sdkConfiguration, _headers);

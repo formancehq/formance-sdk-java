@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CreateSecret;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class CreateSecretRequestBuilder {
 
@@ -27,7 +26,7 @@ public class CreateSecretRequestBuilder {
         return this;
     }
 
-    public CreateSecretResponse call() throws Exception {
+    public CreateSecretResponse call() {
         
         RequestOperation<CreateSecretRequest, CreateSecretResponse> operation
               = new CreateSecret.Sync(sdkConfiguration, _headers);

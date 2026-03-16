@@ -34,7 +34,7 @@ import com.formance.formance_sdk.models.operations.ReadUserResponse;
 import com.formance.formance_sdk.models.operations.UpdateClientRequest;
 import com.formance.formance_sdk.models.operations.UpdateClientRequestBuilder;
 import com.formance.formance_sdk.models.operations.UpdateClientResponse;
-import com.formance.formance_sdk.models.shared.ClientOptions;
+import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.operations.CreateSecret;
 import com.formance.formance_sdk.operations.DeleteClient;
@@ -47,7 +47,6 @@ import com.formance.formance_sdk.operations.ReadClient;
 import com.formance.formance_sdk.operations.ReadUser;
 import com.formance.formance_sdk.operations.UpdateClient;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -72,9 +71,9 @@ public class AuthV1 {
      * Create client
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClientResponse createClientDirect() throws Exception {
+    public CreateClientResponse createClientDirect() {
         return createClient(Optional.empty());
     }
 
@@ -83,10 +82,10 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClientResponse createClient(Optional<? extends ClientOptions> request) throws Exception {
-        RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
+    public CreateClientResponse createClient(Optional<? extends CreateClientRequest> request) {
+        RequestOperation<Optional<? extends CreateClientRequest>, CreateClientResponse> operation
               = new CreateClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -105,9 +104,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateSecretResponse createSecret(CreateSecretRequest request) throws Exception {
+    public CreateSecretResponse createSecret(CreateSecretRequest request) {
         RequestOperation<CreateSecretRequest, CreateSecretResponse> operation
               = new CreateSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -127,9 +126,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteClientResponse deleteClient(DeleteClientRequest request) throws Exception {
+    public DeleteClientResponse deleteClient(DeleteClientRequest request) {
         RequestOperation<DeleteClientRequest, DeleteClientResponse> operation
               = new DeleteClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -149,9 +148,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteSecretResponse deleteSecret(DeleteSecretRequest request) throws Exception {
+    public DeleteSecretResponse deleteSecret(DeleteSecretRequest request) {
         RequestOperation<DeleteSecretRequest, DeleteSecretResponse> operation
               = new DeleteSecret.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -170,9 +169,9 @@ public class AuthV1 {
      * Retrieve OpenID connect well-knowns.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() throws Exception {
+    public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() {
         RequestlessOperation<GetOIDCWellKnownsResponse> operation
             = new GetOIDCWellKnowns.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -191,9 +190,9 @@ public class AuthV1 {
      * Get server info
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetServerInfoResponse getServerInfoDirect() throws Exception {
+    public GetServerInfoResponse getServerInfoDirect() {
         RequestlessOperation<GetServerInfoResponse> operation
             = new GetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -212,9 +211,9 @@ public class AuthV1 {
      * List clients
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListClientsResponse listClientsDirect() throws Exception {
+    public ListClientsResponse listClientsDirect() {
         RequestlessOperation<ListClientsResponse> operation
             = new ListClients.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -237,9 +236,9 @@ public class AuthV1 {
      * <p>List users
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListUsersResponse listUsersDirect() throws Exception {
+    public ListUsersResponse listUsersDirect() {
         RequestlessOperation<ListUsersResponse> operation
             = new ListUsers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -259,9 +258,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReadClientResponse readClient(ReadClientRequest request) throws Exception {
+    public ReadClientResponse readClient(ReadClientRequest request) {
         RequestOperation<ReadClientRequest, ReadClientResponse> operation
               = new ReadClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -285,9 +284,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReadUserResponse readUser(ReadUserRequest request) throws Exception {
+    public ReadUserResponse readUser(ReadUserRequest request) {
         RequestOperation<ReadUserRequest, ReadUserResponse> operation
               = new ReadUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -307,9 +306,9 @@ public class AuthV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateClientResponse updateClient(UpdateClientRequest request) throws Exception {
+    public UpdateClientResponse updateClient(UpdateClientRequest request) {
         RequestOperation<UpdateClientRequest, UpdateClientResponse> operation
               = new UpdateClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

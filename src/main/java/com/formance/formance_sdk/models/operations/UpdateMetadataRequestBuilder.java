@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class UpdateMetadataRequestBuilder {
         return this;
     }
 
-    public UpdateMetadataResponse call() throws Exception {
+    public UpdateMetadataResponse call() {
         
         RequestOperation<UpdateMetadataRequest, UpdateMetadataResponse> operation
               = new UpdateMetadata.Sync(sdkConfiguration, _headers);

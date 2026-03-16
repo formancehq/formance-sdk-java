@@ -3,20 +3,20 @@
  */
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
-@JsonTypeInfo(use = Id.NAME, property = "responseType", include = As.EXISTING_PROPERTY, visible = true)
-@JsonSubTypes({
-    @Type(value = V2BulkElementResultAddMetadata.class, name="ADD_METADATA"),
-    @Type(value = V2BulkElementResultCreateTransaction.class, name="CREATE_TRANSACTION"),
-    @Type(value = V2BulkElementResultDeleteMetadata.class, name="DELETE_METADATA"),
-    @Type(value = V2BulkElementResultError.class, name="ERROR"),
-    @Type(value = V2BulkElementResultRevertTransaction.class, name="REVERT_TRANSACTION")})
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "responseType",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownV2BulkElementResult.class
+)
+@JsonTypeIdResolver(V2BulkElementResultTypeIdResolver.class)
 public interface V2BulkElementResult {
 
     String responseType();

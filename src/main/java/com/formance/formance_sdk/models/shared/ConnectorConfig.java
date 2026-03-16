@@ -3,26 +3,20 @@
  */
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
-@JsonTypeInfo(use = Id.NAME, property = "provider", include = As.EXISTING_PROPERTY, visible = true)
-@JsonSubTypes({
-    @Type(value = AdyenConfig.class, name="Adyen"),
-    @Type(value = AtlarConfig.class, name="Atlar"),
-    @Type(value = BankingCircleConfig.class, name="Bankingcircle"),
-    @Type(value = CurrencyCloudConfig.class, name="Currencycloud"),
-    @Type(value = DummyPayConfig.class, name="Dummypay"),
-    @Type(value = GenericConfig.class, name="Generic"),
-    @Type(value = MangoPayConfig.class, name="Mangopay"),
-    @Type(value = ModulrConfig.class, name="Modulr"),
-    @Type(value = MoneycorpConfig.class, name="Moneycorp"),
-    @Type(value = StripeConfig.class, name="Stripe"),
-    @Type(value = WiseConfig.class, name="Wise")})
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "provider",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownConnectorConfig.class
+)
+@JsonTypeIdResolver(ConnectorConfigTypeIdResolver.class)
 public interface ConnectorConfig {
 
     String provider();

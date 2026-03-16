@@ -5,7 +5,6 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.ActivityGetWalletOutput;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -19,14 +18,14 @@ import java.util.Optional;
 
 public class GetWalletResponse implements Response {
     /**
-     * Wallet
-     */
-    private Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput;
-
-    /**
      * HTTP response content type for this operation
      */
     private String contentType;
+
+    /**
+     * Wallet
+     */
+    private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,16 +39,16 @@ public class GetWalletResponse implements Response {
 
     @JsonCreator
     public GetWalletResponse(
-            Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput,
             String contentType,
+            Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(activityGetWalletOutput, "activityGetWalletOutput");
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.activityGetWalletOutput = activityGetWalletOutput;
         this.contentType = contentType;
+        this.getWalletResponse = getWalletResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -58,17 +57,8 @@ public class GetWalletResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, statusCode,
+        this(contentType, Optional.empty(), statusCode,
             rawResponse);
-    }
-
-    /**
-     * Wallet
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ActivityGetWalletOutput> activityGetWalletOutput() {
-        return (Optional<ActivityGetWalletOutput>) activityGetWalletOutput;
     }
 
     /**
@@ -77,6 +67,15 @@ public class GetWalletResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Wallet
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.shared.GetWalletResponse>) getWalletResponse;
     }
 
     /**
@@ -101,30 +100,30 @@ public class GetWalletResponse implements Response {
 
 
     /**
-     * Wallet
-     */
-    public GetWalletResponse withActivityGetWalletOutput(ActivityGetWalletOutput activityGetWalletOutput) {
-        Utils.checkNotNull(activityGetWalletOutput, "activityGetWalletOutput");
-        this.activityGetWalletOutput = Optional.ofNullable(activityGetWalletOutput);
-        return this;
-    }
-
-
-    /**
-     * Wallet
-     */
-    public GetWalletResponse withActivityGetWalletOutput(Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput) {
-        Utils.checkNotNull(activityGetWalletOutput, "activityGetWalletOutput");
-        this.activityGetWalletOutput = activityGetWalletOutput;
-        return this;
-    }
-
-    /**
      * HTTP response content type for this operation
      */
     public GetWalletResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Wallet
+     */
+    public GetWalletResponse withGetWalletResponse(com.formance.formance_sdk.models.shared.GetWalletResponse getWalletResponse) {
+        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
+        this.getWalletResponse = Optional.ofNullable(getWalletResponse);
+        return this;
+    }
+
+
+    /**
+     * Wallet
+     */
+    public GetWalletResponse withGetWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse) {
+        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
+        this.getWalletResponse = getWalletResponse;
         return this;
     }
 
@@ -156,8 +155,8 @@ public class GetWalletResponse implements Response {
         }
         GetWalletResponse other = (GetWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.activityGetWalletOutput, other.activityGetWalletOutput) &&
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.getWalletResponse, other.getWalletResponse) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
@@ -165,15 +164,15 @@ public class GetWalletResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            activityGetWalletOutput, contentType, statusCode,
+            contentType, getWalletResponse, statusCode,
             rawResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWalletResponse.class,
-                "activityGetWalletOutput", activityGetWalletOutput,
                 "contentType", contentType,
+                "getWalletResponse", getWalletResponse,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -181,9 +180,9 @@ public class GetWalletResponse implements Response {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput = Optional.empty();
-
         private String contentType;
+
+        private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -195,30 +194,30 @@ public class GetWalletResponse implements Response {
 
 
         /**
-         * Wallet
-         */
-        public Builder activityGetWalletOutput(ActivityGetWalletOutput activityGetWalletOutput) {
-            Utils.checkNotNull(activityGetWalletOutput, "activityGetWalletOutput");
-            this.activityGetWalletOutput = Optional.ofNullable(activityGetWalletOutput);
-            return this;
-        }
-
-        /**
-         * Wallet
-         */
-        public Builder activityGetWalletOutput(Optional<? extends ActivityGetWalletOutput> activityGetWalletOutput) {
-            Utils.checkNotNull(activityGetWalletOutput, "activityGetWalletOutput");
-            this.activityGetWalletOutput = activityGetWalletOutput;
-            return this;
-        }
-
-
-        /**
          * HTTP response content type for this operation
          */
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+
+        /**
+         * Wallet
+         */
+        public Builder getWalletResponse(com.formance.formance_sdk.models.shared.GetWalletResponse getWalletResponse) {
+            Utils.checkNotNull(getWalletResponse, "getWalletResponse");
+            this.getWalletResponse = Optional.ofNullable(getWalletResponse);
+            return this;
+        }
+
+        /**
+         * Wallet
+         */
+        public Builder getWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse) {
+            Utils.checkNotNull(getWalletResponse, "getWalletResponse");
+            this.getWalletResponse = getWalletResponse;
             return this;
         }
 
@@ -245,7 +244,7 @@ public class GetWalletResponse implements Response {
         public GetWalletResponse build() {
 
             return new GetWalletResponse(
-                activityGetWalletOutput, contentType, statusCode,
+                contentType, getWalletResponse, statusCode,
                 rawResponse);
         }
 

@@ -1,5 +1,13 @@
 # V3PaymentTypeEnum
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V3PaymentTypeEnum;
+
+V3PaymentTypeEnum value = V3PaymentTypeEnum.UNKNOWN;
+```
+
 
 ## Values
 

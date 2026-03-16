@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.RetryTransferInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class RetryTransferInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class RetryTransferInitiationRequestBuilder {
         return this;
     }
 
-    public RetryTransferInitiationResponse call() throws Exception {
+    public RetryTransferInitiationResponse call() {
         
         RequestOperation<RetryTransferInitiationRequest, RetryTransferInitiationResponse> operation
               = new RetryTransferInitiation.Sync(sdkConfiguration, _headers);

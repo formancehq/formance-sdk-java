@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListWorkflows;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class ListWorkflowsRequestBuilder {
 
@@ -19,7 +18,7 @@ public class ListWorkflowsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListWorkflowsResponse call() throws Exception {
+    public ListWorkflowsResponse call() {
         
         RequestlessOperation<ListWorkflowsResponse> operation
             = new ListWorkflows.Sync(sdkConfiguration, _headers);

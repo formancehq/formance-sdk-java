@@ -1,5 +1,13 @@
 # TaskStatus
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.TaskStatus;
+
+TaskStatus value = TaskStatus.PENDING;
+```
+
 
 ## Values
 

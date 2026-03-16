@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListInstances;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ListInstancesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListInstancesRequestBuilder {
         return this;
     }
 
-    public ListInstancesResponse call() throws Exception {
+    public ListInstancesResponse call() {
         
         RequestOperation<ListInstancesRequest, ListInstancesResponse> operation
               = new ListInstances.Sync(sdkConfiguration, _headers);

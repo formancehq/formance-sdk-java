@@ -376,7 +376,7 @@ public class DummyPayConfig implements ConnectorConfig {
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_FilePollingPeriod =
                 new LazySingletonValue<>(
                         "filePollingPeriod",
-                        "\"10s\"",
+                        "\"30s\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

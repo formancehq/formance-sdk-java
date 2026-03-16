@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeleteWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteWorkflowRequestBuilder {
 
@@ -27,7 +26,7 @@ public class DeleteWorkflowRequestBuilder {
         return this;
     }
 
-    public DeleteWorkflowResponse call() throws Exception {
+    public DeleteWorkflowResponse call() {
         
         RequestOperation<DeleteWorkflowRequest, DeleteWorkflowResponse> operation
               = new DeleteWorkflow.Sync(sdkConfiguration, _headers);

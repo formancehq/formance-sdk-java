@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -54,7 +55,7 @@ public class V2GetInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -63,7 +64,7 @@ public class V2GetInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
 
@@ -72,7 +73,7 @@ public class V2GetInfo {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2GetInfo",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:read")),
+                    java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {
@@ -112,8 +113,8 @@ public class V2GetInfo {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -123,7 +124,7 @@ public class V2GetInfo {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -131,7 +132,7 @@ public class V2GetInfo {
 
 
         @Override
-        public V2GetInfoResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2GetInfoResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -147,59 +148,26 @@ public class V2GetInfo {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ConfigInfoResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2ConfigInfoResponse(out);
-                    return res;
+                    return res.withV2ConfigInfoResponse(Utils.unmarshal(response, new TypeReference<V2ConfigInfoResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2ErrorResponse(out);
-                    return res;
+                    return res.withV2ErrorResponse(Utils.unmarshal(response, new TypeReference<V2ErrorResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    com.formance.formance_sdk.models.errors.V2ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw com.formance.formance_sdk.models.errors.V2ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

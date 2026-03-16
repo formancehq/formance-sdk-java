@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListAccounts;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3ListAccountsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3ListAccountsRequestBuilder {
         return this;
     }
 
-    public V3ListAccountsResponse call() throws Exception {
+    public V3ListAccountsResponse call() {
         
         RequestOperation<V3ListAccountsRequest, V3ListAccountsResponse> operation
               = new V3ListAccounts.Sync(sdkConfiguration, _headers);

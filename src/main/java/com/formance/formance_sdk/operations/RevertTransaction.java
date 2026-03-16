@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -55,7 +56,7 @@ public class RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "revertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -64,7 +65,7 @@ public class RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "revertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -73,7 +74,7 @@ public class RevertTransaction {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "revertTransaction",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -120,8 +121,8 @@ public class RevertTransaction {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(RevertTransactionRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(RevertTransactionRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -131,7 +132,7 @@ public class RevertTransaction {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -139,7 +140,7 @@ public class RevertTransaction {
 
 
         @Override
-        public RevertTransactionResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public RevertTransactionResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -154,43 +155,21 @@ public class RevertTransaction {
             RevertTransactionResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    TransactionResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withTransactionResponse(out);
-                    return res;
+                    return res.withTransactionResponse(Utils.unmarshal(response, new TypeReference<TransactionResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    ErrorResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw ErrorResponse.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

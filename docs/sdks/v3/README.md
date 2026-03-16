@@ -1,5 +1,4 @@
-# V3
-(*payments().v3()*)
+# Payments.V3
 
 ## Overview
 
@@ -12,14 +11,19 @@
 
 * [createBankAccount](#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [createLinkForPaymentServiceUser](#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [createPayment](#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [createPaymentServiceUser](#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](#createpool) - Create a formance pool object
 * [deletePaymentInitiation](#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePaymentServiceUser](#deletepaymentserviceuser) - Delete a payment service user by ID
+* [deletePaymentServiceUserConnectionFromConnectorID](#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [deletePaymentServiceUserConnector](#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [deletePool](#deletepool) - Delete a pool by ID
 * [forwardBankAccount](#forwardbankaccount) - Forward a Bank Account to a PSP for creation
 * [forwardPaymentServiceUserBankAccount](#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+* [forwardPaymentServiceUserToProvider](#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
@@ -28,6 +32,7 @@
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
+* [getPaymentServiceUserLinkAttemptFromConnectorID](#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
 * [getPool](#getpool) - Get a pool by ID
 * [getPoolBalances](#getpoolbalances) - Get historical pool balances from a particular point in time
 * [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
@@ -43,6 +48,11 @@
 * [listPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUserConnections](#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [listPaymentServiceUserConnectionsFromConnectorID](#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [listPaymentServiceUserLinkAttemptsFromConnectorID](#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [listPaymentServiceUsers](#listpaymentserviceusers) - List all payment service users
 * [listPayments](#listpayments) - List all payments
 * [listPools](#listpools) - List all pools
@@ -53,7 +63,9 @@
 * [reversePaymentInitiation](#reversepaymentinitiation) - Reverse a payment initiation
 * [uninstallConnector](#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update a bank account's metadata
+* [updateLinkForPaymentServiceUserOnConnector](#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 * [updatePaymentMetadata](#updatepaymentmetadata) - Update a payment's metadata
+* [updatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [v3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
 
 ## addAccountToPool
@@ -211,7 +223,7 @@ public class Application {
                 .call();
 
         if (res.v3ApprovePaymentInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ApprovePaymentInitiationResponse().get());
         }
     }
 }
@@ -266,7 +278,7 @@ public class Application {
                 .call();
 
         if (res.v3CreateAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CreateAccountResponse().get());
         }
     }
 }
@@ -321,7 +333,7 @@ public class Application {
                 .call();
 
         if (res.v3CreateBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CreateBankAccountResponse().get());
         }
     }
 }
@@ -336,6 +348,67 @@ public class Application {
 ### Response
 
 **[V3CreateBankAccountResponse](../../models/operations/V3CreateBankAccountResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## createLinkForPaymentServiceUser
+
+Create an authentication link for a payment service user on a connector, for oauth flow
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3CreateLinkForPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/create-link" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3CreateLinkForPaymentServiceUserRequest req = V3CreateLinkForPaymentServiceUserRequest.builder()
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3CreateLinkForPaymentServiceUserResponse res = sdk.payments().v3().createLinkForPaymentServiceUser()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserCreateLinkResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserCreateLinkResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                       | [V3CreateLinkForPaymentServiceUserRequest](../../models/operations/V3CreateLinkForPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+
+### Response
+
+**[V3CreateLinkForPaymentServiceUserResponse](../../models/operations/V3CreateLinkForPaymentServiceUserResponse.md)**
 
 ### Errors
 
@@ -376,7 +449,7 @@ public class Application {
                 .call();
 
         if (res.v3CreatePaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CreatePaymentResponse().get());
         }
     }
 }
@@ -430,7 +503,7 @@ public class Application {
                 .call();
 
         if (res.v3CreatePaymentServiceUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CreatePaymentServiceUserResponse().get());
         }
     }
 }
@@ -484,7 +557,7 @@ public class Application {
                 .call();
 
         if (res.v3CreatePoolResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3CreatePoolResponse().get());
         }
     }
 }
@@ -557,6 +630,189 @@ public class Application {
 ### Response
 
 **[V3DeletePaymentInitiationResponse](../../models/operations/V3DeletePaymentInitiationResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## deletePaymentServiceUser
+
+Delete a payment service user by ID
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3DeletePaymentServiceUser" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3DeletePaymentServiceUserRequest req = V3DeletePaymentServiceUserRequest.builder()
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3DeletePaymentServiceUserResponse res = sdk.payments().v3().deletePaymentServiceUser()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserDeleteResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserDeleteResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `request`                                                                                         | [V3DeletePaymentServiceUserRequest](../../models/operations/V3DeletePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+
+### Response
+
+**[V3DeletePaymentServiceUserResponse](../../models/operations/V3DeletePaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## deletePaymentServiceUserConnectionFromConnectorID
+
+Delete a connection for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3DeletePaymentServiceUserConnectionFromConnectorID" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3DeletePaymentServiceUserConnectionFromConnectorIDRequest req = V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.builder()
+                .connectionID("<id>")
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3DeletePaymentServiceUserConnectionFromConnectorIDResponse res = sdk.payments().v3().deletePaymentServiceUserConnectionFromConnectorID()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserDeleteConnectionResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserDeleteConnectionResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                           | [V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../models/operations/V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
+
+### Response
+
+**[V3DeletePaymentServiceUserConnectionFromConnectorIDResponse](../../models/operations/V3DeletePaymentServiceUserConnectionFromConnectorIDResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## deletePaymentServiceUserConnector
+
+Remove a payment service user from a connector, the PSU will still exist in Formance
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3DeletePaymentServiceUserConnector" method="delete" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorRequest;
+import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3DeletePaymentServiceUserConnectorRequest req = V3DeletePaymentServiceUserConnectorRequest.builder()
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3DeletePaymentServiceUserConnectorResponse res = sdk.payments().v3().deletePaymentServiceUserConnector()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserDeleteConnectorResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserDeleteConnectorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                           | [V3DeletePaymentServiceUserConnectorRequest](../../models/operations/V3DeletePaymentServiceUserConnectorRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+
+### Response
+
+**[V3DeletePaymentServiceUserConnectorResponse](../../models/operations/V3DeletePaymentServiceUserConnectorResponse.md)**
 
 ### Errors
 
@@ -660,7 +916,7 @@ public class Application {
                 .call();
 
         if (res.v3ForwardBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ForwardBankAccountResponse().get());
         }
     }
 }
@@ -721,7 +977,7 @@ public class Application {
                 .call();
 
         if (res.v3ForwardPaymentServiceUserBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ForwardPaymentServiceUserBankAccountResponse().get());
         }
     }
 }
@@ -736,6 +992,65 @@ public class Application {
 ### Response
 
 **[V3ForwardPaymentServiceUserBankAccountResponse](../../models/operations/V3ForwardPaymentServiceUserBankAccountResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## forwardPaymentServiceUserToProvider
+
+Register/forward a payment service user on/to a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3ForwardPaymentServiceUserToProvider" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/forward" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderRequest;
+import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ForwardPaymentServiceUserToProviderRequest req = V3ForwardPaymentServiceUserToProviderRequest.builder()
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3ForwardPaymentServiceUserToProviderResponse res = sdk.payments().v3().forwardPaymentServiceUserToProvider()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                               | [V3ForwardPaymentServiceUserToProviderRequest](../../models/operations/V3ForwardPaymentServiceUserToProviderRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+
+### Response
+
+**[V3ForwardPaymentServiceUserToProviderResponse](../../models/operations/V3ForwardPaymentServiceUserToProviderResponse.md)**
 
 ### Errors
 
@@ -781,7 +1096,7 @@ public class Application {
                 .call();
 
         if (res.v3GetAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetAccountResponse().get());
         }
     }
 }
@@ -843,7 +1158,7 @@ public class Application {
                 .call();
 
         if (res.v3BalancesCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3BalancesCursorResponse().get());
         }
     }
 }
@@ -903,7 +1218,7 @@ public class Application {
                 .call();
 
         if (res.v3GetBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetBankAccountResponse().get());
         }
     }
 }
@@ -963,7 +1278,7 @@ public class Application {
                 .call();
 
         if (res.v3GetConnectorConfigResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetConnectorConfigResponse().get());
         }
     }
 }
@@ -1024,7 +1339,7 @@ public class Application {
                 .call();
 
         if (res.v3ConnectorScheduleResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ConnectorScheduleResponse().get());
         }
     }
 }
@@ -1084,7 +1399,7 @@ public class Application {
                 .call();
 
         if (res.v3GetPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetPaymentResponse().get());
         }
     }
 }
@@ -1144,7 +1459,7 @@ public class Application {
                 .call();
 
         if (res.v3GetPaymentInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetPaymentInitiationResponse().get());
         }
     }
 }
@@ -1204,7 +1519,7 @@ public class Application {
                 .call();
 
         if (res.v3GetPaymentServiceUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetPaymentServiceUserResponse().get());
         }
     }
 }
@@ -1219,6 +1534,68 @@ public class Application {
 ### Response
 
 **[V3GetPaymentServiceUserResponse](../../models/operations/V3GetPaymentServiceUserResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## getPaymentServiceUserLinkAttemptFromConnectorID
+
+Get a link attempt for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3GetPaymentServiceUserLinkAttemptFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts/{attemptID}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest req = V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.builder()
+                .attemptID("<id>")
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse res = sdk.payments().v3().getPaymentServiceUserLinkAttemptFromConnectorID()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserLinkAttempt().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserLinkAttempt().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                       | [V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../models/operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                              | The request object to use for the request.                                                                                                      |
+
+### Response
+
+**[V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse](../../models/operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse.md)**
 
 ### Errors
 
@@ -1264,7 +1641,7 @@ public class Application {
                 .call();
 
         if (res.v3GetPoolResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetPoolResponse().get());
         }
     }
 }
@@ -1324,7 +1701,7 @@ public class Application {
                 .call();
 
         if (res.v3PoolBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PoolBalancesResponse().get());
         }
     }
 }
@@ -1384,7 +1761,7 @@ public class Application {
                 .call();
 
         if (res.v3PoolBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PoolBalancesResponse().get());
         }
     }
 }
@@ -1444,7 +1821,7 @@ public class Application {
                 .call();
 
         if (res.v3GetTaskResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3GetTaskResponse().get());
         }
     }
 }
@@ -1503,7 +1880,7 @@ public class Application {
                 .call();
 
         if (res.v3InitiatePaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3InitiatePaymentResponse().get());
         }
     }
 }
@@ -1563,7 +1940,7 @@ public class Application {
                 .call();
 
         if (res.v3InstallConnectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3InstallConnectorResponse().get());
         }
     }
 }
@@ -1624,7 +2001,7 @@ public class Application {
                 .call();
 
         if (res.v3AccountsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3AccountsCursorResponse().get());
         }
     }
 }
@@ -1685,7 +2062,7 @@ public class Application {
                 .call();
 
         if (res.v3BankAccountsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3BankAccountsCursorResponse().get());
         }
     }
 }
@@ -1739,7 +2116,7 @@ public class Application {
                 .call();
 
         if (res.v3ConnectorConfigsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ConnectorConfigsResponse().get());
         }
     }
 }
@@ -1796,7 +2173,7 @@ public class Application {
                 .call();
 
         if (res.v3ConnectorScheduleInstancesCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ConnectorScheduleInstancesCursorResponse().get());
         }
     }
 }
@@ -1858,7 +2235,7 @@ public class Application {
                 .call();
 
         if (res.v3ConnectorSchedulesCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ConnectorSchedulesCursorResponse().get());
         }
     }
 }
@@ -1919,7 +2296,7 @@ public class Application {
                 .call();
 
         if (res.v3ConnectorsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ConnectorsCursorResponse().get());
         }
     }
 }
@@ -1981,7 +2358,7 @@ public class Application {
                 .call();
 
         if (res.v3PaymentInitiationAdjustmentsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PaymentInitiationAdjustmentsCursorResponse().get());
         }
     }
 }
@@ -2043,7 +2420,7 @@ public class Application {
                 .call();
 
         if (res.v3PaymentInitiationRelatedPaymentsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PaymentInitiationRelatedPaymentsCursorResponse().get());
         }
     }
 }
@@ -2104,7 +2481,7 @@ public class Application {
                 .call();
 
         if (res.v3PaymentInitiationsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PaymentInitiationsCursorResponse().get());
         }
     }
 }
@@ -2119,6 +2496,196 @@ public class Application {
 ### Response
 
 **[V3ListPaymentInitiationsResponse](../../models/operations/V3ListPaymentInitiationsResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## listPaymentServiceUserConnections
+
+List all connections for a payment service user
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3ListPaymentServiceUserConnections" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ListPaymentServiceUserConnectionsRequest req = V3ListPaymentServiceUserConnectionsRequest.builder()
+                .paymentServiceUserID("<id>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(100L)
+                .build();
+
+        V3ListPaymentServiceUserConnectionsResponse res = sdk.payments().v3().listPaymentServiceUserConnections()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserConnectionsCursorResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserConnectionsCursorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                           | [V3ListPaymentServiceUserConnectionsRequest](../../models/operations/V3ListPaymentServiceUserConnectionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+
+### Response
+
+**[V3ListPaymentServiceUserConnectionsResponse](../../models/operations/V3ListPaymentServiceUserConnectionsResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## listPaymentServiceUserConnectionsFromConnectorID
+
+List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3ListPaymentServiceUserConnectionsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ListPaymentServiceUserConnectionsFromConnectorIDRequest req = V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.builder()
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(100L)
+                .build();
+
+        V3ListPaymentServiceUserConnectionsFromConnectorIDResponse res = sdk.payments().v3().listPaymentServiceUserConnectionsFromConnectorID()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserConnectionsCursorResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserConnectionsCursorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                         | Type                                                                                                                                              | Required                                                                                                                                          | Description                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                         | [V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                | The request object to use for the request.                                                                                                        |
+
+### Response
+
+**[V3ListPaymentServiceUserConnectionsFromConnectorIDResponse](../../models/operations/V3ListPaymentServiceUserConnectionsFromConnectorIDResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## listPaymentServiceUserLinkAttemptsFromConnectorID
+
+List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3ListPaymentServiceUserLinkAttemptsFromConnectorID" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest;
+import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest req = V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.builder()
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(100L)
+                .build();
+
+        V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse res = sdk.payments().v3().listPaymentServiceUserLinkAttemptsFromConnectorID()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserLinkAttemptsCursorResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserLinkAttemptsCursorResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                                           | [V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
+
+### Response
+
+**[V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse](../../models/operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse.md)**
 
 ### Errors
 
@@ -2165,7 +2732,7 @@ public class Application {
                 .call();
 
         if (res.v3PaymentServiceUsersCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PaymentServiceUsersCursorResponse().get());
         }
     }
 }
@@ -2226,7 +2793,7 @@ public class Application {
                 .call();
 
         if (res.v3PaymentsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PaymentsCursorResponse().get());
         }
     }
 }
@@ -2287,7 +2854,7 @@ public class Application {
                 .call();
 
         if (res.v3PoolsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3PoolsCursorResponse().get());
         }
     }
 }
@@ -2464,7 +3031,7 @@ public class Application {
                 .call();
 
         if (res.v3ResetConnectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ResetConnectorResponse().get());
         }
     }
 }
@@ -2524,7 +3091,7 @@ public class Application {
                 .call();
 
         if (res.v3RetryPaymentInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3RetryPaymentInitiationResponse().get());
         }
     }
 }
@@ -2584,7 +3151,7 @@ public class Application {
                 .call();
 
         if (res.v3ReversePaymentInitiationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3ReversePaymentInitiationResponse().get());
         }
     }
 }
@@ -2644,7 +3211,7 @@ public class Application {
                 .call();
 
         if (res.v3UninstallConnectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v3UninstallConnectorResponse().get());
         }
     }
 }
@@ -2725,6 +3292,68 @@ public class Application {
 | models/errors/V3ErrorResponse | default                       | application/json              |
 | models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
 
+## updateLinkForPaymentServiceUserOnConnector
+
+Update/Regenerate a link for a payment service user on a connector
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3UpdateLinkForPaymentServiceUserOnConnector" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/connections/{connectionID}/update-link" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest;
+import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3UpdateLinkForPaymentServiceUserOnConnectorRequest req = V3UpdateLinkForPaymentServiceUserOnConnectorRequest.builder()
+                .connectionID("<id>")
+                .connectorID("<id>")
+                .paymentServiceUserID("<id>")
+                .build();
+
+        V3UpdateLinkForPaymentServiceUserOnConnectorResponse res = sdk.payments().v3().updateLinkForPaymentServiceUserOnConnector()
+                .request(req)
+                .call();
+
+        if (res.v3PaymentServiceUserUpdateLinkResponse().isPresent()) {
+            System.out.println(res.v3PaymentServiceUserUpdateLinkResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                                             | [V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../models/operations/V3UpdateLinkForPaymentServiceUserOnConnectorRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
+
+### Response
+
+**[V3UpdateLinkForPaymentServiceUserOnConnectorResponse](../../models/operations/V3UpdateLinkForPaymentServiceUserOnConnectorResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
 ## updatePaymentMetadata
 
 Update a payment's metadata
@@ -2775,6 +3404,64 @@ public class Application {
 ### Response
 
 **[V3UpdatePaymentMetadataResponse](../../models/operations/V3UpdatePaymentMetadataResponse.md)**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| models/errors/V3ErrorResponse | default                       | application/json              |
+| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+
+## updatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v3UpdatePoolQuery" method="patch" path="/api/payments/v3/pools/{poolID}/query" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.errors.V3ErrorResponse;
+import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryRequest;
+import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws V3ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V3UpdatePoolQueryRequest req = V3UpdatePoolQueryRequest.builder()
+                .poolID("<id>")
+                .build();
+
+        V3UpdatePoolQueryResponse res = sdk.payments().v3().updatePoolQuery()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [V3UpdatePoolQueryRequest](../../models/operations/V3UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[V3UpdatePoolQueryResponse](../../models/operations/V3UpdatePoolQueryResponse.md)**
 
 ### Errors
 

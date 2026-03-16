@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3RejectPaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V3RejectPaymentInitiationRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V3RejectPaymentInitiationRequestBuilder {
         return this;
     }
 
-    public V3RejectPaymentInitiationResponse call() throws Exception {
+    public V3RejectPaymentInitiationResponse call() {
         
         RequestOperation<V3RejectPaymentInitiationRequest, V3RejectPaymentInitiationResponse> operation
               = new V3RejectPaymentInitiation.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ResetPipeline;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ResetPipelineRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ResetPipelineRequestBuilder {
         return this;
     }
 
-    public V2ResetPipelineResponse call() throws Exception {
+    public V2ResetPipelineResponse call() {
         
         RequestOperation<V2ResetPipelineRequest, V2ResetPipelineResponse> operation
               = new V2ResetPipeline.Sync(sdkConfiguration, _headers);

@@ -44,30 +44,39 @@ public class V2CreateBulkRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=parallel")
     private Optional<Boolean> parallel;
 
+    /**
+     * Default schema version to use for validation (can be overridden per element)
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=schemaVersion")
+    private Optional<String> schemaVersion;
+
     @JsonCreator
     public V2CreateBulkRequest(
             List<V2BulkElement> requestBody,
             Optional<Boolean> atomic,
             Optional<Boolean> continueOnFailure,
             String ledger,
-            Optional<Boolean> parallel) {
+            Optional<Boolean> parallel,
+            Optional<String> schemaVersion) {
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(atomic, "atomic");
         Utils.checkNotNull(continueOnFailure, "continueOnFailure");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(parallel, "parallel");
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
         this.requestBody = requestBody;
         this.atomic = atomic;
         this.continueOnFailure = continueOnFailure;
         this.ledger = ledger;
         this.parallel = parallel;
+        this.schemaVersion = schemaVersion;
     }
     
     public V2CreateBulkRequest(
             List<V2BulkElement> requestBody,
             String ledger) {
         this(requestBody, Optional.empty(), Optional.empty(),
-            ledger, Optional.empty());
+            ledger, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -105,6 +114,14 @@ public class V2CreateBulkRequest {
     @JsonIgnore
     public Optional<Boolean> parallel() {
         return parallel;
+    }
+
+    /**
+     * Default schema version to use for validation (can be overridden per element)
+     */
+    @JsonIgnore
+    public Optional<String> schemaVersion() {
+        return schemaVersion;
     }
 
     public static Builder builder() {
@@ -184,6 +201,25 @@ public class V2CreateBulkRequest {
         return this;
     }
 
+    /**
+     * Default schema version to use for validation (can be overridden per element)
+     */
+    public V2CreateBulkRequest withSchemaVersion(String schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = Optional.ofNullable(schemaVersion);
+        return this;
+    }
+
+
+    /**
+     * Default schema version to use for validation (can be overridden per element)
+     */
+    public V2CreateBulkRequest withSchemaVersion(Optional<String> schemaVersion) {
+        Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.schemaVersion = schemaVersion;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,14 +234,15 @@ public class V2CreateBulkRequest {
             Utils.enhancedDeepEquals(this.atomic, other.atomic) &&
             Utils.enhancedDeepEquals(this.continueOnFailure, other.continueOnFailure) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
-            Utils.enhancedDeepEquals(this.parallel, other.parallel);
+            Utils.enhancedDeepEquals(this.parallel, other.parallel) &&
+            Utils.enhancedDeepEquals(this.schemaVersion, other.schemaVersion);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             requestBody, atomic, continueOnFailure,
-            ledger, parallel);
+            ledger, parallel, schemaVersion);
     }
     
     @Override
@@ -215,7 +252,8 @@ public class V2CreateBulkRequest {
                 "atomic", atomic,
                 "continueOnFailure", continueOnFailure,
                 "ledger", ledger,
-                "parallel", parallel);
+                "parallel", parallel,
+                "schemaVersion", schemaVersion);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -230,6 +268,8 @@ public class V2CreateBulkRequest {
         private String ledger;
 
         private Optional<Boolean> parallel = Optional.empty();
+
+        private Optional<String> schemaVersion = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -309,11 +349,30 @@ public class V2CreateBulkRequest {
             return this;
         }
 
+
+        /**
+         * Default schema version to use for validation (can be overridden per element)
+         */
+        public Builder schemaVersion(String schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = Optional.ofNullable(schemaVersion);
+            return this;
+        }
+
+        /**
+         * Default schema version to use for validation (can be overridden per element)
+         */
+        public Builder schemaVersion(Optional<String> schemaVersion) {
+            Utils.checkNotNull(schemaVersion, "schemaVersion");
+            this.schemaVersion = schemaVersion;
+            return this;
+        }
+
         public V2CreateBulkRequest build() {
 
             return new V2CreateBulkRequest(
                 requestBody, atomic, continueOnFailure,
-                ledger, parallel);
+                ledger, parallel, schemaVersion);
         }
 
     }

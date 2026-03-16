@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateBankAccountMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateBankAccountMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class UpdateBankAccountMetadataRequestBuilder {
         return this;
     }
 
-    public UpdateBankAccountMetadataResponse call() throws Exception {
+    public UpdateBankAccountMetadataResponse call() {
         
         RequestOperation<UpdateBankAccountMetadataRequest, UpdateBankAccountMetadataResponse> operation
               = new UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);

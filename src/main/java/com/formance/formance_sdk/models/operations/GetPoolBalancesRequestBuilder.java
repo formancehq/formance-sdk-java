@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetPoolBalances;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class GetPoolBalancesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class GetPoolBalancesRequestBuilder {
         return this;
     }
 
-    public GetPoolBalancesResponse call() throws Exception {
+    public GetPoolBalancesResponse call() {
         
         RequestOperation<GetPoolBalancesRequest, GetPoolBalancesResponse> operation
               = new GetPoolBalances.Sync(sdkConfiguration, _headers);

@@ -1,5 +1,4 @@
-# OrchestrationV1
-(*orchestration().v1()*)
+# Orchestration.V1
 
 ## Overview
 
@@ -112,7 +111,7 @@ public class Application {
                 .call();
 
         if (res.createTriggerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTriggerResponse().get());
         }
     }
 }
@@ -166,7 +165,7 @@ public class Application {
                 .call();
 
         if (res.createWorkflowResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createWorkflowResponse().get());
         }
     }
 }
@@ -174,9 +173,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `request`                                               | [WorkflowConfig](../../models/shared/WorkflowConfig.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -342,7 +341,7 @@ public class Application {
                 .call();
 
         if (res.getWorkflowInstanceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getWorkflowInstanceResponse().get());
         }
     }
 }
@@ -402,7 +401,7 @@ public class Application {
                 .call();
 
         if (res.getWorkflowInstanceHistoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getWorkflowInstanceHistoryResponse().get());
         }
     }
 }
@@ -463,7 +462,7 @@ public class Application {
                 .call();
 
         if (res.getWorkflowInstanceHistoryStageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getWorkflowInstanceHistoryStageResponse().get());
         }
     }
 }
@@ -523,7 +522,7 @@ public class Application {
                 .call();
 
         if (res.getWorkflowResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getWorkflowResponse().get());
         }
     }
 }
@@ -584,7 +583,7 @@ public class Application {
                 .call();
 
         if (res.listRunsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listRunsResponse().get());
         }
     }
 }
@@ -638,7 +637,7 @@ public class Application {
                 .call();
 
         if (res.listTriggersResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listTriggersResponse().get());
         }
     }
 }
@@ -698,7 +697,7 @@ public class Application {
                 .call();
 
         if (res.listTriggersOccurrencesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listTriggersOccurrencesResponse().get());
         }
     }
 }
@@ -752,7 +751,7 @@ public class Application {
                 .call();
 
         if (res.listWorkflowsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listWorkflowsResponse().get());
         }
     }
 }
@@ -800,7 +799,7 @@ public class Application {
                 .call();
 
         if (res.serverInfo().isPresent()) {
-            // handle response
+            System.out.println(res.serverInfo().get());
         }
     }
 }
@@ -854,7 +853,7 @@ public class Application {
                 .call();
 
         if (res.readTriggerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.readTriggerResponse().get());
         }
     }
 }
@@ -914,7 +913,7 @@ public class Application {
                 .call();
 
         if (res.runWorkflowResponse().isPresent()) {
-            // handle response
+            System.out.println(res.runWorkflowResponse().get());
         }
     }
 }

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ActivateConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ActivateConfigRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ActivateConfigRequestBuilder {
         return this;
     }
 
-    public ActivateConfigResponse call() throws Exception {
+    public ActivateConfigResponse call() {
         
         RequestOperation<ActivateConfigRequest, ActivateConfigResponse> operation
               = new ActivateConfig.Sync(sdkConfiguration, _headers);

@@ -1,5 +1,13 @@
 # PaymentStatus
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.PaymentStatus;
+
+PaymentStatus value = PaymentStatus.PENDING;
+```
+
 
 ## Values
 

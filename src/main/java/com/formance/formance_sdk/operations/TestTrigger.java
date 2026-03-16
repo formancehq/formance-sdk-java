@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
@@ -58,7 +59,7 @@ public class TestTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "testTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -67,7 +68,7 @@ public class TestTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "testTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
 
@@ -76,7 +77,7 @@ public class TestTrigger {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "testTrigger",
-                    java.util.Optional.of(java.util.List.of("auth:read", "orchestration:write")),
+                    java.util.Optional.of(java.util.List.of("orchestration:write")),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -128,8 +129,8 @@ public class TestTrigger {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(TestTriggerRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(TestTriggerRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -139,7 +140,7 @@ public class TestTrigger {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -147,7 +148,7 @@ public class TestTrigger {
 
 
         @Override
-        public TestTriggerResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public TestTriggerResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -163,42 +164,19 @@ public class TestTrigger {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2TestTriggerResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withV2TestTriggerResponse(out);
-                    return res;
+                    return res.withV2TestTriggerResponse(Utils.unmarshal(response, new TypeReference<V2TestTriggerResponse>() {}));
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    V2Error out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    throw out;
+                    throw V2Error.from(response);
                 } else {
-                    throw new SDKError(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

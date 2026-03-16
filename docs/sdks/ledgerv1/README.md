@@ -1,5 +1,4 @@
-# LedgerV1
-(*ledger().v1()*)
+# Ledger.V1
 
 ## Overview
 
@@ -78,7 +77,7 @@ public class Application {
                 .call();
 
         if (res.transactionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transactionsResponse().get());
         }
     }
 }
@@ -444,7 +443,7 @@ public class Application {
                             .build()))
                     .reference("ref:001")
                     .script(PostTransactionScript.builder()
-                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
+                        .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n")
                         .vars(Map.ofEntries(
                             Map.entry("user", "users:042")))
                         .build())
@@ -458,7 +457,7 @@ public class Application {
                 .call();
 
         if (res.transactionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transactionsResponse().get());
         }
     }
 }
@@ -519,7 +518,7 @@ public class Application {
                 .call();
 
         if (res.accountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -582,7 +581,7 @@ public class Application {
                 .call();
 
         if (res.balancesCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.balancesCursorResponse().get());
         }
     }
 }
@@ -643,7 +642,7 @@ public class Application {
                 .call();
 
         if (res.aggregateBalancesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.aggregateBalancesResponse().get());
         }
     }
 }
@@ -697,7 +696,7 @@ public class Application {
                 .call();
 
         if (res.configInfoResponse().isPresent()) {
-            // handle response
+            System.out.println(res.configInfoResponse().get());
         }
     }
 }
@@ -751,7 +750,7 @@ public class Application {
                 .call();
 
         if (res.ledgerInfoResponse().isPresent()) {
-            // handle response
+            System.out.println(res.ledgerInfoResponse().get());
         }
     }
 }
@@ -811,7 +810,7 @@ public class Application {
                 .call();
 
         if (res.mappingResponse().isPresent()) {
-            // handle response
+            System.out.println(res.mappingResponse().get());
         }
     }
 }
@@ -873,7 +872,7 @@ public class Application {
                 .call();
 
         if (res.transactionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transactionResponse().get());
         }
     }
 }
@@ -990,7 +989,7 @@ public class Application {
                 .call();
 
         if (res.accountsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.accountsCursorResponse().get());
         }
     }
 }
@@ -1053,7 +1052,7 @@ public class Application {
                 .call();
 
         if (res.logsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.logsCursorResponse().get());
         }
     }
 }
@@ -1120,7 +1119,7 @@ public class Application {
                 .call();
 
         if (res.transactionsCursorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transactionsCursorResponse().get());
         }
     }
 }
@@ -1181,7 +1180,7 @@ public class Application {
                 .call();
 
         if (res.statsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.statsResponse().get());
         }
     }
 }
@@ -1243,7 +1242,7 @@ public class Application {
                 .call();
 
         if (res.transactionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.transactionResponse().get());
         }
     }
 }
@@ -1300,7 +1299,7 @@ public class Application {
 
         RunScriptRequest req = RunScriptRequest.builder()
                 .script(Script.builder()
-                    .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n	source = @world\n	destination = $user\n)\n")
+                    .plain("vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n")
                     .reference("order_1234")
                     .vars(Map.ofEntries(
                         Map.entry("user", "users:042")))
@@ -1314,7 +1313,7 @@ public class Application {
                 .call();
 
         if (res.scriptResponse().isPresent()) {
-            // handle response
+            System.out.println(res.scriptResponse().get());
         }
     }
 }
@@ -1375,7 +1374,7 @@ public class Application {
                 .call();
 
         if (res.mappingResponse().isPresent()) {
-            // handle response
+            System.out.println(res.mappingResponse().get());
         }
     }
 }

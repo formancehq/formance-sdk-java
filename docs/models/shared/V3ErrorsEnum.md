@@ -1,5 +1,13 @@
 # V3ErrorsEnum
 
+## Example Usage
+
+```java
+import com.formance.formance_sdk.models.shared.V3ErrorsEnum;
+
+V3ErrorsEnum value = V3ErrorsEnum.INTERNAL;
+```
+
 
 ## Values
 

@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadClient;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ReadClientRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ReadClientRequestBuilder {
         return this;
     }
 
-    public ReadClientResponse call() throws Exception {
+    public ReadClientResponse call() {
         
         RequestOperation<ReadClientRequest, ReadClientResponse> operation
               = new ReadClient.Sync(sdkConfiguration, _headers);

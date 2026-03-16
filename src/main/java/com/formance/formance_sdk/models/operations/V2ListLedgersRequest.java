@@ -5,21 +5,18 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListLedgersRequest {
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Map<String, Object> requestBody;
-
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -28,6 +25,12 @@ public class V2ListLedgersRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private Optional<String> cursor;
+
+    /**
+     * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeDeleted")
+    private Optional<Boolean> includeDeleted;
 
     /**
      * The maximum number of results to return per page.
@@ -45,30 +48,23 @@ public class V2ListLedgersRequest {
 
     @JsonCreator
     public V2ListLedgersRequest(
-            Map<String, Object> requestBody,
             Optional<String> cursor,
+            Optional<Boolean> includeDeleted,
             Optional<Long> pageSize,
             Optional<String> sort) {
-        requestBody = Utils.emptyMapIfNull(requestBody);
-        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
+        Utils.checkNotNull(includeDeleted, "includeDeleted");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(sort, "sort");
-        this.requestBody = requestBody;
         this.cursor = cursor;
+        this.includeDeleted = includeDeleted;
         this.pageSize = pageSize;
         this.sort = sort;
     }
     
-    public V2ListLedgersRequest(
-            Map<String, Object> requestBody) {
-        this(requestBody, Optional.empty(), Optional.empty(),
+    public V2ListLedgersRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
-    }
-
-    @JsonIgnore
-    public Map<String, Object> requestBody() {
-        return requestBody;
     }
 
     /**
@@ -80,6 +76,14 @@ public class V2ListLedgersRequest {
     @JsonIgnore
     public Optional<String> cursor() {
         return cursor;
+    }
+
+    /**
+     * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+     */
+    @JsonIgnore
+    public Optional<Boolean> includeDeleted() {
+        return includeDeleted;
     }
 
     /**
@@ -105,12 +109,6 @@ public class V2ListLedgersRequest {
     }
 
 
-    public V2ListLedgersRequest withRequestBody(Map<String, Object> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
-        return this;
-    }
-
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -133,6 +131,25 @@ public class V2ListLedgersRequest {
     public V2ListLedgersRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
+        return this;
+    }
+
+    /**
+     * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+     */
+    public V2ListLedgersRequest withIncludeDeleted(boolean includeDeleted) {
+        Utils.checkNotNull(includeDeleted, "includeDeleted");
+        this.includeDeleted = Optional.ofNullable(includeDeleted);
+        return this;
+    }
+
+
+    /**
+     * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+     */
+    public V2ListLedgersRequest withIncludeDeleted(Optional<Boolean> includeDeleted) {
+        Utils.checkNotNull(includeDeleted, "includeDeleted");
+        this.includeDeleted = includeDeleted;
         return this;
     }
 
@@ -188,8 +205,8 @@ public class V2ListLedgersRequest {
         }
         V2ListLedgersRequest other = (V2ListLedgersRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.includeDeleted, other.includeDeleted) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.sort, other.sort);
     }
@@ -197,15 +214,15 @@ public class V2ListLedgersRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, cursor, pageSize,
+            cursor, includeDeleted, pageSize,
             sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListLedgersRequest.class,
-                "requestBody", requestBody,
                 "cursor", cursor,
+                "includeDeleted", includeDeleted,
                 "pageSize", pageSize,
                 "sort", sort);
     }
@@ -213,9 +230,9 @@ public class V2ListLedgersRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, Object> requestBody;
-
         private Optional<String> cursor = Optional.empty();
+
+        private Optional<Boolean> includeDeleted;
 
         private Optional<Long> pageSize = Optional.empty();
 
@@ -223,13 +240,6 @@ public class V2ListLedgersRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder requestBody(Map<String, Object> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
-            return this;
         }
 
 
@@ -254,6 +264,25 @@ public class V2ListLedgersRequest {
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
+            return this;
+        }
+
+
+        /**
+         * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+         */
+        public Builder includeDeleted(boolean includeDeleted) {
+            Utils.checkNotNull(includeDeleted, "includeDeleted");
+            this.includeDeleted = Optional.ofNullable(includeDeleted);
+            return this;
+        }
+
+        /**
+         * If true, include deleted ledgers in the results. By default, deleted ledgers are excluded.
+         */
+        public Builder includeDeleted(Optional<Boolean> includeDeleted) {
+            Utils.checkNotNull(includeDeleted, "includeDeleted");
+            this.includeDeleted = includeDeleted;
             return this;
         }
 
@@ -300,11 +329,20 @@ public class V2ListLedgersRequest {
         }
 
         public V2ListLedgersRequest build() {
+            if (includeDeleted == null) {
+                includeDeleted = _SINGLETON_VALUE_IncludeDeleted.value();
+            }
 
             return new V2ListLedgersRequest(
-                requestBody, cursor, pageSize,
+                cursor, includeDeleted, pageSize,
                 sort);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IncludeDeleted =
+                new LazySingletonValue<>(
+                        "includeDeleted",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

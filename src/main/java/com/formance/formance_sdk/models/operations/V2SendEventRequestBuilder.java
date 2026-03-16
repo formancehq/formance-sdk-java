@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2SendEvent;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2SendEventRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2SendEventRequestBuilder {
         return this;
     }
 
-    public V2SendEventResponse call() throws Exception {
+    public V2SendEventResponse call() {
         
         RequestOperation<V2SendEventRequest, V2SendEventResponse> operation
               = new V2SendEvent.Sync(sdkConfiguration, _headers);

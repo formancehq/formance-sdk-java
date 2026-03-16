@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.SearchgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class SearchgetServerInfoRequestBuilder {
 
@@ -19,7 +18,7 @@ public class SearchgetServerInfoRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public SearchgetServerInfoResponse call() throws Exception {
+    public SearchgetServerInfoResponse call() {
         
         RequestlessOperation<SearchgetServerInfoResponse> operation
             = new SearchgetServerInfo.Sync(sdkConfiguration, _headers);

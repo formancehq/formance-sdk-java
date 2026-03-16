@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2UpdateLedgerMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2UpdateLedgerMetadataRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2UpdateLedgerMetadataRequestBuilder {
         return this;
     }
 
-    public V2UpdateLedgerMetadataResponse call() throws Exception {
+    public V2UpdateLedgerMetadataResponse call() {
         
         RequestOperation<V2UpdateLedgerMetadataRequest, V2UpdateLedgerMetadataResponse> operation
               = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, _headers);

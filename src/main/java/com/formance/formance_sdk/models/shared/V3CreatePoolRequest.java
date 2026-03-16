@@ -5,40 +5,78 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-
+/**
+ * V3CreatePoolRequest
+ * 
+ * <p>Query and dynamic pools are available from Connectivity v3.1
+ */
 public class V3CreatePoolRequest {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountIDs")
-    private List<String> accountIDs;
+    private Optional<? extends List<String>> accountIDs;
 
 
     @JsonProperty("name")
     private String name;
 
+    /**
+     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * default_asset, name, psu_id, open_banking_connection_id and metadata.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("query")
+    private Optional<? extends Map<String, Object>> query;
+
     @JsonCreator
     public V3CreatePoolRequest(
-            @JsonProperty("accountIDs") List<String> accountIDs,
-            @JsonProperty("name") String name) {
+            @JsonProperty("accountIDs") Optional<? extends List<String>> accountIDs,
+            @JsonProperty("name") String name,
+            @JsonProperty("query") Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(accountIDs, "accountIDs");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(query, "query");
         this.accountIDs = accountIDs;
         this.name = name;
+        this.query = query;
+    }
+    
+    public V3CreatePoolRequest(
+            String name) {
+        this(Optional.empty(), name, Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<String> accountIDs() {
-        return accountIDs;
+    public Optional<List<String>> accountIDs() {
+        return (Optional<List<String>>) accountIDs;
     }
 
     @JsonIgnore
     public String name() {
         return name;
+    }
+
+    /**
+     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * default_asset, name, psu_id, open_banking_connection_id and metadata.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     public static Builder builder() {
@@ -48,6 +86,13 @@ public class V3CreatePoolRequest {
 
     public V3CreatePoolRequest withAccountIDs(List<String> accountIDs) {
         Utils.checkNotNull(accountIDs, "accountIDs");
+        this.accountIDs = Optional.ofNullable(accountIDs);
+        return this;
+    }
+
+
+    public V3CreatePoolRequest withAccountIDs(Optional<? extends List<String>> accountIDs) {
+        Utils.checkNotNull(accountIDs, "accountIDs");
         this.accountIDs = accountIDs;
         return this;
     }
@@ -55,6 +100,27 @@ public class V3CreatePoolRequest {
     public V3CreatePoolRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
+        return this;
+    }
+
+    /**
+     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * default_asset, name, psu_id, open_banking_connection_id and metadata.
+     */
+    public V3CreatePoolRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    /**
+     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * default_asset, name, psu_id, open_banking_connection_id and metadata.
+     */
+    public V3CreatePoolRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
         return this;
     }
 
@@ -69,28 +135,32 @@ public class V3CreatePoolRequest {
         V3CreatePoolRequest other = (V3CreatePoolRequest) o;
         return 
             Utils.enhancedDeepEquals(this.accountIDs, other.accountIDs) &&
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.query, other.query);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountIDs, name);
+            accountIDs, name, query);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CreatePoolRequest.class,
                 "accountIDs", accountIDs,
-                "name", name);
+                "name", name,
+                "query", query);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<String> accountIDs;
+        private Optional<? extends List<String>> accountIDs = Optional.empty();
 
         private String name;
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -98,6 +168,12 @@ public class V3CreatePoolRequest {
 
 
         public Builder accountIDs(List<String> accountIDs) {
+            Utils.checkNotNull(accountIDs, "accountIDs");
+            this.accountIDs = Optional.ofNullable(accountIDs);
+            return this;
+        }
+
+        public Builder accountIDs(Optional<? extends List<String>> accountIDs) {
             Utils.checkNotNull(accountIDs, "accountIDs");
             this.accountIDs = accountIDs;
             return this;
@@ -110,10 +186,31 @@ public class V3CreatePoolRequest {
             return this;
         }
 
+
+        /**
+         * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+         * default_asset, name, psu_id, open_banking_connection_id and metadata.
+         */
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        /**
+         * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+         * default_asset, name, psu_id, open_banking_connection_id and metadata.
+         */
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
         public V3CreatePoolRequest build() {
 
             return new V3CreatePoolRequest(
-                accountIDs, name);
+                accountIDs, name, query);
         }
 
     }

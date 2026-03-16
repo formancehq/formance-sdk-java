@@ -3,28 +3,20 @@
  */
 package com.formance.formance_sdk.models.shared;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
-@JsonTypeInfo(use = Id.NAME, property = "provider", include = As.EXISTING_PROPERTY, visible = true)
-@JsonSubTypes({
-    @Type(value = V3AdyenConfig.class, name="Adyen"),
-    @Type(value = V3AtlarConfig.class, name="Atlar"),
-    @Type(value = V3BankingcircleConfig.class, name="Bankingcircle"),
-    @Type(value = V3ColumnConfig.class, name="Column"),
-    @Type(value = V3CurrencycloudConfig.class, name="Currencycloud"),
-    @Type(value = V3DummypayConfig.class, name="Dummypay"),
-    @Type(value = V3GenericConfig.class, name="Generic"),
-    @Type(value = V3MangopayConfig.class, name="Mangopay"),
-    @Type(value = V3ModulrConfig.class, name="Modulr"),
-    @Type(value = V3MoneycorpConfig.class, name="Moneycorp"),
-    @Type(value = V3QontoConfig.class, name="Qonto"),
-    @Type(value = V3StripeConfig.class, name="Stripe"),
-    @Type(value = V3WiseConfig.class, name="Wise")})
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "provider",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownV3InstallConnectorRequest.class
+)
+@JsonTypeIdResolver(V3InstallConnectorRequestTypeIdResolver.class)
 public interface V3InstallConnectorRequest {
 
     String provider();

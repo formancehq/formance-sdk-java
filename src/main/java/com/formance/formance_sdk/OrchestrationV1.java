@@ -53,8 +53,8 @@ import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
 import com.formance.formance_sdk.models.operations.SendEventRequest;
 import com.formance.formance_sdk.models.operations.SendEventRequestBuilder;
 import com.formance.formance_sdk.models.operations.SendEventResponse;
+import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.models.shared.TriggerData;
-import com.formance.formance_sdk.models.shared.WorkflowConfig;
 import com.formance.formance_sdk.operations.CancelEvent;
 import com.formance.formance_sdk.operations.CreateTrigger;
 import com.formance.formance_sdk.operations.CreateWorkflow;
@@ -73,7 +73,6 @@ import com.formance.formance_sdk.operations.ReadTrigger;
 import com.formance.formance_sdk.operations.RunWorkflow;
 import com.formance.formance_sdk.operations.SendEvent;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -103,9 +102,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelEventResponse cancelEvent(CancelEventRequest request) throws Exception {
+    public CancelEventResponse cancelEvent(CancelEventRequest request) {
         RequestOperation<CancelEventRequest, CancelEventResponse> operation
               = new CancelEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -128,9 +127,9 @@ public class OrchestrationV1 {
      * <p>Create trigger
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTriggerResponse createTriggerDirect() throws Exception {
+    public CreateTriggerResponse createTriggerDirect() {
         return createTrigger(Optional.empty());
     }
 
@@ -141,9 +140,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTriggerResponse createTrigger(Optional<? extends TriggerData> request) throws Exception {
+    public CreateTriggerResponse createTrigger(Optional<? extends TriggerData> request) {
         RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> operation
               = new CreateTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -166,9 +165,9 @@ public class OrchestrationV1 {
      * <p>Create a workflow
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateWorkflowResponse createWorkflowDirect() throws Exception {
+    public CreateWorkflowResponse createWorkflowDirect() {
         return createWorkflow(Optional.empty());
     }
 
@@ -179,10 +178,10 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateWorkflowResponse createWorkflow(Optional<? extends WorkflowConfig> request) throws Exception {
-        RequestOperation<Optional<? extends WorkflowConfig>, CreateWorkflowResponse> operation
+    public CreateWorkflowResponse createWorkflow(Optional<? extends CreateWorkflowRequest> request) {
+        RequestOperation<Optional<? extends CreateWorkflowRequest>, CreateWorkflowResponse> operation
               = new CreateWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -205,9 +204,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteTriggerResponse deleteTrigger(DeleteTriggerRequest request) throws Exception {
+    public DeleteTriggerResponse deleteTrigger(DeleteTriggerRequest request) {
         RequestOperation<DeleteTriggerRequest, DeleteTriggerResponse> operation
               = new DeleteTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -231,9 +230,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteWorkflowResponse deleteWorkflow(DeleteWorkflowRequest request) throws Exception {
+    public DeleteWorkflowResponse deleteWorkflow(DeleteWorkflowRequest request) {
         RequestOperation<DeleteWorkflowRequest, DeleteWorkflowResponse> operation
               = new DeleteWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -257,9 +256,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInstanceResponse getInstance(GetInstanceRequest request) throws Exception {
+    public GetInstanceResponse getInstance(GetInstanceRequest request) {
         RequestOperation<GetInstanceRequest, GetInstanceResponse> operation
               = new GetInstance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -283,9 +282,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInstanceHistoryResponse getInstanceHistory(GetInstanceHistoryRequest request) throws Exception {
+    public GetInstanceHistoryResponse getInstanceHistory(GetInstanceHistoryRequest request) {
         RequestOperation<GetInstanceHistoryRequest, GetInstanceHistoryResponse> operation
               = new GetInstanceHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -309,9 +308,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInstanceStageHistoryResponse getInstanceStageHistory(GetInstanceStageHistoryRequest request) throws Exception {
+    public GetInstanceStageHistoryResponse getInstanceStageHistory(GetInstanceStageHistoryRequest request) {
         RequestOperation<GetInstanceStageHistoryRequest, GetInstanceStageHistoryResponse> operation
               = new GetInstanceStageHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -335,9 +334,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetWorkflowResponse getWorkflow(GetWorkflowRequest request) throws Exception {
+    public GetWorkflowResponse getWorkflow(GetWorkflowRequest request) {
         RequestOperation<GetWorkflowRequest, GetWorkflowResponse> operation
               = new GetWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -361,9 +360,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListInstancesResponse listInstances(ListInstancesRequest request) throws Exception {
+    public ListInstancesResponse listInstances(ListInstancesRequest request) {
         RequestOperation<ListInstancesRequest, ListInstancesResponse> operation
               = new ListInstances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -387,9 +386,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTriggersResponse listTriggers(ListTriggersRequest request) throws Exception {
+    public ListTriggersResponse listTriggers(ListTriggersRequest request) {
         RequestOperation<ListTriggersRequest, ListTriggersResponse> operation
               = new ListTriggers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -413,9 +412,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTriggersOccurrencesResponse listTriggersOccurrences(ListTriggersOccurrencesRequest request) throws Exception {
+    public ListTriggersOccurrencesResponse listTriggersOccurrences(ListTriggersOccurrencesRequest request) {
         RequestOperation<ListTriggersOccurrencesRequest, ListTriggersOccurrencesResponse> operation
               = new ListTriggersOccurrences.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -438,9 +437,9 @@ public class OrchestrationV1 {
      * <p>List registered workflows
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListWorkflowsResponse listWorkflowsDirect() throws Exception {
+    public ListWorkflowsResponse listWorkflowsDirect() {
         RequestlessOperation<ListWorkflowsResponse> operation
             = new ListWorkflows.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -459,9 +458,9 @@ public class OrchestrationV1 {
      * Get server info
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() throws Exception {
+    public OrchestrationgetServerInfoResponse orchestrationgetServerInfoDirect() {
         RequestlessOperation<OrchestrationgetServerInfoResponse> operation
             = new OrchestrationgetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -485,9 +484,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReadTriggerResponse readTrigger(ReadTriggerRequest request) throws Exception {
+    public ReadTriggerResponse readTrigger(ReadTriggerRequest request) {
         RequestOperation<ReadTriggerRequest, ReadTriggerResponse> operation
               = new ReadTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -511,9 +510,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RunWorkflowResponse runWorkflow(RunWorkflowRequest request) throws Exception {
+    public RunWorkflowResponse runWorkflow(RunWorkflowRequest request) {
         RequestOperation<RunWorkflowRequest, RunWorkflowResponse> operation
               = new RunWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -537,9 +536,9 @@ public class OrchestrationV1 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SendEventResponse sendEvent(SendEventRequest request) throws Exception {
+    public SendEventResponse sendEvent(SendEventRequest request) {
         RequestOperation<SendEventRequest, SendEventResponse> operation
               = new SendEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
 import com.formance.formance_sdk.operations.V3CreatePool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3CreatePoolRequestBuilder {
@@ -35,7 +34,7 @@ public class V3CreatePoolRequestBuilder {
         return this;
     }
 
-    public V3CreatePoolResponse call() throws Exception {
+    public V3CreatePoolResponse call() {
         
         RequestOperation<Optional<? extends V3CreatePoolRequest>, V3CreatePoolResponse> operation
               = new V3CreatePool.Sync(sdkConfiguration, _headers);

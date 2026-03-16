@@ -344,7 +344,7 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_PollingPeriod =
                 new LazySingletonValue<>(
                         "pollingPeriod",
-                        "\"120s\"",
+                        "\"30m\"",
                         new TypeReference<Optional<String>>() {});
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Provider =

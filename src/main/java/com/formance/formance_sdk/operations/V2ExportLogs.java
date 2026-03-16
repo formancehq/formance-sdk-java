@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
@@ -52,7 +53,7 @@ public class V2ExportLogs {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ExportLogs",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -61,7 +62,7 @@ public class V2ExportLogs {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ExportLogs",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
 
@@ -70,7 +71,7 @@ public class V2ExportLogs {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ExportLogs",
-                    java.util.Optional.of(java.util.List.of("auth:read", "ledger:write")),
+                    java.util.Optional.of(java.util.List.of("ledger:write")),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
@@ -112,8 +113,8 @@ public class V2ExportLogs {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2ExportLogsRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(V2ExportLogsRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -123,7 +124,7 @@ public class V2ExportLogs {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -131,7 +132,7 @@ public class V2ExportLogs {
 
 
         @Override
-        public V2ExportLogsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public V2ExportLogsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -149,21 +150,11 @@ public class V2ExportLogs {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

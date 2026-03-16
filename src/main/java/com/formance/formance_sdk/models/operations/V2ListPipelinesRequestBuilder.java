@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListPipelines;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2ListPipelinesRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2ListPipelinesRequestBuilder {
         return this;
     }
 
-    public V2ListPipelinesResponse call() throws Exception {
+    public V2ListPipelinesResponse call() {
         
         RequestOperation<V2ListPipelinesRequest, V2ListPipelinesResponse> operation
               = new V2ListPipelines.Sync(sdkConfiguration, _headers);

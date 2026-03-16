@@ -16,7 +16,6 @@ import com.formance.formance_sdk.utils.Hook.SdkInitData;
 import com.formance.formance_sdk.utils.RetryConfig;
 import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -233,7 +232,7 @@ public class SDK {
          * <p>The environment name. Defaults to the production environment.
          */
         public enum ServerEnvironment {
-            SANDBOX("sandbox"),
+            EU_SANDBOX("eu.sandbox"),
             EU_WEST1("eu-west-1"),
             US_EAST1("us-east-1");
 
@@ -356,9 +355,9 @@ public class SDK {
      * Show stack version information
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetVersionsResponse getVersionsDirect() throws Exception {
+    public GetVersionsResponse getVersionsDirect() {
         RequestlessOperation<GetVersionsResponse> operation
             = new GetVersions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

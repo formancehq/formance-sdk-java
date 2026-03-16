@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
 import com.formance.formance_sdk.operations.V3CreateAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3CreateAccountRequestBuilder {
@@ -35,7 +34,7 @@ public class V3CreateAccountRequestBuilder {
         return this;
     }
 
-    public V3CreateAccountResponse call() throws Exception {
+    public V3CreateAccountResponse call() {
         
         RequestOperation<Optional<? extends V3CreateAccountRequest>, V3CreateAccountResponse> operation
               = new V3CreateAccount.Sync(sdkConfiguration, _headers);

@@ -4,6 +4,7 @@
 package com.formance.formance_sdk.operations;
 
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
@@ -51,7 +52,7 @@ public class GetOIDCWellKnowns {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getOIDCWellKnowns",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
 
@@ -60,7 +61,7 @@ public class GetOIDCWellKnowns {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getOIDCWellKnowns",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
 
@@ -69,7 +70,7 @@ public class GetOIDCWellKnowns {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "getOIDCWellKnowns",
-                    java.util.Optional.of(java.util.List.of("auth:read", "auth:read")),
+                    java.util.Optional.of(java.util.List.of("auth:read")),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {
@@ -109,8 +110,8 @@ public class GetOIDCWellKnowns {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -120,7 +121,7 @@ public class GetOIDCWellKnowns {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -128,7 +129,7 @@ public class GetOIDCWellKnowns {
 
 
         @Override
-        public GetOIDCWellKnownsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public GetOIDCWellKnownsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -146,21 +147,11 @@ public class GetOIDCWellKnowns {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 // no content
-                throw new SDKError(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw SDKError.from("API error occurred", response);
             }
-            
-            throw new SDKError(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
 }

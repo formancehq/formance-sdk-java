@@ -1,5 +1,4 @@
 # Ledger
-(*ledger()*)
 
 ## Overview
 
@@ -39,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.v2ConfigInfoResponse().isPresent()) {
-            // handle response
+            System.out.println(res.v2ConfigInfoResponse().get());
         }
     }
 }
@@ -87,7 +86,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }

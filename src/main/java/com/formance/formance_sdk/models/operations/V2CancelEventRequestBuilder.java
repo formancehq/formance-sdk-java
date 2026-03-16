@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CancelEvent;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2CancelEventRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2CancelEventRequestBuilder {
         return this;
     }
 
-    public V2CancelEventResponse call() throws Exception {
+    public V2CancelEventResponse call() {
         
         RequestOperation<V2CancelEventRequest, V2CancelEventResponse> operation
               = new V2CancelEvent.Sync(sdkConfiguration, _headers);

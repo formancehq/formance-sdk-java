@@ -10,7 +10,6 @@ import com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserRequest
 import com.formance.formance_sdk.operations.V3CreatePaymentServiceUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class V3CreatePaymentServiceUserRequestBuilder {
@@ -35,7 +34,7 @@ public class V3CreatePaymentServiceUserRequestBuilder {
         return this;
     }
 
-    public V3CreatePaymentServiceUserResponse call() throws Exception {
+    public V3CreatePaymentServiceUserResponse call() {
         
         RequestOperation<Optional<? extends V3CreatePaymentServiceUserRequest>, V3CreatePaymentServiceUserResponse> operation
               = new V3CreatePaymentServiceUser.Sync(sdkConfiguration, _headers);

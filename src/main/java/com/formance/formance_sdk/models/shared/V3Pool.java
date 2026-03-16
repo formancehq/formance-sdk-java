@@ -5,12 +5,18 @@ package com.formance.formance_sdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class V3Pool {
@@ -30,20 +36,45 @@ public class V3Pool {
     @JsonProperty("poolAccounts")
     private List<String> poolAccounts;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("query")
+    private Optional<? extends Map<String, Object>> query;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends V3PoolTypeEnum> type;
+
     @JsonCreator
     public V3Pool(
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
-            @JsonProperty("poolAccounts") List<String> poolAccounts) {
+            @JsonProperty("poolAccounts") List<String> poolAccounts,
+            @JsonProperty("query") Optional<? extends Map<String, Object>> query,
+            @JsonProperty("type") Optional<? extends V3PoolTypeEnum> type) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(poolAccounts, "poolAccounts");
+        Utils.checkNotNull(query, "query");
+        Utils.checkNotNull(type, "type");
         this.createdAt = createdAt;
         this.id = id;
         this.name = name;
         this.poolAccounts = poolAccounts;
+        this.query = query;
+        this.type = type;
+    }
+    
+    public V3Pool(
+            OffsetDateTime createdAt,
+            String id,
+            String name,
+            List<String> poolAccounts) {
+        this(createdAt, id, name,
+            poolAccounts, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -64,6 +95,18 @@ public class V3Pool {
     @JsonIgnore
     public List<String> poolAccounts() {
         return poolAccounts;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V3PoolTypeEnum> type() {
+        return (Optional<V3PoolTypeEnum>) type;
     }
 
     public static Builder builder() {
@@ -95,6 +138,32 @@ public class V3Pool {
         return this;
     }
 
+    public V3Pool withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V3Pool withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
+    public V3Pool withType(V3PoolTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public V3Pool withType(Optional<? extends V3PoolTypeEnum> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,14 +177,16 @@ public class V3Pool {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.poolAccounts, other.poolAccounts);
+            Utils.enhancedDeepEquals(this.poolAccounts, other.poolAccounts) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             createdAt, id, name,
-            poolAccounts);
+            poolAccounts, query, type);
     }
     
     @Override
@@ -124,7 +195,9 @@ public class V3Pool {
                 "createdAt", createdAt,
                 "id", id,
                 "name", name,
-                "poolAccounts", poolAccounts);
+                "poolAccounts", poolAccounts,
+                "query", query,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -137,6 +210,10 @@ public class V3Pool {
         private String name;
 
         private List<String> poolAccounts;
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
+
+        private Optional<? extends V3PoolTypeEnum> type = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -170,11 +247,37 @@ public class V3Pool {
             return this;
         }
 
+
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+
+        public Builder type(V3PoolTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<? extends V3PoolTypeEnum> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public V3Pool build() {
 
             return new V3Pool(
                 createdAt, id, name,
-                poolAccounts);
+                poolAccounts, query, type);
         }
 
     }

@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class TaskResponseData {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private TaskResponseData(TypedObject value) {
         this.value = value;
@@ -27,42 +27,42 @@ public class TaskResponseData {
 
     public static TaskResponseData of(TaskStripe value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskStripe>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskWise value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskWise>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskCurrencyCloud value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskCurrencyCloud>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskDummyPay value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskDummyPay>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskModulr value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskModulr>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskBankingCircle value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskBankingCircle>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskMangoPay value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskMangoPay>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static TaskResponseData of(TaskMoneycorp value) {
         Utils.checkNotNull(value, "value");
-        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<TaskMoneycorp>(){}));
+        return new TaskResponseData(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -91,7 +91,7 @@ public class TaskResponseData {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -102,7 +102,7 @@ public class TaskResponseData {
             return false;
         }
         TaskResponseData other = (TaskResponseData) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -115,14 +115,14 @@ public class TaskResponseData {
 
         public _Deserializer() {
             super(TaskResponseData.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<TaskMoneycorp>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskMangoPay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskBankingCircle>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskModulr>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskDummyPay>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskCurrencyCloud>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskStripe>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<TaskWise>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<TaskStripe>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<TaskCurrencyCloud>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskDummyPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskModulr>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskBankingCircle>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskMangoPay>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<TaskMoneycorp>() {}, JsonShape.DEFAULT));
         }
     }
     
@@ -131,6 +131,6 @@ public class TaskResponseData {
         return Utils.toString(TaskResponseData.class,
                 "value", value);
     }
- 
+
 }
 

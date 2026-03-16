@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInstance;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2GetInstanceRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2GetInstanceRequestBuilder {
         return this;
     }
 
-    public V2GetInstanceResponse call() throws Exception {
+    public V2GetInstanceResponse call() {
         
         RequestOperation<V2GetInstanceRequest, V2GetInstanceResponse> operation
               = new V2GetInstance.Sync(sdkConfiguration, _headers);

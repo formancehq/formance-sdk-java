@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2CreateBulk;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class V2CreateBulkRequestBuilder {
 
@@ -27,7 +26,7 @@ public class V2CreateBulkRequestBuilder {
         return this;
     }
 
-    public V2CreateBulkResponse call() throws Exception {
+    public V2CreateBulkResponse call() {
         
         RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
               = new V2CreateBulk.Sync(sdkConfiguration, _headers);

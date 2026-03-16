@@ -12,7 +12,9 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.math.BigInteger;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -31,22 +33,31 @@ public class V2BulkElementRevertTransactionData {
     @JsonProperty("id")
     private BigInteger id;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, String>> metadata;
+
     @JsonCreator
     public V2BulkElementRevertTransactionData(
             @JsonProperty("atEffectiveDate") Optional<Boolean> atEffectiveDate,
             @JsonProperty("force") Optional<Boolean> force,
-            @JsonProperty("id") BigInteger id) {
+            @JsonProperty("id") BigInteger id,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
         Utils.checkNotNull(force, "force");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
         this.atEffectiveDate = atEffectiveDate;
         this.force = force;
         this.id = id;
+        this.metadata = metadata;
     }
     
     public V2BulkElementRevertTransactionData(
             BigInteger id) {
-        this(Optional.empty(), Optional.empty(), id);
+        this(Optional.empty(), Optional.empty(), id,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -62,6 +73,12 @@ public class V2BulkElementRevertTransactionData {
     @JsonIgnore
     public BigInteger id() {
         return id;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     public static Builder builder() {
@@ -106,6 +123,19 @@ public class V2BulkElementRevertTransactionData {
         return this;
     }
 
+    public V2BulkElementRevertTransactionData withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    public V2BulkElementRevertTransactionData withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,13 +148,15 @@ public class V2BulkElementRevertTransactionData {
         return 
             Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
             Utils.enhancedDeepEquals(this.force, other.force) &&
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            atEffectiveDate, force, id);
+            atEffectiveDate, force, id,
+            metadata);
     }
     
     @Override
@@ -132,7 +164,8 @@ public class V2BulkElementRevertTransactionData {
         return Utils.toString(V2BulkElementRevertTransactionData.class,
                 "atEffectiveDate", atEffectiveDate,
                 "force", force,
-                "id", id);
+                "id", id,
+                "metadata", metadata);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -143,6 +176,8 @@ public class V2BulkElementRevertTransactionData {
         private Optional<Boolean> force = Optional.empty();
 
         private BigInteger id;
+
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -186,10 +221,24 @@ public class V2BulkElementRevertTransactionData {
             return this;
         }
 
+
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
         public V2BulkElementRevertTransactionData build() {
 
             return new V2BulkElementRevertTransactionData(
-                atEffectiveDate, force, id);
+                atEffectiveDate, force, id,
+                metadata);
         }
 
     }

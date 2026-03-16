@@ -75,7 +75,7 @@ public class TransferInitiation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAdjustments")
-    private Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments;
+    private Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -112,7 +112,7 @@ public class TransferInitiation {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("reference") String reference,
-            @JsonProperty("relatedAdjustments") Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments,
+            @JsonProperty("relatedAdjustments") Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments,
             @JsonProperty("relatedPayments") JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") String sourceAccountID,
@@ -241,8 +241,8 @@ public class TransferInitiation {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<TransferInitiationAdjusments>> relatedAdjustments() {
-        return (Optional<List<TransferInitiationAdjusments>>) relatedAdjustments;
+    public Optional<List<TransferInitiationAdjustments>> relatedAdjustments() {
+        return (Optional<List<TransferInitiationAdjustments>>) relatedAdjustments;
     }
 
     @SuppressWarnings("unchecked")
@@ -377,14 +377,14 @@ public class TransferInitiation {
         return this;
     }
 
-    public TransferInitiation withRelatedAdjustments(List<TransferInitiationAdjusments> relatedAdjustments) {
+    public TransferInitiation withRelatedAdjustments(List<TransferInitiationAdjustments> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
         return this;
     }
 
 
-    public TransferInitiation withRelatedAdjustments(Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments) {
+    public TransferInitiation withRelatedAdjustments(Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = relatedAdjustments;
         return this;
@@ -517,7 +517,7 @@ public class TransferInitiation {
 
         private String reference;
 
-        private Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments = Optional.empty();
+        private Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments = Optional.empty();
 
         private JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments = JsonNullable.undefined();
 
@@ -646,13 +646,13 @@ public class TransferInitiation {
         }
 
 
-        public Builder relatedAdjustments(List<TransferInitiationAdjusments> relatedAdjustments) {
+        public Builder relatedAdjustments(List<TransferInitiationAdjustments> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
             return this;
         }
 
-        public Builder relatedAdjustments(Optional<? extends List<TransferInitiationAdjusments>> relatedAdjustments) {
+        public Builder relatedAdjustments(Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = relatedAdjustments;
             return this;

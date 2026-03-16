@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetOIDCWellKnowns;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class GetOIDCWellKnownsRequestBuilder {
 
@@ -19,7 +18,7 @@ public class GetOIDCWellKnownsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetOIDCWellKnownsResponse call() throws Exception {
+    public GetOIDCWellKnownsResponse call() {
         
         RequestlessOperation<GetOIDCWellKnownsResponse> operation
             = new GetOIDCWellKnowns.Sync(sdkConfiguration, _headers);

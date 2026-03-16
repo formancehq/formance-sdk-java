@@ -6,16 +6,15 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.WorkflowConfig;
+import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
 import com.formance.formance_sdk.operations.CreateWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class CreateWorkflowRequestBuilder {
 
-    private Optional<? extends WorkflowConfig> request = Optional.empty();
+    private Optional<? extends CreateWorkflowRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -23,21 +22,21 @@ public class CreateWorkflowRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateWorkflowRequestBuilder request(WorkflowConfig request) {
+    public CreateWorkflowRequestBuilder request(CreateWorkflowRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateWorkflowRequestBuilder request(Optional<? extends WorkflowConfig> request) {
+    public CreateWorkflowRequestBuilder request(Optional<? extends CreateWorkflowRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public CreateWorkflowResponse call() throws Exception {
+    public CreateWorkflowResponse call() {
         
-        RequestOperation<Optional<? extends WorkflowConfig>, CreateWorkflowResponse> operation
+        RequestOperation<Optional<? extends CreateWorkflowRequest>, CreateWorkflowResponse> operation
               = new CreateWorkflow.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));

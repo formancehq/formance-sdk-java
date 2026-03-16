@@ -9,7 +9,6 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ConnectorsTransfer;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Exception;
 
 public class ConnectorsTransferRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ConnectorsTransferRequestBuilder {
         return this;
     }
 
-    public ConnectorsTransferResponse call() throws Exception {
+    public ConnectorsTransferResponse call() {
         
         RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> operation
               = new ConnectorsTransfer.Sync(sdkConfiguration, _headers);

@@ -8,7 +8,6 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.OrchestrationgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 public class OrchestrationgetServerInfoRequestBuilder {
 
@@ -19,7 +18,7 @@ public class OrchestrationgetServerInfoRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public OrchestrationgetServerInfoResponse call() throws Exception {
+    public OrchestrationgetServerInfoResponse call() {
         
         RequestlessOperation<OrchestrationgetServerInfoResponse> operation
             = new OrchestrationgetServerInfo.Sync(sdkConfiguration, _headers);

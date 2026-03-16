@@ -35,6 +35,9 @@ import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse;
+import com.formance.formance_sdk.models.operations.V2DeleteBucketRequest;
+import com.formance.formance_sdk.models.operations.V2DeleteBucketRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2DeleteBucketResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteExporterRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteExporterRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2DeleteExporterResponse;
@@ -68,6 +71,9 @@ import com.formance.formance_sdk.models.operations.V2GetLedgerResponse;
 import com.formance.formance_sdk.models.operations.V2GetPipelineStateRequest;
 import com.formance.formance_sdk.models.operations.V2GetPipelineStateRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2GetPipelineStateResponse;
+import com.formance.formance_sdk.models.operations.V2GetSchemaRequest;
+import com.formance.formance_sdk.models.operations.V2GetSchemaRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetSchemaResponse;
 import com.formance.formance_sdk.models.operations.V2GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2GetTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2GetTransactionResponse;
@@ -77,6 +83,9 @@ import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRespo
 import com.formance.formance_sdk.models.operations.V2ImportLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ImportLogsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ImportLogsResponse;
+import com.formance.formance_sdk.models.operations.V2InsertSchemaRequest;
+import com.formance.formance_sdk.models.operations.V2InsertSchemaRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2InsertSchemaResponse;
 import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2ListAccountsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
@@ -91,6 +100,9 @@ import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
 import com.formance.formance_sdk.models.operations.V2ListPipelinesRequest;
 import com.formance.formance_sdk.models.operations.V2ListPipelinesRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ListPipelinesResponse;
+import com.formance.formance_sdk.models.operations.V2ListSchemasRequest;
+import com.formance.formance_sdk.models.operations.V2ListSchemasRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ListSchemasResponse;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
@@ -100,19 +112,28 @@ import com.formance.formance_sdk.models.operations.V2ReadStatsResponse;
 import com.formance.formance_sdk.models.operations.V2ResetPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2ResetPipelineRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ResetPipelineResponse;
+import com.formance.formance_sdk.models.operations.V2RestoreBucketRequest;
+import com.formance.formance_sdk.models.operations.V2RestoreBucketRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2RestoreBucketResponse;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
+import com.formance.formance_sdk.models.operations.V2RunQueryRequest;
+import com.formance.formance_sdk.models.operations.V2RunQueryRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2RunQueryResponse;
 import com.formance.formance_sdk.models.operations.V2StartPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2StartPipelineRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2StartPipelineResponse;
 import com.formance.formance_sdk.models.operations.V2StopPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2StopPipelineRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2StopPipelineResponse;
+import com.formance.formance_sdk.models.operations.V2UpdateExporterRequest;
+import com.formance.formance_sdk.models.operations.V2UpdateExporterRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
-import com.formance.formance_sdk.models.shared.V2ExporterConfiguration;
+import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import com.formance.formance_sdk.operations.V2AddMetadataOnTransaction;
 import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
 import com.formance.formance_sdk.operations.V2CountAccounts;
@@ -123,6 +144,7 @@ import com.formance.formance_sdk.operations.V2CreateLedger;
 import com.formance.formance_sdk.operations.V2CreatePipeline;
 import com.formance.formance_sdk.operations.V2CreateTransaction;
 import com.formance.formance_sdk.operations.V2DeleteAccountMetadata;
+import com.formance.formance_sdk.operations.V2DeleteBucket;
 import com.formance.formance_sdk.operations.V2DeleteExporter;
 import com.formance.formance_sdk.operations.V2DeleteLedgerMetadata;
 import com.formance.formance_sdk.operations.V2DeletePipeline;
@@ -134,23 +156,28 @@ import com.formance.formance_sdk.operations.V2GetExporterState;
 import com.formance.formance_sdk.operations.V2GetLedger;
 import com.formance.formance_sdk.operations.V2GetLedgerInfo;
 import com.formance.formance_sdk.operations.V2GetPipelineState;
+import com.formance.formance_sdk.operations.V2GetSchema;
 import com.formance.formance_sdk.operations.V2GetTransaction;
 import com.formance.formance_sdk.operations.V2GetVolumesWithBalances;
 import com.formance.formance_sdk.operations.V2ImportLogs;
+import com.formance.formance_sdk.operations.V2InsertSchema;
 import com.formance.formance_sdk.operations.V2ListAccounts;
 import com.formance.formance_sdk.operations.V2ListExporters;
 import com.formance.formance_sdk.operations.V2ListLedgers;
 import com.formance.formance_sdk.operations.V2ListLogs;
 import com.formance.formance_sdk.operations.V2ListPipelines;
+import com.formance.formance_sdk.operations.V2ListSchemas;
 import com.formance.formance_sdk.operations.V2ListTransactions;
 import com.formance.formance_sdk.operations.V2ReadStats;
 import com.formance.formance_sdk.operations.V2ResetPipeline;
+import com.formance.formance_sdk.operations.V2RestoreBucket;
 import com.formance.formance_sdk.operations.V2RevertTransaction;
+import com.formance.formance_sdk.operations.V2RunQuery;
 import com.formance.formance_sdk.operations.V2StartPipeline;
 import com.formance.formance_sdk.operations.V2StopPipeline;
+import com.formance.formance_sdk.operations.V2UpdateExporter;
 import com.formance.formance_sdk.operations.V2UpdateLedgerMetadata;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.Exception;
 
 
 public class LedgerV2 {
@@ -175,9 +202,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(V2AddMetadataOnTransactionRequest request) throws Exception {
+    public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(V2AddMetadataOnTransactionRequest request) {
         RequestOperation<V2AddMetadataOnTransactionRequest, V2AddMetadataOnTransactionResponse> operation
               = new V2AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -197,9 +224,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2AddMetadataToAccountResponse addMetadataToAccount(V2AddMetadataToAccountRequest request) throws Exception {
+    public V2AddMetadataToAccountResponse addMetadataToAccount(V2AddMetadataToAccountRequest request) {
         RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
               = new V2AddMetadataToAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -219,9 +246,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CountAccountsResponse countAccounts(V2CountAccountsRequest request) throws Exception {
+    public V2CountAccountsResponse countAccounts(V2CountAccountsRequest request) {
         RequestOperation<V2CountAccountsRequest, V2CountAccountsResponse> operation
               = new V2CountAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -241,9 +268,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CountTransactionsResponse countTransactions(V2CountTransactionsRequest request) throws Exception {
+    public V2CountTransactionsResponse countTransactions(V2CountTransactionsRequest request) {
         RequestOperation<V2CountTransactionsRequest, V2CountTransactionsResponse> operation
               = new V2CountTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -263,9 +290,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateBulkResponse createBulk(V2CreateBulkRequest request) throws Exception {
+    public V2CreateBulkResponse createBulk(V2CreateBulkRequest request) {
         RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
               = new V2CreateBulk.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -285,10 +312,10 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateExporterResponse createExporter(V2ExporterConfiguration request) throws Exception {
-        RequestOperation<V2ExporterConfiguration, V2CreateExporterResponse> operation
+    public V2CreateExporterResponse createExporter(V2CreateExporterRequest request) {
+        RequestOperation<V2CreateExporterRequest, V2CreateExporterResponse> operation
               = new V2CreateExporter.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -307,9 +334,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateLedgerResponse createLedger(V2CreateLedgerRequest request) throws Exception {
+    public V2CreateLedgerResponse createLedger(V2CreateLedgerRequest request) {
         RequestOperation<V2CreateLedgerRequest, V2CreateLedgerResponse> operation
               = new V2CreateLedger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -329,9 +356,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreatePipelineResponse createPipeline(V2CreatePipelineRequest request) throws Exception {
+    public V2CreatePipelineResponse createPipeline(V2CreatePipelineRequest request) {
         RequestOperation<V2CreatePipelineRequest, V2CreatePipelineResponse> operation
               = new V2CreatePipeline.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -351,9 +378,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateTransactionResponse createTransaction(V2CreateTransactionRequest request) throws Exception {
+    public V2CreateTransactionResponse createTransaction(V2CreateTransactionRequest request) {
         RequestOperation<V2CreateTransactionRequest, V2CreateTransactionResponse> operation
               = new V2CreateTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -377,11 +404,39 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2DeleteAccountMetadataResponse deleteAccountMetadata(V2DeleteAccountMetadataRequest request) throws Exception {
+    public V2DeleteAccountMetadataResponse deleteAccountMetadata(V2DeleteAccountMetadataRequest request) {
         RequestOperation<V2DeleteAccountMetadataRequest, V2DeleteAccountMetadataResponse> operation
               = new V2DeleteAccountMetadata.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete bucket
+     * 
+     * <p>Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the
+     * bucket will have their deleted_at field set to the current timestamp.
+     * 
+     * @return The call builder
+     */
+    public V2DeleteBucketRequestBuilder deleteBucket() {
+        return new V2DeleteBucketRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete bucket
+     * 
+     * <p>Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the
+     * bucket will have their deleted_at field set to the current timestamp.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteBucketResponse deleteBucket(V2DeleteBucketRequest request) {
+        RequestOperation<V2DeleteBucketRequest, V2DeleteBucketResponse> operation
+              = new V2DeleteBucket.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -399,9 +454,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2DeleteExporterResponse deleteExporter(V2DeleteExporterRequest request) throws Exception {
+    public V2DeleteExporterResponse deleteExporter(V2DeleteExporterRequest request) {
         RequestOperation<V2DeleteExporterRequest, V2DeleteExporterResponse> operation
               = new V2DeleteExporter.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -421,9 +476,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(V2DeleteLedgerMetadataRequest request) throws Exception {
+    public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(V2DeleteLedgerMetadataRequest request) {
         RequestOperation<V2DeleteLedgerMetadataRequest, V2DeleteLedgerMetadataResponse> operation
               = new V2DeleteLedgerMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -443,9 +498,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2DeletePipelineResponse deletePipeline(V2DeletePipelineRequest request) throws Exception {
+    public V2DeletePipelineResponse deletePipeline(V2DeletePipelineRequest request) {
         RequestOperation<V2DeletePipelineRequest, V2DeletePipelineResponse> operation
               = new V2DeletePipeline.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -469,9 +524,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(V2DeleteTransactionMetadataRequest request) throws Exception {
+    public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(V2DeleteTransactionMetadataRequest request) {
         RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
               = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -491,9 +546,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ExportLogsResponse exportLogs(V2ExportLogsRequest request) throws Exception {
+    public V2ExportLogsResponse exportLogs(V2ExportLogsRequest request) {
         RequestOperation<V2ExportLogsRequest, V2ExportLogsResponse> operation
               = new V2ExportLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -513,9 +568,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetAccountResponse getAccount(V2GetAccountRequest request) throws Exception {
+    public V2GetAccountResponse getAccount(V2GetAccountRequest request) {
         RequestOperation<V2GetAccountRequest, V2GetAccountResponse> operation
               = new V2GetAccount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -535,9 +590,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetBalancesAggregatedResponse getBalancesAggregated(V2GetBalancesAggregatedRequest request) throws Exception {
+    public V2GetBalancesAggregatedResponse getBalancesAggregated(V2GetBalancesAggregatedRequest request) {
         RequestOperation<V2GetBalancesAggregatedRequest, V2GetBalancesAggregatedResponse> operation
               = new V2GetBalancesAggregated.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -557,9 +612,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetExporterStateResponse getExporterState(V2GetExporterStateRequest request) throws Exception {
+    public V2GetExporterStateResponse getExporterState(V2GetExporterStateRequest request) {
         RequestOperation<V2GetExporterStateRequest, V2GetExporterStateResponse> operation
               = new V2GetExporterState.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -579,9 +634,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetLedgerResponse getLedger(V2GetLedgerRequest request) throws Exception {
+    public V2GetLedgerResponse getLedger(V2GetLedgerRequest request) {
         RequestOperation<V2GetLedgerRequest, V2GetLedgerResponse> operation
               = new V2GetLedger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -601,9 +656,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetLedgerInfoResponse getLedgerInfo(V2GetLedgerInfoRequest request) throws Exception {
+    public V2GetLedgerInfoResponse getLedgerInfo(V2GetLedgerInfoRequest request) {
         RequestOperation<V2GetLedgerInfoRequest, V2GetLedgerInfoResponse> operation
               = new V2GetLedgerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -623,11 +678,33 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetPipelineStateResponse getPipelineState(V2GetPipelineStateRequest request) throws Exception {
+    public V2GetPipelineStateResponse getPipelineState(V2GetPipelineStateRequest request) {
         RequestOperation<V2GetPipelineStateRequest, V2GetPipelineStateResponse> operation
               = new V2GetPipelineState.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get a schema for a ledger by version
+     * 
+     * @return The call builder
+     */
+    public V2GetSchemaRequestBuilder getSchema() {
+        return new V2GetSchemaRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a schema for a ledger by version
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetSchemaResponse getSchema(V2GetSchemaRequest request) {
+        RequestOperation<V2GetSchemaRequest, V2GetSchemaResponse> operation
+              = new V2GetSchema.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -645,9 +722,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetTransactionResponse getTransaction(V2GetTransactionRequest request) throws Exception {
+    public V2GetTransactionResponse getTransaction(V2GetTransactionRequest request) {
         RequestOperation<V2GetTransactionRequest, V2GetTransactionResponse> operation
               = new V2GetTransaction.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -667,9 +744,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2GetVolumesWithBalancesResponse getVolumesWithBalances(V2GetVolumesWithBalancesRequest request) throws Exception {
+    public V2GetVolumesWithBalancesResponse getVolumesWithBalances(V2GetVolumesWithBalancesRequest request) {
         RequestOperation<V2GetVolumesWithBalancesRequest, V2GetVolumesWithBalancesResponse> operation
               = new V2GetVolumesWithBalances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -689,11 +766,33 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ImportLogsResponse importLogs(V2ImportLogsRequest request) throws Exception {
+    public V2ImportLogsResponse importLogs(V2ImportLogsRequest request) {
         RequestOperation<V2ImportLogsRequest, V2ImportLogsResponse> operation
               = new V2ImportLogs.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Insert a schema for a ledger
+     * 
+     * @return The call builder
+     */
+    public V2InsertSchemaRequestBuilder insertSchema() {
+        return new V2InsertSchemaRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Insert a schema for a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2InsertSchemaResponse insertSchema(V2InsertSchemaRequest request) {
+        RequestOperation<V2InsertSchemaRequest, V2InsertSchemaResponse> operation
+              = new V2InsertSchema.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -715,9 +814,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListAccountsResponse listAccounts(V2ListAccountsRequest request) throws Exception {
+    public V2ListAccountsResponse listAccounts(V2ListAccountsRequest request) {
         RequestOperation<V2ListAccountsRequest, V2ListAccountsResponse> operation
               = new V2ListAccounts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -736,9 +835,9 @@ public class LedgerV2 {
      * List exporters
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListExportersResponse listExportersDirect() throws Exception {
+    public V2ListExportersResponse listExportersDirect() {
         RequestlessOperation<V2ListExportersResponse> operation
             = new V2ListExporters.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -758,9 +857,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListLedgersResponse listLedgers(V2ListLedgersRequest request) throws Exception {
+    public V2ListLedgersResponse listLedgers(V2ListLedgersRequest request) {
         RequestOperation<V2ListLedgersRequest, V2ListLedgersResponse> operation
               = new V2ListLedgers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -784,9 +883,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListLogsResponse listLogs(V2ListLogsRequest request) throws Exception {
+    public V2ListLogsResponse listLogs(V2ListLogsRequest request) {
         RequestOperation<V2ListLogsRequest, V2ListLogsResponse> operation
               = new V2ListLogs.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -806,11 +905,33 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListPipelinesResponse listPipelines(V2ListPipelinesRequest request) throws Exception {
+    public V2ListPipelinesResponse listPipelines(V2ListPipelinesRequest request) {
         RequestOperation<V2ListPipelinesRequest, V2ListPipelinesResponse> operation
               = new V2ListPipelines.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List all schemas for a ledger
+     * 
+     * @return The call builder
+     */
+    public V2ListSchemasRequestBuilder listSchemas() {
+        return new V2ListSchemasRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List all schemas for a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListSchemasResponse listSchemas(V2ListSchemasRequest request) {
+        RequestOperation<V2ListSchemasRequest, V2ListSchemasResponse> operation
+              = new V2ListSchemas.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -832,9 +953,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ListTransactionsResponse listTransactions(V2ListTransactionsRequest request) throws Exception {
+    public V2ListTransactionsResponse listTransactions(V2ListTransactionsRequest request) {
         RequestOperation<V2ListTransactionsRequest, V2ListTransactionsResponse> operation
               = new V2ListTransactions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -858,9 +979,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ReadStatsResponse readStats(V2ReadStatsRequest request) throws Exception {
+    public V2ReadStatsResponse readStats(V2ReadStatsRequest request) {
         RequestOperation<V2ReadStatsRequest, V2ReadStatsResponse> operation
               = new V2ReadStats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -880,11 +1001,39 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2ResetPipelineResponse resetPipeline(V2ResetPipelineRequest request) throws Exception {
+    public V2ResetPipelineResponse resetPipeline(V2ResetPipelineRequest request) {
         RequestOperation<V2ResetPipelineRequest, V2ResetPipelineResponse> operation
               = new V2ResetPipeline.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Restore bucket
+     * 
+     * <p>Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the
+     * bucket will have their deleted_at field set to NULL.
+     * 
+     * @return The call builder
+     */
+    public V2RestoreBucketRequestBuilder restoreBucket() {
+        return new V2RestoreBucketRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Restore bucket
+     * 
+     * <p>Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the
+     * bucket will have their deleted_at field set to NULL.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2RestoreBucketResponse restoreBucket(V2RestoreBucketRequest request) {
+        RequestOperation<V2RestoreBucketRequest, V2RestoreBucketResponse> operation
+              = new V2RestoreBucket.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -902,11 +1051,37 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2RevertTransactionResponse revertTransaction(V2RevertTransactionRequest request) throws Exception {
+    public V2RevertTransactionResponse revertTransaction(V2RevertTransactionRequest request) {
         RequestOperation<V2RevertTransactionRequest, V2RevertTransactionResponse> operation
               = new V2RevertTransaction.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Run a query template
+     * 
+     * <p>Run a query template on a ledger
+     * 
+     * @return The call builder
+     */
+    public V2RunQueryRequestBuilder runQuery() {
+        return new V2RunQueryRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Run a query template
+     * 
+     * <p>Run a query template on a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2RunQueryResponse runQuery(V2RunQueryRequest request) {
+        RequestOperation<V2RunQueryRequest, V2RunQueryResponse> operation
+              = new V2RunQuery.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -924,9 +1099,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2StartPipelineResponse startPipeline(V2StartPipelineRequest request) throws Exception {
+    public V2StartPipelineResponse startPipeline(V2StartPipelineRequest request) {
         RequestOperation<V2StartPipelineRequest, V2StartPipelineResponse> operation
               = new V2StartPipeline.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -946,11 +1121,33 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2StopPipelineResponse stopPipeline(V2StopPipelineRequest request) throws Exception {
+    public V2StopPipelineResponse stopPipeline(V2StopPipelineRequest request) {
         RequestOperation<V2StopPipelineRequest, V2StopPipelineResponse> operation
               = new V2StopPipeline.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update exporter
+     * 
+     * @return The call builder
+     */
+    public V2UpdateExporterRequestBuilder updateExporter() {
+        return new V2UpdateExporterRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update exporter
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2UpdateExporterResponse updateExporter(V2UpdateExporterRequest request) {
+        RequestOperation<V2UpdateExporterRequest, V2UpdateExporterResponse> operation
+              = new V2UpdateExporter.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -968,9 +1165,9 @@ public class LedgerV2 {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public V2UpdateLedgerMetadataResponse updateLedgerMetadata(V2UpdateLedgerMetadataRequest request) throws Exception {
+    public V2UpdateLedgerMetadataResponse updateLedgerMetadata(V2UpdateLedgerMetadataRequest request) {
         RequestOperation<V2UpdateLedgerMetadataRequest, V2UpdateLedgerMetadataResponse> operation
               = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
