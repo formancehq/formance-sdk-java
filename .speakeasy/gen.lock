@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: 44c2cf41-2747-43e2-b448-08f6ab870820
 management:
-  docChecksum: 8869b0f4810b660c9a3147a7aee4d5f0
+  docChecksum: 14034460c443ac4e861df9bd090be197
   docVersion: v0.0.0
-  speakeasyVersion: 1.755.1
-  generationVersion: 2.865.2
-  releaseVersion: 8.0.0
-  configChecksum: 4d6dde654e08879326ac9e18c29eb36e
+  speakeasyVersion: 1.759.1
+  generationVersion: 2.869.10
+  releaseVersion: 8.0.1
+  configChecksum: 71c742a30de978e55bacdaecdca015e0
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-java
   published: true
 persistentEdits:
-  generation_id: d18b9c9b-053b-40c5-88c5-19e744fed890
-  pristine_commit_hash: eac30f4497168fae0774e7b9e988241e35cf2e15
-  pristine_tree_hash: 3f4952faff028bc9d615e712759a2171da50d131
+  generation_id: 4b428411-b753-4261-87d0-897bfbded23e
+  pristine_commit_hash: 02e61a26e7e31b350e722163c511e1fd141aec0d
+  pristine_tree_hash: 935fe8948f7539dbca635c4cab1e86d938ade4eb
 features:
   java:
     additionalDependencies: 0.1.0
@@ -682,8 +682,8 @@ trackedFiles:
     pristine_git_object: 2008bc65370bd5888d34190d8a61d0b5dd15ffa5
   docs/models/operations/ListPoliciesRequest.md:
     id: 733ee54273ea
-    last_write_checksum: sha1:7cf3dd133cc1000c2d105253fed673cc96d8a8ec
-    pristine_git_object: 3f87c04a9e2ab144095dead7d46e6811397e4c7a
+    last_write_checksum: sha1:69387d3724325763f7af71bdf68f83158ea977b0
+    pristine_git_object: de5d671a2c73289d9954143a0a2e6a2dc7ea48eb
   docs/models/operations/ListPoliciesResponse.md:
     id: a44810854964
     last_write_checksum: sha1:e0b08b7319f0239dd9293d45e099cbebcbb26d14
@@ -698,8 +698,8 @@ trackedFiles:
     pristine_git_object: b72c8d962c69fd3906537c31f47a439985383a64
   docs/models/operations/ListReconciliationsRequest.md:
     id: f5c7e187a721
-    last_write_checksum: sha1:a7cb424d78ba2e9e8b727a8c702390bf78b26116
-    pristine_git_object: 4b0a1c235f901462d9cd9f3720edb31465922b27
+    last_write_checksum: sha1:a0b8c1ea6579f2b207112f4ddbd00630b867b3ee
+    pristine_git_object: 4cab3bfce96bde487997763960ba60c1f4cbbce1
   docs/models/operations/ListReconciliationsResponse.md:
     id: 13a5fd790b9b
     last_write_checksum: sha1:70166688b11f3006491c3148f8c51f9efd794122
@@ -1062,16 +1062,16 @@ trackedFiles:
     pristine_git_object: 9deee5277ef756b680e1ec206d99958cb24a6745
   docs/models/operations/V2CountAccountsRequest.md:
     id: 575b82be9343
-    last_write_checksum: sha1:111af8c15f4349a214d9ae4aa8902ef9162f1a9d
-    pristine_git_object: 3d409c7bd3de40f18f6ba876ef37f4e537bc6f19
+    last_write_checksum: sha1:d821740e4198cf50baf0248810d12d406c471664
+    pristine_git_object: ead8f91de76153d25c335f5093ec415dbe9ed217
   docs/models/operations/V2CountAccountsResponse.md:
     id: 00063a8e810e
     last_write_checksum: sha1:cd167be9ce7b03f49ae393f224941c2df4a35260
     pristine_git_object: e5ea341f9d70fba7cacfae8d949c6294a615c377
   docs/models/operations/V2CountTransactionsRequest.md:
     id: 5ae38fb81762
-    last_write_checksum: sha1:48ad8c73dcf8e3e4802698f8ab83e67893214d1a
-    pristine_git_object: 6ae127e44c5a4a01284a17bd473bc4cbb379d671
+    last_write_checksum: sha1:d3762a32a3bccba9b8d898cca98ff2e3cc28e062
+    pristine_git_object: afbba04d0fd737afa0105c9d608a1544ab08d9ef
   docs/models/operations/V2CountTransactionsResponse.md:
     id: 4d758c4a799f
     last_write_checksum: sha1:b7075480115c91c9baa21ba6cb2f583bc8d614a7
@@ -1210,8 +1210,8 @@ trackedFiles:
     pristine_git_object: a02168270a32a817b864da99ff91d3b59f053ca3
   docs/models/operations/V2GetBalancesAggregatedRequest.md:
     id: dcb52f466bd4
-    last_write_checksum: sha1:5376a2c0a2156eb82f96de8528447756448dfe10
-    pristine_git_object: 7b13487782325739667b63407071a1e03de73ee2
+    last_write_checksum: sha1:8f3817c2543bf0886059bedc85680a87d8bc82c2
+    pristine_git_object: b6dc67f2e26a4b48cbbfb7606de56f5b5dcd79b2
   docs/models/operations/V2GetBalancesAggregatedResponse.md:
     id: 57b6863cc361
     last_write_checksum: sha1:732d3afcb6c0117b04c51952dc1f55726a6767bc
@@ -1306,8 +1306,8 @@ trackedFiles:
     pristine_git_object: 249365be1e3f69d32279f64a9074c87316e7211f
   docs/models/operations/V2GetVolumesWithBalancesRequest.md:
     id: e3348a03ef5b
-    last_write_checksum: sha1:11df6b8853937eda3e72c5a9bd63341a086399ec
-    pristine_git_object: debba6aefd953b5e446d5997a9fb397b55cbffaf
+    last_write_checksum: sha1:a38e37d997683061958d6ddd46e28510c292cdf3
+    pristine_git_object: 608e1a022f9602ec81ba4ef9a1834ce74356883f
   docs/models/operations/V2GetVolumesWithBalancesResponse.md:
     id: 299bdc8a3e17
     last_write_checksum: sha1:e214bd90ca678de1b50855cb68dfec52aa571a7a
@@ -1338,8 +1338,8 @@ trackedFiles:
     pristine_git_object: 07f4feefa4dab600406ec14f52396fdb3a27257a
   docs/models/operations/V2ListAccountsRequest.md:
     id: 10f1fcc9113a
-    last_write_checksum: sha1:62b9d49e4749d5a120ad5474f52d933ce65df3e8
-    pristine_git_object: d42cbe14bc5af0be7c0a8192e4b146fdc1d79b1f
+    last_write_checksum: sha1:2f6c0aa4a74efff87ae0b3f23302b3363dffc0b2
+    pristine_git_object: 1d87bdbd11c4ecdf52f8571edccf15ca15180b13
   docs/models/operations/V2ListAccountsResponse.md:
     id: 274531a8512c
     last_write_checksum: sha1:1d4ed1b8b1ebd1c1cd9a8a9a5164ab2bfd96155f
@@ -1370,16 +1370,16 @@ trackedFiles:
     pristine_git_object: ada4f658dfc04cd528f57bef3bfd12e5e87de7c0
   docs/models/operations/V2ListLedgersRequest.md:
     id: 5d94d29ae2c5
-    last_write_checksum: sha1:08ff61006e46911db533494e54dd0918d94eaacd
-    pristine_git_object: ecb5b8bca506878bb3e6b6835422cc3029d3fcf9
+    last_write_checksum: sha1:3204018e24fae354307b79aa1d7f0501a58e121e
+    pristine_git_object: 08403eed53be1978d8eca4413d8d8a7640c557a2
   docs/models/operations/V2ListLedgersResponse.md:
     id: a8757e2653da
     last_write_checksum: sha1:2b53ad0556b195bc6c16cfaa94f2d5a812f27a22
     pristine_git_object: 0c9eb92fcf7a984d792b1fe18d3740a1ad06caef
   docs/models/operations/V2ListLogsRequest.md:
     id: e0a9db2f6577
-    last_write_checksum: sha1:2a222723ae4be679e604eb5b4922e2062ed91e28
-    pristine_git_object: a5c5bca81589d47e056ae16ecb61eeaf27beb135
+    last_write_checksum: sha1:0b7544ac04b93a6264c448b18fd16bbf520be79d
+    pristine_git_object: e9975975f5bc871e5b2630bc56a4c82b064a22e1
   docs/models/operations/V2ListLogsResponse.md:
     id: 0f2b8d05f708
     last_write_checksum: sha1:f5581acb46264681a3d8707b3e4671c269c4982c
@@ -1422,8 +1422,8 @@ trackedFiles:
     pristine_git_object: cc1ef6ae5082c8821e9c8e6741364d853a676aa0
   docs/models/operations/V2ListTransactionsRequest.md:
     id: a887f67222b5
-    last_write_checksum: sha1:d2787c06ac4c70600aaeadb41d988872dbc2ac1c
-    pristine_git_object: 3fddd2ece81020ac515648aa67cf9f078abee0e8
+    last_write_checksum: sha1:db58fa5754c47b9006da0951a4a4a7d74b0132b1
+    pristine_git_object: 23af0e36f2029be1bdf32b4c34bd5908a1f87cac
   docs/models/operations/V2ListTransactionsResponse.md:
     id: 2879b5d4e9de
     last_write_checksum: sha1:88f772524396e623d8dac934696f3d345ce12960
@@ -1802,16 +1802,16 @@ trackedFiles:
     pristine_git_object: da934c92525540f91c57d328148b84ed2c88afea
   docs/models/operations/V3ListAccountsRequest.md:
     id: 146373378f8a
-    last_write_checksum: sha1:d131475f61d04e69fdd964a7fbedaec78ff8b097
-    pristine_git_object: d5c650d2dcb19994b7c10a30e6b1a9e260fa968c
+    last_write_checksum: sha1:5b76b1ee093618c4bccc4db8a0950db421bbba3a
+    pristine_git_object: a18709dfd9c8d7e13757d1cf419a85d371854df6
   docs/models/operations/V3ListAccountsResponse.md:
     id: 338df92285ea
     last_write_checksum: sha1:f86ff0558478ba78ea02196d84e287d7c2d4408e
     pristine_git_object: c754ab794fd55e70bb9615a61637000809939946
   docs/models/operations/V3ListBankAccountsRequest.md:
     id: 93e8953bba66
-    last_write_checksum: sha1:cf8de8d2f6856a83e6ba053a38f47654078ee876
-    pristine_git_object: cbd7bc545385b18db1d44159aa50b2b4b4e8a70b
+    last_write_checksum: sha1:0c65050096006898732c569c883c2ca6bad03ed9
+    pristine_git_object: e5172b992d05549e158a6f55d70ffbaa7fd1e3fe
   docs/models/operations/V3ListBankAccountsResponse.md:
     id: 57a397983cef
     last_write_checksum: sha1:2a0dffb70925530eb4b9c984095b043ec9ec7258
@@ -1830,40 +1830,40 @@ trackedFiles:
     pristine_git_object: d262d6861307bc6673261918f0927d7d14219da5
   docs/models/operations/V3ListConnectorSchedulesRequest.md:
     id: 4c78ed97d8cb
-    last_write_checksum: sha1:87cae1253f70581e42834e3931373dd51c1888a2
-    pristine_git_object: 44ebd78434ac2cf32818315d6b3cc9cdd2716fed
+    last_write_checksum: sha1:25c504ed69840fc9066207ed068be55915923c71
+    pristine_git_object: 198fa2551153193c27d3f798790f32f7c76dc553
   docs/models/operations/V3ListConnectorSchedulesResponse.md:
     id: 7dc565873ec9
     last_write_checksum: sha1:67c7c79fcf6675600a2a530dff7e2912b0eb064b
     pristine_git_object: fcc1b270de55a7e2915a77a42ce016616b533ed8
   docs/models/operations/V3ListConnectorsRequest.md:
     id: 9b196b9ca345
-    last_write_checksum: sha1:aa42f2efe5ac111cbc12e73c36028776cf4a967c
-    pristine_git_object: 3b1470c91fe1e2f7e8aaadfc71b388124c471b1a
+    last_write_checksum: sha1:684412cb588e6ee3a0d513404022e7f8768a2616
+    pristine_git_object: b37da0c25b79b09fb82c28b29c983079e2af6aad
   docs/models/operations/V3ListConnectorsResponse.md:
     id: 156b69620e29
     last_write_checksum: sha1:7063710de4fa7fabd5fdac8d1530bbd6e76e280e
     pristine_git_object: 54f168859d856d848ba409791dd3264f582cb311
   docs/models/operations/V3ListPaymentInitiationAdjustmentsRequest.md:
     id: 730b5dd8a28a
-    last_write_checksum: sha1:3ab98c3bed0e5c8b2c3900b36cbc0abba3d16615
-    pristine_git_object: 1ff852cd3e02da1499df113f633d9f9493674179
+    last_write_checksum: sha1:d3dc49a62bdf3d79f79f36d22807679e2ac7f5b7
+    pristine_git_object: fa6295e811111e9ad4535e369cbdfb7eb4853cbb
   docs/models/operations/V3ListPaymentInitiationAdjustmentsResponse.md:
     id: 238f91a21bf1
     last_write_checksum: sha1:9627eab59114cb12543cca8b20220402387c275c
     pristine_git_object: de54d585410d19536b15fc54179f056e184c22b0
   docs/models/operations/V3ListPaymentInitiationRelatedPaymentsRequest.md:
     id: 28b7f4cb6373
-    last_write_checksum: sha1:3b9f0054321b0d6598f1ce62c77d0e1a0a565749
-    pristine_git_object: f3b026e396f59826c31a662e430bebdad22b99c4
+    last_write_checksum: sha1:fc84e443eb54ae7ca4fc08570f4ed9c3ff08ba84
+    pristine_git_object: 5eda21cb39f7130763834289e4ba3ab023ccffd7
   docs/models/operations/V3ListPaymentInitiationRelatedPaymentsResponse.md:
     id: 1d1c9949b462
     last_write_checksum: sha1:259a1fe505a17a9ff693635f1c6401594ad13f63
     pristine_git_object: 65305f039d05640d3fb21c63c0b86d8e44ba6b85
   docs/models/operations/V3ListPaymentInitiationsRequest.md:
     id: 23f040907f58
-    last_write_checksum: sha1:496da744810bcf56a7c053ee9498ffcd7b6c6e23
-    pristine_git_object: 52d88c0688f043d5a7ad1e7c2fe787f8394005f5
+    last_write_checksum: sha1:639a6d4de6e1a8c15446b957a62d53bbcf0fa6b8
+    pristine_git_object: 7d65b653c732cce1233b5be2e1a6e8018a332322
   docs/models/operations/V3ListPaymentInitiationsResponse.md:
     id: 7828cd0f9bd4
     last_write_checksum: sha1:6503540cd16466e2d2401c125f4f32587d54f10b
@@ -1902,16 +1902,16 @@ trackedFiles:
     pristine_git_object: 298f594189d92a68b6c924a5845fb3e95cad11c7
   docs/models/operations/V3ListPaymentsRequest.md:
     id: 3a3666f196ea
-    last_write_checksum: sha1:0bdc1587180bd098d063e7fb424e3f3f19b10423
-    pristine_git_object: 0bf4f6b17a7c6abd7d9a0588e169edca2c17f329
+    last_write_checksum: sha1:3724cb255ebb9d4b7cfa32ff30e9065f501554e0
+    pristine_git_object: 85c6a07f1cd66d4157f23f8a05ec6142ec16b25d
   docs/models/operations/V3ListPaymentsResponse.md:
     id: 48da6de6ea03
     last_write_checksum: sha1:20754f6b6e52b3432a5cca0795bde6c855ff7b4e
     pristine_git_object: 34e31b7192370ba47fc8570a9ed6743f733a1be1
   docs/models/operations/V3ListPoolsRequest.md:
     id: 2594d862a951
-    last_write_checksum: sha1:5146ab90e00832a0565789d97bd4ffc13b874f55
-    pristine_git_object: f9d52dd31ee9968b8541b80ddf0cdfc6a5fbc400
+    last_write_checksum: sha1:714f28528d00570fb8dd615a6b97d7fd42c7c668
+    pristine_git_object: fd5bbe89964026405971afcdd9e6b4aab0654ffb
   docs/models/operations/V3ListPoolsResponse.md:
     id: 84029f9b0f48
     last_write_checksum: sha1:ad8a637bb811463341f1e592e3908a31dd7ecfe1
@@ -4558,8 +4558,8 @@ trackedFiles:
     pristine_git_object: 316edecba62e129b1d32f66329adb5803650dec5
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:f3b52e21916ffd7f9df95c2c035b66426dd0476e
-    pristine_git_object: a89c12b83ae160e2cdbf5d9d48351de66b7a6921
+    last_write_checksum: sha1:dc2f91fd3ca83dabc81349324ae1c254fba51971
+    pristine_git_object: 28b9e0eb657a7d53340c4bde785a28d2c8d26a3f
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4666,8 +4666,8 @@ trackedFiles:
     pristine_git_object: 40b385ffd39063b0d9058cc779bcb1989a00bf50
   src/main/java/com/formance/formance_sdk/SDKConfiguration.java:
     id: de4dbe77587e
-    last_write_checksum: sha1:8c1e687efedd162b721ff8bcb0cfcd94fcdca924
-    pristine_git_object: 1d9afe5216c18ed5bc3f0ea9890b5346d14e89b4
+    last_write_checksum: sha1:5f60dceb66ef85115932ee878dde7ac67da062fe
+    pristine_git_object: 00ebdf798d23da46e1b9f833070ad2cdd4af64e5
   src/main/java/com/formance/formance_sdk/Search.java:
     id: "857427518e56"
     last_write_checksum: sha1:519c982d8e240810db1a534f27a3fb978e7adc37
@@ -5682,8 +5682,8 @@ trackedFiles:
     pristine_git_object: 9e8ed2d42061d2e135981e4c73f1ef5602710eba
   src/main/java/com/formance/formance_sdk/models/operations/ListPoliciesRequest.java:
     id: bce97db589e8
-    last_write_checksum: sha1:1f9e2c3e726792e780367de9208a0dc2fc6539fd
-    pristine_git_object: c5f0af17a3fa22aa0e6b1dab3ab7eb70a64015af
+    last_write_checksum: sha1:c48e28f76b981cdc7da47406309341a348dc1245
+    pristine_git_object: 8a94679f0c07d1f2c2317431331d22bb06609bcf
   src/main/java/com/formance/formance_sdk/models/operations/ListPoliciesRequestBuilder.java:
     id: 06857e45770f
     last_write_checksum: sha1:b761648df4902175d1f4466f211dbb41ffab67c1
@@ -5706,8 +5706,8 @@ trackedFiles:
     pristine_git_object: 6bf50721b4b3a495c995b8f02822bb590ebddd9e
   src/main/java/com/formance/formance_sdk/models/operations/ListReconciliationsRequest.java:
     id: 99fd91ca4906
-    last_write_checksum: sha1:b8b4781d0c42078a32eee53e3c73ef97a84e0577
-    pristine_git_object: ab1a0834495e717e9165f180805bf3e604e1e693
+    last_write_checksum: sha1:99871494529dc60f41e0bb0ebf327a07c1e7ea72
+    pristine_git_object: 22b98b790e8562fe8fb59f736c643316b388b3e6
   src/main/java/com/formance/formance_sdk/models/operations/ListReconciliationsRequestBuilder.java:
     id: 80e06874b83e
     last_write_checksum: sha1:201b2d09c9df80a13dad050bfba99c344636eb3f
@@ -6258,8 +6258,8 @@ trackedFiles:
     pristine_git_object: e3b043129e3b070d593502cb99a37b710429e2d2
   src/main/java/com/formance/formance_sdk/models/operations/V2CountAccountsRequest.java:
     id: fb81763c0625
-    last_write_checksum: sha1:b0ced27a9494d430ba45afd540982b6537cb14f6
-    pristine_git_object: 2e4c7933162ed5f8c7f1b3a5e3eb13cd7d312db4
+    last_write_checksum: sha1:cc013e91a9ea97ce94649b2a70bfebd906fa3018
+    pristine_git_object: 978d451468eecfee857095058e5885412a99976e
   src/main/java/com/formance/formance_sdk/models/operations/V2CountAccountsRequestBuilder.java:
     id: d0cef59de48f
     last_write_checksum: sha1:1ccf49dcc4cc472ecdc3b4d32b15a99c1166a4f7
@@ -6270,8 +6270,8 @@ trackedFiles:
     pristine_git_object: 05930cd8438c6d9236476b03555b578446d499b7
   src/main/java/com/formance/formance_sdk/models/operations/V2CountTransactionsRequest.java:
     id: 64ea23305f90
-    last_write_checksum: sha1:95763da414c8155651b74963a1cfe6f752f55dc3
-    pristine_git_object: 3456051443aefc3c4299c7b1b73095d4d97483b7
+    last_write_checksum: sha1:e9e212cce8689bf36b277518527a883973b305c2
+    pristine_git_object: 923d2c79f414080da8f7846f7cf46331b904237a
   src/main/java/com/formance/formance_sdk/models/operations/V2CountTransactionsRequestBuilder.java:
     id: 7cbb1f421c86
     last_write_checksum: sha1:d74ab23cc249a3439271c5e7a7259bda0aad11de
@@ -6482,8 +6482,8 @@ trackedFiles:
     pristine_git_object: a1e4343a7bd3462604faced893d0557e20878c20
   src/main/java/com/formance/formance_sdk/models/operations/V2GetBalancesAggregatedRequest.java:
     id: 8b305d00237e
-    last_write_checksum: sha1:31a5ea1ec0e2a7fbb73a0e2a27eff055266f6f6f
-    pristine_git_object: e863ae07716d43703fb4070d3cb95533dd69c3a4
+    last_write_checksum: sha1:388af6d81d33525564d2bb1eff721ba18f931aed
+    pristine_git_object: 9c7f91f0ee5ae0d0b9f508819146eef92b01138b
   src/main/java/com/formance/formance_sdk/models/operations/V2GetBalancesAggregatedRequestBuilder.java:
     id: 800a27d639b1
     last_write_checksum: sha1:cc78d600f5be8763c44b5e571e01a314f230eca8
@@ -6670,8 +6670,8 @@ trackedFiles:
     pristine_git_object: e75283bfe51e769421c03eea78415d7d19f84ed2
   src/main/java/com/formance/formance_sdk/models/operations/V2ListAccountsRequest.java:
     id: cfa14937ae29
-    last_write_checksum: sha1:77208593e8b4e722760b9146380353079f6c2dd4
-    pristine_git_object: dd93db32a6373383126ffe4845b3aada59dcd0bf
+    last_write_checksum: sha1:7c858426b563a9ed934cea49e2a37d0abd0979c1
+    pristine_git_object: 0e6ad80c0a97d99b92b0cdf30902350d45ec8d27
   src/main/java/com/formance/formance_sdk/models/operations/V2ListAccountsRequestBuilder.java:
     id: 0faafb623fd8
     last_write_checksum: sha1:015ae0158e07e7c3d5bedeee43c83ba09e59a4a7
@@ -6714,8 +6714,8 @@ trackedFiles:
     pristine_git_object: fd09fcef021bda829c0499edfec0010ccab42e85
   src/main/java/com/formance/formance_sdk/models/operations/V2ListLedgersRequest.java:
     id: b6e10bc598d5
-    last_write_checksum: sha1:f5bf0b35c99ce41cd5580543fa78a94859123e1f
-    pristine_git_object: d035ca06f43089652ce049d902ae94b33cf933f9
+    last_write_checksum: sha1:e392991850ad097f73314bc4326c9d0114350722
+    pristine_git_object: 19e8769b05c7dac59e0d6766a1716a76904c747f
   src/main/java/com/formance/formance_sdk/models/operations/V2ListLedgersRequestBuilder.java:
     id: 347bd1f7f9b1
     last_write_checksum: sha1:43208e27650b1615dae324bb1b8da04529480855
@@ -6726,8 +6726,8 @@ trackedFiles:
     pristine_git_object: 77be1d1b47f5f9815e97358fed1acd562b34ab21
   src/main/java/com/formance/formance_sdk/models/operations/V2ListLogsRequest.java:
     id: dbdc7c01274e
-    last_write_checksum: sha1:164d0352be5db33438fc9cd2ecc118327ae5e0c8
-    pristine_git_object: aa462c46a1f114d6f2b59bcac6d28cb89287817e
+    last_write_checksum: sha1:46ed1afe049c422349e63d831a13dd87efb53e94
+    pristine_git_object: e7493159c59b04337f67bc35f76d5208fa908a8d
   src/main/java/com/formance/formance_sdk/models/operations/V2ListLogsRequestBuilder.java:
     id: 3afcee0214c6
     last_write_checksum: sha1:75ab4bf3ed09b61f63335a76c66e75369e946ed5
@@ -6782,8 +6782,8 @@ trackedFiles:
     pristine_git_object: c5ed42b307367c73299f919c4d4cfa0b0fa3c19a
   src/main/java/com/formance/formance_sdk/models/operations/V2ListTransactionsRequest.java:
     id: 32bf28eb1a27
-    last_write_checksum: sha1:e77d6496f6ae6fd3fc57383ad6c0338e4757c01c
-    pristine_git_object: 9192bdb7acde084e4597927a93af4766fae45dc0
+    last_write_checksum: sha1:4860831273c1e82741e3e0e83f779db32212c26e
+    pristine_git_object: a91fac835f65d7b2fab731dee76e582f25c4acd3
   src/main/java/com/formance/formance_sdk/models/operations/V2ListTransactionsRequestBuilder.java:
     id: 5ae47ac854d9
     last_write_checksum: sha1:823f3cccce780c18b4f4871647b73cc546258808
@@ -7354,8 +7354,8 @@ trackedFiles:
     pristine_git_object: 5633a9eb4693ea276ae9653535862ce14b75f2f7
   src/main/java/com/formance/formance_sdk/models/operations/V3ListAccountsRequest.java:
     id: 1c7304b3ca10
-    last_write_checksum: sha1:a3c07a7610228bb21c6c6efaa3a15df88304a8bb
-    pristine_git_object: ba48b9fc5be690d16b1d575596a6d7a393864272
+    last_write_checksum: sha1:e338ee93f273eb303501795a4d2c7b0b84486108
+    pristine_git_object: 43a2349c31143b5e7aaecbda0be9785a55f746ee
   src/main/java/com/formance/formance_sdk/models/operations/V3ListAccountsRequestBuilder.java:
     id: da588428a1ec
     last_write_checksum: sha1:c7cdd6a3dccaacb40b84068f723bd6cb9c0536f5
@@ -7366,8 +7366,8 @@ trackedFiles:
     pristine_git_object: 0aa0a21c1641875be2e883ddd27fbc51d7d6eea8
   src/main/java/com/formance/formance_sdk/models/operations/V3ListBankAccountsRequest.java:
     id: 3797edc5dbcd
-    last_write_checksum: sha1:19dc5c5974930cc4425ef14dc1ab94139e7c41bf
-    pristine_git_object: 9a6f4122ae04215fe3fcf4af45a8e6aa2175076a
+    last_write_checksum: sha1:20a5f6e2ae746b14ccb4de93ee9d1ec12115c2dc
+    pristine_git_object: 691760ca7301ec9b93b5dd0109fdf01c966d9505
   src/main/java/com/formance/formance_sdk/models/operations/V3ListBankAccountsRequestBuilder.java:
     id: ac2ec968fcb1
     last_write_checksum: sha1:1651978977c054abf36614f3e5b37ca5decfaae4
@@ -7398,8 +7398,8 @@ trackedFiles:
     pristine_git_object: 420cf9345a1493a51a869f576cbbec707072d666
   src/main/java/com/formance/formance_sdk/models/operations/V3ListConnectorSchedulesRequest.java:
     id: be157b6b8579
-    last_write_checksum: sha1:8dcb4b4f1c046b896e0e3bd59b83392dbf0bd364
-    pristine_git_object: acac38bc6e7221a61f72d8badd3725dcea416562
+    last_write_checksum: sha1:9fc57f4d6e69b48d04ad68b268e95641be70ecea
+    pristine_git_object: 5929c522f2f95dd5a97ec30b8638962a1d01870e
   src/main/java/com/formance/formance_sdk/models/operations/V3ListConnectorSchedulesRequestBuilder.java:
     id: fd9f694a703a
     last_write_checksum: sha1:ecc4931a9e3f724f4f60fdcaccbf0a40e8ba1490
@@ -7410,8 +7410,8 @@ trackedFiles:
     pristine_git_object: 5047042df587fd5c848010c8ebc05fb6686ecd00
   src/main/java/com/formance/formance_sdk/models/operations/V3ListConnectorsRequest.java:
     id: 354cb90e09dd
-    last_write_checksum: sha1:18beabd1a34702adfba61535db1f02e5d1207443
-    pristine_git_object: c202fad06485406cc578c540d125e53f7947b07a
+    last_write_checksum: sha1:b7056f028fb7efa3776d87e4feaefcff63f0d398
+    pristine_git_object: c2ef7e436759aa5c91c612df3fabd0ba37eb9d45
   src/main/java/com/formance/formance_sdk/models/operations/V3ListConnectorsRequestBuilder.java:
     id: 27b0ed05faf7
     last_write_checksum: sha1:31d283ba3791ed93d06cccdea4bdf6bc0178a4a2
@@ -7422,8 +7422,8 @@ trackedFiles:
     pristine_git_object: ad582556888400540adf9cc1e62d417a5c716655
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationAdjustmentsRequest.java:
     id: 9c5c04541d40
-    last_write_checksum: sha1:427c48cb00476debb8c78996bb34462685b91d1f
-    pristine_git_object: e4535184e48d14ab5a728ec696e5713e9d218440
+    last_write_checksum: sha1:73fa7f19d01d7473b86e77f8c6b6360230e94839
+    pristine_git_object: 89d1168348ab9a93eab19331a1f4a2f783279c0d
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationAdjustmentsRequestBuilder.java:
     id: 37c7c46e2a27
     last_write_checksum: sha1:34ecb17b0c0f1dafa7e499ff1364fa71e1f26d96
@@ -7434,8 +7434,8 @@ trackedFiles:
     pristine_git_object: fe47a20ce305261ae651a012eb4cd7b3598ca9a2
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationRelatedPaymentsRequest.java:
     id: 3ceba7d30292
-    last_write_checksum: sha1:a55567c3b7ff870849b65c3fc8224073edfdd84a
-    pristine_git_object: fbdf833a05e66ea76d9f92256a4f6f9f56edc84b
+    last_write_checksum: sha1:ecb5b3cc14f5f7b5859db939685ea8fe17fdd4ad
+    pristine_git_object: 28d6fc0690f9e944d4b862cfda03c0b06493f68a
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationRelatedPaymentsRequestBuilder.java:
     id: 3ce67da6d388
     last_write_checksum: sha1:e763ed47b4a64416cf1716dc13bc188c88da1ff1
@@ -7446,8 +7446,8 @@ trackedFiles:
     pristine_git_object: cae7f4867cfe98b02a596273c05dce9f053a5cf6
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationsRequest.java:
     id: 49dbd29e5515
-    last_write_checksum: sha1:25c992847a5fdf28185370d61e9f2150231a7f65
-    pristine_git_object: 61c63605ebc422178b08e0b21de83782788641ac
+    last_write_checksum: sha1:2ae657267c90a2aa9397d6829e34977b2f8f945b
+    pristine_git_object: 8446fc1f334e87cc65ca4335ee8822d22faec573
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentInitiationsRequestBuilder.java:
     id: 84760563c4fd
     last_write_checksum: sha1:612ec843f81ec0b6d0fb7a7f6137fff99de63cdf
@@ -7506,8 +7506,8 @@ trackedFiles:
     pristine_git_object: a3d6febaa7e754cfb1764a0ba21c860a00844aa2
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentsRequest.java:
     id: a9150ea64cb4
-    last_write_checksum: sha1:c1e9284aae4b1212f06a5a9a7b350655b3954279
-    pristine_git_object: d43aade6f28c9af38572a0fe02b8715d2756251d
+    last_write_checksum: sha1:b1196abc7b2673e8dc7d4ff6ed66e35b394225d9
+    pristine_git_object: f1fef84b22d14291907b09d91c0a422e15b24ebf
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPaymentsRequestBuilder.java:
     id: aaae72d2b2de
     last_write_checksum: sha1:05929393485c4c6fe8eb7251b92cdac8d65de95f
@@ -7518,8 +7518,8 @@ trackedFiles:
     pristine_git_object: 39e0afb5893c5498ac0183e897297ef1ebab8cf3
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPoolsRequest.java:
     id: 77c13213e744
-    last_write_checksum: sha1:2f756d86d9f5bf4c4e3bd29c12d55aae8acceb7b
-    pristine_git_object: 8da84b630538d09d997335963d5f78024e4da86d
+    last_write_checksum: sha1:0e521b55724d1d9af22f5dafe98a18fb024b8156
+    pristine_git_object: f59a940c6e6cf961f7305c0cf6d05fcb339fb400
   src/main/java/com/formance/formance_sdk/models/operations/V3ListPoolsRequestBuilder.java:
     id: 922952d2a84b
     last_write_checksum: sha1:8f540d4a89774bed0ccc19963c03407fc8a4fe41
@@ -13968,7 +13968,7 @@ examples:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `sdk.ledger.v2.listAccounts()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response.resource` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.createTransaction()`: \n  *  `request` **Changed**\n  *  `response.data.template` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.auth.v1.listClients()`:  `response.data[]` **Changed** (Breaking ⚠️)\n* `sdk.auth.v1.readClient()`:  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.auth.v1.updateClient()`: \n  *  `request.createClientRequest.metadata.Map<string>` **Changed** (Breaking ⚠️)\n  *  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.listPools()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response.cursor.data[]` **Changed**\n* `sdk.payments.v3.listPayments()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listPaymentServiceUsers()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listPaymentInitiations()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listPaymentInitiationRelatedPayments()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listPaymentInitiationAdjustments()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listConnectors()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listConnectorSchedules()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listBankAccounts()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v3.listAccounts()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response.cursor.data[].connector` **Added**\n* `sdk.payments.v3.getConnectorConfig()`:  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.paymentslistAccounts()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n* `sdk.payments.v1.listTransferInitiations()`:  `response.cursor.data[].relatedPayments[].status` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.getTransferInitiation()`:  `response.data.relatedPayments[].status` **Changed** (Breaking ⚠️)\n* `sdk.ledger.getInfo()`: \n  *  `response.errorCode` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.getMetrics()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.addMetadataOnTransaction()`: \n  *  `request.schemaVersion` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.addMetadataToAccount()`: \n  *  `request.schemaVersion` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.countAccounts()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.countTransactions()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.listLedgers()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.cursor.data[].deletedAt` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.createExporter()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.createLedger()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.createPipeline()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.listExporters()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.deleteAccountMetadata()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.deleteExporter()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.deleteLedgerMetadata()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.deletePipeline()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.deleteTransactionMetadata()`: \n  *  `response` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getAccount()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getBalancesAggregated()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getExporterState()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getLedger()`: \n  *  `response.data.deletedAt` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getLedgerInfo()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getPipelineState()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getTransaction()`: \n  *  `response.data.template` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.getVolumesWithBalances()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response.resource` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.importLogs()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.auth.v1.createSecret()`: \n  *  `request.createSecretRequest.metadata.Map<string>` **Changed** (Breaking ⚠️)\n  *  `response.data.metadata.Map<string>` **Changed** (Breaking ⚠️)\n* `sdk.auth.v1.createClient()`: \n  *  `request.metadata.Map<string>` **Changed** (Breaking ⚠️)\n  *  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.createBulk()`: \n  *  `request` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.listLogs()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.listPipelines()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.listTransactions()`: \n  *  `request.requestBody` **Removed** (Breaking ⚠️)\n  *  `response` **Changed**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.readStats()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.resetPipeline()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.revertTransaction()`: \n  *  `request` **Changed**\n  *  `response.data.template` **Added**\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.startPipeline()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.stopPipeline()`:  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.ledger.v2.updateLedgerMetadata()`: \n  *  `response.errorCode` **Changed** (Breaking ⚠️)\n  *  `errorCode` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.getPoolBalancesLatest()`:  `response.data` **Changed** (Breaking ⚠️)\n* `sdk.payments.v1.createTransferInitiation()`:  `response.data.relatedPayments[].status` **Changed** (Breaking ⚠️)\n* `sdk.payments.v3.getPool()`:  `response.data` **Changed**\n* `sdk.payments.v3.getAccount()`:  `response.data.connector` **Added**\n* `sdk.payments.v3.updatePoolQuery()`: **Added**\n* `sdk.payments.v1.createPool()`: \n  *  `request` **Changed**\n  *  `response.data` **Changed**\n* `sdk.payments.v3.listPaymentServiceUserConnectionsFromConnectorId()`: **Added**\n* `sdk.payments.v1.getPool()`:  `response.data` **Changed**\n* `sdk.payments.v1.getPoolBalances()`:  `response.data.balances[].relatedAccounts` **Added**\n* `sdk.payments.v3.deletePaymentServiceUserConnectionFromConnectorId()`: **Added**\n* `sdk.payments.v3.getPaymentServiceUserLinkAttemptFromConnectorId()`: **Added**\n* `sdk.payments.v1.listPools()`:  `response.cursor.data[]` **Changed**\n* `sdk.payments.v3.forwardPaymentServiceUserToProvider()`: **Added**\n* `sdk.payments.v3.deletePaymentServiceUserConnector()`: **Added**\n* `sdk.payments.v3.createAccount()`:  `response.data.connector` **Added**\n* `sdk.payments.v3.listPaymentServiceUserLinkAttemptsFromConnectorId()`: **Added**\n* `sdk.payments.v3.updateLinkForPaymentServiceUserOnConnector()`: **Added**\n* `sdk.payments.v3.createPool()`:  `request` **Changed**\n* `sdk.payments.v3.getPoolBalancesLatest()`:  `response.data[].relatedAccounts` **Added**\n* `sdk.payments.v3.getPoolBalances()`:  `response.data[].relatedAccounts` **Added**\n* `sdk.payments.v3.listPaymentServiceUserConnections()`: **Added**\n* `sdk.payments.v3.installConnector()`: \n  *  `request.v3InstallConnectorRequest` **Changed**\n* `sdk.payments.v3.deletePaymentServiceUser()`: **Added**\n* `sdk.payments.v3.createLinkForPaymentServiceUser()`: **Added**\n* `sdk.payments.v1.updatePoolQuery()`: **Added**\n* `sdk.ledger.v2.updateExporter()`: **Added**\n* `sdk.ledger.v2.runQuery()`: **Added**\n* `sdk.ledger.v2.restoreBucket()`: **Added**\n* `sdk.ledger.v2.listSchemas()`: **Added**\n* `sdk.ledger.v2.insertSchema()`: **Added**\n* `sdk.ledger.v2.getSchema()`: **Added**\n* `sdk.ledger.v2.deleteBucket()`: **Added**\n* `sdk.payments.v3.v3UpdateConnectorConfig()`: \n  *  `request.v3InstallConnectorRequest` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `sdk.ledger.v2.countAccounts()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.countTransactions()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.getBalancesAggregated()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.getVolumesWithBalances()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.listAccounts()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.listLedgers()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.listLogs()`: \n  *  `request.query` **Added**\n* `sdk.ledger.v2.listTransactions()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listAccounts()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listBankAccounts()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listConnectorSchedules()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listConnectors()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listPaymentInitiationAdjustments()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listPaymentInitiationRelatedPayments()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listPaymentInitiations()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listPayments()`: \n  *  `request.query` **Added**\n* `sdk.payments.v3.listPools()`: \n  *  `request.query` **Added**\n* `sdk.reconciliation.v1.listPolicies()`: \n  *  `request.query` **Added**\n* `sdk.reconciliation.v1.listReconciliations()`: \n  *  `request.query` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

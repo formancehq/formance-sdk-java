@@ -8,8 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -35,22 +38,30 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentInitiationID")
     private String paymentInitiationID;
 
+
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
     @JsonCreator
     public V3ListPaymentInitiationAdjustmentsRequest(
             Optional<String> cursor,
             Optional<Long> pageSize,
-            String paymentInitiationID) {
+            String paymentInitiationID,
+            Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(paymentInitiationID, "paymentInitiationID");
+        Utils.checkNotNull(query, "query");
         this.cursor = cursor;
         this.pageSize = pageSize;
         this.paymentInitiationID = paymentInitiationID;
+        this.query = query;
     }
     
     public V3ListPaymentInitiationAdjustmentsRequest(
             String paymentInitiationID) {
-        this(Optional.empty(), Optional.empty(), paymentInitiationID);
+        this(Optional.empty(), Optional.empty(), paymentInitiationID,
+            Optional.empty());
     }
 
     /**
@@ -78,6 +89,12 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
     @JsonIgnore
     public String paymentInitiationID() {
         return paymentInitiationID;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     public static Builder builder() {
@@ -138,6 +155,19 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return this;
     }
 
+    public V3ListPaymentInitiationAdjustmentsRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V3ListPaymentInitiationAdjustmentsRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,13 +180,15 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return 
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
-            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID);
+            Utils.enhancedDeepEquals(this.paymentInitiationID, other.paymentInitiationID) &&
+            Utils.enhancedDeepEquals(this.query, other.query);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, pageSize, paymentInitiationID);
+            cursor, pageSize, paymentInitiationID,
+            query);
     }
     
     @Override
@@ -164,7 +196,8 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         return Utils.toString(V3ListPaymentInitiationAdjustmentsRequest.class,
                 "cursor", cursor,
                 "pageSize", pageSize,
-                "paymentInitiationID", paymentInitiationID);
+                "paymentInitiationID", paymentInitiationID,
+                "query", query);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -175,6 +208,8 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
         private Optional<Long> pageSize = Optional.empty();
 
         private String paymentInitiationID;
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -234,10 +269,24 @@ public class V3ListPaymentInitiationAdjustmentsRequest {
             return this;
         }
 
+
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
         public V3ListPaymentInitiationAdjustmentsRequest build() {
 
             return new V3ListPaymentInitiationAdjustmentsRequest(
-                cursor, pageSize, paymentInitiationID);
+                cursor, pageSize, paymentInitiationID,
+                query);
         }
 
     }

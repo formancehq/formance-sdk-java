@@ -7,9 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -24,19 +27,26 @@ public class V2CountAccountsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
+
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
     @JsonCreator
     public V2CountAccountsRequest(
             String ledger,
-            Optional<OffsetDateTime> pit) {
+            Optional<OffsetDateTime> pit,
+            Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
+        Utils.checkNotNull(query, "query");
         this.ledger = ledger;
         this.pit = pit;
+        this.query = query;
     }
     
     public V2CountAccountsRequest(
             String ledger) {
-        this(ledger, Optional.empty());
+        this(ledger, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -50,6 +60,12 @@ public class V2CountAccountsRequest {
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
         return pit;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     public static Builder builder() {
@@ -79,6 +95,19 @@ public class V2CountAccountsRequest {
         return this;
     }
 
+    public V2CountAccountsRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V2CountAccountsRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,20 +119,22 @@ public class V2CountAccountsRequest {
         V2CountAccountsRequest other = (V2CountAccountsRequest) o;
         return 
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
-            Utils.enhancedDeepEquals(this.pit, other.pit);
+            Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.query, other.query);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ledger, pit);
+            ledger, pit, query);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CountAccountsRequest.class,
                 "ledger", ledger,
-                "pit", pit);
+                "pit", pit,
+                "query", query);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,6 +143,8 @@ public class V2CountAccountsRequest {
         private String ledger;
 
         private Optional<OffsetDateTime> pit = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -140,10 +173,23 @@ public class V2CountAccountsRequest {
             return this;
         }
 
+
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
         public V2CountAccountsRequest build() {
 
             return new V2CountAccountsRequest(
-                ledger, pit);
+                ledger, pit, query);
         }
 
     }

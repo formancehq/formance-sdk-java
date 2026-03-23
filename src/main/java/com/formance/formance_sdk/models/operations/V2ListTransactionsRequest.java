@@ -10,10 +10,12 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -57,6 +59,10 @@ public class V2ListTransactionsRequest {
     private Optional<OffsetDateTime> pit;
 
 
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=reverse")
     private Optional<Boolean> reverse;
 
@@ -76,6 +82,7 @@ public class V2ListTransactionsRequest {
             Optional<? extends V2ListTransactionsOrder> order,
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
+            Optional<? extends Map<String, Object>> query,
             Optional<Boolean> reverse,
             Optional<String> sort) {
         Utils.checkNotNull(cursor, "cursor");
@@ -84,6 +91,7 @@ public class V2ListTransactionsRequest {
         Utils.checkNotNull(order, "order");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(reverse, "reverse");
         Utils.checkNotNull(sort, "sort");
         this.cursor = cursor;
@@ -92,6 +100,7 @@ public class V2ListTransactionsRequest {
         this.order = order;
         this.pageSize = pageSize;
         this.pit = pit;
+        this.query = query;
         this.reverse = reverse;
         this.sort = sort;
     }
@@ -100,7 +109,7 @@ public class V2ListTransactionsRequest {
             String ledger) {
         this(Optional.empty(), Optional.empty(), ledger,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,6 +159,12 @@ public class V2ListTransactionsRequest {
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
         return pit;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     @JsonIgnore
@@ -276,6 +291,19 @@ public class V2ListTransactionsRequest {
         return this;
     }
 
+    public V2ListTransactionsRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V2ListTransactionsRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     public V2ListTransactionsRequest withReverse(boolean reverse) {
         Utils.checkNotNull(reverse, "reverse");
         this.reverse = Optional.ofNullable(reverse);
@@ -328,6 +356,7 @@ public class V2ListTransactionsRequest {
             Utils.enhancedDeepEquals(this.order, other.order) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.reverse, other.reverse) &&
             Utils.enhancedDeepEquals(this.sort, other.sort);
     }
@@ -337,7 +366,7 @@ public class V2ListTransactionsRequest {
         return Utils.enhancedHash(
             cursor, expand, ledger,
             order, pageSize, pit,
-            reverse, sort);
+            query, reverse, sort);
     }
     
     @Override
@@ -349,6 +378,7 @@ public class V2ListTransactionsRequest {
                 "order", order,
                 "pageSize", pageSize,
                 "pit", pit,
+                "query", query,
                 "reverse", reverse,
                 "sort", sort);
     }
@@ -368,6 +398,8 @@ public class V2ListTransactionsRequest {
         private Optional<Long> pageSize = Optional.empty();
 
         private Optional<OffsetDateTime> pit = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Optional<Boolean> reverse = Optional.empty();
 
@@ -483,6 +515,19 @@ public class V2ListTransactionsRequest {
         }
 
 
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+
         public Builder reverse(boolean reverse) {
             Utils.checkNotNull(reverse, "reverse");
             this.reverse = Optional.ofNullable(reverse);
@@ -523,7 +568,7 @@ public class V2ListTransactionsRequest {
             return new V2ListTransactionsRequest(
                 cursor, expand, ledger,
                 order, pageSize, pit,
-                reverse, sort);
+                query, reverse, sort);
         }
 
     }

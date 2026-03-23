@@ -8,9 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -25,6 +28,10 @@ public class V2GetBalancesAggregatedRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pit")
     private Optional<OffsetDateTime> pit;
 
+
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
     /**
      * Use insertion date instead of effective date
      */
@@ -35,18 +42,22 @@ public class V2GetBalancesAggregatedRequest {
     public V2GetBalancesAggregatedRequest(
             String ledger,
             Optional<OffsetDateTime> pit,
+            Optional<? extends Map<String, Object>> query,
             Optional<Boolean> useInsertionDate) {
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(useInsertionDate, "useInsertionDate");
         this.ledger = ledger;
         this.pit = pit;
+        this.query = query;
         this.useInsertionDate = useInsertionDate;
     }
     
     public V2GetBalancesAggregatedRequest(
             String ledger) {
-        this(ledger, Optional.empty(), Optional.empty());
+        this(ledger, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -60,6 +71,12 @@ public class V2GetBalancesAggregatedRequest {
     @JsonIgnore
     public Optional<OffsetDateTime> pit() {
         return pit;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     /**
@@ -97,6 +114,19 @@ public class V2GetBalancesAggregatedRequest {
         return this;
     }
 
+    public V2GetBalancesAggregatedRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V2GetBalancesAggregatedRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     /**
      * Use insertion date instead of effective date
      */
@@ -128,13 +158,15 @@ public class V2GetBalancesAggregatedRequest {
         return 
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.pit, other.pit) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.useInsertionDate, other.useInsertionDate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ledger, pit, useInsertionDate);
+            ledger, pit, query,
+            useInsertionDate);
     }
     
     @Override
@@ -142,6 +174,7 @@ public class V2GetBalancesAggregatedRequest {
         return Utils.toString(V2GetBalancesAggregatedRequest.class,
                 "ledger", ledger,
                 "pit", pit,
+                "query", query,
                 "useInsertionDate", useInsertionDate);
     }
 
@@ -151,6 +184,8 @@ public class V2GetBalancesAggregatedRequest {
         private String ledger;
 
         private Optional<OffsetDateTime> pit = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Optional<Boolean> useInsertionDate = Optional.empty();
 
@@ -182,6 +217,19 @@ public class V2GetBalancesAggregatedRequest {
         }
 
 
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+
         /**
          * Use insertion date instead of effective date
          */
@@ -203,7 +251,8 @@ public class V2GetBalancesAggregatedRequest {
         public V2GetBalancesAggregatedRequest build() {
 
             return new V2GetBalancesAggregatedRequest(
-                ledger, pit, useInsertionDate);
+                ledger, pit, query,
+                useInsertionDate);
         }
 
     }
