@@ -8,8 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -29,18 +32,25 @@ public class ListReconciliationsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
+
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
     @JsonCreator
     public ListReconciliationsRequest(
             Optional<String> cursor,
-            Optional<Long> pageSize) {
+            Optional<Long> pageSize,
+            Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(query, "query");
         this.cursor = cursor;
         this.pageSize = pageSize;
+        this.query = query;
     }
     
     public ListReconciliationsRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -60,6 +70,12 @@ public class ListReconciliationsRequest {
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     public static Builder builder() {
@@ -111,6 +127,19 @@ public class ListReconciliationsRequest {
         return this;
     }
 
+    public ListReconciliationsRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public ListReconciliationsRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,20 +151,22 @@ public class ListReconciliationsRequest {
         ListReconciliationsRequest other = (ListReconciliationsRequest) o;
         return 
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.query, other.query);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, pageSize);
+            cursor, pageSize, query);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListReconciliationsRequest.class,
                 "cursor", cursor,
-                "pageSize", pageSize);
+                "pageSize", pageSize,
+                "query", query);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -144,6 +175,8 @@ public class ListReconciliationsRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -193,10 +226,23 @@ public class ListReconciliationsRequest {
             return this;
         }
 
+
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
         public ListReconciliationsRequest build() {
 
             return new ListReconciliationsRequest(
-                cursor, pageSize);
+                cursor, pageSize, query);
         }
 
     }

@@ -11,8 +11,11 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -38,6 +41,10 @@ public class V2ListLedgersRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
+
+    @SpeakeasyMetadata("queryParam:serialization=json,name=query")
+    private Optional<? extends Map<String, Object>> query;
+
     /**
      * Sort results using a field name and order (ascending or descending).
      * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -51,20 +58,23 @@ public class V2ListLedgersRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeleted,
             Optional<Long> pageSize,
+            Optional<? extends Map<String, Object>> query,
             Optional<String> sort) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(includeDeleted, "includeDeleted");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(sort, "sort");
         this.cursor = cursor;
         this.includeDeleted = includeDeleted;
         this.pageSize = pageSize;
+        this.query = query;
         this.sort = sort;
     }
     
     public V2ListLedgersRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -92,6 +102,12 @@ public class V2ListLedgersRequest {
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> query() {
+        return (Optional<Map<String, Object>>) query;
     }
 
     /**
@@ -172,6 +188,19 @@ public class V2ListLedgersRequest {
         return this;
     }
 
+    public V2ListLedgersRequest withQuery(Map<String, Object> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    public V2ListLedgersRequest withQuery(Optional<? extends Map<String, Object>> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
+
     /**
      * Sort results using a field name and order (ascending or descending).
      * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -208,6 +237,7 @@ public class V2ListLedgersRequest {
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.includeDeleted, other.includeDeleted) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
@@ -215,7 +245,7 @@ public class V2ListLedgersRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             cursor, includeDeleted, pageSize,
-            sort);
+            query, sort);
     }
     
     @Override
@@ -224,6 +254,7 @@ public class V2ListLedgersRequest {
                 "cursor", cursor,
                 "includeDeleted", includeDeleted,
                 "pageSize", pageSize,
+                "query", query,
                 "sort", sort);
     }
 
@@ -235,6 +266,8 @@ public class V2ListLedgersRequest {
         private Optional<Boolean> includeDeleted;
 
         private Optional<Long> pageSize = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> query = Optional.empty();
 
         private Optional<String> sort = Optional.empty();
 
@@ -306,6 +339,19 @@ public class V2ListLedgersRequest {
         }
 
 
+        public Builder query(Map<String, Object> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        public Builder query(Optional<? extends Map<String, Object>> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
+        }
+
+
         /**
          * Sort results using a field name and order (ascending or descending).
          * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -335,7 +381,7 @@ public class V2ListLedgersRequest {
 
             return new V2ListLedgersRequest(
                 cursor, includeDeleted, pageSize,
-                sort);
+                query, sort);
         }
 
 
