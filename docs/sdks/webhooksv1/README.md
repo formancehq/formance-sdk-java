@@ -24,15 +24,15 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.ActivateConfigRequest;
 import com.formance.formance_sdk.models.operations.ActivateConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -61,6 +61,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [ActivateConfigRequest](../../models/operations/ActivateConfigRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -68,10 +69,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## changeConfigSecret
 
@@ -88,16 +89,16 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretRequest;
 import com.formance.formance_sdk.models.operations.ChangeConfigSecretResponse;
-import com.formance.formance_sdk.models.shared.ConfigChangeSecret;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ConfigChangeSecret;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -129,6 +130,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [ChangeConfigSecretRequest](../../models/operations/ChangeConfigSecretRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -136,10 +138,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## deactivateConfig
 
@@ -152,15 +154,15 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.DeactivateConfigRequest;
 import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -189,6 +191,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [DeactivateConfigRequest](../../models/operations/DeactivateConfigRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -196,10 +199,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## deleteConfig
 
@@ -212,15 +215,15 @@ Delete a webhooks config by ID.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
 import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -247,6 +250,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [DeleteConfigRequest](../../models/operations/DeleteConfigRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -254,10 +258,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getManyConfigs
 
@@ -270,15 +274,15 @@ Sorted by updated date descending
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
 import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -308,6 +312,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [GetManyConfigsRequest](../../models/operations/GetManyConfigsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -315,10 +320,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## insertConfig
 
@@ -340,16 +345,16 @@ All eventTypes are converted to lower-case when inserted.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.InsertConfigResponse;
-import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ConfigUser;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -383,6 +388,7 @@ public class Application {
 | Parameter                                       | Type                                            | Required                                        | Description                                     |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
 | `request`                                       | [ConfigUser](../../models/shared/ConfigUser.md) | :heavy_check_mark:                              | The request object to use for the request.      |
+| `serverURL`                                     | *String*                                        | :heavy_minus_sign:                              | An optional server URL to use.                  |
 
 ### Response
 
@@ -390,10 +396,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## testConfig
 
@@ -406,15 +412,15 @@ Test a config by sending a webhook to its endpoint.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.TestConfigRequest;
 import com.formance.formance_sdk.models.operations.TestConfigResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -443,6 +449,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [TestConfigRequest](../../models/operations/TestConfigRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -450,10 +457,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## updateConfig
 
@@ -466,17 +473,17 @@ Update a webhooks config by ID.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WebhooksErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateConfigRequest;
 import com.formance.formance_sdk.models.operations.UpdateConfigResponse;
-import com.formance.formance_sdk.models.shared.ConfigUser;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ConfigUser;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws WebhooksErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -511,6 +518,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [UpdateConfigRequest](../../models/operations/UpdateConfigRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -518,7 +526,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/WebhooksErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |

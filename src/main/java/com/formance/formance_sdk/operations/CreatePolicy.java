@@ -9,11 +9,11 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
-import com.formance.formance_sdk.models.shared.PolicyRequest;
-import com.formance.formance_sdk.models.shared.PolicyResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.reconciliation.PolicyRequest;
+import com.formance.formance_sdk.models.reconciliation.PolicyResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -30,10 +30,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class CreatePolicy {
+    
+    /**
+     * CREATE_POLICY_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] CREATE_POLICY_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -42,11 +50,16 @@ public class CreatePolicy {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        CREATE_POLICY_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -110,8 +123,12 @@ public class CreatePolicy {
 
     public static class Sync extends Base
             implements RequestOperation<PolicyRequest, CreatePolicyResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(PolicyRequest request) throws Exception {
@@ -173,7 +190,7 @@ public class CreatePolicy {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw ReconciliationErrorResponse.from(response);
+                    throw ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

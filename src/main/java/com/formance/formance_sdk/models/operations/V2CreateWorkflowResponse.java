@@ -35,14 +35,14 @@ public class V2CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse;
 
     @JsonCreator
     public V2CreateWorkflowResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
+            Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2CreateWorkflowResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse>) v2CreateWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse>) v2CreateWorkflowResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    public V2CreateWorkflowResponse withV2CreateWorkflowResponse(com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse v2CreateWorkflowResponse) {
+    public V2CreateWorkflowResponse withV2CreateWorkflowResponse(com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse v2CreateWorkflowResponse) {
         Utils.checkNotNull(v2CreateWorkflowResponse, "v2CreateWorkflowResponse");
         this.v2CreateWorkflowResponse = Optional.ofNullable(v2CreateWorkflowResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    public V2CreateWorkflowResponse withV2CreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
+    public V2CreateWorkflowResponse withV2CreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
         Utils.checkNotNull(v2CreateWorkflowResponse, "v2CreateWorkflowResponse");
         this.v2CreateWorkflowResponse = v2CreateWorkflowResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2CreateWorkflowResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2CreateWorkflowResponse implements Response {
         /**
          * Created workflow
          */
-        public Builder v2CreateWorkflowResponse(com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse v2CreateWorkflowResponse) {
+        public Builder v2CreateWorkflowResponse(com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse v2CreateWorkflowResponse) {
             Utils.checkNotNull(v2CreateWorkflowResponse, "v2CreateWorkflowResponse");
             this.v2CreateWorkflowResponse = Optional.ofNullable(v2CreateWorkflowResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2CreateWorkflowResponse implements Response {
         /**
          * Created workflow
          */
-        public Builder v2CreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
+        public Builder v2CreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateWorkflowResponse> v2CreateWorkflowResponse) {
             Utils.checkNotNull(v2CreateWorkflowResponse, "v2CreateWorkflowResponse");
             this.v2CreateWorkflowResponse = v2CreateWorkflowResponse;
             return this;

@@ -6,7 +6,6 @@ package com.formance.formance_sdk;
 
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.formance.formance_sdk.models.operations.GetVersionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetVersionsResponse;
 import com.formance.formance_sdk.operations.GetVersions;
@@ -18,7 +17,6 @@ import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -43,14 +41,8 @@ public class SDK {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
-        /*
-         * local server
-         */
-        "http://localhost",
-        /*
-         * A per-organization and per-environment API
-         */
-        "https://{organization}.{environment}.formance.cloud",
+
+        "/",
     };
 
 
@@ -226,68 +218,6 @@ public class SDK {
             return this;
         }
 
-        /**
-         * ServerEnvironment
-         * 
-         * <p>The environment name. Defaults to the production environment.
-         */
-        public enum ServerEnvironment {
-            EU_SANDBOX("eu.sandbox"),
-            EU_WEST1("eu-west-1"),
-            US_EAST1("us-east-1");
-
-            @JsonValue    
-            private final String value;
-
-            ServerEnvironment(String value) {
-                this.value = value;
-            }
-
-            public String value() {
-                return value;
-            }
-
-            public static Optional<ServerEnvironment> fromValue(String value) {
-                for (ServerEnvironment o: ServerEnvironment.values()) {
-                    if (Objects.deepEquals(o.value, value)) {
-                        return Optional.of(o);
-                    }
-                }
-                return Optional.empty();
-            }
-        }
-        /**
-         * Sets the environment variable for url substitution.
-         *
-         * @param environment The value to set.
-         * @return The builder instance.
-         */
-        public Builder environment(ServerEnvironment environment) {
-            for (Map<String, String> server : this.sdkConfiguration.serverVariables()) {
-                if (!server.containsKey("environment")) {
-                    continue;
-                }
-                server.put("environment", environment.toString());
-            }
-
-            return this;
-        }
-        /**
-         * Sets the organization variable for url substitution.
-         *
-         * @param organization The value to set.
-         * @return The builder instance.
-         */
-        public Builder organization(String organization) {
-            for (Map<String, String> server : this.sdkConfiguration.serverVariables()) {
-                if (!server.containsKey("organization")) {
-                    continue;
-                }
-                server.put("organization", organization);
-            }
-
-            return this;
-        }
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.formance.formance_sdk.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  
@@ -358,8 +288,19 @@ public class SDK {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetVersionsResponse getVersionsDirect() {
+        return getVersions(Optional.empty());
+    }
+
+    /**
+     * Show stack version information
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetVersionsResponse getVersions(Optional<String> serverURL) {
         RequestlessOperation<GetVersionsResponse> operation
-            = new GetVersions.Sync(sdkConfiguration, _headers);
+            = new GetVersions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

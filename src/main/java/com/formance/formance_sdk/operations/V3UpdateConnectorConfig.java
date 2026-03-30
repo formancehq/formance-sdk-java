@@ -9,10 +9,10 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -28,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3UpdateConnectorConfig {
+    
+    /**
+     * V3_UPDATE_CONNECTOR_CONFIG_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_UPDATE_CONNECTOR_CONFIG_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -40,11 +48,16 @@ public class V3UpdateConnectorConfig {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_UPDATE_CONNECTOR_CONFIG_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -92,7 +105,7 @@ public class V3UpdateConnectorConfig {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "v3InstallConnectorRequest",
+                    "v3ConnectorConfig",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
@@ -107,8 +120,12 @@ public class V3UpdateConnectorConfig {
 
     public static class Sync extends Base
             implements RequestOperation<V3UpdateConnectorConfigRequest, V3UpdateConnectorConfigResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V3UpdateConnectorConfigRequest request) throws Exception {

@@ -32,7 +32,6 @@ and standard method from web, mobile and desktop applications.
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
-  * [Server Selection](#server-selection)
   * [Error Handling](#error-handling)
   * [Authentication](#authentication-1)
   * [Custom HTTP Client](#custom-http-client)
@@ -55,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:8.0.0'
+implementation 'com.formance:formance-sdk:8.1.0'
 ```
 
 Maven:
@@ -63,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>8.0.0</version>
+    <version>8.1.0</version>
 </dependency>
 ```
 
@@ -138,7 +137,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [deleteClient](docs/sdks/authv1/README.md#deleteclient) - Delete client
 * [deleteSecret](docs/sdks/authv1/README.md#deletesecret) - Delete a secret from a client
 * [getOIDCWellKnowns](docs/sdks/authv1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getServerInfo](docs/sdks/authv1/README.md#getserverinfo) - Get server info
+* [getServerInfoAuth](docs/sdks/authv1/README.md#getserverinfoauth) - Get server info
 * [listClients](docs/sdks/authv1/README.md#listclients) - List clients
 * [listUsers](docs/sdks/authv1/README.md#listusers) - List users
 * [readClient](docs/sdks/authv1/README.md#readclient) - Read client
@@ -158,14 +157,14 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [countAccounts](docs/sdks/ledgerv1/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/ledgerv1/README.md#counttransactions) - Count the transactions from a ledger
 * [createTransaction](docs/sdks/ledgerv1/README.md#createtransaction) - Create a new transaction to a ledger
-* [getAccount](docs/sdks/ledgerv1/README.md#getaccount) - Get account by its address
+* [getAccountLedger](docs/sdks/ledgerv1/README.md#getaccountledger) - Get account by its address
 * [getBalances](docs/sdks/ledgerv1/README.md#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](docs/sdks/ledgerv1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](docs/sdks/ledgerv1/README.md#getinfo) - Show server information
 * [getLedgerInfo](docs/sdks/ledgerv1/README.md#getledgerinfo) - Get information about a ledger
 * [getMapping](docs/sdks/ledgerv1/README.md#getmapping) - Get the mapping of a ledger
 * [getTransaction](docs/sdks/ledgerv1/README.md#gettransaction) - Get transaction from a ledger by its ID
-* [listAccounts](docs/sdks/ledgerv1/README.md#listaccounts) - List accounts from a ledger
+* [listAccountsLedger](docs/sdks/ledgerv1/README.md#listaccountsledger) - List accounts from a ledger
 * [listLogs](docs/sdks/ledgerv1/README.md#listlogs) - List the logs from a ledger
 * [listTransactions](docs/sdks/ledgerv1/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv1/README.md#readstats) - Get statistics from a ledger
@@ -229,12 +228,12 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [getInstance](docs/sdks/orchestrationv1/README.md#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](docs/sdks/orchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](docs/sdks/orchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
+* [getServerInfoOrchestration](docs/sdks/orchestrationv1/README.md#getserverinfoorchestration) - Get server info
 * [getWorkflow](docs/sdks/orchestrationv1/README.md#getworkflow) - Get a flow by id
 * [listInstances](docs/sdks/orchestrationv1/README.md#listinstances) - List instances of a workflow
 * [listTriggers](docs/sdks/orchestrationv1/README.md#listtriggers) - List triggers
 * [listTriggersOccurrences](docs/sdks/orchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](docs/sdks/orchestrationv1/README.md#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](docs/sdks/orchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
 * [readTrigger](docs/sdks/orchestrationv1/README.md#readtrigger) - Read trigger
 * [runWorkflow](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
@@ -273,6 +272,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [deleteTransferInitiation](docs/sdks/paymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
 * [forwardBankAccount](docs/sdks/paymentsv1/README.md#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](docs/sdks/paymentsv1/README.md#getaccountbalances) - Get account balances
+* [getAccountPayments](docs/sdks/paymentsv1/README.md#getaccountpayments) - Get an account
 * [getBankAccount](docs/sdks/paymentsv1/README.md#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](docs/sdks/paymentsv1/README.md#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
 * [getConnectorTaskV1](docs/sdks/paymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
@@ -280,8 +280,10 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [getPool](docs/sdks/paymentsv1/README.md#getpool) - Get a Pool
 * [getPoolBalances](docs/sdks/paymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
 * [getPoolBalancesLatest](docs/sdks/paymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
+* [getServerInfoPayments](docs/sdks/paymentsv1/README.md#getserverinfopayments) - Get server info
 * [getTransferInitiation](docs/sdks/paymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
 * [installConnector](docs/sdks/paymentsv1/README.md#installconnector) - Install a connector
+* [listAccountsPayments](docs/sdks/paymentsv1/README.md#listaccountspayments) - List accounts
 * [listAllConnectors](docs/sdks/paymentsv1/README.md#listallconnectors) - List all installed connectors
 * [listBankAccounts](docs/sdks/paymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
 * [listConfigsAvailableConnectors](docs/sdks/paymentsv1/README.md#listconfigsavailableconnectors) - List the configs of each available connector
@@ -290,9 +292,6 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [listPayments](docs/sdks/paymentsv1/README.md#listpayments) - List payments
 * [listPools](docs/sdks/paymentsv1/README.md#listpools) - List Pools
 * [listTransferInitiations](docs/sdks/paymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
-* [paymentsgetAccount](docs/sdks/paymentsv1/README.md#paymentsgetaccount) - Get an account
-* [paymentsgetServerInfo](docs/sdks/paymentsv1/README.md#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](docs/sdks/paymentsv1/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/paymentsv1/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/paymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/paymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -380,15 +379,15 @@ Allows to check if users used the link and completed the oauth flow.
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
 * [getPolicy](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getServerInfoReconciliation](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
 * [listPolicies](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
-* [reconciliationgetServerInfo](docs/sdks/reconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
 ### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
+* [~~getServerInfoSearch~~](docs/sdks/searchv1/README.md#getserverinfosearch) - Get server info :warning: **Deprecated**
 * [~~search~~](docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
-* [~~searchgetServerInfo~~](docs/sdks/searchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
 ### [Wallets.V1](docs/sdks/walletsv1/README.md)
 
@@ -400,6 +399,7 @@ Allows to check if users used the link and completed the oauth flow.
 * [getBalance](docs/sdks/walletsv1/README.md#getbalance) - Get detailed balance
 * [getHold](docs/sdks/walletsv1/README.md#gethold) - Get a hold
 * [getHolds](docs/sdks/walletsv1/README.md#getholds) - Get all holds for a wallet
+* [getServerInfoWallets](docs/sdks/walletsv1/README.md#getserverinfowallets) - Get server info
 * [getTransactions](docs/sdks/walletsv1/README.md#gettransactions)
 * [getWallet](docs/sdks/walletsv1/README.md#getwallet) - Get a wallet
 * [getWalletSummary](docs/sdks/walletsv1/README.md#getwalletsummary) - Get wallet summary
@@ -407,7 +407,6 @@ Allows to check if users used the link and completed the oauth flow.
 * [listWallets](docs/sdks/walletsv1/README.md#listwallets) - List all wallets
 * [updateWallet](docs/sdks/walletsv1/README.md#updatewallet) - Update a wallet
 * [voidHold](docs/sdks/walletsv1/README.md#voidhold) - Cancel a hold
-* [walletsgetServerInfo](docs/sdks/walletsv1/README.md#walletsgetserverinfo) - Get server info
 
 ### [Webhooks.V1](docs/sdks/webhooksv1/README.md)
 
@@ -422,84 +421,6 @@ Allows to check if users used the link and completed the oauth flow.
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| #   | Server                                                | Variables                        | Description                                |
-| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
-| 0   | `http://localhost`                                    |                                  | local server                               |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
-
-If the selected server has variables, you may override its default values using the associated builder method(s):
-
-| Variable       | BuilderMethod                                | Supported Values                                         | Default           | Description                                                   |
-| -------------- | -------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment(ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `organization(String organization)`          | java.lang.String                                         | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-
-#### Example
-
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK.Builder.ServerEnvironment;
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        SDK sdk = SDK.builder()
-                .serverIndex(1)
-                .environment(ServerEnvironment.US_EAST1)
-                .organization("<value>")
-            .build();
-
-        GetVersionsResponse res = sdk.getVersions()
-                .call();
-
-        if (res.getVersionsResponse().isPresent()) {
-            System.out.println(res.getVersionsResponse().get());
-        }
-    }
-}
-```
-
-### Override Server URL Per-Client
-
-The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.GetVersionsResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        SDK sdk = SDK.builder()
-                .serverURL("https://orgID-stackID.eu.sandbox.formance.cloud")
-            .build();
-
-        GetVersionsResponse res = sdk.getVersions()
-                .call();
-
-        if (res.getVersionsResponse().isPresent()) {
-            System.out.println(res.getVersionsResponse().get());
-        }
-    }
-}
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -524,10 +445,10 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.SDKBaseError;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ErrorsEnum;
 import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2ErrorsEnum;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
@@ -535,7 +456,7 @@ import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -548,8 +469,8 @@ public class Application {
             V2GetInfoResponse res = sdk.ledger().getInfo()
                     .call();
 
-            if (res.v2ConfigInfoResponse().isPresent()) {
-                System.out.println(res.v2ConfigInfoResponse().get());
+            if (res.v2ConfigInfo().isPresent()) {
+                System.out.println(res.v2ConfigInfo().get());
             }
         } catch (SDKBaseError ex) { // all SDK exceptions inherit from SDKBaseError
 
@@ -566,12 +487,12 @@ public class Application {
 
             // different error subclasses may be thrown 
             // depending on the service call
-            if (ex instanceof V2ErrorResponse) {
-                var e = (V2ErrorResponse) ex;
+            if (ex instanceof ErrorsV2ErrorResponse) {
+                var e = (ErrorsV2ErrorResponse) ex;
                 // Check error data fields
                 e.data().ifPresent(payload -> {
+                      V2ErrorsEnum v2ErrorsEnum = payload.v2ErrorsEnum();
                       Optional<String> details = payload.details();
-                      V2ErrorsEnum errorCode = payload.errorCode();
                       // ...
                 });
             }
@@ -592,7 +513,7 @@ public class Application {
 **Primary error:**
 * [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (15)</summary>
+<details><summary>Less common errors (13)</summary>
 
 <br />
 
@@ -602,15 +523,13 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java)**:
-* [`com.formance.formance_sdk.models.errors.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V3ErrorResponse.java): Error. Applicable to 57 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.PaymentsErrorResponse.java): Error. Applicable to 46 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.V2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V2ErrorResponse.java): Applicable to 44 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.ErrorResponse.java): Applicable to 19 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.V2Error.java): General error. Applicable to 18 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.Error.java): General error. Applicable to 17 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.WalletsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.WalletsErrorResponse.java): Applicable to 15 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.ReconciliationErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.ReconciliationErrorResponse.java): Error response. Applicable to 8 of 249 methods.*
-* [`com.formance.formance_sdk.models.errors.WebhooksErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.errors.WebhooksErrorResponse.java): Error. Applicable to 8 of 249 methods.*
+* [`com.formance.formance_sdk.models.payments.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.V3ErrorResponse.java): Error. Applicable to 57 of 249 methods.*
+* [`com.formance.formance_sdk.models.payments.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.PaymentsErrorResponse.java): Error. Applicable to 46 of 249 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse.java): Applicable to 44 of 249 methods.*
+* [`com.formance.formance_sdk.models.reconciliation.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.reconciliation.ErrorResponse.java): Applicable to 31 of 249 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsErrorResponse.java): Applicable to 19 of 249 methods.*
+* [`com.formance.formance_sdk.models.orchestration.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.V2Error.java): General error. Applicable to 18 of 249 methods.*
+* [`com.formance.formance_sdk.models.orchestration.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.Error.java): General error. Applicable to 17 of 249 methods.*
 
 
 </details>

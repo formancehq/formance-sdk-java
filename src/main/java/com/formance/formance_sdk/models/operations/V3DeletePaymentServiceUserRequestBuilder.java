@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3DeletePaymentServiceUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3DeletePaymentServiceUserRequestBuilder {
 
     private V3DeletePaymentServiceUserRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3DeletePaymentServiceUserRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3DeletePaymentServiceUserRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3DeletePaymentServiceUserRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3DeletePaymentServiceUserResponse call() {
         
         RequestOperation<V3DeletePaymentServiceUserRequest, V3DeletePaymentServiceUserResponse> operation
-              = new V3DeletePaymentServiceUser.Sync(sdkConfiguration, _headers);
+              = new V3DeletePaymentServiceUser.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

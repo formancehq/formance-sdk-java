@@ -6,6 +6,7 @@ package com.formance.formance_sdk;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
+import com.formance.formance_sdk.models.auth.ClientOptions2;
 import com.formance.formance_sdk.models.operations.CreateClientRequestBuilder;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
 import com.formance.formance_sdk.models.operations.CreateSecretRequest;
@@ -19,8 +20,8 @@ import com.formance.formance_sdk.models.operations.DeleteSecretRequestBuilder;
 import com.formance.formance_sdk.models.operations.DeleteSecretResponse;
 import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetOIDCWellKnownsResponse;
-import com.formance.formance_sdk.models.operations.GetServerInfoRequestBuilder;
-import com.formance.formance_sdk.models.operations.GetServerInfoResponse;
+import com.formance.formance_sdk.models.operations.GetServerInfoAuthRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetServerInfoAuthResponse;
 import com.formance.formance_sdk.models.operations.ListClientsRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListClientsResponse;
 import com.formance.formance_sdk.models.operations.ListUsersRequestBuilder;
@@ -34,19 +35,19 @@ import com.formance.formance_sdk.models.operations.ReadUserResponse;
 import com.formance.formance_sdk.models.operations.UpdateClientRequest;
 import com.formance.formance_sdk.models.operations.UpdateClientRequestBuilder;
 import com.formance.formance_sdk.models.operations.UpdateClientResponse;
-import com.formance.formance_sdk.models.shared.CreateClientRequest;
 import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.operations.CreateSecret;
 import com.formance.formance_sdk.operations.DeleteClient;
 import com.formance.formance_sdk.operations.DeleteSecret;
 import com.formance.formance_sdk.operations.GetOIDCWellKnowns;
-import com.formance.formance_sdk.operations.GetServerInfo;
+import com.formance.formance_sdk.operations.GetServerInfoAuth;
 import com.formance.formance_sdk.operations.ListClients;
 import com.formance.formance_sdk.operations.ListUsers;
 import com.formance.formance_sdk.operations.ReadClient;
 import com.formance.formance_sdk.operations.ReadUser;
 import com.formance.formance_sdk.operations.UpdateClient;
 import com.formance.formance_sdk.utils.Headers;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -74,19 +75,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateClientResponse createClientDirect() {
-        return createClient(Optional.empty());
+        return createClient(Optional.empty(), Optional.empty());
     }
 
     /**
      * Create client
      * 
      * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClientResponse createClient(Optional<? extends CreateClientRequest> request) {
-        RequestOperation<Optional<? extends CreateClientRequest>, CreateClientResponse> operation
-              = new CreateClient.Sync(sdkConfiguration, _headers);
+    public CreateClientResponse createClient(Optional<? extends ClientOptions2> request, Optional<String> serverURL) {
+        RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> operation
+              = new CreateClient.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -107,8 +109,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateSecretResponse createSecret(CreateSecretRequest request) {
+        return createSecret(request, Optional.empty());
+    }
+
+    /**
+     * Add a secret to a client
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateSecretResponse createSecret(CreateSecretRequest request, Optional<String> serverURL) {
         RequestOperation<CreateSecretRequest, CreateSecretResponse> operation
-              = new CreateSecret.Sync(sdkConfiguration, _headers);
+              = new CreateSecret.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -129,8 +143,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteClientResponse deleteClient(DeleteClientRequest request) {
+        return deleteClient(request, Optional.empty());
+    }
+
+    /**
+     * Delete client
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteClientResponse deleteClient(DeleteClientRequest request, Optional<String> serverURL) {
         RequestOperation<DeleteClientRequest, DeleteClientResponse> operation
-              = new DeleteClient.Sync(sdkConfiguration, _headers);
+              = new DeleteClient.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -151,8 +177,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteSecretResponse deleteSecret(DeleteSecretRequest request) {
+        return deleteSecret(request, Optional.empty());
+    }
+
+    /**
+     * Delete a secret from a client
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteSecretResponse deleteSecret(DeleteSecretRequest request, Optional<String> serverURL) {
         RequestOperation<DeleteSecretRequest, DeleteSecretResponse> operation
-              = new DeleteSecret.Sync(sdkConfiguration, _headers);
+              = new DeleteSecret.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -172,8 +210,19 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetOIDCWellKnownsResponse getOIDCWellKnownsDirect() {
+        return getOIDCWellKnowns(Optional.empty());
+    }
+
+    /**
+     * Retrieve OpenID connect well-knowns.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetOIDCWellKnownsResponse getOIDCWellKnowns(Optional<String> serverURL) {
         RequestlessOperation<GetOIDCWellKnownsResponse> operation
-            = new GetOIDCWellKnowns.Sync(sdkConfiguration, _headers);
+            = new GetOIDCWellKnowns.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -182,8 +231,8 @@ public class AuthV1 {
      * 
      * @return The call builder
      */
-    public GetServerInfoRequestBuilder getServerInfo() {
-        return new GetServerInfoRequestBuilder(sdkConfiguration);
+    public GetServerInfoAuthRequestBuilder getServerInfoAuth() {
+        return new GetServerInfoAuthRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -192,9 +241,20 @@ public class AuthV1 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetServerInfoResponse getServerInfoDirect() {
-        RequestlessOperation<GetServerInfoResponse> operation
-            = new GetServerInfo.Sync(sdkConfiguration, _headers);
+    public GetServerInfoAuthResponse getServerInfoAuthDirect() {
+        return getServerInfoAuth(Optional.empty());
+    }
+
+    /**
+     * Get server info
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetServerInfoAuthResponse getServerInfoAuth(Optional<String> serverURL) {
+        RequestlessOperation<GetServerInfoAuthResponse> operation
+            = new GetServerInfoAuth.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -214,8 +274,19 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListClientsResponse listClientsDirect() {
+        return listClients(Optional.empty());
+    }
+
+    /**
+     * List clients
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListClientsResponse listClients(Optional<String> serverURL) {
         RequestlessOperation<ListClientsResponse> operation
-            = new ListClients.Sync(sdkConfiguration, _headers);
+            = new ListClients.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -239,8 +310,21 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListUsersResponse listUsersDirect() {
+        return listUsers(Optional.empty());
+    }
+
+    /**
+     * List users
+     * 
+     * <p>List users
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListUsersResponse listUsers(Optional<String> serverURL) {
         RequestlessOperation<ListUsersResponse> operation
-            = new ListUsers.Sync(sdkConfiguration, _headers);
+            = new ListUsers.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -261,8 +345,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReadClientResponse readClient(ReadClientRequest request) {
+        return readClient(request, Optional.empty());
+    }
+
+    /**
+     * Read client
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReadClientResponse readClient(ReadClientRequest request, Optional<String> serverURL) {
         RequestOperation<ReadClientRequest, ReadClientResponse> operation
-              = new ReadClient.Sync(sdkConfiguration, _headers);
+              = new ReadClient.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -287,8 +383,22 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReadUserResponse readUser(ReadUserRequest request) {
+        return readUser(request, Optional.empty());
+    }
+
+    /**
+     * Read user
+     * 
+     * <p>Read user
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReadUserResponse readUser(ReadUserRequest request, Optional<String> serverURL) {
         RequestOperation<ReadUserRequest, ReadUserResponse> operation
-              = new ReadUser.Sync(sdkConfiguration, _headers);
+              = new ReadUser.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -309,8 +419,20 @@ public class AuthV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateClientResponse updateClient(UpdateClientRequest request) {
+        return updateClient(request, Optional.empty());
+    }
+
+    /**
+     * Update client
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateClientResponse updateClient(UpdateClientRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateClientRequest, UpdateClientResponse> operation
-              = new UpdateClient.Sync(sdkConfiguration, _headers);
+              = new UpdateClient.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

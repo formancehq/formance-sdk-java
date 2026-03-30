@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetLedgerInfo;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2GetLedgerInfoRequestBuilder {
 
     private V2GetLedgerInfoRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V2GetLedgerInfoRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V2GetLedgerInfoRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2GetLedgerInfoRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V2GetLedgerInfoResponse call() {
         
         RequestOperation<V2GetLedgerInfoRequest, V2GetLedgerInfoResponse> operation
-              = new V2GetLedgerInfo.Sync(sdkConfiguration, _headers);
+              = new V2GetLedgerInfo.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

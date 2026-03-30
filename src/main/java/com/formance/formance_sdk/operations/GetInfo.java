@@ -9,10 +9,10 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.ledger.ConfigInfoResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetInfoResponse;
-import com.formance.formance_sdk.models.shared.ConfigInfoResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -25,10 +25,18 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class GetInfo {
+    
+    /**
+     * GET_INFO_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] GET_INFO_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -37,11 +45,16 @@ public class GetInfo {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        GET_INFO_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -92,8 +105,12 @@ public class GetInfo {
 
     public static class Sync extends Base
             implements RequestlessOperation<GetInfoResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest() throws Exception {
@@ -155,7 +172,7 @@ public class GetInfo {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw ErrorResponse.from(response);
+                    throw ErrorsErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -16,7 +16,7 @@ import java.util.Optional;
 public class DebitWalletRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest;
 
     /**
      * Use an idempotency key
@@ -30,7 +30,7 @@ public class DebitWalletRequest {
 
     @JsonCreator
     public DebitWalletRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest,
+            Optional<? extends com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest,
             Optional<String> idempotencyKey,
             String id) {
         Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
@@ -48,8 +48,8 @@ public class DebitWalletRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.DebitWalletRequest>) debitWalletRequest;
+    public Optional<com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest() {
+        return (Optional<com.formance.formance_sdk.models.wallets.DebitWalletRequest>) debitWalletRequest;
     }
 
     /**
@@ -70,14 +70,14 @@ public class DebitWalletRequest {
     }
 
 
-    public DebitWalletRequest withDebitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest debitWalletRequest) {
+    public DebitWalletRequest withDebitWalletRequest(com.formance.formance_sdk.models.wallets.DebitWalletRequest debitWalletRequest) {
         Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
         this.debitWalletRequest = Optional.ofNullable(debitWalletRequest);
         return this;
     }
 
 
-    public DebitWalletRequest withDebitWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest) {
+    public DebitWalletRequest withDebitWalletRequest(Optional<? extends com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest) {
         Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
         this.debitWalletRequest = debitWalletRequest;
         return this;
@@ -140,7 +140,7 @@ public class DebitWalletRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -151,13 +151,13 @@ public class DebitWalletRequest {
         }
 
 
-        public Builder debitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest debitWalletRequest) {
+        public Builder debitWalletRequest(com.formance.formance_sdk.models.wallets.DebitWalletRequest debitWalletRequest) {
             Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
             this.debitWalletRequest = Optional.ofNullable(debitWalletRequest);
             return this;
         }
 
-        public Builder debitWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.DebitWalletRequest> debitWalletRequest) {
+        public Builder debitWalletRequest(Optional<? extends com.formance.formance_sdk.models.wallets.DebitWalletRequest> debitWalletRequest) {
             Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
             this.debitWalletRequest = debitWalletRequest;
             return this;

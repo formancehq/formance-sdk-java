@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListBankAccounts;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3ListBankAccountsRequestBuilder {
 
     private V3ListBankAccountsRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3ListBankAccountsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3ListBankAccountsRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3ListBankAccountsRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3ListBankAccountsResponse call() {
         
         RequestOperation<V3ListBankAccountsRequest, V3ListBankAccountsResponse> operation
-              = new V3ListBankAccounts.Sync(sdkConfiguration, _headers);
+              = new V3ListBankAccounts.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

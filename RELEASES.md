@@ -330,3 +330,13 @@ Based on:
 - [java v8.0.0] .
 ### Releases
 - [Maven Central v8.0.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/8.0.0 - .
+
+## 2026-03-30 00:14:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.759.3 (2.869.25) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v8.1.0] .
+### Releases
+- [Maven Central v8.1.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/8.1.0 - .

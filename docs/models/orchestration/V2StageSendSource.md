@@ -1,0 +1,10 @@
+# V2StageSendSource
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `v2StageSendSourceAccount`                                                             | [Optional\<V2StageSendSourceAccount>](../../models/shared/V2StageSendSourceAccount.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `v2StageSendSourcePayment`                                                             | [Optional\<V2StageSendSourcePayment>](../../models/shared/V2StageSendSourcePayment.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `v2StageSendSourceWallet`                                                              | [Optional\<V2StageSendSourceWallet>](../../models/shared/V2StageSendSourceWallet.md)   | :heavy_minus_sign:                                                                     | N/A                                                                                    |

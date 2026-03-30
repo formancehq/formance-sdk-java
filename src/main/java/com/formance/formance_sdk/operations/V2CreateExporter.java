@@ -10,10 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
-import com.formance.formance_sdk.models.operations.V2CreateExporterResponseBody;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -30,10 +29,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2CreateExporter {
+    
+    /**
+     * V2_CREATE_EXPORTER_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V2_CREATE_EXPORTER_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -42,12 +49,17 @@ public class V2CreateExporter {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-            this.securitySource = this.sdkConfiguration.securitySource();
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V2_CREATE_EXPORTER_SERVERS[0], 
+                        Map.of()));
+            this.securitySource = null;
             this.client = this.sdkConfiguration.client();
         }
 
@@ -60,7 +72,7 @@ public class V2CreateExporter {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CreateExporter",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -69,7 +81,7 @@ public class V2CreateExporter {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CreateExporter",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -78,7 +90,7 @@ public class V2CreateExporter {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2CreateExporter",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
@@ -102,20 +114,23 @@ public class V2CreateExporter {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
         }
     }
 
     public static class Sync extends Base
-            implements RequestOperation<V2CreateExporterRequest, V2CreateExporterResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+            implements RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> {
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
-        private HttpRequest onBuildRequest(V2CreateExporterRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<V2CreateExporterRequest>() {});
+        private HttpRequest onBuildRequest(V2ExporterConfiguration2 request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<V2ExporterConfiguration2>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -131,7 +146,7 @@ public class V2CreateExporter {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2CreateExporterRequest request) {
+        public HttpResponse<InputStream> doRequest(V2ExporterConfiguration2 request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -166,14 +181,14 @@ public class V2CreateExporter {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withObject(Utils.unmarshal(response, new TypeReference<V2CreateExporterResponseBody>() {}));
+                    return res.withV2CreateExporterResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.ledger.V2CreateExporterResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw V2ErrorResponse.from(response);
+                    throw ErrorsV2ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
