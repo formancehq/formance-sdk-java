@@ -5,8 +5,8 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.V2ConfigInfoResponse;
-import com.formance.formance_sdk.models.shared.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ConfigInfo;
+import com.formance.formance_sdk.models.ledger.V2ErrorResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -37,7 +37,7 @@ public class V2GetInfoResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse;
+    private Optional<? extends V2ConfigInfo> v2ConfigInfo;
 
     /**
      * Error
@@ -49,17 +49,17 @@ public class V2GetInfoResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse,
+            Optional<? extends V2ConfigInfo> v2ConfigInfo,
             Optional<? extends V2ErrorResponse> v2ErrorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2ConfigInfoResponse, "v2ConfigInfoResponse");
+        Utils.checkNotNull(v2ConfigInfo, "v2ConfigInfo");
         Utils.checkNotNull(v2ErrorResponse, "v2ErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2ConfigInfoResponse = v2ConfigInfoResponse;
+        this.v2ConfigInfo = v2ConfigInfo;
         this.v2ErrorResponse = v2ErrorResponse;
     }
     
@@ -100,8 +100,8 @@ public class V2GetInfoResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2ConfigInfoResponse> v2ConfigInfoResponse() {
-        return (Optional<V2ConfigInfoResponse>) v2ConfigInfoResponse;
+    public Optional<V2ConfigInfo> v2ConfigInfo() {
+        return (Optional<V2ConfigInfo>) v2ConfigInfo;
     }
 
     /**
@@ -148,9 +148,9 @@ public class V2GetInfoResponse implements Response {
     /**
      * OK
      */
-    public V2GetInfoResponse withV2ConfigInfoResponse(V2ConfigInfoResponse v2ConfigInfoResponse) {
-        Utils.checkNotNull(v2ConfigInfoResponse, "v2ConfigInfoResponse");
-        this.v2ConfigInfoResponse = Optional.ofNullable(v2ConfigInfoResponse);
+    public V2GetInfoResponse withV2ConfigInfo(V2ConfigInfo v2ConfigInfo) {
+        Utils.checkNotNull(v2ConfigInfo, "v2ConfigInfo");
+        this.v2ConfigInfo = Optional.ofNullable(v2ConfigInfo);
         return this;
     }
 
@@ -158,9 +158,9 @@ public class V2GetInfoResponse implements Response {
     /**
      * OK
      */
-    public V2GetInfoResponse withV2ConfigInfoResponse(Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse) {
-        Utils.checkNotNull(v2ConfigInfoResponse, "v2ConfigInfoResponse");
-        this.v2ConfigInfoResponse = v2ConfigInfoResponse;
+    public V2GetInfoResponse withV2ConfigInfo(Optional<? extends V2ConfigInfo> v2ConfigInfo) {
+        Utils.checkNotNull(v2ConfigInfo, "v2ConfigInfo");
+        this.v2ConfigInfo = v2ConfigInfo;
         return this;
     }
 
@@ -196,7 +196,7 @@ public class V2GetInfoResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v2ConfigInfoResponse, other.v2ConfigInfoResponse) &&
+            Utils.enhancedDeepEquals(this.v2ConfigInfo, other.v2ConfigInfo) &&
             Utils.enhancedDeepEquals(this.v2ErrorResponse, other.v2ErrorResponse);
     }
     
@@ -204,7 +204,7 @@ public class V2GetInfoResponse implements Response {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            v2ConfigInfoResponse, v2ErrorResponse);
+            v2ConfigInfo, v2ErrorResponse);
     }
     
     @Override
@@ -213,7 +213,7 @@ public class V2GetInfoResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2ConfigInfoResponse", v2ConfigInfoResponse,
+                "v2ConfigInfo", v2ConfigInfo,
                 "v2ErrorResponse", v2ErrorResponse);
     }
 
@@ -226,7 +226,7 @@ public class V2GetInfoResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse = Optional.empty();
+        private Optional<? extends V2ConfigInfo> v2ConfigInfo = Optional.empty();
 
         private Optional<? extends V2ErrorResponse> v2ErrorResponse = Optional.empty();
 
@@ -268,18 +268,18 @@ public class V2GetInfoResponse implements Response {
         /**
          * OK
          */
-        public Builder v2ConfigInfoResponse(V2ConfigInfoResponse v2ConfigInfoResponse) {
-            Utils.checkNotNull(v2ConfigInfoResponse, "v2ConfigInfoResponse");
-            this.v2ConfigInfoResponse = Optional.ofNullable(v2ConfigInfoResponse);
+        public Builder v2ConfigInfo(V2ConfigInfo v2ConfigInfo) {
+            Utils.checkNotNull(v2ConfigInfo, "v2ConfigInfo");
+            this.v2ConfigInfo = Optional.ofNullable(v2ConfigInfo);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder v2ConfigInfoResponse(Optional<? extends V2ConfigInfoResponse> v2ConfigInfoResponse) {
-            Utils.checkNotNull(v2ConfigInfoResponse, "v2ConfigInfoResponse");
-            this.v2ConfigInfoResponse = v2ConfigInfoResponse;
+        public Builder v2ConfigInfo(Optional<? extends V2ConfigInfo> v2ConfigInfo) {
+            Utils.checkNotNull(v2ConfigInfo, "v2ConfigInfo");
+            this.v2ConfigInfo = v2ConfigInfo;
             return this;
         }
 
@@ -306,7 +306,7 @@ public class V2GetInfoResponse implements Response {
 
             return new V2GetInfoResponse(
                 contentType, statusCode, rawResponse,
-                v2ConfigInfoResponse, v2ErrorResponse);
+                v2ConfigInfo, v2ErrorResponse);
         }
 
     }

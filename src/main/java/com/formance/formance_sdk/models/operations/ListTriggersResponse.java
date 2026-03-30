@@ -25,7 +25,7 @@ public class ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListTriggersResponse implements Response {
     @JsonCreator
     public ListTriggersResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListTriggersResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListTriggersResponse>) listTriggersResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.ListTriggersResponse>) listTriggersResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    public ListTriggersResponse withListTriggersResponse(com.formance.formance_sdk.models.shared.ListTriggersResponse listTriggersResponse) {
+    public ListTriggersResponse withListTriggersResponse(com.formance.formance_sdk.models.orchestration.ListTriggersResponse listTriggersResponse) {
         Utils.checkNotNull(listTriggersResponse, "listTriggersResponse");
         this.listTriggersResponse = Optional.ofNullable(listTriggersResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    public ListTriggersResponse withListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse) {
+    public ListTriggersResponse withListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse) {
         Utils.checkNotNull(listTriggersResponse, "listTriggersResponse");
         this.listTriggersResponse = listTriggersResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListTriggersResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListTriggersResponse implements Response {
         /**
          * List of triggers
          */
-        public Builder listTriggersResponse(com.formance.formance_sdk.models.shared.ListTriggersResponse listTriggersResponse) {
+        public Builder listTriggersResponse(com.formance.formance_sdk.models.orchestration.ListTriggersResponse listTriggersResponse) {
             Utils.checkNotNull(listTriggersResponse, "listTriggersResponse");
             this.listTriggersResponse = Optional.ofNullable(listTriggersResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListTriggersResponse implements Response {
         /**
          * List of triggers
          */
-        public Builder listTriggersResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersResponse> listTriggersResponse) {
+        public Builder listTriggersResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersResponse> listTriggersResponse) {
             Utils.checkNotNull(listTriggersResponse, "listTriggersResponse");
             this.listTriggersResponse = listTriggersResponse;
             return this;

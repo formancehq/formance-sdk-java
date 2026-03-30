@@ -25,7 +25,7 @@ public class CreateWalletResponse implements Response {
     /**
      * Wallet created
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateWalletResponse implements Response {
     @JsonCreator
     public CreateWalletResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateWalletResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateWalletResponse>) createWalletResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.CreateWalletResponse>) createWalletResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateWalletResponse implements Response {
     /**
      * Wallet created
      */
-    public CreateWalletResponse withCreateWalletResponse(com.formance.formance_sdk.models.shared.CreateWalletResponse createWalletResponse) {
+    public CreateWalletResponse withCreateWalletResponse(com.formance.formance_sdk.models.wallets.CreateWalletResponse createWalletResponse) {
         Utils.checkNotNull(createWalletResponse, "createWalletResponse");
         this.createWalletResponse = Optional.ofNullable(createWalletResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateWalletResponse implements Response {
     /**
      * Wallet created
      */
-    public CreateWalletResponse withCreateWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse) {
+    public CreateWalletResponse withCreateWalletResponse(Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse) {
         Utils.checkNotNull(createWalletResponse, "createWalletResponse");
         this.createWalletResponse = createWalletResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateWalletResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateWalletResponse implements Response {
         /**
          * Wallet created
          */
-        public Builder createWalletResponse(com.formance.formance_sdk.models.shared.CreateWalletResponse createWalletResponse) {
+        public Builder createWalletResponse(com.formance.formance_sdk.models.wallets.CreateWalletResponse createWalletResponse) {
             Utils.checkNotNull(createWalletResponse, "createWalletResponse");
             this.createWalletResponse = Optional.ofNullable(createWalletResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateWalletResponse implements Response {
         /**
          * Wallet created
          */
-        public Builder createWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletResponse> createWalletResponse) {
+        public Builder createWalletResponse(Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletResponse> createWalletResponse) {
             Utils.checkNotNull(createWalletResponse, "createWalletResponse");
             this.createWalletResponse = createWalletResponse;
             return this;

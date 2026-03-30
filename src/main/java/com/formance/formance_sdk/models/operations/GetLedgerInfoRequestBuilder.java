@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetLedgerInfo;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class GetLedgerInfoRequestBuilder {
 
     private GetLedgerInfoRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class GetLedgerInfoRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public GetLedgerInfoRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public GetLedgerInfoRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public GetLedgerInfoResponse call() {
         
         RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
-              = new GetLedgerInfo.Sync(sdkConfiguration, _headers);
+              = new GetLedgerInfo.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

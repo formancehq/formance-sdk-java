@@ -8,10 +8,10 @@
 * [deletePolicy](#deletepolicy) - Delete a policy
 * [getPolicy](#getpolicy) - Get a policy
 * [getReconciliation](#getreconciliation) - Get a reconciliation
+* [getServerInfoReconciliation](#getserverinforeconciliation) - Get server info
 * [listPolicies](#listpolicies) - List policies
 * [listReconciliations](#listreconciliations) - List reconciliations
 * [reconcile](#reconcile) - Reconcile using a policy
-* [reconciliationgetServerInfo](#reconciliationgetserverinfo) - Get server info
 
 ## createPolicy
 
@@ -24,16 +24,16 @@ Create a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
-import com.formance.formance_sdk.models.shared.PolicyRequest;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.reconciliation.PolicyRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -66,6 +66,7 @@ public class Application {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `request`                                             | [PolicyRequest](../../models/shared/PolicyRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| `serverURL`                                           | *String*                                              | :heavy_minus_sign:                                    | An optional server URL to use.                        |
 
 ### Response
 
@@ -73,10 +74,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## deletePolicy
 
@@ -89,15 +90,15 @@ Delete a policy by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
 import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -124,6 +125,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [DeletePolicyRequest](../../models/operations/DeletePolicyRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -131,10 +133,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getPolicy
 
@@ -147,15 +149,15 @@ Get a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPolicyRequest;
 import com.formance.formance_sdk.models.operations.GetPolicyResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -184,6 +186,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [GetPolicyRequest](../../models/operations/GetPolicyRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -191,10 +194,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getReconciliation
 
@@ -207,15 +210,15 @@ Get a reconciliation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
 import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -244,6 +247,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [GetReconciliationRequest](../../models/operations/GetReconciliationRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -251,10 +255,64 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## getServerInfoReconciliation
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getServerInfo_reconciliation" method="get" path="/api/reconciliation/_info" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetServerInfoReconciliationResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetServerInfoReconciliationResponse res = sdk.reconciliation().v1().getServerInfoReconciliation()
+                .call();
+
+        if (res.serverInfo().isPresent()) {
+            System.out.println(res.serverInfo().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[GetServerInfoReconciliationResponse](../../models/operations/GetServerInfoReconciliationResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listPolicies
 
@@ -267,15 +325,15 @@ List policies
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
 import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -305,6 +363,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [ListPoliciesRequest](../../models/operations/ListPoliciesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -312,10 +371,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listReconciliations
 
@@ -328,15 +387,15 @@ List reconciliations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
 import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -366,6 +425,7 @@ public class Application {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [ListReconciliationsRequest](../../models/operations/ListReconciliationsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *String*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -373,10 +433,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## reconcile
 
@@ -389,17 +449,17 @@ Reconcile using a policy
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.operations.ReconcileRequest;
 import com.formance.formance_sdk.models.operations.ReconcileResponse;
-import com.formance.formance_sdk.models.shared.ReconciliationRequest;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.reconciliation.ReconciliationRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 
 public class Application {
 
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -432,6 +492,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [ReconcileRequest](../../models/operations/ReconcileRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -439,55 +500,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
-
-## reconciliationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
-import com.formance.formance_sdk.models.operations.ReconciliationgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws ReconciliationErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        ReconciliationgetServerInfoResponse res = sdk.reconciliation().v1().reconciliationgetServerInfo()
-                .call();
-
-        if (res.serverInfo().isPresent()) {
-            System.out.println(res.serverInfo().get());
-        }
-    }
-}
-```
-
-### Response
-
-**[ReconciliationgetServerInfoResponse](../../models/operations/ReconciliationgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/ReconciliationErrorResponse | default                                   | application/json                          |
-| models/errors/SDKError                    | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |

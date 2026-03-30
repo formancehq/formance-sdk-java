@@ -25,7 +25,7 @@ public class ListClientsResponse implements Response {
     /**
      * List of clients
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse;
+    private Optional<? extends com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListClientsResponse implements Response {
     @JsonCreator
     public ListClientsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse,
+            Optional<? extends com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListClientsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListClientsResponse>) listClientsResponse;
+    public Optional<com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse() {
+        return (Optional<com.formance.formance_sdk.models.auth.ListClientsResponse>) listClientsResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListClientsResponse implements Response {
     /**
      * List of clients
      */
-    public ListClientsResponse withListClientsResponse(com.formance.formance_sdk.models.shared.ListClientsResponse listClientsResponse) {
+    public ListClientsResponse withListClientsResponse(com.formance.formance_sdk.models.auth.ListClientsResponse listClientsResponse) {
         Utils.checkNotNull(listClientsResponse, "listClientsResponse");
         this.listClientsResponse = Optional.ofNullable(listClientsResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListClientsResponse implements Response {
     /**
      * List of clients
      */
-    public ListClientsResponse withListClientsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse) {
+    public ListClientsResponse withListClientsResponse(Optional<? extends com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse) {
         Utils.checkNotNull(listClientsResponse, "listClientsResponse");
         this.listClientsResponse = listClientsResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListClientsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListClientsResponse implements Response {
         /**
          * List of clients
          */
-        public Builder listClientsResponse(com.formance.formance_sdk.models.shared.ListClientsResponse listClientsResponse) {
+        public Builder listClientsResponse(com.formance.formance_sdk.models.auth.ListClientsResponse listClientsResponse) {
             Utils.checkNotNull(listClientsResponse, "listClientsResponse");
             this.listClientsResponse = Optional.ofNullable(listClientsResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListClientsResponse implements Response {
         /**
          * List of clients
          */
-        public Builder listClientsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListClientsResponse> listClientsResponse) {
+        public Builder listClientsResponse(Optional<? extends com.formance.formance_sdk.models.auth.ListClientsResponse> listClientsResponse) {
             Utils.checkNotNull(listClientsResponse, "listClientsResponse");
             this.listClientsResponse = listClientsResponse;
             return this;

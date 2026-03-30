@@ -27,10 +27,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class CreateSecret {
+    
+    /**
+     * CREATE_SECRET_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] CREATE_SECRET_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -39,11 +47,16 @@ public class CreateSecret {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        CREATE_SECRET_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -91,7 +104,7 @@ public class CreateSecret {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "createSecretRequest",
+                    "secretOptions",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
@@ -106,8 +119,12 @@ public class CreateSecret {
 
     public static class Sync extends Base
             implements RequestOperation<CreateSecretRequest, CreateSecretResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(CreateSecretRequest request) throws Exception {
@@ -162,7 +179,7 @@ public class CreateSecret {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withCreateSecretResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.CreateSecretResponse>() {}));
+                    return res.withCreateSecretResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.auth.CreateSecretResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -6,6 +6,7 @@ package com.formance.formance_sdk;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
@@ -133,7 +134,6 @@ import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import com.formance.formance_sdk.operations.V2AddMetadataOnTransaction;
 import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
 import com.formance.formance_sdk.operations.V2CountAccounts;
@@ -178,6 +178,8 @@ import com.formance.formance_sdk.operations.V2StopPipeline;
 import com.formance.formance_sdk.operations.V2UpdateExporter;
 import com.formance.formance_sdk.operations.V2UpdateLedgerMetadata;
 import com.formance.formance_sdk.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class LedgerV2 {
@@ -205,8 +207,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(V2AddMetadataOnTransactionRequest request) {
+        return addMetadataOnTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Set the metadata of a transaction by its ID
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2AddMetadataOnTransactionResponse addMetadataOnTransaction(V2AddMetadataOnTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<V2AddMetadataOnTransactionRequest, V2AddMetadataOnTransactionResponse> operation
-              = new V2AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
+              = new V2AddMetadataOnTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -227,8 +241,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2AddMetadataToAccountResponse addMetadataToAccount(V2AddMetadataToAccountRequest request) {
+        return addMetadataToAccount(request, Optional.empty());
+    }
+
+    /**
+     * Add metadata to an account
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2AddMetadataToAccountResponse addMetadataToAccount(V2AddMetadataToAccountRequest request, Optional<String> serverURL) {
         RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
-              = new V2AddMetadataToAccount.Sync(sdkConfiguration, _headers);
+              = new V2AddMetadataToAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -249,8 +275,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CountAccountsResponse countAccounts(V2CountAccountsRequest request) {
+        return countAccounts(request, Optional.empty());
+    }
+
+    /**
+     * Count the accounts from a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CountAccountsResponse countAccounts(V2CountAccountsRequest request, Optional<String> serverURL) {
         RequestOperation<V2CountAccountsRequest, V2CountAccountsResponse> operation
-              = new V2CountAccounts.Sync(sdkConfiguration, _headers);
+              = new V2CountAccounts.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -271,8 +309,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CountTransactionsResponse countTransactions(V2CountTransactionsRequest request) {
+        return countTransactions(request, Optional.empty());
+    }
+
+    /**
+     * Count the transactions from a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CountTransactionsResponse countTransactions(V2CountTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<V2CountTransactionsRequest, V2CountTransactionsResponse> operation
-              = new V2CountTransactions.Sync(sdkConfiguration, _headers);
+              = new V2CountTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -293,8 +343,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreateBulkResponse createBulk(V2CreateBulkRequest request) {
+        return createBulk(request, Optional.empty());
+    }
+
+    /**
+     * Bulk request
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CreateBulkResponse createBulk(V2CreateBulkRequest request, Optional<String> serverURL) {
         RequestOperation<V2CreateBulkRequest, V2CreateBulkResponse> operation
-              = new V2CreateBulk.Sync(sdkConfiguration, _headers);
+              = new V2CreateBulk.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -314,9 +376,21 @@ public class LedgerV2 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateExporterResponse createExporter(V2CreateExporterRequest request) {
-        RequestOperation<V2CreateExporterRequest, V2CreateExporterResponse> operation
-              = new V2CreateExporter.Sync(sdkConfiguration, _headers);
+    public V2CreateExporterResponse createExporter(V2ExporterConfiguration2 request) {
+        return createExporter(request, Optional.empty());
+    }
+
+    /**
+     * Create exporter
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CreateExporterResponse createExporter(V2ExporterConfiguration2 request, Optional<String> serverURL) {
+        RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> operation
+              = new V2CreateExporter.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -337,8 +411,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreateLedgerResponse createLedger(V2CreateLedgerRequest request) {
+        return createLedger(request, Optional.empty());
+    }
+
+    /**
+     * Create a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CreateLedgerResponse createLedger(V2CreateLedgerRequest request, Optional<String> serverURL) {
         RequestOperation<V2CreateLedgerRequest, V2CreateLedgerResponse> operation
-              = new V2CreateLedger.Sync(sdkConfiguration, _headers);
+              = new V2CreateLedger.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -359,8 +445,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreatePipelineResponse createPipeline(V2CreatePipelineRequest request) {
+        return createPipeline(request, Optional.empty());
+    }
+
+    /**
+     * Create pipeline
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CreatePipelineResponse createPipeline(V2CreatePipelineRequest request, Optional<String> serverURL) {
         RequestOperation<V2CreatePipelineRequest, V2CreatePipelineResponse> operation
-              = new V2CreatePipeline.Sync(sdkConfiguration, _headers);
+              = new V2CreatePipeline.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -381,8 +479,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreateTransactionResponse createTransaction(V2CreateTransactionRequest request) {
+        return createTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Create a new transaction to a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2CreateTransactionResponse createTransaction(V2CreateTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<V2CreateTransactionRequest, V2CreateTransactionResponse> operation
-              = new V2CreateTransaction.Sync(sdkConfiguration, _headers);
+              = new V2CreateTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -407,8 +517,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteAccountMetadataResponse deleteAccountMetadata(V2DeleteAccountMetadataRequest request) {
+        return deleteAccountMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Delete metadata by key
+     * 
+     * <p>Delete metadata by key
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteAccountMetadataResponse deleteAccountMetadata(V2DeleteAccountMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteAccountMetadataRequest, V2DeleteAccountMetadataResponse> operation
-              = new V2DeleteAccountMetadata.Sync(sdkConfiguration, _headers);
+              = new V2DeleteAccountMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -435,8 +559,23 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteBucketResponse deleteBucket(V2DeleteBucketRequest request) {
+        return deleteBucket(request, Optional.empty());
+    }
+
+    /**
+     * Delete bucket
+     * 
+     * <p>Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the
+     * bucket will have their deleted_at field set to the current timestamp.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteBucketResponse deleteBucket(V2DeleteBucketRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteBucketRequest, V2DeleteBucketResponse> operation
-              = new V2DeleteBucket.Sync(sdkConfiguration, _headers);
+              = new V2DeleteBucket.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -457,8 +596,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteExporterResponse deleteExporter(V2DeleteExporterRequest request) {
+        return deleteExporter(request, Optional.empty());
+    }
+
+    /**
+     * Delete exporter
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteExporterResponse deleteExporter(V2DeleteExporterRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteExporterRequest, V2DeleteExporterResponse> operation
-              = new V2DeleteExporter.Sync(sdkConfiguration, _headers);
+              = new V2DeleteExporter.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -479,8 +630,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(V2DeleteLedgerMetadataRequest request) {
+        return deleteLedgerMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Delete ledger metadata by key
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteLedgerMetadataResponse deleteLedgerMetadata(V2DeleteLedgerMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteLedgerMetadataRequest, V2DeleteLedgerMetadataResponse> operation
-              = new V2DeleteLedgerMetadata.Sync(sdkConfiguration, _headers);
+              = new V2DeleteLedgerMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -501,8 +664,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeletePipelineResponse deletePipeline(V2DeletePipelineRequest request) {
+        return deletePipeline(request, Optional.empty());
+    }
+
+    /**
+     * Delete pipeline
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeletePipelineResponse deletePipeline(V2DeletePipelineRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeletePipelineRequest, V2DeletePipelineResponse> operation
-              = new V2DeletePipeline.Sync(sdkConfiguration, _headers);
+              = new V2DeletePipeline.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -527,8 +702,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(V2DeleteTransactionMetadataRequest request) {
+        return deleteTransactionMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Delete metadata by key
+     * 
+     * <p>Delete metadata by key
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2DeleteTransactionMetadataResponse deleteTransactionMetadata(V2DeleteTransactionMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteTransactionMetadataRequest, V2DeleteTransactionMetadataResponse> operation
-              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, _headers);
+              = new V2DeleteTransactionMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -549,8 +738,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ExportLogsResponse exportLogs(V2ExportLogsRequest request) {
+        return exportLogs(request, Optional.empty());
+    }
+
+    /**
+     * Export logs
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ExportLogsResponse exportLogs(V2ExportLogsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ExportLogsRequest, V2ExportLogsResponse> operation
-              = new V2ExportLogs.Sync(sdkConfiguration, _headers);
+              = new V2ExportLogs.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -571,8 +772,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetAccountResponse getAccount(V2GetAccountRequest request) {
+        return getAccount(request, Optional.empty());
+    }
+
+    /**
+     * Get account by its address
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetAccountResponse getAccount(V2GetAccountRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetAccountRequest, V2GetAccountResponse> operation
-              = new V2GetAccount.Sync(sdkConfiguration, _headers);
+              = new V2GetAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -593,8 +806,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetBalancesAggregatedResponse getBalancesAggregated(V2GetBalancesAggregatedRequest request) {
+        return getBalancesAggregated(request, Optional.empty());
+    }
+
+    /**
+     * Get the aggregated balances from selected accounts
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetBalancesAggregatedResponse getBalancesAggregated(V2GetBalancesAggregatedRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetBalancesAggregatedRequest, V2GetBalancesAggregatedResponse> operation
-              = new V2GetBalancesAggregated.Sync(sdkConfiguration, _headers);
+              = new V2GetBalancesAggregated.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -615,8 +840,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetExporterStateResponse getExporterState(V2GetExporterStateRequest request) {
+        return getExporterState(request, Optional.empty());
+    }
+
+    /**
+     * Get exporter state
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetExporterStateResponse getExporterState(V2GetExporterStateRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetExporterStateRequest, V2GetExporterStateResponse> operation
-              = new V2GetExporterState.Sync(sdkConfiguration, _headers);
+              = new V2GetExporterState.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -637,8 +874,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetLedgerResponse getLedger(V2GetLedgerRequest request) {
+        return getLedger(request, Optional.empty());
+    }
+
+    /**
+     * Get a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetLedgerResponse getLedger(V2GetLedgerRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetLedgerRequest, V2GetLedgerResponse> operation
-              = new V2GetLedger.Sync(sdkConfiguration, _headers);
+              = new V2GetLedger.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -659,8 +908,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetLedgerInfoResponse getLedgerInfo(V2GetLedgerInfoRequest request) {
+        return getLedgerInfo(request, Optional.empty());
+    }
+
+    /**
+     * Get information about a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetLedgerInfoResponse getLedgerInfo(V2GetLedgerInfoRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetLedgerInfoRequest, V2GetLedgerInfoResponse> operation
-              = new V2GetLedgerInfo.Sync(sdkConfiguration, _headers);
+              = new V2GetLedgerInfo.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -681,8 +942,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetPipelineStateResponse getPipelineState(V2GetPipelineStateRequest request) {
+        return getPipelineState(request, Optional.empty());
+    }
+
+    /**
+     * Get pipeline state
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetPipelineStateResponse getPipelineState(V2GetPipelineStateRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetPipelineStateRequest, V2GetPipelineStateResponse> operation
-              = new V2GetPipelineState.Sync(sdkConfiguration, _headers);
+              = new V2GetPipelineState.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -703,8 +976,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetSchemaResponse getSchema(V2GetSchemaRequest request) {
+        return getSchema(request, Optional.empty());
+    }
+
+    /**
+     * Get a schema for a ledger by version
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetSchemaResponse getSchema(V2GetSchemaRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetSchemaRequest, V2GetSchemaResponse> operation
-              = new V2GetSchema.Sync(sdkConfiguration, _headers);
+              = new V2GetSchema.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -725,8 +1010,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetTransactionResponse getTransaction(V2GetTransactionRequest request) {
+        return getTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Get transaction from a ledger by its ID
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetTransactionResponse getTransaction(V2GetTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetTransactionRequest, V2GetTransactionResponse> operation
-              = new V2GetTransaction.Sync(sdkConfiguration, _headers);
+              = new V2GetTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -747,8 +1044,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetVolumesWithBalancesResponse getVolumesWithBalances(V2GetVolumesWithBalancesRequest request) {
+        return getVolumesWithBalances(request, Optional.empty());
+    }
+
+    /**
+     * Get list of volumes with balances for (account/asset)
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetVolumesWithBalancesResponse getVolumesWithBalances(V2GetVolumesWithBalancesRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetVolumesWithBalancesRequest, V2GetVolumesWithBalancesResponse> operation
-              = new V2GetVolumesWithBalances.Sync(sdkConfiguration, _headers);
+              = new V2GetVolumesWithBalances.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -762,15 +1071,27 @@ public class LedgerV2 {
     }
 
     /**
-     * Makes a request.
+     * Makes a request (required parameters only).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ImportLogsResponse importLogs(V2ImportLogsRequest request) {
+        return importLogs(request, Optional.empty());
+    }
+
+    /**
+     * Makes a request.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ImportLogsResponse importLogs(V2ImportLogsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ImportLogsRequest, V2ImportLogsResponse> operation
-              = new V2ImportLogs.Sync(sdkConfiguration, _headers);
+              = new V2ImportLogs.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -791,8 +1112,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2InsertSchemaResponse insertSchema(V2InsertSchemaRequest request) {
+        return insertSchema(request, Optional.empty());
+    }
+
+    /**
+     * Insert a schema for a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2InsertSchemaResponse insertSchema(V2InsertSchemaRequest request, Optional<String> serverURL) {
         RequestOperation<V2InsertSchemaRequest, V2InsertSchemaResponse> operation
-              = new V2InsertSchema.Sync(sdkConfiguration, _headers);
+              = new V2InsertSchema.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -817,8 +1150,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListAccountsResponse listAccounts(V2ListAccountsRequest request) {
+        return listAccounts(request, Optional.empty());
+    }
+
+    /**
+     * List accounts from a ledger
+     * 
+     * <p>List accounts from a ledger, sorted by address in descending order.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListAccountsResponse listAccounts(V2ListAccountsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListAccountsRequest, V2ListAccountsResponse> operation
-              = new V2ListAccounts.Sync(sdkConfiguration, _headers);
+              = new V2ListAccounts.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -838,8 +1185,19 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListExportersResponse listExportersDirect() {
+        return listExporters(Optional.empty());
+    }
+
+    /**
+     * List exporters
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListExportersResponse listExporters(Optional<String> serverURL) {
         RequestlessOperation<V2ListExportersResponse> operation
-            = new V2ListExporters.Sync(sdkConfiguration, _headers);
+            = new V2ListExporters.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -860,8 +1218,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListLedgersResponse listLedgers(V2ListLedgersRequest request) {
+        return listLedgers(request, Optional.empty());
+    }
+
+    /**
+     * List ledgers
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListLedgersResponse listLedgers(V2ListLedgersRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListLedgersRequest, V2ListLedgersResponse> operation
-              = new V2ListLedgers.Sync(sdkConfiguration, _headers);
+              = new V2ListLedgers.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -886,8 +1256,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListLogsResponse listLogs(V2ListLogsRequest request) {
+        return listLogs(request, Optional.empty());
+    }
+
+    /**
+     * List the logs from a ledger
+     * 
+     * <p>List the logs from a ledger, sorted by ID in descending order.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListLogsResponse listLogs(V2ListLogsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListLogsRequest, V2ListLogsResponse> operation
-              = new V2ListLogs.Sync(sdkConfiguration, _headers);
+              = new V2ListLogs.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -908,8 +1292,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListPipelinesResponse listPipelines(V2ListPipelinesRequest request) {
+        return listPipelines(request, Optional.empty());
+    }
+
+    /**
+     * List pipelines
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListPipelinesResponse listPipelines(V2ListPipelinesRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListPipelinesRequest, V2ListPipelinesResponse> operation
-              = new V2ListPipelines.Sync(sdkConfiguration, _headers);
+              = new V2ListPipelines.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -930,8 +1326,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListSchemasResponse listSchemas(V2ListSchemasRequest request) {
+        return listSchemas(request, Optional.empty());
+    }
+
+    /**
+     * List all schemas for a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListSchemasResponse listSchemas(V2ListSchemasRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListSchemasRequest, V2ListSchemasResponse> operation
-              = new V2ListSchemas.Sync(sdkConfiguration, _headers);
+              = new V2ListSchemas.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -956,8 +1364,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListTransactionsResponse listTransactions(V2ListTransactionsRequest request) {
+        return listTransactions(request, Optional.empty());
+    }
+
+    /**
+     * List transactions from a ledger
+     * 
+     * <p>List transactions from a ledger, sorted by id in descending order.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ListTransactionsResponse listTransactions(V2ListTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListTransactionsRequest, V2ListTransactionsResponse> operation
-              = new V2ListTransactions.Sync(sdkConfiguration, _headers);
+              = new V2ListTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -982,8 +1404,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ReadStatsResponse readStats(V2ReadStatsRequest request) {
+        return readStats(request, Optional.empty());
+    }
+
+    /**
+     * Get statistics from a ledger
+     * 
+     * <p>Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ReadStatsResponse readStats(V2ReadStatsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ReadStatsRequest, V2ReadStatsResponse> operation
-              = new V2ReadStats.Sync(sdkConfiguration, _headers);
+              = new V2ReadStats.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1004,8 +1440,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ResetPipelineResponse resetPipeline(V2ResetPipelineRequest request) {
+        return resetPipeline(request, Optional.empty());
+    }
+
+    /**
+     * Reset pipeline
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ResetPipelineResponse resetPipeline(V2ResetPipelineRequest request, Optional<String> serverURL) {
         RequestOperation<V2ResetPipelineRequest, V2ResetPipelineResponse> operation
-              = new V2ResetPipeline.Sync(sdkConfiguration, _headers);
+              = new V2ResetPipeline.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1032,8 +1480,23 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2RestoreBucketResponse restoreBucket(V2RestoreBucketRequest request) {
+        return restoreBucket(request, Optional.empty());
+    }
+
+    /**
+     * Restore bucket
+     * 
+     * <p>Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the
+     * bucket will have their deleted_at field set to NULL.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2RestoreBucketResponse restoreBucket(V2RestoreBucketRequest request, Optional<String> serverURL) {
         RequestOperation<V2RestoreBucketRequest, V2RestoreBucketResponse> operation
-              = new V2RestoreBucket.Sync(sdkConfiguration, _headers);
+              = new V2RestoreBucket.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1054,8 +1517,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2RevertTransactionResponse revertTransaction(V2RevertTransactionRequest request) {
+        return revertTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Revert a ledger transaction by its ID
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2RevertTransactionResponse revertTransaction(V2RevertTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<V2RevertTransactionRequest, V2RevertTransactionResponse> operation
-              = new V2RevertTransaction.Sync(sdkConfiguration, _headers);
+              = new V2RevertTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1080,8 +1555,22 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2RunQueryResponse runQuery(V2RunQueryRequest request) {
+        return runQuery(request, Optional.empty());
+    }
+
+    /**
+     * Run a query template
+     * 
+     * <p>Run a query template on a ledger
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2RunQueryResponse runQuery(V2RunQueryRequest request, Optional<String> serverURL) {
         RequestOperation<V2RunQueryRequest, V2RunQueryResponse> operation
-              = new V2RunQuery.Sync(sdkConfiguration, _headers);
+              = new V2RunQuery.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1102,8 +1591,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2StartPipelineResponse startPipeline(V2StartPipelineRequest request) {
+        return startPipeline(request, Optional.empty());
+    }
+
+    /**
+     * Start pipeline
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2StartPipelineResponse startPipeline(V2StartPipelineRequest request, Optional<String> serverURL) {
         RequestOperation<V2StartPipelineRequest, V2StartPipelineResponse> operation
-              = new V2StartPipeline.Sync(sdkConfiguration, _headers);
+              = new V2StartPipeline.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1124,8 +1625,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2StopPipelineResponse stopPipeline(V2StopPipelineRequest request) {
+        return stopPipeline(request, Optional.empty());
+    }
+
+    /**
+     * Stop pipeline
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2StopPipelineResponse stopPipeline(V2StopPipelineRequest request, Optional<String> serverURL) {
         RequestOperation<V2StopPipelineRequest, V2StopPipelineResponse> operation
-              = new V2StopPipeline.Sync(sdkConfiguration, _headers);
+              = new V2StopPipeline.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1146,8 +1659,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2UpdateExporterResponse updateExporter(V2UpdateExporterRequest request) {
+        return updateExporter(request, Optional.empty());
+    }
+
+    /**
+     * Update exporter
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2UpdateExporterResponse updateExporter(V2UpdateExporterRequest request, Optional<String> serverURL) {
         RequestOperation<V2UpdateExporterRequest, V2UpdateExporterResponse> operation
-              = new V2UpdateExporter.Sync(sdkConfiguration, _headers);
+              = new V2UpdateExporter.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1168,8 +1693,20 @@ public class LedgerV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2UpdateLedgerMetadataResponse updateLedgerMetadata(V2UpdateLedgerMetadataRequest request) {
+        return updateLedgerMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Update ledger metadata
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2UpdateLedgerMetadataResponse updateLedgerMetadata(V2UpdateLedgerMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<V2UpdateLedgerMetadataRequest, V2UpdateLedgerMetadataResponse> operation
-              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, _headers);
+              = new V2UpdateLedgerMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

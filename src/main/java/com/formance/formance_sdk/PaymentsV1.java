@@ -34,6 +34,9 @@ import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
+import com.formance.formance_sdk.models.operations.GetAccountPaymentsRequest;
+import com.formance.formance_sdk.models.operations.GetAccountPaymentsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetAccountPaymentsResponse;
 import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.GetBankAccountRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
@@ -55,12 +58,17 @@ import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
 import com.formance.formance_sdk.models.operations.GetPoolRequest;
 import com.formance.formance_sdk.models.operations.GetPoolRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetPoolResponse;
+import com.formance.formance_sdk.models.operations.GetServerInfoPaymentsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetServerInfoPaymentsResponse;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequestBuilder;
 import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
+import com.formance.formance_sdk.models.operations.ListAccountsPaymentsRequest;
+import com.formance.formance_sdk.models.operations.ListAccountsPaymentsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAccountsPaymentsResponse;
 import com.formance.formance_sdk.models.operations.ListAllConnectorsRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
 import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
@@ -83,14 +91,6 @@ import com.formance.formance_sdk.models.operations.ListPoolsResponse;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequestBuilder;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
-import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoRequestBuilder;
-import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequestBuilder;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
@@ -133,11 +133,11 @@ import com.formance.formance_sdk.models.operations.UpdatePoolQueryResponse;
 import com.formance.formance_sdk.models.operations.UpdateTransferInitiationStatusRequest;
 import com.formance.formance_sdk.models.operations.UpdateTransferInitiationStatusRequestBuilder;
 import com.formance.formance_sdk.models.operations.UpdateTransferInitiationStatusResponse;
-import com.formance.formance_sdk.models.shared.AccountRequest;
-import com.formance.formance_sdk.models.shared.BankAccountRequest;
-import com.formance.formance_sdk.models.shared.PaymentRequest;
-import com.formance.formance_sdk.models.shared.PoolRequest;
-import com.formance.formance_sdk.models.shared.TransferInitiationRequest;
+import com.formance.formance_sdk.models.payments.AccountRequest;
+import com.formance.formance_sdk.models.payments.BankAccountRequest;
+import com.formance.formance_sdk.models.payments.PaymentRequest;
+import com.formance.formance_sdk.models.payments.PoolRequest;
+import com.formance.formance_sdk.models.payments.TransferInitiationRequest;
 import com.formance.formance_sdk.operations.AddAccountToPool;
 import com.formance.formance_sdk.operations.ConnectorsTransfer;
 import com.formance.formance_sdk.operations.CreateAccount;
@@ -149,6 +149,7 @@ import com.formance.formance_sdk.operations.DeletePool;
 import com.formance.formance_sdk.operations.DeleteTransferInitiation;
 import com.formance.formance_sdk.operations.ForwardBankAccount;
 import com.formance.formance_sdk.operations.GetAccountBalances;
+import com.formance.formance_sdk.operations.GetAccountPayments;
 import com.formance.formance_sdk.operations.GetBankAccount;
 import com.formance.formance_sdk.operations.GetConnectorTask;
 import com.formance.formance_sdk.operations.GetConnectorTaskV1;
@@ -156,8 +157,10 @@ import com.formance.formance_sdk.operations.GetPayment;
 import com.formance.formance_sdk.operations.GetPool;
 import com.formance.formance_sdk.operations.GetPoolBalances;
 import com.formance.formance_sdk.operations.GetPoolBalancesLatest;
+import com.formance.formance_sdk.operations.GetServerInfoPayments;
 import com.formance.formance_sdk.operations.GetTransferInitiation;
 import com.formance.formance_sdk.operations.InstallConnector;
+import com.formance.formance_sdk.operations.ListAccountsPayments;
 import com.formance.formance_sdk.operations.ListAllConnectors;
 import com.formance.formance_sdk.operations.ListBankAccounts;
 import com.formance.formance_sdk.operations.ListConfigsAvailableConnectors;
@@ -166,9 +169,6 @@ import com.formance.formance_sdk.operations.ListConnectorTasksV1;
 import com.formance.formance_sdk.operations.ListPayments;
 import com.formance.formance_sdk.operations.ListPools;
 import com.formance.formance_sdk.operations.ListTransferInitiations;
-import com.formance.formance_sdk.operations.PaymentsgetAccount;
-import com.formance.formance_sdk.operations.PaymentsgetServerInfo;
-import com.formance.formance_sdk.operations.PaymentslistAccounts;
 import com.formance.formance_sdk.operations.ReadConnectorConfig;
 import com.formance.formance_sdk.operations.ReadConnectorConfigV1;
 import com.formance.formance_sdk.operations.RemoveAccountFromPool;
@@ -185,6 +185,8 @@ import com.formance.formance_sdk.operations.UpdatePoolQuery;
 import com.formance.formance_sdk.operations.UpdateTransferInitiationStatus;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class PaymentsV1 {
@@ -216,8 +218,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public AddAccountToPoolResponse addAccountToPool(AddAccountToPoolRequest request) {
+        return addAccountToPool(request, Optional.empty());
+    }
+
+    /**
+     * Add an account to a pool
+     * 
+     * <p>Add an account to a pool
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddAccountToPoolResponse addAccountToPool(AddAccountToPoolRequest request, Optional<String> serverURL) {
         RequestOperation<AddAccountToPoolRequest, AddAccountToPoolResponse> operation
-              = new AddAccountToPool.Sync(sdkConfiguration, _headers);
+              = new AddAccountToPool.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -242,8 +258,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorsTransferResponse connectorsTransfer(ConnectorsTransferRequest request) {
+        return connectorsTransfer(request, Optional.empty());
+    }
+
+    /**
+     * Transfer funds between Connector accounts
+     * 
+     * <p>Execute a transfer between two accounts.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConnectorsTransferResponse connectorsTransfer(ConnectorsTransferRequest request, Optional<String> serverURL) {
         RequestOperation<ConnectorsTransferRequest, ConnectorsTransferResponse> operation
-              = new ConnectorsTransfer.Sync(sdkConfiguration, _headers);
+              = new ConnectorsTransfer.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -268,8 +298,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateAccountResponse createAccount(AccountRequest request) {
+        return createAccount(request, Optional.empty());
+    }
+
+    /**
+     * Create an account
+     * 
+     * <p>Create an account
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateAccountResponse createAccount(AccountRequest request, Optional<String> serverURL) {
         RequestOperation<AccountRequest, CreateAccountResponse> operation
-              = new CreateAccount.Sync(sdkConfiguration, _headers);
+              = new CreateAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -294,8 +338,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateBankAccountResponse createBankAccount(BankAccountRequest request) {
+        return createBankAccount(request, Optional.empty());
+    }
+
+    /**
+     * Create a BankAccount in Payments and on the PSP
+     * 
+     * <p>Create a bank account in Payments and on the PSP.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateBankAccountResponse createBankAccount(BankAccountRequest request, Optional<String> serverURL) {
         RequestOperation<BankAccountRequest, CreateBankAccountResponse> operation
-              = new CreateBankAccount.Sync(sdkConfiguration, _headers);
+              = new CreateBankAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -320,8 +378,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentResponse createPayment(PaymentRequest request) {
+        return createPayment(request, Optional.empty());
+    }
+
+    /**
+     * Create a payment
+     * 
+     * <p>Create a payment
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePaymentResponse createPayment(PaymentRequest request, Optional<String> serverURL) {
         RequestOperation<PaymentRequest, CreatePaymentResponse> operation
-              = new CreatePayment.Sync(sdkConfiguration, _headers);
+              = new CreatePayment.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -346,8 +418,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePoolResponse createPool(PoolRequest request) {
+        return createPool(request, Optional.empty());
+    }
+
+    /**
+     * Create a Pool
+     * 
+     * <p>Create a Pool
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatePoolResponse createPool(PoolRequest request, Optional<String> serverURL) {
         RequestOperation<PoolRequest, CreatePoolResponse> operation
-              = new CreatePool.Sync(sdkConfiguration, _headers);
+              = new CreatePool.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -372,8 +458,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransferInitiationResponse createTransferInitiation(TransferInitiationRequest request) {
+        return createTransferInitiation(request, Optional.empty());
+    }
+
+    /**
+     * Create a TransferInitiation
+     * 
+     * <p>Create a transfer initiation
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransferInitiationResponse createTransferInitiation(TransferInitiationRequest request, Optional<String> serverURL) {
         RequestOperation<TransferInitiationRequest, CreateTransferInitiationResponse> operation
-              = new CreateTransferInitiation.Sync(sdkConfiguration, _headers);
+              = new CreateTransferInitiation.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -398,8 +498,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePoolResponse deletePool(DeletePoolRequest request) {
+        return deletePool(request, Optional.empty());
+    }
+
+    /**
+     * Delete a Pool
+     * 
+     * <p>Delete a pool by its id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletePoolResponse deletePool(DeletePoolRequest request, Optional<String> serverURL) {
         RequestOperation<DeletePoolRequest, DeletePoolResponse> operation
-              = new DeletePool.Sync(sdkConfiguration, _headers);
+              = new DeletePool.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -424,8 +538,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteTransferInitiationResponse deleteTransferInitiation(DeleteTransferInitiationRequest request) {
+        return deleteTransferInitiation(request, Optional.empty());
+    }
+
+    /**
+     * Delete a transfer initiation
+     * 
+     * <p>Delete a transfer initiation by its id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteTransferInitiationResponse deleteTransferInitiation(DeleteTransferInitiationRequest request, Optional<String> serverURL) {
         RequestOperation<DeleteTransferInitiationRequest, DeleteTransferInitiationResponse> operation
-              = new DeleteTransferInitiation.Sync(sdkConfiguration, _headers);
+              = new DeleteTransferInitiation.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -446,8 +574,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ForwardBankAccountResponse forwardBankAccount(ForwardBankAccountRequest request) {
+        return forwardBankAccount(request, Optional.empty());
+    }
+
+    /**
+     * Forward a bank account to a connector
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ForwardBankAccountResponse forwardBankAccount(ForwardBankAccountRequest request, Optional<String> serverURL) {
         RequestOperation<ForwardBankAccountRequest, ForwardBankAccountResponse> operation
-              = new ForwardBankAccount.Sync(sdkConfiguration, _headers);
+              = new ForwardBankAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -468,8 +608,54 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetAccountBalancesResponse getAccountBalances(GetAccountBalancesRequest request) {
+        return getAccountBalances(request, Optional.empty());
+    }
+
+    /**
+     * Get account balances
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetAccountBalancesResponse getAccountBalances(GetAccountBalancesRequest request, Optional<String> serverURL) {
         RequestOperation<GetAccountBalancesRequest, GetAccountBalancesResponse> operation
-              = new GetAccountBalances.Sync(sdkConfiguration, _headers);
+              = new GetAccountBalances.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get an account
+     * 
+     * @return The call builder
+     */
+    public GetAccountPaymentsRequestBuilder getAccountPayments() {
+        return new GetAccountPaymentsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get an account
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetAccountPaymentsResponse getAccountPayments(GetAccountPaymentsRequest request) {
+        return getAccountPayments(request, Optional.empty());
+    }
+
+    /**
+     * Get an account
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetAccountPaymentsResponse getAccountPayments(GetAccountPaymentsRequest request, Optional<String> serverURL) {
+        RequestOperation<GetAccountPaymentsRequest, GetAccountPaymentsResponse> operation
+              = new GetAccountPayments.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -490,8 +676,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetBankAccountResponse getBankAccount(GetBankAccountRequest request) {
+        return getBankAccount(request, Optional.empty());
+    }
+
+    /**
+     * Get a bank account created by user on Formance
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBankAccountResponse getBankAccount(GetBankAccountRequest request, Optional<String> serverURL) {
         RequestOperation<GetBankAccountRequest, GetBankAccountResponse> operation
-              = new GetBankAccount.Sync(sdkConfiguration, _headers);
+              = new GetBankAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -520,8 +718,24 @@ public class PaymentsV1 {
      */
     @Deprecated
     public GetConnectorTaskResponse getConnectorTask(GetConnectorTaskRequest request) {
+        return getConnectorTask(request, Optional.empty());
+    }
+
+    /**
+     * Read a specific task of the connector
+     * 
+     * <p>Get a specific task associated to the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public GetConnectorTaskResponse getConnectorTask(GetConnectorTaskRequest request, Optional<String> serverURL) {
         RequestOperation<GetConnectorTaskRequest, GetConnectorTaskResponse> operation
-              = new GetConnectorTask.Sync(sdkConfiguration, _headers);
+              = new GetConnectorTask.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -546,8 +760,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetConnectorTaskV1Response getConnectorTaskV1(GetConnectorTaskV1Request request) {
+        return getConnectorTaskV1(request, Optional.empty());
+    }
+
+    /**
+     * Read a specific task of the connector
+     * 
+     * <p>Get a specific task associated to the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetConnectorTaskV1Response getConnectorTaskV1(GetConnectorTaskV1Request request, Optional<String> serverURL) {
         RequestOperation<GetConnectorTaskV1Request, GetConnectorTaskV1Response> operation
-              = new GetConnectorTaskV1.Sync(sdkConfiguration, _headers);
+              = new GetConnectorTaskV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -568,8 +796,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentResponse getPayment(GetPaymentRequest request) {
+        return getPayment(request, Optional.empty());
+    }
+
+    /**
+     * Get a payment
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPaymentResponse getPayment(GetPaymentRequest request, Optional<String> serverURL) {
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPayment.Sync(sdkConfiguration, _headers);
+              = new GetPayment.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -590,8 +830,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPoolResponse getPool(GetPoolRequest request) {
+        return getPool(request, Optional.empty());
+    }
+
+    /**
+     * Get a Pool
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPoolResponse getPool(GetPoolRequest request, Optional<String> serverURL) {
         RequestOperation<GetPoolRequest, GetPoolResponse> operation
-              = new GetPool.Sync(sdkConfiguration, _headers);
+              = new GetPool.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -612,8 +864,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPoolBalancesResponse getPoolBalances(GetPoolBalancesRequest request) {
+        return getPoolBalances(request, Optional.empty());
+    }
+
+    /**
+     * Get historical pool balances at a particular point in time
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPoolBalancesResponse getPoolBalances(GetPoolBalancesRequest request, Optional<String> serverURL) {
         RequestOperation<GetPoolBalancesRequest, GetPoolBalancesResponse> operation
-              = new GetPoolBalances.Sync(sdkConfiguration, _headers);
+              = new GetPoolBalances.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -634,9 +898,53 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPoolBalancesLatestResponse getPoolBalancesLatest(GetPoolBalancesLatestRequest request) {
+        return getPoolBalancesLatest(request, Optional.empty());
+    }
+
+    /**
+     * Get latest pool balances
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPoolBalancesLatestResponse getPoolBalancesLatest(GetPoolBalancesLatestRequest request, Optional<String> serverURL) {
         RequestOperation<GetPoolBalancesLatestRequest, GetPoolBalancesLatestResponse> operation
-              = new GetPoolBalancesLatest.Sync(sdkConfiguration, _headers);
+              = new GetPoolBalancesLatest.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get server info
+     * 
+     * @return The call builder
+     */
+    public GetServerInfoPaymentsRequestBuilder getServerInfoPayments() {
+        return new GetServerInfoPaymentsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get server info
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetServerInfoPaymentsResponse getServerInfoPaymentsDirect() {
+        return getServerInfoPayments(Optional.empty());
+    }
+
+    /**
+     * Get server info
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetServerInfoPaymentsResponse getServerInfoPayments(Optional<String> serverURL) {
+        RequestlessOperation<GetServerInfoPaymentsResponse> operation
+            = new GetServerInfoPayments.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest());
     }
 
     /**
@@ -656,8 +964,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetTransferInitiationResponse getTransferInitiation(GetTransferInitiationRequest request) {
+        return getTransferInitiation(request, Optional.empty());
+    }
+
+    /**
+     * Get a transfer initiation
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransferInitiationResponse getTransferInitiation(GetTransferInitiationRequest request, Optional<String> serverURL) {
         RequestOperation<GetTransferInitiationRequest, GetTransferInitiationResponse> operation
-              = new GetTransferInitiation.Sync(sdkConfiguration, _headers);
+              = new GetTransferInitiation.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -682,8 +1002,56 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public InstallConnectorResponse installConnector(InstallConnectorRequest request) {
+        return installConnector(request, Optional.empty());
+    }
+
+    /**
+     * Install a connector
+     * 
+     * <p>Install a connector by its name and config.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public InstallConnectorResponse installConnector(InstallConnectorRequest request, Optional<String> serverURL) {
         RequestOperation<InstallConnectorRequest, InstallConnectorResponse> operation
-              = new InstallConnector.Sync(sdkConfiguration, _headers);
+              = new InstallConnector.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List accounts
+     * 
+     * @return The call builder
+     */
+    public ListAccountsPaymentsRequestBuilder listAccountsPayments() {
+        return new ListAccountsPaymentsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List accounts
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAccountsPaymentsResponse listAccountsPayments(ListAccountsPaymentsRequest request) {
+        return listAccountsPayments(request, Optional.empty());
+    }
+
+    /**
+     * List accounts
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAccountsPaymentsResponse listAccountsPayments(ListAccountsPaymentsRequest request, Optional<String> serverURL) {
+        RequestOperation<ListAccountsPaymentsRequest, ListAccountsPaymentsResponse> operation
+              = new ListAccountsPayments.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -707,8 +1075,21 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListAllConnectorsResponse listAllConnectorsDirect() {
+        return listAllConnectors(Optional.empty());
+    }
+
+    /**
+     * List all installed connectors
+     * 
+     * <p>List all installed connectors.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAllConnectorsResponse listAllConnectors(Optional<String> serverURL) {
         RequestlessOperation<ListAllConnectorsResponse> operation
-            = new ListAllConnectors.Sync(sdkConfiguration, _headers);
+            = new ListAllConnectors.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -733,8 +1114,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListBankAccountsResponse listBankAccounts(ListBankAccountsRequest request) {
+        return listBankAccounts(request, Optional.empty());
+    }
+
+    /**
+     * List bank accounts created by user on Formance
+     * 
+     * <p>List all bank accounts created by user on Formance.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListBankAccountsResponse listBankAccounts(ListBankAccountsRequest request, Optional<String> serverURL) {
         RequestOperation<ListBankAccountsRequest, ListBankAccountsResponse> operation
-              = new ListBankAccounts.Sync(sdkConfiguration, _headers);
+              = new ListBankAccounts.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -758,8 +1153,21 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectorsDirect() {
+        return listConfigsAvailableConnectors(Optional.empty());
+    }
+
+    /**
+     * List the configs of each available connector
+     * 
+     * <p>List the configs of each available connector.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListConfigsAvailableConnectorsResponse listConfigsAvailableConnectors(Optional<String> serverURL) {
         RequestlessOperation<ListConfigsAvailableConnectorsResponse> operation
-            = new ListConfigsAvailableConnectors.Sync(sdkConfiguration, _headers);
+            = new ListConfigsAvailableConnectors.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -788,8 +1196,24 @@ public class PaymentsV1 {
      */
     @Deprecated
     public ListConnectorTasksResponse listConnectorTasks(ListConnectorTasksRequest request) {
+        return listConnectorTasks(request, Optional.empty());
+    }
+
+    /**
+     * List tasks from a connector
+     * 
+     * <p>List all tasks associated with this connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public ListConnectorTasksResponse listConnectorTasks(ListConnectorTasksRequest request, Optional<String> serverURL) {
         RequestOperation<ListConnectorTasksRequest, ListConnectorTasksResponse> operation
-              = new ListConnectorTasks.Sync(sdkConfiguration, _headers);
+              = new ListConnectorTasks.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -814,8 +1238,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListConnectorTasksV1Response listConnectorTasksV1(ListConnectorTasksV1Request request) {
+        return listConnectorTasksV1(request, Optional.empty());
+    }
+
+    /**
+     * List tasks from a connector
+     * 
+     * <p>List all tasks associated with this connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListConnectorTasksV1Response listConnectorTasksV1(ListConnectorTasksV1Request request, Optional<String> serverURL) {
         RequestOperation<ListConnectorTasksV1Request, ListConnectorTasksV1Response> operation
-              = new ListConnectorTasksV1.Sync(sdkConfiguration, _headers);
+              = new ListConnectorTasksV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -836,8 +1274,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentsResponse listPayments(ListPaymentsRequest request) {
+        return listPayments(request, Optional.empty());
+    }
+
+    /**
+     * List payments
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListPaymentsResponse listPayments(ListPaymentsRequest request, Optional<String> serverURL) {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPayments.Sync(sdkConfiguration, _headers);
+              = new ListPayments.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -858,8 +1308,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPoolsResponse listPools(ListPoolsRequest request) {
+        return listPools(request, Optional.empty());
+    }
+
+    /**
+     * List Pools
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListPoolsResponse listPools(ListPoolsRequest request, Optional<String> serverURL) {
         RequestOperation<ListPoolsRequest, ListPoolsResponse> operation
-              = new ListPools.Sync(sdkConfiguration, _headers);
+              = new ListPools.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -880,73 +1342,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListTransferInitiationsResponse listTransferInitiations(ListTransferInitiationsRequest request) {
+        return listTransferInitiations(request, Optional.empty());
+    }
+
+    /**
+     * List Transfer Initiations
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransferInitiationsResponse listTransferInitiations(ListTransferInitiationsRequest request, Optional<String> serverURL) {
         RequestOperation<ListTransferInitiationsRequest, ListTransferInitiationsResponse> operation
-              = new ListTransferInitiations.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Get an account
-     * 
-     * @return The call builder
-     */
-    public PaymentsgetAccountRequestBuilder paymentsgetAccount() {
-        return new PaymentsgetAccountRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get an account
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public PaymentsgetAccountResponse paymentsgetAccount(PaymentsgetAccountRequest request) {
-        RequestOperation<PaymentsgetAccountRequest, PaymentsgetAccountResponse> operation
-              = new PaymentsgetAccount.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Get server info
-     * 
-     * @return The call builder
-     */
-    public PaymentsgetServerInfoRequestBuilder paymentsgetServerInfo() {
-        return new PaymentsgetServerInfoRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get server info
-     * 
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public PaymentsgetServerInfoResponse paymentsgetServerInfoDirect() {
-        RequestlessOperation<PaymentsgetServerInfoResponse> operation
-            = new PaymentsgetServerInfo.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest());
-    }
-
-    /**
-     * List accounts
-     * 
-     * @return The call builder
-     */
-    public PaymentslistAccountsRequestBuilder paymentslistAccounts() {
-        return new PaymentslistAccountsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * List accounts
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public PaymentslistAccountsResponse paymentslistAccounts(PaymentslistAccountsRequest request) {
-        RequestOperation<PaymentslistAccountsRequest, PaymentslistAccountsResponse> operation
-              = new PaymentslistAccounts.Sync(sdkConfiguration, _headers);
+              = new ListTransferInitiations.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -975,8 +1384,24 @@ public class PaymentsV1 {
      */
     @Deprecated
     public ReadConnectorConfigResponse readConnectorConfig(ReadConnectorConfigRequest request) {
+        return readConnectorConfig(request, Optional.empty());
+    }
+
+    /**
+     * Read the config of a connector
+     * 
+     * <p>Read connector config
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public ReadConnectorConfigResponse readConnectorConfig(ReadConnectorConfigRequest request, Optional<String> serverURL) {
         RequestOperation<ReadConnectorConfigRequest, ReadConnectorConfigResponse> operation
-              = new ReadConnectorConfig.Sync(sdkConfiguration, _headers);
+              = new ReadConnectorConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1001,8 +1426,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReadConnectorConfigV1Response readConnectorConfigV1(ReadConnectorConfigV1Request request) {
+        return readConnectorConfigV1(request, Optional.empty());
+    }
+
+    /**
+     * Read the config of a connector
+     * 
+     * <p>Read connector config
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReadConnectorConfigV1Response readConnectorConfigV1(ReadConnectorConfigV1Request request, Optional<String> serverURL) {
         RequestOperation<ReadConnectorConfigV1Request, ReadConnectorConfigV1Response> operation
-              = new ReadConnectorConfigV1.Sync(sdkConfiguration, _headers);
+              = new ReadConnectorConfigV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1027,8 +1466,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public RemoveAccountFromPoolResponse removeAccountFromPool(RemoveAccountFromPoolRequest request) {
+        return removeAccountFromPool(request, Optional.empty());
+    }
+
+    /**
+     * Remove an account from a pool
+     * 
+     * <p>Remove an account from a pool by its id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public RemoveAccountFromPoolResponse removeAccountFromPool(RemoveAccountFromPoolRequest request, Optional<String> serverURL) {
         RequestOperation<RemoveAccountFromPoolRequest, RemoveAccountFromPoolResponse> operation
-              = new RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
+              = new RemoveAccountFromPool.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1059,8 +1512,25 @@ public class PaymentsV1 {
      */
     @Deprecated
     public ResetConnectorResponse resetConnector(ResetConnectorRequest request) {
+        return resetConnector(request, Optional.empty());
+    }
+
+    /**
+     * Reset a connector
+     * 
+     * <p>Reset a connector by its name.
+     * It will remove the connector and ALL PAYMENTS generated with it.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public ResetConnectorResponse resetConnector(ResetConnectorRequest request, Optional<String> serverURL) {
         RequestOperation<ResetConnectorRequest, ResetConnectorResponse> operation
-              = new ResetConnector.Sync(sdkConfiguration, _headers);
+              = new ResetConnector.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1087,8 +1557,23 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ResetConnectorV1Response resetConnectorV1(ResetConnectorV1Request request) {
+        return resetConnectorV1(request, Optional.empty());
+    }
+
+    /**
+     * Reset a connector
+     * 
+     * <p>Reset a connector by its name.
+     * It will remove the connector and ALL PAYMENTS generated with it.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ResetConnectorV1Response resetConnectorV1(ResetConnectorV1Request request, Optional<String> serverURL) {
         RequestOperation<ResetConnectorV1Request, ResetConnectorV1Response> operation
-              = new ResetConnectorV1.Sync(sdkConfiguration, _headers);
+              = new ResetConnectorV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1113,8 +1598,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public RetryTransferInitiationResponse retryTransferInitiation(RetryTransferInitiationRequest request) {
+        return retryTransferInitiation(request, Optional.empty());
+    }
+
+    /**
+     * Retry a failed transfer initiation
+     * 
+     * <p>Retry a failed transfer initiation
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public RetryTransferInitiationResponse retryTransferInitiation(RetryTransferInitiationRequest request, Optional<String> serverURL) {
         RequestOperation<RetryTransferInitiationRequest, RetryTransferInitiationResponse> operation
-              = new RetryTransferInitiation.Sync(sdkConfiguration, _headers);
+              = new RetryTransferInitiation.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1139,8 +1638,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReverseTransferInitiationResponse reverseTransferInitiation(ReverseTransferInitiationRequest request) {
+        return reverseTransferInitiation(request, Optional.empty());
+    }
+
+    /**
+     * Reverse a transfer initiation
+     * 
+     * <p>Reverse transfer initiation
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReverseTransferInitiationResponse reverseTransferInitiation(ReverseTransferInitiationRequest request, Optional<String> serverURL) {
         RequestOperation<ReverseTransferInitiationRequest, ReverseTransferInitiationResponse> operation
-              = new ReverseTransferInitiation.Sync(sdkConfiguration, _headers);
+              = new ReverseTransferInitiation.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1169,8 +1682,24 @@ public class PaymentsV1 {
      */
     @Deprecated
     public UninstallConnectorResponse uninstallConnector(UninstallConnectorRequest request) {
+        return uninstallConnector(request, Optional.empty());
+    }
+
+    /**
+     * Uninstall a connector
+     * 
+     * <p>Uninstall a connector by its name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public UninstallConnectorResponse uninstallConnector(UninstallConnectorRequest request, Optional<String> serverURL) {
         RequestOperation<UninstallConnectorRequest, UninstallConnectorResponse> operation
-              = new UninstallConnector.Sync(sdkConfiguration, _headers);
+              = new UninstallConnector.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1195,8 +1724,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UninstallConnectorV1Response uninstallConnectorV1(UninstallConnectorV1Request request) {
+        return uninstallConnectorV1(request, Optional.empty());
+    }
+
+    /**
+     * Uninstall a connector
+     * 
+     * <p>Uninstall a connector by its name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UninstallConnectorV1Response uninstallConnectorV1(UninstallConnectorV1Request request, Optional<String> serverURL) {
         RequestOperation<UninstallConnectorV1Request, UninstallConnectorV1Response> operation
-              = new UninstallConnectorV1.Sync(sdkConfiguration, _headers);
+              = new UninstallConnectorV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1217,8 +1760,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateBankAccountMetadataResponse updateBankAccountMetadata(UpdateBankAccountMetadataRequest request) {
+        return updateBankAccountMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Update metadata of a bank account
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateBankAccountMetadataResponse updateBankAccountMetadata(UpdateBankAccountMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateBankAccountMetadataRequest, UpdateBankAccountMetadataResponse> operation
-              = new UpdateBankAccountMetadata.Sync(sdkConfiguration, _headers);
+              = new UpdateBankAccountMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1243,8 +1798,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateConnectorConfigV1Response updateConnectorConfigV1(UpdateConnectorConfigV1Request request) {
+        return updateConnectorConfigV1(request, Optional.empty());
+    }
+
+    /**
+     * Update the config of a connector
+     * 
+     * <p>Update connector config
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateConnectorConfigV1Response updateConnectorConfigV1(UpdateConnectorConfigV1Request request, Optional<String> serverURL) {
         RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> operation
-              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, _headers);
+              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1265,8 +1834,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateMetadataResponse updateMetadata(UpdateMetadataRequest request) {
+        return updateMetadata(request, Optional.empty());
+    }
+
+    /**
+     * Update metadata
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateMetadataResponse updateMetadata(UpdateMetadataRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateMetadataRequest, UpdateMetadataResponse> operation
-              = new UpdateMetadata.Sync(sdkConfiguration, _headers);
+              = new UpdateMetadata.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1287,8 +1868,20 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdatePoolQueryResponse updatePoolQuery(UpdatePoolQueryRequest request) {
+        return updatePoolQuery(request, Optional.empty());
+    }
+
+    /**
+     * Update the query of a pool
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdatePoolQueryResponse updatePoolQuery(UpdatePoolQueryRequest request, Optional<String> serverURL) {
         RequestOperation<UpdatePoolQueryRequest, UpdatePoolQueryResponse> operation
-              = new UpdatePoolQuery.Sync(sdkConfiguration, _headers);
+              = new UpdatePoolQuery.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -1313,8 +1906,22 @@ public class PaymentsV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateTransferInitiationStatusResponse updateTransferInitiationStatus(UpdateTransferInitiationStatusRequest request) {
+        return updateTransferInitiationStatus(request, Optional.empty());
+    }
+
+    /**
+     * Update the status of a transfer initiation
+     * 
+     * <p>Update a transfer initiation status
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateTransferInitiationStatusResponse updateTransferInitiationStatus(UpdateTransferInitiationStatusRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateTransferInitiationStatusRequest, UpdateTransferInitiationStatusResponse> operation
-              = new UpdateTransferInitiationStatus.Sync(sdkConfiguration, _headers);
+              = new UpdateTransferInitiationStatus.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,7 +14,6 @@ OAuth2 - an open protocol to allow secure authorization in a simple
 and standard method from web, mobile and desktop applications.
 <SecurityDefinitions />
 
-
 ### Available Operations
 
 * [getVersions](#getversions) - Show stack version information
@@ -49,6 +48,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
