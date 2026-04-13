@@ -34,9 +34,9 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
 import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -69,6 +69,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2CancelEventRequest](../../models/operations/V2CancelEventRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -92,8 +93,8 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -120,9 +121,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [V2TriggerData](../../models/shared/V2TriggerData.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [V2TriggerData2](../../models/shared/V2TriggerData2.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| `serverURL`                                             | *String*                                                | :heavy_minus_sign:                                      | An optional server URL to use.                          |
 
 ### Response
 
@@ -146,8 +148,8 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -174,9 +176,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [V2CreateWorkflowRequest](../../models/shared/V2CreateWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [V2WorkflowConfig](../../models/shared/V2WorkflowConfig.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| `serverURL`                                                 | *String*                                                    | :heavy_minus_sign:                                          | An optional server URL to use.                              |
 
 ### Response
 
@@ -200,9 +203,9 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -235,6 +238,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2DeleteTriggerRequest](../../models/operations/V2DeleteTriggerRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -258,9 +262,9 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -293,6 +297,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2DeleteWorkflowRequest](../../models/operations/V2DeleteWorkflowRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -316,9 +321,9 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -353,6 +358,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2GetInstanceRequest](../../models/operations/V2GetInstanceRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -376,9 +382,9 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -413,6 +419,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V2GetInstanceHistoryRequest](../../models/operations/V2GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -436,9 +443,9 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -474,6 +481,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V2GetInstanceStageHistoryRequest](../../models/operations/V2GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -497,8 +505,8 @@ Get server info
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -523,6 +531,12 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[V2GetServerInfoResponse](../../models/operations/V2GetServerInfoResponse.md)**
@@ -545,9 +559,9 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -582,6 +596,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2GetWorkflowRequest](../../models/operations/V2GetWorkflowRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -605,9 +620,9 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -645,6 +660,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2ListInstancesRequest](../../models/operations/V2ListInstancesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -668,9 +684,9 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -706,6 +722,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2ListTriggersRequest](../../models/operations/V2ListTriggersRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -729,9 +746,9 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -768,6 +785,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V2ListTriggersOccurrencesRequest](../../models/operations/V2ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -791,9 +809,9 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -829,6 +847,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2ListWorkflowsRequest](../../models/operations/V2ListWorkflowsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -852,9 +871,9 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -889,6 +908,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2ReadTriggerRequest](../../models/operations/V2ReadTriggerRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -912,9 +932,9 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -949,6 +969,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2RunWorkflowRequest](../../models/operations/V2RunWorkflowRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -972,9 +993,9 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.V2SendEventRequest;
 import com.formance.formance_sdk.models.operations.V2SendEventResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1007,6 +1028,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2SendEventRequest](../../models/operations/V2SendEventRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1030,9 +1052,9 @@ Test trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2Error;
 import com.formance.formance_sdk.models.operations.TestTriggerRequest;
 import com.formance.formance_sdk.models.operations.TestTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.V2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1067,6 +1089,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [TestTriggerRequest](../../models/operations/TestTriggerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 

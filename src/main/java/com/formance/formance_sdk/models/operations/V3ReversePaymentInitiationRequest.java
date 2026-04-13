@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3ReversePaymentInitiationRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest;
 
     /**
      * The payment initiation ID
@@ -26,7 +26,7 @@ public class V3ReversePaymentInitiationRequest {
 
     @JsonCreator
     public V3ReversePaymentInitiationRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest,
             String paymentInitiationID) {
         Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
         Utils.checkNotNull(paymentInitiationID, "paymentInitiationID");
@@ -41,8 +41,8 @@ public class V3ReversePaymentInitiationRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest>) v3ReversePaymentInitiationRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest>) v3ReversePaymentInitiationRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V3ReversePaymentInitiationRequest {
     }
 
 
-    public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
+    public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
         Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
         this.v3ReversePaymentInitiationRequest = Optional.ofNullable(v3ReversePaymentInitiationRequest);
         return this;
     }
 
 
-    public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest) {
+    public V3ReversePaymentInitiationRequest withV3ReversePaymentInitiationRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest) {
         Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
         this.v3ReversePaymentInitiationRequest = v3ReversePaymentInitiationRequest;
         return this;
@@ -110,7 +110,7 @@ public class V3ReversePaymentInitiationRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest = Optional.empty();
 
         private String paymentInitiationID;
 
@@ -119,13 +119,13 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
-        public Builder v3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
+        public Builder v3ReversePaymentInitiationRequest(com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest v3ReversePaymentInitiationRequest) {
             Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
             this.v3ReversePaymentInitiationRequest = Optional.ofNullable(v3ReversePaymentInitiationRequest);
             return this;
         }
 
-        public Builder v3ReversePaymentInitiationRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest) {
+        public Builder v3ReversePaymentInitiationRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationRequest> v3ReversePaymentInitiationRequest) {
             Utils.checkNotNull(v3ReversePaymentInitiationRequest, "v3ReversePaymentInitiationRequest");
             this.v3ReversePaymentInitiationRequest = v3ReversePaymentInitiationRequest;
             return this;

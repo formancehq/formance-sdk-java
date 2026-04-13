@@ -25,7 +25,7 @@ public class ReadClientResponse implements Response {
     /**
      * Retrieved client
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse;
+    private Optional<? extends com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ReadClientResponse implements Response {
     @JsonCreator
     public ReadClientResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse,
+            Optional<? extends com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ReadClientResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ReadClientResponse>) readClientResponse;
+    public Optional<com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse() {
+        return (Optional<com.formance.formance_sdk.models.auth.ReadClientResponse>) readClientResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ReadClientResponse implements Response {
     /**
      * Retrieved client
      */
-    public ReadClientResponse withReadClientResponse(com.formance.formance_sdk.models.shared.ReadClientResponse readClientResponse) {
+    public ReadClientResponse withReadClientResponse(com.formance.formance_sdk.models.auth.ReadClientResponse readClientResponse) {
         Utils.checkNotNull(readClientResponse, "readClientResponse");
         this.readClientResponse = Optional.ofNullable(readClientResponse);
         return this;
@@ -121,7 +121,7 @@ public class ReadClientResponse implements Response {
     /**
      * Retrieved client
      */
-    public ReadClientResponse withReadClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse) {
+    public ReadClientResponse withReadClientResponse(Optional<? extends com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse) {
         Utils.checkNotNull(readClientResponse, "readClientResponse");
         this.readClientResponse = readClientResponse;
         return this;
@@ -182,7 +182,7 @@ public class ReadClientResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ReadClientResponse implements Response {
         /**
          * Retrieved client
          */
-        public Builder readClientResponse(com.formance.formance_sdk.models.shared.ReadClientResponse readClientResponse) {
+        public Builder readClientResponse(com.formance.formance_sdk.models.auth.ReadClientResponse readClientResponse) {
             Utils.checkNotNull(readClientResponse, "readClientResponse");
             this.readClientResponse = Optional.ofNullable(readClientResponse);
             return this;
@@ -215,7 +215,7 @@ public class ReadClientResponse implements Response {
         /**
          * Retrieved client
          */
-        public Builder readClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReadClientResponse> readClientResponse) {
+        public Builder readClientResponse(Optional<? extends com.formance.formance_sdk.models.auth.ReadClientResponse> readClientResponse) {
             Utils.checkNotNull(readClientResponse, "readClientResponse");
             this.readClientResponse = readClientResponse;
             return this;

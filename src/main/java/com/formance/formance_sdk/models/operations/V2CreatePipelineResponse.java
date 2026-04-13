@@ -35,22 +35,22 @@ public class V2CreatePipelineResponse implements Response {
     /**
      * Created ipeline
      */
-    private Optional<? extends V2CreatePipelineResponseBody> object;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse;
 
     @JsonCreator
     public V2CreatePipelineResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2CreatePipelineResponseBody> object) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2CreatePipelineResponse, "v2CreatePipelineResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2CreatePipelineResponse = v2CreatePipelineResponse;
     }
     
     public V2CreatePipelineResponse(
@@ -90,8 +90,8 @@ public class V2CreatePipelineResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2CreatePipelineResponseBody> object() {
-        return (Optional<V2CreatePipelineResponseBody>) object;
+    public Optional<com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse>) v2CreatePipelineResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +129,9 @@ public class V2CreatePipelineResponse implements Response {
     /**
      * Created ipeline
      */
-    public V2CreatePipelineResponse withObject(V2CreatePipelineResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2CreatePipelineResponse withV2CreatePipelineResponse(com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse v2CreatePipelineResponse) {
+        Utils.checkNotNull(v2CreatePipelineResponse, "v2CreatePipelineResponse");
+        this.v2CreatePipelineResponse = Optional.ofNullable(v2CreatePipelineResponse);
         return this;
     }
 
@@ -139,9 +139,9 @@ public class V2CreatePipelineResponse implements Response {
     /**
      * Created ipeline
      */
-    public V2CreatePipelineResponse withObject(Optional<? extends V2CreatePipelineResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2CreatePipelineResponse withV2CreatePipelineResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse) {
+        Utils.checkNotNull(v2CreatePipelineResponse, "v2CreatePipelineResponse");
+        this.v2CreatePipelineResponse = v2CreatePipelineResponse;
         return this;
     }
 
@@ -158,14 +158,14 @@ public class V2CreatePipelineResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2CreatePipelineResponse, other.v2CreatePipelineResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2CreatePipelineResponse);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class V2CreatePipelineResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2CreatePipelineResponse", v2CreatePipelineResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +186,7 @@ public class V2CreatePipelineResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2CreatePipelineResponseBody> object = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +226,18 @@ public class V2CreatePipelineResponse implements Response {
         /**
          * Created ipeline
          */
-        public Builder object(V2CreatePipelineResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2CreatePipelineResponse(com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse v2CreatePipelineResponse) {
+            Utils.checkNotNull(v2CreatePipelineResponse, "v2CreatePipelineResponse");
+            this.v2CreatePipelineResponse = Optional.ofNullable(v2CreatePipelineResponse);
             return this;
         }
 
         /**
          * Created ipeline
          */
-        public Builder object(Optional<? extends V2CreatePipelineResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2CreatePipelineResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineResponse> v2CreatePipelineResponse) {
+            Utils.checkNotNull(v2CreatePipelineResponse, "v2CreatePipelineResponse");
+            this.v2CreatePipelineResponse = v2CreatePipelineResponse;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class V2CreatePipelineResponse implements Response {
 
             return new V2CreatePipelineResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2CreatePipelineResponse);
         }
 
     }

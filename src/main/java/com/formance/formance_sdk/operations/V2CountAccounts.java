@@ -6,10 +6,11 @@ package com.formance.formance_sdk.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
@@ -18,16 +19,28 @@ import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
+import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.IllegalArgumentException;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2CountAccounts {
+    
+    /**
+     * V2_COUNT_ACCOUNTS_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V2_COUNT_ACCOUNTS_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -36,11 +49,16 @@ public class V2CountAccounts {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V2_COUNT_ACCOUNTS_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -75,13 +93,26 @@ public class V2CountAccounts {
                     java.util.Optional.of(java.util.List.of("ledger:read")),
                     securitySource());
         }
-        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
                     "/api/ledger/v2/{ledger}/accounts",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "HEAD");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    typeReference);
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "requestBody",
+                    "json",
+                    false);
+            if (serializedRequestBody == null) {
+                throw new IllegalArgumentException("Request body is required");
+            }
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -90,7 +121,7 @@ public class V2CountAccounts {
                     klass,
                     request,
                     null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -98,12 +129,16 @@ public class V2CountAccounts {
 
     public static class Sync extends Base
             implements RequestOperation<V2CountAccountsRequest, V2CountAccountsResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V2CountAccountsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, V2CountAccountsRequest.class);
+            HttpRequest req = buildRequest(request, V2CountAccountsRequest.class, new TypeReference<V2CountAccountsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -159,7 +194,7 @@ public class V2CountAccounts {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw V2ErrorResponse.from(response);
+                    throw ErrorsV2ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -8,12 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListPaymentServiceUserConnectionsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends Map<String, Object>> requestBody;
+
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
      * the value of previous for the previous page of results.
@@ -37,12 +44,15 @@ public class V3ListPaymentServiceUserConnectionsRequest {
 
     @JsonCreator
     public V3ListPaymentServiceUserConnectionsRequest(
+            Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
             Optional<Long> pageSize,
             String paymentServiceUserID) {
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(paymentServiceUserID, "paymentServiceUserID");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
         this.paymentServiceUserID = paymentServiceUserID;
@@ -50,7 +60,14 @@ public class V3ListPaymentServiceUserConnectionsRequest {
     
     public V3ListPaymentServiceUserConnectionsRequest(
             String paymentServiceUserID) {
-        this(Optional.empty(), Optional.empty(), paymentServiceUserID);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            paymentServiceUserID);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -84,6 +101,19 @@ public class V3ListPaymentServiceUserConnectionsRequest {
         return new Builder();
     }
 
+
+    public V3ListPaymentServiceUserConnectionsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
+        return this;
+    }
+
+
+    public V3ListPaymentServiceUserConnectionsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to
@@ -148,6 +178,7 @@ public class V3ListPaymentServiceUserConnectionsRequest {
         }
         V3ListPaymentServiceUserConnectionsRequest other = (V3ListPaymentServiceUserConnectionsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.paymentServiceUserID, other.paymentServiceUserID);
@@ -156,12 +187,14 @@ public class V3ListPaymentServiceUserConnectionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, pageSize, paymentServiceUserID);
+            requestBody, cursor, pageSize,
+            paymentServiceUserID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ListPaymentServiceUserConnectionsRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "pageSize", pageSize,
                 "paymentServiceUserID", paymentServiceUserID);
@@ -169,6 +202,8 @@ public class V3ListPaymentServiceUserConnectionsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
 
@@ -178,6 +213,19 @@ public class V3ListPaymentServiceUserConnectionsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
+            return this;
+        }
+
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -237,7 +285,8 @@ public class V3ListPaymentServiceUserConnectionsRequest {
         public V3ListPaymentServiceUserConnectionsRequest build() {
 
             return new V3ListPaymentServiceUserConnectionsRequest(
-                cursor, pageSize, paymentServiceUserID);
+                requestBody, cursor, pageSize,
+                paymentServiceUserID);
         }
 
     }

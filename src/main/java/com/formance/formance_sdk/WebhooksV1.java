@@ -28,7 +28,7 @@ import com.formance.formance_sdk.models.operations.TestConfigResponse;
 import com.formance.formance_sdk.models.operations.UpdateConfigRequest;
 import com.formance.formance_sdk.models.operations.UpdateConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.UpdateConfigResponse;
-import com.formance.formance_sdk.models.shared.ConfigUser;
+import com.formance.formance_sdk.models.webhooks.ConfigUser;
 import com.formance.formance_sdk.operations.ActivateConfig;
 import com.formance.formance_sdk.operations.ChangeConfigSecret;
 import com.formance.formance_sdk.operations.DeactivateConfig;
@@ -38,6 +38,8 @@ import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.operations.UpdateConfig;
 import com.formance.formance_sdk.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class WebhooksV1 {
@@ -53,6 +55,8 @@ public class WebhooksV1 {
      * 
      * <p>Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The call builder
      */
     public ActivateConfigRequestBuilder activateConfig() {
@@ -64,13 +68,31 @@ public class WebhooksV1 {
      * 
      * <p>Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ActivateConfigResponse activateConfig(ActivateConfigRequest request) {
+        return activateConfig(request, Optional.empty());
+    }
+
+    /**
+     * Activate one config
+     * 
+     * <p>Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ActivateConfigResponse activateConfig(ActivateConfigRequest request, Optional<String> serverURL) {
         RequestOperation<ActivateConfigRequest, ActivateConfigResponse> operation
-              = new ActivateConfig.Sync(sdkConfiguration, _headers);
+              = new ActivateConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -81,6 +103,8 @@ public class WebhooksV1 {
      * 
      * <p>If not passed or empty, a secret is automatically generated.
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -96,13 +120,34 @@ public class WebhooksV1 {
      * <p>If not passed or empty, a secret is automatically generated.
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ChangeConfigSecretResponse changeConfigSecret(ChangeConfigSecretRequest request) {
+        return changeConfigSecret(request, Optional.empty());
+    }
+
+    /**
+     * Change the signing secret of a config
+     * 
+     * <p>Change the signing secret of the endpoint of a webhooks config.
+     * 
+     * <p>If not passed or empty, a secret is automatically generated.
+     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ChangeConfigSecretResponse changeConfigSecret(ChangeConfigSecretRequest request, Optional<String> serverURL) {
         RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
-              = new ChangeConfigSecret.Sync(sdkConfiguration, _headers);
+              = new ChangeConfigSecret.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -110,6 +155,8 @@ public class WebhooksV1 {
      * Deactivate one config
      * 
      * <p>Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -122,13 +169,31 @@ public class WebhooksV1 {
      * 
      * <p>Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DeactivateConfigResponse deactivateConfig(DeactivateConfigRequest request) {
+        return deactivateConfig(request, Optional.empty());
+    }
+
+    /**
+     * Deactivate one config
+     * 
+     * <p>Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeactivateConfigResponse deactivateConfig(DeactivateConfigRequest request, Optional<String> serverURL) {
         RequestOperation<DeactivateConfigRequest, DeactivateConfigResponse> operation
-              = new DeactivateConfig.Sync(sdkConfiguration, _headers);
+              = new DeactivateConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,6 +201,8 @@ public class WebhooksV1 {
      * Delete one config
      * 
      * <p>Delete a webhooks config by ID.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -148,13 +215,31 @@ public class WebhooksV1 {
      * 
      * <p>Delete a webhooks config by ID.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteConfigResponse deleteConfig(DeleteConfigRequest request) {
+        return deleteConfig(request, Optional.empty());
+    }
+
+    /**
+     * Delete one config
+     * 
+     * <p>Delete a webhooks config by ID.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteConfigResponse deleteConfig(DeleteConfigRequest request, Optional<String> serverURL) {
         RequestOperation<DeleteConfigRequest, DeleteConfigResponse> operation
-              = new DeleteConfig.Sync(sdkConfiguration, _headers);
+              = new DeleteConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,6 +247,8 @@ public class WebhooksV1 {
      * Get many configs
      * 
      * <p>Sorted by updated date descending
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -174,13 +261,31 @@ public class WebhooksV1 {
      * 
      * <p>Sorted by updated date descending
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetManyConfigsResponse getManyConfigs(GetManyConfigsRequest request) {
+        return getManyConfigs(request, Optional.empty());
+    }
+
+    /**
+     * Get many configs
+     * 
+     * <p>Sorted by updated date descending
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetManyConfigsResponse getManyConfigs(GetManyConfigsRequest request, Optional<String> serverURL) {
         RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
-              = new GetManyConfigs.Sync(sdkConfiguration, _headers);
+              = new GetManyConfigs.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -196,6 +301,8 @@ public class WebhooksV1 {
      * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
      * 
      * <p>All eventTypes are converted to lower-case when inserted.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -216,13 +323,39 @@ public class WebhooksV1 {
      * 
      * <p>All eventTypes are converted to lower-case when inserted.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public InsertConfigResponse insertConfig(ConfigUser request) {
+        return insertConfig(request, Optional.empty());
+    }
+
+    /**
+     * Insert a new config
+     * 
+     * <p>Insert a new webhooks config.
+     * 
+     * <p>The endpoint should be a valid https URL and be unique.
+     * 
+     * <p>The secret is the endpoint's verification secret.
+     * If not passed or empty, a secret is automatically generated.
+     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+     * 
+     * <p>All eventTypes are converted to lower-case when inserted.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public InsertConfigResponse insertConfig(ConfigUser request, Optional<String> serverURL) {
         RequestOperation<ConfigUser, InsertConfigResponse> operation
-              = new InsertConfig.Sync(sdkConfiguration, _headers);
+              = new InsertConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,6 +363,8 @@ public class WebhooksV1 {
      * Test one config
      * 
      * <p>Test a config by sending a webhook to its endpoint.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -242,13 +377,31 @@ public class WebhooksV1 {
      * 
      * <p>Test a config by sending a webhook to its endpoint.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public TestConfigResponse testConfig(TestConfigRequest request) {
+        return testConfig(request, Optional.empty());
+    }
+
+    /**
+     * Test one config
+     * 
+     * <p>Test a config by sending a webhook to its endpoint.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TestConfigResponse testConfig(TestConfigRequest request, Optional<String> serverURL) {
         RequestOperation<TestConfigRequest, TestConfigResponse> operation
-              = new TestConfig.Sync(sdkConfiguration, _headers);
+              = new TestConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -256,6 +409,8 @@ public class WebhooksV1 {
      * Update one config
      * 
      * <p>Update a webhooks config by ID.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -268,13 +423,31 @@ public class WebhooksV1 {
      * 
      * <p>Update a webhooks config by ID.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateConfigResponse updateConfig(UpdateConfigRequest request) {
+        return updateConfig(request, Optional.empty());
+    }
+
+    /**
+     * Update one config
+     * 
+     * <p>Update a webhooks config by ID.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateConfigResponse updateConfig(UpdateConfigRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateConfigRequest, UpdateConfigResponse> operation
-              = new UpdateConfig.Sync(sdkConfiguration, _headers);
+              = new UpdateConfig.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

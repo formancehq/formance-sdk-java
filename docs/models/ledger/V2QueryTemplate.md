@@ -1,0 +1,12 @@
+# V2QueryTemplate
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `v2QueryParams`                                                               | [Optional\<V2QueryParams>](../../models/shared/V2QueryParams.md)              | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `v2QueryResource`                                                             | [Optional\<V2QueryResource>](../../models/shared/V2QueryResource.md)          | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `body`                                                                        | Map\<String, *Object*>                                                        | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `description`                                                                 | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `vars`                                                                        | Map\<String, [V2QueryTemplateVar](../../models/shared/V2QueryTemplateVar.md)> | :heavy_minus_sign:                                                            | N/A                                                                           |

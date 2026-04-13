@@ -25,7 +25,7 @@ public class CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateTriggerResponse implements Response {
     @JsonCreator
     public CreateTriggerResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateTriggerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateTriggerResponse>) createTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.CreateTriggerResponse>) createTriggerResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    public CreateTriggerResponse withCreateTriggerResponse(com.formance.formance_sdk.models.shared.CreateTriggerResponse createTriggerResponse) {
+    public CreateTriggerResponse withCreateTriggerResponse(com.formance.formance_sdk.models.orchestration.CreateTriggerResponse createTriggerResponse) {
         Utils.checkNotNull(createTriggerResponse, "createTriggerResponse");
         this.createTriggerResponse = Optional.ofNullable(createTriggerResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    public CreateTriggerResponse withCreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse) {
+    public CreateTriggerResponse withCreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse) {
         Utils.checkNotNull(createTriggerResponse, "createTriggerResponse");
         this.createTriggerResponse = createTriggerResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateTriggerResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateTriggerResponse implements Response {
         /**
          * Created trigger
          */
-        public Builder createTriggerResponse(com.formance.formance_sdk.models.shared.CreateTriggerResponse createTriggerResponse) {
+        public Builder createTriggerResponse(com.formance.formance_sdk.models.orchestration.CreateTriggerResponse createTriggerResponse) {
             Utils.checkNotNull(createTriggerResponse, "createTriggerResponse");
             this.createTriggerResponse = Optional.ofNullable(createTriggerResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateTriggerResponse implements Response {
         /**
          * Created trigger
          */
-        public Builder createTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateTriggerResponse> createTriggerResponse) {
+        public Builder createTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.CreateTriggerResponse> createTriggerResponse) {
             Utils.checkNotNull(createTriggerResponse, "createTriggerResponse");
             this.createTriggerResponse = createTriggerResponse;
             return this;

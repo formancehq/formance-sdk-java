@@ -10,26 +10,37 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsResponse;
-import com.formance.formance_sdk.models.shared.V3PaymentInitiationsCursorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
+import com.formance.formance_sdk.models.payments.V3PaymentInitiationsCursorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
+import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListPaymentInitiations {
+    
+    /**
+     * V3_LIST_PAYMENT_INITIATIONS_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_LIST_PAYMENT_INITIATIONS_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -38,11 +49,16 @@ public class V3ListPaymentInitiations {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_LIST_PAYMENT_INITIATIONS_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -77,11 +93,21 @@ public class V3ListPaymentInitiations {
                     java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
-        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/api/payments/v3/payment-initiations");
             HTTPRequest req = new HTTPRequest(url, "GET");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    typeReference);
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "requestBody",
+                    "json",
+                    false);
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -90,7 +116,7 @@ public class V3ListPaymentInitiations {
                     klass,
                     request,
                     null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -98,12 +124,16 @@ public class V3ListPaymentInitiations {
 
     public static class Sync extends Base
             implements RequestOperation<V3ListPaymentInitiationsRequest, V3ListPaymentInitiationsResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V3ListPaymentInitiationsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, V3ListPaymentInitiationsRequest.class);
+            HttpRequest req = buildRequest(request, V3ListPaymentInitiationsRequest.class, new TypeReference<V3ListPaymentInitiationsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

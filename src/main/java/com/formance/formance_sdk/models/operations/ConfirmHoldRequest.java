@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ConfirmHoldRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest;
 
     /**
      * Use an idempotency key
@@ -30,7 +30,7 @@ public class ConfirmHoldRequest {
 
     @JsonCreator
     public ConfirmHoldRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest,
+            Optional<? extends com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest,
             Optional<String> idempotencyKey,
             String holdId) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
@@ -48,8 +48,8 @@ public class ConfirmHoldRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.ConfirmHoldRequest>) confirmHoldRequest;
+    public Optional<com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest() {
+        return (Optional<com.formance.formance_sdk.models.wallets.ConfirmHoldRequest>) confirmHoldRequest;
     }
 
     /**
@@ -70,14 +70,14 @@ public class ConfirmHoldRequest {
     }
 
 
-    public ConfirmHoldRequest withConfirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest confirmHoldRequest) {
+    public ConfirmHoldRequest withConfirmHoldRequest(com.formance.formance_sdk.models.wallets.ConfirmHoldRequest confirmHoldRequest) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
         this.confirmHoldRequest = Optional.ofNullable(confirmHoldRequest);
         return this;
     }
 
 
-    public ConfirmHoldRequest withConfirmHoldRequest(Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest) {
+    public ConfirmHoldRequest withConfirmHoldRequest(Optional<? extends com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest) {
         Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
         this.confirmHoldRequest = confirmHoldRequest;
         return this;
@@ -140,7 +140,7 @@ public class ConfirmHoldRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -151,13 +151,13 @@ public class ConfirmHoldRequest {
         }
 
 
-        public Builder confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest confirmHoldRequest) {
+        public Builder confirmHoldRequest(com.formance.formance_sdk.models.wallets.ConfirmHoldRequest confirmHoldRequest) {
             Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
             this.confirmHoldRequest = Optional.ofNullable(confirmHoldRequest);
             return this;
         }
 
-        public Builder confirmHoldRequest(Optional<? extends com.formance.formance_sdk.models.shared.ConfirmHoldRequest> confirmHoldRequest) {
+        public Builder confirmHoldRequest(Optional<? extends com.formance.formance_sdk.models.wallets.ConfirmHoldRequest> confirmHoldRequest) {
             Utils.checkNotNull(confirmHoldRequest, "confirmHoldRequest");
             this.confirmHoldRequest = confirmHoldRequest;
             return this;
