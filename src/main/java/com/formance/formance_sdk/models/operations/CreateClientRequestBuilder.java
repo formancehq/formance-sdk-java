@@ -6,15 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.CreateClientRequest;
+import com.formance.formance_sdk.models.auth.ClientOptions2;
 import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreateClientRequestBuilder {
 
-    private Optional<? extends CreateClientRequest> request = Optional.empty();
+    private Optional<? extends ClientOptions2> request = Optional.empty();
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,22 +24,34 @@ public class CreateClientRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateClientRequestBuilder request(CreateClientRequest request) {
+    public CreateClientRequestBuilder request(ClientOptions2 request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateClientRequestBuilder request(Optional<? extends CreateClientRequest> request) {
+    public CreateClientRequestBuilder request(Optional<? extends ClientOptions2> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
+        return this;
+    }
+                
+    public CreateClientRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public CreateClientRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
         return this;
     }
 
     public CreateClientResponse call() {
         
-        RequestOperation<Optional<? extends CreateClientRequest>, CreateClientResponse> operation
-              = new CreateClient.Sync(sdkConfiguration, _headers);
+        RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> operation
+              = new CreateClient.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

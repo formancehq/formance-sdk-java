@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateWalletRequest;
 import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -28,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class UpdateWallet {
+    
+    /**
+     * UPDATE_WALLET_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] UPDATE_WALLET_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -40,11 +48,16 @@ public class UpdateWallet {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        UPDATE_WALLET_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -100,7 +113,7 @@ public class UpdateWallet {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -108,8 +121,12 @@ public class UpdateWallet {
 
     public static class Sync extends Base
             implements RequestOperation<UpdateWalletRequest, UpdateWalletResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(UpdateWalletRequest request) throws Exception {
@@ -168,7 +185,7 @@ public class UpdateWallet {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw WalletsErrorResponse.from(response);
+                    throw ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -25,7 +25,7 @@ public class ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListTriggersOccurrencesResponse implements Response {
     @JsonCreator
     public ListTriggersOccurrencesResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListTriggersOccurrencesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse>) listTriggersOccurrencesResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse>) listTriggersOccurrencesResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    public ListTriggersOccurrencesResponse withListTriggersOccurrencesResponse(com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse listTriggersOccurrencesResponse) {
+    public ListTriggersOccurrencesResponse withListTriggersOccurrencesResponse(com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse listTriggersOccurrencesResponse) {
         Utils.checkNotNull(listTriggersOccurrencesResponse, "listTriggersOccurrencesResponse");
         this.listTriggersOccurrencesResponse = Optional.ofNullable(listTriggersOccurrencesResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    public ListTriggersOccurrencesResponse withListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse) {
+    public ListTriggersOccurrencesResponse withListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse) {
         Utils.checkNotNull(listTriggersOccurrencesResponse, "listTriggersOccurrencesResponse");
         this.listTriggersOccurrencesResponse = listTriggersOccurrencesResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListTriggersOccurrencesResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListTriggersOccurrencesResponse implements Response {
         /**
          * List of triggers occurrences
          */
-        public Builder listTriggersOccurrencesResponse(com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse listTriggersOccurrencesResponse) {
+        public Builder listTriggersOccurrencesResponse(com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse listTriggersOccurrencesResponse) {
             Utils.checkNotNull(listTriggersOccurrencesResponse, "listTriggersOccurrencesResponse");
             this.listTriggersOccurrencesResponse = Optional.ofNullable(listTriggersOccurrencesResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListTriggersOccurrencesResponse implements Response {
         /**
          * List of triggers occurrences
          */
-        public Builder listTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse) {
+        public Builder listTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListTriggersOccurrencesResponse> listTriggersOccurrencesResponse) {
             Utils.checkNotNull(listTriggersOccurrencesResponse, "listTriggersOccurrencesResponse");
             this.listTriggersOccurrencesResponse = listTriggersOccurrencesResponse;
             return this;

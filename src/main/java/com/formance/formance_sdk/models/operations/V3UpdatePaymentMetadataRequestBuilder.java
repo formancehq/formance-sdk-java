@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3UpdatePaymentMetadata;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3UpdatePaymentMetadataRequestBuilder {
 
     private V3UpdatePaymentMetadataRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3UpdatePaymentMetadataRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3UpdatePaymentMetadataRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3UpdatePaymentMetadataRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3UpdatePaymentMetadataResponse call() {
         
         RequestOperation<V3UpdatePaymentMetadataRequest, V3UpdatePaymentMetadataResponse> operation
-              = new V3UpdatePaymentMetadata.Sync(sdkConfiguration, _headers);
+              = new V3UpdatePaymentMetadata.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

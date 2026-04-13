@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3ForwardPaymentServiceUserBankAccountRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest;
 
     /**
      * The bank account ID
@@ -32,7 +32,7 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
 
     @JsonCreator
     public V3ForwardPaymentServiceUserBankAccountRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest,
             String bankAccountID,
             String paymentServiceUserID) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
@@ -51,8 +51,8 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest>) v3ForwardPaymentServiceUserBankAccountRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest>) v3ForwardPaymentServiceUserBankAccountRequest;
     }
 
     /**
@@ -76,14 +76,14 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
     }
 
 
-    public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
+    public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
         this.v3ForwardPaymentServiceUserBankAccountRequest = Optional.ofNullable(v3ForwardPaymentServiceUserBankAccountRequest);
         return this;
     }
 
 
-    public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest) {
+    public V3ForwardPaymentServiceUserBankAccountRequest withV3ForwardPaymentServiceUserBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
         this.v3ForwardPaymentServiceUserBankAccountRequest = v3ForwardPaymentServiceUserBankAccountRequest;
         return this;
@@ -139,7 +139,7 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest = Optional.empty();
 
         private String bankAccountID;
 
@@ -150,13 +150,13 @@ public class V3ForwardPaymentServiceUserBankAccountRequest {
         }
 
 
-        public Builder v3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
+        public Builder v3ForwardPaymentServiceUserBankAccountRequest(com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest v3ForwardPaymentServiceUserBankAccountRequest) {
             Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
             this.v3ForwardPaymentServiceUserBankAccountRequest = Optional.ofNullable(v3ForwardPaymentServiceUserBankAccountRequest);
             return this;
         }
 
-        public Builder v3ForwardPaymentServiceUserBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest) {
+        public Builder v3ForwardPaymentServiceUserBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountRequest> v3ForwardPaymentServiceUserBankAccountRequest) {
             Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountRequest, "v3ForwardPaymentServiceUserBankAccountRequest");
             this.v3ForwardPaymentServiceUserBankAccountRequest = v3ForwardPaymentServiceUserBankAccountRequest;
             return this;

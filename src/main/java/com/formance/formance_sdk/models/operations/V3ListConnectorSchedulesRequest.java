@@ -8,12 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListConnectorSchedulesRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends Map<String, Object>> requestBody;
+
     /**
      * The connector ID
      */
@@ -37,12 +44,15 @@ public class V3ListConnectorSchedulesRequest {
 
     @JsonCreator
     public V3ListConnectorSchedulesRequest(
+            Optional<? extends Map<String, Object>> requestBody,
             String connectorID,
             Optional<String> cursor,
             Optional<Long> pageSize) {
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        this.requestBody = requestBody;
         this.connectorID = connectorID;
         this.cursor = cursor;
         this.pageSize = pageSize;
@@ -50,7 +60,14 @@ public class V3ListConnectorSchedulesRequest {
     
     public V3ListConnectorSchedulesRequest(
             String connectorID) {
-        this(connectorID, Optional.empty(), Optional.empty());
+        this(Optional.empty(), connectorID, Optional.empty(),
+            Optional.empty());
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -84,6 +101,19 @@ public class V3ListConnectorSchedulesRequest {
         return new Builder();
     }
 
+
+    public V3ListConnectorSchedulesRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
+        return this;
+    }
+
+
+    public V3ListConnectorSchedulesRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * The connector ID
@@ -148,6 +178,7 @@ public class V3ListConnectorSchedulesRequest {
         }
         V3ListConnectorSchedulesRequest other = (V3ListConnectorSchedulesRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
@@ -156,12 +187,14 @@ public class V3ListConnectorSchedulesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connectorID, cursor, pageSize);
+            requestBody, connectorID, cursor,
+            pageSize);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ListConnectorSchedulesRequest.class,
+                "requestBody", requestBody,
                 "connectorID", connectorID,
                 "cursor", cursor,
                 "pageSize", pageSize);
@@ -169,6 +202,8 @@ public class V3ListConnectorSchedulesRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
 
         private String connectorID;
 
@@ -178,6 +213,19 @@ public class V3ListConnectorSchedulesRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
+            return this;
+        }
+
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -237,7 +285,8 @@ public class V3ListConnectorSchedulesRequest {
         public V3ListConnectorSchedulesRequest build() {
 
             return new V3ListConnectorSchedulesRequest(
-                connectorID, cursor, pageSize);
+                requestBody, connectorID, cursor,
+                pageSize);
         }
 
     }

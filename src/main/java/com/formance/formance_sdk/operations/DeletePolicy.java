@@ -8,10 +8,10 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.errors.ReconciliationErrorResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
 import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -24,10 +24,18 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class DeletePolicy {
+    
+    /**
+     * DELETE_POLICY_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] DELETE_POLICY_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -36,11 +44,16 @@ public class DeletePolicy {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        DELETE_POLICY_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -85,7 +98,7 @@ public class DeletePolicy {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -93,8 +106,12 @@ public class DeletePolicy {
 
     public static class Sync extends Base
             implements RequestOperation<DeletePolicyRequest, DeletePolicyResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(DeletePolicyRequest request) throws Exception {
@@ -153,7 +170,7 @@ public class DeletePolicy {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw ReconciliationErrorResponse.from(response);
+                    throw ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

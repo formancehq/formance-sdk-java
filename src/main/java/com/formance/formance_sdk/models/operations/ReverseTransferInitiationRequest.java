@@ -14,7 +14,7 @@ import java.lang.String;
 public class ReverseTransferInitiationRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest;
+    private com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest;
 
     /**
      * The transfer ID.
@@ -24,7 +24,7 @@ public class ReverseTransferInitiationRequest {
 
     @JsonCreator
     public ReverseTransferInitiationRequest(
-            com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest,
+            com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest,
             String transferId) {
         Utils.checkNotNull(reverseTransferInitiationRequest, "reverseTransferInitiationRequest");
         Utils.checkNotNull(transferId, "transferId");
@@ -33,7 +33,7 @@ public class ReverseTransferInitiationRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest() {
+    public com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest() {
         return reverseTransferInitiationRequest;
     }
 
@@ -50,7 +50,7 @@ public class ReverseTransferInitiationRequest {
     }
 
 
-    public ReverseTransferInitiationRequest withReverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
+    public ReverseTransferInitiationRequest withReverseTransferInitiationRequest(com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
         Utils.checkNotNull(reverseTransferInitiationRequest, "reverseTransferInitiationRequest");
         this.reverseTransferInitiationRequest = reverseTransferInitiationRequest;
         return this;
@@ -95,7 +95,7 @@ public class ReverseTransferInitiationRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest;
+        private com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest;
 
         private String transferId;
 
@@ -104,7 +104,7 @@ public class ReverseTransferInitiationRequest {
         }
 
 
-        public Builder reverseTransferInitiationRequest(com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
+        public Builder reverseTransferInitiationRequest(com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest reverseTransferInitiationRequest) {
             Utils.checkNotNull(reverseTransferInitiationRequest, "reverseTransferInitiationRequest");
             this.reverseTransferInitiationRequest = reverseTransferInitiationRequest;
             return this;

@@ -6,14 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.operations.V2CreateExporter;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2CreateExporterRequestBuilder {
 
-    private V2CreateExporterRequest request;
+    private V2ExporterConfiguration2 request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -21,16 +24,28 @@ public class V2CreateExporterRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V2CreateExporterRequestBuilder request(V2CreateExporterRequest request) {
+    public V2CreateExporterRequestBuilder request(V2ExporterConfiguration2 request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
+        return this;
+    }
+                
+    public V2CreateExporterRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2CreateExporterRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
         return this;
     }
 
     public V2CreateExporterResponse call() {
         
-        RequestOperation<V2CreateExporterRequest, V2CreateExporterResponse> operation
-              = new V2CreateExporter.Sync(sdkConfiguration, _headers);
+        RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> operation
+              = new V2CreateExporter.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

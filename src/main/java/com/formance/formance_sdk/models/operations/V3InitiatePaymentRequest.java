@@ -19,7 +19,7 @@ import java.util.Optional;
 public class V3InitiatePaymentRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest;
 
     /**
      * If set to true, the request will not have to be validated. This is useful if we want to directly
@@ -30,7 +30,7 @@ public class V3InitiatePaymentRequest {
 
     @JsonCreator
     public V3InitiatePaymentRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest,
             Optional<Boolean> noValidation) {
         Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
         Utils.checkNotNull(noValidation, "noValidation");
@@ -44,8 +44,8 @@ public class V3InitiatePaymentRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest>) v3InitiatePaymentRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest>) v3InitiatePaymentRequest;
     }
 
     /**
@@ -62,14 +62,14 @@ public class V3InitiatePaymentRequest {
     }
 
 
-    public V3InitiatePaymentRequest withV3InitiatePaymentRequest(com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
+    public V3InitiatePaymentRequest withV3InitiatePaymentRequest(com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
         Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
         this.v3InitiatePaymentRequest = Optional.ofNullable(v3InitiatePaymentRequest);
         return this;
     }
 
 
-    public V3InitiatePaymentRequest withV3InitiatePaymentRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest) {
+    public V3InitiatePaymentRequest withV3InitiatePaymentRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest) {
         Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
         this.v3InitiatePaymentRequest = v3InitiatePaymentRequest;
         return this;
@@ -126,7 +126,7 @@ public class V3InitiatePaymentRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest = Optional.empty();
 
         private Optional<Boolean> noValidation;
 
@@ -135,13 +135,13 @@ public class V3InitiatePaymentRequest {
         }
 
 
-        public Builder v3InitiatePaymentRequest(com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
+        public Builder v3InitiatePaymentRequest(com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest v3InitiatePaymentRequest) {
             Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
             this.v3InitiatePaymentRequest = Optional.ofNullable(v3InitiatePaymentRequest);
             return this;
         }
 
-        public Builder v3InitiatePaymentRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentRequest> v3InitiatePaymentRequest) {
+        public Builder v3InitiatePaymentRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentRequest> v3InitiatePaymentRequest) {
             Utils.checkNotNull(v3InitiatePaymentRequest, "v3InitiatePaymentRequest");
             this.v3InitiatePaymentRequest = v3InitiatePaymentRequest;
             return this;

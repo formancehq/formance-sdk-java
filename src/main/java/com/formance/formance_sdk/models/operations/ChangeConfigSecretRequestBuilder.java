@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ChangeConfigSecret;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ChangeConfigSecretRequestBuilder {
 
     private ChangeConfigSecretRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class ChangeConfigSecretRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ChangeConfigSecretRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public ChangeConfigSecretRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public ChangeConfigSecretResponse call() {
         
         RequestOperation<ChangeConfigSecretRequest, ChangeConfigSecretResponse> operation
-              = new ChangeConfigSecret.Sync(sdkConfiguration, _headers);
+              = new ChangeConfigSecret.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

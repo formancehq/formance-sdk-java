@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentResponse;
-import com.formance.formance_sdk.models.shared.V3CreatePaymentRequest;
+import com.formance.formance_sdk.models.payments.V3CreatePaymentRequest;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -28,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3CreatePayment {
+    
+    /**
+     * V3_CREATE_PAYMENT_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_CREATE_PAYMENT_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -40,11 +48,16 @@ public class V3CreatePayment {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_CREATE_PAYMENT_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -97,7 +110,7 @@ public class V3CreatePayment {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -105,8 +118,12 @@ public class V3CreatePayment {
 
     public static class Sync extends Base
             implements RequestOperation<Optional<? extends V3CreatePaymentRequest>, V3CreatePaymentResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(Optional<? extends V3CreatePaymentRequest> request) throws Exception {
@@ -161,7 +178,7 @@ public class V3CreatePayment {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withV3CreatePaymentResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.V3CreatePaymentResponse>() {}));
+                    return res.withV3CreatePaymentResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.payments.V3CreatePaymentResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

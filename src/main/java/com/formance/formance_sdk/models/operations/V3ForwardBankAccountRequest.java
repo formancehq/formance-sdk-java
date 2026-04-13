@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3ForwardBankAccountRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest;
 
     /**
      * The bank account ID
@@ -26,7 +26,7 @@ public class V3ForwardBankAccountRequest {
 
     @JsonCreator
     public V3ForwardBankAccountRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest,
             String bankAccountID) {
         Utils.checkNotNull(v3ForwardBankAccountRequest, "v3ForwardBankAccountRequest");
         Utils.checkNotNull(bankAccountID, "bankAccountID");
@@ -41,8 +41,8 @@ public class V3ForwardBankAccountRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest>) v3ForwardBankAccountRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest>) v3ForwardBankAccountRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V3ForwardBankAccountRequest {
     }
 
 
-    public V3ForwardBankAccountRequest withV3ForwardBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest v3ForwardBankAccountRequest) {
+    public V3ForwardBankAccountRequest withV3ForwardBankAccountRequest(com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest v3ForwardBankAccountRequest) {
         Utils.checkNotNull(v3ForwardBankAccountRequest, "v3ForwardBankAccountRequest");
         this.v3ForwardBankAccountRequest = Optional.ofNullable(v3ForwardBankAccountRequest);
         return this;
     }
 
 
-    public V3ForwardBankAccountRequest withV3ForwardBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest) {
+    public V3ForwardBankAccountRequest withV3ForwardBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest) {
         Utils.checkNotNull(v3ForwardBankAccountRequest, "v3ForwardBankAccountRequest");
         this.v3ForwardBankAccountRequest = v3ForwardBankAccountRequest;
         return this;
@@ -110,7 +110,7 @@ public class V3ForwardBankAccountRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest = Optional.empty();
 
         private String bankAccountID;
 
@@ -119,13 +119,13 @@ public class V3ForwardBankAccountRequest {
         }
 
 
-        public Builder v3ForwardBankAccountRequest(com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest v3ForwardBankAccountRequest) {
+        public Builder v3ForwardBankAccountRequest(com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest v3ForwardBankAccountRequest) {
             Utils.checkNotNull(v3ForwardBankAccountRequest, "v3ForwardBankAccountRequest");
             this.v3ForwardBankAccountRequest = Optional.ofNullable(v3ForwardBankAccountRequest);
             return this;
         }
 
-        public Builder v3ForwardBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest) {
+        public Builder v3ForwardBankAccountRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardBankAccountRequest> v3ForwardBankAccountRequest) {
             Utils.checkNotNull(v3ForwardBankAccountRequest, "v3ForwardBankAccountRequest");
             this.v3ForwardBankAccountRequest = v3ForwardBankAccountRequest;
             return this;

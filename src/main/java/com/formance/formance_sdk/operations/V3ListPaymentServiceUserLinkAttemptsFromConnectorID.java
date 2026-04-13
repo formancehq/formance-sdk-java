@@ -10,26 +10,37 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse;
-import com.formance.formance_sdk.models.shared.V3PaymentServiceUserLinkAttemptsCursorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
+import com.formance.formance_sdk.models.payments.V3PaymentServiceUserLinkAttemptsCursorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Hook.AfterErrorContextImpl;
 import com.formance.formance_sdk.utils.Hook.AfterSuccessContextImpl;
 import com.formance.formance_sdk.utils.Hook.BeforeRequestContextImpl;
+import com.formance.formance_sdk.utils.SerializedBody;
+import com.formance.formance_sdk.utils.Utils.JsonShape;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListPaymentServiceUserLinkAttemptsFromConnectorID {
+    
+    /**
+     * V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -38,11 +49,16 @@ public class V3ListPaymentServiceUserLinkAttemptsFromConnectorID {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_LIST_PAYMENT_SERVICE_USER_LINK_ATTEMPTS_FROM_CONNECTOR_ID_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -77,13 +93,23 @@ public class V3ListPaymentServiceUserLinkAttemptsFromConnectorID {
                     java.util.Optional.of(java.util.List.of("payments:read")),
                     securitySource());
         }
-        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
                     "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connectors/{connectorID}/link-attempts",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
+            Object convertedRequest = Utils.convertToShape(
+                    request,
+                    JsonShape.DEFAULT,
+                    typeReference);
+            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
+                    convertedRequest,
+                    "requestBody",
+                    "json",
+                    false);
+            req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -92,7 +118,7 @@ public class V3ListPaymentServiceUserLinkAttemptsFromConnectorID {
                     klass,
                     request,
                     null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -100,12 +126,16 @@ public class V3ListPaymentServiceUserLinkAttemptsFromConnectorID {
 
     public static class Sync extends Base
             implements RequestOperation<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest, V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.class);
+            HttpRequest req = buildRequest(request, V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.class, new TypeReference<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
