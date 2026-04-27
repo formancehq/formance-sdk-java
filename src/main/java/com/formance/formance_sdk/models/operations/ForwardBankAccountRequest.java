@@ -14,7 +14,7 @@ import java.lang.String;
 public class ForwardBankAccountRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest;
+    private com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest;
 
     /**
      * The bank account ID.
@@ -24,7 +24,7 @@ public class ForwardBankAccountRequest {
 
     @JsonCreator
     public ForwardBankAccountRequest(
-            com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest,
+            com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest,
             String bankAccountId) {
         Utils.checkNotNull(forwardBankAccountRequest, "forwardBankAccountRequest");
         Utils.checkNotNull(bankAccountId, "bankAccountId");
@@ -33,7 +33,7 @@ public class ForwardBankAccountRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest() {
+    public com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest() {
         return forwardBankAccountRequest;
     }
 
@@ -50,7 +50,7 @@ public class ForwardBankAccountRequest {
     }
 
 
-    public ForwardBankAccountRequest withForwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest) {
+    public ForwardBankAccountRequest withForwardBankAccountRequest(com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest) {
         Utils.checkNotNull(forwardBankAccountRequest, "forwardBankAccountRequest");
         this.forwardBankAccountRequest = forwardBankAccountRequest;
         return this;
@@ -95,7 +95,7 @@ public class ForwardBankAccountRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest;
+        private com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest;
 
         private String bankAccountId;
 
@@ -104,7 +104,7 @@ public class ForwardBankAccountRequest {
         }
 
 
-        public Builder forwardBankAccountRequest(com.formance.formance_sdk.models.shared.ForwardBankAccountRequest forwardBankAccountRequest) {
+        public Builder forwardBankAccountRequest(com.formance.formance_sdk.models.payments.ForwardBankAccountRequest forwardBankAccountRequest) {
             Utils.checkNotNull(forwardBankAccountRequest, "forwardBankAccountRequest");
             this.forwardBankAccountRequest = forwardBankAccountRequest;
             return this;

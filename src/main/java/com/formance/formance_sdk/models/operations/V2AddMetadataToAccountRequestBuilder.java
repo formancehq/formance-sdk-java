@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2AddMetadataToAccountRequestBuilder {
 
     private V2AddMetadataToAccountRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V2AddMetadataToAccountRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V2AddMetadataToAccountRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2AddMetadataToAccountRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V2AddMetadataToAccountResponse call() {
         
         RequestOperation<V2AddMetadataToAccountRequest, V2AddMetadataToAccountResponse> operation
-              = new V2AddMetadataToAccount.Sync(sdkConfiguration, _headers);
+              = new V2AddMetadataToAccount.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

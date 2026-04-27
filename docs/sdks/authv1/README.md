@@ -9,7 +9,7 @@
 * [deleteClient](#deleteclient) - Delete client
 * [deleteSecret](#deletesecret) - Delete a secret from a client
 * [getOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getServerInfo](#getserverinfo) - Get server info
+* [getServerInfoAuth](#getserverinfoauth) - Get server info
 * [listClients](#listclients) - List clients
 * [listUsers](#listusers) - List users
 * [readClient](#readclient) - Read client
@@ -54,9 +54,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [CreateClientRequest](../../models/shared/CreateClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [ClientOptions2](../../models/shared/ClientOptions2.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| `serverURL`                                             | *String*                                                | :heavy_minus_sign:                                      | An optional server URL to use.                          |
 
 ### Response
 
@@ -115,6 +116,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [CreateSecretRequest](../../models/operations/CreateSecretRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -171,6 +173,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [DeleteClientRequest](../../models/operations/DeleteClientRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -228,6 +231,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [DeleteSecretRequest](../../models/operations/DeleteSecretRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -273,6 +277,12 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetOIDCWellKnownsResponse](../../models/operations/GetOIDCWellKnownsResponse.md)**
@@ -283,18 +293,18 @@ public class Application {
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
-## getServerInfo
+## getServerInfoAuth
 
 Get server info
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
+<!-- UsageSnippet language="java" operationID="getServerInfo_auth" method="get" path="/api/auth/_info" -->
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.operations.GetServerInfoResponse;
+import com.formance.formance_sdk.models.operations.GetServerInfoAuthResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -309,7 +319,7 @@ public class Application {
                     .build())
             .build();
 
-        GetServerInfoResponse res = sdk.auth().v1().getServerInfo()
+        GetServerInfoAuthResponse res = sdk.auth().v1().getServerInfoAuth()
                 .call();
 
         if (res.serverInfo().isPresent()) {
@@ -319,9 +329,15 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
-**[GetServerInfoResponse](../../models/operations/GetServerInfoResponse.md)**
+**[GetServerInfoAuthResponse](../../models/operations/GetServerInfoAuthResponse.md)**
 
 ### Errors
 
@@ -364,6 +380,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -410,6 +432,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -468,6 +496,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [ReadClientRequest](../../models/operations/ReadClientRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -526,6 +555,7 @@ public class Application {
 | Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [ReadUserRequest](../../models/operations/ReadUserRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| `serverURL`                                                   | *String*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -572,8 +602,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.updateClientResponse().isPresent()) {
-            System.out.println(res.updateClientResponse().get());
+        if (res.createClientResponse().isPresent()) {
+            System.out.println(res.createClientResponse().get());
         }
     }
 }
@@ -584,6 +614,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [UpdateClientRequest](../../models/operations/UpdateClientRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 

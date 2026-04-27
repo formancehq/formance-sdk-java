@@ -10,14 +10,20 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListTransactionsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -70,6 +76,7 @@ public class V2ListTransactionsRequest {
 
     @JsonCreator
     public V2ListTransactionsRequest(
+            Map<String, Object> requestBody,
             Optional<String> cursor,
             Optional<String> expand,
             String ledger,
@@ -78,6 +85,8 @@ public class V2ListTransactionsRequest {
             Optional<OffsetDateTime> pit,
             Optional<Boolean> reverse,
             Optional<String> sort) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
@@ -86,6 +95,7 @@ public class V2ListTransactionsRequest {
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(reverse, "reverse");
         Utils.checkNotNull(sort, "sort");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
         this.ledger = ledger;
@@ -97,10 +107,16 @@ public class V2ListTransactionsRequest {
     }
     
     public V2ListTransactionsRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), ledger,
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -171,6 +187,12 @@ public class V2ListTransactionsRequest {
         return new Builder();
     }
 
+
+    public V2ListTransactionsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -322,6 +344,7 @@ public class V2ListTransactionsRequest {
         }
         V2ListTransactionsRequest other = (V2ListTransactionsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
@@ -335,14 +358,15 @@ public class V2ListTransactionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, expand, ledger,
-            order, pageSize, pit,
-            reverse, sort);
+            requestBody, cursor, expand,
+            ledger, order, pageSize,
+            pit, reverse, sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListTransactionsRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "expand", expand,
                 "ledger", ledger,
@@ -355,6 +379,8 @@ public class V2ListTransactionsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Map<String, Object> requestBody;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -375,6 +401,13 @@ public class V2ListTransactionsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -521,9 +554,9 @@ public class V2ListTransactionsRequest {
         public V2ListTransactionsRequest build() {
 
             return new V2ListTransactionsRequest(
-                cursor, expand, ledger,
-                order, pageSize, pit,
-                reverse, sort);
+                requestBody, cursor, expand,
+                ledger, order, pageSize,
+                pit, reverse, sort);
         }
 
     }

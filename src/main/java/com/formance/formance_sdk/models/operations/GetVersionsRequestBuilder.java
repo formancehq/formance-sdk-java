@@ -8,20 +8,36 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetVersions;
 import com.formance.formance_sdk.utils.Headers;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class GetVersionsRequestBuilder {
 
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetVersionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+                
+    public GetVersionsRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public GetVersionsRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public GetVersionsResponse call() {
         
         RequestlessOperation<GetVersionsResponse> operation
-            = new GetVersions.Sync(sdkConfiguration, _headers);
+            = new GetVersions.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

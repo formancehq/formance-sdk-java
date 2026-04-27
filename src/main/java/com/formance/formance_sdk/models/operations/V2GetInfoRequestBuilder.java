@@ -8,20 +8,36 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2GetInfo;
 import com.formance.formance_sdk.utils.Headers;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2GetInfoRequestBuilder {
 
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public V2GetInfoRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+                
+    public V2GetInfoRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2GetInfoRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V2GetInfoResponse call() {
         
         RequestlessOperation<V2GetInfoResponse> operation
-            = new V2GetInfo.Sync(sdkConfiguration, _headers);
+            = new V2GetInfo.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

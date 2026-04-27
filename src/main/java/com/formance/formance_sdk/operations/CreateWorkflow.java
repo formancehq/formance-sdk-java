@@ -9,10 +9,10 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
-import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
+import com.formance.formance_sdk.models.orchestration.Error;
+import com.formance.formance_sdk.models.orchestration.WorkflowConfig;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -28,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class CreateWorkflow {
+    
+    /**
+     * CREATE_WORKFLOW_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] CREATE_WORKFLOW_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -40,11 +48,16 @@ public class CreateWorkflow {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        CREATE_WORKFLOW_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -97,20 +110,24 @@ public class CreateWorkflow {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends CreateWorkflowRequest>, CreateWorkflowResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+            implements RequestOperation<Optional<? extends WorkflowConfig>, CreateWorkflowResponse> {
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends CreateWorkflowRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateWorkflowRequest>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends WorkflowConfig> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends WorkflowConfig>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -126,12 +143,12 @@ public class CreateWorkflow {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends CreateWorkflowRequest> request) {
+        public HttpResponse<InputStream> doRequest(Optional<? extends WorkflowConfig> request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "default")) {
+                if (!Utils.statusCodeMatches(httpRes.statusCode(), "201")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -161,7 +178,7 @@ public class CreateWorkflow {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withCreateWorkflowResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.CreateWorkflowResponse>() {}));
+                    return res.withCreateWorkflowResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.auth.SecretOptions1;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class CreateSecretRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest;
+    private Optional<? extends SecretOptions1> secretOptions;
 
     /**
      * Client ID
@@ -26,11 +27,11 @@ public class CreateSecretRequest {
 
     @JsonCreator
     public CreateSecretRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest,
+            Optional<? extends SecretOptions1> secretOptions,
             String clientId) {
-        Utils.checkNotNull(createSecretRequest, "createSecretRequest");
+        Utils.checkNotNull(secretOptions, "secretOptions");
         Utils.checkNotNull(clientId, "clientId");
-        this.createSecretRequest = createSecretRequest;
+        this.secretOptions = secretOptions;
         this.clientId = clientId;
     }
     
@@ -41,8 +42,8 @@ public class CreateSecretRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateSecretRequest>) createSecretRequest;
+    public Optional<SecretOptions1> secretOptions() {
+        return (Optional<SecretOptions1>) secretOptions;
     }
 
     /**
@@ -58,16 +59,16 @@ public class CreateSecretRequest {
     }
 
 
-    public CreateSecretRequest withCreateSecretRequest(com.formance.formance_sdk.models.shared.CreateSecretRequest createSecretRequest) {
-        Utils.checkNotNull(createSecretRequest, "createSecretRequest");
-        this.createSecretRequest = Optional.ofNullable(createSecretRequest);
+    public CreateSecretRequest withSecretOptions(SecretOptions1 secretOptions) {
+        Utils.checkNotNull(secretOptions, "secretOptions");
+        this.secretOptions = Optional.ofNullable(secretOptions);
         return this;
     }
 
 
-    public CreateSecretRequest withCreateSecretRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest) {
-        Utils.checkNotNull(createSecretRequest, "createSecretRequest");
-        this.createSecretRequest = createSecretRequest;
+    public CreateSecretRequest withSecretOptions(Optional<? extends SecretOptions1> secretOptions) {
+        Utils.checkNotNull(secretOptions, "secretOptions");
+        this.secretOptions = secretOptions;
         return this;
     }
 
@@ -90,27 +91,27 @@ public class CreateSecretRequest {
         }
         CreateSecretRequest other = (CreateSecretRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.createSecretRequest, other.createSecretRequest) &&
+            Utils.enhancedDeepEquals(this.secretOptions, other.secretOptions) &&
             Utils.enhancedDeepEquals(this.clientId, other.clientId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            createSecretRequest, clientId);
+            secretOptions, clientId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSecretRequest.class,
-                "createSecretRequest", createSecretRequest,
+                "secretOptions", secretOptions,
                 "clientId", clientId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest = Optional.empty();
+        private Optional<? extends SecretOptions1> secretOptions = Optional.empty();
 
         private String clientId;
 
@@ -119,15 +120,15 @@ public class CreateSecretRequest {
         }
 
 
-        public Builder createSecretRequest(com.formance.formance_sdk.models.shared.CreateSecretRequest createSecretRequest) {
-            Utils.checkNotNull(createSecretRequest, "createSecretRequest");
-            this.createSecretRequest = Optional.ofNullable(createSecretRequest);
+        public Builder secretOptions(SecretOptions1 secretOptions) {
+            Utils.checkNotNull(secretOptions, "secretOptions");
+            this.secretOptions = Optional.ofNullable(secretOptions);
             return this;
         }
 
-        public Builder createSecretRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretRequest> createSecretRequest) {
-            Utils.checkNotNull(createSecretRequest, "createSecretRequest");
-            this.createSecretRequest = createSecretRequest;
+        public Builder secretOptions(Optional<? extends SecretOptions1> secretOptions) {
+            Utils.checkNotNull(secretOptions, "secretOptions");
+            this.secretOptions = secretOptions;
             return this;
         }
 
@@ -144,7 +145,7 @@ public class CreateSecretRequest {
         public CreateSecretRequest build() {
 
             return new CreateSecretRequest(
-                createSecretRequest, clientId);
+                secretOptions, clientId);
         }
 
     }

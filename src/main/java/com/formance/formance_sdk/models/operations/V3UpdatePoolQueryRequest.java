@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3UpdatePoolQueryRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest;
 
     /**
      * The pool ID
@@ -26,7 +26,7 @@ public class V3UpdatePoolQueryRequest {
 
     @JsonCreator
     public V3UpdatePoolQueryRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest,
             String poolID) {
         Utils.checkNotNull(v3UpdatePoolQueryRequest, "v3UpdatePoolQueryRequest");
         Utils.checkNotNull(poolID, "poolID");
@@ -41,8 +41,8 @@ public class V3UpdatePoolQueryRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest>) v3UpdatePoolQueryRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest>) v3UpdatePoolQueryRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V3UpdatePoolQueryRequest {
     }
 
 
-    public V3UpdatePoolQueryRequest withV3UpdatePoolQueryRequest(com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest v3UpdatePoolQueryRequest) {
+    public V3UpdatePoolQueryRequest withV3UpdatePoolQueryRequest(com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest v3UpdatePoolQueryRequest) {
         Utils.checkNotNull(v3UpdatePoolQueryRequest, "v3UpdatePoolQueryRequest");
         this.v3UpdatePoolQueryRequest = Optional.ofNullable(v3UpdatePoolQueryRequest);
         return this;
     }
 
 
-    public V3UpdatePoolQueryRequest withV3UpdatePoolQueryRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest) {
+    public V3UpdatePoolQueryRequest withV3UpdatePoolQueryRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest) {
         Utils.checkNotNull(v3UpdatePoolQueryRequest, "v3UpdatePoolQueryRequest");
         this.v3UpdatePoolQueryRequest = v3UpdatePoolQueryRequest;
         return this;
@@ -110,7 +110,7 @@ public class V3UpdatePoolQueryRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest = Optional.empty();
 
         private String poolID;
 
@@ -119,13 +119,13 @@ public class V3UpdatePoolQueryRequest {
         }
 
 
-        public Builder v3UpdatePoolQueryRequest(com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest v3UpdatePoolQueryRequest) {
+        public Builder v3UpdatePoolQueryRequest(com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest v3UpdatePoolQueryRequest) {
             Utils.checkNotNull(v3UpdatePoolQueryRequest, "v3UpdatePoolQueryRequest");
             this.v3UpdatePoolQueryRequest = Optional.ofNullable(v3UpdatePoolQueryRequest);
             return this;
         }
 
-        public Builder v3UpdatePoolQueryRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest) {
+        public Builder v3UpdatePoolQueryRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePoolQueryRequest> v3UpdatePoolQueryRequest) {
             Utils.checkNotNull(v3UpdatePoolQueryRequest, "v3UpdatePoolQueryRequest");
             this.v3UpdatePoolQueryRequest = v3UpdatePoolQueryRequest;
             return this;

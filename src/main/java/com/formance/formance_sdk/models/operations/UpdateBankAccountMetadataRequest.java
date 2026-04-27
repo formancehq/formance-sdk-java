@@ -14,7 +14,7 @@ import java.lang.String;
 public class UpdateBankAccountMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest;
+    private com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest;
 
     /**
      * The bank account ID.
@@ -24,7 +24,7 @@ public class UpdateBankAccountMetadataRequest {
 
     @JsonCreator
     public UpdateBankAccountMetadataRequest(
-            com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest,
+            com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest,
             String bankAccountId) {
         Utils.checkNotNull(updateBankAccountMetadataRequest, "updateBankAccountMetadataRequest");
         Utils.checkNotNull(bankAccountId, "bankAccountId");
@@ -33,7 +33,7 @@ public class UpdateBankAccountMetadataRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest() {
+    public com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest() {
         return updateBankAccountMetadataRequest;
     }
 
@@ -50,7 +50,7 @@ public class UpdateBankAccountMetadataRequest {
     }
 
 
-    public UpdateBankAccountMetadataRequest withUpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
+    public UpdateBankAccountMetadataRequest withUpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
         Utils.checkNotNull(updateBankAccountMetadataRequest, "updateBankAccountMetadataRequest");
         this.updateBankAccountMetadataRequest = updateBankAccountMetadataRequest;
         return this;
@@ -95,7 +95,7 @@ public class UpdateBankAccountMetadataRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest;
+        private com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest;
 
         private String bankAccountId;
 
@@ -104,7 +104,7 @@ public class UpdateBankAccountMetadataRequest {
         }
 
 
-        public Builder updateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
+        public Builder updateBankAccountMetadataRequest(com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest updateBankAccountMetadataRequest) {
             Utils.checkNotNull(updateBankAccountMetadataRequest, "updateBankAccountMetadataRequest");
             this.updateBankAccountMetadataRequest = updateBankAccountMetadataRequest;
             return this;
