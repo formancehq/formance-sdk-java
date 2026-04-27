@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserBankAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
 
     private V3ForwardPaymentServiceUserBankAccountRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3ForwardPaymentServiceUserBankAccountRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3ForwardPaymentServiceUserBankAccountRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3ForwardPaymentServiceUserBankAccountRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3ForwardPaymentServiceUserBankAccountResponse call() {
         
         RequestOperation<V3ForwardPaymentServiceUserBankAccountRequest, V3ForwardPaymentServiceUserBankAccountResponse> operation
-              = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration, _headers);
+              = new V3ForwardPaymentServiceUserBankAccount.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

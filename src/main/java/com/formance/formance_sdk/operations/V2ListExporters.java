@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ExportersCursorResponse;
 import com.formance.formance_sdk.models.operations.V2ListExportersResponse;
-import com.formance.formance_sdk.models.operations.V2ListExportersResponseBody;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -25,10 +25,18 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListExporters {
+    
+    /**
+     * V2_LIST_EXPORTERS_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V2_LIST_EXPORTERS_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -37,12 +45,17 @@ public class V2ListExporters {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-            this.securitySource = this.sdkConfiguration.securitySource();
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V2_LIST_EXPORTERS_SERVERS[0], 
+                        Map.of()));
+            this.securitySource = null;
             this.client = this.sdkConfiguration.client();
         }
 
@@ -55,7 +68,7 @@ public class V2ListExporters {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ListExporters",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -64,7 +77,7 @@ public class V2ListExporters {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ListExporters",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -73,7 +86,7 @@ public class V2ListExporters {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v2ListExporters",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {
@@ -84,7 +97,6 @@ public class V2ListExporters {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
         }
@@ -92,8 +104,12 @@ public class V2ListExporters {
 
     public static class Sync extends Base
             implements RequestlessOperation<V2ListExportersResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest() throws Exception {
@@ -118,7 +134,7 @@ public class V2ListExporters {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "default")) {
+                if (!Utils.statusCodeMatches(httpRes.statusCode(), "200")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -148,14 +164,14 @@ public class V2ListExporters {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withObject(Utils.unmarshal(response, new TypeReference<V2ListExportersResponseBody>() {}));
+                    return res.withV2ExportersCursorResponse(Utils.unmarshal(response, new TypeReference<V2ExportersCursorResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw V2ErrorResponse.from(response);
+                    throw ErrorsV2ErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

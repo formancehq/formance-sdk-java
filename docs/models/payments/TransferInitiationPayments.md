@@ -1,0 +1,11 @@
+# TransferInitiationPayments
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `legacyPaymentStatus`                                                                     | [LegacyPaymentStatus](../../models/shared/LegacyPaymentStatus.md)                         | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| `error`                                                                                   | *JsonNullable\<String>*                                                                   | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `paymentID`                                                                               | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       |

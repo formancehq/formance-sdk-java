@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.auth.CreateClientResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -23,6 +24,11 @@ public class UpdateClientResponse implements Response {
     private String contentType;
 
     /**
+     * Updated client
+     */
+    private Optional<? extends CreateClientResponse> createClientResponse;
+
+    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -32,33 +38,28 @@ public class UpdateClientResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * Updated client
-     */
-    private Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse;
-
     @JsonCreator
     public UpdateClientResponse(
             String contentType,
+            Optional<? extends CreateClientResponse> createClientResponse,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(createClientResponse, "createClientResponse");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(updateClientResponse, "updateClientResponse");
         this.contentType = contentType;
+        this.createClientResponse = createClientResponse;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.updateClientResponse = updateClientResponse;
     }
     
     public UpdateClientResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
+        this(contentType, Optional.empty(), statusCode,
+            rawResponse);
     }
 
     /**
@@ -67,6 +68,15 @@ public class UpdateClientResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
+    }
+
+    /**
+     * Updated client
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CreateClientResponse> createClientResponse() {
+        return (Optional<CreateClientResponse>) createClientResponse;
     }
 
     /**
@@ -85,15 +95,6 @@ public class UpdateClientResponse implements Response {
         return rawResponse;
     }
 
-    /**
-     * Updated client
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.UpdateClientResponse>) updateClientResponse;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
@@ -105,6 +106,25 @@ public class UpdateClientResponse implements Response {
     public UpdateClientResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
+        return this;
+    }
+
+    /**
+     * Updated client
+     */
+    public UpdateClientResponse withCreateClientResponse(CreateClientResponse createClientResponse) {
+        Utils.checkNotNull(createClientResponse, "createClientResponse");
+        this.createClientResponse = Optional.ofNullable(createClientResponse);
+        return this;
+    }
+
+
+    /**
+     * Updated client
+     */
+    public UpdateClientResponse withCreateClientResponse(Optional<? extends CreateClientResponse> createClientResponse) {
+        Utils.checkNotNull(createClientResponse, "createClientResponse");
+        this.createClientResponse = createClientResponse;
         return this;
     }
 
@@ -126,25 +146,6 @@ public class UpdateClientResponse implements Response {
         return this;
     }
 
-    /**
-     * Updated client
-     */
-    public UpdateClientResponse withUpdateClientResponse(com.formance.formance_sdk.models.shared.UpdateClientResponse updateClientResponse) {
-        Utils.checkNotNull(updateClientResponse, "updateClientResponse");
-        this.updateClientResponse = Optional.ofNullable(updateClientResponse);
-        return this;
-    }
-
-
-    /**
-     * Updated client
-     */
-    public UpdateClientResponse withUpdateClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse) {
-        Utils.checkNotNull(updateClientResponse, "updateClientResponse");
-        this.updateClientResponse = updateClientResponse;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,25 +157,25 @@ public class UpdateClientResponse implements Response {
         UpdateClientResponse other = (UpdateClientResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.createClientResponse, other.createClientResponse) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.updateClientResponse, other.updateClientResponse);
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            updateClientResponse);
+            contentType, createClientResponse, statusCode,
+            rawResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateClientResponse.class,
                 "contentType", contentType,
+                "createClientResponse", createClientResponse,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "updateClientResponse", updateClientResponse);
+                "rawResponse", rawResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -182,11 +183,11 @@ public class UpdateClientResponse implements Response {
 
         private String contentType;
 
+        private Optional<? extends CreateClientResponse> createClientResponse = Optional.empty();
+
         private Integer statusCode;
 
         private HttpResponse<InputStream> rawResponse;
-
-        private Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -199,6 +200,25 @@ public class UpdateClientResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
+            return this;
+        }
+
+
+        /**
+         * Updated client
+         */
+        public Builder createClientResponse(CreateClientResponse createClientResponse) {
+            Utils.checkNotNull(createClientResponse, "createClientResponse");
+            this.createClientResponse = Optional.ofNullable(createClientResponse);
+            return this;
+        }
+
+        /**
+         * Updated client
+         */
+        public Builder createClientResponse(Optional<? extends CreateClientResponse> createClientResponse) {
+            Utils.checkNotNull(createClientResponse, "createClientResponse");
+            this.createClientResponse = createClientResponse;
             return this;
         }
 
@@ -222,30 +242,11 @@ public class UpdateClientResponse implements Response {
             return this;
         }
 
-
-        /**
-         * Updated client
-         */
-        public Builder updateClientResponse(com.formance.formance_sdk.models.shared.UpdateClientResponse updateClientResponse) {
-            Utils.checkNotNull(updateClientResponse, "updateClientResponse");
-            this.updateClientResponse = Optional.ofNullable(updateClientResponse);
-            return this;
-        }
-
-        /**
-         * Updated client
-         */
-        public Builder updateClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.UpdateClientResponse> updateClientResponse) {
-            Utils.checkNotNull(updateClientResponse, "updateClientResponse");
-            this.updateClientResponse = updateClientResponse;
-            return this;
-        }
-
         public UpdateClientResponse build() {
 
             return new UpdateClientResponse(
-                contentType, statusCode, rawResponse,
-                updateClientResponse);
+                contentType, createClientResponse, statusCode,
+                rawResponse);
         }
 
     }

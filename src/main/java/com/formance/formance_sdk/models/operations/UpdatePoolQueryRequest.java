@@ -14,7 +14,7 @@ import java.lang.String;
 public class UpdatePoolQueryRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest;
+    private com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest;
 
     /**
      * The pool ID.
@@ -24,7 +24,7 @@ public class UpdatePoolQueryRequest {
 
     @JsonCreator
     public UpdatePoolQueryRequest(
-            com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest,
+            com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest,
             String poolId) {
         Utils.checkNotNull(updatePoolQueryRequest, "updatePoolQueryRequest");
         Utils.checkNotNull(poolId, "poolId");
@@ -33,7 +33,7 @@ public class UpdatePoolQueryRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest() {
+    public com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest() {
         return updatePoolQueryRequest;
     }
 
@@ -50,7 +50,7 @@ public class UpdatePoolQueryRequest {
     }
 
 
-    public UpdatePoolQueryRequest withUpdatePoolQueryRequest(com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest) {
+    public UpdatePoolQueryRequest withUpdatePoolQueryRequest(com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest) {
         Utils.checkNotNull(updatePoolQueryRequest, "updatePoolQueryRequest");
         this.updatePoolQueryRequest = updatePoolQueryRequest;
         return this;
@@ -95,7 +95,7 @@ public class UpdatePoolQueryRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest;
+        private com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest;
 
         private String poolId;
 
@@ -104,7 +104,7 @@ public class UpdatePoolQueryRequest {
         }
 
 
-        public Builder updatePoolQueryRequest(com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest updatePoolQueryRequest) {
+        public Builder updatePoolQueryRequest(com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest updatePoolQueryRequest) {
             Utils.checkNotNull(updatePoolQueryRequest, "updatePoolQueryRequest");
             this.updatePoolQueryRequest = updatePoolQueryRequest;
             return this;

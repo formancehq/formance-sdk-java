@@ -24,7 +24,7 @@ public class V2RevertTransactionRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest;
 
     /**
      * Revert transaction at effective date of the original tx
@@ -66,7 +66,7 @@ public class V2RevertTransactionRequest {
     @JsonCreator
     public V2RevertTransactionRequest(
             Optional<String> idempotencyKey,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest,
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest,
             Optional<Boolean> atEffectiveDate,
             Optional<Boolean> dryRun,
             Optional<Boolean> force,
@@ -109,8 +109,8 @@ public class V2RevertTransactionRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionRequest>) v2RevertTransactionRequest;
+    public Optional<com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest>) v2RevertTransactionRequest;
     }
 
     /**
@@ -186,14 +186,14 @@ public class V2RevertTransactionRequest {
         return this;
     }
 
-    public V2RevertTransactionRequest withV2RevertTransactionRequest(com.formance.formance_sdk.models.shared.V2RevertTransactionRequest v2RevertTransactionRequest) {
+    public V2RevertTransactionRequest withV2RevertTransactionRequest(com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest v2RevertTransactionRequest) {
         Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
         this.v2RevertTransactionRequest = Optional.ofNullable(v2RevertTransactionRequest);
         return this;
     }
 
 
-    public V2RevertTransactionRequest withV2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest) {
+    public V2RevertTransactionRequest withV2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest) {
         Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
         this.v2RevertTransactionRequest = v2RevertTransactionRequest;
         return this;
@@ -349,7 +349,7 @@ public class V2RevertTransactionRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest = Optional.empty();
 
         private Optional<Boolean> atEffectiveDate = Optional.empty();
 
@@ -387,13 +387,13 @@ public class V2RevertTransactionRequest {
         }
 
 
-        public Builder v2RevertTransactionRequest(com.formance.formance_sdk.models.shared.V2RevertTransactionRequest v2RevertTransactionRequest) {
+        public Builder v2RevertTransactionRequest(com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest v2RevertTransactionRequest) {
             Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
             this.v2RevertTransactionRequest = Optional.ofNullable(v2RevertTransactionRequest);
             return this;
         }
 
-        public Builder v2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionRequest> v2RevertTransactionRequest) {
+        public Builder v2RevertTransactionRequest(Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest) {
             Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
             this.v2RevertTransactionRequest = v2RevertTransactionRequest;
             return this;

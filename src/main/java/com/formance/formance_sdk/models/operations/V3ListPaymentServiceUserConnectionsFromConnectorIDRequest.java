@@ -8,12 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends Map<String, Object>> requestBody;
+
     /**
      * The connector ID
      */
@@ -43,14 +50,17 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
 
     @JsonCreator
     public V3ListPaymentServiceUserConnectionsFromConnectorIDRequest(
+            Optional<? extends Map<String, Object>> requestBody,
             String connectorID,
             Optional<String> cursor,
             Optional<Long> pageSize,
             String paymentServiceUserID) {
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(paymentServiceUserID, "paymentServiceUserID");
+        this.requestBody = requestBody;
         this.connectorID = connectorID;
         this.cursor = cursor;
         this.pageSize = pageSize;
@@ -60,8 +70,14 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
     public V3ListPaymentServiceUserConnectionsFromConnectorIDRequest(
             String connectorID,
             String paymentServiceUserID) {
-        this(connectorID, Optional.empty(), Optional.empty(),
-            paymentServiceUserID);
+        this(Optional.empty(), connectorID, Optional.empty(),
+            Optional.empty(), paymentServiceUserID);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -103,6 +119,19 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
         return new Builder();
     }
 
+
+    public V3ListPaymentServiceUserConnectionsFromConnectorIDRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
+        return this;
+    }
+
+
+    public V3ListPaymentServiceUserConnectionsFromConnectorIDRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * The connector ID
@@ -176,6 +205,7 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
         }
         V3ListPaymentServiceUserConnectionsFromConnectorIDRequest other = (V3ListPaymentServiceUserConnectionsFromConnectorIDRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
@@ -185,13 +215,14 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connectorID, cursor, pageSize,
-            paymentServiceUserID);
+            requestBody, connectorID, cursor,
+            pageSize, paymentServiceUserID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.class,
+                "requestBody", requestBody,
                 "connectorID", connectorID,
                 "cursor", cursor,
                 "pageSize", pageSize,
@@ -200,6 +231,8 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
 
         private String connectorID;
 
@@ -211,6 +244,19 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
+            return this;
+        }
+
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -280,8 +326,8 @@ public class V3ListPaymentServiceUserConnectionsFromConnectorIDRequest {
         public V3ListPaymentServiceUserConnectionsFromConnectorIDRequest build() {
 
             return new V3ListPaymentServiceUserConnectionsFromConnectorIDRequest(
-                connectorID, cursor, pageSize,
-                paymentServiceUserID);
+                requestBody, connectorID, cursor,
+                pageSize, paymentServiceUserID);
         }
 
     }

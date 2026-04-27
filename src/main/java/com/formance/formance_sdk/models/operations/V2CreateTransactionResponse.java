@@ -40,7 +40,7 @@ public class V2CreateTransactionResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse;
 
     @JsonCreator
     public V2CreateTransactionResponse(
@@ -48,7 +48,7 @@ public class V2CreateTransactionResponse implements Response {
             Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         headers = Utils.emptyMapIfNull(headers);
         Utils.checkNotNull(headers, "headers");
@@ -105,8 +105,8 @@ public class V2CreateTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2CreateTransactionResponse>) v2CreateTransactionResponse;
+    public Optional<com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse>) v2CreateTransactionResponse;
     }
 
     public static Builder builder() {
@@ -150,7 +150,7 @@ public class V2CreateTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2CreateTransactionResponse withV2CreateTransactionResponse(com.formance.formance_sdk.models.shared.V2CreateTransactionResponse v2CreateTransactionResponse) {
+    public V2CreateTransactionResponse withV2CreateTransactionResponse(com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse v2CreateTransactionResponse) {
         Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
         this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
         return this;
@@ -160,7 +160,7 @@ public class V2CreateTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2CreateTransactionResponse withV2CreateTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse) {
+    public V2CreateTransactionResponse withV2CreateTransactionResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse) {
         Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
         this.v2CreateTransactionResponse = v2CreateTransactionResponse;
         return this;
@@ -211,7 +211,7 @@ public class V2CreateTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -258,7 +258,7 @@ public class V2CreateTransactionResponse implements Response {
         /**
          * OK
          */
-        public Builder v2CreateTransactionResponse(com.formance.formance_sdk.models.shared.V2CreateTransactionResponse v2CreateTransactionResponse) {
+        public Builder v2CreateTransactionResponse(com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse v2CreateTransactionResponse) {
             Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
             this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
             return this;
@@ -267,7 +267,7 @@ public class V2CreateTransactionResponse implements Response {
         /**
          * OK
          */
-        public Builder v2CreateTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTransactionResponse> v2CreateTransactionResponse) {
+        public Builder v2CreateTransactionResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse> v2CreateTransactionResponse) {
             Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
             this.v2CreateTransactionResponse = v2CreateTransactionResponse;
             return this;

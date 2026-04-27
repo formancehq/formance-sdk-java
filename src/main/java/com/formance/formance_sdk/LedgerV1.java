@@ -24,9 +24,9 @@ import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
-import com.formance.formance_sdk.models.operations.GetAccountRequest;
-import com.formance.formance_sdk.models.operations.GetAccountRequestBuilder;
-import com.formance.formance_sdk.models.operations.GetAccountResponse;
+import com.formance.formance_sdk.models.operations.GetAccountLedgerRequest;
+import com.formance.formance_sdk.models.operations.GetAccountLedgerRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetAccountLedgerResponse;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
@@ -44,9 +44,9 @@ import com.formance.formance_sdk.models.operations.GetMappingResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetTransactionResponse;
-import com.formance.formance_sdk.models.operations.ListAccountsRequest;
-import com.formance.formance_sdk.models.operations.ListAccountsRequestBuilder;
-import com.formance.formance_sdk.models.operations.ListAccountsResponse;
+import com.formance.formance_sdk.models.operations.ListAccountsLedgerRequest;
+import com.formance.formance_sdk.models.operations.ListAccountsLedgerRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAccountsLedgerResponse;
 import com.formance.formance_sdk.models.operations.ListLogsRequest;
 import com.formance.formance_sdk.models.operations.ListLogsRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListLogsResponse;
@@ -71,14 +71,14 @@ import com.formance.formance_sdk.operations.CountAccounts;
 import com.formance.formance_sdk.operations.CountTransactions;
 import com.formance.formance_sdk.operations.CreateTransaction;
 import com.formance.formance_sdk.operations.CreateTransactions;
-import com.formance.formance_sdk.operations.GetAccount;
+import com.formance.formance_sdk.operations.GetAccountLedger;
 import com.formance.formance_sdk.operations.GetBalances;
 import com.formance.formance_sdk.operations.GetBalancesAggregated;
 import com.formance.formance_sdk.operations.GetInfo;
 import com.formance.formance_sdk.operations.GetLedgerInfo;
 import com.formance.formance_sdk.operations.GetMapping;
 import com.formance.formance_sdk.operations.GetTransaction;
-import com.formance.formance_sdk.operations.ListAccounts;
+import com.formance.formance_sdk.operations.ListAccountsLedger;
 import com.formance.formance_sdk.operations.ListLogs;
 import com.formance.formance_sdk.operations.ListTransactions;
 import com.formance.formance_sdk.operations.ReadStats;
@@ -87,6 +87,8 @@ import com.formance.formance_sdk.operations.RunScript;
 import com.formance.formance_sdk.operations.UpdateMapping;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class LedgerV1 {
@@ -100,6 +102,8 @@ public class LedgerV1 {
     /**
      * Create a new batch of transactions to a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The call builder
      */
     public CreateTransactionsRequestBuilder createTransactions() {
@@ -109,18 +113,36 @@ public class LedgerV1 {
     /**
      * Create a new batch of transactions to a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionsResponse createTransactions(CreateTransactionsRequest request) {
+        return createTransactions(request, Optional.empty());
+    }
+
+    /**
+     * Create a new batch of transactions to a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransactionsResponse createTransactions(CreateTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<CreateTransactionsRequest, CreateTransactionsResponse> operation
-              = new CreateTransactions.Sync(sdkConfiguration, _headers);
+              = new CreateTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Set the metadata of a transaction by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -131,18 +153,36 @@ public class LedgerV1 {
     /**
      * Set the metadata of a transaction by its ID
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public AddMetadataOnTransactionResponse addMetadataOnTransaction(AddMetadataOnTransactionRequest request) {
+        return addMetadataOnTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Set the metadata of a transaction by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddMetadataOnTransactionResponse addMetadataOnTransaction(AddMetadataOnTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<AddMetadataOnTransactionRequest, AddMetadataOnTransactionResponse> operation
-              = new AddMetadataOnTransaction.Sync(sdkConfiguration, _headers);
+              = new AddMetadataOnTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Add metadata to an account
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -153,18 +193,36 @@ public class LedgerV1 {
     /**
      * Add metadata to an account
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public AddMetadataToAccountResponse addMetadataToAccount(AddMetadataToAccountRequest request) {
+        return addMetadataToAccount(request, Optional.empty());
+    }
+
+    /**
+     * Add metadata to an account
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddMetadataToAccountResponse addMetadataToAccount(AddMetadataToAccountRequest request, Optional<String> serverURL) {
         RequestOperation<AddMetadataToAccountRequest, AddMetadataToAccountResponse> operation
-              = new AddMetadataToAccount.Sync(sdkConfiguration, _headers);
+              = new AddMetadataToAccount.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Count the accounts from a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -175,18 +233,36 @@ public class LedgerV1 {
     /**
      * Count the accounts from a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CountAccountsResponse countAccounts(CountAccountsRequest request) {
+        return countAccounts(request, Optional.empty());
+    }
+
+    /**
+     * Count the accounts from a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CountAccountsResponse countAccounts(CountAccountsRequest request, Optional<String> serverURL) {
         RequestOperation<CountAccountsRequest, CountAccountsResponse> operation
-              = new CountAccounts.Sync(sdkConfiguration, _headers);
+              = new CountAccounts.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Count the transactions from a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -197,18 +273,36 @@ public class LedgerV1 {
     /**
      * Count the transactions from a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CountTransactionsResponse countTransactions(CountTransactionsRequest request) {
+        return countTransactions(request, Optional.empty());
+    }
+
+    /**
+     * Count the transactions from a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CountTransactionsResponse countTransactions(CountTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<CountTransactionsRequest, CountTransactionsResponse> operation
-              = new CountTransactions.Sync(sdkConfiguration, _headers);
+              = new CountTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Create a new transaction to a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -219,40 +313,76 @@ public class LedgerV1 {
     /**
      * Create a new transaction to a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateTransactionResponse createTransaction(CreateTransactionRequest request) {
+        return createTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Create a new transaction to a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransactionResponse createTransaction(CreateTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<CreateTransactionRequest, CreateTransactionResponse> operation
-              = new CreateTransaction.Sync(sdkConfiguration, _headers);
+              = new CreateTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get account by its address
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The call builder
      */
-    public GetAccountRequestBuilder getAccount() {
-        return new GetAccountRequestBuilder(sdkConfiguration);
+    public GetAccountLedgerRequestBuilder getAccountLedger() {
+        return new GetAccountLedgerRequestBuilder(sdkConfiguration);
     }
 
     /**
      * Get account by its address
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetAccountResponse getAccount(GetAccountRequest request) {
-        RequestOperation<GetAccountRequest, GetAccountResponse> operation
-              = new GetAccount.Sync(sdkConfiguration, _headers);
+    public GetAccountLedgerResponse getAccountLedger(GetAccountLedgerRequest request) {
+        return getAccountLedger(request, Optional.empty());
+    }
+
+    /**
+     * Get account by its address
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetAccountLedgerResponse getAccountLedger(GetAccountLedgerRequest request, Optional<String> serverURL) {
+        RequestOperation<GetAccountLedgerRequest, GetAccountLedgerResponse> operation
+              = new GetAccountLedger.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get the balances from a ledger's account
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -263,18 +393,36 @@ public class LedgerV1 {
     /**
      * Get the balances from a ledger's account
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetBalancesResponse getBalances(GetBalancesRequest request) {
+        return getBalances(request, Optional.empty());
+    }
+
+    /**
+     * Get the balances from a ledger's account
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBalancesResponse getBalances(GetBalancesRequest request, Optional<String> serverURL) {
         RequestOperation<GetBalancesRequest, GetBalancesResponse> operation
-              = new GetBalances.Sync(sdkConfiguration, _headers);
+              = new GetBalances.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get the aggregated balances from selected accounts
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -285,18 +433,36 @@ public class LedgerV1 {
     /**
      * Get the aggregated balances from selected accounts
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetBalancesAggregatedResponse getBalancesAggregated(GetBalancesAggregatedRequest request) {
+        return getBalancesAggregated(request, Optional.empty());
+    }
+
+    /**
+     * Get the aggregated balances from selected accounts
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBalancesAggregatedResponse getBalancesAggregated(GetBalancesAggregatedRequest request, Optional<String> serverURL) {
         RequestOperation<GetBalancesAggregatedRequest, GetBalancesAggregatedResponse> operation
-              = new GetBalancesAggregated.Sync(sdkConfiguration, _headers);
+              = new GetBalancesAggregated.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Show server information
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -307,17 +473,34 @@ public class LedgerV1 {
     /**
      * Show server information
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetInfoResponse getInfoDirect() {
+        return getInfo(Optional.empty());
+    }
+
+    /**
+     * Show server information
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetInfoResponse getInfo(Optional<String> serverURL) {
         RequestlessOperation<GetInfoResponse> operation
-            = new GetInfo.Sync(sdkConfiguration, _headers);
+            = new GetInfo.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
     /**
      * Get information about a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -328,18 +511,36 @@ public class LedgerV1 {
     /**
      * Get information about a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetLedgerInfoResponse getLedgerInfo(GetLedgerInfoRequest request) {
+        return getLedgerInfo(request, Optional.empty());
+    }
+
+    /**
+     * Get information about a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetLedgerInfoResponse getLedgerInfo(GetLedgerInfoRequest request, Optional<String> serverURL) {
         RequestOperation<GetLedgerInfoRequest, GetLedgerInfoResponse> operation
-              = new GetLedgerInfo.Sync(sdkConfiguration, _headers);
+              = new GetLedgerInfo.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get the mapping of a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -350,18 +551,36 @@ public class LedgerV1 {
     /**
      * Get the mapping of a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetMappingResponse getMapping(GetMappingRequest request) {
+        return getMapping(request, Optional.empty());
+    }
+
+    /**
+     * Get the mapping of a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetMappingResponse getMapping(GetMappingRequest request, Optional<String> serverURL) {
         RequestOperation<GetMappingRequest, GetMappingResponse> operation
-              = new GetMapping.Sync(sdkConfiguration, _headers);
+              = new GetMapping.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get transaction from a ledger by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -372,13 +591,29 @@ public class LedgerV1 {
     /**
      * Get transaction from a ledger by its ID
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetTransactionResponse getTransaction(GetTransactionRequest request) {
+        return getTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Get transaction from a ledger by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionResponse getTransaction(GetTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransaction.Sync(sdkConfiguration, _headers);
+              = new GetTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -387,10 +622,12 @@ public class LedgerV1 {
      * 
      * <p>List accounts from a ledger, sorted by address in descending order.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The call builder
      */
-    public ListAccountsRequestBuilder listAccounts() {
-        return new ListAccountsRequestBuilder(sdkConfiguration);
+    public ListAccountsLedgerRequestBuilder listAccountsLedger() {
+        return new ListAccountsLedgerRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -398,13 +635,31 @@ public class LedgerV1 {
      * 
      * <p>List accounts from a ledger, sorted by address in descending order.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListAccountsResponse listAccounts(ListAccountsRequest request) {
-        RequestOperation<ListAccountsRequest, ListAccountsResponse> operation
-              = new ListAccounts.Sync(sdkConfiguration, _headers);
+    public ListAccountsLedgerResponse listAccountsLedger(ListAccountsLedgerRequest request) {
+        return listAccountsLedger(request, Optional.empty());
+    }
+
+    /**
+     * List accounts from a ledger
+     * 
+     * <p>List accounts from a ledger, sorted by address in descending order.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAccountsLedgerResponse listAccountsLedger(ListAccountsLedgerRequest request, Optional<String> serverURL) {
+        RequestOperation<ListAccountsLedgerRequest, ListAccountsLedgerResponse> operation
+              = new ListAccountsLedger.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -412,6 +667,8 @@ public class LedgerV1 {
      * List the logs from a ledger
      * 
      * <p>List the logs from a ledger, sorted by ID in descending order.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -424,13 +681,31 @@ public class LedgerV1 {
      * 
      * <p>List the logs from a ledger, sorted by ID in descending order.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ListLogsResponse listLogs(ListLogsRequest request) {
+        return listLogs(request, Optional.empty());
+    }
+
+    /**
+     * List the logs from a ledger
+     * 
+     * <p>List the logs from a ledger, sorted by ID in descending order.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListLogsResponse listLogs(ListLogsRequest request, Optional<String> serverURL) {
         RequestOperation<ListLogsRequest, ListLogsResponse> operation
-              = new ListLogs.Sync(sdkConfiguration, _headers);
+              = new ListLogs.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -438,6 +713,8 @@ public class LedgerV1 {
      * List transactions from a ledger
      * 
      * <p>List transactions from a ledger, sorted by txid in descending order.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -450,13 +727,31 @@ public class LedgerV1 {
      * 
      * <p>List transactions from a ledger, sorted by txid in descending order.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ListTransactionsResponse listTransactions(ListTransactionsRequest request) {
+        return listTransactions(request, Optional.empty());
+    }
+
+    /**
+     * List transactions from a ledger
+     * 
+     * <p>List transactions from a ledger, sorted by txid in descending order.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListTransactionsResponse listTransactions(ListTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<ListTransactionsRequest, ListTransactionsResponse> operation
-              = new ListTransactions.Sync(sdkConfiguration, _headers);
+              = new ListTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -464,6 +759,8 @@ public class LedgerV1 {
      * Get statistics from a ledger
      * 
      * <p>Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -476,18 +773,38 @@ public class LedgerV1 {
      * 
      * <p>Get statistics from a ledger. (aggregate metrics on accounts and transactions)
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ReadStatsResponse readStats(ReadStatsRequest request) {
+        return readStats(request, Optional.empty());
+    }
+
+    /**
+     * Get statistics from a ledger
+     * 
+     * <p>Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReadStatsResponse readStats(ReadStatsRequest request, Optional<String> serverURL) {
         RequestOperation<ReadStatsRequest, ReadStatsResponse> operation
-              = new ReadStats.Sync(sdkConfiguration, _headers);
+              = new ReadStats.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Revert a ledger transaction by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -498,13 +815,29 @@ public class LedgerV1 {
     /**
      * Revert a ledger transaction by its ID
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public RevertTransactionResponse revertTransaction(RevertTransactionRequest request) {
+        return revertTransaction(request, Optional.empty());
+    }
+
+    /**
+     * Revert a ledger transaction by its ID
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public RevertTransactionResponse revertTransaction(RevertTransactionRequest request, Optional<String> serverURL) {
         RequestOperation<RevertTransactionRequest, RevertTransactionResponse> operation
-              = new RevertTransaction.Sync(sdkConfiguration, _headers);
+              = new RevertTransaction.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -512,6 +845,8 @@ public class LedgerV1 {
      * Execute a Numscript
      * 
      * <p>This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -526,6 +861,8 @@ public class LedgerV1 {
      * 
      * <p>This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -533,13 +870,33 @@ public class LedgerV1 {
      */
     @Deprecated
     public RunScriptResponse runScript(RunScriptRequest request) {
+        return runScript(request, Optional.empty());
+    }
+
+    /**
+     * Execute a Numscript
+     * 
+     * <p>This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public RunScriptResponse runScript(RunScriptRequest request, Optional<String> serverURL) {
         RequestOperation<RunScriptRequest, RunScriptResponse> operation
-              = new RunScript.Sync(sdkConfiguration, _headers);
+              = new RunScript.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Update the mapping of a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -550,13 +907,29 @@ public class LedgerV1 {
     /**
      * Update the mapping of a ledger
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateMappingResponse updateMapping(UpdateMappingRequest request) {
+        return updateMapping(request, Optional.empty());
+    }
+
+    /**
+     * Update the mapping of a ledger
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateMappingResponse updateMapping(UpdateMappingRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateMappingRequest, UpdateMappingResponse> operation
-              = new UpdateMapping.Sync(sdkConfiguration, _headers);
+              = new UpdateMapping.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

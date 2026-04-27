@@ -25,7 +25,7 @@ public class ListBalancesResponse implements Response {
     /**
      * Balances list
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListBalancesResponse implements Response {
     @JsonCreator
     public ListBalancesResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListBalancesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListBalancesResponse>) listBalancesResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.ListBalancesResponse>) listBalancesResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListBalancesResponse implements Response {
     /**
      * Balances list
      */
-    public ListBalancesResponse withListBalancesResponse(com.formance.formance_sdk.models.shared.ListBalancesResponse listBalancesResponse) {
+    public ListBalancesResponse withListBalancesResponse(com.formance.formance_sdk.models.wallets.ListBalancesResponse listBalancesResponse) {
         Utils.checkNotNull(listBalancesResponse, "listBalancesResponse");
         this.listBalancesResponse = Optional.ofNullable(listBalancesResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListBalancesResponse implements Response {
     /**
      * Balances list
      */
-    public ListBalancesResponse withListBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse) {
+    public ListBalancesResponse withListBalancesResponse(Optional<? extends com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse) {
         Utils.checkNotNull(listBalancesResponse, "listBalancesResponse");
         this.listBalancesResponse = listBalancesResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListBalancesResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListBalancesResponse implements Response {
         /**
          * Balances list
          */
-        public Builder listBalancesResponse(com.formance.formance_sdk.models.shared.ListBalancesResponse listBalancesResponse) {
+        public Builder listBalancesResponse(com.formance.formance_sdk.models.wallets.ListBalancesResponse listBalancesResponse) {
             Utils.checkNotNull(listBalancesResponse, "listBalancesResponse");
             this.listBalancesResponse = Optional.ofNullable(listBalancesResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListBalancesResponse implements Response {
         /**
          * Balances list
          */
-        public Builder listBalancesResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListBalancesResponse> listBalancesResponse) {
+        public Builder listBalancesResponse(Optional<? extends com.formance.formance_sdk.models.wallets.ListBalancesResponse> listBalancesResponse) {
             Utils.checkNotNull(listBalancesResponse, "listBalancesResponse");
             this.listBalancesResponse = listBalancesResponse;
             return this;

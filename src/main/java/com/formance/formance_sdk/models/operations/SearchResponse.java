@@ -25,7 +25,7 @@ public class SearchResponse implements Response {
     /**
      * Success
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.Response> response;
+    private Optional<? extends com.formance.formance_sdk.models.search.Response> response;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class SearchResponse implements Response {
     @JsonCreator
     public SearchResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.Response> response,
+            Optional<? extends com.formance.formance_sdk.models.search.Response> response,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class SearchResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.Response> response() {
-        return (Optional<com.formance.formance_sdk.models.shared.Response>) response;
+    public Optional<com.formance.formance_sdk.models.search.Response> response() {
+        return (Optional<com.formance.formance_sdk.models.search.Response>) response;
     }
 
     /**
@@ -111,7 +111,7 @@ public class SearchResponse implements Response {
     /**
      * Success
      */
-    public SearchResponse withResponse(com.formance.formance_sdk.models.shared.Response response) {
+    public SearchResponse withResponse(com.formance.formance_sdk.models.search.Response response) {
         Utils.checkNotNull(response, "response");
         this.response = Optional.ofNullable(response);
         return this;
@@ -121,7 +121,7 @@ public class SearchResponse implements Response {
     /**
      * Success
      */
-    public SearchResponse withResponse(Optional<? extends com.formance.formance_sdk.models.shared.Response> response) {
+    public SearchResponse withResponse(Optional<? extends com.formance.formance_sdk.models.search.Response> response) {
         Utils.checkNotNull(response, "response");
         this.response = response;
         return this;
@@ -182,7 +182,7 @@ public class SearchResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.Response> response = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.search.Response> response = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class SearchResponse implements Response {
         /**
          * Success
          */
-        public Builder response(com.formance.formance_sdk.models.shared.Response response) {
+        public Builder response(com.formance.formance_sdk.models.search.Response response) {
             Utils.checkNotNull(response, "response");
             this.response = Optional.ofNullable(response);
             return this;
@@ -215,7 +215,7 @@ public class SearchResponse implements Response {
         /**
          * Success
          */
-        public Builder response(Optional<? extends com.formance.formance_sdk.models.shared.Response> response) {
+        public Builder response(Optional<? extends com.formance.formance_sdk.models.search.Response> response) {
             Utils.checkNotNull(response, "response");
             this.response = response;
             return this;

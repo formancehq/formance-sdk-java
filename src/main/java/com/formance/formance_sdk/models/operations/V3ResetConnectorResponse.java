@@ -35,14 +35,14 @@ public class V3ResetConnectorResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse;
 
     @JsonCreator
     public V3ResetConnectorResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3ResetConnectorResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ResetConnectorResponse>) v3ResetConnectorResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ResetConnectorResponse>) v3ResetConnectorResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3ResetConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3ResetConnectorResponse withV3ResetConnectorResponse(com.formance.formance_sdk.models.shared.V3ResetConnectorResponse v3ResetConnectorResponse) {
+    public V3ResetConnectorResponse withV3ResetConnectorResponse(com.formance.formance_sdk.models.payments.V3ResetConnectorResponse v3ResetConnectorResponse) {
         Utils.checkNotNull(v3ResetConnectorResponse, "v3ResetConnectorResponse");
         this.v3ResetConnectorResponse = Optional.ofNullable(v3ResetConnectorResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3ResetConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3ResetConnectorResponse withV3ResetConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse) {
+    public V3ResetConnectorResponse withV3ResetConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse) {
         Utils.checkNotNull(v3ResetConnectorResponse, "v3ResetConnectorResponse");
         this.v3ResetConnectorResponse = v3ResetConnectorResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3ResetConnectorResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3ResetConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3ResetConnectorResponse(com.formance.formance_sdk.models.shared.V3ResetConnectorResponse v3ResetConnectorResponse) {
+        public Builder v3ResetConnectorResponse(com.formance.formance_sdk.models.payments.V3ResetConnectorResponse v3ResetConnectorResponse) {
             Utils.checkNotNull(v3ResetConnectorResponse, "v3ResetConnectorResponse");
             this.v3ResetConnectorResponse = Optional.ofNullable(v3ResetConnectorResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3ResetConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3ResetConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ResetConnectorResponse> v3ResetConnectorResponse) {
+        public Builder v3ResetConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ResetConnectorResponse> v3ResetConnectorResponse) {
             Utils.checkNotNull(v3ResetConnectorResponse, "v3ResetConnectorResponse");
             this.v3ResetConnectorResponse = v3ResetConnectorResponse;
             return this;

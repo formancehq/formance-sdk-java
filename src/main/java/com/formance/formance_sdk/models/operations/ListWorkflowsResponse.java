@@ -25,7 +25,7 @@ public class ListWorkflowsResponse implements Response {
     /**
      * List of workflows
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListWorkflowsResponse implements Response {
     @JsonCreator
     public ListWorkflowsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListWorkflowsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListWorkflowsResponse>) listWorkflowsResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse>) listWorkflowsResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListWorkflowsResponse implements Response {
     /**
      * List of workflows
      */
-    public ListWorkflowsResponse withListWorkflowsResponse(com.formance.formance_sdk.models.shared.ListWorkflowsResponse listWorkflowsResponse) {
+    public ListWorkflowsResponse withListWorkflowsResponse(com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse listWorkflowsResponse) {
         Utils.checkNotNull(listWorkflowsResponse, "listWorkflowsResponse");
         this.listWorkflowsResponse = Optional.ofNullable(listWorkflowsResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListWorkflowsResponse implements Response {
     /**
      * List of workflows
      */
-    public ListWorkflowsResponse withListWorkflowsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse) {
+    public ListWorkflowsResponse withListWorkflowsResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse) {
         Utils.checkNotNull(listWorkflowsResponse, "listWorkflowsResponse");
         this.listWorkflowsResponse = listWorkflowsResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListWorkflowsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListWorkflowsResponse implements Response {
         /**
          * List of workflows
          */
-        public Builder listWorkflowsResponse(com.formance.formance_sdk.models.shared.ListWorkflowsResponse listWorkflowsResponse) {
+        public Builder listWorkflowsResponse(com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse listWorkflowsResponse) {
             Utils.checkNotNull(listWorkflowsResponse, "listWorkflowsResponse");
             this.listWorkflowsResponse = Optional.ofNullable(listWorkflowsResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListWorkflowsResponse implements Response {
         /**
          * List of workflows
          */
-        public Builder listWorkflowsResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListWorkflowsResponse> listWorkflowsResponse) {
+        public Builder listWorkflowsResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ListWorkflowsResponse> listWorkflowsResponse) {
             Utils.checkNotNull(listWorkflowsResponse, "listWorkflowsResponse");
             this.listWorkflowsResponse = listWorkflowsResponse;
             return this;

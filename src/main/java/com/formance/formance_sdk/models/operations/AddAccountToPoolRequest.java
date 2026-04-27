@@ -14,7 +14,7 @@ import java.lang.String;
 public class AddAccountToPoolRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest;
+    private com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest;
 
     /**
      * The pool ID.
@@ -24,7 +24,7 @@ public class AddAccountToPoolRequest {
 
     @JsonCreator
     public AddAccountToPoolRequest(
-            com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest,
+            com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest,
             String poolId) {
         Utils.checkNotNull(addAccountToPoolRequest, "addAccountToPoolRequest");
         Utils.checkNotNull(poolId, "poolId");
@@ -33,7 +33,7 @@ public class AddAccountToPoolRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest() {
+    public com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest() {
         return addAccountToPoolRequest;
     }
 
@@ -50,7 +50,7 @@ public class AddAccountToPoolRequest {
     }
 
 
-    public AddAccountToPoolRequest withAddAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest) {
+    public AddAccountToPoolRequest withAddAccountToPoolRequest(com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest) {
         Utils.checkNotNull(addAccountToPoolRequest, "addAccountToPoolRequest");
         this.addAccountToPoolRequest = addAccountToPoolRequest;
         return this;
@@ -95,7 +95,7 @@ public class AddAccountToPoolRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest;
+        private com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest;
 
         private String poolId;
 
@@ -104,7 +104,7 @@ public class AddAccountToPoolRequest {
         }
 
 
-        public Builder addAccountToPoolRequest(com.formance.formance_sdk.models.shared.AddAccountToPoolRequest addAccountToPoolRequest) {
+        public Builder addAccountToPoolRequest(com.formance.formance_sdk.models.payments.AddAccountToPoolRequest addAccountToPoolRequest) {
             Utils.checkNotNull(addAccountToPoolRequest, "addAccountToPoolRequest");
             this.addAccountToPoolRequest = addAccountToPoolRequest;
             return this;

@@ -35,14 +35,14 @@ public class V3CreatePaymentServiceUserResponse implements Response {
     /**
      * Created
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse;
 
     @JsonCreator
     public V3CreatePaymentServiceUserResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3CreatePaymentServiceUserResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse>) v3CreatePaymentServiceUserResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse>) v3CreatePaymentServiceUserResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3CreatePaymentServiceUserResponse implements Response {
     /**
      * Created
      */
-    public V3CreatePaymentServiceUserResponse withV3CreatePaymentServiceUserResponse(com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse v3CreatePaymentServiceUserResponse) {
+    public V3CreatePaymentServiceUserResponse withV3CreatePaymentServiceUserResponse(com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse v3CreatePaymentServiceUserResponse) {
         Utils.checkNotNull(v3CreatePaymentServiceUserResponse, "v3CreatePaymentServiceUserResponse");
         this.v3CreatePaymentServiceUserResponse = Optional.ofNullable(v3CreatePaymentServiceUserResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3CreatePaymentServiceUserResponse implements Response {
     /**
      * Created
      */
-    public V3CreatePaymentServiceUserResponse withV3CreatePaymentServiceUserResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
+    public V3CreatePaymentServiceUserResponse withV3CreatePaymentServiceUserResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
         Utils.checkNotNull(v3CreatePaymentServiceUserResponse, "v3CreatePaymentServiceUserResponse");
         this.v3CreatePaymentServiceUserResponse = v3CreatePaymentServiceUserResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3CreatePaymentServiceUserResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3CreatePaymentServiceUserResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreatePaymentServiceUserResponse(com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse v3CreatePaymentServiceUserResponse) {
+        public Builder v3CreatePaymentServiceUserResponse(com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse v3CreatePaymentServiceUserResponse) {
             Utils.checkNotNull(v3CreatePaymentServiceUserResponse, "v3CreatePaymentServiceUserResponse");
             this.v3CreatePaymentServiceUserResponse = Optional.ofNullable(v3CreatePaymentServiceUserResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3CreatePaymentServiceUserResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreatePaymentServiceUserResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
+        public Builder v3CreatePaymentServiceUserResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePaymentServiceUserResponse> v3CreatePaymentServiceUserResponse) {
             Utils.checkNotNull(v3CreatePaymentServiceUserResponse, "v3CreatePaymentServiceUserResponse");
             this.v3CreatePaymentServiceUserResponse = v3CreatePaymentServiceUserResponse;
             return this;

@@ -10,14 +10,14 @@
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
 * [countTransactions](#counttransactions) - Count the transactions from a ledger
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
-* [getAccount](#getaccount) - Get account by its address
+* [getAccountLedger](#getaccountledger) - Get account by its address
 * [getBalances](#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](#getinfo) - Show server information
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getMapping](#getmapping) - Get the mapping of a ledger
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
-* [listAccounts](#listaccounts) - List accounts from a ledger
+* [listAccountsLedger](#listaccountsledger) - List accounts from a ledger
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
@@ -36,17 +36,17 @@ Create a new batch of transactions to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.CreateTransactionsRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionsResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -88,6 +88,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [CreateTransactionsRequest](../../models/operations/CreateTransactionsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -95,10 +96,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## addMetadataOnTransaction
 
@@ -111,7 +112,7 @@ Set the metadata of a transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -121,7 +122,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -151,6 +152,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [AddMetadataOnTransactionRequest](../../models/operations/AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -158,10 +160,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## addMetadataToAccount
 
@@ -174,7 +176,7 @@ Add metadata to an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountRequest;
 import com.formance.formance_sdk.models.operations.AddMetadataToAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -183,7 +185,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -215,6 +217,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [AddMetadataToAccountRequest](../../models/operations/AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -222,10 +225,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## countAccounts
 
@@ -238,7 +241,7 @@ Count the accounts from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -247,7 +250,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -326,6 +329,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [CountAccountsRequest](../../models/operations/CountAccountsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -333,10 +337,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## countTransactions
 
@@ -349,14 +353,14 @@ Count the transactions from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.*;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -389,6 +393,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [CountTransactionsRequest](../../models/operations/CountTransactionsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -396,10 +401,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## createTransaction
 
@@ -412,10 +417,10 @@ Create a new transaction to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.CreateTransactionResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
@@ -423,7 +428,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -468,6 +473,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [CreateTransactionRequest](../../models/operations/CreateTransactionRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -475,31 +481,31 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
-## getAccount
+## getAccountLedger
 
 Get account by its address
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="getAccount" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
+<!-- UsageSnippet language="java" operationID="getAccount_ledger" method="get" path="/api/ledger/{ledger}/accounts/{address}" -->
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
-import com.formance.formance_sdk.models.operations.GetAccountRequest;
-import com.formance.formance_sdk.models.operations.GetAccountResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
+import com.formance.formance_sdk.models.operations.GetAccountLedgerRequest;
+import com.formance.formance_sdk.models.operations.GetAccountLedgerResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -508,12 +514,12 @@ public class Application {
                     .build())
             .build();
 
-        GetAccountRequest req = GetAccountRequest.builder()
+        GetAccountLedgerRequest req = GetAccountLedgerRequest.builder()
                 .address("users:001")
                 .ledger("ledger001")
                 .build();
 
-        GetAccountResponse res = sdk.ledger().v1().getAccount()
+        GetAccountLedgerResponse res = sdk.ledger().v1().getAccountLedger()
                 .request(req)
                 .call();
 
@@ -526,20 +532,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [GetAccountRequest](../../models/operations/GetAccountRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetAccountLedgerRequest](../../models/operations/GetAccountLedgerRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
-**[GetAccountResponse](../../models/operations/GetAccountResponse.md)**
+**[GetAccountLedgerResponse](../../models/operations/GetAccountLedgerResponse.md)**
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getBalances
 
@@ -552,7 +559,7 @@ Get the balances from a ledger's account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -560,7 +567,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -592,6 +599,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [GetBalancesRequest](../../models/operations/GetBalancesRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -599,10 +607,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getBalancesAggregated
 
@@ -615,7 +623,7 @@ Get the aggregated balances from selected accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -623,7 +631,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -653,6 +661,7 @@ public class Application {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [GetBalancesAggregatedRequest](../../models/operations/GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *String*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -660,10 +669,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getInfo
 
@@ -676,14 +685,14 @@ Show server information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -702,16 +711,22 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetInfoResponse](../../models/operations/GetInfoResponse.md)**
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getLedgerInfo
 
@@ -724,7 +739,7 @@ Get information about a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.GetLedgerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -732,7 +747,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -761,6 +776,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [GetLedgerInfoRequest](../../models/operations/GetLedgerInfoRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -768,10 +784,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getMapping
 
@@ -784,7 +800,7 @@ Get the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetMappingRequest;
 import com.formance.formance_sdk.models.operations.GetMappingResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -792,7 +808,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -821,6 +837,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [GetMappingRequest](../../models/operations/GetMappingRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -828,10 +845,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## getTransaction
 
@@ -844,7 +861,7 @@ Get transaction from a ledger by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -853,7 +870,7 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -883,6 +900,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [GetTransactionRequest](../../models/operations/GetTransactionRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -890,32 +908,32 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
-## listAccounts
+## listAccountsLedger
 
 List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="listAccounts" method="get" path="/api/ledger/{ledger}/accounts" -->
+<!-- UsageSnippet language="java" operationID="listAccounts_ledger" method="get" path="/api/ledger/{ledger}/accounts" -->
 ```java
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
-import com.formance.formance_sdk.models.operations.ListAccountsRequest;
-import com.formance.formance_sdk.models.operations.ListAccountsResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
+import com.formance.formance_sdk.models.operations.ListAccountsLedgerRequest;
+import com.formance.formance_sdk.models.operations.ListAccountsLedgerResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -924,7 +942,7 @@ public class Application {
                     .build())
             .build();
 
-        ListAccountsRequest req = ListAccountsRequest.builder()
+        ListAccountsLedgerRequest req = ListAccountsLedgerRequest.builder()
                 .ledger("ledger001")
                 .address("users:.+")
                 .after("users:003")
@@ -984,7 +1002,7 @@ public class Application {
                 .pageSize(100L)
                 .build();
 
-        ListAccountsResponse res = sdk.ledger().v1().listAccounts()
+        ListAccountsLedgerResponse res = sdk.ledger().v1().listAccountsLedger()
                 .request(req)
                 .call();
 
@@ -997,20 +1015,21 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [ListAccountsRequest](../../models/operations/ListAccountsRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [ListAccountsLedgerRequest](../../models/operations/ListAccountsLedgerRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
-**[ListAccountsResponse](../../models/operations/ListAccountsResponse.md)**
+**[ListAccountsLedgerResponse](../../models/operations/ListAccountsLedgerResponse.md)**
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## listLogs
 
@@ -1023,7 +1042,7 @@ List the logs from a ledger, sorted by ID in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListLogsRequest;
 import com.formance.formance_sdk.models.operations.ListLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1031,7 +1050,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1063,6 +1082,7 @@ public class Application {
 | Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [ListLogsRequest](../../models/operations/ListLogsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| `serverURL`                                                   | *String*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -1070,10 +1090,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## listTransactions
 
@@ -1086,7 +1106,7 @@ List transactions from a ledger, sorted by txid in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1094,7 +1114,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1130,6 +1150,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [ListTransactionsRequest](../../models/operations/ListTransactionsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -1137,10 +1158,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## readStats
 
@@ -1154,7 +1175,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadStatsRequest;
 import com.formance.formance_sdk.models.operations.ReadStatsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1162,7 +1183,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1191,6 +1212,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [ReadStatsRequest](../../models/operations/ReadStatsRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1198,10 +1220,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## revertTransaction
 
@@ -1214,7 +1236,7 @@ Revert a ledger transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.RevertTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1223,7 +1245,7 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1253,6 +1275,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [RevertTransactionRequest](../../models/operations/RevertTransactionRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1260,10 +1283,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |
 
 ## ~~runScript~~
 
@@ -1279,9 +1302,9 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.ledger.Script;
 import com.formance.formance_sdk.models.operations.RunScriptRequest;
 import com.formance.formance_sdk.models.operations.RunScriptResponse;
-import com.formance.formance_sdk.models.shared.Script;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.Map;
@@ -1324,6 +1347,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [RunScriptRequest](../../models/operations/RunScriptRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1346,7 +1370,7 @@ Update the mapping of a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateMappingRequest;
 import com.formance.formance_sdk.models.operations.UpdateMappingResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1355,7 +1379,7 @@ import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1385,6 +1409,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [UpdateMappingRequest](../../models/operations/UpdateMappingRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -1392,7 +1417,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | default                     | application/json            |
-| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| models/errors/ErrorsErrorResponse | default                           | application/json                  |
+| models/errors/SDKError            | 4XX, 5XX                          | \*/\*                             |

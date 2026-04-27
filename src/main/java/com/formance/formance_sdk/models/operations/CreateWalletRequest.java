@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CreateWalletRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest;
 
     /**
      * Use an idempotency key
@@ -26,7 +26,7 @@ public class CreateWalletRequest {
 
     @JsonCreator
     public CreateWalletRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest,
+            Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(createWalletRequest, "createWalletRequest");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -40,8 +40,8 @@ public class CreateWalletRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateWalletRequest>) createWalletRequest;
+    public Optional<com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest() {
+        return (Optional<com.formance.formance_sdk.models.wallets.CreateWalletRequest>) createWalletRequest;
     }
 
     /**
@@ -57,14 +57,14 @@ public class CreateWalletRequest {
     }
 
 
-    public CreateWalletRequest withCreateWalletRequest(com.formance.formance_sdk.models.shared.CreateWalletRequest createWalletRequest) {
+    public CreateWalletRequest withCreateWalletRequest(com.formance.formance_sdk.models.wallets.CreateWalletRequest createWalletRequest) {
         Utils.checkNotNull(createWalletRequest, "createWalletRequest");
         this.createWalletRequest = Optional.ofNullable(createWalletRequest);
         return this;
     }
 
 
-    public CreateWalletRequest withCreateWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest) {
+    public CreateWalletRequest withCreateWalletRequest(Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest) {
         Utils.checkNotNull(createWalletRequest, "createWalletRequest");
         this.createWalletRequest = createWalletRequest;
         return this;
@@ -119,7 +119,7 @@ public class CreateWalletRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -128,13 +128,13 @@ public class CreateWalletRequest {
         }
 
 
-        public Builder createWalletRequest(com.formance.formance_sdk.models.shared.CreateWalletRequest createWalletRequest) {
+        public Builder createWalletRequest(com.formance.formance_sdk.models.wallets.CreateWalletRequest createWalletRequest) {
             Utils.checkNotNull(createWalletRequest, "createWalletRequest");
             this.createWalletRequest = Optional.ofNullable(createWalletRequest);
             return this;
         }
 
-        public Builder createWalletRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateWalletRequest> createWalletRequest) {
+        public Builder createWalletRequest(Optional<? extends com.formance.formance_sdk.models.wallets.CreateWalletRequest> createWalletRequest) {
             Utils.checkNotNull(createWalletRequest, "createWalletRequest");
             this.createWalletRequest = createWalletRequest;
             return this;
