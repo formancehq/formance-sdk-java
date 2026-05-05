@@ -11,19 +11,14 @@ import com.formance.formance_sdk.utils.RetryConfig;
 import com.formance.formance_sdk.utils.SpeakeasyHTTPClient;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "v0.0.0";
-    public static final String SDK_VERSION = "8.0.0";
-    public static final String GEN_VERSION = "2.865.2";
+    public static final String OPENAPI_DOC_VERSION = "SDK_VERSION";
+    public static final String SDK_VERSION = "8.1.0";
+    public static final String GEN_VERSION = "2.881.17";
     private static final String BASE_PACKAGE = "com.formance.formance_sdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -73,7 +68,7 @@ public class SDKConfiguration {
     }
     
     public String resolvedServerUrl() {
-        return Utils.templateUrl(serverUrl, getServerVariableDefaults());
+        return serverUrl;
     }
     
     private int serverIdx = 0;
@@ -86,18 +81,6 @@ public class SDKConfiguration {
         return serverIdx;
     }
     
-    @SuppressWarnings("serial")
-    private List<Map<String, String>> serverVariables = new ArrayList<>(){ {
-        add(new HashMap<>());
-        add(new HashMap<>(){ {
-            put("environment", "eu.sandbox");
-            put("organization", "orgID-stackID");
-        } });
-    } };
-    
-    public List<Map<String, String>> serverVariables() {
-        return serverVariables;
-    }
     
     private Hooks _hooks = createHooks();
 
@@ -129,9 +112,6 @@ public class SDKConfiguration {
 
     
     
-     public Map<String, String> getServerVariableDefaults() {
-         return serverVariables.get(this.serverIdx);
-     }
     private Optional<RetryConfig> retryConfig = Optional.empty();
     
     public Optional<RetryConfig> retryConfig() {

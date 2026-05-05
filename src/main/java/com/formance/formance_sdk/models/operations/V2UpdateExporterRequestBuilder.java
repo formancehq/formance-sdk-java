@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2UpdateExporter;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2UpdateExporterRequestBuilder {
 
     private V2UpdateExporterRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V2UpdateExporterRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V2UpdateExporterRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2UpdateExporterRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V2UpdateExporterResponse call() {
         
         RequestOperation<V2UpdateExporterRequest, V2UpdateExporterResponse> operation
-              = new V2UpdateExporter.Sync(sdkConfiguration, _headers);
+              = new V2UpdateExporter.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

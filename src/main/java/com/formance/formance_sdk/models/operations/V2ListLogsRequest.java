@@ -8,13 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListLogsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -50,16 +56,20 @@ public class V2ListLogsRequest {
 
     @JsonCreator
     public V2ListLogsRequest(
+            Map<String, Object> requestBody,
             Optional<String> cursor,
             String ledger,
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
             Optional<String> sort) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(sort, "sort");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.ledger = ledger;
         this.pageSize = pageSize;
@@ -68,9 +78,15 @@ public class V2ListLogsRequest {
     }
     
     public V2ListLogsRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(Optional.empty(), ledger, Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), ledger,
+            Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -119,6 +135,12 @@ public class V2ListLogsRequest {
         return new Builder();
     }
 
+
+    public V2ListLogsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -219,6 +241,7 @@ public class V2ListLogsRequest {
         }
         V2ListLogsRequest other = (V2ListLogsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
@@ -229,13 +252,14 @@ public class V2ListLogsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, ledger, pageSize,
-            pit, sort);
+            requestBody, cursor, ledger,
+            pageSize, pit, sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListLogsRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "ledger", ledger,
                 "pageSize", pageSize,
@@ -245,6 +269,8 @@ public class V2ListLogsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Map<String, Object> requestBody;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -258,6 +284,13 @@ public class V2ListLogsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -353,8 +386,8 @@ public class V2ListLogsRequest {
         public V2ListLogsRequest build() {
 
             return new V2ListLogsRequest(
-                cursor, ledger, pageSize,
-                pit, sort);
+                requestBody, cursor, ledger,
+                pageSize, pit, sort);
         }
 
     }

@@ -14,7 +14,7 @@ import java.lang.String;
 public class V2CreateLedgerRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest;
+    private com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest;
 
     /**
      * Name of the ledger.
@@ -24,7 +24,7 @@ public class V2CreateLedgerRequest {
 
     @JsonCreator
     public V2CreateLedgerRequest(
-            com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest,
+            com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest,
             String ledger) {
         Utils.checkNotNull(v2CreateLedgerRequest, "v2CreateLedgerRequest");
         Utils.checkNotNull(ledger, "ledger");
@@ -33,7 +33,7 @@ public class V2CreateLedgerRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest() {
+    public com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest() {
         return v2CreateLedgerRequest;
     }
 
@@ -50,7 +50,7 @@ public class V2CreateLedgerRequest {
     }
 
 
-    public V2CreateLedgerRequest withV2CreateLedgerRequest(com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest) {
+    public V2CreateLedgerRequest withV2CreateLedgerRequest(com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest) {
         Utils.checkNotNull(v2CreateLedgerRequest, "v2CreateLedgerRequest");
         this.v2CreateLedgerRequest = v2CreateLedgerRequest;
         return this;
@@ -95,7 +95,7 @@ public class V2CreateLedgerRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest;
+        private com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest;
 
         private String ledger;
 
@@ -104,7 +104,7 @@ public class V2CreateLedgerRequest {
         }
 
 
-        public Builder v2CreateLedgerRequest(com.formance.formance_sdk.models.shared.V2CreateLedgerRequest v2CreateLedgerRequest) {
+        public Builder v2CreateLedgerRequest(com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest v2CreateLedgerRequest) {
             Utils.checkNotNull(v2CreateLedgerRequest, "v2CreateLedgerRequest");
             this.v2CreateLedgerRequest = v2CreateLedgerRequest;
             return this;

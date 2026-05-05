@@ -35,22 +35,22 @@ public class V2CreateExporterResponse implements Response {
     /**
      * Created exporter
      */
-    private Optional<? extends V2CreateExporterResponseBody> object;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse;
 
     @JsonCreator
     public V2CreateExporterResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2CreateExporterResponseBody> object) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2CreateExporterResponse, "v2CreateExporterResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2CreateExporterResponse = v2CreateExporterResponse;
     }
     
     public V2CreateExporterResponse(
@@ -90,8 +90,8 @@ public class V2CreateExporterResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2CreateExporterResponseBody> object() {
-        return (Optional<V2CreateExporterResponseBody>) object;
+    public Optional<com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2CreateExporterResponse>) v2CreateExporterResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +129,9 @@ public class V2CreateExporterResponse implements Response {
     /**
      * Created exporter
      */
-    public V2CreateExporterResponse withObject(V2CreateExporterResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2CreateExporterResponse withV2CreateExporterResponse(com.formance.formance_sdk.models.ledger.V2CreateExporterResponse v2CreateExporterResponse) {
+        Utils.checkNotNull(v2CreateExporterResponse, "v2CreateExporterResponse");
+        this.v2CreateExporterResponse = Optional.ofNullable(v2CreateExporterResponse);
         return this;
     }
 
@@ -139,9 +139,9 @@ public class V2CreateExporterResponse implements Response {
     /**
      * Created exporter
      */
-    public V2CreateExporterResponse withObject(Optional<? extends V2CreateExporterResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2CreateExporterResponse withV2CreateExporterResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse) {
+        Utils.checkNotNull(v2CreateExporterResponse, "v2CreateExporterResponse");
+        this.v2CreateExporterResponse = v2CreateExporterResponse;
         return this;
     }
 
@@ -158,14 +158,14 @@ public class V2CreateExporterResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2CreateExporterResponse, other.v2CreateExporterResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2CreateExporterResponse);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class V2CreateExporterResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2CreateExporterResponse", v2CreateExporterResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +186,7 @@ public class V2CreateExporterResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2CreateExporterResponseBody> object = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +226,18 @@ public class V2CreateExporterResponse implements Response {
         /**
          * Created exporter
          */
-        public Builder object(V2CreateExporterResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2CreateExporterResponse(com.formance.formance_sdk.models.ledger.V2CreateExporterResponse v2CreateExporterResponse) {
+            Utils.checkNotNull(v2CreateExporterResponse, "v2CreateExporterResponse");
+            this.v2CreateExporterResponse = Optional.ofNullable(v2CreateExporterResponse);
             return this;
         }
 
         /**
          * Created exporter
          */
-        public Builder object(Optional<? extends V2CreateExporterResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2CreateExporterResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreateExporterResponse> v2CreateExporterResponse) {
+            Utils.checkNotNull(v2CreateExporterResponse, "v2CreateExporterResponse");
+            this.v2CreateExporterResponse = v2CreateExporterResponse;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class V2CreateExporterResponse implements Response {
 
             return new V2CreateExporterResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2CreateExporterResponse);
         }
 
     }

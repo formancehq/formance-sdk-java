@@ -35,14 +35,14 @@ public class V2ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse;
 
     @JsonCreator
     public V2ListTriggersOccurrencesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
+            Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2ListTriggersOccurrencesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse>) v2ListTriggersOccurrencesResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse>) v2ListTriggersOccurrencesResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    public V2ListTriggersOccurrencesResponse withV2ListTriggersOccurrencesResponse(com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrencesResponse) {
+    public V2ListTriggersOccurrencesResponse withV2ListTriggersOccurrencesResponse(com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrencesResponse) {
         Utils.checkNotNull(v2ListTriggersOccurrencesResponse, "v2ListTriggersOccurrencesResponse");
         this.v2ListTriggersOccurrencesResponse = Optional.ofNullable(v2ListTriggersOccurrencesResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2ListTriggersOccurrencesResponse implements Response {
     /**
      * List of triggers occurrences
      */
-    public V2ListTriggersOccurrencesResponse withV2ListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
+    public V2ListTriggersOccurrencesResponse withV2ListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
         Utils.checkNotNull(v2ListTriggersOccurrencesResponse, "v2ListTriggersOccurrencesResponse");
         this.v2ListTriggersOccurrencesResponse = v2ListTriggersOccurrencesResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2ListTriggersOccurrencesResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2ListTriggersOccurrencesResponse implements Response {
         /**
          * List of triggers occurrences
          */
-        public Builder v2ListTriggersOccurrencesResponse(com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrencesResponse) {
+        public Builder v2ListTriggersOccurrencesResponse(com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse v2ListTriggersOccurrencesResponse) {
             Utils.checkNotNull(v2ListTriggersOccurrencesResponse, "v2ListTriggersOccurrencesResponse");
             this.v2ListTriggersOccurrencesResponse = Optional.ofNullable(v2ListTriggersOccurrencesResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2ListTriggersOccurrencesResponse implements Response {
         /**
          * List of triggers occurrences
          */
-        public Builder v2ListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
+        public Builder v2ListTriggersOccurrencesResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersOccurrencesResponse> v2ListTriggersOccurrencesResponse) {
             Utils.checkNotNull(v2ListTriggersOccurrencesResponse, "v2ListTriggersOccurrencesResponse");
             this.v2ListTriggersOccurrencesResponse = v2ListTriggersOccurrencesResponse;
             return this;

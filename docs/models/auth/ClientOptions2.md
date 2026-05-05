@@ -1,0 +1,15 @@
+# ClientOptions2
+
+
+## Fields
+
+| Field                    | Type                     | Required                 | Description              |
+| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| `metadata`               | Map\<String, *String*>   | :heavy_minus_sign:       | N/A                      |
+| `description`            | *Optional\<String>*      | :heavy_minus_sign:       | N/A                      |
+| `name`                   | *String*                 | :heavy_check_mark:       | N/A                      |
+| `postLogoutRedirectUris` | List\<*String*>          | :heavy_minus_sign:       | N/A                      |
+| `public_`                | *Optional\<Boolean>*     | :heavy_minus_sign:       | N/A                      |
+| `redirectUris`           | List\<*String*>          | :heavy_minus_sign:       | N/A                      |
+| `scopes`                 | List\<*String*>          | :heavy_minus_sign:       | N/A                      |
+| `trusted`                | *Optional\<Boolean>*     | :heavy_minus_sign:       | N/A                      |
