@@ -6,15 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.V3CreateAccountRequest;
+import com.formance.formance_sdk.models.payments.V3CreateAccountRequest;
 import com.formance.formance_sdk.operations.V3CreateAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class V3CreateAccountRequestBuilder {
 
     private Optional<? extends V3CreateAccountRequest> request = Optional.empty();
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -33,11 +35,23 @@ public class V3CreateAccountRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3CreateAccountRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3CreateAccountRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3CreateAccountResponse call() {
         
         RequestOperation<Optional<? extends V3CreateAccountRequest>, V3CreateAccountResponse> operation
-              = new V3CreateAccount.Sync(sdkConfiguration, _headers);
+              = new V3CreateAccount.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

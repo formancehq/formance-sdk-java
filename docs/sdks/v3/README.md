@@ -79,9 +79,9 @@ Add an account to a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3AddAccountToPoolRequest;
 import com.formance.formance_sdk.models.operations.V3AddAccountToPoolResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -115,6 +115,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3AddAccountToPoolRequest](../../models/operations/V3AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -138,9 +139,9 @@ Add a bank account to a payment service user
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3AddBankAccountToPaymentServiceUserRequest;
 import com.formance.formance_sdk.models.operations.V3AddBankAccountToPaymentServiceUserResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -174,6 +175,7 @@ public class Application {
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                             | [V3AddBankAccountToPaymentServiceUserRequest](../../models/operations/V3AddBankAccountToPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+| `serverURL`                                                                                                           | *String*                                                                                                              | :heavy_minus_sign:                                                                                                    | An optional server URL to use.                                                                                        |
 
 ### Response
 
@@ -197,9 +199,9 @@ Approve a payment initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ApprovePaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3ApprovePaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -234,6 +236,7 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3ApprovePaymentInitiationRequest](../../models/operations/V3ApprovePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -258,8 +261,8 @@ Create a formance account object. This object will not be forwarded to the conne
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreateAccountResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -289,6 +292,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V3CreateAccountRequest](../../models/shared/V3CreateAccountRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -313,8 +317,8 @@ Create a formance bank account object. This object will not be forwarded to the 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreateBankAccountResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -344,6 +348,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3CreateBankAccountRequest](../../models/shared/V3CreateBankAccountRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -367,9 +372,9 @@ Create an authentication link for a payment service user on a connector, for oau
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserRequest;
 import com.formance.formance_sdk.models.operations.V3CreateLinkForPaymentServiceUserResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -405,6 +410,7 @@ public class Application {
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                       | [V3CreateLinkForPaymentServiceUserRequest](../../models/operations/V3CreateLinkForPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| `serverURL`                                                                                                     | *String*                                                                                                        | :heavy_minus_sign:                                                                                              | An optional server URL to use.                                                                                  |
 
 ### Response
 
@@ -429,8 +435,8 @@ Create a formance payment object. This object will not be forwarded to the conne
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -460,6 +466,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V3CreatePaymentRequest](../../models/shared/V3CreatePaymentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -483,8 +490,8 @@ Create a formance payment service user object
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePaymentServiceUserResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -514,6 +521,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3CreatePaymentServiceUserRequest](../../models/shared/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -537,8 +545,8 @@ Create a formance pool object
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3CreatePoolResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -568,6 +576,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [V3CreatePoolRequest](../../models/shared/V3CreatePoolRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -591,9 +600,9 @@ Delete a payment initiation by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -626,6 +635,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3DeletePaymentInitiationRequest](../../models/operations/V3DeletePaymentInitiationRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -649,9 +659,9 @@ Delete a payment service user by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -686,6 +696,7 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3DeletePaymentServiceUserRequest](../../models/operations/V3DeletePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -709,9 +720,9 @@ Delete a connection for a payment service user on a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -748,6 +759,7 @@ public class Application {
 | Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                           | [V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../models/operations/V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
+| `serverURL`                                                                                                                                         | *String*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                  | An optional server URL to use.                                                                                                                      |
 
 ### Response
 
@@ -771,9 +783,9 @@ Remove a payment service user from a connector, the PSU will still exist in Form
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePaymentServiceUserConnectorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -809,6 +821,7 @@ public class Application {
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                           | [V3DeletePaymentServiceUserConnectorRequest](../../models/operations/V3DeletePaymentServiceUserConnectorRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `serverURL`                                                                                                         | *String*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      |
 
 ### Response
 
@@ -832,9 +845,9 @@ Delete a pool by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3DeletePoolRequest;
 import com.formance.formance_sdk.models.operations.V3DeletePoolResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -867,6 +880,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3DeletePoolRequest](../../models/operations/V3DeletePoolRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -890,10 +904,9 @@ Forward a Bank Account to a PSP for creation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ForwardBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3ForwardBankAccountResponse;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -901,10 +914,6 @@ public class Application {
     public static void main(String[] args) throws V3ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V3ForwardBankAccountRequest req = V3ForwardBankAccountRequest.builder()
@@ -927,6 +936,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3ForwardBankAccountRequest](../../models/operations/V3ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -950,9 +960,9 @@ Forward a payment service user's bank account to a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserBankAccountResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -988,6 +998,7 @@ public class Application {
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                 | [V3ForwardPaymentServiceUserBankAccountRequest](../../models/operations/V3ForwardPaymentServiceUserBankAccountRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `serverURL`                                                                                                               | *String*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional server URL to use.                                                                                            |
 
 ### Response
 
@@ -1011,9 +1022,9 @@ Register/forward a payment service user on/to a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderRequest;
 import com.formance.formance_sdk.models.operations.V3ForwardPaymentServiceUserToProviderResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1047,6 +1058,7 @@ public class Application {
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                               | [V3ForwardPaymentServiceUserToProviderRequest](../../models/operations/V3ForwardPaymentServiceUserToProviderRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
+| `serverURL`                                                                                                             | *String*                                                                                                                | :heavy_minus_sign:                                                                                                      | An optional server URL to use.                                                                                          |
 
 ### Response
 
@@ -1070,9 +1082,9 @@ Get an account by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetAccountRequest;
 import com.formance.formance_sdk.models.operations.V3GetAccountResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1107,6 +1119,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3GetAccountRequest](../../models/operations/V3GetAccountRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1130,9 +1143,9 @@ Get account balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1169,6 +1182,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3GetAccountBalancesRequest](../../models/operations/V3GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1192,10 +1206,9 @@ Get a Bank Account by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3GetBankAccountResponse;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -1203,10 +1216,6 @@ public class Application {
     public static void main(String[] args) throws V3ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V3GetBankAccountRequest req = V3GetBankAccountRequest.builder()
@@ -1229,6 +1238,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3GetBankAccountRequest](../../models/operations/V3GetBankAccountRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -1252,9 +1262,9 @@ Get a connector configuration by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.V3GetConnectorConfigResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1289,6 +1299,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3GetConnectorConfigRequest](../../models/operations/V3GetConnectorConfigRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1312,9 +1323,9 @@ Get a connector schedule by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetConnectorScheduleRequest;
 import com.formance.formance_sdk.models.operations.V3GetConnectorScheduleResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1350,6 +1361,7 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V3GetConnectorScheduleRequest](../../models/operations/V3GetConnectorScheduleRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -1373,9 +1385,9 @@ Get a payment by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1410,6 +1422,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3GetPaymentRequest](../../models/operations/V3GetPaymentRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1433,9 +1446,9 @@ Get a payment initiation by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1470,6 +1483,7 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V3GetPaymentInitiationRequest](../../models/operations/V3GetPaymentInitiationRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -1493,9 +1507,9 @@ Get a payment service user by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1530,6 +1544,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3GetPaymentServiceUserRequest](../../models/operations/V3GetPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1553,9 +1568,9 @@ Get a link attempt for a payment service user on a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest;
 import com.formance.formance_sdk.models.operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1592,6 +1607,7 @@ public class Application {
 | Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                       | [V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../models/operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                              | The request object to use for the request.                                                                                                      |
+| `serverURL`                                                                                                                                     | *String*                                                                                                                                        | :heavy_minus_sign:                                                                                                                              | An optional server URL to use.                                                                                                                  |
 
 ### Response
 
@@ -1615,9 +1631,9 @@ Get a pool by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPoolRequest;
 import com.formance.formance_sdk.models.operations.V3GetPoolResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1652,6 +1668,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V3GetPoolRequest](../../models/operations/V3GetPoolRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1675,9 +1692,9 @@ Get historical pool balances from a particular point in time
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1712,6 +1729,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3GetPoolBalancesRequest](../../models/operations/V3GetPoolBalancesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1735,9 +1753,9 @@ Get latest pool balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesLatestRequest;
 import com.formance.formance_sdk.models.operations.V3GetPoolBalancesLatestResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1772,6 +1790,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3GetPoolBalancesLatestRequest](../../models/operations/V3GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1795,9 +1814,9 @@ Get a task and its result by ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetTaskRequest;
 import com.formance.formance_sdk.models.operations.V3GetTaskResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1832,6 +1851,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V3GetTaskRequest](../../models/operations/V3GetTaskRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1855,9 +1875,9 @@ Initiate a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3InitiatePaymentRequest;
 import com.formance.formance_sdk.models.operations.V3InitiatePaymentResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1891,6 +1911,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3InitiatePaymentRequest](../../models/operations/V3InitiatePaymentRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1914,9 +1935,9 @@ Install a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.V3InstallConnectorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1951,6 +1972,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3InstallConnectorRequest](../../models/operations/V3InstallConnectorRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -1974,9 +1996,9 @@ List all accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V3ListAccountsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2012,6 +2034,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V3ListAccountsRequest](../../models/operations/V3ListAccountsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2035,9 +2058,9 @@ List all bank accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListBankAccountsRequest;
 import com.formance.formance_sdk.models.operations.V3ListBankAccountsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2073,6 +2096,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3ListBankAccountsRequest](../../models/operations/V3ListBankAccountsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -2096,8 +2120,8 @@ List all connector configurations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorConfigsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2122,6 +2146,12 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[V3ListConnectorConfigsResponse](../../models/operations/V3ListConnectorConfigsResponse.md)**
@@ -2144,9 +2174,9 @@ List all connector schedule instances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorScheduleInstancesRequest;
 import com.formance.formance_sdk.models.operations.V3ListConnectorScheduleInstancesResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2184,6 +2214,7 @@ public class Application {
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                     | [V3ListConnectorScheduleInstancesRequest](../../models/operations/V3ListConnectorScheduleInstancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+| `serverURL`                                                                                                   | *String*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                |
 
 ### Response
 
@@ -2207,9 +2238,9 @@ List all connector schedules
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorSchedulesRequest;
 import com.formance.formance_sdk.models.operations.V3ListConnectorSchedulesResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2246,6 +2277,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3ListConnectorSchedulesRequest](../../models/operations/V3ListConnectorSchedulesRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -2269,9 +2301,9 @@ List all connectors
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorsRequest;
 import com.formance.formance_sdk.models.operations.V3ListConnectorsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2307,6 +2339,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3ListConnectorsRequest](../../models/operations/V3ListConnectorsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -2330,9 +2363,9 @@ List all payment initiation adjustments
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationAdjustmentsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationAdjustmentsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2369,6 +2402,7 @@ public class Application {
 | Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                         | [V3ListPaymentInitiationAdjustmentsRequest](../../models/operations/V3ListPaymentInitiationAdjustmentsRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
+| `serverURL`                                                                                                       | *String*                                                                                                          | :heavy_minus_sign:                                                                                                | An optional server URL to use.                                                                                    |
 
 ### Response
 
@@ -2392,9 +2426,9 @@ List all payments related to a payment initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationRelatedPaymentsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationRelatedPaymentsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2431,6 +2465,7 @@ public class Application {
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                 | [V3ListPaymentInitiationRelatedPaymentsRequest](../../models/operations/V3ListPaymentInitiationRelatedPaymentsRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
+| `serverURL`                                                                                                               | *String*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional server URL to use.                                                                                            |
 
 ### Response
 
@@ -2454,9 +2489,9 @@ List all payment initiations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentInitiationsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2492,6 +2527,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3ListPaymentInitiationsRequest](../../models/operations/V3ListPaymentInitiationsRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -2515,9 +2551,9 @@ List all connections for a payment service user
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2554,6 +2590,7 @@ public class Application {
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                           | [V3ListPaymentServiceUserConnectionsRequest](../../models/operations/V3ListPaymentServiceUserConnectionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
+| `serverURL`                                                                                                         | *String*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      |
 
 ### Response
 
@@ -2577,9 +2614,9 @@ List enabled connections for a payment service user on a connector (i.e. the var
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2617,6 +2654,7 @@ public class Application {
 | Parameter                                                                                                                                         | Type                                                                                                                                              | Required                                                                                                                                          | Description                                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                         | [V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                | The request object to use for the request.                                                                                                        |
+| `serverURL`                                                                                                                                       | *String*                                                                                                                                          | :heavy_minus_sign:                                                                                                                                | An optional server URL to use.                                                                                                                    |
 
 ### Response
 
@@ -2642,9 +2680,9 @@ Allows to check if users used the link and completed the oauth flow.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2682,6 +2720,7 @@ public class Application {
 | Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                           | [V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
+| `serverURL`                                                                                                                                         | *String*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                  | An optional server URL to use.                                                                                                                      |
 
 ### Response
 
@@ -2705,9 +2744,9 @@ List all payment service users
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentServiceUsersResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2743,6 +2782,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3ListPaymentServiceUsersRequest](../../models/operations/V3ListPaymentServiceUsersRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -2766,9 +2806,9 @@ List all payments
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPaymentsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPaymentsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2804,6 +2844,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V3ListPaymentsRequest](../../models/operations/V3ListPaymentsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2827,9 +2868,9 @@ List all pools
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ListPoolsRequest;
 import com.formance.formance_sdk.models.operations.V3ListPoolsResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2865,6 +2906,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V3ListPoolsRequest](../../models/operations/V3ListPoolsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -2888,9 +2930,9 @@ Reject a payment initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3RejectPaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3RejectPaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2923,6 +2965,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3RejectPaymentInitiationRequest](../../models/operations/V3RejectPaymentInitiationRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -2946,9 +2989,9 @@ Remove an account from a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3RemoveAccountFromPoolRequest;
 import com.formance.formance_sdk.models.operations.V3RemoveAccountFromPoolResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2982,6 +3025,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3RemoveAccountFromPoolRequest](../../models/operations/V3RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -3005,9 +3049,9 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ResetConnectorRequest;
 import com.formance.formance_sdk.models.operations.V3ResetConnectorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3042,6 +3086,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3ResetConnectorRequest](../../models/operations/V3ResetConnectorRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -3065,9 +3110,9 @@ Retry a payment initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3RetryPaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3RetryPaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3102,6 +3147,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3RetryPaymentInitiationRequest](../../models/operations/V3RetryPaymentInitiationRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -3125,9 +3171,9 @@ Reverse a payment initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3ReversePaymentInitiationRequest;
 import com.formance.formance_sdk.models.operations.V3ReversePaymentInitiationResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3162,6 +3208,7 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3ReversePaymentInitiationRequest](../../models/operations/V3ReversePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -3185,9 +3232,9 @@ Uninstall a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UninstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.V3UninstallConnectorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3222,6 +3269,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3UninstallConnectorRequest](../../models/operations/V3UninstallConnectorRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -3245,10 +3293,9 @@ Update a bank account's metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataResponse;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -3256,10 +3303,6 @@ public class Application {
     public static void main(String[] args) throws V3ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V3UpdateBankAccountMetadataRequest req = V3UpdateBankAccountMetadataRequest.builder()
@@ -3280,6 +3323,7 @@ public class Application {
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `request`                                                                                           | [V3UpdateBankAccountMetadataRequest](../../models/operations/V3UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `serverURL`                                                                                         | *String*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -3303,9 +3347,9 @@ Update/Regenerate a link for a payment service user on a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3342,6 +3386,7 @@ public class Application {
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                             | [V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../models/operations/V3UpdateLinkForPaymentServiceUserOnConnectorRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
+| `serverURL`                                                                                                                           | *String*                                                                                                                              | :heavy_minus_sign:                                                                                                                    | An optional server URL to use.                                                                                                        |
 
 ### Response
 
@@ -3365,9 +3410,9 @@ Update a payment's metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdatePaymentMetadataResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3400,6 +3445,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3UpdatePaymentMetadataRequest](../../models/operations/V3UpdatePaymentMetadataRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -3423,9 +3469,9 @@ Update the query of a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryRequest;
 import com.formance.formance_sdk.models.operations.V3UpdatePoolQueryResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3458,6 +3504,7 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3UpdatePoolQueryRequest](../../models/operations/V3UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -3481,9 +3528,9 @@ Update connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateConnectorConfigResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -3516,6 +3563,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3UpdateConnectorConfigRequest](../../models/operations/V3UpdateConnectorConfigRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 

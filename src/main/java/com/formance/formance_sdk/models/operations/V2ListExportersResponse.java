@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.ledger.V2ExportersCursorResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class V2ListExportersResponse implements Response {
     /**
      * Exporters list
      */
-    private Optional<? extends V2ListExportersResponseBody> object;
+    private Optional<? extends V2ExportersCursorResponse> v2ExportersCursorResponse;
 
     @JsonCreator
     public V2ListExportersResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2ListExportersResponseBody> object) {
+            Optional<? extends V2ExportersCursorResponse> v2ExportersCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2ExportersCursorResponse, "v2ExportersCursorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2ExportersCursorResponse = v2ExportersCursorResponse;
     }
     
     public V2ListExportersResponse(
@@ -90,8 +91,8 @@ public class V2ListExportersResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2ListExportersResponseBody> object() {
-        return (Optional<V2ListExportersResponseBody>) object;
+    public Optional<V2ExportersCursorResponse> v2ExportersCursorResponse() {
+        return (Optional<V2ExportersCursorResponse>) v2ExportersCursorResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class V2ListExportersResponse implements Response {
     /**
      * Exporters list
      */
-    public V2ListExportersResponse withObject(V2ListExportersResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2ListExportersResponse withV2ExportersCursorResponse(V2ExportersCursorResponse v2ExportersCursorResponse) {
+        Utils.checkNotNull(v2ExportersCursorResponse, "v2ExportersCursorResponse");
+        this.v2ExportersCursorResponse = Optional.ofNullable(v2ExportersCursorResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class V2ListExportersResponse implements Response {
     /**
      * Exporters list
      */
-    public V2ListExportersResponse withObject(Optional<? extends V2ListExportersResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2ListExportersResponse withV2ExportersCursorResponse(Optional<? extends V2ExportersCursorResponse> v2ExportersCursorResponse) {
+        Utils.checkNotNull(v2ExportersCursorResponse, "v2ExportersCursorResponse");
+        this.v2ExportersCursorResponse = v2ExportersCursorResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class V2ListExportersResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2ExportersCursorResponse, other.v2ExportersCursorResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2ExportersCursorResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class V2ListExportersResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2ExportersCursorResponse", v2ExportersCursorResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class V2ListExportersResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2ListExportersResponseBody> object = Optional.empty();
+        private Optional<? extends V2ExportersCursorResponse> v2ExportersCursorResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class V2ListExportersResponse implements Response {
         /**
          * Exporters list
          */
-        public Builder object(V2ListExportersResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2ExportersCursorResponse(V2ExportersCursorResponse v2ExportersCursorResponse) {
+            Utils.checkNotNull(v2ExportersCursorResponse, "v2ExportersCursorResponse");
+            this.v2ExportersCursorResponse = Optional.ofNullable(v2ExportersCursorResponse);
             return this;
         }
 
         /**
          * Exporters list
          */
-        public Builder object(Optional<? extends V2ListExportersResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2ExportersCursorResponse(Optional<? extends V2ExportersCursorResponse> v2ExportersCursorResponse) {
+            Utils.checkNotNull(v2ExportersCursorResponse, "v2ExportersCursorResponse");
+            this.v2ExportersCursorResponse = v2ExportersCursorResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class V2ListExportersResponse implements Response {
 
             return new V2ListExportersResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2ExportersCursorResponse);
         }
 
     }

@@ -25,7 +25,7 @@ public class CreateBalanceResponse implements Response {
     /**
      * Created balance
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateBalanceResponse implements Response {
     @JsonCreator
     public CreateBalanceResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateBalanceResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateBalanceResponse>) createBalanceResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.CreateBalanceResponse>) createBalanceResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateBalanceResponse implements Response {
     /**
      * Created balance
      */
-    public CreateBalanceResponse withCreateBalanceResponse(com.formance.formance_sdk.models.shared.CreateBalanceResponse createBalanceResponse) {
+    public CreateBalanceResponse withCreateBalanceResponse(com.formance.formance_sdk.models.wallets.CreateBalanceResponse createBalanceResponse) {
         Utils.checkNotNull(createBalanceResponse, "createBalanceResponse");
         this.createBalanceResponse = Optional.ofNullable(createBalanceResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateBalanceResponse implements Response {
     /**
      * Created balance
      */
-    public CreateBalanceResponse withCreateBalanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse) {
+    public CreateBalanceResponse withCreateBalanceResponse(Optional<? extends com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse) {
         Utils.checkNotNull(createBalanceResponse, "createBalanceResponse");
         this.createBalanceResponse = createBalanceResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateBalanceResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateBalanceResponse implements Response {
         /**
          * Created balance
          */
-        public Builder createBalanceResponse(com.formance.formance_sdk.models.shared.CreateBalanceResponse createBalanceResponse) {
+        public Builder createBalanceResponse(com.formance.formance_sdk.models.wallets.CreateBalanceResponse createBalanceResponse) {
             Utils.checkNotNull(createBalanceResponse, "createBalanceResponse");
             this.createBalanceResponse = Optional.ofNullable(createBalanceResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateBalanceResponse implements Response {
         /**
          * Created balance
          */
-        public Builder createBalanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceResponse> createBalanceResponse) {
+        public Builder createBalanceResponse(Optional<? extends com.formance.formance_sdk.models.wallets.CreateBalanceResponse> createBalanceResponse) {
             Utils.checkNotNull(createBalanceResponse, "createBalanceResponse");
             this.createBalanceResponse = createBalanceResponse;
             return this;

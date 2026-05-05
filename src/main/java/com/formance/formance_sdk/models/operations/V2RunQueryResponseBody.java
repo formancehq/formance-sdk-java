@@ -6,10 +6,10 @@ package com.formance.formance_sdk.models.operations;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.formance.formance_sdk.models.shared.V2AccountsCursorResponse;
-import com.formance.formance_sdk.models.shared.V2LogsCursorResponse;
-import com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse;
-import com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse;
+import com.formance.formance_sdk.models.ledger.V2AccountsCursorResponse;
+import com.formance.formance_sdk.models.ledger.V2LogsCursorResponse;
+import com.formance.formance_sdk.models.ledger.V2TransactionsCursorResponse;
+import com.formance.formance_sdk.models.ledger.V2VolumesWithBalanceCursorResponse;
 import com.formance.formance_sdk.utils.OneOfDeserializer;
 import com.formance.formance_sdk.utils.TypedObject;
 import com.formance.formance_sdk.utils.Utils.JsonShape;
@@ -57,10 +57,10 @@ public class V2RunQueryResponseBody {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code com.formance.formance_sdk.models.shared.V2TransactionsCursorResponse}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V2AccountsCursorResponse}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V2LogsCursorResponse}</li>
-     * <li>{@code com.formance.formance_sdk.models.shared.V2VolumesWithBalanceCursorResponse}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2TransactionsCursorResponse}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2AccountsCursorResponse}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2LogsCursorResponse}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2VolumesWithBalanceCursorResponse}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:

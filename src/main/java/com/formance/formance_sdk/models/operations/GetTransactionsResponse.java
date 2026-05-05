@@ -25,7 +25,7 @@ public class GetTransactionsResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetTransactionsResponse implements Response {
     @JsonCreator
     public GetTransactionsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetTransactionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetTransactionsResponse>) getTransactionsResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.GetTransactionsResponse>) getTransactionsResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetTransactionsResponse implements Response {
     /**
      * OK
      */
-    public GetTransactionsResponse withGetTransactionsResponse(com.formance.formance_sdk.models.shared.GetTransactionsResponse getTransactionsResponse) {
+    public GetTransactionsResponse withGetTransactionsResponse(com.formance.formance_sdk.models.wallets.GetTransactionsResponse getTransactionsResponse) {
         Utils.checkNotNull(getTransactionsResponse, "getTransactionsResponse");
         this.getTransactionsResponse = Optional.ofNullable(getTransactionsResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetTransactionsResponse implements Response {
     /**
      * OK
      */
-    public GetTransactionsResponse withGetTransactionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse) {
+    public GetTransactionsResponse withGetTransactionsResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse) {
         Utils.checkNotNull(getTransactionsResponse, "getTransactionsResponse");
         this.getTransactionsResponse = getTransactionsResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetTransactionsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetTransactionsResponse implements Response {
         /**
          * OK
          */
-        public Builder getTransactionsResponse(com.formance.formance_sdk.models.shared.GetTransactionsResponse getTransactionsResponse) {
+        public Builder getTransactionsResponse(com.formance.formance_sdk.models.wallets.GetTransactionsResponse getTransactionsResponse) {
             Utils.checkNotNull(getTransactionsResponse, "getTransactionsResponse");
             this.getTransactionsResponse = Optional.ofNullable(getTransactionsResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetTransactionsResponse implements Response {
         /**
          * OK
          */
-        public Builder getTransactionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetTransactionsResponse> getTransactionsResponse) {
+        public Builder getTransactionsResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetTransactionsResponse> getTransactionsResponse) {
             Utils.checkNotNull(getTransactionsResponse, "getTransactionsResponse");
             this.getTransactionsResponse = getTransactionsResponse;
             return this;

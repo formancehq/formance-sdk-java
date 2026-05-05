@@ -5,10 +5,10 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.V2BulkElement;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class V2CreateBulkRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private List<V2BulkElement> requestBody;
+    private List<Object> requestBody;
 
     /**
      * Make bulk atomic
@@ -52,7 +52,7 @@ public class V2CreateBulkRequest {
 
     @JsonCreator
     public V2CreateBulkRequest(
-            List<V2BulkElement> requestBody,
+            List<Object> requestBody,
             Optional<Boolean> atomic,
             Optional<Boolean> continueOnFailure,
             String ledger,
@@ -73,14 +73,14 @@ public class V2CreateBulkRequest {
     }
     
     public V2CreateBulkRequest(
-            List<V2BulkElement> requestBody,
+            List<Object> requestBody,
             String ledger) {
         this(requestBody, Optional.empty(), Optional.empty(),
             ledger, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public List<V2BulkElement> requestBody() {
+    public List<Object> requestBody() {
         return requestBody;
     }
 
@@ -129,7 +129,7 @@ public class V2CreateBulkRequest {
     }
 
 
-    public V2CreateBulkRequest withRequestBody(List<V2BulkElement> requestBody) {
+    public V2CreateBulkRequest withRequestBody(List<Object> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
@@ -259,7 +259,7 @@ public class V2CreateBulkRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2BulkElement> requestBody;
+        private List<Object> requestBody;
 
         private Optional<Boolean> atomic = Optional.empty();
 
@@ -276,7 +276,7 @@ public class V2CreateBulkRequest {
         }
 
 
-        public Builder requestBody(List<V2BulkElement> requestBody) {
+        public Builder requestBody(List<Object> requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;

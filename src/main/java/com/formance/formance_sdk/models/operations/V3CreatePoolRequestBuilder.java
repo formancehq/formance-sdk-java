@@ -6,15 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.V3CreatePoolRequest;
+import com.formance.formance_sdk.models.payments.V3CreatePoolRequest;
 import com.formance.formance_sdk.operations.V3CreatePool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class V3CreatePoolRequestBuilder {
 
     private Optional<? extends V3CreatePoolRequest> request = Optional.empty();
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -33,11 +35,23 @@ public class V3CreatePoolRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3CreatePoolRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3CreatePoolRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3CreatePoolResponse call() {
         
         RequestOperation<Optional<? extends V3CreatePoolRequest>, V3CreatePoolResponse> operation
-              = new V3CreatePool.Sync(sdkConfiguration, _headers);
+              = new V3CreatePool.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

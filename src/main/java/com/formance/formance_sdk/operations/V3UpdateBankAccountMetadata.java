@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V3UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -28,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3UpdateBankAccountMetadata {
+    
+    /**
+     * V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -40,12 +48,17 @@ public class V3UpdateBankAccountMetadata {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-            this.securitySource = this.sdkConfiguration.securitySource();
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_UPDATE_BANK_ACCOUNT_METADATA_SERVERS[0], 
+                        Map.of()));
+            this.securitySource = null;
             this.client = this.sdkConfiguration.client();
         }
 
@@ -58,7 +71,7 @@ public class V3UpdateBankAccountMetadata {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3UpdateBankAccountMetadata",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -67,7 +80,7 @@ public class V3UpdateBankAccountMetadata {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3UpdateBankAccountMetadata",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -76,7 +89,7 @@ public class V3UpdateBankAccountMetadata {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "v3UpdateBankAccountMetadata",
-                    java.util.Optional.of(java.util.List.of("auth:read")),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
@@ -99,7 +112,6 @@ public class V3UpdateBankAccountMetadata {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
         }
@@ -107,8 +119,12 @@ public class V3UpdateBankAccountMetadata {
 
     public static class Sync extends Base
             implements RequestOperation<V3UpdateBankAccountMetadataRequest, V3UpdateBankAccountMetadataResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V3UpdateBankAccountMetadataRequest request) throws Exception {
@@ -133,7 +149,7 @@ public class V3UpdateBankAccountMetadata {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "default")) {
+                if (!Utils.statusCodeMatches(httpRes.statusCode(), "204")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
