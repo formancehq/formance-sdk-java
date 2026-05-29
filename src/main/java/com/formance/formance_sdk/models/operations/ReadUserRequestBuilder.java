@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ReadUserRequestBuilder {
 
     private ReadUserRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class ReadUserRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ReadUserRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public ReadUserRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public ReadUserResponse call() {
         
         RequestOperation<ReadUserRequest, ReadUserResponse> operation
-              = new ReadUser.Sync(sdkConfiguration, _headers);
+              = new ReadUser.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

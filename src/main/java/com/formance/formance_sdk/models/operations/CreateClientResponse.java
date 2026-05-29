@@ -25,7 +25,7 @@ public class CreateClientResponse implements Response {
     /**
      * Client created
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse;
+    private Optional<? extends com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateClientResponse implements Response {
     @JsonCreator
     public CreateClientResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse,
+            Optional<? extends com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateClientResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateClientResponse>) createClientResponse;
+    public Optional<com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse() {
+        return (Optional<com.formance.formance_sdk.models.auth.CreateClientResponse>) createClientResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateClientResponse implements Response {
     /**
      * Client created
      */
-    public CreateClientResponse withCreateClientResponse(com.formance.formance_sdk.models.shared.CreateClientResponse createClientResponse) {
+    public CreateClientResponse withCreateClientResponse(com.formance.formance_sdk.models.auth.CreateClientResponse createClientResponse) {
         Utils.checkNotNull(createClientResponse, "createClientResponse");
         this.createClientResponse = Optional.ofNullable(createClientResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateClientResponse implements Response {
     /**
      * Client created
      */
-    public CreateClientResponse withCreateClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse) {
+    public CreateClientResponse withCreateClientResponse(Optional<? extends com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse) {
         Utils.checkNotNull(createClientResponse, "createClientResponse");
         this.createClientResponse = createClientResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateClientResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateClientResponse implements Response {
         /**
          * Client created
          */
-        public Builder createClientResponse(com.formance.formance_sdk.models.shared.CreateClientResponse createClientResponse) {
+        public Builder createClientResponse(com.formance.formance_sdk.models.auth.CreateClientResponse createClientResponse) {
             Utils.checkNotNull(createClientResponse, "createClientResponse");
             this.createClientResponse = Optional.ofNullable(createClientResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateClientResponse implements Response {
         /**
          * Client created
          */
-        public Builder createClientResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateClientResponse> createClientResponse) {
+        public Builder createClientResponse(Optional<? extends com.formance.formance_sdk.models.auth.CreateClientResponse> createClientResponse) {
             Utils.checkNotNull(createClientResponse, "createClientResponse");
             this.createClientResponse = createClientResponse;
             return this;

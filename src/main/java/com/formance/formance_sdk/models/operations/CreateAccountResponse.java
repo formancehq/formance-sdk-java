@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.PaymentsAccountResponse;
+import com.formance.formance_sdk.models.payments.AccountResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -18,6 +18,11 @@ import java.util.Optional;
 
 
 public class CreateAccountResponse implements Response {
+    /**
+     * OK
+     */
+    private Optional<? extends AccountResponse> accountResponse;
+
     /**
      * HTTP response content type for this operation
      */
@@ -33,33 +38,37 @@ public class CreateAccountResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * OK
-     */
-    private Optional<? extends PaymentsAccountResponse> paymentsAccountResponse;
-
     @JsonCreator
     public CreateAccountResponse(
+            Optional<? extends AccountResponse> accountResponse,
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
+            HttpResponse<InputStream> rawResponse) {
+        Utils.checkNotNull(accountResponse, "accountResponse");
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
+        this.accountResponse = accountResponse;
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.paymentsAccountResponse = paymentsAccountResponse;
     }
     
     public CreateAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
+        this(Optional.empty(), contentType, statusCode,
+            rawResponse);
+    }
+
+    /**
+     * OK
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AccountResponse> accountResponse() {
+        return (Optional<AccountResponse>) accountResponse;
     }
 
     /**
@@ -86,19 +95,29 @@ public class CreateAccountResponse implements Response {
         return rawResponse;
     }
 
-    /**
-     * OK
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<PaymentsAccountResponse> paymentsAccountResponse() {
-        return (Optional<PaymentsAccountResponse>) paymentsAccountResponse;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
+
+    /**
+     * OK
+     */
+    public CreateAccountResponse withAccountResponse(AccountResponse accountResponse) {
+        Utils.checkNotNull(accountResponse, "accountResponse");
+        this.accountResponse = Optional.ofNullable(accountResponse);
+        return this;
+    }
+
+
+    /**
+     * OK
+     */
+    public CreateAccountResponse withAccountResponse(Optional<? extends AccountResponse> accountResponse) {
+        Utils.checkNotNull(accountResponse, "accountResponse");
+        this.accountResponse = accountResponse;
+        return this;
+    }
 
     /**
      * HTTP response content type for this operation
@@ -127,25 +146,6 @@ public class CreateAccountResponse implements Response {
         return this;
     }
 
-    /**
-     * OK
-     */
-    public CreateAccountResponse withPaymentsAccountResponse(PaymentsAccountResponse paymentsAccountResponse) {
-        Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
-        this.paymentsAccountResponse = Optional.ofNullable(paymentsAccountResponse);
-        return this;
-    }
-
-
-    /**
-     * OK
-     */
-    public CreateAccountResponse withPaymentsAccountResponse(Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
-        Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
-        this.paymentsAccountResponse = paymentsAccountResponse;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,30 +156,32 @@ public class CreateAccountResponse implements Response {
         }
         CreateAccountResponse other = (CreateAccountResponse) o;
         return 
+            Utils.enhancedDeepEquals(this.accountResponse, other.accountResponse) &&
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.paymentsAccountResponse, other.paymentsAccountResponse);
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            paymentsAccountResponse);
+            accountResponse, contentType, statusCode,
+            rawResponse);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateAccountResponse.class,
+                "accountResponse", accountResponse,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "paymentsAccountResponse", paymentsAccountResponse);
+                "rawResponse", rawResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends AccountResponse> accountResponse = Optional.empty();
 
         private String contentType;
 
@@ -187,10 +189,27 @@ public class CreateAccountResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends PaymentsAccountResponse> paymentsAccountResponse = Optional.empty();
-
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * OK
+         */
+        public Builder accountResponse(AccountResponse accountResponse) {
+            Utils.checkNotNull(accountResponse, "accountResponse");
+            this.accountResponse = Optional.ofNullable(accountResponse);
+            return this;
+        }
+
+        /**
+         * OK
+         */
+        public Builder accountResponse(Optional<? extends AccountResponse> accountResponse) {
+            Utils.checkNotNull(accountResponse, "accountResponse");
+            this.accountResponse = accountResponse;
+            return this;
         }
 
 
@@ -223,30 +242,11 @@ public class CreateAccountResponse implements Response {
             return this;
         }
 
-
-        /**
-         * OK
-         */
-        public Builder paymentsAccountResponse(PaymentsAccountResponse paymentsAccountResponse) {
-            Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
-            this.paymentsAccountResponse = Optional.ofNullable(paymentsAccountResponse);
-            return this;
-        }
-
-        /**
-         * OK
-         */
-        public Builder paymentsAccountResponse(Optional<? extends PaymentsAccountResponse> paymentsAccountResponse) {
-            Utils.checkNotNull(paymentsAccountResponse, "paymentsAccountResponse");
-            this.paymentsAccountResponse = paymentsAccountResponse;
-            return this;
-        }
-
         public CreateAccountResponse build() {
 
             return new CreateAccountResponse(
-                contentType, statusCode, rawResponse,
-                paymentsAccountResponse);
+                accountResponse, contentType, statusCode,
+                rawResponse);
         }
 
     }

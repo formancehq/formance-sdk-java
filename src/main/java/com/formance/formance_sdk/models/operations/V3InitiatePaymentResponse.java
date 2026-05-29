@@ -35,14 +35,14 @@ public class V3InitiatePaymentResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse;
 
     @JsonCreator
     public V3InitiatePaymentResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3InitiatePaymentResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse>) v3InitiatePaymentResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse>) v3InitiatePaymentResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3InitiatePaymentResponse implements Response {
     /**
      * Accepted
      */
-    public V3InitiatePaymentResponse withV3InitiatePaymentResponse(com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse v3InitiatePaymentResponse) {
+    public V3InitiatePaymentResponse withV3InitiatePaymentResponse(com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse v3InitiatePaymentResponse) {
         Utils.checkNotNull(v3InitiatePaymentResponse, "v3InitiatePaymentResponse");
         this.v3InitiatePaymentResponse = Optional.ofNullable(v3InitiatePaymentResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3InitiatePaymentResponse implements Response {
     /**
      * Accepted
      */
-    public V3InitiatePaymentResponse withV3InitiatePaymentResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
+    public V3InitiatePaymentResponse withV3InitiatePaymentResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
         Utils.checkNotNull(v3InitiatePaymentResponse, "v3InitiatePaymentResponse");
         this.v3InitiatePaymentResponse = v3InitiatePaymentResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3InitiatePaymentResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3InitiatePaymentResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3InitiatePaymentResponse(com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse v3InitiatePaymentResponse) {
+        public Builder v3InitiatePaymentResponse(com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse v3InitiatePaymentResponse) {
             Utils.checkNotNull(v3InitiatePaymentResponse, "v3InitiatePaymentResponse");
             this.v3InitiatePaymentResponse = Optional.ofNullable(v3InitiatePaymentResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3InitiatePaymentResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3InitiatePaymentResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
+        public Builder v3InitiatePaymentResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3InitiatePaymentResponse> v3InitiatePaymentResponse) {
             Utils.checkNotNull(v3InitiatePaymentResponse, "v3InitiatePaymentResponse");
             this.v3InitiatePaymentResponse = v3InitiatePaymentResponse;
             return this;

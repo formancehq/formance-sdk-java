@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPayments;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3ListPaymentsRequestBuilder {
 
     private V3ListPaymentsRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3ListPaymentsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3ListPaymentsRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3ListPaymentsRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3ListPaymentsResponse call() {
         
         RequestOperation<V3ListPaymentsRequest, V3ListPaymentsResponse> operation
-              = new V3ListPayments.Sync(sdkConfiguration, _headers);
+              = new V3ListPayments.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -6,15 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.CreateWorkflowRequest;
+import com.formance.formance_sdk.models.orchestration.WorkflowConfig;
 import com.formance.formance_sdk.operations.CreateWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreateWorkflowRequestBuilder {
 
-    private Optional<? extends CreateWorkflowRequest> request = Optional.empty();
+    private Optional<? extends WorkflowConfig> request = Optional.empty();
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,22 +24,34 @@ public class CreateWorkflowRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateWorkflowRequestBuilder request(CreateWorkflowRequest request) {
+    public CreateWorkflowRequestBuilder request(WorkflowConfig request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateWorkflowRequestBuilder request(Optional<? extends CreateWorkflowRequest> request) {
+    public CreateWorkflowRequestBuilder request(Optional<? extends WorkflowConfig> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
+        return this;
+    }
+                
+    public CreateWorkflowRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public CreateWorkflowRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
         return this;
     }
 
     public CreateWorkflowResponse call() {
         
-        RequestOperation<Optional<? extends CreateWorkflowRequest>, CreateWorkflowResponse> operation
-              = new CreateWorkflow.Sync(sdkConfiguration, _headers);
+        RequestOperation<Optional<? extends WorkflowConfig>, CreateWorkflowResponse> operation
+              = new CreateWorkflow.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -1,0 +1,12 @@
+# V2SchemaData2
+
+Schema data structure for ledger schemas
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `v2ChartOfAccounts`                                                                 | Map\<String, [V2ChartSegment](../../models/shared/V2ChartSegment.md)>               | :heavy_check_mark:                                                                  | Chart of account                                                                    | {<br/>"users": {<br/>"$userID": {<br/>".pattern": "^[0-9]{16}$"<br/>}<br/>}<br/>}   |
+| `v2QueryTemplates`                                                                  | Map\<String, [V2QueryTemplate](../../models/shared/V2QueryTemplate.md)>             | :heavy_minus_sign:                                                                  | Query templates                                                                     |                                                                                     |
+| `v2TransactionTemplates`                                                            | Map\<String, [V2TransactionTemplate](../../models/shared/V2TransactionTemplate.md)> | :heavy_minus_sign:                                                                  | Transaction templates                                                               |                                                                                     |

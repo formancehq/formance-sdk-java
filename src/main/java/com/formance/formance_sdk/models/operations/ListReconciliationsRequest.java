@@ -8,12 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class ListReconciliationsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Optional<? extends Map<String, Object>> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -31,16 +38,25 @@ public class ListReconciliationsRequest {
 
     @JsonCreator
     public ListReconciliationsRequest(
+            Optional<? extends Map<String, Object>> requestBody,
             Optional<String> cursor,
             Optional<Long> pageSize) {
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(pageSize, "pageSize");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.pageSize = pageSize;
     }
     
     public ListReconciliationsRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> requestBody() {
+        return (Optional<Map<String, Object>>) requestBody;
     }
 
     /**
@@ -66,6 +82,19 @@ public class ListReconciliationsRequest {
         return new Builder();
     }
 
+
+    public ListReconciliationsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
+        return this;
+    }
+
+
+    public ListReconciliationsRequest withRequestBody(Optional<? extends Map<String, Object>> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -121,6 +150,7 @@ public class ListReconciliationsRequest {
         }
         ListReconciliationsRequest other = (ListReconciliationsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize);
     }
@@ -128,12 +158,13 @@ public class ListReconciliationsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, pageSize);
+            requestBody, cursor, pageSize);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListReconciliationsRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "pageSize", pageSize);
     }
@@ -141,12 +172,27 @@ public class ListReconciliationsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<? extends Map<String, Object>> requestBody = Optional.empty();
+
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Long> pageSize = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
+            return this;
+        }
+
+        public Builder requestBody(Optional<? extends Map<String, Object>> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -196,7 +242,7 @@ public class ListReconciliationsRequest {
         public ListReconciliationsRequest build() {
 
             return new ListReconciliationsRequest(
-                cursor, pageSize);
+                requestBody, cursor, pageSize);
         }
 
     }

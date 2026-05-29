@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.TestTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class TestTriggerRequestBuilder {
 
     private TestTriggerRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class TestTriggerRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public TestTriggerRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public TestTriggerRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public TestTriggerResponse call() {
         
         RequestOperation<TestTriggerRequest, TestTriggerResponse> operation
-              = new TestTrigger.Sync(sdkConfiguration, _headers);
+              = new TestTrigger.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -35,14 +35,14 @@ public class V2CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse;
 
     @JsonCreator
     public V2CreateTriggerResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse) {
+            Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2CreateTriggerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2CreateTriggerResponse>) v2CreateTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse>) v2CreateTriggerResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    public V2CreateTriggerResponse withV2CreateTriggerResponse(com.formance.formance_sdk.models.shared.V2CreateTriggerResponse v2CreateTriggerResponse) {
+    public V2CreateTriggerResponse withV2CreateTriggerResponse(com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse v2CreateTriggerResponse) {
         Utils.checkNotNull(v2CreateTriggerResponse, "v2CreateTriggerResponse");
         this.v2CreateTriggerResponse = Optional.ofNullable(v2CreateTriggerResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2CreateTriggerResponse implements Response {
     /**
      * Created trigger
      */
-    public V2CreateTriggerResponse withV2CreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse) {
+    public V2CreateTriggerResponse withV2CreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse) {
         Utils.checkNotNull(v2CreateTriggerResponse, "v2CreateTriggerResponse");
         this.v2CreateTriggerResponse = v2CreateTriggerResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2CreateTriggerResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2CreateTriggerResponse implements Response {
         /**
          * Created trigger
          */
-        public Builder v2CreateTriggerResponse(com.formance.formance_sdk.models.shared.V2CreateTriggerResponse v2CreateTriggerResponse) {
+        public Builder v2CreateTriggerResponse(com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse v2CreateTriggerResponse) {
             Utils.checkNotNull(v2CreateTriggerResponse, "v2CreateTriggerResponse");
             this.v2CreateTriggerResponse = Optional.ofNullable(v2CreateTriggerResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2CreateTriggerResponse implements Response {
         /**
          * Created trigger
          */
-        public Builder v2CreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2CreateTriggerResponse> v2CreateTriggerResponse) {
+        public Builder v2CreateTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2CreateTriggerResponse> v2CreateTriggerResponse) {
             Utils.checkNotNull(v2CreateTriggerResponse, "v2CreateTriggerResponse");
             this.v2CreateTriggerResponse = v2CreateTriggerResponse;
             return this;

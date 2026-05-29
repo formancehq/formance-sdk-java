@@ -35,14 +35,14 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse;
 
     @JsonCreator
     public V3ForwardPaymentServiceUserBankAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse>) v3ForwardPaymentServiceUserBankAccountResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse>) v3ForwardPaymentServiceUserBankAccountResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
     /**
      * Accepted
      */
-    public V3ForwardPaymentServiceUserBankAccountResponse withV3ForwardPaymentServiceUserBankAccountResponse(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse v3ForwardPaymentServiceUserBankAccountResponse) {
+    public V3ForwardPaymentServiceUserBankAccountResponse withV3ForwardPaymentServiceUserBankAccountResponse(com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse v3ForwardPaymentServiceUserBankAccountResponse) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountResponse, "v3ForwardPaymentServiceUserBankAccountResponse");
         this.v3ForwardPaymentServiceUserBankAccountResponse = Optional.ofNullable(v3ForwardPaymentServiceUserBankAccountResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
     /**
      * Accepted
      */
-    public V3ForwardPaymentServiceUserBankAccountResponse withV3ForwardPaymentServiceUserBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
+    public V3ForwardPaymentServiceUserBankAccountResponse withV3ForwardPaymentServiceUserBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
         Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountResponse, "v3ForwardPaymentServiceUserBankAccountResponse");
         this.v3ForwardPaymentServiceUserBankAccountResponse = v3ForwardPaymentServiceUserBankAccountResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
         /**
          * Accepted
          */
-        public Builder v3ForwardPaymentServiceUserBankAccountResponse(com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse v3ForwardPaymentServiceUserBankAccountResponse) {
+        public Builder v3ForwardPaymentServiceUserBankAccountResponse(com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse v3ForwardPaymentServiceUserBankAccountResponse) {
             Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountResponse, "v3ForwardPaymentServiceUserBankAccountResponse");
             this.v3ForwardPaymentServiceUserBankAccountResponse = Optional.ofNullable(v3ForwardPaymentServiceUserBankAccountResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3ForwardPaymentServiceUserBankAccountResponse implements Response 
         /**
          * Accepted
          */
-        public Builder v3ForwardPaymentServiceUserBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
+        public Builder v3ForwardPaymentServiceUserBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ForwardPaymentServiceUserBankAccountResponse> v3ForwardPaymentServiceUserBankAccountResponse) {
             Utils.checkNotNull(v3ForwardPaymentServiceUserBankAccountResponse, "v3ForwardPaymentServiceUserBankAccountResponse");
             this.v3ForwardPaymentServiceUserBankAccountResponse = v3ForwardPaymentServiceUserBankAccountResponse;
             return this;

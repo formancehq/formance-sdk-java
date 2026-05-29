@@ -35,14 +35,14 @@ public class V3RetryPaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse;
 
     @JsonCreator
     public V3RetryPaymentInitiationResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3RetryPaymentInitiationResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse>) v3RetryPaymentInitiationResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse>) v3RetryPaymentInitiationResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3RetryPaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    public V3RetryPaymentInitiationResponse withV3RetryPaymentInitiationResponse(com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse v3RetryPaymentInitiationResponse) {
+    public V3RetryPaymentInitiationResponse withV3RetryPaymentInitiationResponse(com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse v3RetryPaymentInitiationResponse) {
         Utils.checkNotNull(v3RetryPaymentInitiationResponse, "v3RetryPaymentInitiationResponse");
         this.v3RetryPaymentInitiationResponse = Optional.ofNullable(v3RetryPaymentInitiationResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3RetryPaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    public V3RetryPaymentInitiationResponse withV3RetryPaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
+    public V3RetryPaymentInitiationResponse withV3RetryPaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
         Utils.checkNotNull(v3RetryPaymentInitiationResponse, "v3RetryPaymentInitiationResponse");
         this.v3RetryPaymentInitiationResponse = v3RetryPaymentInitiationResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3RetryPaymentInitiationResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3RetryPaymentInitiationResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3RetryPaymentInitiationResponse(com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse v3RetryPaymentInitiationResponse) {
+        public Builder v3RetryPaymentInitiationResponse(com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse v3RetryPaymentInitiationResponse) {
             Utils.checkNotNull(v3RetryPaymentInitiationResponse, "v3RetryPaymentInitiationResponse");
             this.v3RetryPaymentInitiationResponse = Optional.ofNullable(v3RetryPaymentInitiationResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3RetryPaymentInitiationResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3RetryPaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
+        public Builder v3RetryPaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3RetryPaymentInitiationResponse> v3RetryPaymentInitiationResponse) {
             Utils.checkNotNull(v3RetryPaymentInitiationResponse, "v3RetryPaymentInitiationResponse");
             this.v3RetryPaymentInitiationResponse = v3RetryPaymentInitiationResponse;
             return this;

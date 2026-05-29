@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3RetryPaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3RetryPaymentInitiationRequestBuilder {
 
     private V3RetryPaymentInitiationRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3RetryPaymentInitiationRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3RetryPaymentInitiationRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3RetryPaymentInitiationRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3RetryPaymentInitiationResponse call() {
         
         RequestOperation<V3RetryPaymentInitiationRequest, V3RetryPaymentInitiationResponse> operation
-              = new V3RetryPaymentInitiation.Sync(sdkConfiguration, _headers);
+              = new V3RetryPaymentInitiation.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

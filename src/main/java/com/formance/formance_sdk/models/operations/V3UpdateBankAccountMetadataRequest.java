@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3UpdateBankAccountMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest;
 
     /**
      * The bank account ID
@@ -26,7 +26,7 @@ public class V3UpdateBankAccountMetadataRequest {
 
     @JsonCreator
     public V3UpdateBankAccountMetadataRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest,
             String bankAccountID) {
         Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
         Utils.checkNotNull(bankAccountID, "bankAccountID");
@@ -41,8 +41,8 @@ public class V3UpdateBankAccountMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest>) v3UpdateBankAccountMetadataRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest>) v3UpdateBankAccountMetadataRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V3UpdateBankAccountMetadataRequest {
     }
 
 
-    public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
+    public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
         Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
         this.v3UpdateBankAccountMetadataRequest = Optional.ofNullable(v3UpdateBankAccountMetadataRequest);
         return this;
     }
 
 
-    public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest) {
+    public V3UpdateBankAccountMetadataRequest withV3UpdateBankAccountMetadataRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest) {
         Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
         this.v3UpdateBankAccountMetadataRequest = v3UpdateBankAccountMetadataRequest;
         return this;
@@ -110,7 +110,7 @@ public class V3UpdateBankAccountMetadataRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest = Optional.empty();
 
         private String bankAccountID;
 
@@ -119,13 +119,13 @@ public class V3UpdateBankAccountMetadataRequest {
         }
 
 
-        public Builder v3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
+        public Builder v3UpdateBankAccountMetadataRequest(com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest v3UpdateBankAccountMetadataRequest) {
             Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
             this.v3UpdateBankAccountMetadataRequest = Optional.ofNullable(v3UpdateBankAccountMetadataRequest);
             return this;
         }
 
-        public Builder v3UpdateBankAccountMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest) {
+        public Builder v3UpdateBankAccountMetadataRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdateBankAccountMetadataRequest> v3UpdateBankAccountMetadataRequest) {
             Utils.checkNotNull(v3UpdateBankAccountMetadataRequest, "v3UpdateBankAccountMetadataRequest");
             this.v3UpdateBankAccountMetadataRequest = v3UpdateBankAccountMetadataRequest;
             return this;

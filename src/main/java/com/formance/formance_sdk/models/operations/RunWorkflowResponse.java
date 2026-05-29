@@ -25,7 +25,7 @@ public class RunWorkflowResponse implements Response {
     /**
      * The workflow instance
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class RunWorkflowResponse implements Response {
     @JsonCreator
     public RunWorkflowResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class RunWorkflowResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.RunWorkflowResponse>) runWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.RunWorkflowResponse>) runWorkflowResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class RunWorkflowResponse implements Response {
     /**
      * The workflow instance
      */
-    public RunWorkflowResponse withRunWorkflowResponse(com.formance.formance_sdk.models.shared.RunWorkflowResponse runWorkflowResponse) {
+    public RunWorkflowResponse withRunWorkflowResponse(com.formance.formance_sdk.models.orchestration.RunWorkflowResponse runWorkflowResponse) {
         Utils.checkNotNull(runWorkflowResponse, "runWorkflowResponse");
         this.runWorkflowResponse = Optional.ofNullable(runWorkflowResponse);
         return this;
@@ -121,7 +121,7 @@ public class RunWorkflowResponse implements Response {
     /**
      * The workflow instance
      */
-    public RunWorkflowResponse withRunWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse) {
+    public RunWorkflowResponse withRunWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse) {
         Utils.checkNotNull(runWorkflowResponse, "runWorkflowResponse");
         this.runWorkflowResponse = runWorkflowResponse;
         return this;
@@ -182,7 +182,7 @@ public class RunWorkflowResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class RunWorkflowResponse implements Response {
         /**
          * The workflow instance
          */
-        public Builder runWorkflowResponse(com.formance.formance_sdk.models.shared.RunWorkflowResponse runWorkflowResponse) {
+        public Builder runWorkflowResponse(com.formance.formance_sdk.models.orchestration.RunWorkflowResponse runWorkflowResponse) {
             Utils.checkNotNull(runWorkflowResponse, "runWorkflowResponse");
             this.runWorkflowResponse = Optional.ofNullable(runWorkflowResponse);
             return this;
@@ -215,7 +215,7 @@ public class RunWorkflowResponse implements Response {
         /**
          * The workflow instance
          */
-        public Builder runWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.RunWorkflowResponse> runWorkflowResponse) {
+        public Builder runWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.RunWorkflowResponse> runWorkflowResponse) {
             Utils.checkNotNull(runWorkflowResponse, "runWorkflowResponse");
             this.runWorkflowResponse = runWorkflowResponse;
             return this;

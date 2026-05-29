@@ -12,6 +12,7 @@
 * [getBalance](#getbalance) - Get detailed balance
 * [getHold](#gethold) - Get a hold
 * [getHolds](#getholds) - Get all holds for a wallet
+* [getServerInfoWallets](#getserverinfowallets) - Get server info
 * [getTransactions](#gettransactions)
 * [getWallet](#getwallet) - Get a wallet
 * [getWalletSummary](#getwalletsummary) - Get wallet summary
@@ -19,7 +20,6 @@
 * [listWallets](#listwallets) - List all wallets
 * [updateWallet](#updatewallet) - Update a wallet
 * [voidHold](#voidhold) - Cancel a hold
-* [walletsgetServerInfo](#walletsgetserverinfo) - Get server info
 
 ## confirmHold
 
@@ -32,16 +32,16 @@ Confirm a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.ConfirmHoldRequest;
 import com.formance.formance_sdk.models.operations.ConfirmHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -52,7 +52,7 @@ public class Application {
 
         ConfirmHoldRequest req = ConfirmHoldRequest.builder()
                 .holdId("<id>")
-                .confirmHoldRequest(com.formance.formance_sdk.models.shared.ConfirmHoldRequest.builder()
+                .confirmHoldRequest(com.formance.formance_sdk.models.wallets.ConfirmHoldRequest.builder()
                     .amount(new BigInteger("100"))
                     .final_(true)
                     .build())
@@ -72,6 +72,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [ConfirmHoldRequest](../../models/operations/ConfirmHoldRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -79,10 +80,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## createBalance
 
@@ -95,15 +96,15 @@ Create a balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateBalanceRequest;
 import com.formance.formance_sdk.models.operations.CreateBalanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -132,6 +133,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [CreateBalanceRequest](../../models/operations/CreateBalanceRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -139,10 +141,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## createWallet
 
@@ -155,14 +157,14 @@ Create a new wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -186,6 +188,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [CreateWalletRequest](../../models/operations/CreateWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -193,10 +196,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## creditWallet
 
@@ -209,11 +212,11 @@ Credit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreditWalletRequest;
 import com.formance.formance_sdk.models.operations.CreditWalletResponse;
-import com.formance.formance_sdk.models.shared.Monetary;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
+import com.formance.formance_sdk.models.wallets.Monetary;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
@@ -221,7 +224,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -232,8 +235,8 @@ public class Application {
 
         CreditWalletRequest req = CreditWalletRequest.builder()
                 .id("<id>")
-                .creditWalletRequest(com.formance.formance_sdk.models.shared.CreditWalletRequest.builder()
-                    .amount(Monetary.builder()
+                .creditWalletRequest(com.formance.formance_sdk.models.wallets.CreditWalletRequest.builder()
+                    .monetary(Monetary.builder()
                         .amount(new BigInteger("100"))
                         .asset("USD/2")
                         .build())
@@ -257,6 +260,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [CreditWalletRequest](../../models/operations/CreditWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -264,10 +268,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## debitWallet
 
@@ -280,18 +284,18 @@ Debit a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.DebitWalletRequest;
 import com.formance.formance_sdk.models.operations.DebitWalletResponse;
-import com.formance.formance_sdk.models.shared.Monetary;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
+import com.formance.formance_sdk.models.wallets.Monetary;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -302,8 +306,8 @@ public class Application {
 
         DebitWalletRequest req = DebitWalletRequest.builder()
                 .id("<id>")
-                .debitWalletRequest(com.formance.formance_sdk.models.shared.DebitWalletRequest.builder()
-                    .amount(Monetary.builder()
+                .debitWalletRequest(com.formance.formance_sdk.models.wallets.DebitWalletRequest.builder()
+                    .monetary(Monetary.builder()
                         .amount(new BigInteger("100"))
                         .asset("USD/2")
                         .build())
@@ -329,6 +333,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [DebitWalletRequest](../../models/operations/DebitWalletRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -336,10 +341,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getBalance
 
@@ -352,15 +357,15 @@ Get detailed balance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBalanceRequest;
 import com.formance.formance_sdk.models.operations.GetBalanceResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -390,6 +395,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [GetBalanceRequest](../../models/operations/GetBalanceRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -397,10 +403,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getHold
 
@@ -413,15 +419,15 @@ Get a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetHoldRequest;
 import com.formance.formance_sdk.models.operations.GetHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -450,6 +456,7 @@ public class Application {
 | Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [GetHoldRequest](../../models/operations/GetHoldRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| `serverURL`                                                 | *String*                                                    | :heavy_minus_sign:                                          | An optional server URL to use.                              |
 
 ### Response
 
@@ -457,10 +464,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getHolds
 
@@ -473,16 +480,16 @@ Get all holds for a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetHoldsRequest;
 import com.formance.formance_sdk.models.operations.GetHoldsResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -515,6 +522,7 @@ public class Application {
 | Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [GetHoldsRequest](../../models/operations/GetHoldsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| `serverURL`                                                   | *String*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -522,10 +530,64 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## getServerInfoWallets
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getServerInfo_wallets" method="get" path="/api/wallets/_info" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetServerInfoWalletsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetServerInfoWalletsResponse res = sdk.wallets().v1().getServerInfoWallets()
+                .call();
+
+        if (res.serverInfo().isPresent()) {
+            System.out.println(res.serverInfo().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[GetServerInfoWalletsResponse](../../models/operations/GetServerInfoWalletsResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getTransactions
 
@@ -536,15 +598,15 @@ public class Application {
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionsRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -575,6 +637,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [GetTransactionsRequest](../../models/operations/GetTransactionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -582,10 +645,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getWallet
 
@@ -598,15 +661,15 @@ Get a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetWalletRequest;
 import com.formance.formance_sdk.models.operations.GetWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -635,6 +698,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [GetWalletRequest](../../models/operations/GetWalletRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -642,10 +706,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getWalletSummary
 
@@ -658,15 +722,15 @@ Get wallet summary
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetWalletSummaryRequest;
 import com.formance.formance_sdk.models.operations.GetWalletSummaryResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -695,6 +759,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [GetWalletSummaryRequest](../../models/operations/GetWalletSummaryRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -702,10 +767,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listBalances
 
@@ -754,6 +819,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [ListBalancesRequest](../../models/operations/ListBalancesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -776,16 +842,16 @@ List all wallets
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListWalletsRequest;
 import com.formance.formance_sdk.models.operations.ListWalletsResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -819,6 +885,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [ListWalletsRequest](../../models/operations/ListWalletsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -826,10 +893,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## updateWallet
 
@@ -842,15 +909,15 @@ Update a wallet
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateWalletRequest;
 import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -877,6 +944,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [UpdateWalletRequest](../../models/operations/UpdateWalletRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -884,10 +952,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## voidHold
 
@@ -900,15 +968,15 @@ Cancel a hold
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
 import com.formance.formance_sdk.models.operations.VoidHoldRequest;
 import com.formance.formance_sdk.models.operations.VoidHoldResponse;
 import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.wallets.ErrorResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -935,6 +1003,7 @@ public class Application {
 | Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `request`                                                     | [VoidHoldRequest](../../models/operations/VoidHoldRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| `serverURL`                                                   | *String*                                                      | :heavy_minus_sign:                                            | An optional server URL to use.                                |
 
 ### Response
 
@@ -942,55 +1011,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
-
-## walletsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.WalletsErrorResponse;
-import com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws WalletsErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        WalletsgetServerInfoResponse res = sdk.wallets().v1().walletsgetServerInfo()
-                .call();
-
-        if (res.serverInfo().isPresent()) {
-            System.out.println(res.serverInfo().get());
-        }
-    }
-}
-```
-
-### Response
-
-**[WalletsgetServerInfoResponse](../../models/operations/WalletsgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| models/errors/WalletsErrorResponse | default                            | application/json                   |
-| models/errors/SDKError             | 4XX, 5XX                           | \*/\*                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |

@@ -18,14 +18,14 @@ Show server information
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -37,12 +37,18 @@ public class Application {
         V2GetInfoResponse res = sdk.ledger().getInfo()
                 .call();
 
-        if (res.v2ConfigInfoResponse().isPresent()) {
-            System.out.println(res.v2ConfigInfoResponse().get());
+        if (res.v2ConfigInfo().isPresent()) {
+            System.out.println(res.v2ConfigInfo().get());
         }
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -50,10 +56,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getMetrics
 
@@ -66,14 +72,14 @@ Read in memory metrics
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.GetMetricsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -92,13 +98,19 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |

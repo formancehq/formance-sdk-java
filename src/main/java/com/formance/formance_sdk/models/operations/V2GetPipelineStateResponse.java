@@ -35,22 +35,22 @@ public class V2GetPipelineStateResponse implements Response {
     /**
      * Pipeline information
      */
-    private Optional<? extends V2GetPipelineStateResponseBody> object;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse;
 
     @JsonCreator
     public V2GetPipelineStateResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2GetPipelineStateResponseBody> object) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2GetPipelineStateResponse, "v2GetPipelineStateResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2GetPipelineStateResponse = v2GetPipelineStateResponse;
     }
     
     public V2GetPipelineStateResponse(
@@ -90,8 +90,8 @@ public class V2GetPipelineStateResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2GetPipelineStateResponseBody> object() {
-        return (Optional<V2GetPipelineStateResponseBody>) object;
+    public Optional<com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse>) v2GetPipelineStateResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +129,9 @@ public class V2GetPipelineStateResponse implements Response {
     /**
      * Pipeline information
      */
-    public V2GetPipelineStateResponse withObject(V2GetPipelineStateResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2GetPipelineStateResponse withV2GetPipelineStateResponse(com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse v2GetPipelineStateResponse) {
+        Utils.checkNotNull(v2GetPipelineStateResponse, "v2GetPipelineStateResponse");
+        this.v2GetPipelineStateResponse = Optional.ofNullable(v2GetPipelineStateResponse);
         return this;
     }
 
@@ -139,9 +139,9 @@ public class V2GetPipelineStateResponse implements Response {
     /**
      * Pipeline information
      */
-    public V2GetPipelineStateResponse withObject(Optional<? extends V2GetPipelineStateResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2GetPipelineStateResponse withV2GetPipelineStateResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse) {
+        Utils.checkNotNull(v2GetPipelineStateResponse, "v2GetPipelineStateResponse");
+        this.v2GetPipelineStateResponse = v2GetPipelineStateResponse;
         return this;
     }
 
@@ -158,14 +158,14 @@ public class V2GetPipelineStateResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2GetPipelineStateResponse, other.v2GetPipelineStateResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2GetPipelineStateResponse);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class V2GetPipelineStateResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2GetPipelineStateResponse", v2GetPipelineStateResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +186,7 @@ public class V2GetPipelineStateResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2GetPipelineStateResponseBody> object = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +226,18 @@ public class V2GetPipelineStateResponse implements Response {
         /**
          * Pipeline information
          */
-        public Builder object(V2GetPipelineStateResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2GetPipelineStateResponse(com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse v2GetPipelineStateResponse) {
+            Utils.checkNotNull(v2GetPipelineStateResponse, "v2GetPipelineStateResponse");
+            this.v2GetPipelineStateResponse = Optional.ofNullable(v2GetPipelineStateResponse);
             return this;
         }
 
         /**
          * Pipeline information
          */
-        public Builder object(Optional<? extends V2GetPipelineStateResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2GetPipelineStateResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetPipelineStateResponse> v2GetPipelineStateResponse) {
+            Utils.checkNotNull(v2GetPipelineStateResponse, "v2GetPipelineStateResponse");
+            this.v2GetPipelineStateResponse = v2GetPipelineStateResponse;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class V2GetPipelineStateResponse implements Response {
 
             return new V2GetPipelineStateResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2GetPipelineStateResponse);
         }
 
     }

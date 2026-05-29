@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.wallets.Balance;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class CreateBalanceRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest;
+    private Optional<? extends Balance> balance;
 
     /**
      * Use an idempotency key
@@ -30,13 +31,13 @@ public class CreateBalanceRequest {
 
     @JsonCreator
     public CreateBalanceRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest,
+            Optional<? extends Balance> balance,
             Optional<String> idempotencyKey,
             String id) {
-        Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
+        Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(id, "id");
-        this.createBalanceRequest = createBalanceRequest;
+        this.balance = balance;
         this.idempotencyKey = idempotencyKey;
         this.id = id;
     }
@@ -48,8 +49,8 @@ public class CreateBalanceRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateBalanceRequest>) createBalanceRequest;
+    public Optional<Balance> balance() {
+        return (Optional<Balance>) balance;
     }
 
     /**
@@ -70,16 +71,16 @@ public class CreateBalanceRequest {
     }
 
 
-    public CreateBalanceRequest withCreateBalanceRequest(com.formance.formance_sdk.models.shared.CreateBalanceRequest createBalanceRequest) {
-        Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
-        this.createBalanceRequest = Optional.ofNullable(createBalanceRequest);
+    public CreateBalanceRequest withBalance(Balance balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = Optional.ofNullable(balance);
         return this;
     }
 
 
-    public CreateBalanceRequest withCreateBalanceRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest) {
-        Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
-        this.createBalanceRequest = createBalanceRequest;
+    public CreateBalanceRequest withBalance(Optional<? extends Balance> balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = balance;
         return this;
     }
 
@@ -118,7 +119,7 @@ public class CreateBalanceRequest {
         }
         CreateBalanceRequest other = (CreateBalanceRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.createBalanceRequest, other.createBalanceRequest) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.id, other.id);
     }
@@ -126,13 +127,13 @@ public class CreateBalanceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            createBalanceRequest, idempotencyKey, id);
+            balance, idempotencyKey, id);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateBalanceRequest.class,
-                "createBalanceRequest", createBalanceRequest,
+                "balance", balance,
                 "idempotencyKey", idempotencyKey,
                 "id", id);
     }
@@ -140,7 +141,7 @@ public class CreateBalanceRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest = Optional.empty();
+        private Optional<? extends Balance> balance = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -151,15 +152,15 @@ public class CreateBalanceRequest {
         }
 
 
-        public Builder createBalanceRequest(com.formance.formance_sdk.models.shared.CreateBalanceRequest createBalanceRequest) {
-            Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
-            this.createBalanceRequest = Optional.ofNullable(createBalanceRequest);
+        public Builder balance(Balance balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = Optional.ofNullable(balance);
             return this;
         }
 
-        public Builder createBalanceRequest(Optional<? extends com.formance.formance_sdk.models.shared.CreateBalanceRequest> createBalanceRequest) {
-            Utils.checkNotNull(createBalanceRequest, "createBalanceRequest");
-            this.createBalanceRequest = createBalanceRequest;
+        public Builder balance(Optional<? extends Balance> balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = balance;
             return this;
         }
 
@@ -192,7 +193,7 @@ public class CreateBalanceRequest {
         public CreateBalanceRequest build() {
 
             return new CreateBalanceRequest(
-                createBalanceRequest, idempotencyKey, id);
+                balance, idempotencyKey, id);
         }
 
     }

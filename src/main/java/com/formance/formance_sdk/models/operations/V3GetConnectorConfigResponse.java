@@ -35,14 +35,14 @@ public class V3GetConnectorConfigResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse;
 
     @JsonCreator
     public V3GetConnectorConfigResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3GetConnectorConfigResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse>) v3GetConnectorConfigResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse>) v3GetConnectorConfigResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3GetConnectorConfigResponse implements Response {
     /**
      * OK
      */
-    public V3GetConnectorConfigResponse withV3GetConnectorConfigResponse(com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse v3GetConnectorConfigResponse) {
+    public V3GetConnectorConfigResponse withV3GetConnectorConfigResponse(com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse v3GetConnectorConfigResponse) {
         Utils.checkNotNull(v3GetConnectorConfigResponse, "v3GetConnectorConfigResponse");
         this.v3GetConnectorConfigResponse = Optional.ofNullable(v3GetConnectorConfigResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3GetConnectorConfigResponse implements Response {
     /**
      * OK
      */
-    public V3GetConnectorConfigResponse withV3GetConnectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
+    public V3GetConnectorConfigResponse withV3GetConnectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
         Utils.checkNotNull(v3GetConnectorConfigResponse, "v3GetConnectorConfigResponse");
         this.v3GetConnectorConfigResponse = v3GetConnectorConfigResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3GetConnectorConfigResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3GetConnectorConfigResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetConnectorConfigResponse(com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse v3GetConnectorConfigResponse) {
+        public Builder v3GetConnectorConfigResponse(com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse v3GetConnectorConfigResponse) {
             Utils.checkNotNull(v3GetConnectorConfigResponse, "v3GetConnectorConfigResponse");
             this.v3GetConnectorConfigResponse = Optional.ofNullable(v3GetConnectorConfigResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3GetConnectorConfigResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetConnectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
+        public Builder v3GetConnectorConfigResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetConnectorConfigResponse> v3GetConnectorConfigResponse) {
             Utils.checkNotNull(v3GetConnectorConfigResponse, "v3GetConnectorConfigResponse");
             this.v3GetConnectorConfigResponse = v3GetConnectorConfigResponse;
             return this;

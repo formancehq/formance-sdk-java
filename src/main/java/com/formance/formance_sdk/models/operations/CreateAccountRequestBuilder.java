@@ -6,14 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.AccountRequest;
+import com.formance.formance_sdk.models.payments.AccountRequest;
 import com.formance.formance_sdk.operations.CreateAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class CreateAccountRequestBuilder {
 
     private AccountRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -26,11 +29,23 @@ public class CreateAccountRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public CreateAccountRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public CreateAccountRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public CreateAccountResponse call() {
         
         RequestOperation<AccountRequest, CreateAccountResponse> operation
-              = new CreateAccount.Sync(sdkConfiguration, _headers);
+              = new CreateAccount.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

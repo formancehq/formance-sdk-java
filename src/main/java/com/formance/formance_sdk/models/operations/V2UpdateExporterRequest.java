@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -15,7 +15,7 @@ import java.lang.String;
 public class V2UpdateExporterRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private V2CreateExporterRequest v2CreateExporterRequest;
+    private V2ExporterConfiguration2 v2ExporterConfiguration;
 
     /**
      * The exporter id
@@ -25,17 +25,17 @@ public class V2UpdateExporterRequest {
 
     @JsonCreator
     public V2UpdateExporterRequest(
-            V2CreateExporterRequest v2CreateExporterRequest,
+            V2ExporterConfiguration2 v2ExporterConfiguration,
             String exporterID) {
-        Utils.checkNotNull(v2CreateExporterRequest, "v2CreateExporterRequest");
+        Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
         Utils.checkNotNull(exporterID, "exporterID");
-        this.v2CreateExporterRequest = v2CreateExporterRequest;
+        this.v2ExporterConfiguration = v2ExporterConfiguration;
         this.exporterID = exporterID;
     }
 
     @JsonIgnore
-    public V2CreateExporterRequest v2CreateExporterRequest() {
-        return v2CreateExporterRequest;
+    public V2ExporterConfiguration2 v2ExporterConfiguration() {
+        return v2ExporterConfiguration;
     }
 
     /**
@@ -51,9 +51,9 @@ public class V2UpdateExporterRequest {
     }
 
 
-    public V2UpdateExporterRequest withV2CreateExporterRequest(V2CreateExporterRequest v2CreateExporterRequest) {
-        Utils.checkNotNull(v2CreateExporterRequest, "v2CreateExporterRequest");
-        this.v2CreateExporterRequest = v2CreateExporterRequest;
+    public V2UpdateExporterRequest withV2ExporterConfiguration(V2ExporterConfiguration2 v2ExporterConfiguration) {
+        Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
+        this.v2ExporterConfiguration = v2ExporterConfiguration;
         return this;
     }
 
@@ -76,27 +76,27 @@ public class V2UpdateExporterRequest {
         }
         V2UpdateExporterRequest other = (V2UpdateExporterRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v2CreateExporterRequest, other.v2CreateExporterRequest) &&
+            Utils.enhancedDeepEquals(this.v2ExporterConfiguration, other.v2ExporterConfiguration) &&
             Utils.enhancedDeepEquals(this.exporterID, other.exporterID);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2CreateExporterRequest, exporterID);
+            v2ExporterConfiguration, exporterID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2UpdateExporterRequest.class,
-                "v2CreateExporterRequest", v2CreateExporterRequest,
+                "v2ExporterConfiguration", v2ExporterConfiguration,
                 "exporterID", exporterID);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2CreateExporterRequest v2CreateExporterRequest;
+        private V2ExporterConfiguration2 v2ExporterConfiguration;
 
         private String exporterID;
 
@@ -105,9 +105,9 @@ public class V2UpdateExporterRequest {
         }
 
 
-        public Builder v2CreateExporterRequest(V2CreateExporterRequest v2CreateExporterRequest) {
-            Utils.checkNotNull(v2CreateExporterRequest, "v2CreateExporterRequest");
-            this.v2CreateExporterRequest = v2CreateExporterRequest;
+        public Builder v2ExporterConfiguration(V2ExporterConfiguration2 v2ExporterConfiguration) {
+            Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
+            this.v2ExporterConfiguration = v2ExporterConfiguration;
             return this;
         }
 
@@ -124,7 +124,7 @@ public class V2UpdateExporterRequest {
         public V2UpdateExporterRequest build() {
 
             return new V2UpdateExporterRequest(
-                v2CreateExporterRequest, exporterID);
+                v2ExporterConfiguration, exporterID);
         }
 
     }

@@ -35,14 +35,14 @@ public class V2ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse;
 
     @JsonCreator
     public V2ReadTriggerResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse) {
+            Optional<? extends com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2ReadTriggerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2ReadTriggerResponse>) v2ReadTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse>) v2ReadTriggerResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    public V2ReadTriggerResponse withV2ReadTriggerResponse(com.formance.formance_sdk.models.shared.V2ReadTriggerResponse v2ReadTriggerResponse) {
+    public V2ReadTriggerResponse withV2ReadTriggerResponse(com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse v2ReadTriggerResponse) {
         Utils.checkNotNull(v2ReadTriggerResponse, "v2ReadTriggerResponse");
         this.v2ReadTriggerResponse = Optional.ofNullable(v2ReadTriggerResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    public V2ReadTriggerResponse withV2ReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse) {
+    public V2ReadTriggerResponse withV2ReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse) {
         Utils.checkNotNull(v2ReadTriggerResponse, "v2ReadTriggerResponse");
         this.v2ReadTriggerResponse = v2ReadTriggerResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2ReadTriggerResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2ReadTriggerResponse implements Response {
         /**
          * A specific trigger
          */
-        public Builder v2ReadTriggerResponse(com.formance.formance_sdk.models.shared.V2ReadTriggerResponse v2ReadTriggerResponse) {
+        public Builder v2ReadTriggerResponse(com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse v2ReadTriggerResponse) {
             Utils.checkNotNull(v2ReadTriggerResponse, "v2ReadTriggerResponse");
             this.v2ReadTriggerResponse = Optional.ofNullable(v2ReadTriggerResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2ReadTriggerResponse implements Response {
         /**
          * A specific trigger
          */
-        public Builder v2ReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ReadTriggerResponse> v2ReadTriggerResponse) {
+        public Builder v2ReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ReadTriggerResponse> v2ReadTriggerResponse) {
             Utils.checkNotNull(v2ReadTriggerResponse, "v2ReadTriggerResponse");
             this.v2ReadTriggerResponse = v2ReadTriggerResponse;
             return this;

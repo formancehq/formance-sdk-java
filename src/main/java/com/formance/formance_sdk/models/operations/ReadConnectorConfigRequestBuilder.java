@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ReadConnectorConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ReadConnectorConfigRequestBuilder {
 
     private ReadConnectorConfigRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class ReadConnectorConfigRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ReadConnectorConfigRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public ReadConnectorConfigRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public ReadConnectorConfigResponse call() {
         
         RequestOperation<ReadConnectorConfigRequest, ReadConnectorConfigResponse> operation
-              = new ReadConnectorConfig.Sync(sdkConfiguration, _headers);
+              = new ReadConnectorConfig.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

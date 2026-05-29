@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.payments.V3ConnectorConfig;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class V3InstallConnectorRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest;
+    private Optional<? extends V3ConnectorConfig> v3ConnectorConfig;
 
     /**
      * The connector to filter by
@@ -26,11 +27,11 @@ public class V3InstallConnectorRequest {
 
     @JsonCreator
     public V3InstallConnectorRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest,
+            Optional<? extends V3ConnectorConfig> v3ConnectorConfig,
             String connector) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
         Utils.checkNotNull(connector, "connector");
-        this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+        this.v3ConnectorConfig = v3ConnectorConfig;
         this.connector = connector;
     }
     
@@ -41,8 +42,8 @@ public class V3InstallConnectorRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3InstallConnectorRequest>) v3InstallConnectorRequest;
+    public Optional<V3ConnectorConfig> v3ConnectorConfig() {
+        return (Optional<V3ConnectorConfig>) v3ConnectorConfig;
     }
 
     /**
@@ -58,16 +59,16 @@ public class V3InstallConnectorRequest {
     }
 
 
-    public V3InstallConnectorRequest withV3InstallConnectorRequest(com.formance.formance_sdk.models.shared.V3InstallConnectorRequest v3InstallConnectorRequest) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-        this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
+    public V3InstallConnectorRequest withV3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+        this.v3ConnectorConfig = Optional.ofNullable(v3ConnectorConfig);
         return this;
     }
 
 
-    public V3InstallConnectorRequest withV3InstallConnectorRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-        this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+    public V3InstallConnectorRequest withV3ConnectorConfig(Optional<? extends V3ConnectorConfig> v3ConnectorConfig) {
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+        this.v3ConnectorConfig = v3ConnectorConfig;
         return this;
     }
 
@@ -90,27 +91,27 @@ public class V3InstallConnectorRequest {
         }
         V3InstallConnectorRequest other = (V3InstallConnectorRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
+            Utils.enhancedDeepEquals(this.v3ConnectorConfig, other.v3ConnectorConfig) &&
             Utils.enhancedDeepEquals(this.connector, other.connector);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3InstallConnectorRequest, connector);
+            v3ConnectorConfig, connector);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3InstallConnectorRequest.class,
-                "v3InstallConnectorRequest", v3InstallConnectorRequest,
+                "v3ConnectorConfig", v3ConnectorConfig,
                 "connector", connector);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest = Optional.empty();
+        private Optional<? extends V3ConnectorConfig> v3ConnectorConfig = Optional.empty();
 
         private String connector;
 
@@ -119,15 +120,15 @@ public class V3InstallConnectorRequest {
         }
 
 
-        public Builder v3InstallConnectorRequest(com.formance.formance_sdk.models.shared.V3InstallConnectorRequest v3InstallConnectorRequest) {
-            Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-            this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
+        public Builder v3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
+            Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+            this.v3ConnectorConfig = Optional.ofNullable(v3ConnectorConfig);
             return this;
         }
 
-        public Builder v3InstallConnectorRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorRequest> v3InstallConnectorRequest) {
-            Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-            this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+        public Builder v3ConnectorConfig(Optional<? extends V3ConnectorConfig> v3ConnectorConfig) {
+            Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+            this.v3ConnectorConfig = v3ConnectorConfig;
             return this;
         }
 
@@ -144,7 +145,7 @@ public class V3InstallConnectorRequest {
         public V3InstallConnectorRequest build() {
 
             return new V3InstallConnectorRequest(
-                v3InstallConnectorRequest, connector);
+                v3ConnectorConfig, connector);
         }
 
     }

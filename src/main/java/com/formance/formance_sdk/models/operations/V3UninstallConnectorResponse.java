@@ -35,14 +35,14 @@ public class V3UninstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse;
 
     @JsonCreator
     public V3UninstallConnectorResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3UninstallConnectorResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse>) v3UninstallConnectorResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse>) v3UninstallConnectorResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3UninstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3UninstallConnectorResponse withV3UninstallConnectorResponse(com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse v3UninstallConnectorResponse) {
+    public V3UninstallConnectorResponse withV3UninstallConnectorResponse(com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse v3UninstallConnectorResponse) {
         Utils.checkNotNull(v3UninstallConnectorResponse, "v3UninstallConnectorResponse");
         this.v3UninstallConnectorResponse = Optional.ofNullable(v3UninstallConnectorResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3UninstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3UninstallConnectorResponse withV3UninstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
+    public V3UninstallConnectorResponse withV3UninstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
         Utils.checkNotNull(v3UninstallConnectorResponse, "v3UninstallConnectorResponse");
         this.v3UninstallConnectorResponse = v3UninstallConnectorResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3UninstallConnectorResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3UninstallConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3UninstallConnectorResponse(com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse v3UninstallConnectorResponse) {
+        public Builder v3UninstallConnectorResponse(com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse v3UninstallConnectorResponse) {
             Utils.checkNotNull(v3UninstallConnectorResponse, "v3UninstallConnectorResponse");
             this.v3UninstallConnectorResponse = Optional.ofNullable(v3UninstallConnectorResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3UninstallConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3UninstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
+        public Builder v3UninstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3UninstallConnectorResponse> v3UninstallConnectorResponse) {
             Utils.checkNotNull(v3UninstallConnectorResponse, "v3UninstallConnectorResponse");
             this.v3UninstallConnectorResponse = v3UninstallConnectorResponse;
             return this;

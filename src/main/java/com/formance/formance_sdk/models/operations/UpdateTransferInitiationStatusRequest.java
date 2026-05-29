@@ -14,7 +14,7 @@ import java.lang.String;
 public class UpdateTransferInitiationStatusRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
+    private com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
 
     /**
      * The transfer ID.
@@ -24,7 +24,7 @@ public class UpdateTransferInitiationStatusRequest {
 
     @JsonCreator
     public UpdateTransferInitiationStatusRequest(
-            com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
+            com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest,
             String transferId) {
         Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
         Utils.checkNotNull(transferId, "transferId");
@@ -33,7 +33,7 @@ public class UpdateTransferInitiationStatusRequest {
     }
 
     @JsonIgnore
-    public com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest() {
+    public com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest() {
         return updateTransferInitiationStatusRequest;
     }
 
@@ -50,7 +50,7 @@ public class UpdateTransferInitiationStatusRequest {
     }
 
 
-    public UpdateTransferInitiationStatusRequest withUpdateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
+    public UpdateTransferInitiationStatusRequest withUpdateTransferInitiationStatusRequest(com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
         Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
         this.updateTransferInitiationStatusRequest = updateTransferInitiationStatusRequest;
         return this;
@@ -95,7 +95,7 @@ public class UpdateTransferInitiationStatusRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
+        private com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest;
 
         private String transferId;
 
@@ -104,7 +104,7 @@ public class UpdateTransferInitiationStatusRequest {
         }
 
 
-        public Builder updateTransferInitiationStatusRequest(com.formance.formance_sdk.models.shared.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
+        public Builder updateTransferInitiationStatusRequest(com.formance.formance_sdk.models.payments.UpdateTransferInitiationStatusRequest updateTransferInitiationStatusRequest) {
             Utils.checkNotNull(updateTransferInitiationStatusRequest, "updateTransferInitiationStatusRequest");
             this.updateTransferInitiationStatusRequest = updateTransferInitiationStatusRequest;
             return this;

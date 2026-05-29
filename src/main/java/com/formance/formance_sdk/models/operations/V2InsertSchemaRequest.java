@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.V2SchemaData;
+import com.formance.formance_sdk.models.ledger.V2SchemaData2;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -22,7 +22,7 @@ public class V2InsertSchemaRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private V2SchemaData v2SchemaData;
+    private V2SchemaData2 v2SchemaData;
 
     /**
      * Name of the ledger.
@@ -39,7 +39,7 @@ public class V2InsertSchemaRequest {
     @JsonCreator
     public V2InsertSchemaRequest(
             Optional<String> idempotencyKey,
-            V2SchemaData v2SchemaData,
+            V2SchemaData2 v2SchemaData,
             String ledger,
             String version) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -53,7 +53,7 @@ public class V2InsertSchemaRequest {
     }
     
     public V2InsertSchemaRequest(
-            V2SchemaData v2SchemaData,
+            V2SchemaData2 v2SchemaData,
             String ledger,
             String version) {
         this(Optional.empty(), v2SchemaData, ledger,
@@ -69,7 +69,7 @@ public class V2InsertSchemaRequest {
     }
 
     @JsonIgnore
-    public V2SchemaData v2SchemaData() {
+    public V2SchemaData2 v2SchemaData() {
         return v2SchemaData;
     }
 
@@ -113,7 +113,7 @@ public class V2InsertSchemaRequest {
         return this;
     }
 
-    public V2InsertSchemaRequest withV2SchemaData(V2SchemaData v2SchemaData) {
+    public V2InsertSchemaRequest withV2SchemaData(V2SchemaData2 v2SchemaData) {
         Utils.checkNotNull(v2SchemaData, "v2SchemaData");
         this.v2SchemaData = v2SchemaData;
         return this;
@@ -174,7 +174,7 @@ public class V2InsertSchemaRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private V2SchemaData v2SchemaData;
+        private V2SchemaData2 v2SchemaData;
 
         private String ledger;
 
@@ -204,7 +204,7 @@ public class V2InsertSchemaRequest {
         }
 
 
-        public Builder v2SchemaData(V2SchemaData v2SchemaData) {
+        public Builder v2SchemaData(V2SchemaData2 v2SchemaData) {
             Utils.checkNotNull(v2SchemaData, "v2SchemaData");
             this.v2SchemaData = v2SchemaData;
             return this;

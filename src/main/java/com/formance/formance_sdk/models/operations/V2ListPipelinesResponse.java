@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.ledger.V2PipelinesCursorResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class V2ListPipelinesResponse implements Response {
     /**
      * Pipelines list
      */
-    private Optional<? extends V2ListPipelinesResponseBody> object;
+    private Optional<? extends V2PipelinesCursorResponse> v2PipelinesCursorResponse;
 
     @JsonCreator
     public V2ListPipelinesResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2ListPipelinesResponseBody> object) {
+            Optional<? extends V2PipelinesCursorResponse> v2PipelinesCursorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2PipelinesCursorResponse, "v2PipelinesCursorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2PipelinesCursorResponse = v2PipelinesCursorResponse;
     }
     
     public V2ListPipelinesResponse(
@@ -90,8 +91,8 @@ public class V2ListPipelinesResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2ListPipelinesResponseBody> object() {
-        return (Optional<V2ListPipelinesResponseBody>) object;
+    public Optional<V2PipelinesCursorResponse> v2PipelinesCursorResponse() {
+        return (Optional<V2PipelinesCursorResponse>) v2PipelinesCursorResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class V2ListPipelinesResponse implements Response {
     /**
      * Pipelines list
      */
-    public V2ListPipelinesResponse withObject(V2ListPipelinesResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2ListPipelinesResponse withV2PipelinesCursorResponse(V2PipelinesCursorResponse v2PipelinesCursorResponse) {
+        Utils.checkNotNull(v2PipelinesCursorResponse, "v2PipelinesCursorResponse");
+        this.v2PipelinesCursorResponse = Optional.ofNullable(v2PipelinesCursorResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class V2ListPipelinesResponse implements Response {
     /**
      * Pipelines list
      */
-    public V2ListPipelinesResponse withObject(Optional<? extends V2ListPipelinesResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2ListPipelinesResponse withV2PipelinesCursorResponse(Optional<? extends V2PipelinesCursorResponse> v2PipelinesCursorResponse) {
+        Utils.checkNotNull(v2PipelinesCursorResponse, "v2PipelinesCursorResponse");
+        this.v2PipelinesCursorResponse = v2PipelinesCursorResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class V2ListPipelinesResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2PipelinesCursorResponse, other.v2PipelinesCursorResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2PipelinesCursorResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class V2ListPipelinesResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2PipelinesCursorResponse", v2PipelinesCursorResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class V2ListPipelinesResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2ListPipelinesResponseBody> object = Optional.empty();
+        private Optional<? extends V2PipelinesCursorResponse> v2PipelinesCursorResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class V2ListPipelinesResponse implements Response {
         /**
          * Pipelines list
          */
-        public Builder object(V2ListPipelinesResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2PipelinesCursorResponse(V2PipelinesCursorResponse v2PipelinesCursorResponse) {
+            Utils.checkNotNull(v2PipelinesCursorResponse, "v2PipelinesCursorResponse");
+            this.v2PipelinesCursorResponse = Optional.ofNullable(v2PipelinesCursorResponse);
             return this;
         }
 
         /**
          * Pipelines list
          */
-        public Builder object(Optional<? extends V2ListPipelinesResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2PipelinesCursorResponse(Optional<? extends V2PipelinesCursorResponse> v2PipelinesCursorResponse) {
+            Utils.checkNotNull(v2PipelinesCursorResponse, "v2PipelinesCursorResponse");
+            this.v2PipelinesCursorResponse = v2PipelinesCursorResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class V2ListPipelinesResponse implements Response {
 
             return new V2ListPipelinesResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2PipelinesCursorResponse);
         }
 
     }

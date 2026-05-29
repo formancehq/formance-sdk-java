@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UninstallConnector;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class UninstallConnectorRequestBuilder {
 
     private UninstallConnectorRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class UninstallConnectorRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public UninstallConnectorRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public UninstallConnectorRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public UninstallConnectorResponse call() {
         
         RequestOperation<UninstallConnectorRequest, UninstallConnectorResponse> operation
-              = new UninstallConnector.Sync(sdkConfiguration, _headers);
+              = new UninstallConnector.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

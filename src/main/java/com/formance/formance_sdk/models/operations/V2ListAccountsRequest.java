@@ -8,13 +8,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListAccountsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -54,18 +60,22 @@ public class V2ListAccountsRequest {
 
     @JsonCreator
     public V2ListAccountsRequest(
+            Map<String, Object> requestBody,
             Optional<String> cursor,
             Optional<String> expand,
             String ledger,
             Optional<Long> pageSize,
             Optional<OffsetDateTime> pit,
             Optional<String> sort) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
         Utils.checkNotNull(sort, "sort");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
         this.ledger = ledger;
@@ -75,9 +85,16 @@ public class V2ListAccountsRequest {
     }
     
     public V2ListAccountsRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(Optional.empty(), Optional.empty(), ledger,
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(requestBody, Optional.empty(), Optional.empty(),
+            ledger, Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -131,6 +148,12 @@ public class V2ListAccountsRequest {
         return new Builder();
     }
 
+
+    public V2ListAccountsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -244,6 +267,7 @@ public class V2ListAccountsRequest {
         }
         V2ListAccountsRequest other = (V2ListAccountsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
@@ -255,13 +279,15 @@ public class V2ListAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, expand, ledger,
-            pageSize, pit, sort);
+            requestBody, cursor, expand,
+            ledger, pageSize, pit,
+            sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListAccountsRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "expand", expand,
                 "ledger", ledger,
@@ -272,6 +298,8 @@ public class V2ListAccountsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Map<String, Object> requestBody;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -287,6 +315,13 @@ public class V2ListAccountsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -395,8 +430,9 @@ public class V2ListAccountsRequest {
         public V2ListAccountsRequest build() {
 
             return new V2ListAccountsRequest(
-                cursor, expand, ledger,
-                pageSize, pit, sort);
+                requestBody, cursor, expand,
+                ledger, pageSize, pit,
+                sort);
         }
 
     }

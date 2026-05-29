@@ -10,10 +10,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
-import com.formance.formance_sdk.models.errors.V3ErrorResponse;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.V3GetAccountBalancesResponse;
-import com.formance.formance_sdk.models.shared.V3BalancesCursorResponse;
+import com.formance.formance_sdk.models.payments.V3BalancesCursorResponse;
+import com.formance.formance_sdk.models.payments.V3ErrorResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -26,10 +26,18 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V3GetAccountBalances {
+    
+    /**
+     * V3_GET_ACCOUNT_BALANCES_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] V3_GET_ACCOUNT_BALANCES_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -38,11 +46,16 @@ public class V3GetAccountBalances {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        V3_GET_ACCOUNT_BALANCES_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -92,7 +105,7 @@ public class V3GetAccountBalances {
                     klass,
                     request,
                     null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -100,8 +113,12 @@ public class V3GetAccountBalances {
 
     public static class Sync extends Base
             implements RequestOperation<V3GetAccountBalancesRequest, V3GetAccountBalancesResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(V3GetAccountBalancesRequest request) throws Exception {
@@ -126,7 +143,7 @@ public class V3GetAccountBalances {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "default")) {
+                if (!Utils.statusCodeMatches(httpRes.statusCode(), "200")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);

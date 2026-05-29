@@ -25,7 +25,7 @@ public class GetBalanceResponse implements Response {
     /**
      * Balance summary
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetBalanceResponse implements Response {
     @JsonCreator
     public GetBalanceResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetBalanceResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetBalanceResponse>) getBalanceResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.GetBalanceResponse>) getBalanceResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetBalanceResponse implements Response {
     /**
      * Balance summary
      */
-    public GetBalanceResponse withGetBalanceResponse(com.formance.formance_sdk.models.shared.GetBalanceResponse getBalanceResponse) {
+    public GetBalanceResponse withGetBalanceResponse(com.formance.formance_sdk.models.wallets.GetBalanceResponse getBalanceResponse) {
         Utils.checkNotNull(getBalanceResponse, "getBalanceResponse");
         this.getBalanceResponse = Optional.ofNullable(getBalanceResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetBalanceResponse implements Response {
     /**
      * Balance summary
      */
-    public GetBalanceResponse withGetBalanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse) {
+    public GetBalanceResponse withGetBalanceResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse) {
         Utils.checkNotNull(getBalanceResponse, "getBalanceResponse");
         this.getBalanceResponse = getBalanceResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetBalanceResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetBalanceResponse implements Response {
         /**
          * Balance summary
          */
-        public Builder getBalanceResponse(com.formance.formance_sdk.models.shared.GetBalanceResponse getBalanceResponse) {
+        public Builder getBalanceResponse(com.formance.formance_sdk.models.wallets.GetBalanceResponse getBalanceResponse) {
             Utils.checkNotNull(getBalanceResponse, "getBalanceResponse");
             this.getBalanceResponse = Optional.ofNullable(getBalanceResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetBalanceResponse implements Response {
         /**
          * Balance summary
          */
-        public Builder getBalanceResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetBalanceResponse> getBalanceResponse) {
+        public Builder getBalanceResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetBalanceResponse> getBalanceResponse) {
             Utils.checkNotNull(getBalanceResponse, "getBalanceResponse");
             this.getBalanceResponse = getBalanceResponse;
             return this;

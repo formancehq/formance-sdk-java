@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.RemoveAccountFromPool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class RemoveAccountFromPoolRequestBuilder {
 
     private RemoveAccountFromPoolRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class RemoveAccountFromPoolRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public RemoveAccountFromPoolRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public RemoveAccountFromPoolRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public RemoveAccountFromPoolResponse call() {
         
         RequestOperation<RemoveAccountFromPoolRequest, RemoveAccountFromPoolResponse> operation
-              = new RemoveAccountFromPool.Sync(sdkConfiguration, _headers);
+              = new RemoveAccountFromPool.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -9,6 +9,7 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
+import com.formance.formance_sdk.models.auth.CreateClientResponse;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.UpdateClientRequest;
 import com.formance.formance_sdk.models.operations.UpdateClientResponse;
@@ -27,10 +28,18 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class UpdateClient {
+    
+    /**
+     * UPDATE_CLIENT_SERVERS contains the list of server urls available to the SDK.
+     */
+    public static final String[] UPDATE_CLIENT_SERVERS = {
+        "http://localhost:8080/",
+    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -39,11 +48,16 @@ public class UpdateClient {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = Utils.templateUrl(
-                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
+            this.baseUrl = serverURL
+                    .filter(u -> !u.isBlank())
+                    .orElse(Utils.templateUrl(
+                        UPDATE_CLIENT_SERVERS[0], 
+                        Map.of()));
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -91,14 +105,14 @@ public class UpdateClient {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "createClientRequest",
+                    "clientOptions",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();
         }
@@ -106,8 +120,12 @@ public class UpdateClient {
 
     public static class Sync extends Base
             implements RequestOperation<UpdateClientRequest, UpdateClientResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
-            super(sdkConfiguration, _headers);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, serverURL,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(UpdateClientRequest request) throws Exception {
@@ -132,7 +150,7 @@ public class UpdateClient {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "default")) {
+                if (!Utils.statusCodeMatches(httpRes.statusCode(), "200")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -162,7 +180,7 @@ public class UpdateClient {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withUpdateClientResponse(Utils.unmarshal(response, new TypeReference<com.formance.formance_sdk.models.shared.UpdateClientResponse>() {}));
+                    return res.withCreateClientResponse(Utils.unmarshal(response, new TypeReference<CreateClientResponse>() {}));
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

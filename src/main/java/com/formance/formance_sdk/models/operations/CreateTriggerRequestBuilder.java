@@ -6,15 +6,17 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.shared.TriggerData;
+import com.formance.formance_sdk.models.orchestration.TriggerData2;
 import com.formance.formance_sdk.operations.CreateTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreateTriggerRequestBuilder {
 
-    private Optional<? extends TriggerData> request = Optional.empty();
+    private Optional<? extends TriggerData2> request = Optional.empty();
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,22 +24,34 @@ public class CreateTriggerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateTriggerRequestBuilder request(TriggerData request) {
+    public CreateTriggerRequestBuilder request(TriggerData2 request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateTriggerRequestBuilder request(Optional<? extends TriggerData> request) {
+    public CreateTriggerRequestBuilder request(Optional<? extends TriggerData2> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
+        return this;
+    }
+                
+    public CreateTriggerRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public CreateTriggerRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
         return this;
     }
 
     public CreateTriggerResponse call() {
         
-        RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> operation
-              = new CreateTrigger.Sync(sdkConfiguration, _headers);
+        RequestOperation<Optional<? extends TriggerData2>, CreateTriggerResponse> operation
+              = new CreateTrigger.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

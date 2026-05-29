@@ -25,7 +25,7 @@ public class CreateSecretResponse implements Response {
     /**
      * Created secret
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse;
+    private Optional<? extends com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateSecretResponse implements Response {
     @JsonCreator
     public CreateSecretResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse,
+            Optional<? extends com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateSecretResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateSecretResponse>) createSecretResponse;
+    public Optional<com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse() {
+        return (Optional<com.formance.formance_sdk.models.auth.CreateSecretResponse>) createSecretResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateSecretResponse implements Response {
     /**
      * Created secret
      */
-    public CreateSecretResponse withCreateSecretResponse(com.formance.formance_sdk.models.shared.CreateSecretResponse createSecretResponse) {
+    public CreateSecretResponse withCreateSecretResponse(com.formance.formance_sdk.models.auth.CreateSecretResponse createSecretResponse) {
         Utils.checkNotNull(createSecretResponse, "createSecretResponse");
         this.createSecretResponse = Optional.ofNullable(createSecretResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateSecretResponse implements Response {
     /**
      * Created secret
      */
-    public CreateSecretResponse withCreateSecretResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse) {
+    public CreateSecretResponse withCreateSecretResponse(Optional<? extends com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse) {
         Utils.checkNotNull(createSecretResponse, "createSecretResponse");
         this.createSecretResponse = createSecretResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateSecretResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateSecretResponse implements Response {
         /**
          * Created secret
          */
-        public Builder createSecretResponse(com.formance.formance_sdk.models.shared.CreateSecretResponse createSecretResponse) {
+        public Builder createSecretResponse(com.formance.formance_sdk.models.auth.CreateSecretResponse createSecretResponse) {
             Utils.checkNotNull(createSecretResponse, "createSecretResponse");
             this.createSecretResponse = Optional.ofNullable(createSecretResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateSecretResponse implements Response {
         /**
          * Created secret
          */
-        public Builder createSecretResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateSecretResponse> createSecretResponse) {
+        public Builder createSecretResponse(Optional<? extends com.formance.formance_sdk.models.auth.CreateSecretResponse> createSecretResponse) {
             Utils.checkNotNull(createSecretResponse, "createSecretResponse");
             this.createSecretResponse = createSecretResponse;
             return this;

@@ -35,14 +35,14 @@ public class V3CreateBankAccountResponse implements Response {
     /**
      * Created
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse;
 
     @JsonCreator
     public V3CreateBankAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3CreateBankAccountResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse>) v3CreateBankAccountResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse>) v3CreateBankAccountResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3CreateBankAccountResponse implements Response {
     /**
      * Created
      */
-    public V3CreateBankAccountResponse withV3CreateBankAccountResponse(com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse v3CreateBankAccountResponse) {
+    public V3CreateBankAccountResponse withV3CreateBankAccountResponse(com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse v3CreateBankAccountResponse) {
         Utils.checkNotNull(v3CreateBankAccountResponse, "v3CreateBankAccountResponse");
         this.v3CreateBankAccountResponse = Optional.ofNullable(v3CreateBankAccountResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3CreateBankAccountResponse implements Response {
     /**
      * Created
      */
-    public V3CreateBankAccountResponse withV3CreateBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
+    public V3CreateBankAccountResponse withV3CreateBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
         Utils.checkNotNull(v3CreateBankAccountResponse, "v3CreateBankAccountResponse");
         this.v3CreateBankAccountResponse = v3CreateBankAccountResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3CreateBankAccountResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3CreateBankAccountResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreateBankAccountResponse(com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse v3CreateBankAccountResponse) {
+        public Builder v3CreateBankAccountResponse(com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse v3CreateBankAccountResponse) {
             Utils.checkNotNull(v3CreateBankAccountResponse, "v3CreateBankAccountResponse");
             this.v3CreateBankAccountResponse = Optional.ofNullable(v3CreateBankAccountResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3CreateBankAccountResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreateBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
+        public Builder v3CreateBankAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreateBankAccountResponse> v3CreateBankAccountResponse) {
             Utils.checkNotNull(v3CreateBankAccountResponse, "v3CreateBankAccountResponse");
             this.v3CreateBankAccountResponse = v3CreateBankAccountResponse;
             return this;

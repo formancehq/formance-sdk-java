@@ -35,14 +35,14 @@ public class V3ReversePaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse;
 
     @JsonCreator
     public V3ReversePaymentInitiationResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3ReversePaymentInitiationResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse>) v3ReversePaymentInitiationResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse>) v3ReversePaymentInitiationResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3ReversePaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    public V3ReversePaymentInitiationResponse withV3ReversePaymentInitiationResponse(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse v3ReversePaymentInitiationResponse) {
+    public V3ReversePaymentInitiationResponse withV3ReversePaymentInitiationResponse(com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse v3ReversePaymentInitiationResponse) {
         Utils.checkNotNull(v3ReversePaymentInitiationResponse, "v3ReversePaymentInitiationResponse");
         this.v3ReversePaymentInitiationResponse = Optional.ofNullable(v3ReversePaymentInitiationResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3ReversePaymentInitiationResponse implements Response {
     /**
      * Accepted
      */
-    public V3ReversePaymentInitiationResponse withV3ReversePaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
+    public V3ReversePaymentInitiationResponse withV3ReversePaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
         Utils.checkNotNull(v3ReversePaymentInitiationResponse, "v3ReversePaymentInitiationResponse");
         this.v3ReversePaymentInitiationResponse = v3ReversePaymentInitiationResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3ReversePaymentInitiationResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3ReversePaymentInitiationResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3ReversePaymentInitiationResponse(com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse v3ReversePaymentInitiationResponse) {
+        public Builder v3ReversePaymentInitiationResponse(com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse v3ReversePaymentInitiationResponse) {
             Utils.checkNotNull(v3ReversePaymentInitiationResponse, "v3ReversePaymentInitiationResponse");
             this.v3ReversePaymentInitiationResponse = Optional.ofNullable(v3ReversePaymentInitiationResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3ReversePaymentInitiationResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3ReversePaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
+        public Builder v3ReversePaymentInitiationResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3ReversePaymentInitiationResponse> v3ReversePaymentInitiationResponse) {
             Utils.checkNotNull(v3ReversePaymentInitiationResponse, "v3ReversePaymentInitiationResponse");
             this.v3ReversePaymentInitiationResponse = v3ReversePaymentInitiationResponse;
             return this;

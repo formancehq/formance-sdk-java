@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3DeletePaymentInitiation;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3DeletePaymentInitiationRequestBuilder {
 
     private V3DeletePaymentInitiationRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3DeletePaymentInitiationRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3DeletePaymentInitiationRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3DeletePaymentInitiationRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3DeletePaymentInitiationResponse call() {
         
         RequestOperation<V3DeletePaymentInitiationRequest, V3DeletePaymentInitiationResponse> operation
-              = new V3DeletePaymentInitiation.Sync(sdkConfiguration, _headers);
+              = new V3DeletePaymentInitiation.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
