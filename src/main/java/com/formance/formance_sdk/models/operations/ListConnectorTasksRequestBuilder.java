@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListConnectorTasks;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ListConnectorTasksRequestBuilder {
 
     private ListConnectorTasksRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class ListConnectorTasksRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public ListConnectorTasksRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public ListConnectorTasksRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public ListConnectorTasksResponse call() {
         
         RequestOperation<ListConnectorTasksRequest, ListConnectorTasksResponse> operation
-              = new ListConnectorTasks.Sync(sdkConfiguration, _headers);
+              = new ListConnectorTasks.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

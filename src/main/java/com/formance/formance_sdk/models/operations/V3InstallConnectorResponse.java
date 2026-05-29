@@ -35,14 +35,14 @@ public class V3InstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse;
 
     @JsonCreator
     public V3InstallConnectorResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3InstallConnectorResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3InstallConnectorResponse>) v3InstallConnectorResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3InstallConnectorResponse>) v3InstallConnectorResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3InstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3InstallConnectorResponse withV3InstallConnectorResponse(com.formance.formance_sdk.models.shared.V3InstallConnectorResponse v3InstallConnectorResponse) {
+    public V3InstallConnectorResponse withV3InstallConnectorResponse(com.formance.formance_sdk.models.payments.V3InstallConnectorResponse v3InstallConnectorResponse) {
         Utils.checkNotNull(v3InstallConnectorResponse, "v3InstallConnectorResponse");
         this.v3InstallConnectorResponse = Optional.ofNullable(v3InstallConnectorResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3InstallConnectorResponse implements Response {
     /**
      * Accepted
      */
-    public V3InstallConnectorResponse withV3InstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse) {
+    public V3InstallConnectorResponse withV3InstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse) {
         Utils.checkNotNull(v3InstallConnectorResponse, "v3InstallConnectorResponse");
         this.v3InstallConnectorResponse = v3InstallConnectorResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3InstallConnectorResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3InstallConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3InstallConnectorResponse(com.formance.formance_sdk.models.shared.V3InstallConnectorResponse v3InstallConnectorResponse) {
+        public Builder v3InstallConnectorResponse(com.formance.formance_sdk.models.payments.V3InstallConnectorResponse v3InstallConnectorResponse) {
             Utils.checkNotNull(v3InstallConnectorResponse, "v3InstallConnectorResponse");
             this.v3InstallConnectorResponse = Optional.ofNullable(v3InstallConnectorResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3InstallConnectorResponse implements Response {
         /**
          * Accepted
          */
-        public Builder v3InstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3InstallConnectorResponse> v3InstallConnectorResponse) {
+        public Builder v3InstallConnectorResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3InstallConnectorResponse> v3InstallConnectorResponse) {
             Utils.checkNotNull(v3InstallConnectorResponse, "v3InstallConnectorResponse");
             this.v3InstallConnectorResponse = v3InstallConnectorResponse;
             return this;

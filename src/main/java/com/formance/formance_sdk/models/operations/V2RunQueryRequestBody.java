@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.formance.formance_sdk.models.shared.V2QueryParams;
+import com.formance.formance_sdk.models.ledger.V2QueryParams;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -20,13 +20,13 @@ import java.util.Optional;
 public class V2RunQueryRequestBody {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("cursor")
-    private Optional<String> cursor;
+    @JsonProperty("params")
+    private Optional<? extends V2QueryParams> v2QueryParams;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("params")
-    private Optional<? extends V2QueryParams> params;
+    @JsonProperty("cursor")
+    private Optional<String> cursor;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -35,14 +35,14 @@ public class V2RunQueryRequestBody {
 
     @JsonCreator
     public V2RunQueryRequestBody(
+            @JsonProperty("params") Optional<? extends V2QueryParams> v2QueryParams,
             @JsonProperty("cursor") Optional<String> cursor,
-            @JsonProperty("params") Optional<? extends V2QueryParams> params,
             @JsonProperty("vars") Optional<? extends Map<String, String>> vars) {
+        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
         Utils.checkNotNull(cursor, "cursor");
-        Utils.checkNotNull(params, "params");
         Utils.checkNotNull(vars, "vars");
+        this.v2QueryParams = v2QueryParams;
         this.cursor = cursor;
-        this.params = params;
         this.vars = vars;
     }
     
@@ -50,15 +50,15 @@ public class V2RunQueryRequestBody {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2QueryParams> v2QueryParams() {
+        return (Optional<V2QueryParams>) v2QueryParams;
+    }
+
     @JsonIgnore
     public Optional<String> cursor() {
         return cursor;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2QueryParams> params() {
-        return (Optional<V2QueryParams>) params;
     }
 
     @SuppressWarnings("unchecked")
@@ -72,6 +72,19 @@ public class V2RunQueryRequestBody {
     }
 
 
+    public V2RunQueryRequestBody withV2QueryParams(V2QueryParams v2QueryParams) {
+        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
+        this.v2QueryParams = Optional.ofNullable(v2QueryParams);
+        return this;
+    }
+
+
+    public V2RunQueryRequestBody withV2QueryParams(Optional<? extends V2QueryParams> v2QueryParams) {
+        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
+        this.v2QueryParams = v2QueryParams;
+        return this;
+    }
+
     public V2RunQueryRequestBody withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = Optional.ofNullable(cursor);
@@ -82,19 +95,6 @@ public class V2RunQueryRequestBody {
     public V2RunQueryRequestBody withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
-        return this;
-    }
-
-    public V2RunQueryRequestBody withParams(V2QueryParams params) {
-        Utils.checkNotNull(params, "params");
-        this.params = Optional.ofNullable(params);
-        return this;
-    }
-
-
-    public V2RunQueryRequestBody withParams(Optional<? extends V2QueryParams> params) {
-        Utils.checkNotNull(params, "params");
-        this.params = params;
         return this;
     }
 
@@ -121,36 +121,49 @@ public class V2RunQueryRequestBody {
         }
         V2RunQueryRequestBody other = (V2RunQueryRequestBody) o;
         return 
+            Utils.enhancedDeepEquals(this.v2QueryParams, other.v2QueryParams) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.params, other.params) &&
             Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, params, vars);
+            v2QueryParams, cursor, vars);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RunQueryRequestBody.class,
+                "v2QueryParams", v2QueryParams,
                 "cursor", cursor,
-                "params", params,
                 "vars", vars);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> cursor = Optional.empty();
+        private Optional<? extends V2QueryParams> v2QueryParams = Optional.empty();
 
-        private Optional<? extends V2QueryParams> params = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
 
         private Optional<? extends Map<String, String>> vars = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder v2QueryParams(V2QueryParams v2QueryParams) {
+            Utils.checkNotNull(v2QueryParams, "v2QueryParams");
+            this.v2QueryParams = Optional.ofNullable(v2QueryParams);
+            return this;
+        }
+
+        public Builder v2QueryParams(Optional<? extends V2QueryParams> v2QueryParams) {
+            Utils.checkNotNull(v2QueryParams, "v2QueryParams");
+            this.v2QueryParams = v2QueryParams;
+            return this;
         }
 
 
@@ -163,19 +176,6 @@ public class V2RunQueryRequestBody {
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
-            return this;
-        }
-
-
-        public Builder params(V2QueryParams params) {
-            Utils.checkNotNull(params, "params");
-            this.params = Optional.ofNullable(params);
-            return this;
-        }
-
-        public Builder params(Optional<? extends V2QueryParams> params) {
-            Utils.checkNotNull(params, "params");
-            this.params = params;
             return this;
         }
 
@@ -195,7 +195,7 @@ public class V2RunQueryRequestBody {
         public V2RunQueryRequestBody build() {
 
             return new V2RunQueryRequestBody(
-                cursor, params, vars);
+                v2QueryParams, cursor, vars);
         }
 
     }

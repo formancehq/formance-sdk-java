@@ -25,7 +25,7 @@ public class GetHoldsResponse implements Response {
     /**
      * Holds
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetHoldsResponse implements Response {
     @JsonCreator
     public GetHoldsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetHoldsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetHoldsResponse>) getHoldsResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.GetHoldsResponse>) getHoldsResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetHoldsResponse implements Response {
     /**
      * Holds
      */
-    public GetHoldsResponse withGetHoldsResponse(com.formance.formance_sdk.models.shared.GetHoldsResponse getHoldsResponse) {
+    public GetHoldsResponse withGetHoldsResponse(com.formance.formance_sdk.models.wallets.GetHoldsResponse getHoldsResponse) {
         Utils.checkNotNull(getHoldsResponse, "getHoldsResponse");
         this.getHoldsResponse = Optional.ofNullable(getHoldsResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetHoldsResponse implements Response {
     /**
      * Holds
      */
-    public GetHoldsResponse withGetHoldsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse) {
+    public GetHoldsResponse withGetHoldsResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse) {
         Utils.checkNotNull(getHoldsResponse, "getHoldsResponse");
         this.getHoldsResponse = getHoldsResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetHoldsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetHoldsResponse implements Response {
         /**
          * Holds
          */
-        public Builder getHoldsResponse(com.formance.formance_sdk.models.shared.GetHoldsResponse getHoldsResponse) {
+        public Builder getHoldsResponse(com.formance.formance_sdk.models.wallets.GetHoldsResponse getHoldsResponse) {
             Utils.checkNotNull(getHoldsResponse, "getHoldsResponse");
             this.getHoldsResponse = Optional.ofNullable(getHoldsResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetHoldsResponse implements Response {
         /**
          * Holds
          */
-        public Builder getHoldsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetHoldsResponse> getHoldsResponse) {
+        public Builder getHoldsResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetHoldsResponse> getHoldsResponse) {
             Utils.checkNotNull(getHoldsResponse, "getHoldsResponse");
             this.getHoldsResponse = getHoldsResponse;
             return this;

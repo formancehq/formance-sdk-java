@@ -8,20 +8,36 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListExporters;
 import com.formance.formance_sdk.utils.Headers;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V2ListExportersRequestBuilder {
 
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public V2ListExportersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+                
+    public V2ListExportersRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V2ListExportersRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V2ListExportersResponse call() {
         
         RequestlessOperation<V2ListExportersResponse> operation
-            = new V2ListExporters.Sync(sdkConfiguration, _headers);
+            = new V2ListExporters.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V3UpdatePaymentMetadataRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest;
 
     /**
      * The payment ID
@@ -26,7 +26,7 @@ public class V3UpdatePaymentMetadataRequest {
 
     @JsonCreator
     public V3UpdatePaymentMetadataRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest,
+            Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest,
             String paymentID) {
         Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
         Utils.checkNotNull(paymentID, "paymentID");
@@ -41,8 +41,8 @@ public class V3UpdatePaymentMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest>) v3UpdatePaymentMetadataRequest;
+    public Optional<com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest>) v3UpdatePaymentMetadataRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V3UpdatePaymentMetadataRequest {
     }
 
 
-    public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
+    public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
         Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
         this.v3UpdatePaymentMetadataRequest = Optional.ofNullable(v3UpdatePaymentMetadataRequest);
         return this;
     }
 
 
-    public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest) {
+    public V3UpdatePaymentMetadataRequest withV3UpdatePaymentMetadataRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest) {
         Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
         this.v3UpdatePaymentMetadataRequest = v3UpdatePaymentMetadataRequest;
         return this;
@@ -110,7 +110,7 @@ public class V3UpdatePaymentMetadataRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest = Optional.empty();
 
         private String paymentID;
 
@@ -119,13 +119,13 @@ public class V3UpdatePaymentMetadataRequest {
         }
 
 
-        public Builder v3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
+        public Builder v3UpdatePaymentMetadataRequest(com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest v3UpdatePaymentMetadataRequest) {
             Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
             this.v3UpdatePaymentMetadataRequest = Optional.ofNullable(v3UpdatePaymentMetadataRequest);
             return this;
         }
 
-        public Builder v3UpdatePaymentMetadataRequest(Optional<? extends com.formance.formance_sdk.models.shared.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest) {
+        public Builder v3UpdatePaymentMetadataRequest(Optional<? extends com.formance.formance_sdk.models.payments.V3UpdatePaymentMetadataRequest> v3UpdatePaymentMetadataRequest) {
             Utils.checkNotNull(v3UpdatePaymentMetadataRequest, "v3UpdatePaymentMetadataRequest");
             this.v3UpdatePaymentMetadataRequest = v3UpdatePaymentMetadataRequest;
             return this;

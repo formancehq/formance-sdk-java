@@ -11,12 +11,18 @@ import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListLedgersRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      * Set to the value of next for the next page of results.
@@ -48,23 +54,33 @@ public class V2ListLedgersRequest {
 
     @JsonCreator
     public V2ListLedgersRequest(
+            Map<String, Object> requestBody,
             Optional<String> cursor,
             Optional<Boolean> includeDeleted,
             Optional<Long> pageSize,
             Optional<String> sort) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(includeDeleted, "includeDeleted");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(sort, "sort");
+        this.requestBody = requestBody;
         this.cursor = cursor;
         this.includeDeleted = includeDeleted;
         this.pageSize = pageSize;
         this.sort = sort;
     }
     
-    public V2ListLedgersRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public V2ListLedgersRequest(
+            Map<String, Object> requestBody) {
+        this(requestBody, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -108,6 +124,12 @@ public class V2ListLedgersRequest {
         return new Builder();
     }
 
+
+    public V2ListLedgersRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -205,6 +227,7 @@ public class V2ListLedgersRequest {
         }
         V2ListLedgersRequest other = (V2ListLedgersRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.includeDeleted, other.includeDeleted) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
@@ -214,13 +237,14 @@ public class V2ListLedgersRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor, includeDeleted, pageSize,
-            sort);
+            requestBody, cursor, includeDeleted,
+            pageSize, sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListLedgersRequest.class,
+                "requestBody", requestBody,
                 "cursor", cursor,
                 "includeDeleted", includeDeleted,
                 "pageSize", pageSize,
@@ -229,6 +253,8 @@ public class V2ListLedgersRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Map<String, Object> requestBody;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -240,6 +266,13 @@ public class V2ListLedgersRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -334,8 +367,8 @@ public class V2ListLedgersRequest {
             }
 
             return new V2ListLedgersRequest(
-                cursor, includeDeleted, pageSize,
-                sort);
+                requestBody, cursor, includeDeleted,
+                pageSize, sort);
         }
 
 

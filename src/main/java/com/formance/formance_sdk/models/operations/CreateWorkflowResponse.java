@@ -25,7 +25,7 @@ public class CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class CreateWorkflowResponse implements Response {
     @JsonCreator
     public CreateWorkflowResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class CreateWorkflowResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.CreateWorkflowResponse>) createWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse>) createWorkflowResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    public CreateWorkflowResponse withCreateWorkflowResponse(com.formance.formance_sdk.models.shared.CreateWorkflowResponse createWorkflowResponse) {
+    public CreateWorkflowResponse withCreateWorkflowResponse(com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse createWorkflowResponse) {
         Utils.checkNotNull(createWorkflowResponse, "createWorkflowResponse");
         this.createWorkflowResponse = Optional.ofNullable(createWorkflowResponse);
         return this;
@@ -121,7 +121,7 @@ public class CreateWorkflowResponse implements Response {
     /**
      * Created workflow
      */
-    public CreateWorkflowResponse withCreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse) {
+    public CreateWorkflowResponse withCreateWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse) {
         Utils.checkNotNull(createWorkflowResponse, "createWorkflowResponse");
         this.createWorkflowResponse = createWorkflowResponse;
         return this;
@@ -182,7 +182,7 @@ public class CreateWorkflowResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class CreateWorkflowResponse implements Response {
         /**
          * Created workflow
          */
-        public Builder createWorkflowResponse(com.formance.formance_sdk.models.shared.CreateWorkflowResponse createWorkflowResponse) {
+        public Builder createWorkflowResponse(com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse createWorkflowResponse) {
             Utils.checkNotNull(createWorkflowResponse, "createWorkflowResponse");
             this.createWorkflowResponse = Optional.ofNullable(createWorkflowResponse);
             return this;
@@ -215,7 +215,7 @@ public class CreateWorkflowResponse implements Response {
         /**
          * Created workflow
          */
-        public Builder createWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.CreateWorkflowResponse> createWorkflowResponse) {
+        public Builder createWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.CreateWorkflowResponse> createWorkflowResponse) {
             Utils.checkNotNull(createWorkflowResponse, "createWorkflowResponse");
             this.createWorkflowResponse = createWorkflowResponse;
             return this;

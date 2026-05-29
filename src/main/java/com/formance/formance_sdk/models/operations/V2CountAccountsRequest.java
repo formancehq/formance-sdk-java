@@ -7,13 +7,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 
 public class V2CountAccountsRequest {
+
+    @SpeakeasyMetadata("request:mediaType=application/json")
+    private Map<String, Object> requestBody;
+
     /**
      * Name of the ledger.
      */
@@ -26,17 +32,27 @@ public class V2CountAccountsRequest {
 
     @JsonCreator
     public V2CountAccountsRequest(
+            Map<String, Object> requestBody,
             String ledger,
             Optional<OffsetDateTime> pit) {
+        requestBody = Utils.emptyMapIfNull(requestBody);
+        Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
+        this.requestBody = requestBody;
         this.ledger = ledger;
         this.pit = pit;
     }
     
     public V2CountAccountsRequest(
+            Map<String, Object> requestBody,
             String ledger) {
-        this(ledger, Optional.empty());
+        this(requestBody, ledger, Optional.empty());
+    }
+
+    @JsonIgnore
+    public Map<String, Object> requestBody() {
+        return requestBody;
     }
 
     /**
@@ -56,6 +72,12 @@ public class V2CountAccountsRequest {
         return new Builder();
     }
 
+
+    public V2CountAccountsRequest withRequestBody(Map<String, Object> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
 
     /**
      * Name of the ledger.
@@ -89,6 +111,7 @@ public class V2CountAccountsRequest {
         }
         V2CountAccountsRequest other = (V2CountAccountsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.pit, other.pit);
     }
@@ -96,12 +119,13 @@ public class V2CountAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ledger, pit);
+            requestBody, ledger, pit);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CountAccountsRequest.class,
+                "requestBody", requestBody,
                 "ledger", ledger,
                 "pit", pit);
     }
@@ -109,12 +133,21 @@ public class V2CountAccountsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Map<String, Object> requestBody;
+
         private String ledger;
 
         private Optional<OffsetDateTime> pit = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder requestBody(Map<String, Object> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
+            return this;
         }
 
 
@@ -143,7 +176,7 @@ public class V2CountAccountsRequest {
         public V2CountAccountsRequest build() {
 
             return new V2CountAccountsRequest(
-                ledger, pit);
+                requestBody, ledger, pit);
         }
 
     }

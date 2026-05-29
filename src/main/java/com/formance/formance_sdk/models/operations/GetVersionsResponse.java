@@ -25,7 +25,7 @@ public class GetVersionsResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse;
+    private Optional<? extends com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetVersionsResponse implements Response {
     @JsonCreator
     public GetVersionsResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse,
+            Optional<? extends com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetVersionsResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetVersionsResponse>) getVersionsResponse;
+    public Optional<com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse() {
+        return (Optional<com.formance.formance_sdk.models.gateway.GetVersionsResponse>) getVersionsResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetVersionsResponse implements Response {
     /**
      * OK
      */
-    public GetVersionsResponse withGetVersionsResponse(com.formance.formance_sdk.models.shared.GetVersionsResponse getVersionsResponse) {
+    public GetVersionsResponse withGetVersionsResponse(com.formance.formance_sdk.models.gateway.GetVersionsResponse getVersionsResponse) {
         Utils.checkNotNull(getVersionsResponse, "getVersionsResponse");
         this.getVersionsResponse = Optional.ofNullable(getVersionsResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetVersionsResponse implements Response {
     /**
      * OK
      */
-    public GetVersionsResponse withGetVersionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse) {
+    public GetVersionsResponse withGetVersionsResponse(Optional<? extends com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse) {
         Utils.checkNotNull(getVersionsResponse, "getVersionsResponse");
         this.getVersionsResponse = getVersionsResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetVersionsResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetVersionsResponse implements Response {
         /**
          * OK
          */
-        public Builder getVersionsResponse(com.formance.formance_sdk.models.shared.GetVersionsResponse getVersionsResponse) {
+        public Builder getVersionsResponse(com.formance.formance_sdk.models.gateway.GetVersionsResponse getVersionsResponse) {
             Utils.checkNotNull(getVersionsResponse, "getVersionsResponse");
             this.getVersionsResponse = Optional.ofNullable(getVersionsResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetVersionsResponse implements Response {
         /**
          * OK
          */
-        public Builder getVersionsResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetVersionsResponse> getVersionsResponse) {
+        public Builder getVersionsResponse(Optional<? extends com.formance.formance_sdk.models.gateway.GetVersionsResponse> getVersionsResponse) {
             Utils.checkNotNull(getVersionsResponse, "getVersionsResponse");
             this.getVersionsResponse = getVersionsResponse;
             return this;

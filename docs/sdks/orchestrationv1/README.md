@@ -12,12 +12,12 @@
 * [getInstance](#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
+* [getServerInfoOrchestration](#getserverinfoorchestration) - Get server info
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listTriggers](#listtriggers) - List triggers
 * [listTriggersOccurrences](#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [readTrigger](#readtrigger) - Read trigger
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
@@ -33,9 +33,9 @@ Cancel a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CancelEventRequest;
 import com.formance.formance_sdk.models.operations.CancelEventResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -68,6 +68,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [CancelEventRequest](../../models/operations/CancelEventRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -91,8 +92,8 @@ Create trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -119,9 +120,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `request`                                         | [TriggerData](../../models/shared/TriggerData.md) | :heavy_check_mark:                                | The request object to use for the request.        |
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [TriggerData2](../../models/shared/TriggerData2.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| `serverURL`                                         | *String*                                            | :heavy_minus_sign:                                  | An optional server URL to use.                      |
 
 ### Response
 
@@ -145,8 +147,8 @@ Create a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.CreateWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -173,9 +175,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
-| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `request`                                                             | [CreateWorkflowRequest](../../models/shared/CreateWorkflowRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [WorkflowConfig](../../models/shared/WorkflowConfig.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| `serverURL`                                             | *String*                                                | :heavy_minus_sign:                                      | An optional server URL to use.                          |
 
 ### Response
 
@@ -199,9 +202,9 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.DeleteTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -234,6 +237,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [DeleteTriggerRequest](../../models/operations/DeleteTriggerRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -257,9 +261,9 @@ Delete a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.DeleteWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -292,6 +296,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [DeleteWorkflowRequest](../../models/operations/DeleteWorkflowRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -315,9 +320,9 @@ Get a workflow instance by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -352,6 +357,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [GetInstanceRequest](../../models/operations/GetInstanceRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -375,9 +381,9 @@ Get a workflow instance history by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceHistoryResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -412,6 +418,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [GetInstanceHistoryRequest](../../models/operations/GetInstanceHistoryRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -435,9 +442,9 @@ Get a workflow instance stage history
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.GetInstanceStageHistoryResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -473,10 +480,65 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [GetInstanceStageHistoryRequest](../../models/operations/GetInstanceStageHistoryRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
 **[GetInstanceStageHistoryResponse](../../models/operations/GetInstanceStageHistoryResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | default                | application/json       |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+
+## getServerInfoOrchestration
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getServerInfo_orchestration" method="get" path="/api/orchestration/_info" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetServerInfoOrchestrationResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetServerInfoOrchestrationResponse res = sdk.orchestration().v1().getServerInfoOrchestration()
+                .call();
+
+        if (res.serverInfo().isPresent()) {
+            System.out.println(res.serverInfo().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[GetServerInfoOrchestrationResponse](../../models/operations/GetServerInfoOrchestrationResponse.md)**
 
 ### Errors
 
@@ -496,9 +558,9 @@ Get a flow by id
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.GetWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -533,6 +595,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [GetWorkflowRequest](../../models/operations/GetWorkflowRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -556,9 +619,9 @@ List instances of a workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.ListInstancesResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -594,6 +657,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [ListInstancesRequest](../../models/operations/ListInstancesRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -617,8 +681,8 @@ List triggers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListTriggersResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -648,6 +712,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [ListTriggersRequest](../../models/operations/ListTriggersRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -671,9 +736,9 @@ List triggers occurrences
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.ListTriggersOccurrencesResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -708,6 +773,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [ListTriggersOccurrencesRequest](../../models/operations/ListTriggersOccurrencesRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -731,8 +797,8 @@ List registered workflows
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ListWorkflowsResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -757,57 +823,15 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[ListWorkflowsResponse](../../models/operations/ListWorkflowsResponse.md)**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
-
-## orchestrationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="orchestrationgetServerInfo" method="get" path="/api/orchestration/_info" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
-import com.formance.formance_sdk.models.operations.OrchestrationgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Error, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        OrchestrationgetServerInfoResponse res = sdk.orchestration().v1().orchestrationgetServerInfo()
-                .call();
-
-        if (res.serverInfo().isPresent()) {
-            System.out.println(res.serverInfo().get());
-        }
-    }
-}
-```
-
-### Response
-
-**[OrchestrationgetServerInfoResponse](../../models/operations/OrchestrationgetServerInfoResponse.md)**
 
 ### Errors
 
@@ -827,9 +851,9 @@ Read trigger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.ReadTriggerResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -864,6 +888,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [ReadTriggerRequest](../../models/operations/ReadTriggerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -887,9 +912,9 @@ Run workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -924,6 +949,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [RunWorkflowRequest](../../models/operations/RunWorkflowRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -947,9 +973,9 @@ Send an event to a running workflow
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.Error;
 import com.formance.formance_sdk.models.operations.SendEventRequest;
 import com.formance.formance_sdk.models.operations.SendEventResponse;
+import com.formance.formance_sdk.models.orchestration.Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -982,6 +1008,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [SendEventRequest](../../models/operations/SendEventRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 

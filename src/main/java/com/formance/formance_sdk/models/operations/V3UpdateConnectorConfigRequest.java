@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.shared.V3InstallConnectorRequest;
+import com.formance.formance_sdk.models.payments.V3ConnectorConfig;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class V3UpdateConnectorConfigRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest;
+    private Optional<? extends V3ConnectorConfig> v3ConnectorConfig;
 
     /**
      * The connector ID
@@ -27,11 +27,11 @@ public class V3UpdateConnectorConfigRequest {
 
     @JsonCreator
     public V3UpdateConnectorConfigRequest(
-            Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest,
+            Optional<? extends V3ConnectorConfig> v3ConnectorConfig,
             String connectorID) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
         Utils.checkNotNull(connectorID, "connectorID");
-        this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+        this.v3ConnectorConfig = v3ConnectorConfig;
         this.connectorID = connectorID;
     }
     
@@ -42,8 +42,8 @@ public class V3UpdateConnectorConfigRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V3InstallConnectorRequest> v3InstallConnectorRequest() {
-        return (Optional<V3InstallConnectorRequest>) v3InstallConnectorRequest;
+    public Optional<V3ConnectorConfig> v3ConnectorConfig() {
+        return (Optional<V3ConnectorConfig>) v3ConnectorConfig;
     }
 
     /**
@@ -59,16 +59,16 @@ public class V3UpdateConnectorConfigRequest {
     }
 
 
-    public V3UpdateConnectorConfigRequest withV3InstallConnectorRequest(V3InstallConnectorRequest v3InstallConnectorRequest) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-        this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
+    public V3UpdateConnectorConfigRequest withV3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+        this.v3ConnectorConfig = Optional.ofNullable(v3ConnectorConfig);
         return this;
     }
 
 
-    public V3UpdateConnectorConfigRequest withV3InstallConnectorRequest(Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest) {
-        Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-        this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+    public V3UpdateConnectorConfigRequest withV3ConnectorConfig(Optional<? extends V3ConnectorConfig> v3ConnectorConfig) {
+        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+        this.v3ConnectorConfig = v3ConnectorConfig;
         return this;
     }
 
@@ -91,27 +91,27 @@ public class V3UpdateConnectorConfigRequest {
         }
         V3UpdateConnectorConfigRequest other = (V3UpdateConnectorConfigRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3InstallConnectorRequest, other.v3InstallConnectorRequest) &&
+            Utils.enhancedDeepEquals(this.v3ConnectorConfig, other.v3ConnectorConfig) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3InstallConnectorRequest, connectorID);
+            v3ConnectorConfig, connectorID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UpdateConnectorConfigRequest.class,
-                "v3InstallConnectorRequest", v3InstallConnectorRequest,
+                "v3ConnectorConfig", v3ConnectorConfig,
                 "connectorID", connectorID);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest = Optional.empty();
+        private Optional<? extends V3ConnectorConfig> v3ConnectorConfig = Optional.empty();
 
         private String connectorID;
 
@@ -120,15 +120,15 @@ public class V3UpdateConnectorConfigRequest {
         }
 
 
-        public Builder v3InstallConnectorRequest(V3InstallConnectorRequest v3InstallConnectorRequest) {
-            Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-            this.v3InstallConnectorRequest = Optional.ofNullable(v3InstallConnectorRequest);
+        public Builder v3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
+            Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+            this.v3ConnectorConfig = Optional.ofNullable(v3ConnectorConfig);
             return this;
         }
 
-        public Builder v3InstallConnectorRequest(Optional<? extends V3InstallConnectorRequest> v3InstallConnectorRequest) {
-            Utils.checkNotNull(v3InstallConnectorRequest, "v3InstallConnectorRequest");
-            this.v3InstallConnectorRequest = v3InstallConnectorRequest;
+        public Builder v3ConnectorConfig(Optional<? extends V3ConnectorConfig> v3ConnectorConfig) {
+            Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
+            this.v3ConnectorConfig = v3ConnectorConfig;
             return this;
         }
 
@@ -145,7 +145,7 @@ public class V3UpdateConnectorConfigRequest {
         public V3UpdateConnectorConfigRequest build() {
 
             return new V3UpdateConnectorConfigRequest(
-                v3InstallConnectorRequest, connectorID);
+                v3ConnectorConfig, connectorID);
         }
 
     }

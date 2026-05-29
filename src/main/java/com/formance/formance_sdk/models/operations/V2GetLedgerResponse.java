@@ -35,14 +35,14 @@ public class V2GetLedgerResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse;
 
     @JsonCreator
     public V2GetLedgerResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2GetLedgerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2GetLedgerResponse>) v2GetLedgerResponse;
+    public Optional<com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2GetLedgerResponse>) v2GetLedgerResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2GetLedgerResponse implements Response {
     /**
      * OK
      */
-    public V2GetLedgerResponse withV2GetLedgerResponse(com.formance.formance_sdk.models.shared.V2GetLedgerResponse v2GetLedgerResponse) {
+    public V2GetLedgerResponse withV2GetLedgerResponse(com.formance.formance_sdk.models.ledger.V2GetLedgerResponse v2GetLedgerResponse) {
         Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
         this.v2GetLedgerResponse = Optional.ofNullable(v2GetLedgerResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2GetLedgerResponse implements Response {
     /**
      * OK
      */
-    public V2GetLedgerResponse withV2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
+    public V2GetLedgerResponse withV2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse) {
         Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
         this.v2GetLedgerResponse = v2GetLedgerResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2GetLedgerResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2GetLedgerResponse implements Response {
         /**
          * OK
          */
-        public Builder v2GetLedgerResponse(com.formance.formance_sdk.models.shared.V2GetLedgerResponse v2GetLedgerResponse) {
+        public Builder v2GetLedgerResponse(com.formance.formance_sdk.models.ledger.V2GetLedgerResponse v2GetLedgerResponse) {
             Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
             this.v2GetLedgerResponse = Optional.ofNullable(v2GetLedgerResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2GetLedgerResponse implements Response {
         /**
          * OK
          */
-        public Builder v2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetLedgerResponse> v2GetLedgerResponse) {
+        public Builder v2GetLedgerResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetLedgerResponse> v2GetLedgerResponse) {
             Utils.checkNotNull(v2GetLedgerResponse, "v2GetLedgerResponse");
             this.v2GetLedgerResponse = v2GetLedgerResponse;
             return this;

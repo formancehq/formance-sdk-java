@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.DeleteWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class DeleteWorkflowRequestBuilder {
 
     private DeleteWorkflowRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class DeleteWorkflowRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public DeleteWorkflowRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public DeleteWorkflowRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public DeleteWorkflowResponse call() {
         
         RequestOperation<DeleteWorkflowRequest, DeleteWorkflowResponse> operation
-              = new DeleteWorkflow.Sync(sdkConfiguration, _headers);
+              = new DeleteWorkflow.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

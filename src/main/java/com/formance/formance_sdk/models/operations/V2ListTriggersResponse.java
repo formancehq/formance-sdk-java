@@ -35,14 +35,14 @@ public class V2ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse;
 
     @JsonCreator
     public V2ListTriggersResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse) {
+            Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2ListTriggersResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2ListTriggersResponse>) v2ListTriggersResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse>) v2ListTriggersResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    public V2ListTriggersResponse withV2ListTriggersResponse(com.formance.formance_sdk.models.shared.V2ListTriggersResponse v2ListTriggersResponse) {
+    public V2ListTriggersResponse withV2ListTriggersResponse(com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse v2ListTriggersResponse) {
         Utils.checkNotNull(v2ListTriggersResponse, "v2ListTriggersResponse");
         this.v2ListTriggersResponse = Optional.ofNullable(v2ListTriggersResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2ListTriggersResponse implements Response {
     /**
      * List of triggers
      */
-    public V2ListTriggersResponse withV2ListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse) {
+    public V2ListTriggersResponse withV2ListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse) {
         Utils.checkNotNull(v2ListTriggersResponse, "v2ListTriggersResponse");
         this.v2ListTriggersResponse = v2ListTriggersResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2ListTriggersResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2ListTriggersResponse implements Response {
         /**
          * List of triggers
          */
-        public Builder v2ListTriggersResponse(com.formance.formance_sdk.models.shared.V2ListTriggersResponse v2ListTriggersResponse) {
+        public Builder v2ListTriggersResponse(com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse v2ListTriggersResponse) {
             Utils.checkNotNull(v2ListTriggersResponse, "v2ListTriggersResponse");
             this.v2ListTriggersResponse = Optional.ofNullable(v2ListTriggersResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2ListTriggersResponse implements Response {
         /**
          * List of triggers
          */
-        public Builder v2ListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2ListTriggersResponse> v2ListTriggersResponse) {
+        public Builder v2ListTriggersResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.V2ListTriggersResponse> v2ListTriggersResponse) {
             Utils.checkNotNull(v2ListTriggersResponse, "v2ListTriggersResponse");
             this.v2ListTriggersResponse = v2ListTriggersResponse;
             return this;

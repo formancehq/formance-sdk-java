@@ -15,6 +15,7 @@
 * [deleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
 * [forwardBankAccount](#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](#getaccountbalances) - Get account balances
+* [getAccountPayments](#getaccountpayments) - Get an account
 * [getBankAccount](#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
 * [getConnectorTaskV1](#getconnectortaskv1) - Read a specific task of the connector
@@ -22,8 +23,10 @@
 * [getPool](#getpool) - Get a Pool
 * [getPoolBalances](#getpoolbalances) - Get historical pool balances at a particular point in time
 * [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
+* [getServerInfoPayments](#getserverinfopayments) - Get server info
 * [getTransferInitiation](#gettransferinitiation) - Get a transfer initiation
 * [installConnector](#installconnector) - Install a connector
+* [listAccountsPayments](#listaccountspayments) - List accounts
 * [listAllConnectors](#listallconnectors) - List all installed connectors
 * [listBankAccounts](#listbankaccounts) - List bank accounts created by user on Formance
 * [listConfigsAvailableConnectors](#listconfigsavailableconnectors) - List the configs of each available connector
@@ -32,9 +35,6 @@
 * [listPayments](#listpayments) - List payments
 * [listPools](#listpools) - List Pools
 * [listTransferInitiations](#listtransferinitiations) - List Transfer Initiations
-* [paymentsgetAccount](#paymentsgetaccount) - Get an account
-* [paymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
@@ -61,9 +61,9 @@ Add an account to a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.AddAccountToPoolResponse;
-import com.formance.formance_sdk.models.shared.AddAccountToPoolRequest;
+import com.formance.formance_sdk.models.payments.AddAccountToPoolRequest;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -99,6 +99,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [AddAccountToPoolRequest](../../models/operations/AddAccountToPoolRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -122,10 +123,10 @@ Execute a transfer between two accounts.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferRequest;
 import com.formance.formance_sdk.models.operations.ConnectorsTransferResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 
@@ -166,6 +167,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [ConnectorsTransferRequest](../../models/operations/ConnectorsTransferRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -189,9 +191,9 @@ Create an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateAccountResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 
@@ -207,18 +209,18 @@ public class Application {
             .build();
 
         AccountRequest req = AccountRequest.builder()
+                .accountType(AccountType.UNKNOWN)
                 .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2025-07-27T08:57:17.388Z"))
                 .reference("<value>")
-                .type(AccountType.UNKNOWN)
                 .build();
 
         CreateAccountResponse res = sdk.payments().v1().createAccount()
                 .request(req)
                 .call();
 
-        if (res.paymentsAccountResponse().isPresent()) {
-            System.out.println(res.paymentsAccountResponse().get());
+        if (res.accountResponse().isPresent()) {
+            System.out.println(res.accountResponse().get());
         }
     }
 }
@@ -229,6 +231,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `request`                                               | [AccountRequest](../../models/shared/AccountRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| `serverURL`                                             | *String*                                                | :heavy_minus_sign:                                      | An optional server URL to use.                          |
 
 ### Response
 
@@ -252,9 +255,9 @@ Create a bank account in Payments and on the PSP.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateBankAccountResponse;
-import com.formance.formance_sdk.models.shared.BankAccountRequest;
+import com.formance.formance_sdk.models.payments.BankAccountRequest;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -290,6 +293,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [BankAccountRequest](../../models/shared/BankAccountRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -313,9 +317,9 @@ Create a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePaymentResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
@@ -332,14 +336,14 @@ public class Application {
             .build();
 
         PaymentRequest req = PaymentRequest.builder()
+                .paymentScheme(PaymentScheme.RTP)
+                .paymentStatus(PaymentStatus.REFUNDED_FAILURE)
+                .paymentType(PaymentType.PAYOUT)
                 .amount(new BigInteger("100"))
                 .asset("USD")
                 .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2025-08-26T06:29:11.777Z"))
                 .reference("<value>")
-                .scheme(PaymentScheme.RTP)
-                .status(PaymentStatus.REFUNDED_FAILURE)
-                .type(PaymentType.PAYOUT)
                 .build();
 
         CreatePaymentResponse res = sdk.payments().v1().createPayment()
@@ -358,6 +362,7 @@ public class Application {
 | Parameter                                               | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | `request`                                               | [PaymentRequest](../../models/shared/PaymentRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| `serverURL`                                             | *String*                                                | :heavy_minus_sign:                                      | An optional server URL to use.                          |
 
 ### Response
 
@@ -381,9 +386,9 @@ Create a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreatePoolResponse;
-import com.formance.formance_sdk.models.shared.PoolRequest;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.payments.PoolRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -418,6 +423,7 @@ public class Application {
 | Parameter                                         | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | `request`                                         | [PoolRequest](../../models/shared/PoolRequest.md) | :heavy_check_mark:                                | The request object to use for the request.        |
+| `serverURL`                                       | *String*                                          | :heavy_minus_sign:                                | An optional server URL to use.                    |
 
 ### Response
 
@@ -441,9 +447,9 @@ Create a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.CreateTransferInitiationResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
@@ -487,6 +493,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [TransferInitiationRequest](../../models/shared/TransferInitiationRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -510,9 +517,9 @@ Delete a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.DeletePoolRequest;
 import com.formance.formance_sdk.models.operations.DeletePoolResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -545,6 +552,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [DeletePoolRequest](../../models/operations/DeletePoolRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -568,9 +576,9 @@ Delete a transfer initiation by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.DeleteTransferInitiationResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -603,6 +611,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [DeleteTransferInitiationRequest](../../models/operations/DeleteTransferInitiationRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -626,9 +635,9 @@ Forward a bank account to a connector
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ForwardBankAccountResponse;
-import com.formance.formance_sdk.models.shared.ForwardBankAccountRequest;
+import com.formance.formance_sdk.models.payments.ForwardBankAccountRequest;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -666,6 +675,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [ForwardBankAccountRequest](../../models/operations/ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -689,9 +699,9 @@ Get account balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetAccountBalancesResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -732,10 +742,72 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [GetAccountBalancesRequest](../../models/operations/GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
 **[GetAccountBalancesResponse](../../models/operations/GetAccountBalancesResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## getAccountPayments
+
+Get an account
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getAccount_payments" method="get" path="/api/payments/accounts/{accountId}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetAccountPaymentsRequest;
+import com.formance.formance_sdk.models.operations.GetAccountPaymentsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetAccountPaymentsRequest req = GetAccountPaymentsRequest.builder()
+                .accountId("XXX")
+                .build();
+
+        GetAccountPaymentsResponse res = sdk.payments().v1().getAccountPayments()
+                .request(req)
+                .call();
+
+        if (res.accountResponse().isPresent()) {
+            System.out.println(res.accountResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetAccountPaymentsRequest](../../models/operations/GetAccountPaymentsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
+
+### Response
+
+**[GetAccountPaymentsResponse](../../models/operations/GetAccountPaymentsResponse.md)**
 
 ### Errors
 
@@ -755,9 +827,9 @@ Get a bank account created by user on Formance
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.GetBankAccountResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -792,6 +864,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [GetBankAccountRequest](../../models/operations/GetBankAccountRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -817,10 +890,10 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskRequest;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskResponse;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -856,6 +929,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [GetConnectorTaskRequest](../../models/operations/GetConnectorTaskRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -879,10 +953,10 @@ Get a specific task associated to the connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Request;
 import com.formance.formance_sdk.models.operations.GetConnectorTaskV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -919,6 +993,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [GetConnectorTaskV1Request](../../models/operations/GetConnectorTaskV1Request.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -942,9 +1017,9 @@ Get a payment
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPaymentRequest;
 import com.formance.formance_sdk.models.operations.GetPaymentResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -979,6 +1054,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [GetPaymentRequest](../../models/operations/GetPaymentRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1002,9 +1078,9 @@ Get a Pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPoolRequest;
 import com.formance.formance_sdk.models.operations.GetPoolResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1039,6 +1115,7 @@ public class Application {
 | Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `request`                                                   | [GetPoolRequest](../../models/operations/GetPoolRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| `serverURL`                                                 | *String*                                                    | :heavy_minus_sign:                                          | An optional server URL to use.                              |
 
 ### Response
 
@@ -1062,9 +1139,9 @@ Get historical pool balances at a particular point in time
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesRequest;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -1101,6 +1178,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [GetPoolBalancesRequest](../../models/operations/GetPoolBalancesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1124,9 +1202,9 @@ Get latest pool balances
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesLatestRequest;
 import com.formance.formance_sdk.models.operations.GetPoolBalancesLatestResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1161,10 +1239,65 @@ public class Application {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [GetPoolBalancesLatestRequest](../../models/operations/GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *String*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
 **[GetPoolBalancesLatestResponse](../../models/operations/GetPoolBalancesLatestResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## getServerInfoPayments
+
+Get server info
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getServerInfo_payments" method="get" path="/api/payments/_info" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetServerInfoPaymentsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetServerInfoPaymentsResponse res = sdk.payments().v1().getServerInfoPayments()
+                .call();
+
+        if (res.serverInfo().isPresent()) {
+            System.out.println(res.serverInfo().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
+### Response
+
+**[GetServerInfoPaymentsResponse](../../models/operations/GetServerInfoPaymentsResponse.md)**
 
 ### Errors
 
@@ -1184,9 +1317,9 @@ Get a transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.GetTransferInitiationResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1221,6 +1354,7 @@ public class Application {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [GetTransferInitiationRequest](../../models/operations/GetTransferInitiationRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *String*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -1244,10 +1378,10 @@ Install a connector by its name and config.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.InstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.InstallConnectorResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -1262,12 +1396,12 @@ public class Application {
             .build();
 
         InstallConnectorRequest req = InstallConnectorRequest.builder()
-                .connectorConfig(CurrencyCloudConfig.builder()
+                .connectorConfig(ConnectorConfig.of(CurrencyCloudConfig.builder()
                     .apiKey("XXX")
                     .loginID("XXX")
                     .name("My CurrencyCloud Account")
                     .pollingPeriod("60s")
-                    .build())
+                    .build()))
                 .connector(Connector.MANGOPAY)
                 .build();
 
@@ -1287,10 +1421,77 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [InstallConnectorRequest](../../models/operations/InstallConnectorRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
 **[InstallConnectorResponse](../../models/operations/InstallConnectorResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/PaymentsErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## listAccountsPayments
+
+List accounts
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="listAccounts_payments" method="get" path="/api/payments/accounts" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.ListAccountsPaymentsRequest;
+import com.formance.formance_sdk.models.operations.ListAccountsPaymentsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        ListAccountsPaymentsRequest req = ListAccountsPaymentsRequest.builder()
+                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                .pageSize(100L)
+                .sort(List.of(
+                    "date:asc",
+                    "status:desc"))
+                .build();
+
+        ListAccountsPaymentsResponse res = sdk.payments().v1().listAccountsPayments()
+                .request(req)
+                .call();
+
+        if (res.accountsCursor().isPresent()) {
+            System.out.println(res.accountsCursor().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `request`                                                                             | [ListAccountsPaymentsRequest](../../models/operations/ListAccountsPaymentsRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
+
+### Response
+
+**[ListAccountsPaymentsResponse](../../models/operations/ListAccountsPaymentsResponse.md)**
 
 ### Errors
 
@@ -1310,8 +1511,8 @@ List all installed connectors.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListAllConnectorsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1336,6 +1537,12 @@ public class Application {
 }
 ```
 
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
+
 ### Response
 
 **[ListAllConnectorsResponse](../../models/operations/ListAllConnectorsResponse.md)**
@@ -1358,9 +1565,9 @@ List all bank accounts created by user on Formance.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListBankAccountsRequest;
 import com.formance.formance_sdk.models.operations.ListBankAccountsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -1400,6 +1607,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [ListBankAccountsRequest](../../models/operations/ListBankAccountsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -1423,8 +1631,8 @@ List the configs of each available connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConfigsAvailableConnectorsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1448,6 +1656,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1473,10 +1687,10 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksRequest;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksResponse;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1513,6 +1727,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [ListConnectorTasksRequest](../../models/operations/ListConnectorTasksRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -1536,10 +1751,10 @@ List all tasks associated with this connector.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Request;
 import com.formance.formance_sdk.models.operations.ListConnectorTasksV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -1577,6 +1792,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [ListConnectorTasksV1Request](../../models/operations/ListConnectorTasksV1Request.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1600,9 +1816,9 @@ List payments
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPaymentsRequest;
 import com.formance.formance_sdk.models.operations.ListPaymentsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -1642,6 +1858,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [ListPaymentsRequest](../../models/operations/ListPaymentsRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1665,9 +1882,9 @@ List Pools
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListPoolsRequest;
 import com.formance.formance_sdk.models.operations.ListPoolsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -1707,6 +1924,7 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [ListPoolsRequest](../../models/operations/ListPoolsRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1730,9 +1948,9 @@ List Transfer Initiations
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsRequest;
 import com.formance.formance_sdk.models.operations.ListTransferInitiationsResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.List;
@@ -1772,183 +1990,11 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [ListTransferInitiationsRequest](../../models/operations/ListTransferInitiationsRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
 **[ListTransferInitiationsResponse](../../models/operations/ListTransferInitiationsResponse.md)**
-
-### Errors
-
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
-
-## paymentsgetAccount
-
-Get an account
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountRequest;
-import com.formance.formance_sdk.models.operations.PaymentsgetAccountResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        PaymentsgetAccountRequest req = PaymentsgetAccountRequest.builder()
-                .accountId("XXX")
-                .build();
-
-        PaymentsgetAccountResponse res = sdk.payments().v1().paymentsgetAccount()
-                .request(req)
-                .call();
-
-        if (res.paymentsAccountResponse().isPresent()) {
-            System.out.println(res.paymentsAccountResponse().get());
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [PaymentsgetAccountRequest](../../models/operations/PaymentsgetAccountRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-
-### Response
-
-**[PaymentsgetAccountResponse](../../models/operations/PaymentsgetAccountResponse.md)**
-
-### Errors
-
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
-
-## paymentsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
-import com.formance.formance_sdk.models.operations.PaymentsgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        PaymentsgetServerInfoResponse res = sdk.payments().v1().paymentsgetServerInfo()
-                .call();
-
-        if (res.paymentsServerInfo().isPresent()) {
-            System.out.println(res.paymentsServerInfo().get());
-        }
-    }
-}
-```
-
-### Response
-
-**[PaymentsgetServerInfoResponse](../../models/operations/PaymentsgetServerInfoResponse.md)**
-
-### Errors
-
-| Error Type                          | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| models/errors/PaymentsErrorResponse | default                             | application/json                    |
-| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
-
-## paymentslistAccounts
-
-List accounts
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
-```java
-package hello.world;
-
-import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsRequest;
-import com.formance.formance_sdk.models.operations.PaymentslistAccountsResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws PaymentsErrorResponse, Exception {
-
-        SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
-            .build();
-
-        PaymentslistAccountsRequest req = PaymentslistAccountsRequest.builder()
-                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                .pageSize(100L)
-                .sort(List.of(
-                    "date:asc",
-                    "status:desc"))
-                .build();
-
-        PaymentslistAccountsResponse res = sdk.payments().v1().paymentslistAccounts()
-                .request(req)
-                .call();
-
-        if (res.accountsCursor().isPresent()) {
-            System.out.println(res.accountsCursor().get());
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `request`                                                                             | [PaymentslistAccountsRequest](../../models/operations/PaymentslistAccountsRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-
-### Response
-
-**[PaymentslistAccountsResponse](../../models/operations/PaymentslistAccountsResponse.md)**
 
 ### Errors
 
@@ -1970,10 +2016,10 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigResponse;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2008,6 +2054,7 @@ public class Application {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [ReadConnectorConfigRequest](../../models/operations/ReadConnectorConfigRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *String*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -2031,10 +2078,10 @@ Read connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.ReadConnectorConfigV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2070,6 +2117,7 @@ public class Application {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [ReadConnectorConfigV1Request](../../models/operations/ReadConnectorConfigV1Request.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *String*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -2093,9 +2141,9 @@ Remove an account from a pool by its id.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolRequest;
 import com.formance.formance_sdk.models.operations.RemoveAccountFromPoolResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2129,6 +2177,7 @@ public class Application {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `request`                                                                               | [RemoveAccountFromPoolRequest](../../models/operations/RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| `serverURL`                                                                             | *String*                                                                                | :heavy_minus_sign:                                                                      | An optional server URL to use.                                                          |
 
 ### Response
 
@@ -2156,10 +2205,10 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ResetConnectorRequest;
 import com.formance.formance_sdk.models.operations.ResetConnectorResponse;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2192,6 +2241,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [ResetConnectorRequest](../../models/operations/ResetConnectorRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2217,10 +2267,10 @@ It will remove the connector and ALL PAYMENTS generated with it.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Request;
 import com.formance.formance_sdk.models.operations.ResetConnectorV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2254,6 +2304,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [ResetConnectorV1Request](../../models/operations/ResetConnectorV1Request.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -2277,9 +2328,9 @@ Retry a failed transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationRequest;
 import com.formance.formance_sdk.models.operations.RetryTransferInitiationResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2312,6 +2363,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [RetryTransferInitiationRequest](../../models/operations/RetryTransferInitiationRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -2335,9 +2387,9 @@ Reverse transfer initiation
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.ReverseTransferInitiationResponse;
-import com.formance.formance_sdk.models.shared.ReverseTransferInitiationRequest;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.payments.ReverseTransferInitiationRequest;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
@@ -2380,6 +2432,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [ReverseTransferInitiationRequest](../../models/operations/ReverseTransferInitiationRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -2405,10 +2458,10 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UninstallConnectorRequest;
 import com.formance.formance_sdk.models.operations.UninstallConnectorResponse;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2441,6 +2494,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [UninstallConnectorRequest](../../models/operations/UninstallConnectorRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -2464,10 +2518,10 @@ Uninstall a connector by its name.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Request;
 import com.formance.formance_sdk.models.operations.UninstallConnectorV1Response;
-import com.formance.formance_sdk.models.shared.Connector;
+import com.formance.formance_sdk.models.payments.Connector;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
@@ -2501,6 +2555,7 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [UninstallConnectorV1Request](../../models/operations/UninstallConnectorV1Request.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -2524,10 +2579,10 @@ Update metadata of a bank account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.payments.UpdateBankAccountMetadataRequest;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.UpdateBankAccountMetadataRequest;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -2544,7 +2599,7 @@ public class Application {
 
         com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest req = com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest.builder()
                 .updateBankAccountMetadataRequest(UpdateBankAccountMetadataRequest.builder()
-                    .metadata(Map.ofEntries(
+                    .bankAccountMetadata(Map.ofEntries(
                         Map.entry("key", "<value>"),
                         Map.entry("key1", "<value>"),
                         Map.entry("key2", "<value>")))
@@ -2566,6 +2621,7 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [UpdateBankAccountMetadataRequest](../../models/operations/UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -2589,10 +2645,10 @@ Update connector config
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Request;
 import com.formance.formance_sdk.models.operations.UpdateConnectorConfigV1Response;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -2607,12 +2663,12 @@ public class Application {
             .build();
 
         UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
-                .connectorConfig(ModulrConfig.builder()
+                .connectorConfig(ConnectorConfig.of(ModulrConfig.builder()
                     .apiKey("XXX")
                     .apiSecret("XXX")
                     .name("My Modulr Account")
                     .pollingPeriod("60s")
-                    .build())
+                    .build()))
                 .connector(Connector.MANGOPAY)
                 .connectorId("XXX")
                 .build();
@@ -2631,6 +2687,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [UpdateConnectorConfigV1Request](../../models/operations/UpdateConnectorConfigV1Request.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -2654,9 +2711,9 @@ Update metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateMetadataRequest;
 import com.formance.formance_sdk.models.operations.UpdateMetadataResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.Map;
@@ -2692,6 +2749,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [UpdateMetadataRequest](../../models/operations/UpdateMetadataRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2715,10 +2773,10 @@ Update the query of a pool
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdatePoolQueryResponse;
+import com.formance.formance_sdk.models.payments.PaymentsErrorResponse;
+import com.formance.formance_sdk.models.payments.UpdatePoolQueryRequest;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.UpdatePoolQueryRequest;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -2755,6 +2813,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [UpdatePoolQueryRequest](../../models/operations/UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -2778,9 +2837,9 @@ Update a transfer initiation status
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.PaymentsErrorResponse;
 import com.formance.formance_sdk.models.operations.UpdateTransferInitiationStatusResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.payments.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
@@ -2815,6 +2874,7 @@ public class Application {
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                 | [UpdateTransferInitiationStatusRequest](../../models/operations/UpdateTransferInitiationStatusRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+| `serverURL`                                                                                               | *String*                                                                                                  | :heavy_minus_sign:                                                                                        | An optional server URL to use.                                                                            |
 
 ### Response
 

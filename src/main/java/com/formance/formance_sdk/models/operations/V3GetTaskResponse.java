@@ -35,14 +35,14 @@ public class V3GetTaskResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse;
 
     @JsonCreator
     public V3GetTaskResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3GetTaskResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3GetTaskResponse>) v3GetTaskResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3GetTaskResponse>) v3GetTaskResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3GetTaskResponse implements Response {
     /**
      * OK
      */
-    public V3GetTaskResponse withV3GetTaskResponse(com.formance.formance_sdk.models.shared.V3GetTaskResponse v3GetTaskResponse) {
+    public V3GetTaskResponse withV3GetTaskResponse(com.formance.formance_sdk.models.payments.V3GetTaskResponse v3GetTaskResponse) {
         Utils.checkNotNull(v3GetTaskResponse, "v3GetTaskResponse");
         this.v3GetTaskResponse = Optional.ofNullable(v3GetTaskResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3GetTaskResponse implements Response {
     /**
      * OK
      */
-    public V3GetTaskResponse withV3GetTaskResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse) {
+    public V3GetTaskResponse withV3GetTaskResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse) {
         Utils.checkNotNull(v3GetTaskResponse, "v3GetTaskResponse");
         this.v3GetTaskResponse = v3GetTaskResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3GetTaskResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3GetTaskResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetTaskResponse(com.formance.formance_sdk.models.shared.V3GetTaskResponse v3GetTaskResponse) {
+        public Builder v3GetTaskResponse(com.formance.formance_sdk.models.payments.V3GetTaskResponse v3GetTaskResponse) {
             Utils.checkNotNull(v3GetTaskResponse, "v3GetTaskResponse");
             this.v3GetTaskResponse = Optional.ofNullable(v3GetTaskResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3GetTaskResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetTaskResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetTaskResponse> v3GetTaskResponse) {
+        public Builder v3GetTaskResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetTaskResponse> v3GetTaskResponse) {
             Utils.checkNotNull(v3GetTaskResponse, "v3GetTaskResponse");
             this.v3GetTaskResponse = v3GetTaskResponse;
             return this;

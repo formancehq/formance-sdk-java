@@ -35,14 +35,14 @@ public class V2GetTransactionResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse;
 
     @JsonCreator
     public V2GetTransactionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V2GetTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2GetTransactionResponse>) v2GetTransactionResponse;
+    public Optional<com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2GetTransactionResponse>) v2GetTransactionResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V2GetTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2GetTransactionResponse withV2GetTransactionResponse(com.formance.formance_sdk.models.shared.V2GetTransactionResponse v2GetTransactionResponse) {
+    public V2GetTransactionResponse withV2GetTransactionResponse(com.formance.formance_sdk.models.ledger.V2GetTransactionResponse v2GetTransactionResponse) {
         Utils.checkNotNull(v2GetTransactionResponse, "v2GetTransactionResponse");
         this.v2GetTransactionResponse = Optional.ofNullable(v2GetTransactionResponse);
         return this;
@@ -139,7 +139,7 @@ public class V2GetTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2GetTransactionResponse withV2GetTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse) {
+    public V2GetTransactionResponse withV2GetTransactionResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse) {
         Utils.checkNotNull(v2GetTransactionResponse, "v2GetTransactionResponse");
         this.v2GetTransactionResponse = v2GetTransactionResponse;
         return this;
@@ -186,7 +186,7 @@ public class V2GetTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V2GetTransactionResponse implements Response {
         /**
          * OK
          */
-        public Builder v2GetTransactionResponse(com.formance.formance_sdk.models.shared.V2GetTransactionResponse v2GetTransactionResponse) {
+        public Builder v2GetTransactionResponse(com.formance.formance_sdk.models.ledger.V2GetTransactionResponse v2GetTransactionResponse) {
             Utils.checkNotNull(v2GetTransactionResponse, "v2GetTransactionResponse");
             this.v2GetTransactionResponse = Optional.ofNullable(v2GetTransactionResponse);
             return this;
@@ -235,7 +235,7 @@ public class V2GetTransactionResponse implements Response {
         /**
          * OK
          */
-        public Builder v2GetTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2GetTransactionResponse> v2GetTransactionResponse) {
+        public Builder v2GetTransactionResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetTransactionResponse> v2GetTransactionResponse) {
             Utils.checkNotNull(v2GetTransactionResponse, "v2GetTransactionResponse");
             this.v2GetTransactionResponse = v2GetTransactionResponse;
             return this;

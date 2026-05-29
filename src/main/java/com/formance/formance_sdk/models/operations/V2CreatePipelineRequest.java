@@ -16,7 +16,7 @@ import java.util.Optional;
 public class V2CreatePipelineRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest;
 
     /**
      * Name of the ledger.
@@ -26,7 +26,7 @@ public class V2CreatePipelineRequest {
 
     @JsonCreator
     public V2CreatePipelineRequest(
-            Optional<? extends com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest,
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest,
             String ledger) {
         Utils.checkNotNull(v2CreatePipelineRequest, "v2CreatePipelineRequest");
         Utils.checkNotNull(ledger, "ledger");
@@ -41,8 +41,8 @@ public class V2CreatePipelineRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2CreatePipelineRequest>) v2CreatePipelineRequest;
+    public Optional<com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest>) v2CreatePipelineRequest;
     }
 
     /**
@@ -58,14 +58,14 @@ public class V2CreatePipelineRequest {
     }
 
 
-    public V2CreatePipelineRequest withV2CreatePipelineRequest(com.formance.formance_sdk.models.shared.V2CreatePipelineRequest v2CreatePipelineRequest) {
+    public V2CreatePipelineRequest withV2CreatePipelineRequest(com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest v2CreatePipelineRequest) {
         Utils.checkNotNull(v2CreatePipelineRequest, "v2CreatePipelineRequest");
         this.v2CreatePipelineRequest = Optional.ofNullable(v2CreatePipelineRequest);
         return this;
     }
 
 
-    public V2CreatePipelineRequest withV2CreatePipelineRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest) {
+    public V2CreatePipelineRequest withV2CreatePipelineRequest(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest) {
         Utils.checkNotNull(v2CreatePipelineRequest, "v2CreatePipelineRequest");
         this.v2CreatePipelineRequest = v2CreatePipelineRequest;
         return this;
@@ -110,7 +110,7 @@ public class V2CreatePipelineRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest = Optional.empty();
 
         private String ledger;
 
@@ -119,13 +119,13 @@ public class V2CreatePipelineRequest {
         }
 
 
-        public Builder v2CreatePipelineRequest(com.formance.formance_sdk.models.shared.V2CreatePipelineRequest v2CreatePipelineRequest) {
+        public Builder v2CreatePipelineRequest(com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest v2CreatePipelineRequest) {
             Utils.checkNotNull(v2CreatePipelineRequest, "v2CreatePipelineRequest");
             this.v2CreatePipelineRequest = Optional.ofNullable(v2CreatePipelineRequest);
             return this;
         }
 
-        public Builder v2CreatePipelineRequest(Optional<? extends com.formance.formance_sdk.models.shared.V2CreatePipelineRequest> v2CreatePipelineRequest) {
+        public Builder v2CreatePipelineRequest(Optional<? extends com.formance.formance_sdk.models.ledger.V2CreatePipelineRequest> v2CreatePipelineRequest) {
             Utils.checkNotNull(v2CreatePipelineRequest, "v2CreatePipelineRequest");
             this.v2CreatePipelineRequest = v2CreatePipelineRequest;
             return this;

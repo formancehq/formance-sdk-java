@@ -25,7 +25,7 @@ public class ListUsersResponse implements Response {
     /**
      * List of users
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse;
+    private Optional<? extends com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ListUsersResponse implements Response {
     @JsonCreator
     public ListUsersResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse,
+            Optional<? extends com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ListUsersResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ListUsersResponse>) listUsersResponse;
+    public Optional<com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse() {
+        return (Optional<com.formance.formance_sdk.models.auth.ListUsersResponse>) listUsersResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ListUsersResponse implements Response {
     /**
      * List of users
      */
-    public ListUsersResponse withListUsersResponse(com.formance.formance_sdk.models.shared.ListUsersResponse listUsersResponse) {
+    public ListUsersResponse withListUsersResponse(com.formance.formance_sdk.models.auth.ListUsersResponse listUsersResponse) {
         Utils.checkNotNull(listUsersResponse, "listUsersResponse");
         this.listUsersResponse = Optional.ofNullable(listUsersResponse);
         return this;
@@ -121,7 +121,7 @@ public class ListUsersResponse implements Response {
     /**
      * List of users
      */
-    public ListUsersResponse withListUsersResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse) {
+    public ListUsersResponse withListUsersResponse(Optional<? extends com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse) {
         Utils.checkNotNull(listUsersResponse, "listUsersResponse");
         this.listUsersResponse = listUsersResponse;
         return this;
@@ -182,7 +182,7 @@ public class ListUsersResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ListUsersResponse implements Response {
         /**
          * List of users
          */
-        public Builder listUsersResponse(com.formance.formance_sdk.models.shared.ListUsersResponse listUsersResponse) {
+        public Builder listUsersResponse(com.formance.formance_sdk.models.auth.ListUsersResponse listUsersResponse) {
             Utils.checkNotNull(listUsersResponse, "listUsersResponse");
             this.listUsersResponse = Optional.ofNullable(listUsersResponse);
             return this;
@@ -215,7 +215,7 @@ public class ListUsersResponse implements Response {
         /**
          * List of users
          */
-        public Builder listUsersResponse(Optional<? extends com.formance.formance_sdk.models.shared.ListUsersResponse> listUsersResponse) {
+        public Builder listUsersResponse(Optional<? extends com.formance.formance_sdk.models.auth.ListUsersResponse> listUsersResponse) {
             Utils.checkNotNull(listUsersResponse, "listUsersResponse");
             this.listUsersResponse = listUsersResponse;
             return this;

@@ -30,6 +30,8 @@ import com.formance.formance_sdk.models.operations.GetHoldResponse;
 import com.formance.formance_sdk.models.operations.GetHoldsRequest;
 import com.formance.formance_sdk.models.operations.GetHoldsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetHoldsResponse;
+import com.formance.formance_sdk.models.operations.GetServerInfoWalletsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetServerInfoWalletsResponse;
 import com.formance.formance_sdk.models.operations.GetTransactionsRequest;
 import com.formance.formance_sdk.models.operations.GetTransactionsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetTransactionsResponse;
@@ -51,8 +53,6 @@ import com.formance.formance_sdk.models.operations.UpdateWalletResponse;
 import com.formance.formance_sdk.models.operations.VoidHoldRequest;
 import com.formance.formance_sdk.models.operations.VoidHoldRequestBuilder;
 import com.formance.formance_sdk.models.operations.VoidHoldResponse;
-import com.formance.formance_sdk.models.operations.WalletsgetServerInfoRequestBuilder;
-import com.formance.formance_sdk.models.operations.WalletsgetServerInfoResponse;
 import com.formance.formance_sdk.operations.ConfirmHold;
 import com.formance.formance_sdk.operations.CreateBalance;
 import com.formance.formance_sdk.operations.CreateWallet;
@@ -61,6 +61,7 @@ import com.formance.formance_sdk.operations.DebitWallet;
 import com.formance.formance_sdk.operations.GetBalance;
 import com.formance.formance_sdk.operations.GetHold;
 import com.formance.formance_sdk.operations.GetHolds;
+import com.formance.formance_sdk.operations.GetServerInfoWallets;
 import com.formance.formance_sdk.operations.GetTransactions;
 import com.formance.formance_sdk.operations.GetWallet;
 import com.formance.formance_sdk.operations.GetWalletSummary;
@@ -68,8 +69,9 @@ import com.formance.formance_sdk.operations.ListBalances;
 import com.formance.formance_sdk.operations.ListWallets;
 import com.formance.formance_sdk.operations.UpdateWallet;
 import com.formance.formance_sdk.operations.VoidHold;
-import com.formance.formance_sdk.operations.WalletsgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class WalletsV1 {
@@ -83,6 +85,8 @@ public class WalletsV1 {
     /**
      * Confirm a hold
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @return The call builder
      */
     public ConfirmHoldRequestBuilder confirmHold() {
@@ -92,18 +96,36 @@ public class WalletsV1 {
     /**
      * Confirm a hold
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ConfirmHoldResponse confirmHold(ConfirmHoldRequest request) {
+        return confirmHold(request, Optional.empty());
+    }
+
+    /**
+     * Confirm a hold
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConfirmHoldResponse confirmHold(ConfirmHoldRequest request, Optional<String> serverURL) {
         RequestOperation<ConfirmHoldRequest, ConfirmHoldResponse> operation
-              = new ConfirmHold.Sync(sdkConfiguration, _headers);
+              = new ConfirmHold.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Create a balance
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -114,18 +136,36 @@ public class WalletsV1 {
     /**
      * Create a balance
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateBalanceResponse createBalance(CreateBalanceRequest request) {
+        return createBalance(request, Optional.empty());
+    }
+
+    /**
+     * Create a balance
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateBalanceResponse createBalance(CreateBalanceRequest request, Optional<String> serverURL) {
         RequestOperation<CreateBalanceRequest, CreateBalanceResponse> operation
-              = new CreateBalance.Sync(sdkConfiguration, _headers);
+              = new CreateBalance.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Create a new wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -136,18 +176,36 @@ public class WalletsV1 {
     /**
      * Create a new wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateWalletResponse createWallet(CreateWalletRequest request) {
+        return createWallet(request, Optional.empty());
+    }
+
+    /**
+     * Create a new wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateWalletResponse createWallet(CreateWalletRequest request, Optional<String> serverURL) {
         RequestOperation<CreateWalletRequest, CreateWalletResponse> operation
-              = new CreateWallet.Sync(sdkConfiguration, _headers);
+              = new CreateWallet.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Credit a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -158,18 +216,36 @@ public class WalletsV1 {
     /**
      * Credit a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreditWalletResponse creditWallet(CreditWalletRequest request) {
+        return creditWallet(request, Optional.empty());
+    }
+
+    /**
+     * Credit a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreditWalletResponse creditWallet(CreditWalletRequest request, Optional<String> serverURL) {
         RequestOperation<CreditWalletRequest, CreditWalletResponse> operation
-              = new CreditWallet.Sync(sdkConfiguration, _headers);
+              = new CreditWallet.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Debit a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -180,18 +256,36 @@ public class WalletsV1 {
     /**
      * Debit a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DebitWalletResponse debitWallet(DebitWalletRequest request) {
+        return debitWallet(request, Optional.empty());
+    }
+
+    /**
+     * Debit a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DebitWalletResponse debitWallet(DebitWalletRequest request, Optional<String> serverURL) {
         RequestOperation<DebitWalletRequest, DebitWalletResponse> operation
-              = new DebitWallet.Sync(sdkConfiguration, _headers);
+              = new DebitWallet.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get detailed balance
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -202,18 +296,36 @@ public class WalletsV1 {
     /**
      * Get detailed balance
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetBalanceResponse getBalance(GetBalanceRequest request) {
+        return getBalance(request, Optional.empty());
+    }
+
+    /**
+     * Get detailed balance
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetBalanceResponse getBalance(GetBalanceRequest request, Optional<String> serverURL) {
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration, _headers);
+              = new GetBalance.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get a hold
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -224,18 +336,36 @@ public class WalletsV1 {
     /**
      * Get a hold
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetHoldResponse getHold(GetHoldRequest request) {
+        return getHold(request, Optional.empty());
+    }
+
+    /**
+     * Get a hold
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetHoldResponse getHold(GetHoldRequest request, Optional<String> serverURL) {
         RequestOperation<GetHoldRequest, GetHoldResponse> operation
-              = new GetHold.Sync(sdkConfiguration, _headers);
+              = new GetHold.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get all holds for a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -246,18 +376,74 @@ public class WalletsV1 {
     /**
      * Get all holds for a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetHoldsResponse getHolds(GetHoldsRequest request) {
+        return getHolds(request, Optional.empty());
+    }
+
+    /**
+     * Get all holds for a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetHoldsResponse getHolds(GetHoldsRequest request, Optional<String> serverURL) {
         RequestOperation<GetHoldsRequest, GetHoldsResponse> operation
-              = new GetHolds.Sync(sdkConfiguration, _headers);
+              = new GetHolds.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetServerInfoWalletsRequestBuilder getServerInfoWallets() {
+        return new GetServerInfoWalletsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetServerInfoWalletsResponse getServerInfoWalletsDirect() {
+        return getServerInfoWallets(Optional.empty());
+    }
+
+    /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetServerInfoWalletsResponse getServerInfoWallets(Optional<String> serverURL) {
+        RequestlessOperation<GetServerInfoWalletsResponse> operation
+            = new GetServerInfoWallets.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
      * Returns a builder to make a request.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -266,20 +452,38 @@ public class WalletsV1 {
     }
 
     /**
-     * Makes a request.
+     * Makes a request (required parameters only).
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetTransactionsResponse getTransactions(GetTransactionsRequest request) {
+        return getTransactions(request, Optional.empty());
+    }
+
+    /**
+     * Makes a request.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetTransactionsResponse getTransactions(GetTransactionsRequest request, Optional<String> serverURL) {
         RequestOperation<GetTransactionsRequest, GetTransactionsResponse> operation
-              = new GetTransactions.Sync(sdkConfiguration, _headers);
+              = new GetTransactions.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -290,18 +494,36 @@ public class WalletsV1 {
     /**
      * Get a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWalletResponse getWallet(GetWalletRequest request) {
+        return getWallet(request, Optional.empty());
+    }
+
+    /**
+     * Get a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetWalletResponse getWallet(GetWalletRequest request, Optional<String> serverURL) {
         RequestOperation<GetWalletRequest, GetWalletResponse> operation
-              = new GetWallet.Sync(sdkConfiguration, _headers);
+              = new GetWallet.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Get wallet summary
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -312,18 +534,36 @@ public class WalletsV1 {
     /**
      * Get wallet summary
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWalletSummaryResponse getWalletSummary(GetWalletSummaryRequest request) {
+        return getWalletSummary(request, Optional.empty());
+    }
+
+    /**
+     * Get wallet summary
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetWalletSummaryResponse getWalletSummary(GetWalletSummaryRequest request, Optional<String> serverURL) {
         RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
-              = new GetWalletSummary.Sync(sdkConfiguration, _headers);
+              = new GetWalletSummary.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * List balances of a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -334,18 +574,36 @@ public class WalletsV1 {
     /**
      * List balances of a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ListBalancesResponse listBalances(ListBalancesRequest request) {
+        return listBalances(request, Optional.empty());
+    }
+
+    /**
+     * List balances of a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListBalancesResponse listBalances(ListBalancesRequest request, Optional<String> serverURL) {
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalances.Sync(sdkConfiguration, _headers);
+              = new ListBalances.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * List all wallets
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -356,18 +614,36 @@ public class WalletsV1 {
     /**
      * List all wallets
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ListWalletsResponse listWallets(ListWalletsRequest request) {
+        return listWallets(request, Optional.empty());
+    }
+
+    /**
+     * List all wallets
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListWalletsResponse listWallets(ListWalletsRequest request, Optional<String> serverURL) {
         RequestOperation<ListWalletsRequest, ListWalletsResponse> operation
-              = new ListWallets.Sync(sdkConfiguration, _headers);
+              = new ListWallets.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Update a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -378,18 +654,36 @@ public class WalletsV1 {
     /**
      * Update a wallet
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateWalletResponse updateWallet(UpdateWalletRequest request) {
+        return updateWallet(request, Optional.empty());
+    }
+
+    /**
+     * Update a wallet
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateWalletResponse updateWallet(UpdateWalletRequest request, Optional<String> serverURL) {
         RequestOperation<UpdateWalletRequest, UpdateWalletResponse> operation
-              = new UpdateWallet.Sync(sdkConfiguration, _headers);
+              = new UpdateWallet.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Cancel a hold
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      */
@@ -400,35 +694,30 @@ public class WalletsV1 {
     /**
      * Cancel a hold
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public VoidHoldResponse voidHold(VoidHoldRequest request) {
-        RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
-              = new VoidHold.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
+        return voidHold(request, Optional.empty());
     }
 
     /**
-     * Get server info
+     * Cancel a hold
      * 
-     * @return The call builder
-     */
-    public WalletsgetServerInfoRequestBuilder walletsgetServerInfo() {
-        return new WalletsgetServerInfoRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get server info
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public WalletsgetServerInfoResponse walletsgetServerInfoDirect() {
-        RequestlessOperation<WalletsgetServerInfoResponse> operation
-            = new WalletsgetServerInfo.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest());
+    public VoidHoldResponse voidHold(VoidHoldRequest request, Optional<String> serverURL) {
+        RequestOperation<VoidHoldRequest, VoidHoldResponse> operation
+              = new VoidHold.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

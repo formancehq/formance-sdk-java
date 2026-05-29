@@ -25,7 +25,7 @@ public class GetWalletResponse implements Response {
     /**
      * Wallet
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetWalletResponse implements Response {
     @JsonCreator
     public GetWalletResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetWalletResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetWalletResponse>) getWalletResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.GetWalletResponse>) getWalletResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetWalletResponse implements Response {
     /**
      * Wallet
      */
-    public GetWalletResponse withGetWalletResponse(com.formance.formance_sdk.models.shared.GetWalletResponse getWalletResponse) {
+    public GetWalletResponse withGetWalletResponse(com.formance.formance_sdk.models.wallets.GetWalletResponse getWalletResponse) {
         Utils.checkNotNull(getWalletResponse, "getWalletResponse");
         this.getWalletResponse = Optional.ofNullable(getWalletResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetWalletResponse implements Response {
     /**
      * Wallet
      */
-    public GetWalletResponse withGetWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse) {
+    public GetWalletResponse withGetWalletResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse) {
         Utils.checkNotNull(getWalletResponse, "getWalletResponse");
         this.getWalletResponse = getWalletResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetWalletResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetWalletResponse implements Response {
         /**
          * Wallet
          */
-        public Builder getWalletResponse(com.formance.formance_sdk.models.shared.GetWalletResponse getWalletResponse) {
+        public Builder getWalletResponse(com.formance.formance_sdk.models.wallets.GetWalletResponse getWalletResponse) {
             Utils.checkNotNull(getWalletResponse, "getWalletResponse");
             this.getWalletResponse = Optional.ofNullable(getWalletResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetWalletResponse implements Response {
         /**
          * Wallet
          */
-        public Builder getWalletResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletResponse> getWalletResponse) {
+        public Builder getWalletResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletResponse> getWalletResponse) {
             Utils.checkNotNull(getWalletResponse, "getWalletResponse");
             this.getWalletResponse = getWalletResponse;
             return this;

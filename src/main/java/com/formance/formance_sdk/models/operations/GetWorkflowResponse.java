@@ -25,7 +25,7 @@ public class GetWorkflowResponse implements Response {
     /**
      * The workflow
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetWorkflowResponse implements Response {
     @JsonCreator
     public GetWorkflowResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetWorkflowResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetWorkflowResponse>) getWorkflowResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.GetWorkflowResponse>) getWorkflowResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetWorkflowResponse implements Response {
     /**
      * The workflow
      */
-    public GetWorkflowResponse withGetWorkflowResponse(com.formance.formance_sdk.models.shared.GetWorkflowResponse getWorkflowResponse) {
+    public GetWorkflowResponse withGetWorkflowResponse(com.formance.formance_sdk.models.orchestration.GetWorkflowResponse getWorkflowResponse) {
         Utils.checkNotNull(getWorkflowResponse, "getWorkflowResponse");
         this.getWorkflowResponse = Optional.ofNullable(getWorkflowResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetWorkflowResponse implements Response {
     /**
      * The workflow
      */
-    public GetWorkflowResponse withGetWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse) {
+    public GetWorkflowResponse withGetWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse) {
         Utils.checkNotNull(getWorkflowResponse, "getWorkflowResponse");
         this.getWorkflowResponse = getWorkflowResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetWorkflowResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetWorkflowResponse implements Response {
         /**
          * The workflow
          */
-        public Builder getWorkflowResponse(com.formance.formance_sdk.models.shared.GetWorkflowResponse getWorkflowResponse) {
+        public Builder getWorkflowResponse(com.formance.formance_sdk.models.orchestration.GetWorkflowResponse getWorkflowResponse) {
             Utils.checkNotNull(getWorkflowResponse, "getWorkflowResponse");
             this.getWorkflowResponse = Optional.ofNullable(getWorkflowResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetWorkflowResponse implements Response {
         /**
          * The workflow
          */
-        public Builder getWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWorkflowResponse> getWorkflowResponse) {
+        public Builder getWorkflowResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.GetWorkflowResponse> getWorkflowResponse) {
             Utils.checkNotNull(getWorkflowResponse, "getWorkflowResponse");
             this.getWorkflowResponse = getWorkflowResponse;
             return this;

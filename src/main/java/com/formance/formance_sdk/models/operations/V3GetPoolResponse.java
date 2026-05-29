@@ -35,14 +35,14 @@ public class V3GetPoolResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse;
 
     @JsonCreator
     public V3GetPoolResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3GetPoolResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3GetPoolResponse>) v3GetPoolResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3GetPoolResponse>) v3GetPoolResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3GetPoolResponse implements Response {
     /**
      * OK
      */
-    public V3GetPoolResponse withV3GetPoolResponse(com.formance.formance_sdk.models.shared.V3GetPoolResponse v3GetPoolResponse) {
+    public V3GetPoolResponse withV3GetPoolResponse(com.formance.formance_sdk.models.payments.V3GetPoolResponse v3GetPoolResponse) {
         Utils.checkNotNull(v3GetPoolResponse, "v3GetPoolResponse");
         this.v3GetPoolResponse = Optional.ofNullable(v3GetPoolResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3GetPoolResponse implements Response {
     /**
      * OK
      */
-    public V3GetPoolResponse withV3GetPoolResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse) {
+    public V3GetPoolResponse withV3GetPoolResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse) {
         Utils.checkNotNull(v3GetPoolResponse, "v3GetPoolResponse");
         this.v3GetPoolResponse = v3GetPoolResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3GetPoolResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3GetPoolResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetPoolResponse(com.formance.formance_sdk.models.shared.V3GetPoolResponse v3GetPoolResponse) {
+        public Builder v3GetPoolResponse(com.formance.formance_sdk.models.payments.V3GetPoolResponse v3GetPoolResponse) {
             Utils.checkNotNull(v3GetPoolResponse, "v3GetPoolResponse");
             this.v3GetPoolResponse = Optional.ofNullable(v3GetPoolResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3GetPoolResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetPoolResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetPoolResponse> v3GetPoolResponse) {
+        public Builder v3GetPoolResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetPoolResponse> v3GetPoolResponse) {
             Utils.checkNotNull(v3GetPoolResponse, "v3GetPoolResponse");
             this.v3GetPoolResponse = v3GetPoolResponse;
             return this;

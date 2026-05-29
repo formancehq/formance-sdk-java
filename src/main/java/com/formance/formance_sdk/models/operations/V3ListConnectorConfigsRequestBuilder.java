@@ -8,20 +8,36 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListConnectorConfigs;
 import com.formance.formance_sdk.utils.Headers;
+import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3ListConnectorConfigsRequestBuilder {
 
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public V3ListConnectorConfigsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+                
+    public V3ListConnectorConfigsRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3ListConnectorConfigsRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3ListConnectorConfigsResponse call() {
         
         RequestlessOperation<V3ListConnectorConfigsResponse> operation
-            = new V3ListConnectorConfigs.Sync(sdkConfiguration, _headers);
+            = new V3ListConnectorConfigs.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

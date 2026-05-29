@@ -35,14 +35,14 @@ public class V3CreatePoolResponse implements Response {
     /**
      * Created
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse;
 
     @JsonCreator
     public V3CreatePoolResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3CreatePoolResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3CreatePoolResponse>) v3CreatePoolResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3CreatePoolResponse>) v3CreatePoolResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3CreatePoolResponse implements Response {
     /**
      * Created
      */
-    public V3CreatePoolResponse withV3CreatePoolResponse(com.formance.formance_sdk.models.shared.V3CreatePoolResponse v3CreatePoolResponse) {
+    public V3CreatePoolResponse withV3CreatePoolResponse(com.formance.formance_sdk.models.payments.V3CreatePoolResponse v3CreatePoolResponse) {
         Utils.checkNotNull(v3CreatePoolResponse, "v3CreatePoolResponse");
         this.v3CreatePoolResponse = Optional.ofNullable(v3CreatePoolResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3CreatePoolResponse implements Response {
     /**
      * Created
      */
-    public V3CreatePoolResponse withV3CreatePoolResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse) {
+    public V3CreatePoolResponse withV3CreatePoolResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse) {
         Utils.checkNotNull(v3CreatePoolResponse, "v3CreatePoolResponse");
         this.v3CreatePoolResponse = v3CreatePoolResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3CreatePoolResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3CreatePoolResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreatePoolResponse(com.formance.formance_sdk.models.shared.V3CreatePoolResponse v3CreatePoolResponse) {
+        public Builder v3CreatePoolResponse(com.formance.formance_sdk.models.payments.V3CreatePoolResponse v3CreatePoolResponse) {
             Utils.checkNotNull(v3CreatePoolResponse, "v3CreatePoolResponse");
             this.v3CreatePoolResponse = Optional.ofNullable(v3CreatePoolResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3CreatePoolResponse implements Response {
         /**
          * Created
          */
-        public Builder v3CreatePoolResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3CreatePoolResponse> v3CreatePoolResponse) {
+        public Builder v3CreatePoolResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3CreatePoolResponse> v3CreatePoolResponse) {
             Utils.checkNotNull(v3CreatePoolResponse, "v3CreatePoolResponse");
             this.v3CreatePoolResponse = v3CreatePoolResponse;
             return this;

@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3CreateLinkForPaymentServiceUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3CreateLinkForPaymentServiceUserRequestBuilder {
 
     private V3CreateLinkForPaymentServiceUserRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3CreateLinkForPaymentServiceUserRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3CreateLinkForPaymentServiceUserRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3CreateLinkForPaymentServiceUserRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3CreateLinkForPaymentServiceUserResponse call() {
         
         RequestOperation<V3CreateLinkForPaymentServiceUserRequest, V3CreateLinkForPaymentServiceUserResponse> operation
-              = new V3CreateLinkForPaymentServiceUser.Sync(sdkConfiguration, _headers);
+              = new V3CreateLinkForPaymentServiceUser.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

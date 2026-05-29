@@ -9,10 +9,13 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3GetPaymentServiceUser;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class V3GetPaymentServiceUserRequestBuilder {
 
     private V3GetPaymentServiceUserRequest request;
+    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -25,11 +28,23 @@ public class V3GetPaymentServiceUserRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public V3GetPaymentServiceUserRequestBuilder serverURL(String serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = Optional.of(serverURL);
+        return this;
+    }
+
+    public V3GetPaymentServiceUserRequestBuilder serverURL(Optional<String> serverURL) {
+        Utils.checkNotNull(serverURL, "serverURL");
+        this.serverURL = serverURL;
+        return this;
+    }
 
     public V3GetPaymentServiceUserResponse call() {
         
         RequestOperation<V3GetPaymentServiceUserRequest, V3GetPaymentServiceUserResponse> operation
-              = new V3GetPaymentServiceUser.Sync(sdkConfiguration, _headers);
+              = new V3GetPaymentServiceUser.Sync(sdkConfiguration, serverURL, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

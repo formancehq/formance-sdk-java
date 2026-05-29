@@ -25,7 +25,7 @@ public class ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse;
+    private Optional<? extends com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class ReadTriggerResponse implements Response {
     @JsonCreator
     public ReadTriggerResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse,
+            Optional<? extends com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class ReadTriggerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.ReadTriggerResponse>) readTriggerResponse;
+    public Optional<com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse() {
+        return (Optional<com.formance.formance_sdk.models.orchestration.ReadTriggerResponse>) readTriggerResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    public ReadTriggerResponse withReadTriggerResponse(com.formance.formance_sdk.models.shared.ReadTriggerResponse readTriggerResponse) {
+    public ReadTriggerResponse withReadTriggerResponse(com.formance.formance_sdk.models.orchestration.ReadTriggerResponse readTriggerResponse) {
         Utils.checkNotNull(readTriggerResponse, "readTriggerResponse");
         this.readTriggerResponse = Optional.ofNullable(readTriggerResponse);
         return this;
@@ -121,7 +121,7 @@ public class ReadTriggerResponse implements Response {
     /**
      * A specific trigger
      */
-    public ReadTriggerResponse withReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse) {
+    public ReadTriggerResponse withReadTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse) {
         Utils.checkNotNull(readTriggerResponse, "readTriggerResponse");
         this.readTriggerResponse = readTriggerResponse;
         return this;
@@ -182,7 +182,7 @@ public class ReadTriggerResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class ReadTriggerResponse implements Response {
         /**
          * A specific trigger
          */
-        public Builder readTriggerResponse(com.formance.formance_sdk.models.shared.ReadTriggerResponse readTriggerResponse) {
+        public Builder readTriggerResponse(com.formance.formance_sdk.models.orchestration.ReadTriggerResponse readTriggerResponse) {
             Utils.checkNotNull(readTriggerResponse, "readTriggerResponse");
             this.readTriggerResponse = Optional.ofNullable(readTriggerResponse);
             return this;
@@ -215,7 +215,7 @@ public class ReadTriggerResponse implements Response {
         /**
          * A specific trigger
          */
-        public Builder readTriggerResponse(Optional<? extends com.formance.formance_sdk.models.shared.ReadTriggerResponse> readTriggerResponse) {
+        public Builder readTriggerResponse(Optional<? extends com.formance.formance_sdk.models.orchestration.ReadTriggerResponse> readTriggerResponse) {
             Utils.checkNotNull(readTriggerResponse, "readTriggerResponse");
             this.readTriggerResponse = readTriggerResponse;
             return this;

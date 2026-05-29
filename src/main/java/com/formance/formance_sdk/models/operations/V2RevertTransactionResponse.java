@@ -5,6 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.formance.formance_sdk.models.ledger.V2CreateTransactionResponse;
 import com.formance.formance_sdk.utils.Response;
 import com.formance.formance_sdk.utils.Utils;
 import java.io.InputStream;
@@ -40,7 +41,7 @@ public class V2RevertTransactionResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse;
+    private Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse;
 
     @JsonCreator
     public V2RevertTransactionResponse(
@@ -48,18 +49,18 @@ public class V2RevertTransactionResponse implements Response {
             Map<String, List<String>> headers,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse) {
+            Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         headers = Utils.emptyMapIfNull(headers);
         Utils.checkNotNull(headers, "headers");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(v2RevertTransactionResponse, "v2RevertTransactionResponse");
+        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
         this.contentType = contentType;
         this.headers = headers;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.v2RevertTransactionResponse = v2RevertTransactionResponse;
+        this.v2CreateTransactionResponse = v2CreateTransactionResponse;
     }
     
     public V2RevertTransactionResponse(
@@ -105,8 +106,8 @@ public class V2RevertTransactionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V2RevertTransactionResponse>) v2RevertTransactionResponse;
+    public Optional<V2CreateTransactionResponse> v2CreateTransactionResponse() {
+        return (Optional<V2CreateTransactionResponse>) v2CreateTransactionResponse;
     }
 
     public static Builder builder() {
@@ -150,9 +151,9 @@ public class V2RevertTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2RevertTransactionResponse withV2RevertTransactionResponse(com.formance.formance_sdk.models.shared.V2RevertTransactionResponse v2RevertTransactionResponse) {
-        Utils.checkNotNull(v2RevertTransactionResponse, "v2RevertTransactionResponse");
-        this.v2RevertTransactionResponse = Optional.ofNullable(v2RevertTransactionResponse);
+    public V2RevertTransactionResponse withV2CreateTransactionResponse(V2CreateTransactionResponse v2CreateTransactionResponse) {
+        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
+        this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
         return this;
     }
 
@@ -160,9 +161,9 @@ public class V2RevertTransactionResponse implements Response {
     /**
      * OK
      */
-    public V2RevertTransactionResponse withV2RevertTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse) {
-        Utils.checkNotNull(v2RevertTransactionResponse, "v2RevertTransactionResponse");
-        this.v2RevertTransactionResponse = v2RevertTransactionResponse;
+    public V2RevertTransactionResponse withV2CreateTransactionResponse(Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse) {
+        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
+        this.v2CreateTransactionResponse = v2CreateTransactionResponse;
         return this;
     }
 
@@ -180,14 +181,14 @@ public class V2RevertTransactionResponse implements Response {
             Utils.enhancedDeepEquals(this.headers, other.headers) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.v2RevertTransactionResponse, other.v2RevertTransactionResponse);
+            Utils.enhancedDeepEquals(this.v2CreateTransactionResponse, other.v2CreateTransactionResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, headers, statusCode,
-            rawResponse, v2RevertTransactionResponse);
+            rawResponse, v2CreateTransactionResponse);
     }
     
     @Override
@@ -197,7 +198,7 @@ public class V2RevertTransactionResponse implements Response {
                 "headers", headers,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "v2RevertTransactionResponse", v2RevertTransactionResponse);
+                "v2CreateTransactionResponse", v2CreateTransactionResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -211,7 +212,7 @@ public class V2RevertTransactionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse = Optional.empty();
+        private Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -258,18 +259,18 @@ public class V2RevertTransactionResponse implements Response {
         /**
          * OK
          */
-        public Builder v2RevertTransactionResponse(com.formance.formance_sdk.models.shared.V2RevertTransactionResponse v2RevertTransactionResponse) {
-            Utils.checkNotNull(v2RevertTransactionResponse, "v2RevertTransactionResponse");
-            this.v2RevertTransactionResponse = Optional.ofNullable(v2RevertTransactionResponse);
+        public Builder v2CreateTransactionResponse(V2CreateTransactionResponse v2CreateTransactionResponse) {
+            Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
+            this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder v2RevertTransactionResponse(Optional<? extends com.formance.formance_sdk.models.shared.V2RevertTransactionResponse> v2RevertTransactionResponse) {
-            Utils.checkNotNull(v2RevertTransactionResponse, "v2RevertTransactionResponse");
-            this.v2RevertTransactionResponse = v2RevertTransactionResponse;
+        public Builder v2CreateTransactionResponse(Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse) {
+            Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
+            this.v2CreateTransactionResponse = v2CreateTransactionResponse;
             return this;
         }
 
@@ -277,7 +278,7 @@ public class V2RevertTransactionResponse implements Response {
 
             return new V2RevertTransactionResponse(
                 contentType, headers, statusCode,
-                rawResponse, v2RevertTransactionResponse);
+                rawResponse, v2CreateTransactionResponse);
         }
 
     }

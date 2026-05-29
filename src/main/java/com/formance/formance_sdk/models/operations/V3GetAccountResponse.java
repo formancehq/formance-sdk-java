@@ -35,14 +35,14 @@ public class V3GetAccountResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse;
+    private Optional<? extends com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse;
 
     @JsonCreator
     public V3GetAccountResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse) {
+            Optional<? extends com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -90,8 +90,8 @@ public class V3GetAccountResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.V3GetAccountResponse>) v3GetAccountResponse;
+    public Optional<com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse() {
+        return (Optional<com.formance.formance_sdk.models.payments.V3GetAccountResponse>) v3GetAccountResponse;
     }
 
     public static Builder builder() {
@@ -129,7 +129,7 @@ public class V3GetAccountResponse implements Response {
     /**
      * OK
      */
-    public V3GetAccountResponse withV3GetAccountResponse(com.formance.formance_sdk.models.shared.V3GetAccountResponse v3GetAccountResponse) {
+    public V3GetAccountResponse withV3GetAccountResponse(com.formance.formance_sdk.models.payments.V3GetAccountResponse v3GetAccountResponse) {
         Utils.checkNotNull(v3GetAccountResponse, "v3GetAccountResponse");
         this.v3GetAccountResponse = Optional.ofNullable(v3GetAccountResponse);
         return this;
@@ -139,7 +139,7 @@ public class V3GetAccountResponse implements Response {
     /**
      * OK
      */
-    public V3GetAccountResponse withV3GetAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse) {
+    public V3GetAccountResponse withV3GetAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse) {
         Utils.checkNotNull(v3GetAccountResponse, "v3GetAccountResponse");
         this.v3GetAccountResponse = v3GetAccountResponse;
         return this;
@@ -186,7 +186,7 @@ public class V3GetAccountResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,7 +226,7 @@ public class V3GetAccountResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetAccountResponse(com.formance.formance_sdk.models.shared.V3GetAccountResponse v3GetAccountResponse) {
+        public Builder v3GetAccountResponse(com.formance.formance_sdk.models.payments.V3GetAccountResponse v3GetAccountResponse) {
             Utils.checkNotNull(v3GetAccountResponse, "v3GetAccountResponse");
             this.v3GetAccountResponse = Optional.ofNullable(v3GetAccountResponse);
             return this;
@@ -235,7 +235,7 @@ public class V3GetAccountResponse implements Response {
         /**
          * OK
          */
-        public Builder v3GetAccountResponse(Optional<? extends com.formance.formance_sdk.models.shared.V3GetAccountResponse> v3GetAccountResponse) {
+        public Builder v3GetAccountResponse(Optional<? extends com.formance.formance_sdk.models.payments.V3GetAccountResponse> v3GetAccountResponse) {
             Utils.checkNotNull(v3GetAccountResponse, "v3GetAccountResponse");
             this.v3GetAccountResponse = v3GetAccountResponse;
             return this;

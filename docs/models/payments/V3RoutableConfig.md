@@ -1,0 +1,14 @@
+# V3RoutableConfig
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `actingTeamMember`                                                      | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `apiKey`                                                                | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `endpoint`                                                              | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `name`                                                                  | *String*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`pageSize`~~                                                          | *Optional\<Long>*                                                       | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `pollingPeriod`                                                         | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *Optional\<String>*                                                     | :heavy_minus_sign:                                                      | N/A                                                                     |

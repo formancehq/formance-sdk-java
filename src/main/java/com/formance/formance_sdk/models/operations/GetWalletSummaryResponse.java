@@ -25,7 +25,7 @@ public class GetWalletSummaryResponse implements Response {
     /**
      * Wallet summary
      */
-    private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse;
+    private Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse;
 
     /**
      * HTTP response status code for this operation
@@ -40,7 +40,7 @@ public class GetWalletSummaryResponse implements Response {
     @JsonCreator
     public GetWalletSummaryResponse(
             String contentType,
-            Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse,
+            Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
@@ -74,8 +74,8 @@ public class GetWalletSummaryResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse() {
-        return (Optional<com.formance.formance_sdk.models.shared.GetWalletSummaryResponse>) getWalletSummaryResponse;
+    public Optional<com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse() {
+        return (Optional<com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse>) getWalletSummaryResponse;
     }
 
     /**
@@ -111,7 +111,7 @@ public class GetWalletSummaryResponse implements Response {
     /**
      * Wallet summary
      */
-    public GetWalletSummaryResponse withGetWalletSummaryResponse(com.formance.formance_sdk.models.shared.GetWalletSummaryResponse getWalletSummaryResponse) {
+    public GetWalletSummaryResponse withGetWalletSummaryResponse(com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse getWalletSummaryResponse) {
         Utils.checkNotNull(getWalletSummaryResponse, "getWalletSummaryResponse");
         this.getWalletSummaryResponse = Optional.ofNullable(getWalletSummaryResponse);
         return this;
@@ -121,7 +121,7 @@ public class GetWalletSummaryResponse implements Response {
     /**
      * Wallet summary
      */
-    public GetWalletSummaryResponse withGetWalletSummaryResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse) {
+    public GetWalletSummaryResponse withGetWalletSummaryResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse) {
         Utils.checkNotNull(getWalletSummaryResponse, "getWalletSummaryResponse");
         this.getWalletSummaryResponse = getWalletSummaryResponse;
         return this;
@@ -182,7 +182,7 @@ public class GetWalletSummaryResponse implements Response {
 
         private String contentType;
 
-        private Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse = Optional.empty();
 
         private Integer statusCode;
 
@@ -206,7 +206,7 @@ public class GetWalletSummaryResponse implements Response {
         /**
          * Wallet summary
          */
-        public Builder getWalletSummaryResponse(com.formance.formance_sdk.models.shared.GetWalletSummaryResponse getWalletSummaryResponse) {
+        public Builder getWalletSummaryResponse(com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse getWalletSummaryResponse) {
             Utils.checkNotNull(getWalletSummaryResponse, "getWalletSummaryResponse");
             this.getWalletSummaryResponse = Optional.ofNullable(getWalletSummaryResponse);
             return this;
@@ -215,7 +215,7 @@ public class GetWalletSummaryResponse implements Response {
         /**
          * Wallet summary
          */
-        public Builder getWalletSummaryResponse(Optional<? extends com.formance.formance_sdk.models.shared.GetWalletSummaryResponse> getWalletSummaryResponse) {
+        public Builder getWalletSummaryResponse(Optional<? extends com.formance.formance_sdk.models.wallets.GetWalletSummaryResponse> getWalletSummaryResponse) {
             Utils.checkNotNull(getWalletSummaryResponse, "getWalletSummaryResponse");
             this.getWalletSummaryResponse = getWalletSummaryResponse;
             return this;

@@ -3,18 +3,20 @@
  */
 package com.formance.formance_sdk;
 
-import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
+import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
+import com.formance.formance_sdk.models.operations.GetServerInfoSearchRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetServerInfoSearchResponse;
 import com.formance.formance_sdk.models.operations.SearchRequestBuilder;
 import com.formance.formance_sdk.models.operations.SearchResponse;
-import com.formance.formance_sdk.models.operations.SearchgetServerInfoRequestBuilder;
-import com.formance.formance_sdk.models.operations.SearchgetServerInfoResponse;
-import com.formance.formance_sdk.models.shared.Query;
+import com.formance.formance_sdk.models.search.Query;
+import com.formance.formance_sdk.operations.GetServerInfoSearch;
 import com.formance.formance_sdk.operations.Search;
-import com.formance.formance_sdk.operations.SearchgetServerInfo;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class SearchV1 {
@@ -26,9 +28,55 @@ public class SearchV1 {
     }
 
     /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public GetServerInfoSearchRequestBuilder getServerInfoSearch() {
+        return new GetServerInfoSearchRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public GetServerInfoSearchResponse getServerInfoSearchDirect() {
+        return getServerInfoSearch(Optional.empty());
+    }
+
+    /**
+     * Get server info
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public GetServerInfoSearchResponse getServerInfoSearch(Optional<String> serverURL) {
+        RequestlessOperation<GetServerInfoSearchResponse> operation
+            = new GetServerInfoSearch.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
      * search.v1
      * 
      * <p>Elasticsearch.v1 query engine
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -43,6 +91,8 @@ public class SearchV1 {
      * 
      * <p>Elasticsearch.v1 query engine
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -50,34 +100,27 @@ public class SearchV1 {
      */
     @Deprecated
     public SearchResponse search(Query request) {
-        RequestOperation<Query, SearchResponse> operation
-              = new Search.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
+        return search(request, Optional.empty());
     }
 
     /**
-     * Get server info
+     * search.v1
      * 
-     * @return The call builder
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public SearchgetServerInfoRequestBuilder searchgetServerInfo() {
-        return new SearchgetServerInfoRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get server info
+     * <p>Elasticsearch.v1 query engine
      * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SearchgetServerInfoResponse searchgetServerInfoDirect() {
-        RequestlessOperation<SearchgetServerInfoResponse> operation
-            = new SearchgetServerInfo.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest());
+    public SearchResponse search(Query request, Optional<String> serverURL) {
+        RequestOperation<Query, SearchResponse> operation
+              = new Search.Sync(sdkConfiguration, serverURL, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

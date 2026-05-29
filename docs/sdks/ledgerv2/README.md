@@ -59,7 +59,7 @@ Set the metadata of a transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -69,7 +69,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -101,6 +101,7 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V2AddMetadataOnTransactionRequest](../../models/operations/V2AddMetadataOnTransactionRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
+| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -108,10 +109,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## addMetadataToAccount
 
@@ -124,7 +125,7 @@ Add metadata to an account
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataToAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -133,7 +134,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -165,6 +166,7 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V2AddMetadataToAccountRequest](../../models/operations/V2AddMetadataToAccountRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -172,10 +174,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## countAccounts
 
@@ -188,15 +190,16 @@ Count the accounts from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CountAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2CountAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -206,6 +209,9 @@ public class Application {
             .build();
 
         V2CountAccountsRequest req = V2CountAccountsRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -223,6 +229,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2CountAccountsRequest](../../models/operations/V2CountAccountsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -230,10 +237,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## countTransactions
 
@@ -246,15 +253,16 @@ Count the transactions from a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2CountTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -264,6 +272,8 @@ public class Application {
             .build();
 
         V2CountTransactionsRequest req = V2CountTransactionsRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -281,6 +291,7 @@ public class Application {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [V2CountTransactionsRequest](../../models/operations/V2CountTransactionsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *String*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -288,10 +299,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createBulk
 
@@ -304,17 +315,17 @@ Bulk request
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2BaseBulkElement;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2BulkElementRevertTransaction;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -325,7 +336,7 @@ public class Application {
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .requestBody(List.of(
-                    V2BulkElementRevertTransaction.builder()
+                    V2BaseBulkElement.builder()
                         .action("REVERT_TRANSACTION")
                         .build()))
                 .ledger("ledger001")
@@ -351,6 +362,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2CreateBulkRequest](../../models/operations/V2CreateBulkRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -358,10 +370,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createExporter
 
@@ -374,25 +386,20 @@ Create exporter
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
-import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
-        V2CreateExporterRequest req = V2CreateExporterRequest.builder()
+        V2ExporterConfiguration2 req = V2ExporterConfiguration2.builder()
                 .config(Map.ofEntries(
                     Map.entry("key", "<value>")))
                 .driver("<value>")
@@ -402,8 +409,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2CreateExporterResponse().isPresent()) {
+            System.out.println(res.v2CreateExporterResponse().get());
         }
     }
 }
@@ -411,9 +418,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [V2CreateExporterRequest](../../models/shared/V2CreateExporterRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [V2ExporterConfiguration2](../../models/shared/V2ExporterConfiguration2.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -421,10 +429,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createLedger
 
@@ -437,16 +445,16 @@ Create a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2CreateLedgerRequest;
 import com.formance.formance_sdk.models.operations.V2CreateLedgerResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateLedgerRequest;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -457,7 +465,7 @@ public class Application {
 
         com.formance.formance_sdk.models.operations.V2CreateLedgerRequest req = com.formance.formance_sdk.models.operations.V2CreateLedgerRequest.builder()
                 .v2CreateLedgerRequest(V2CreateLedgerRequest.builder()
-                    .metadata(Map.ofEntries(
+                    .v2Metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
                     .build())
                 .ledger("ledger001")
@@ -477,6 +485,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2CreateLedgerRequest](../../models/operations/V2CreateLedgerRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -484,10 +493,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createPipeline
 
@@ -500,21 +509,16 @@ Create pipeline
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2CreatePipelineRequest;
 import com.formance.formance_sdk.models.operations.V2CreatePipelineResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2CreatePipelineRequest req = V2CreatePipelineRequest.builder()
@@ -525,8 +529,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2CreatePipelineResponse().isPresent()) {
+            System.out.println(res.v2CreatePipelineResponse().get());
         }
     }
 }
@@ -537,6 +541,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2CreatePipelineRequest](../../models/operations/V2CreatePipelineRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -544,10 +549,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## createTransaction
 
@@ -560,10 +565,10 @@ Create a new transaction to a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2CreateTransactionResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.math.BigInteger;
 import java.util.List;
@@ -571,7 +576,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -582,7 +587,7 @@ public class Application {
 
         V2CreateTransactionRequest req = V2CreateTransactionRequest.builder()
                 .v2PostTransaction(V2PostTransaction.builder()
-                    .metadata(Map.ofEntries(
+                    .v2Metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
                     .accountMetadata(Map.ofEntries(
                         Map.entry("key", Map.ofEntries(
@@ -628,6 +633,7 @@ public class Application {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [V2CreateTransactionRequest](../../models/operations/V2CreateTransactionRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *String*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -635,10 +641,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteAccountMetadata
 
@@ -651,7 +657,7 @@ Delete metadata by key
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteAccountMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -659,7 +665,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -688,6 +694,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V2DeleteAccountMetadataRequest](../../models/operations/V2DeleteAccountMetadataRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -695,10 +702,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteBucket
 
@@ -711,7 +718,7 @@ Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). A
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteBucketRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteBucketResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -719,7 +726,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -748,6 +755,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2DeleteBucketRequest](../../models/operations/V2DeleteBucketRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -755,10 +763,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteExporter
 
@@ -771,21 +779,16 @@ Delete exporter
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteExporterRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteExporterResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2DeleteExporterRequest req = V2DeleteExporterRequest.builder()
@@ -806,6 +809,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2DeleteExporterRequest](../../models/operations/V2DeleteExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -813,10 +817,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteLedgerMetadata
 
@@ -829,7 +833,7 @@ Delete ledger metadata by key
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteLedgerMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -837,7 +841,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -865,6 +869,7 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V2DeleteLedgerMetadataRequest](../../models/operations/V2DeleteLedgerMetadataRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -872,10 +877,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deletePipeline
 
@@ -888,21 +893,16 @@ Delete pipeline
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeletePipelineRequest;
 import com.formance.formance_sdk.models.operations.V2DeletePipelineResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2DeletePipelineRequest req = V2DeletePipelineRequest.builder()
@@ -924,6 +924,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2DeletePipelineRequest](../../models/operations/V2DeletePipelineRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -931,10 +932,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## deleteTransactionMetadata
 
@@ -947,7 +948,7 @@ Delete metadata by key
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTransactionMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -956,7 +957,7 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -985,6 +986,7 @@ public class Application {
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `request`                                                                                           | [V2DeleteTransactionMetadataRequest](../../models/operations/V2DeleteTransactionMetadataRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `serverURL`                                                                                         | *String*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -992,10 +994,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## exportLogs
 
@@ -1042,6 +1044,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2ExportLogsRequest](../../models/operations/V2ExportLogsRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1064,7 +1067,7 @@ Get account by its address
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetAccountRequest;
 import com.formance.formance_sdk.models.operations.V2GetAccountResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1072,7 +1075,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1102,6 +1105,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2GetAccountRequest](../../models/operations/V2GetAccountRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1109,10 +1113,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getBalancesAggregated
 
@@ -1125,15 +1129,16 @@ Get the aggregated balances from selected accounts
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRequest;
 import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1143,6 +1148,10 @@ public class Application {
             .build();
 
         V2GetBalancesAggregatedRequest req = V2GetBalancesAggregatedRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>"),
+                    Map.entry("key2", "<value>")))
                 .ledger("ledger001")
                 .build();
 
@@ -1162,6 +1171,7 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V2GetBalancesAggregatedRequest](../../models/operations/V2GetBalancesAggregatedRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1169,10 +1179,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getExporterState
 
@@ -1185,21 +1195,16 @@ Get exporter state
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetExporterStateRequest;
 import com.formance.formance_sdk.models.operations.V2GetExporterStateResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2GetExporterStateRequest req = V2GetExporterStateRequest.builder()
@@ -1210,8 +1215,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2GetExporterStateResponse().isPresent()) {
+            System.out.println(res.v2GetExporterStateResponse().get());
         }
     }
 }
@@ -1222,6 +1227,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V2GetExporterStateRequest](../../models/operations/V2GetExporterStateRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -1229,10 +1235,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getLedger
 
@@ -1245,7 +1251,7 @@ Get a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetLedgerRequest;
 import com.formance.formance_sdk.models.operations.V2GetLedgerResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1253,7 +1259,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1282,6 +1288,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2GetLedgerRequest](../../models/operations/V2GetLedgerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1289,10 +1296,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getLedgerInfo
 
@@ -1305,7 +1312,7 @@ Get information about a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1313,7 +1320,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1342,6 +1349,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2GetLedgerInfoRequest](../../models/operations/V2GetLedgerInfoRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1349,10 +1357,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getPipelineState
 
@@ -1365,21 +1373,16 @@ Get pipeline state
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetPipelineStateRequest;
 import com.formance.formance_sdk.models.operations.V2GetPipelineStateResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2GetPipelineStateRequest req = V2GetPipelineStateRequest.builder()
@@ -1391,8 +1394,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2GetPipelineStateResponse().isPresent()) {
+            System.out.println(res.v2GetPipelineStateResponse().get());
         }
     }
 }
@@ -1403,6 +1406,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V2GetPipelineStateRequest](../../models/operations/V2GetPipelineStateRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -1410,10 +1414,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getSchema
 
@@ -1426,7 +1430,7 @@ Get a schema for a ledger by version
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetSchemaRequest;
 import com.formance.formance_sdk.models.operations.V2GetSchemaResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1434,7 +1438,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1464,6 +1468,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2GetSchemaRequest](../../models/operations/V2GetSchemaRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -1471,10 +1476,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getTransaction
 
@@ -1487,7 +1492,7 @@ Get transaction from a ledger by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2GetTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1496,7 +1501,7 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1526,6 +1531,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2GetTransactionRequest](../../models/operations/V2GetTransactionRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -1533,10 +1539,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getVolumesWithBalances
 
@@ -1549,15 +1555,16 @@ Get list of volumes with balances for (account/asset)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesRequest;
 import com.formance.formance_sdk.models.operations.V2GetVolumesWithBalancesResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1567,6 +1574,8 @@ public class Application {
             .build();
 
         V2GetVolumesWithBalancesRequest req = V2GetVolumesWithBalancesRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>")))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .groupBy(3L)
@@ -1590,6 +1599,7 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V2GetVolumesWithBalancesRequest](../../models/operations/V2GetVolumesWithBalancesRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -1597,10 +1607,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## importLogs
 
@@ -1611,7 +1621,7 @@ public class Application {
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ImportLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ImportLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1620,7 +1630,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1647,6 +1657,7 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V2ImportLogsRequest](../../models/operations/V2ImportLogsRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1654,10 +1665,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## insertSchema
 
@@ -1670,16 +1681,16 @@ Insert a schema for a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.V2InsertSchemaRequest;
 import com.formance.formance_sdk.models.operations.V2InsertSchemaResponse;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1689,17 +1700,17 @@ public class Application {
             .build();
 
         V2InsertSchemaRequest req = V2InsertSchemaRequest.builder()
-                .v2SchemaData(V2SchemaData.builder()
-                    .chart(Map.ofEntries(
+                .v2SchemaData(V2SchemaData2.builder()
+                    .v2ChartOfAccounts(Map.ofEntries(
                         Map.entry("users", V2ChartSegment.builder()
                             .additionalProperties(Map.ofEntries(
                                 Map.entry("$userID", V2ChartSegment.builder()
                                     .dotPattern("^[0-9]{16}$")
                                     .build())))
                             .build())))
-                    .queries(Map.ofEntries(
+                    .v2QueryTemplates(Map.ofEntries(
                         Map.entry("key", V2QueryTemplate.builder()
-                            .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                            .v2QueryParams(V2QueryParams.of(QueryTemplateAccountParams.builder()
                                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                                 .pageSize(100L)
                                 .sort("id:desc")
@@ -1724,6 +1735,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2InsertSchemaRequest](../../models/operations/V2InsertSchemaRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -1731,10 +1743,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listAccounts
 
@@ -1747,15 +1759,16 @@ List accounts from a ledger, sorted by address in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListAccountsRequest;
 import com.formance.formance_sdk.models.operations.V2ListAccountsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1765,6 +1778,8 @@ public class Application {
             .build();
 
         V2ListAccountsRequest req = V2ListAccountsRequest.builder()
+                .requestBody(Map.ofEntries(
+                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1787,6 +1802,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2ListAccountsRequest](../../models/operations/V2ListAccountsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -1794,10 +1810,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listExporters
 
@@ -1810,31 +1826,32 @@ List exporters
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListExportersResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2ListExportersResponse res = sdk.ledger().v2().listExporters()
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2ExportersCursorResponse().isPresent()) {
+            System.out.println(res.v2ExportersCursorResponse().get());
         }
     }
 }
 ```
+
+### Parameters
+
+| Parameter                      | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -1842,10 +1859,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listLedgers
 
@@ -1858,15 +1875,16 @@ List ledgers
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListLedgersRequest;
 import com.formance.formance_sdk.models.operations.V2ListLedgersResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1876,6 +1894,10 @@ public class Application {
             .build();
 
         V2ListLedgersRequest req = V2ListLedgersRequest.builder()
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>"),
+                    Map.entry("key2", "<value>")))
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
                 .sort("id:desc")
@@ -1897,6 +1919,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2ListLedgersRequest](../../models/operations/V2ListLedgersRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -1904,10 +1927,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listLogs
 
@@ -1920,15 +1943,16 @@ List the logs from a ledger, sorted by ID in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ListLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1938,6 +1962,8 @@ public class Application {
             .build();
 
         V2ListLogsRequest req = V2ListLogsRequest.builder()
+                .requestBody(Map.ofEntries(
+                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -1960,6 +1986,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [V2ListLogsRequest](../../models/operations/V2ListLogsRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1967,10 +1994,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listPipelines
 
@@ -1983,21 +2010,16 @@ List pipelines
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListPipelinesRequest;
 import com.formance.formance_sdk.models.operations.V2ListPipelinesResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2ListPipelinesRequest req = V2ListPipelinesRequest.builder()
@@ -2008,8 +2030,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
+        if (res.v2PipelinesCursorResponse().isPresent()) {
+            System.out.println(res.v2PipelinesCursorResponse().get());
         }
     }
 }
@@ -2020,6 +2042,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2ListPipelinesRequest](../../models/operations/V2ListPipelinesRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -2027,10 +2050,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listSchemas
 
@@ -2043,7 +2066,7 @@ List all schemas for a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListSchemasRequest;
 import com.formance.formance_sdk.models.operations.V2ListSchemasResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2051,7 +2074,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2080,6 +2103,7 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V2ListSchemasRequest](../../models/operations/V2ListSchemasRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -2087,10 +2111,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## listTransactions
 
@@ -2103,15 +2127,16 @@ List transactions from a ledger, sorted by id in descending order.
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsRequest;
 import com.formance.formance_sdk.models.operations.V2ListTransactionsResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2121,6 +2146,8 @@ public class Application {
             .build();
 
         V2ListTransactionsRequest req = V2ListTransactionsRequest.builder()
+                .requestBody(Map.ofEntries(
+                ))
                 .ledger("ledger001")
                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                 .pageSize(100L)
@@ -2143,6 +2170,7 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V2ListTransactionsRequest](../../models/operations/V2ListTransactionsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -2150,10 +2178,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## readStats
 
@@ -2167,7 +2195,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ReadStatsRequest;
 import com.formance.formance_sdk.models.operations.V2ReadStatsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2175,7 +2203,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2204,6 +2232,7 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V2ReadStatsRequest](../../models/operations/V2ReadStatsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -2211,10 +2240,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## resetPipeline
 
@@ -2227,21 +2256,16 @@ Reset pipeline
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ResetPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2ResetPipelineResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2ResetPipelineRequest req = V2ResetPipelineRequest.builder()
@@ -2263,6 +2287,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2ResetPipelineRequest](../../models/operations/V2ResetPipelineRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -2270,10 +2295,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## restoreBucket
 
@@ -2286,7 +2311,7 @@ Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All 
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2RestoreBucketRequest;
 import com.formance.formance_sdk.models.operations.V2RestoreBucketResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2294,7 +2319,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2323,6 +2348,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2RestoreBucketRequest](../../models/operations/V2RestoreBucketRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -2330,10 +2356,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## revertTransaction
 
@@ -2346,7 +2372,7 @@ Revert a ledger transaction by its ID
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2RevertTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2355,7 +2381,7 @@ import java.math.BigInteger;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2375,8 +2401,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.v2RevertTransactionResponse().isPresent()) {
-            System.out.println(res.v2RevertTransactionResponse().get());
+        if (res.v2CreateTransactionResponse().isPresent()) {
+            System.out.println(res.v2CreateTransactionResponse().get());
         }
     }
 }
@@ -2387,6 +2413,7 @@ public class Application {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `request`                                                                           | [V2RevertTransactionRequest](../../models/operations/V2RevertTransactionRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+| `serverURL`                                                                         | *String*                                                                            | :heavy_minus_sign:                                                                  | An optional server URL to use.                                                      |
 
 ### Response
 
@@ -2394,10 +2421,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## runQuery
 
@@ -2410,15 +2437,15 @@ Run a query template on a ledger
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.*;
-import com.formance.formance_sdk.models.shared.*;
+import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 import java.lang.Object;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2429,7 +2456,7 @@ public class Application {
 
         V2RunQueryRequest req = V2RunQueryRequest.builder()
                 .requestBody(V2RunQueryRequestBody.builder()
-                    .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                    .v2QueryParams(V2QueryParams.of(QueryTemplateAccountParams.builder()
                         .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                         .pageSize(100L)
                         .sort("id:desc")
@@ -2475,6 +2502,7 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [V2RunQueryRequest](../../models/operations/V2RunQueryRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -2482,10 +2510,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## startPipeline
 
@@ -2498,21 +2526,16 @@ Start pipeline
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2StartPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2StartPipelineResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2StartPipelineRequest req = V2StartPipelineRequest.builder()
@@ -2534,6 +2557,7 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V2StartPipelineRequest](../../models/operations/V2StartPipelineRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -2541,10 +2565,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## stopPipeline
 
@@ -2557,21 +2581,16 @@ Stop pipeline
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2StopPipelineRequest;
 import com.formance.formance_sdk.models.operations.V2StopPipelineResponse;
-import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
 
         V2StopPipelineRequest req = V2StopPipelineRequest.builder()
@@ -2593,6 +2612,7 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V2StopPipelineRequest](../../models/operations/V2StopPipelineRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2600,10 +2620,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## updateExporter
 
@@ -2616,17 +2636,17 @@ Update exporter
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
 import com.formance.formance_sdk.models.operations.V2UpdateExporterRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
 import com.formance.formance_sdk.models.shared.Security;
-import com.formance.formance_sdk.models.shared.V2CreateExporterRequest;
 import java.lang.Exception;
 import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2636,7 +2656,7 @@ public class Application {
             .build();
 
         V2UpdateExporterRequest req = V2UpdateExporterRequest.builder()
-                .v2CreateExporterRequest(V2CreateExporterRequest.builder()
+                .v2ExporterConfiguration(V2ExporterConfiguration2.builder()
                     .config(Map.ofEntries(
                         Map.entry("key", "<value>"),
                         Map.entry("key1", "<value>"),
@@ -2660,6 +2680,7 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V2UpdateExporterRequest](../../models/operations/V2UpdateExporterRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -2667,10 +2688,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## updateLedgerMetadata
 
@@ -2683,7 +2704,7 @@ Update ledger metadata
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.errors.V2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2692,7 +2713,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws V2ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -2723,6 +2744,7 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V2UpdateLedgerMetadataRequest](../../models/operations/V2UpdateLedgerMetadataRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -2730,7 +2752,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| models/errors/V2ErrorResponse | default                       | application/json              |
-| models/errors/SDKError        | 4XX, 5XX                      | \*/\*                         |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |

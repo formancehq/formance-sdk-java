@@ -1,0 +1,10 @@
+# V2BulkResponse
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              | Example                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `v2ErrorsEnum`                                                           | [Optional\<V2ErrorsEnum>](../../models/shared/V2ErrorsEnum.md)           | :heavy_minus_sign:                                                       | N/A                                                                      | VALIDATION                                                               |
+| `data`                                                                   | List\<[V2BulkElementResult](../../models/shared/V2BulkElementResult.md)> | :heavy_minus_sign:                                                       | N/A                                                                      |                                                                          |
+| `errorMessage`                                                           | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      | [VALIDATION] invalid 'cursor' query param                                |

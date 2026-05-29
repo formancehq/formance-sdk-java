@@ -35,22 +35,22 @@ public class V2GetExporterStateResponse implements Response {
     /**
      * Exporter information
      */
-    private Optional<? extends V2GetExporterStateResponseBody> object;
+    private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse;
 
     @JsonCreator
     public V2GetExporterStateResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends V2GetExporterStateResponseBody> object) {
+            Optional<? extends com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(v2GetExporterStateResponse, "v2GetExporterStateResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.v2GetExporterStateResponse = v2GetExporterStateResponse;
     }
     
     public V2GetExporterStateResponse(
@@ -90,8 +90,8 @@ public class V2GetExporterStateResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2GetExporterStateResponseBody> object() {
-        return (Optional<V2GetExporterStateResponseBody>) object;
+    public Optional<com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse() {
+        return (Optional<com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse>) v2GetExporterStateResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +129,9 @@ public class V2GetExporterStateResponse implements Response {
     /**
      * Exporter information
      */
-    public V2GetExporterStateResponse withObject(V2GetExporterStateResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public V2GetExporterStateResponse withV2GetExporterStateResponse(com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse v2GetExporterStateResponse) {
+        Utils.checkNotNull(v2GetExporterStateResponse, "v2GetExporterStateResponse");
+        this.v2GetExporterStateResponse = Optional.ofNullable(v2GetExporterStateResponse);
         return this;
     }
 
@@ -139,9 +139,9 @@ public class V2GetExporterStateResponse implements Response {
     /**
      * Exporter information
      */
-    public V2GetExporterStateResponse withObject(Optional<? extends V2GetExporterStateResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public V2GetExporterStateResponse withV2GetExporterStateResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse) {
+        Utils.checkNotNull(v2GetExporterStateResponse, "v2GetExporterStateResponse");
+        this.v2GetExporterStateResponse = v2GetExporterStateResponse;
         return this;
     }
 
@@ -158,14 +158,14 @@ public class V2GetExporterStateResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.v2GetExporterStateResponse, other.v2GetExporterStateResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            v2GetExporterStateResponse);
     }
     
     @Override
@@ -174,7 +174,7 @@ public class V2GetExporterStateResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "v2GetExporterStateResponse", v2GetExporterStateResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +186,7 @@ public class V2GetExporterStateResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends V2GetExporterStateResponseBody> object = Optional.empty();
+        private Optional<? extends com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +226,18 @@ public class V2GetExporterStateResponse implements Response {
         /**
          * Exporter information
          */
-        public Builder object(V2GetExporterStateResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder v2GetExporterStateResponse(com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse v2GetExporterStateResponse) {
+            Utils.checkNotNull(v2GetExporterStateResponse, "v2GetExporterStateResponse");
+            this.v2GetExporterStateResponse = Optional.ofNullable(v2GetExporterStateResponse);
             return this;
         }
 
         /**
          * Exporter information
          */
-        public Builder object(Optional<? extends V2GetExporterStateResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder v2GetExporterStateResponse(Optional<? extends com.formance.formance_sdk.models.ledger.V2GetExporterStateResponse> v2GetExporterStateResponse) {
+            Utils.checkNotNull(v2GetExporterStateResponse, "v2GetExporterStateResponse");
+            this.v2GetExporterStateResponse = v2GetExporterStateResponse;
             return this;
         }
 
@@ -245,7 +245,7 @@ public class V2GetExporterStateResponse implements Response {
 
             return new V2GetExporterStateResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                v2GetExporterStateResponse);
         }
 
     }

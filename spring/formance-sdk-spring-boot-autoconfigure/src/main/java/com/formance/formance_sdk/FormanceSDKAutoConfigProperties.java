@@ -6,8 +6,6 @@ package com.formance.formance_sdk;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;
-import static com.formance.formance_sdk.SDK.Builder.ServerEnvironment;
-
 import java.lang.String;
 import java.util.Collection;
 import java.util.Set;
@@ -43,10 +41,6 @@ public class FormanceSDKAutoConfigProperties {
      * The index of the server to use from the list of available servers (0-based). Defaults to the first server.
      */
     private int serverIdx = 0;
-    /**
-     * Server variable configuration for parameterized server URLs defined in the OpenAPI specification.
-     */
-    private ServerVariables serverVariables = new ServerVariables();
     /**
      * Security configuration for API authentication.
      */
@@ -121,23 +115,6 @@ public class FormanceSDKAutoConfigProperties {
      */
     public void setServerIdx(int serverIdx) {
         this.serverIdx = serverIdx;
-    }
-    /**
-     * Gets the server variable configuration for parameterized server URLs.
-     *
-     * @return the server variables configuration
-     */
-    public ServerVariables getServerVariables() {
-        return serverVariables;
-    }
-
-    /**
-     * Sets the server variable configuration for parameterized server URLs.
-     *
-     * @param serverVariables the server variables configuration to use
-     */
-    public void setServerVariables(ServerVariables serverVariables) {
-        this.serverVariables = serverVariables;
     }
     /**
      * Gets the security configuration for API authentication.
@@ -444,64 +421,6 @@ public class FormanceSDKAutoConfigProperties {
          */
         public void setRedactedHeaders(Collection<String> redactedHeaders) {
             this.redactedHeaders = redactedHeaders;
-        }
-    }
-
-    /**
-    * Server variables configuration properties
-    */
-    public static class ServerVariables {
-        
-        /**
-         * Constructor.
-         */
-        public ServerVariables() {
-        }
-
-        /**
-         * The environment name. Defaults to the production environment.
-         */
-        private ServerEnvironment environment = ServerEnvironment.EU_SANDBOX;
-
-        /**
-         * Gets the environment server variable for URL substitution.
-         *
-         * @return the environment value
-         */
-        public ServerEnvironment getEnvironment() {
-            return environment;
-        }
-
-        /**
-         * Sets the environment server variable for URL substitution.
-         *
-         * @param environment the environment value to use
-         */
-        public void setEnvironment(ServerEnvironment environment) {
-            this.environment = environment;
-        }
-
-        /**
-         * The organization name. Defaults to a generic organization.
-         */
-        private String organization = "orgID-stackID";
-
-        /**
-         * Gets the organization server variable for URL substitution.
-         *
-         * @return the organization value
-         */
-        public String getOrganization() {
-            return organization;
-        }
-
-        /**
-         * Sets the organization server variable for URL substitution.
-         *
-         * @param organization the organization value to use
-         */
-        public void setOrganization(String organization) {
-            this.organization = organization;
         }
     }
 
