@@ -10,13 +10,10 @@ import com.formance.formance_sdk.models.webhooks.ConfigUser;
 import com.formance.formance_sdk.operations.InsertConfig;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class InsertConfigRequestBuilder {
 
     private ConfigUser request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,23 +26,11 @@ public class InsertConfigRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public InsertConfigRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public InsertConfigRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public InsertConfigResponse call() {
         
         RequestOperation<ConfigUser, InsertConfigResponse> operation
-              = new InsertConfig.Sync(sdkConfiguration, serverURL, _headers);
+              = new InsertConfig.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

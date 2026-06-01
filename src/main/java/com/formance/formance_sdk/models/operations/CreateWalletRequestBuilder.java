@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.CreateWallet;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateWalletRequestBuilder {
 
     private CreateWalletRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class CreateWalletRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public CreateWalletRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public CreateWalletRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public CreateWalletResponse call() {
         
         RequestOperation<CreateWalletRequest, CreateWalletResponse> operation
-              = new CreateWallet.Sync(sdkConfiguration, serverURL, _headers);
+              = new CreateWallet.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

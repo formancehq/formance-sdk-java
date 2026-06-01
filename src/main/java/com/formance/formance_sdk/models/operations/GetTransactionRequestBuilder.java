@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetTransaction;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetTransactionRequestBuilder {
 
     private GetTransactionRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class GetTransactionRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public GetTransactionRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public GetTransactionRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public GetTransactionResponse call() {
         
         RequestOperation<GetTransactionRequest, GetTransactionResponse> operation
-              = new GetTransaction.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetTransaction.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

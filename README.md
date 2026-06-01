@@ -34,6 +34,7 @@ and standard method from web, mobile and desktop applications.
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
   * [Authentication](#authentication-1)
+  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
   * [Jackson Configuration](#jackson-configuration)
@@ -54,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:9.0.0'
+implementation 'com.formance:formance-sdk:9.1.0'
 ```
 
 Maven:
@@ -62,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>9.0.0</version>
+    <version>9.1.0</version>
 </dependency>
 ```
 
@@ -582,6 +583,84 @@ public class Application {
 }
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally using the `.serverIndex(int serverIdx)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
+
+If the selected server has variables, you may override its default values using the associated builder method(s):
+
+| Variable       | BuilderMethod                                | Supported Values                                         | Default           | Description                                                   |
+| -------------- | -------------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment(ServerEnvironment environment)` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization(String organization)`          | java.lang.String                                         | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+
+#### Example
+
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK.Builder.ServerEnvironment;
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        SDK sdk = SDK.builder()
+                .serverIndex(1)
+                .environment(ServerEnvironment.US_EAST1)
+                .organization("<value>")
+            .build();
+
+        GetVersionsResponse res = sdk.getVersions()
+                .call();
+
+        if (res.getVersionsResponse().isPresent()) {
+            System.out.println(res.getVersionsResponse().get());
+        }
+    }
+}
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetVersionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        SDK sdk = SDK.builder()
+                .serverURL("https://orgID-stackID.eu.sandbox.formance.cloud")
+            .build();
+
+        GetVersionsResponse res = sdk.getVersions()
+                .call();
+
+        if (res.getVersionsResponse().isPresent()) {
+            System.out.println(res.getVersionsResponse().get());
+        }
+    }
+}
+```
+<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client

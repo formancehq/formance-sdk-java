@@ -26,18 +26,10 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class ListBankAccounts {
-    
-    /**
-     * LIST_BANK_ACCOUNTS_SERVERS contains the list of server urls available to the SDK.
-     */
-    public static final String[] LIST_BANK_ACCOUNTS_SERVERS = {
-        "http://localhost:8080/",
-    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -46,16 +38,11 @@ public class ListBankAccounts {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = serverURL
-                    .filter(u -> !u.isBlank())
-                    .orElse(Utils.templateUrl(
-                        LIST_BANK_ACCOUNTS_SERVERS[0], 
-                        Map.of()));
+            this.baseUrl = Utils.templateUrl(
+                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -111,12 +98,8 @@ public class ListBankAccounts {
 
     public static class Sync extends Base
             implements RequestOperation<ListBankAccountsRequest, ListBankAccountsResponse> {
-        public Sync(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
-            super(
-                  sdkConfiguration, serverURL,
-                  _headers);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(ListBankAccountsRequest request) throws Exception {

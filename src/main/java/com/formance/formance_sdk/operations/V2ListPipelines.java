@@ -26,18 +26,10 @@ import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class V2ListPipelines {
-    
-    /**
-     * V2_LIST_PIPELINES_SERVERS contains the list of server urls available to the SDK.
-     */
-    public static final String[] V2_LIST_PIPELINES_SERVERS = {
-        "http://localhost:8080/",
-    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -46,16 +38,11 @@ public class V2ListPipelines {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = serverURL
-                    .filter(u -> !u.isBlank())
-                    .orElse(Utils.templateUrl(
-                        V2_LIST_PIPELINES_SERVERS[0], 
-                        Map.of()));
+            this.baseUrl = Utils.templateUrl(
+                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = null;
             this.client = this.sdkConfiguration.client();
         }
@@ -107,12 +94,8 @@ public class V2ListPipelines {
 
     public static class Sync extends Base
             implements RequestOperation<V2ListPipelinesRequest, V2ListPipelinesResponse> {
-        public Sync(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
-            super(
-                  sdkConfiguration, serverURL,
-                  _headers);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(V2ListPipelinesRequest request) throws Exception {

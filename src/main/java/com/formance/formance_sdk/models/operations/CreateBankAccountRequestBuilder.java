@@ -10,13 +10,10 @@ import com.formance.formance_sdk.models.payments.BankAccountRequest;
 import com.formance.formance_sdk.operations.CreateBankAccount;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateBankAccountRequestBuilder {
 
     private BankAccountRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,23 +26,11 @@ public class CreateBankAccountRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public CreateBankAccountRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public CreateBankAccountRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public CreateBankAccountResponse call() {
         
         RequestOperation<BankAccountRequest, CreateBankAccountResponse> operation
-              = new CreateBankAccount.Sync(sdkConfiguration, serverURL, _headers);
+              = new CreateBankAccount.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

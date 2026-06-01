@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3DeletePaymentServiceUserConnectionFromConnectorID;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder {
 
     private V3DeletePaymentServiceUserConnectionFromConnectorIDRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V3DeletePaymentServiceUserConnectionFromConnectorIDRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V3DeletePaymentServiceUserConnectionFromConnectorIDResponse call() {
         
         RequestOperation<V3DeletePaymentServiceUserConnectionFromConnectorIDRequest, V3DeletePaymentServiceUserConnectionFromConnectorIDResponse> operation
-              = new V3DeletePaymentServiceUserConnectionFromConnectorID.Sync(sdkConfiguration, serverURL, _headers);
+              = new V3DeletePaymentServiceUserConnectionFromConnectorID.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

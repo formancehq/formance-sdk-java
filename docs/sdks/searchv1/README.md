@@ -48,12 +48,6 @@ public class Application {
 }
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetServerInfoSearchResponse](../../models/operations/GetServerInfoSearchResponse.md)**
@@ -125,7 +119,6 @@ public class Application {
 | Parameter                                  | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | `request`                                  | [Query](../../models/shared/Query.md)      | :heavy_check_mark:                         | The request object to use for the request. |
-| `serverURL`                                | *String*                                   | :heavy_minus_sign:                         | An optional server URL to use.             |
 
 ### Response
 

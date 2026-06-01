@@ -8,36 +8,20 @@ import static com.formance.formance_sdk.operations.Operations.RequestlessOperati
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetServerInfoWallets;
 import com.formance.formance_sdk.utils.Headers;
-import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetServerInfoWalletsRequestBuilder {
 
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetServerInfoWalletsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
-    public GetServerInfoWalletsRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public GetServerInfoWalletsRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public GetServerInfoWalletsResponse call() {
         
         RequestlessOperation<GetServerInfoWalletsResponse> operation
-            = new GetServerInfoWallets.Sync(sdkConfiguration, serverURL, _headers);
+            = new GetServerInfoWallets.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

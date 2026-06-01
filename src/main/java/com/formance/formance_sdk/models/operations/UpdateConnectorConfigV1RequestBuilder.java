@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.UpdateConnectorConfigV1;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class UpdateConnectorConfigV1RequestBuilder {
 
     private UpdateConnectorConfigV1Request request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class UpdateConnectorConfigV1RequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public UpdateConnectorConfigV1RequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public UpdateConnectorConfigV1RequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public UpdateConnectorConfigV1Response call() {
         
         RequestOperation<UpdateConnectorConfigV1Request, UpdateConnectorConfigV1Response> operation
-              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, serverURL, _headers);
+              = new UpdateConnectorConfigV1.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

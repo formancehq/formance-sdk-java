@@ -15,8 +15,6 @@ import com.formance.formance_sdk.operations.GetServerInfoSearch;
 import com.formance.formance_sdk.operations.Search;
 import com.formance.formance_sdk.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.String;
-import java.util.Optional;
 
 
 public class SearchV1 {
@@ -51,23 +49,8 @@ public class SearchV1 {
      */
     @Deprecated
     public GetServerInfoSearchResponse getServerInfoSearchDirect() {
-        return getServerInfoSearch(Optional.empty());
-    }
-
-    /**
-     * Get server info
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public GetServerInfoSearchResponse getServerInfoSearch(Optional<String> serverURL) {
         RequestlessOperation<GetServerInfoSearchResponse> operation
-            = new GetServerInfoSearch.Sync(sdkConfiguration, serverURL, _headers);
+            = new GetServerInfoSearch.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -100,26 +83,8 @@ public class SearchV1 {
      */
     @Deprecated
     public SearchResponse search(Query request) {
-        return search(request, Optional.empty());
-    }
-
-    /**
-     * search.v1
-     * 
-     * <p>Elasticsearch.v1 query engine
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public SearchResponse search(Query request, Optional<String> serverURL) {
         RequestOperation<Query, SearchResponse> operation
-              = new Search.Sync(sdkConfiguration, serverURL, _headers);
+              = new Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

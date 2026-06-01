@@ -119,7 +119,6 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3AddAccountToPoolRequest](../../models/operations/V3AddAccountToPoolRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -179,7 +178,6 @@ public class Application {
 | Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                             | [V3AddBankAccountToPaymentServiceUserRequest](../../models/operations/V3AddBankAccountToPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
-| `serverURL`                                                                                                           | *String*                                                                                                              | :heavy_minus_sign:                                                                                                    | An optional server URL to use.                                                                                        |
 
 ### Response
 
@@ -240,7 +238,6 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3ApprovePaymentInitiationRequest](../../models/operations/V3ApprovePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -296,7 +293,6 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V3CreateAccountRequest](../../models/shared/V3CreateAccountRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -352,7 +348,6 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3CreateBankAccountRequest](../../models/shared/V3CreateBankAccountRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -414,7 +409,6 @@ public class Application {
 | Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                       | [V3CreateLinkForPaymentServiceUserRequest](../../models/operations/V3CreateLinkForPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
-| `serverURL`                                                                                                     | *String*                                                                                                        | :heavy_minus_sign:                                                                                              | An optional server URL to use.                                                                                  |
 
 ### Response
 
@@ -470,7 +464,6 @@ public class Application {
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [V3CreatePaymentRequest](../../models/shared/V3CreatePaymentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `serverURL`                                                             | *String*                                                                | :heavy_minus_sign:                                                      | An optional server URL to use.                                          |
 
 ### Response
 
@@ -525,7 +518,6 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3CreatePaymentServiceUserRequest](../../models/shared/V3CreatePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
-| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -580,7 +572,6 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [V3CreatePoolRequest](../../models/shared/V3CreatePoolRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -639,7 +630,6 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3DeletePaymentInitiationRequest](../../models/operations/V3DeletePaymentInitiationRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -700,7 +690,6 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3DeletePaymentServiceUserRequest](../../models/operations/V3DeletePaymentServiceUserRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -763,7 +752,6 @@ public class Application {
 | Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                           | [V3DeletePaymentServiceUserConnectionFromConnectorIDRequest](../../models/operations/V3DeletePaymentServiceUserConnectionFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
-| `serverURL`                                                                                                                                         | *String*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                  | An optional server URL to use.                                                                                                                      |
 
 ### Response
 
@@ -825,7 +813,6 @@ public class Application {
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                           | [V3DeletePaymentServiceUserConnectorRequest](../../models/operations/V3DeletePaymentServiceUserConnectorRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-| `serverURL`                                                                                                         | *String*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      |
 
 ### Response
 
@@ -884,7 +871,6 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3DeletePoolRequest](../../models/operations/V3DeletePoolRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -940,7 +926,6 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3ForwardBankAccountRequest](../../models/operations/V3ForwardBankAccountRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1002,7 +987,6 @@ public class Application {
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                 | [V3ForwardPaymentServiceUserBankAccountRequest](../../models/operations/V3ForwardPaymentServiceUserBankAccountRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
-| `serverURL`                                                                                                               | *String*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional server URL to use.                                                                                            |
 
 ### Response
 
@@ -1062,7 +1046,6 @@ public class Application {
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                               | [V3ForwardPaymentServiceUserToProviderRequest](../../models/operations/V3ForwardPaymentServiceUserToProviderRequest.md) | :heavy_check_mark:                                                                                                      | The request object to use for the request.                                                                              |
-| `serverURL`                                                                                                             | *String*                                                                                                                | :heavy_minus_sign:                                                                                                      | An optional server URL to use.                                                                                          |
 
 ### Response
 
@@ -1123,7 +1106,6 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3GetAccountRequest](../../models/operations/V3GetAccountRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1186,7 +1168,6 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3GetAccountBalancesRequest](../../models/operations/V3GetAccountBalancesRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1242,7 +1223,6 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3GetBankAccountRequest](../../models/operations/V3GetBankAccountRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -1303,7 +1283,6 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3GetConnectorConfigRequest](../../models/operations/V3GetConnectorConfigRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -1365,7 +1344,6 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V3GetConnectorScheduleRequest](../../models/operations/V3GetConnectorScheduleRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
-| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -1434,7 +1412,6 @@ public class Application {
 | Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `request`                                                                   | [V3GetConversionRequest](../../models/operations/V3GetConversionRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-| `serverURL`                                                                 | *String*                                                                    | :heavy_minus_sign:                                                          | An optional server URL to use.                                              |
 
 ### Response
 
@@ -1503,7 +1480,6 @@ public class Application {
 | Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `request`                                                         | [V3GetOrderRequest](../../models/operations/V3GetOrderRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `serverURL`                                                       | *String*                                                          | :heavy_minus_sign:                                                | An optional server URL to use.                                    |
 
 ### Response
 
@@ -1564,7 +1540,6 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3GetPaymentRequest](../../models/operations/V3GetPaymentRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -1625,7 +1600,6 @@ public class Application {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `request`                                                                                 | [V3GetPaymentInitiationRequest](../../models/operations/V3GetPaymentInitiationRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
-| `serverURL`                                                                               | *String*                                                                                  | :heavy_minus_sign:                                                                        | An optional server URL to use.                                                            |
 
 ### Response
 
@@ -1686,7 +1660,6 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3GetPaymentServiceUserRequest](../../models/operations/V3GetPaymentServiceUserRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1749,7 +1722,6 @@ public class Application {
 | Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                       | [V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest](../../models/operations/V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                              | The request object to use for the request.                                                                                                      |
-| `serverURL`                                                                                                                                     | *String*                                                                                                                                        | :heavy_minus_sign:                                                                                                                              | An optional server URL to use.                                                                                                                  |
 
 ### Response
 
@@ -1810,7 +1782,6 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V3GetPoolRequest](../../models/operations/V3GetPoolRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
-| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -1871,7 +1842,6 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3GetPoolBalancesRequest](../../models/operations/V3GetPoolBalancesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -1932,7 +1902,6 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3GetPoolBalancesLatestRequest](../../models/operations/V3GetPoolBalancesLatestRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -1993,7 +1962,6 @@ public class Application {
 | Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `request`                                                       | [V3GetTaskRequest](../../models/operations/V3GetTaskRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
-| `serverURL`                                                     | *String*                                                        | :heavy_minus_sign:                                              | An optional server URL to use.                                  |
 
 ### Response
 
@@ -2053,7 +2021,6 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3InitiatePaymentRequest](../../models/operations/V3InitiatePaymentRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -2114,7 +2081,6 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3InstallConnectorRequest](../../models/operations/V3InstallConnectorRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -2176,7 +2142,6 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V3ListAccountsRequest](../../models/operations/V3ListAccountsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
-| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -2238,7 +2203,6 @@ public class Application {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `request`                                                                         | [V3ListBankAccountsRequest](../../models/operations/V3ListBankAccountsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-| `serverURL`                                                                       | *String*                                                                          | :heavy_minus_sign:                                                                | An optional server URL to use.                                                    |
 
 ### Response
 
@@ -2287,12 +2251,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
 
 ### Response
 
@@ -2356,7 +2314,6 @@ public class Application {
 | Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                     | [V3ListConnectorScheduleInstancesRequest](../../models/operations/V3ListConnectorScheduleInstancesRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
-| `serverURL`                                                                                                   | *String*                                                                                                      | :heavy_minus_sign:                                                                                            | An optional server URL to use.                                                                                |
 
 ### Response
 
@@ -2419,7 +2376,6 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3ListConnectorSchedulesRequest](../../models/operations/V3ListConnectorSchedulesRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
-| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -2481,7 +2437,6 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3ListConnectorsRequest](../../models/operations/V3ListConnectorsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -2557,7 +2512,6 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3ListConversionsRequest](../../models/operations/V3ListConversionsRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -2633,7 +2587,6 @@ public class Application {
 | Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `request`                                                             | [V3ListOrdersRequest](../../models/operations/V3ListOrdersRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
-| `serverURL`                                                           | *String*                                                              | :heavy_minus_sign:                                                    | An optional server URL to use.                                        |
 
 ### Response
 
@@ -2696,7 +2649,6 @@ public class Application {
 | Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                         | [V3ListPaymentInitiationAdjustmentsRequest](../../models/operations/V3ListPaymentInitiationAdjustmentsRequest.md) | :heavy_check_mark:                                                                                                | The request object to use for the request.                                                                        |
-| `serverURL`                                                                                                       | *String*                                                                                                          | :heavy_minus_sign:                                                                                                | An optional server URL to use.                                                                                    |
 
 ### Response
 
@@ -2759,7 +2711,6 @@ public class Application {
 | Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                 | [V3ListPaymentInitiationRelatedPaymentsRequest](../../models/operations/V3ListPaymentInitiationRelatedPaymentsRequest.md) | :heavy_check_mark:                                                                                                        | The request object to use for the request.                                                                                |
-| `serverURL`                                                                                                               | *String*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional server URL to use.                                                                                            |
 
 ### Response
 
@@ -2821,7 +2772,6 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3ListPaymentInitiationsRequest](../../models/operations/V3ListPaymentInitiationsRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
-| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -2884,7 +2834,6 @@ public class Application {
 | Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                           | [V3ListPaymentServiceUserConnectionsRequest](../../models/operations/V3ListPaymentServiceUserConnectionsRequest.md) | :heavy_check_mark:                                                                                                  | The request object to use for the request.                                                                          |
-| `serverURL`                                                                                                         | *String*                                                                                                            | :heavy_minus_sign:                                                                                                  | An optional server URL to use.                                                                                      |
 
 ### Response
 
@@ -2948,7 +2897,6 @@ public class Application {
 | Parameter                                                                                                                                         | Type                                                                                                                                              | Required                                                                                                                                          | Description                                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                         | [V3ListPaymentServiceUserConnectionsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserConnectionsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                | The request object to use for the request.                                                                                                        |
-| `serverURL`                                                                                                                                       | *String*                                                                                                                                          | :heavy_minus_sign:                                                                                                                                | An optional server URL to use.                                                                                                                    |
 
 ### Response
 
@@ -3014,7 +2962,6 @@ public class Application {
 | Parameter                                                                                                                                           | Type                                                                                                                                                | Required                                                                                                                                            | Description                                                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                                           | [V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest](../../models/operations/V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest.md) | :heavy_check_mark:                                                                                                                                  | The request object to use for the request.                                                                                                          |
-| `serverURL`                                                                                                                                         | *String*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                  | An optional server URL to use.                                                                                                                      |
 
 ### Response
 
@@ -3076,7 +3023,6 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3ListPaymentServiceUsersRequest](../../models/operations/V3ListPaymentServiceUsersRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -3138,7 +3084,6 @@ public class Application {
 | Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `request`                                                                 | [V3ListPaymentsRequest](../../models/operations/V3ListPaymentsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
-| `serverURL`                                                               | *String*                                                                  | :heavy_minus_sign:                                                        | An optional server URL to use.                                            |
 
 ### Response
 
@@ -3200,7 +3145,6 @@ public class Application {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `request`                                                           | [V3ListPoolsRequest](../../models/operations/V3ListPoolsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `serverURL`                                                         | *String*                                                            | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -3259,7 +3203,6 @@ public class Application {
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `request`                                                                                       | [V3RejectPaymentInitiationRequest](../../models/operations/V3RejectPaymentInitiationRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `serverURL`                                                                                     | *String*                                                                                        | :heavy_minus_sign:                                                                              | An optional server URL to use.                                                                  |
 
 ### Response
 
@@ -3319,7 +3262,6 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3RemoveAccountFromPoolRequest](../../models/operations/V3RemoveAccountFromPoolRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -3380,7 +3322,6 @@ public class Application {
 | Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [V3ResetConnectorRequest](../../models/operations/V3ResetConnectorRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `serverURL`                                                                   | *String*                                                                      | :heavy_minus_sign:                                                            | An optional server URL to use.                                                |
 
 ### Response
 
@@ -3441,7 +3382,6 @@ public class Application {
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `request`                                                                                     | [V3RetryPaymentInitiationRequest](../../models/operations/V3RetryPaymentInitiationRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
-| `serverURL`                                                                                   | *String*                                                                                      | :heavy_minus_sign:                                                                            | An optional server URL to use.                                                                |
 
 ### Response
 
@@ -3502,7 +3442,6 @@ public class Application {
 | Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `request`                                                                                         | [V3ReversePaymentInitiationRequest](../../models/operations/V3ReversePaymentInitiationRequest.md) | :heavy_check_mark:                                                                                | The request object to use for the request.                                                        |
-| `serverURL`                                                                                       | *String*                                                                                          | :heavy_minus_sign:                                                                                | An optional server URL to use.                                                                    |
 
 ### Response
 
@@ -3563,7 +3502,6 @@ public class Application {
 | Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `request`                                                                             | [V3UninstallConnectorRequest](../../models/operations/V3UninstallConnectorRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-| `serverURL`                                                                           | *String*                                                                              | :heavy_minus_sign:                                                                    | An optional server URL to use.                                                        |
 
 ### Response
 
@@ -3617,7 +3555,6 @@ public class Application {
 | Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `request`                                                                                           | [V3UpdateBankAccountMetadataRequest](../../models/operations/V3UpdateBankAccountMetadataRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
-| `serverURL`                                                                                         | *String*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
 
 ### Response
 
@@ -3680,7 +3617,6 @@ public class Application {
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                                             | [V3UpdateLinkForPaymentServiceUserOnConnectorRequest](../../models/operations/V3UpdateLinkForPaymentServiceUserOnConnectorRequest.md) | :heavy_check_mark:                                                                                                                    | The request object to use for the request.                                                                                            |
-| `serverURL`                                                                                                                           | *String*                                                                                                                              | :heavy_minus_sign:                                                                                                                    | An optional server URL to use.                                                                                                        |
 
 ### Response
 
@@ -3739,7 +3675,6 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3UpdatePaymentMetadataRequest](../../models/operations/V3UpdatePaymentMetadataRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 
@@ -3798,7 +3733,6 @@ public class Application {
 | Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `request`                                                                       | [V3UpdatePoolQueryRequest](../../models/operations/V3UpdatePoolQueryRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `serverURL`                                                                     | *String*                                                                        | :heavy_minus_sign:                                                              | An optional server URL to use.                                                  |
 
 ### Response
 
@@ -3857,7 +3791,6 @@ public class Application {
 | Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `request`                                                                                   | [V3UpdateConnectorConfigRequest](../../models/operations/V3UpdateConnectorConfigRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
-| `serverURL`                                                                                 | *String*                                                                                    | :heavy_minus_sign:                                                                          | An optional server URL to use.                                                              |
 
 ### Response
 

@@ -10,13 +10,11 @@ import com.formance.formance_sdk.models.orchestration.V2TriggerData2;
 import com.formance.formance_sdk.operations.V2CreateTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class V2CreateTriggerRequestBuilder {
 
     private Optional<? extends V2TriggerData2> request = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,23 +33,11 @@ public class V2CreateTriggerRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V2CreateTriggerRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V2CreateTriggerRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V2CreateTriggerResponse call() {
         
         RequestOperation<Optional<? extends V2TriggerData2>, V2CreateTriggerResponse> operation
-              = new V2CreateTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2CreateTrigger.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

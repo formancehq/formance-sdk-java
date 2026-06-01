@@ -27,18 +27,10 @@ import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Map;
 import java.util.Optional;
 
 
 public class CreateClient {
-    
-    /**
-     * CREATE_CLIENT_SERVERS contains the list of server urls available to the SDK.
-     */
-    public static final String[] CREATE_CLIENT_SERVERS = {
-        "http://localhost:8080/",
-    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -47,16 +39,11 @@ public class CreateClient {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = serverURL
-                    .filter(u -> !u.isBlank())
-                    .orElse(Utils.templateUrl(
-                        CREATE_CLIENT_SERVERS[0], 
-                        Map.of()));
+            this.baseUrl = Utils.templateUrl(
+                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -117,12 +104,8 @@ public class CreateClient {
 
     public static class Sync extends Base
             implements RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> {
-        public Sync(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
-            super(
-                  sdkConfiguration, serverURL,
-                  _headers);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest(Optional<? extends ClientOptions2> request) throws Exception {

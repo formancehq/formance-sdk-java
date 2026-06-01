@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2ListLedgers;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V2ListLedgersRequestBuilder {
 
     private V2ListLedgersRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V2ListLedgersRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V2ListLedgersRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V2ListLedgersRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V2ListLedgersResponse call() {
         
         RequestOperation<V2ListLedgersRequest, V2ListLedgersResponse> operation
-              = new V2ListLedgers.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ListLedgers.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

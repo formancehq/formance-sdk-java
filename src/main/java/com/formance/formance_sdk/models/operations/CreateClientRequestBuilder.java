@@ -10,13 +10,11 @@ import com.formance.formance_sdk.models.auth.ClientOptions2;
 import com.formance.formance_sdk.operations.CreateClient;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class CreateClientRequestBuilder {
 
     private Optional<? extends ClientOptions2> request = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,23 +33,11 @@ public class CreateClientRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public CreateClientRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public CreateClientRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public CreateClientResponse call() {
         
         RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> operation
-              = new CreateClient.Sync(sdkConfiguration, serverURL, _headers);
+              = new CreateClient.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

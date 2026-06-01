@@ -49,12 +49,6 @@ public class Application {
 }
 ```
 
-### Parameters
-
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `serverURL`                    | *String*                       | :heavy_minus_sign:             | An optional server URL to use. |
-
 ### Response
 
 **[GetVersionsResponse](../../models/operations/GetVersionsResponse.md)**

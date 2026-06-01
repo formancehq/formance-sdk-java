@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListAccountsLedger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListAccountsLedgerRequestBuilder {
 
     private ListAccountsLedgerRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class ListAccountsLedgerRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public ListAccountsLedgerRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public ListAccountsLedgerRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public ListAccountsLedgerResponse call() {
         
         RequestOperation<ListAccountsLedgerRequest, ListAccountsLedgerResponse> operation
-              = new ListAccountsLedger.Sync(sdkConfiguration, serverURL, _headers);
+              = new ListAccountsLedger.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

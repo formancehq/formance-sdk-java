@@ -38,8 +38,6 @@ import com.formance.formance_sdk.operations.ListPolicies;
 import com.formance.formance_sdk.operations.ListReconciliations;
 import com.formance.formance_sdk.operations.Reconcile;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.String;
-import java.util.Optional;
 
 
 public class ReconciliationV1 {
@@ -75,24 +73,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePolicyResponse createPolicy(PolicyRequest request) {
-        return createPolicy(request, Optional.empty());
-    }
-
-    /**
-     * Create a policy
-     * 
-     * <p>Create a policy
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CreatePolicyResponse createPolicy(PolicyRequest request, Optional<String> serverURL) {
         RequestOperation<PolicyRequest, CreatePolicyResponse> operation
-              = new CreatePolicy.Sync(sdkConfiguration, serverURL, _headers);
+              = new CreatePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,24 +103,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) {
-        return deletePolicy(request, Optional.empty());
-    }
-
-    /**
-     * Delete a policy
-     * 
-     * <p>Delete a policy by its id.
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public DeletePolicyResponse deletePolicy(DeletePolicyRequest request, Optional<String> serverURL) {
         RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
-              = new DeletePolicy.Sync(sdkConfiguration, serverURL, _headers);
+              = new DeletePolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,22 +129,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPolicyResponse getPolicy(GetPolicyRequest request) {
-        return getPolicy(request, Optional.empty());
-    }
-
-    /**
-     * Get a policy
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetPolicyResponse getPolicy(GetPolicyRequest request, Optional<String> serverURL) {
         RequestOperation<GetPolicyRequest, GetPolicyResponse> operation
-              = new GetPolicy.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetPolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,22 +155,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetReconciliationResponse getReconciliation(GetReconciliationRequest request) {
-        return getReconciliation(request, Optional.empty());
-    }
-
-    /**
-     * Get a reconciliation
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetReconciliationResponse getReconciliation(GetReconciliationRequest request, Optional<String> serverURL) {
         RequestOperation<GetReconciliationRequest, GetReconciliationResponse> operation
-              = new GetReconciliation.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetReconciliation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -242,21 +180,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetServerInfoReconciliationResponse getServerInfoReconciliationDirect() {
-        return getServerInfoReconciliation(Optional.empty());
-    }
-
-    /**
-     * Get server info
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetServerInfoReconciliationResponse getServerInfoReconciliation(Optional<String> serverURL) {
         RequestlessOperation<GetServerInfoReconciliationResponse> operation
-            = new GetServerInfoReconciliation.Sync(sdkConfiguration, serverURL, _headers);
+            = new GetServerInfoReconciliation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -281,22 +206,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPoliciesResponse listPolicies(ListPoliciesRequest request) {
-        return listPolicies(request, Optional.empty());
-    }
-
-    /**
-     * List policies
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public ListPoliciesResponse listPolicies(ListPoliciesRequest request, Optional<String> serverURL) {
         RequestOperation<ListPoliciesRequest, ListPoliciesResponse> operation
-              = new ListPolicies.Sync(sdkConfiguration, serverURL, _headers);
+              = new ListPolicies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -321,22 +232,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListReconciliationsResponse listReconciliations(ListReconciliationsRequest request) {
-        return listReconciliations(request, Optional.empty());
-    }
-
-    /**
-     * List reconciliations
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public ListReconciliationsResponse listReconciliations(ListReconciliationsRequest request, Optional<String> serverURL) {
         RequestOperation<ListReconciliationsRequest, ListReconciliationsResponse> operation
-              = new ListReconciliations.Sync(sdkConfiguration, serverURL, _headers);
+              = new ListReconciliations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -365,24 +262,8 @@ public class ReconciliationV1 {
      * @throws RuntimeException subclass if the API call fails
      */
     public ReconcileResponse reconcile(ReconcileRequest request) {
-        return reconcile(request, Optional.empty());
-    }
-
-    /**
-     * Reconcile using a policy
-     * 
-     * <p>Reconcile using a policy
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public ReconcileResponse reconcile(ReconcileRequest request, Optional<String> serverURL) {
         RequestOperation<ReconcileRequest, ReconcileResponse> operation
-              = new Reconcile.Sync(sdkConfiguration, serverURL, _headers);
+              = new Reconcile.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
