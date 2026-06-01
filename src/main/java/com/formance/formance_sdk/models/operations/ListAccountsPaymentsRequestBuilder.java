@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.ListAccountsPayments;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListAccountsPaymentsRequestBuilder {
 
     private ListAccountsPaymentsRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class ListAccountsPaymentsRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public ListAccountsPaymentsRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public ListAccountsPaymentsRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public ListAccountsPaymentsResponse call() {
         
         RequestOperation<ListAccountsPaymentsRequest, ListAccountsPaymentsResponse> operation
-              = new ListAccountsPayments.Sync(sdkConfiguration, serverURL, _headers);
+              = new ListAccountsPayments.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

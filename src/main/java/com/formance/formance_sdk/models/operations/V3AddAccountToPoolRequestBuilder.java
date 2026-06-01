@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3AddAccountToPool;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V3AddAccountToPoolRequestBuilder {
 
     private V3AddAccountToPoolRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V3AddAccountToPoolRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V3AddAccountToPoolRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V3AddAccountToPoolRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V3AddAccountToPoolResponse call() {
         
         RequestOperation<V3AddAccountToPoolRequest, V3AddAccountToPoolResponse> operation
-              = new V3AddAccountToPool.Sync(sdkConfiguration, serverURL, _headers);
+              = new V3AddAccountToPool.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

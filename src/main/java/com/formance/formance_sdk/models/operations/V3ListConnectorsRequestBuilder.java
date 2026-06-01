@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListConnectors;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V3ListConnectorsRequestBuilder {
 
     private V3ListConnectorsRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V3ListConnectorsRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V3ListConnectorsRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V3ListConnectorsRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V3ListConnectorsResponse call() {
         
         RequestOperation<V3ListConnectorsRequest, V3ListConnectorsResponse> operation
-              = new V3ListConnectors.Sync(sdkConfiguration, serverURL, _headers);
+              = new V3ListConnectors.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

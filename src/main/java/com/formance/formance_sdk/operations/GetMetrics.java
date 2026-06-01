@@ -30,13 +30,6 @@ import java.util.Optional;
 
 
 public class GetMetrics {
-    
-    /**
-     * GET_METRICS_SERVERS contains the list of server urls available to the SDK.
-     */
-    public static final String[] GET_METRICS_SERVERS = {
-        "http://localhost:8080/",
-    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -45,16 +38,11 @@ public class GetMetrics {
         final HTTPClient client;
         final Headers _headers;
 
-        public Base(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = serverURL
-                    .filter(u -> !u.isBlank())
-                    .orElse(Utils.templateUrl(
-                        GET_METRICS_SERVERS[0], 
-                        Map.of()));
+            this.baseUrl = Utils.templateUrl(
+                    this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
             this.client = this.sdkConfiguration.client();
         }
@@ -105,12 +93,8 @@ public class GetMetrics {
 
     public static class Sync extends Base
             implements RequestlessOperation<GetMetricsResponse> {
-        public Sync(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
-            super(
-                  sdkConfiguration, serverURL,
-                  _headers);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
         }
 
         private HttpRequest onBuildRequest() throws Exception {

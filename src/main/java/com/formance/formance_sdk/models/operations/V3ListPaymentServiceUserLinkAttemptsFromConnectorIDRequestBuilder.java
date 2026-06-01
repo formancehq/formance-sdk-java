@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorID;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder {
 
     private V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse call() {
         
         RequestOperation<V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest, V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse> operation
-              = new V3ListPaymentServiceUserLinkAttemptsFromConnectorID.Sync(sdkConfiguration, serverURL, _headers);
+              = new V3ListPaymentServiceUserLinkAttemptsFromConnectorID.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

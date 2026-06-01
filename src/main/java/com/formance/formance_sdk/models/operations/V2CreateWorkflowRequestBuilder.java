@@ -10,13 +10,11 @@ import com.formance.formance_sdk.models.orchestration.V2WorkflowConfig;
 import com.formance.formance_sdk.operations.V2CreateWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class V2CreateWorkflowRequestBuilder {
 
     private Optional<? extends V2WorkflowConfig> request = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,23 +33,11 @@ public class V2CreateWorkflowRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V2CreateWorkflowRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V2CreateWorkflowRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V2CreateWorkflowResponse call() {
         
         RequestOperation<Optional<? extends V2WorkflowConfig>, V2CreateWorkflowResponse> operation
-              = new V2CreateWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2CreateWorkflow.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

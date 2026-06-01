@@ -10,13 +10,11 @@ import com.formance.formance_sdk.models.orchestration.TriggerData2;
 import com.formance.formance_sdk.operations.CreateTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class CreateTriggerRequestBuilder {
 
     private Optional<? extends TriggerData2> request = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,23 +33,11 @@ public class CreateTriggerRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public CreateTriggerRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public CreateTriggerRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public CreateTriggerResponse call() {
         
         RequestOperation<Optional<? extends TriggerData2>, CreateTriggerResponse> operation
-              = new CreateTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new CreateTrigger.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

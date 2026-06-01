@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.V2DeleteWorkflow;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class V2DeleteWorkflowRequestBuilder {
 
     private V2DeleteWorkflowRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class V2DeleteWorkflowRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public V2DeleteWorkflowRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public V2DeleteWorkflowRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public V2DeleteWorkflowResponse call() {
         
         RequestOperation<V2DeleteWorkflowRequest, V2DeleteWorkflowResponse> operation
-              = new V2DeleteWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2DeleteWorkflow.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

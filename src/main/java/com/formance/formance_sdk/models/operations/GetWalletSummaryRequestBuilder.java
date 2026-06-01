@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetWalletSummary;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetWalletSummaryRequestBuilder {
 
     private GetWalletSummaryRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class GetWalletSummaryRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public GetWalletSummaryRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public GetWalletSummaryRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public GetWalletSummaryResponse call() {
         
         RequestOperation<GetWalletSummaryRequest, GetWalletSummaryResponse> operation
-              = new GetWalletSummary.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetWalletSummary.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

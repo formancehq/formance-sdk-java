@@ -9,13 +9,10 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.operations.GetManyConfigs;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetManyConfigsRequestBuilder {
 
     private GetManyConfigsRequest request;
-    private Optional<String> serverURL = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,23 +25,11 @@ public class GetManyConfigsRequestBuilder {
         this.request = request;
         return this;
     }
-                
-    public GetManyConfigsRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public GetManyConfigsRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
 
     public GetManyConfigsResponse call() {
         
         RequestOperation<GetManyConfigsRequest, GetManyConfigsResponse> operation
-              = new GetManyConfigs.Sync(sdkConfiguration, serverURL, _headers);
+              = new GetManyConfigs.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

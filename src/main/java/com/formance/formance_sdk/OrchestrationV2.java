@@ -78,7 +78,6 @@ import com.formance.formance_sdk.operations.V2ReadTrigger;
 import com.formance.formance_sdk.operations.V2RunWorkflow;
 import com.formance.formance_sdk.operations.V2SendEvent;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -115,24 +114,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CancelEventResponse cancelEvent(V2CancelEventRequest request) {
-        return cancelEvent(request, Optional.empty());
-    }
-
-    /**
-     * Cancel a running workflow
-     * 
-     * <p>Cancel a running workflow
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2CancelEventResponse cancelEvent(V2CancelEventRequest request, Optional<String> serverURL) {
         RequestOperation<V2CancelEventRequest, V2CancelEventResponse> operation
-              = new V2CancelEvent.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2CancelEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -160,7 +143,7 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreateTriggerResponse createTriggerDirect() {
-        return createTrigger(Optional.empty(), Optional.empty());
+        return createTrigger(Optional.empty());
     }
 
     /**
@@ -171,13 +154,12 @@ public class OrchestrationV2 {
      * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateTriggerResponse createTrigger(Optional<? extends V2TriggerData2> request, Optional<String> serverURL) {
+    public V2CreateTriggerResponse createTrigger(Optional<? extends V2TriggerData2> request) {
         RequestOperation<Optional<? extends V2TriggerData2>, V2CreateTriggerResponse> operation
-              = new V2CreateTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2CreateTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -205,7 +187,7 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2CreateWorkflowResponse createWorkflowDirect() {
-        return createWorkflow(Optional.empty(), Optional.empty());
+        return createWorkflow(Optional.empty());
     }
 
     /**
@@ -216,13 +198,12 @@ public class OrchestrationV2 {
      * <p>If set, this operation will use Security#clientID from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateWorkflowResponse createWorkflow(Optional<? extends V2WorkflowConfig> request, Optional<String> serverURL) {
+    public V2CreateWorkflowResponse createWorkflow(Optional<? extends V2WorkflowConfig> request) {
         RequestOperation<Optional<? extends V2WorkflowConfig>, V2CreateWorkflowResponse> operation
-              = new V2CreateWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2CreateWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,24 +232,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteTriggerResponse deleteTrigger(V2DeleteTriggerRequest request) {
-        return deleteTrigger(request, Optional.empty());
-    }
-
-    /**
-     * Delete trigger
-     * 
-     * <p>Read trigger
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2DeleteTriggerResponse deleteTrigger(V2DeleteTriggerRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteTriggerRequest, V2DeleteTriggerResponse> operation
-              = new V2DeleteTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2DeleteTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -297,24 +262,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2DeleteWorkflowResponse deleteWorkflow(V2DeleteWorkflowRequest request) {
-        return deleteWorkflow(request, Optional.empty());
-    }
-
-    /**
-     * Delete a flow by id
-     * 
-     * <p>Delete a flow by id
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2DeleteWorkflowResponse deleteWorkflow(V2DeleteWorkflowRequest request, Optional<String> serverURL) {
         RequestOperation<V2DeleteWorkflowRequest, V2DeleteWorkflowResponse> operation
-              = new V2DeleteWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2DeleteWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -343,24 +292,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetInstanceResponse getInstance(V2GetInstanceRequest request) {
-        return getInstance(request, Optional.empty());
-    }
-
-    /**
-     * Get a workflow instance by id
-     * 
-     * <p>Get a workflow instance by id
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetInstanceResponse getInstance(V2GetInstanceRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetInstanceRequest, V2GetInstanceResponse> operation
-              = new V2GetInstance.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2GetInstance.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -389,24 +322,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetInstanceHistoryResponse getInstanceHistory(V2GetInstanceHistoryRequest request) {
-        return getInstanceHistory(request, Optional.empty());
-    }
-
-    /**
-     * Get a workflow instance history by id
-     * 
-     * <p>Get a workflow instance history by id
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetInstanceHistoryResponse getInstanceHistory(V2GetInstanceHistoryRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetInstanceHistoryRequest, V2GetInstanceHistoryResponse> operation
-              = new V2GetInstanceHistory.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2GetInstanceHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -435,24 +352,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetInstanceStageHistoryResponse getInstanceStageHistory(V2GetInstanceStageHistoryRequest request) {
-        return getInstanceStageHistory(request, Optional.empty());
-    }
-
-    /**
-     * Get a workflow instance stage history
-     * 
-     * <p>Get a workflow instance stage history
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetInstanceStageHistoryResponse getInstanceStageHistory(V2GetInstanceStageHistoryRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetInstanceStageHistoryRequest, V2GetInstanceStageHistoryResponse> operation
-              = new V2GetInstanceStageHistory.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2GetInstanceStageHistory.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -476,21 +377,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetServerInfoResponse getServerInfoDirect() {
-        return getServerInfo(Optional.empty());
-    }
-
-    /**
-     * Get server info
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetServerInfoResponse getServerInfo(Optional<String> serverURL) {
         RequestlessOperation<V2GetServerInfoResponse> operation
-            = new V2GetServerInfo.Sync(sdkConfiguration, serverURL, _headers);
+            = new V2GetServerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -519,24 +407,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetWorkflowResponse getWorkflow(V2GetWorkflowRequest request) {
-        return getWorkflow(request, Optional.empty());
-    }
-
-    /**
-     * Get a flow by id
-     * 
-     * <p>Get a flow by id
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetWorkflowResponse getWorkflow(V2GetWorkflowRequest request, Optional<String> serverURL) {
         RequestOperation<V2GetWorkflowRequest, V2GetWorkflowResponse> operation
-              = new V2GetWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2GetWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -565,24 +437,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListInstancesResponse listInstances(V2ListInstancesRequest request) {
-        return listInstances(request, Optional.empty());
-    }
-
-    /**
-     * List instances of a workflow
-     * 
-     * <p>List instances of a workflow
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2ListInstancesResponse listInstances(V2ListInstancesRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListInstancesRequest, V2ListInstancesResponse> operation
-              = new V2ListInstances.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ListInstances.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -611,24 +467,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListTriggersResponse listTriggers(V2ListTriggersRequest request) {
-        return listTriggers(request, Optional.empty());
-    }
-
-    /**
-     * List triggers
-     * 
-     * <p>List triggers
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2ListTriggersResponse listTriggers(V2ListTriggersRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListTriggersRequest, V2ListTriggersResponse> operation
-              = new V2ListTriggers.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ListTriggers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -657,24 +497,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListTriggersOccurrencesResponse listTriggersOccurrences(V2ListTriggersOccurrencesRequest request) {
-        return listTriggersOccurrences(request, Optional.empty());
-    }
-
-    /**
-     * List triggers occurrences
-     * 
-     * <p>List triggers occurrences
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2ListTriggersOccurrencesResponse listTriggersOccurrences(V2ListTriggersOccurrencesRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListTriggersOccurrencesRequest, V2ListTriggersOccurrencesResponse> operation
-              = new V2ListTriggersOccurrences.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ListTriggersOccurrences.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -703,24 +527,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ListWorkflowsResponse listWorkflows(V2ListWorkflowsRequest request) {
-        return listWorkflows(request, Optional.empty());
-    }
-
-    /**
-     * List registered workflows
-     * 
-     * <p>List registered workflows
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2ListWorkflowsResponse listWorkflows(V2ListWorkflowsRequest request, Optional<String> serverURL) {
         RequestOperation<V2ListWorkflowsRequest, V2ListWorkflowsResponse> operation
-              = new V2ListWorkflows.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ListWorkflows.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -749,24 +557,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2ReadTriggerResponse readTrigger(V2ReadTriggerRequest request) {
-        return readTrigger(request, Optional.empty());
-    }
-
-    /**
-     * Read trigger
-     * 
-     * <p>Read trigger
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2ReadTriggerResponse readTrigger(V2ReadTriggerRequest request, Optional<String> serverURL) {
         RequestOperation<V2ReadTriggerRequest, V2ReadTriggerResponse> operation
-              = new V2ReadTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2ReadTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -795,24 +587,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2RunWorkflowResponse runWorkflow(V2RunWorkflowRequest request) {
-        return runWorkflow(request, Optional.empty());
-    }
-
-    /**
-     * Run workflow
-     * 
-     * <p>Run workflow
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2RunWorkflowResponse runWorkflow(V2RunWorkflowRequest request, Optional<String> serverURL) {
         RequestOperation<V2RunWorkflowRequest, V2RunWorkflowResponse> operation
-              = new V2RunWorkflow.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2RunWorkflow.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -841,24 +617,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2SendEventResponse sendEvent(V2SendEventRequest request) {
-        return sendEvent(request, Optional.empty());
-    }
-
-    /**
-     * Send an event to a running workflow
-     * 
-     * <p>Send an event to a running workflow
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2SendEventResponse sendEvent(V2SendEventRequest request, Optional<String> serverURL) {
         RequestOperation<V2SendEventRequest, V2SendEventResponse> operation
-              = new V2SendEvent.Sync(sdkConfiguration, serverURL, _headers);
+              = new V2SendEvent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -887,24 +647,8 @@ public class OrchestrationV2 {
      * @throws RuntimeException subclass if the API call fails
      */
     public TestTriggerResponse testTrigger(TestTriggerRequest request) {
-        return testTrigger(request, Optional.empty());
-    }
-
-    /**
-     * Test trigger
-     * 
-     * <p>Test trigger
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public TestTriggerResponse testTrigger(TestTriggerRequest request, Optional<String> serverURL) {
         RequestOperation<TestTriggerRequest, TestTriggerResponse> operation
-              = new TestTrigger.Sync(sdkConfiguration, serverURL, _headers);
+              = new TestTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

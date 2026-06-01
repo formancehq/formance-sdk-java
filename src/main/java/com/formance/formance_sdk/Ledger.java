@@ -12,8 +12,6 @@ import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.operations.GetMetrics;
 import com.formance.formance_sdk.operations.V2GetInfo;
 import com.formance.formance_sdk.utils.Headers;
-import java.lang.String;
-import java.util.Optional;
 
 
 public class Ledger {
@@ -56,21 +54,8 @@ public class Ledger {
      * @throws RuntimeException subclass if the API call fails
      */
     public V2GetInfoResponse getInfoDirect() {
-        return getInfo(Optional.empty());
-    }
-
-    /**
-     * Show server information
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public V2GetInfoResponse getInfo(Optional<String> serverURL) {
         RequestlessOperation<V2GetInfoResponse> operation
-            = new V2GetInfo.Sync(sdkConfiguration, serverURL, _headers);
+            = new V2GetInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -94,21 +79,8 @@ public class Ledger {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetMetricsResponse getMetricsDirect() {
-        return getMetrics(Optional.empty());
-    }
-
-    /**
-     * Read in memory metrics
-     * 
-     * <p>If set, this operation will use Security#clientID from the global security.
-     * 
-     * @param serverURL Overrides the server URL.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetMetricsResponse getMetrics(Optional<String> serverURL) {
         RequestlessOperation<GetMetricsResponse> operation
-            = new GetMetrics.Sync(sdkConfiguration, serverURL, _headers);
+            = new GetMetrics.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
