@@ -5,7 +5,7 @@
 package com.formance.formance_sdk.hooks;
 
 //
-// This file is written once by speakeasy code generation and 
+// This file is written once by speakeasy code generation and
 // thereafter will not be overwritten by speakeasy updates. As a
 // consequence any customization of this class will be preserved.
 //
@@ -18,6 +18,13 @@ import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 
 public final class SDKHooks {
+
+    // Hardcoded fallback emitted by the Speakeasy generator for every operation
+    // when per-operation `servers: [...]` are present in the spec. We use this
+    // as the trigger to detect that the generator's latent defect fired and
+    // ignored SDKConfiguration.serverUrl(). Remove this hook (and constant)
+    // once the upstream Speakeasy fix has shipped and been regenerated.
+    private static final String BUGGY_DEFAULT_PREFIX = "http://localhost:8080";
 
     private SDKHooks() {
         // prevent instantiation
@@ -40,23 +47,55 @@ public final class SDKHooks {
         }
     }
 
+    /**
+     * Workaround for a Speakeasy generator defect: when an operation has
+     * per-operation {@code servers: [...]} entries in the spec, the generated
+     * operation ignores {@link com.formance.formance_sdk.SDKConfiguration#serverUrl()}
+     * and falls back to the hardcoded first per-operation server entry
+     * (here {@value #BUGGY_DEFAULT_PREFIX}/). This rewrites any request that
+     * went out with that fallback to the SDK-level configured server URL.
+     *
+     * <p>Per-operation overrides (callers passing {@code Optional.of(url)})
+     * and requests already pointing at a non-default host are left untouched.
+     *
+     * <p>Once the upstream fix has been regenerated, the {@code startsWith}
+     * guard will no longer match and this hook becomes a silent no-op.
+     */
+    private static URI redirectToConfiguredServer(URI current, String configured) {
+        if (configured == null || configured.isBlank()) {
+            return current;
+        }
+        String currentStr = current.toString();
+        if (!currentStr.startsWith(BUGGY_DEFAULT_PREFIX)) {
+            return current; // caller passed a per-operation override
+        }
+        String suffix = currentStr.substring(BUGGY_DEFAULT_PREFIX.length());
+        String trimmed = configured.endsWith("/")
+                ? configured.substring(0, configured.length() - 1)
+                : configured;
+        return URI.create(trimmed + suffix);
+    }
+
     public static final void initialize(com.formance.formance_sdk.utils.Hooks hooks) {
         // register hooks here
         hooks.registerBeforeRequest(new Hook.BeforeRequest() {
             @Override
             public HttpRequest beforeRequest(Hook.BeforeRequestContext context, HttpRequest request) throws Exception {
-                String uriRawPath = request.uri().getRawPath();
+                URI original = request.uri();
 
-                if (uriRawPath.contains("%3A")){
-                    URI newUri = unescapeColonsInPath(request.uri());
-                    HttpRequest nextRequest =  Helpers.copy(request)
-                            .uri(newUri)
-                            .build();
+                // 1. Redirect the buggy localhost:8080 fallback to the configured server URL.
+                URI redirected = redirectToConfiguredServer(original, context.sdkConfiguration().serverUrl());
 
-                   return nextRequest;
+                // 2. Unescape colons in path (pre-existing fix).
+                String rawPath = redirected.getRawPath();
+                URI fixed = rawPath != null && rawPath.contains("%3A")
+                        ? unescapeColonsInPath(redirected)
+                        : redirected;
+
+                if (fixed.equals(original)) {
+                    return request;
                 }
-
-                return request;
+                return Helpers.copy(request).uri(fixed).build();
             }
         });
         // for more information see
