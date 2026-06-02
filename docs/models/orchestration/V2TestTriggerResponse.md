@@ -5,4 +5,4 @@
 
 | Field                                                 | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `v2TriggerTest`                                       | [V2TriggerTest](../../models/shared/V2TriggerTest.md) | :heavy_check_mark:                                    | N/A                                                   |
+| `data`                                                | [V2TriggerTest](../../models/shared/V2TriggerTest.md) | :heavy_check_mark:                                    | N/A                                                   |

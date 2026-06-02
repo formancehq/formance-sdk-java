@@ -19,7 +19,7 @@ public class ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends PostTransaction> postTransaction;
+    private Optional<? extends PostTransaction> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -28,11 +28,11 @@ public class ActivityCreateTransaction {
 
     @JsonCreator
     public ActivityCreateTransaction(
-            @JsonProperty("data") Optional<? extends PostTransaction> postTransaction,
+            @JsonProperty("data") Optional<? extends PostTransaction> data,
             @JsonProperty("ledger") Optional<String> ledger) {
-        Utils.checkNotNull(postTransaction, "postTransaction");
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(ledger, "ledger");
-        this.postTransaction = postTransaction;
+        this.data = data;
         this.ledger = ledger;
     }
     
@@ -42,8 +42,8 @@ public class ActivityCreateTransaction {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PostTransaction> postTransaction() {
-        return (Optional<PostTransaction>) postTransaction;
+    public Optional<PostTransaction> data() {
+        return (Optional<PostTransaction>) data;
     }
 
     @JsonIgnore
@@ -56,16 +56,16 @@ public class ActivityCreateTransaction {
     }
 
 
-    public ActivityCreateTransaction withPostTransaction(PostTransaction postTransaction) {
-        Utils.checkNotNull(postTransaction, "postTransaction");
-        this.postTransaction = Optional.ofNullable(postTransaction);
+    public ActivityCreateTransaction withData(PostTransaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public ActivityCreateTransaction withPostTransaction(Optional<? extends PostTransaction> postTransaction) {
-        Utils.checkNotNull(postTransaction, "postTransaction");
-        this.postTransaction = postTransaction;
+    public ActivityCreateTransaction withData(Optional<? extends PostTransaction> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -92,27 +92,27 @@ public class ActivityCreateTransaction {
         }
         ActivityCreateTransaction other = (ActivityCreateTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.postTransaction, other.postTransaction) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            postTransaction, ledger);
+            data, ledger);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ActivityCreateTransaction.class,
-                "postTransaction", postTransaction,
+                "data", data,
                 "ledger", ledger);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends PostTransaction> postTransaction = Optional.empty();
+        private Optional<? extends PostTransaction> data = Optional.empty();
 
         private Optional<String> ledger = Optional.empty();
 
@@ -121,15 +121,15 @@ public class ActivityCreateTransaction {
         }
 
 
-        public Builder postTransaction(PostTransaction postTransaction) {
-            Utils.checkNotNull(postTransaction, "postTransaction");
-            this.postTransaction = Optional.ofNullable(postTransaction);
+        public Builder data(PostTransaction data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder postTransaction(Optional<? extends PostTransaction> postTransaction) {
-            Utils.checkNotNull(postTransaction, "postTransaction");
-            this.postTransaction = postTransaction;
+        public Builder data(Optional<? extends PostTransaction> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
@@ -149,7 +149,7 @@ public class ActivityCreateTransaction {
         public ActivityCreateTransaction build() {
 
             return new ActivityCreateTransaction(
-                postTransaction, ledger);
+                data, ledger);
         }
 
     }

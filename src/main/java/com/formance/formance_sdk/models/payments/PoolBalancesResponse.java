@@ -18,18 +18,18 @@ import java.lang.String;
 public class PoolBalancesResponse {
 
     @JsonProperty("data")
-    private PoolBalances poolBalances;
+    private PoolBalances data;
 
     @JsonCreator
     public PoolBalancesResponse(
-            @JsonProperty("data") PoolBalances poolBalances) {
-        Utils.checkNotNull(poolBalances, "poolBalances");
-        this.poolBalances = poolBalances;
+            @JsonProperty("data") PoolBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public PoolBalances poolBalances() {
-        return poolBalances;
+    public PoolBalances data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class PoolBalancesResponse {
     }
 
 
-    public PoolBalancesResponse withPoolBalances(PoolBalances poolBalances) {
-        Utils.checkNotNull(poolBalances, "poolBalances");
-        this.poolBalances = poolBalances;
+    public PoolBalancesResponse withData(PoolBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class PoolBalancesResponse {
         }
         PoolBalancesResponse other = (PoolBalancesResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.poolBalances, other.poolBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            poolBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PoolBalancesResponse.class,
-                "poolBalances", poolBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private PoolBalances poolBalances;
+        private PoolBalances data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder poolBalances(PoolBalances poolBalances) {
-            Utils.checkNotNull(poolBalances, "poolBalances");
-            this.poolBalances = poolBalances;
+        public Builder data(PoolBalances data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public PoolBalancesResponse build() {
 
             return new PoolBalancesResponse(
-                poolBalances);
+                data);
         }
 
     }

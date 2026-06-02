@@ -6,14 +6,14 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.operations.V2CreateExporter;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
 
 public class V2CreateExporterRequestBuilder {
 
-    private V2ExporterConfiguration2 request;
+    private V2ExporterConfiguration request;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -21,7 +21,7 @@ public class V2CreateExporterRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public V2CreateExporterRequestBuilder request(V2ExporterConfiguration2 request) {
+    public V2CreateExporterRequestBuilder request(V2ExporterConfiguration request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -29,7 +29,7 @@ public class V2CreateExporterRequestBuilder {
 
     public V2CreateExporterResponse call() {
         
-        RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> operation
+        RequestOperation<V2ExporterConfiguration, V2CreateExporterResponse> operation
               = new V2CreateExporter.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));

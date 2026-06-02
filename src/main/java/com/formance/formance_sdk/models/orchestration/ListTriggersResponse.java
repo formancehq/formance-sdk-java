@@ -15,17 +15,17 @@ import java.util.List;
 public class ListTriggersResponse {
 
     @JsonProperty("data")
-    private List<TriggerData1> data;
+    private List<Trigger> data;
 
     @JsonCreator
     public ListTriggersResponse(
-            @JsonProperty("data") List<TriggerData1> data) {
+            @JsonProperty("data") List<Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public List<TriggerData1> data() {
+    public List<Trigger> data() {
         return data;
     }
 
@@ -34,7 +34,7 @@ public class ListTriggersResponse {
     }
 
 
-    public ListTriggersResponse withData(List<TriggerData1> data) {
+    public ListTriggersResponse withData(List<Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -68,14 +68,14 @@ public class ListTriggersResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<TriggerData1> data;
+        private List<Trigger> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder data(List<TriggerData1> data) {
+        public Builder data(List<Trigger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

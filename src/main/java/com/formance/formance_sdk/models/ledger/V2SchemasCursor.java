@@ -20,7 +20,7 @@ import java.util.Optional;
 public class V2SchemasCursor {
 
     @JsonProperty("data")
-    private List<V2SchemaData1> data;
+    private List<V2Schema> data;
 
 
     @JsonProperty("hasMore")
@@ -42,7 +42,7 @@ public class V2SchemasCursor {
 
     @JsonCreator
     public V2SchemasCursor(
-            @JsonProperty("data") List<V2SchemaData1> data,
+            @JsonProperty("data") List<V2Schema> data,
             @JsonProperty("hasMore") boolean hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -60,7 +60,7 @@ public class V2SchemasCursor {
     }
     
     public V2SchemasCursor(
-            List<V2SchemaData1> data,
+            List<V2Schema> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(),
@@ -68,7 +68,7 @@ public class V2SchemasCursor {
     }
 
     @JsonIgnore
-    public List<V2SchemaData1> data() {
+    public List<V2Schema> data() {
         return data;
     }
 
@@ -97,7 +97,7 @@ public class V2SchemasCursor {
     }
 
 
-    public V2SchemasCursor withData(List<V2SchemaData1> data) {
+    public V2SchemasCursor withData(List<V2Schema> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -178,7 +178,7 @@ public class V2SchemasCursor {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2SchemaData1> data;
+        private List<V2Schema> data;
 
         private Boolean hasMore;
 
@@ -193,7 +193,7 @@ public class V2SchemasCursor {
         }
 
 
-        public Builder data(List<V2SchemaData1> data) {
+        public Builder data(List<V2Schema> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

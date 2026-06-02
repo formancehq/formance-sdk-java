@@ -22,11 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class BankAccount {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> bankAccountMetadata;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountID")
     private Optional<String> accountID;
 
@@ -58,6 +53,11 @@ public class BankAccount {
     private String id;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
@@ -78,7 +78,6 @@ public class BankAccount {
 
     @JsonCreator
     public BankAccount(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> bankAccountMetadata,
             @JsonProperty("accountID") Optional<String> accountID,
             @JsonProperty("accountNumber") Optional<String> accountNumber,
             @JsonProperty("connectorID") Optional<String> connectorID,
@@ -86,11 +85,11 @@ public class BankAccount {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("iban") Optional<String> iban,
             @JsonProperty("id") String id,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name,
             @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("relatedAccounts") Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts,
             @JsonProperty("swiftBicCode") Optional<String> swiftBicCode) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
         Utils.checkNotNull(accountID, "accountID");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(connectorID, "connectorID");
@@ -98,11 +97,11 @@ public class BankAccount {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(iban, "iban");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
-        this.bankAccountMetadata = bankAccountMetadata;
         this.accountID = accountID;
         this.accountNumber = accountNumber;
         this.connectorID = connectorID;
@@ -110,6 +109,7 @@ public class BankAccount {
         this.createdAt = createdAt;
         this.iban = iban;
         this.id = id;
+        this.metadata = metadata;
         this.name = name;
         this.provider = provider;
         this.relatedAccounts = relatedAccounts;
@@ -121,16 +121,10 @@ public class BankAccount {
             OffsetDateTime createdAt,
             String id,
             String name) {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), country, createdAt,
-            Optional.empty(), id, name,
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            country, createdAt, Optional.empty(),
+            id, JsonNullable.undefined(), name,
             Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> bankAccountMetadata() {
-        return (JsonNullable<Map<String, String>>) bankAccountMetadata;
     }
 
     @JsonIgnore
@@ -168,6 +162,12 @@ public class BankAccount {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String name() {
         return name;
@@ -193,18 +193,6 @@ public class BankAccount {
         return new Builder();
     }
 
-
-    public BankAccount withBankAccountMetadata(Map<String, String> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = JsonNullable.of(bankAccountMetadata);
-        return this;
-    }
-
-    public BankAccount withBankAccountMetadata(JsonNullable<? extends Map<String, String>> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = bankAccountMetadata;
-        return this;
-    }
 
     public BankAccount withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
@@ -276,6 +264,18 @@ public class BankAccount {
         return this;
     }
 
+    public BankAccount withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public BankAccount withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public BankAccount withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -331,7 +331,6 @@ public class BankAccount {
         }
         BankAccount other = (BankAccount) o;
         return 
-            Utils.enhancedDeepEquals(this.bankAccountMetadata, other.bankAccountMetadata) &&
             Utils.enhancedDeepEquals(this.accountID, other.accountID) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
@@ -339,6 +338,7 @@ public class BankAccount {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.iban, other.iban) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.relatedAccounts, other.relatedAccounts) &&
@@ -348,16 +348,15 @@ public class BankAccount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bankAccountMetadata, accountID, accountNumber,
-            connectorID, country, createdAt,
-            iban, id, name,
+            accountID, accountNumber, connectorID,
+            country, createdAt, iban,
+            id, metadata, name,
             provider, relatedAccounts, swiftBicCode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BankAccount.class,
-                "bankAccountMetadata", bankAccountMetadata,
                 "accountID", accountID,
                 "accountNumber", accountNumber,
                 "connectorID", connectorID,
@@ -365,6 +364,7 @@ public class BankAccount {
                 "createdAt", createdAt,
                 "iban", iban,
                 "id", id,
+                "metadata", metadata,
                 "name", name,
                 "provider", provider,
                 "relatedAccounts", relatedAccounts,
@@ -373,8 +373,6 @@ public class BankAccount {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> bankAccountMetadata = JsonNullable.undefined();
 
         private Optional<String> accountID = Optional.empty();
 
@@ -390,6 +388,8 @@ public class BankAccount {
 
         private String id;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String name;
 
         private Optional<String> provider = Optional.empty();
@@ -400,19 +400,6 @@ public class BankAccount {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder bankAccountMetadata(Map<String, String> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = JsonNullable.of(bankAccountMetadata);
-            return this;
-        }
-
-        public Builder bankAccountMetadata(JsonNullable<? extends Map<String, String>> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = bankAccountMetadata;
-            return this;
         }
 
 
@@ -489,6 +476,19 @@ public class BankAccount {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -537,9 +537,9 @@ public class BankAccount {
         public BankAccount build() {
 
             return new BankAccount(
-                bankAccountMetadata, accountID, accountNumber,
-                connectorID, country, createdAt,
-                iban, id, name,
+                accountID, accountNumber, connectorID,
+                country, createdAt, iban,
+                id, metadata, name,
                 provider, relatedAccounts, swiftBicCode);
         }
 

@@ -19,13 +19,13 @@ public class V2LedgerInfoResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends V2LedgerInfo> v2LedgerInfo;
+    private Optional<? extends V2LedgerInfo> data;
 
     @JsonCreator
     public V2LedgerInfoResponse(
-            @JsonProperty("data") Optional<? extends V2LedgerInfo> v2LedgerInfo) {
-        Utils.checkNotNull(v2LedgerInfo, "v2LedgerInfo");
-        this.v2LedgerInfo = v2LedgerInfo;
+            @JsonProperty("data") Optional<? extends V2LedgerInfo> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public V2LedgerInfoResponse() {
@@ -34,8 +34,8 @@ public class V2LedgerInfoResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2LedgerInfo> v2LedgerInfo() {
-        return (Optional<V2LedgerInfo>) v2LedgerInfo;
+    public Optional<V2LedgerInfo> data() {
+        return (Optional<V2LedgerInfo>) data;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class V2LedgerInfoResponse {
     }
 
 
-    public V2LedgerInfoResponse withV2LedgerInfo(V2LedgerInfo v2LedgerInfo) {
-        Utils.checkNotNull(v2LedgerInfo, "v2LedgerInfo");
-        this.v2LedgerInfo = Optional.ofNullable(v2LedgerInfo);
+    public V2LedgerInfoResponse withData(V2LedgerInfo data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public V2LedgerInfoResponse withV2LedgerInfo(Optional<? extends V2LedgerInfo> v2LedgerInfo) {
-        Utils.checkNotNull(v2LedgerInfo, "v2LedgerInfo");
-        this.v2LedgerInfo = v2LedgerInfo;
+    public V2LedgerInfoResponse withData(Optional<? extends V2LedgerInfo> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class V2LedgerInfoResponse {
         }
         V2LedgerInfoResponse other = (V2LedgerInfoResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2LedgerInfo, other.v2LedgerInfo);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2LedgerInfo);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2LedgerInfoResponse.class,
-                "v2LedgerInfo", v2LedgerInfo);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2LedgerInfo> v2LedgerInfo = Optional.empty();
+        private Optional<? extends V2LedgerInfo> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2LedgerInfo(V2LedgerInfo v2LedgerInfo) {
-            Utils.checkNotNull(v2LedgerInfo, "v2LedgerInfo");
-            this.v2LedgerInfo = Optional.ofNullable(v2LedgerInfo);
+        public Builder data(V2LedgerInfo data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder v2LedgerInfo(Optional<? extends V2LedgerInfo> v2LedgerInfo) {
-            Utils.checkNotNull(v2LedgerInfo, "v2LedgerInfo");
-            this.v2LedgerInfo = v2LedgerInfo;
+        public Builder data(Optional<? extends V2LedgerInfo> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2LedgerInfoResponse build() {
 
             return new V2LedgerInfoResponse(
-                v2LedgerInfo);
+                data);
         }
 
     }

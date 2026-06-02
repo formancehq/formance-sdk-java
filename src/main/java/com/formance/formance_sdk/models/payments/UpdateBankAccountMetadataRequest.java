@@ -20,13 +20,13 @@ public class UpdateBankAccountMetadataRequest {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, String>> bankAccountMetadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonCreator
     public UpdateBankAccountMetadataRequest(
-            @JsonProperty("metadata") Optional<? extends Map<String, String>> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = bankAccountMetadata;
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
     }
     
     public UpdateBankAccountMetadataRequest() {
@@ -35,8 +35,8 @@ public class UpdateBankAccountMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, String>> bankAccountMetadata() {
-        return (Optional<Map<String, String>>) bankAccountMetadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     public static Builder builder() {
@@ -44,16 +44,16 @@ public class UpdateBankAccountMetadataRequest {
     }
 
 
-    public UpdateBankAccountMetadataRequest withBankAccountMetadata(Map<String, String> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = Optional.ofNullable(bankAccountMetadata);
+    public UpdateBankAccountMetadataRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
 
-    public UpdateBankAccountMetadataRequest withBankAccountMetadata(Optional<? extends Map<String, String>> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = bankAccountMetadata;
+    public UpdateBankAccountMetadataRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -67,47 +67,47 @@ public class UpdateBankAccountMetadataRequest {
         }
         UpdateBankAccountMetadataRequest other = (UpdateBankAccountMetadataRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.bankAccountMetadata, other.bankAccountMetadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bankAccountMetadata);
+            metadata);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateBankAccountMetadataRequest.class,
-                "bankAccountMetadata", bankAccountMetadata);
+                "metadata", metadata);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, String>> bankAccountMetadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder bankAccountMetadata(Map<String, String> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = Optional.ofNullable(bankAccountMetadata);
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder bankAccountMetadata(Optional<? extends Map<String, String>> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = bankAccountMetadata;
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
         public UpdateBankAccountMetadataRequest build() {
 
             return new UpdateBankAccountMetadataRequest(
-                bankAccountMetadata);
+                metadata);
         }
 
     }

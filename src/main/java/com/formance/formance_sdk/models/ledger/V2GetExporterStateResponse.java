@@ -18,18 +18,18 @@ import java.lang.String;
 public class V2GetExporterStateResponse {
 
     @JsonProperty("data")
-    private V2ExporterConfiguration1 v2ExporterConfiguration;
+    private V2Exporter data;
 
     @JsonCreator
     public V2GetExporterStateResponse(
-            @JsonProperty("data") V2ExporterConfiguration1 v2ExporterConfiguration) {
-        Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
-        this.v2ExporterConfiguration = v2ExporterConfiguration;
+            @JsonProperty("data") V2Exporter data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2ExporterConfiguration1 v2ExporterConfiguration() {
-        return v2ExporterConfiguration;
+    public V2Exporter data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class V2GetExporterStateResponse {
     }
 
 
-    public V2GetExporterStateResponse withV2ExporterConfiguration(V2ExporterConfiguration1 v2ExporterConfiguration) {
-        Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
-        this.v2ExporterConfiguration = v2ExporterConfiguration;
+    public V2GetExporterStateResponse withData(V2Exporter data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class V2GetExporterStateResponse {
         }
         V2GetExporterStateResponse other = (V2GetExporterStateResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2ExporterConfiguration, other.v2ExporterConfiguration);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2ExporterConfiguration);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetExporterStateResponse.class,
-                "v2ExporterConfiguration", v2ExporterConfiguration);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2ExporterConfiguration1 v2ExporterConfiguration;
+        private V2Exporter data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2ExporterConfiguration(V2ExporterConfiguration1 v2ExporterConfiguration) {
-            Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
-            this.v2ExporterConfiguration = v2ExporterConfiguration;
+        public Builder data(V2Exporter data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2GetExporterStateResponse build() {
 
             return new V2GetExporterStateResponse(
-                v2ExporterConfiguration);
+                data);
         }
 
     }

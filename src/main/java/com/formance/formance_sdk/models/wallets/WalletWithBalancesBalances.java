@@ -14,18 +14,18 @@ import java.lang.String;
 public class WalletWithBalancesBalances {
 
     @JsonProperty("main")
-    private AssetHolder1 assetHolder;
+    private AssetHolder main;
 
     @JsonCreator
     public WalletWithBalancesBalances(
-            @JsonProperty("main") AssetHolder1 assetHolder) {
-        Utils.checkNotNull(assetHolder, "assetHolder");
-        this.assetHolder = assetHolder;
+            @JsonProperty("main") AssetHolder main) {
+        Utils.checkNotNull(main, "main");
+        this.main = main;
     }
 
     @JsonIgnore
-    public AssetHolder1 assetHolder() {
-        return assetHolder;
+    public AssetHolder main() {
+        return main;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class WalletWithBalancesBalances {
     }
 
 
-    public WalletWithBalancesBalances withAssetHolder(AssetHolder1 assetHolder) {
-        Utils.checkNotNull(assetHolder, "assetHolder");
-        this.assetHolder = assetHolder;
+    public WalletWithBalancesBalances withMain(AssetHolder main) {
+        Utils.checkNotNull(main, "main");
+        this.main = main;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class WalletWithBalancesBalances {
         }
         WalletWithBalancesBalances other = (WalletWithBalancesBalances) o;
         return 
-            Utils.enhancedDeepEquals(this.assetHolder, other.assetHolder);
+            Utils.enhancedDeepEquals(this.main, other.main);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            assetHolder);
+            main);
     }
     
     @Override
     public String toString() {
         return Utils.toString(WalletWithBalancesBalances.class,
-                "assetHolder", assetHolder);
+                "main", main);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private AssetHolder1 assetHolder;
+        private AssetHolder main;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder assetHolder(AssetHolder1 assetHolder) {
-            Utils.checkNotNull(assetHolder, "assetHolder");
-            this.assetHolder = assetHolder;
+        public Builder main(AssetHolder main) {
+            Utils.checkNotNull(main, "main");
+            this.main = main;
             return this;
         }
 
         public WalletWithBalancesBalances build() {
 
             return new WalletWithBalancesBalances(
-                assetHolder);
+                main);
         }
 
     }

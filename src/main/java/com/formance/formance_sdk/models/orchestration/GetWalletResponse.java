@@ -14,18 +14,18 @@ import java.lang.String;
 public class GetWalletResponse {
 
     @JsonProperty("data")
-    private WalletWithBalances walletWithBalances;
+    private WalletWithBalances data;
 
     @JsonCreator
     public GetWalletResponse(
-            @JsonProperty("data") WalletWithBalances walletWithBalances) {
-        Utils.checkNotNull(walletWithBalances, "walletWithBalances");
-        this.walletWithBalances = walletWithBalances;
+            @JsonProperty("data") WalletWithBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public WalletWithBalances walletWithBalances() {
-        return walletWithBalances;
+    public WalletWithBalances data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class GetWalletResponse {
     }
 
 
-    public GetWalletResponse withWalletWithBalances(WalletWithBalances walletWithBalances) {
-        Utils.checkNotNull(walletWithBalances, "walletWithBalances");
-        this.walletWithBalances = walletWithBalances;
+    public GetWalletResponse withData(WalletWithBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class GetWalletResponse {
         }
         GetWalletResponse other = (GetWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.walletWithBalances, other.walletWithBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            walletWithBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWalletResponse.class,
-                "walletWithBalances", walletWithBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WalletWithBalances walletWithBalances;
+        private WalletWithBalances data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder walletWithBalances(WalletWithBalances walletWithBalances) {
-            Utils.checkNotNull(walletWithBalances, "walletWithBalances");
-            this.walletWithBalances = walletWithBalances;
+        public Builder data(WalletWithBalances data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public GetWalletResponse build() {
 
             return new GetWalletResponse(
-                walletWithBalances);
+                data);
         }
 
     }

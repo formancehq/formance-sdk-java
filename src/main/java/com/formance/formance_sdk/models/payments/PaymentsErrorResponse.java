@@ -53,8 +53,8 @@ public class PaymentsErrorResponse extends SDKBaseError {
     }
 
     @Deprecated
-    public Optional<PaymentsErrorsEnum> paymentsErrorsEnum() {
-        return data().map(Data::paymentsErrorsEnum);
+    public Optional<PaymentsErrorsEnum> errorCode() {
+        return data().map(Data::errorCode);
     }
 
     @Deprecated
@@ -80,7 +80,7 @@ public class PaymentsErrorResponse extends SDKBaseError {
     public static class Data {
 
         @JsonProperty("errorCode")
-        private PaymentsErrorsEnum paymentsErrorsEnum;
+        private PaymentsErrorsEnum errorCode;
 
 
         @JsonProperty("errorMessage")
@@ -88,17 +88,17 @@ public class PaymentsErrorResponse extends SDKBaseError {
 
         @JsonCreator
         public Data(
-                @JsonProperty("errorCode") PaymentsErrorsEnum paymentsErrorsEnum,
+                @JsonProperty("errorCode") PaymentsErrorsEnum errorCode,
                 @JsonProperty("errorMessage") String errorMessage) {
-            Utils.checkNotNull(paymentsErrorsEnum, "paymentsErrorsEnum");
+            Utils.checkNotNull(errorCode, "errorCode");
             Utils.checkNotNull(errorMessage, "errorMessage");
-            this.paymentsErrorsEnum = paymentsErrorsEnum;
+            this.errorCode = errorCode;
             this.errorMessage = errorMessage;
         }
 
         @JsonIgnore
-        public PaymentsErrorsEnum paymentsErrorsEnum() {
-            return paymentsErrorsEnum;
+        public PaymentsErrorsEnum errorCode() {
+            return errorCode;
         }
 
         @JsonIgnore
@@ -111,9 +111,9 @@ public class PaymentsErrorResponse extends SDKBaseError {
         }
 
 
-        public Data withPaymentsErrorsEnum(PaymentsErrorsEnum paymentsErrorsEnum) {
-            Utils.checkNotNull(paymentsErrorsEnum, "paymentsErrorsEnum");
-            this.paymentsErrorsEnum = paymentsErrorsEnum;
+        public Data withErrorCode(PaymentsErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
             return this;
         }
 
@@ -133,27 +133,27 @@ public class PaymentsErrorResponse extends SDKBaseError {
             }
             Data other = (Data) o;
             return 
-                Utils.enhancedDeepEquals(this.paymentsErrorsEnum, other.paymentsErrorsEnum) &&
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
                 Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
-                paymentsErrorsEnum, errorMessage);
+                errorCode, errorMessage);
         }
         
         @Override
         public String toString() {
             return Utils.toString(Data.class,
-                    "paymentsErrorsEnum", paymentsErrorsEnum,
+                    "errorCode", errorCode,
                     "errorMessage", errorMessage);
         }
 
         @SuppressWarnings("UnusedReturnValue")
         public final static class Builder {
 
-            private PaymentsErrorsEnum paymentsErrorsEnum;
+            private PaymentsErrorsEnum errorCode;
 
             private String errorMessage;
 
@@ -162,9 +162,9 @@ public class PaymentsErrorResponse extends SDKBaseError {
             }
 
 
-            public Builder paymentsErrorsEnum(PaymentsErrorsEnum paymentsErrorsEnum) {
-                Utils.checkNotNull(paymentsErrorsEnum, "paymentsErrorsEnum");
-                this.paymentsErrorsEnum = paymentsErrorsEnum;
+            public Builder errorCode(PaymentsErrorsEnum errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
                 return this;
             }
 
@@ -178,7 +178,7 @@ public class PaymentsErrorResponse extends SDKBaseError {
             public Data build() {
 
                 return new Data(
-                    paymentsErrorsEnum, errorMessage);
+                    errorCode, errorMessage);
             }
 
         }

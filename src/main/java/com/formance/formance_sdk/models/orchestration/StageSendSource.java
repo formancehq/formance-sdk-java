@@ -19,29 +19,29 @@ public class StageSendSource {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private Optional<? extends StageSendSourceAccount> stageSendSourceAccount;
+    private Optional<? extends StageSendSourceAccount> account;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends StageSendSourcePayment> stageSendSourcePayment;
+    private Optional<? extends StageSendSourcePayment> payment;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("wallet")
-    private Optional<? extends StageSendSourceWallet> stageSendSourceWallet;
+    private Optional<? extends StageSendSourceWallet> wallet;
 
     @JsonCreator
     public StageSendSource(
-            @JsonProperty("account") Optional<? extends StageSendSourceAccount> stageSendSourceAccount,
-            @JsonProperty("payment") Optional<? extends StageSendSourcePayment> stageSendSourcePayment,
-            @JsonProperty("wallet") Optional<? extends StageSendSourceWallet> stageSendSourceWallet) {
-        Utils.checkNotNull(stageSendSourceAccount, "stageSendSourceAccount");
-        Utils.checkNotNull(stageSendSourcePayment, "stageSendSourcePayment");
-        Utils.checkNotNull(stageSendSourceWallet, "stageSendSourceWallet");
-        this.stageSendSourceAccount = stageSendSourceAccount;
-        this.stageSendSourcePayment = stageSendSourcePayment;
-        this.stageSendSourceWallet = stageSendSourceWallet;
+            @JsonProperty("account") Optional<? extends StageSendSourceAccount> account,
+            @JsonProperty("payment") Optional<? extends StageSendSourcePayment> payment,
+            @JsonProperty("wallet") Optional<? extends StageSendSourceWallet> wallet) {
+        Utils.checkNotNull(account, "account");
+        Utils.checkNotNull(payment, "payment");
+        Utils.checkNotNull(wallet, "wallet");
+        this.account = account;
+        this.payment = payment;
+        this.wallet = wallet;
     }
     
     public StageSendSource() {
@@ -50,20 +50,20 @@ public class StageSendSource {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<StageSendSourceAccount> stageSendSourceAccount() {
-        return (Optional<StageSendSourceAccount>) stageSendSourceAccount;
+    public Optional<StageSendSourceAccount> account() {
+        return (Optional<StageSendSourceAccount>) account;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<StageSendSourcePayment> stageSendSourcePayment() {
-        return (Optional<StageSendSourcePayment>) stageSendSourcePayment;
+    public Optional<StageSendSourcePayment> payment() {
+        return (Optional<StageSendSourcePayment>) payment;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<StageSendSourceWallet> stageSendSourceWallet() {
-        return (Optional<StageSendSourceWallet>) stageSendSourceWallet;
+    public Optional<StageSendSourceWallet> wallet() {
+        return (Optional<StageSendSourceWallet>) wallet;
     }
 
     public static Builder builder() {
@@ -71,42 +71,42 @@ public class StageSendSource {
     }
 
 
-    public StageSendSource withStageSendSourceAccount(StageSendSourceAccount stageSendSourceAccount) {
-        Utils.checkNotNull(stageSendSourceAccount, "stageSendSourceAccount");
-        this.stageSendSourceAccount = Optional.ofNullable(stageSendSourceAccount);
+    public StageSendSource withAccount(StageSendSourceAccount account) {
+        Utils.checkNotNull(account, "account");
+        this.account = Optional.ofNullable(account);
         return this;
     }
 
 
-    public StageSendSource withStageSendSourceAccount(Optional<? extends StageSendSourceAccount> stageSendSourceAccount) {
-        Utils.checkNotNull(stageSendSourceAccount, "stageSendSourceAccount");
-        this.stageSendSourceAccount = stageSendSourceAccount;
+    public StageSendSource withAccount(Optional<? extends StageSendSourceAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
         return this;
     }
 
-    public StageSendSource withStageSendSourcePayment(StageSendSourcePayment stageSendSourcePayment) {
-        Utils.checkNotNull(stageSendSourcePayment, "stageSendSourcePayment");
-        this.stageSendSourcePayment = Optional.ofNullable(stageSendSourcePayment);
-        return this;
-    }
-
-
-    public StageSendSource withStageSendSourcePayment(Optional<? extends StageSendSourcePayment> stageSendSourcePayment) {
-        Utils.checkNotNull(stageSendSourcePayment, "stageSendSourcePayment");
-        this.stageSendSourcePayment = stageSendSourcePayment;
-        return this;
-    }
-
-    public StageSendSource withStageSendSourceWallet(StageSendSourceWallet stageSendSourceWallet) {
-        Utils.checkNotNull(stageSendSourceWallet, "stageSendSourceWallet");
-        this.stageSendSourceWallet = Optional.ofNullable(stageSendSourceWallet);
+    public StageSendSource withPayment(StageSendSourcePayment payment) {
+        Utils.checkNotNull(payment, "payment");
+        this.payment = Optional.ofNullable(payment);
         return this;
     }
 
 
-    public StageSendSource withStageSendSourceWallet(Optional<? extends StageSendSourceWallet> stageSendSourceWallet) {
-        Utils.checkNotNull(stageSendSourceWallet, "stageSendSourceWallet");
-        this.stageSendSourceWallet = stageSendSourceWallet;
+    public StageSendSource withPayment(Optional<? extends StageSendSourcePayment> payment) {
+        Utils.checkNotNull(payment, "payment");
+        this.payment = payment;
+        return this;
+    }
+
+    public StageSendSource withWallet(StageSendSourceWallet wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = Optional.ofNullable(wallet);
+        return this;
+    }
+
+
+    public StageSendSource withWallet(Optional<? extends StageSendSourceWallet> wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = wallet;
         return this;
     }
 
@@ -120,81 +120,81 @@ public class StageSendSource {
         }
         StageSendSource other = (StageSendSource) o;
         return 
-            Utils.enhancedDeepEquals(this.stageSendSourceAccount, other.stageSendSourceAccount) &&
-            Utils.enhancedDeepEquals(this.stageSendSourcePayment, other.stageSendSourcePayment) &&
-            Utils.enhancedDeepEquals(this.stageSendSourceWallet, other.stageSendSourceWallet);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.payment, other.payment) &&
+            Utils.enhancedDeepEquals(this.wallet, other.wallet);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            stageSendSourceAccount, stageSendSourcePayment, stageSendSourceWallet);
+            account, payment, wallet);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StageSendSource.class,
-                "stageSendSourceAccount", stageSendSourceAccount,
-                "stageSendSourcePayment", stageSendSourcePayment,
-                "stageSendSourceWallet", stageSendSourceWallet);
+                "account", account,
+                "payment", payment,
+                "wallet", wallet);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends StageSendSourceAccount> stageSendSourceAccount = Optional.empty();
+        private Optional<? extends StageSendSourceAccount> account = Optional.empty();
 
-        private Optional<? extends StageSendSourcePayment> stageSendSourcePayment = Optional.empty();
+        private Optional<? extends StageSendSourcePayment> payment = Optional.empty();
 
-        private Optional<? extends StageSendSourceWallet> stageSendSourceWallet = Optional.empty();
+        private Optional<? extends StageSendSourceWallet> wallet = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder stageSendSourceAccount(StageSendSourceAccount stageSendSourceAccount) {
-            Utils.checkNotNull(stageSendSourceAccount, "stageSendSourceAccount");
-            this.stageSendSourceAccount = Optional.ofNullable(stageSendSourceAccount);
+        public Builder account(StageSendSourceAccount account) {
+            Utils.checkNotNull(account, "account");
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
-        public Builder stageSendSourceAccount(Optional<? extends StageSendSourceAccount> stageSendSourceAccount) {
-            Utils.checkNotNull(stageSendSourceAccount, "stageSendSourceAccount");
-            this.stageSendSourceAccount = stageSendSourceAccount;
-            return this;
-        }
-
-
-        public Builder stageSendSourcePayment(StageSendSourcePayment stageSendSourcePayment) {
-            Utils.checkNotNull(stageSendSourcePayment, "stageSendSourcePayment");
-            this.stageSendSourcePayment = Optional.ofNullable(stageSendSourcePayment);
-            return this;
-        }
-
-        public Builder stageSendSourcePayment(Optional<? extends StageSendSourcePayment> stageSendSourcePayment) {
-            Utils.checkNotNull(stageSendSourcePayment, "stageSendSourcePayment");
-            this.stageSendSourcePayment = stageSendSourcePayment;
+        public Builder account(Optional<? extends StageSendSourceAccount> account) {
+            Utils.checkNotNull(account, "account");
+            this.account = account;
             return this;
         }
 
 
-        public Builder stageSendSourceWallet(StageSendSourceWallet stageSendSourceWallet) {
-            Utils.checkNotNull(stageSendSourceWallet, "stageSendSourceWallet");
-            this.stageSendSourceWallet = Optional.ofNullable(stageSendSourceWallet);
+        public Builder payment(StageSendSourcePayment payment) {
+            Utils.checkNotNull(payment, "payment");
+            this.payment = Optional.ofNullable(payment);
             return this;
         }
 
-        public Builder stageSendSourceWallet(Optional<? extends StageSendSourceWallet> stageSendSourceWallet) {
-            Utils.checkNotNull(stageSendSourceWallet, "stageSendSourceWallet");
-            this.stageSendSourceWallet = stageSendSourceWallet;
+        public Builder payment(Optional<? extends StageSendSourcePayment> payment) {
+            Utils.checkNotNull(payment, "payment");
+            this.payment = payment;
+            return this;
+        }
+
+
+        public Builder wallet(StageSendSourceWallet wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = Optional.ofNullable(wallet);
+            return this;
+        }
+
+        public Builder wallet(Optional<? extends StageSendSourceWallet> wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = wallet;
             return this;
         }
 
         public StageSendSource build() {
 
             return new StageSendSource(
-                stageSendSourceAccount, stageSendSourcePayment, stageSendSourceWallet);
+                account, payment, wallet);
         }
 
     }

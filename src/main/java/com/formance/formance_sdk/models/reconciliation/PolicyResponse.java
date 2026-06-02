@@ -18,18 +18,18 @@ import java.lang.String;
 public class PolicyResponse {
 
     @JsonProperty("data")
-    private Policy policy;
+    private Policy data;
 
     @JsonCreator
     public PolicyResponse(
-            @JsonProperty("data") Policy policy) {
-        Utils.checkNotNull(policy, "policy");
-        this.policy = policy;
+            @JsonProperty("data") Policy data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Policy policy() {
-        return policy;
+    public Policy data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class PolicyResponse {
     }
 
 
-    public PolicyResponse withPolicy(Policy policy) {
-        Utils.checkNotNull(policy, "policy");
-        this.policy = policy;
+    public PolicyResponse withData(Policy data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class PolicyResponse {
         }
         PolicyResponse other = (PolicyResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.policy, other.policy);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            policy);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PolicyResponse.class,
-                "policy", policy);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Policy policy;
+        private Policy data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder policy(Policy policy) {
-            Utils.checkNotNull(policy, "policy");
-            this.policy = policy;
+        public Builder data(Policy data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public PolicyResponse build() {
 
             return new PolicyResponse(
-                policy);
+                data);
         }
 
     }

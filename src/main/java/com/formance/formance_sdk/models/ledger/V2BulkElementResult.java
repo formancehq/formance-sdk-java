@@ -25,27 +25,27 @@ public class V2BulkElementResult {
         this.value = value;
     }
 
-    public static V2BulkElementResult of(LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult value) {
+    public static V2BulkElementResult of(V2BulkElementResultCreateTransaction value) {
         Utils.checkNotNull(value, "value");
         return new V2BulkElementResult(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static V2BulkElementResult of(LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult value) {
+    public static V2BulkElementResult of(V2BulkElementResultAddMetadata value) {
         Utils.checkNotNull(value, "value");
         return new V2BulkElementResult(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static V2BulkElementResult of(LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult value) {
+    public static V2BulkElementResult of(V2BulkElementResultRevertTransaction value) {
         Utils.checkNotNull(value, "value");
         return new V2BulkElementResult(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static V2BulkElementResult of(LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult value) {
+    public static V2BulkElementResult of(V2BulkElementResultDeleteMetadata value) {
         Utils.checkNotNull(value, "value");
         return new V2BulkElementResult(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static V2BulkElementResult of(LedgerV2BulkElementResultErrorV2BaseBulkElementResult value) {
+    public static V2BulkElementResult of(V2BulkElementResultError value) {
         Utils.checkNotNull(value, "value");
         return new V2BulkElementResult(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
@@ -53,11 +53,11 @@ public class V2BulkElementResult {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code com.formance.formance_sdk.models.ledger.LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.LedgerV2BulkElementResultErrorV2BaseBulkElementResult}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementResultCreateTransaction}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementResultAddMetadata}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementResultRevertTransaction}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementResultDeleteMetadata}</li>
+     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementResultError}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -97,11 +97,11 @@ public class V2BulkElementResult {
 
         public _Deserializer() {
             super(V2BulkElementResult.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<LedgerV2BulkElementResultErrorV2BaseBulkElementResult>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementResultCreateTransaction>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementResultAddMetadata>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementResultRevertTransaction>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementResultDeleteMetadata>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementResultError>() {}, JsonShape.DEFAULT));
         }
     }
     

@@ -14,18 +14,18 @@ import java.lang.String;
 public class CreateTriggerResponse {
 
     @JsonProperty("data")
-    private TriggerData1 triggerData;
+    private Trigger data;
 
     @JsonCreator
     public CreateTriggerResponse(
-            @JsonProperty("data") TriggerData1 triggerData) {
-        Utils.checkNotNull(triggerData, "triggerData");
-        this.triggerData = triggerData;
+            @JsonProperty("data") Trigger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public TriggerData1 triggerData() {
-        return triggerData;
+    public Trigger data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class CreateTriggerResponse {
     }
 
 
-    public CreateTriggerResponse withTriggerData(TriggerData1 triggerData) {
-        Utils.checkNotNull(triggerData, "triggerData");
-        this.triggerData = triggerData;
+    public CreateTriggerResponse withData(Trigger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class CreateTriggerResponse {
         }
         CreateTriggerResponse other = (CreateTriggerResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.triggerData, other.triggerData);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            triggerData);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateTriggerResponse.class,
-                "triggerData", triggerData);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private TriggerData1 triggerData;
+        private Trigger data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder triggerData(TriggerData1 triggerData) {
-            Utils.checkNotNull(triggerData, "triggerData");
-            this.triggerData = triggerData;
+        public Builder data(Trigger data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public CreateTriggerResponse build() {
 
             return new CreateTriggerResponse(
-                triggerData);
+                data);
         }
 
     }

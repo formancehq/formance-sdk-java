@@ -19,7 +19,7 @@ public class ActivityDebitWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends DebitWalletRequest> debitWalletRequest;
+    private Optional<? extends DebitWalletRequest> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -28,11 +28,11 @@ public class ActivityDebitWallet {
 
     @JsonCreator
     public ActivityDebitWallet(
-            @JsonProperty("data") Optional<? extends DebitWalletRequest> debitWalletRequest,
+            @JsonProperty("data") Optional<? extends DebitWalletRequest> data,
             @JsonProperty("id") Optional<String> id) {
-        Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(id, "id");
-        this.debitWalletRequest = debitWalletRequest;
+        this.data = data;
         this.id = id;
     }
     
@@ -42,8 +42,8 @@ public class ActivityDebitWallet {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DebitWalletRequest> debitWalletRequest() {
-        return (Optional<DebitWalletRequest>) debitWalletRequest;
+    public Optional<DebitWalletRequest> data() {
+        return (Optional<DebitWalletRequest>) data;
     }
 
     @JsonIgnore
@@ -56,16 +56,16 @@ public class ActivityDebitWallet {
     }
 
 
-    public ActivityDebitWallet withDebitWalletRequest(DebitWalletRequest debitWalletRequest) {
-        Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
-        this.debitWalletRequest = Optional.ofNullable(debitWalletRequest);
+    public ActivityDebitWallet withData(DebitWalletRequest data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public ActivityDebitWallet withDebitWalletRequest(Optional<? extends DebitWalletRequest> debitWalletRequest) {
-        Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
-        this.debitWalletRequest = debitWalletRequest;
+    public ActivityDebitWallet withData(Optional<? extends DebitWalletRequest> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -92,27 +92,27 @@ public class ActivityDebitWallet {
         }
         ActivityDebitWallet other = (ActivityDebitWallet) o;
         return 
-            Utils.enhancedDeepEquals(this.debitWalletRequest, other.debitWalletRequest) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
             Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            debitWalletRequest, id);
+            data, id);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ActivityDebitWallet.class,
-                "debitWalletRequest", debitWalletRequest,
+                "data", data,
                 "id", id);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends DebitWalletRequest> debitWalletRequest = Optional.empty();
+        private Optional<? extends DebitWalletRequest> data = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -121,15 +121,15 @@ public class ActivityDebitWallet {
         }
 
 
-        public Builder debitWalletRequest(DebitWalletRequest debitWalletRequest) {
-            Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
-            this.debitWalletRequest = Optional.ofNullable(debitWalletRequest);
+        public Builder data(DebitWalletRequest data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder debitWalletRequest(Optional<? extends DebitWalletRequest> debitWalletRequest) {
-            Utils.checkNotNull(debitWalletRequest, "debitWalletRequest");
-            this.debitWalletRequest = debitWalletRequest;
+        public Builder data(Optional<? extends DebitWalletRequest> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
@@ -149,7 +149,7 @@ public class ActivityDebitWallet {
         public ActivityDebitWallet build() {
 
             return new ActivityDebitWallet(
-                debitWalletRequest, id);
+                data, id);
         }
 
     }

@@ -11,7 +11,7 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
@@ -107,13 +107,13 @@ public class V2CreateExporter {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> {
+            implements RequestOperation<V2ExporterConfiguration, V2CreateExporterResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(V2ExporterConfiguration2 request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<V2ExporterConfiguration2>() {});
+        private HttpRequest onBuildRequest(V2ExporterConfiguration request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<V2ExporterConfiguration>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -129,7 +129,7 @@ public class V2CreateExporter {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(V2ExporterConfiguration2 request) {
+        public HttpResponse<InputStream> doRequest(V2ExporterConfiguration request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {

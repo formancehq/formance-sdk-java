@@ -20,7 +20,7 @@ import java.util.Optional;
 public class GetHoldsResponseCursor {
 
     @JsonProperty("data")
-    private List<Hold1> data;
+    private List<Hold> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -43,7 +43,7 @@ public class GetHoldsResponseCursor {
 
     @JsonCreator
     public GetHoldsResponseCursor(
-            @JsonProperty("data") List<Hold1> data,
+            @JsonProperty("data") List<Hold> data,
             @JsonProperty("hasMore") Optional<Boolean> hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -61,14 +61,14 @@ public class GetHoldsResponseCursor {
     }
     
     public GetHoldsResponseCursor(
-            List<Hold1> data,
+            List<Hold> data,
             long pageSize) {
         this(data, Optional.empty(), Optional.empty(),
             pageSize, Optional.empty());
     }
 
     @JsonIgnore
-    public List<Hold1> data() {
+    public List<Hold> data() {
         return data;
     }
 
@@ -97,7 +97,7 @@ public class GetHoldsResponseCursor {
     }
 
 
-    public GetHoldsResponseCursor withData(List<Hold1> data) {
+    public GetHoldsResponseCursor withData(List<Hold> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -185,7 +185,7 @@ public class GetHoldsResponseCursor {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<Hold1> data;
+        private List<Hold> data;
 
         private Optional<Boolean> hasMore = Optional.empty();
 
@@ -200,7 +200,7 @@ public class GetHoldsResponseCursor {
         }
 
 
-        public Builder data(List<Hold1> data) {
+        public Builder data(List<Hold> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

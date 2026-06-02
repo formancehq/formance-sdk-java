@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.auth.SecretOptions1;
+import com.formance.formance_sdk.models.auth.SecretOptions;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CreateSecretRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends SecretOptions1> secretOptions;
+    private Optional<? extends SecretOptions> secretOptions;
 
     /**
      * Client ID
@@ -27,7 +27,7 @@ public class CreateSecretRequest {
 
     @JsonCreator
     public CreateSecretRequest(
-            Optional<? extends SecretOptions1> secretOptions,
+            Optional<? extends SecretOptions> secretOptions,
             String clientId) {
         Utils.checkNotNull(secretOptions, "secretOptions");
         Utils.checkNotNull(clientId, "clientId");
@@ -42,8 +42,8 @@ public class CreateSecretRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SecretOptions1> secretOptions() {
-        return (Optional<SecretOptions1>) secretOptions;
+    public Optional<SecretOptions> secretOptions() {
+        return (Optional<SecretOptions>) secretOptions;
     }
 
     /**
@@ -59,14 +59,14 @@ public class CreateSecretRequest {
     }
 
 
-    public CreateSecretRequest withSecretOptions(SecretOptions1 secretOptions) {
+    public CreateSecretRequest withSecretOptions(SecretOptions secretOptions) {
         Utils.checkNotNull(secretOptions, "secretOptions");
         this.secretOptions = Optional.ofNullable(secretOptions);
         return this;
     }
 
 
-    public CreateSecretRequest withSecretOptions(Optional<? extends SecretOptions1> secretOptions) {
+    public CreateSecretRequest withSecretOptions(Optional<? extends SecretOptions> secretOptions) {
         Utils.checkNotNull(secretOptions, "secretOptions");
         this.secretOptions = secretOptions;
         return this;
@@ -111,7 +111,7 @@ public class CreateSecretRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends SecretOptions1> secretOptions = Optional.empty();
+        private Optional<? extends SecretOptions> secretOptions = Optional.empty();
 
         private String clientId;
 
@@ -120,13 +120,13 @@ public class CreateSecretRequest {
         }
 
 
-        public Builder secretOptions(SecretOptions1 secretOptions) {
+        public Builder secretOptions(SecretOptions secretOptions) {
             Utils.checkNotNull(secretOptions, "secretOptions");
             this.secretOptions = Optional.ofNullable(secretOptions);
             return this;
         }
 
-        public Builder secretOptions(Optional<? extends SecretOptions1> secretOptions) {
+        public Builder secretOptions(Optional<? extends SecretOptions> secretOptions) {
             Utils.checkNotNull(secretOptions, "secretOptions");
             this.secretOptions = secretOptions;
             return this;

@@ -20,11 +20,6 @@ import java.util.Optional;
 
 public class AccountWithVolumesAndBalances {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("volumes")
-    private Optional<? extends Map<String, Volume>> volumes;
-
-
     @JsonProperty("address")
     private String address;
 
@@ -43,35 +38,34 @@ public class AccountWithVolumesAndBalances {
     @JsonProperty("type")
     private Optional<String> type;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("volumes")
+    private Optional<? extends Map<String, Volume>> volumes;
+
     @JsonCreator
     public AccountWithVolumesAndBalances(
-            @JsonProperty("volumes") Optional<? extends Map<String, Volume>> volumes,
             @JsonProperty("address") String address,
             @JsonProperty("balances") Optional<? extends Map<String, BigInteger>> balances,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
-            @JsonProperty("type") Optional<String> type) {
-        Utils.checkNotNull(volumes, "volumes");
+            @JsonProperty("type") Optional<String> type,
+            @JsonProperty("volumes") Optional<? extends Map<String, Volume>> volumes) {
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(balances, "balances");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(type, "type");
-        this.volumes = volumes;
+        Utils.checkNotNull(volumes, "volumes");
         this.address = address;
         this.balances = balances;
         this.metadata = metadata;
         this.type = type;
+        this.volumes = volumes;
     }
     
     public AccountWithVolumesAndBalances(
             String address) {
-        this(Optional.empty(), address, Optional.empty(),
+        this(address, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, Volume>> volumes() {
-        return (Optional<Map<String, Volume>>) volumes;
     }
 
     @JsonIgnore
@@ -96,23 +90,16 @@ public class AccountWithVolumesAndBalances {
         return type;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Volume>> volumes() {
+        return (Optional<Map<String, Volume>>) volumes;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public AccountWithVolumesAndBalances withVolumes(Map<String, Volume> volumes) {
-        Utils.checkNotNull(volumes, "volumes");
-        this.volumes = Optional.ofNullable(volumes);
-        return this;
-    }
-
-
-    public AccountWithVolumesAndBalances withVolumes(Optional<? extends Map<String, Volume>> volumes) {
-        Utils.checkNotNull(volumes, "volumes");
-        this.volumes = volumes;
-        return this;
-    }
 
     public AccountWithVolumesAndBalances withAddress(String address) {
         Utils.checkNotNull(address, "address");
@@ -159,6 +146,19 @@ public class AccountWithVolumesAndBalances {
         return this;
     }
 
+    public AccountWithVolumesAndBalances withVolumes(Map<String, Volume> volumes) {
+        Utils.checkNotNull(volumes, "volumes");
+        this.volumes = Optional.ofNullable(volumes);
+        return this;
+    }
+
+
+    public AccountWithVolumesAndBalances withVolumes(Optional<? extends Map<String, Volume>> volumes) {
+        Utils.checkNotNull(volumes, "volumes");
+        this.volumes = volumes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -169,34 +169,32 @@ public class AccountWithVolumesAndBalances {
         }
         AccountWithVolumesAndBalances other = (AccountWithVolumesAndBalances) o;
         return 
-            Utils.enhancedDeepEquals(this.volumes, other.volumes) &&
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.balances, other.balances) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.volumes, other.volumes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            volumes, address, balances,
-            metadata, type);
+            address, balances, metadata,
+            type, volumes);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountWithVolumesAndBalances.class,
-                "volumes", volumes,
                 "address", address,
                 "balances", balances,
                 "metadata", metadata,
-                "type", type);
+                "type", type,
+                "volumes", volumes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends Map<String, Volume>> volumes = Optional.empty();
 
         private String address;
 
@@ -206,21 +204,10 @@ public class AccountWithVolumesAndBalances {
 
         private Optional<String> type = Optional.empty();
 
+        private Optional<? extends Map<String, Volume>> volumes = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder volumes(Map<String, Volume> volumes) {
-            Utils.checkNotNull(volumes, "volumes");
-            this.volumes = Optional.ofNullable(volumes);
-            return this;
-        }
-
-        public Builder volumes(Optional<? extends Map<String, Volume>> volumes) {
-            Utils.checkNotNull(volumes, "volumes");
-            this.volumes = volumes;
-            return this;
         }
 
 
@@ -269,11 +256,24 @@ public class AccountWithVolumesAndBalances {
             return this;
         }
 
+
+        public Builder volumes(Map<String, Volume> volumes) {
+            Utils.checkNotNull(volumes, "volumes");
+            this.volumes = Optional.ofNullable(volumes);
+            return this;
+        }
+
+        public Builder volumes(Optional<? extends Map<String, Volume>> volumes) {
+            Utils.checkNotNull(volumes, "volumes");
+            this.volumes = volumes;
+            return this;
+        }
+
         public AccountWithVolumesAndBalances build() {
 
             return new AccountWithVolumesAndBalances(
-                volumes, address, balances,
-                metadata, type);
+                address, balances, metadata,
+                type, volumes);
         }
 
     }

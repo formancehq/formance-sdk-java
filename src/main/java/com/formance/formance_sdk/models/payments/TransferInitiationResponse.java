@@ -18,18 +18,18 @@ import java.lang.String;
 public class TransferInitiationResponse {
 
     @JsonProperty("data")
-    private TransferInitiation transferInitiation;
+    private TransferInitiation data;
 
     @JsonCreator
     public TransferInitiationResponse(
-            @JsonProperty("data") TransferInitiation transferInitiation) {
-        Utils.checkNotNull(transferInitiation, "transferInitiation");
-        this.transferInitiation = transferInitiation;
+            @JsonProperty("data") TransferInitiation data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public TransferInitiation transferInitiation() {
-        return transferInitiation;
+    public TransferInitiation data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class TransferInitiationResponse {
     }
 
 
-    public TransferInitiationResponse withTransferInitiation(TransferInitiation transferInitiation) {
-        Utils.checkNotNull(transferInitiation, "transferInitiation");
-        this.transferInitiation = transferInitiation;
+    public TransferInitiationResponse withData(TransferInitiation data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class TransferInitiationResponse {
         }
         TransferInitiationResponse other = (TransferInitiationResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.transferInitiation, other.transferInitiation);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transferInitiation);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransferInitiationResponse.class,
-                "transferInitiation", transferInitiation);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private TransferInitiation transferInitiation;
+        private TransferInitiation data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder transferInitiation(TransferInitiation transferInitiation) {
-            Utils.checkNotNull(transferInitiation, "transferInitiation");
-            this.transferInitiation = transferInitiation;
+        public Builder data(TransferInitiation data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public TransferInitiationResponse build() {
 
             return new TransferInitiationResponse(
-                transferInitiation);
+                data);
         }
 
     }

@@ -14,18 +14,18 @@ import java.lang.String;
 public class AccountResponse {
 
     @JsonProperty("data")
-    private AccountWithVolumesAndBalances accountWithVolumesAndBalances;
+    private AccountWithVolumesAndBalances data;
 
     @JsonCreator
     public AccountResponse(
-            @JsonProperty("data") AccountWithVolumesAndBalances accountWithVolumesAndBalances) {
-        Utils.checkNotNull(accountWithVolumesAndBalances, "accountWithVolumesAndBalances");
-        this.accountWithVolumesAndBalances = accountWithVolumesAndBalances;
+            @JsonProperty("data") AccountWithVolumesAndBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public AccountWithVolumesAndBalances accountWithVolumesAndBalances() {
-        return accountWithVolumesAndBalances;
+    public AccountWithVolumesAndBalances data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class AccountResponse {
     }
 
 
-    public AccountResponse withAccountWithVolumesAndBalances(AccountWithVolumesAndBalances accountWithVolumesAndBalances) {
-        Utils.checkNotNull(accountWithVolumesAndBalances, "accountWithVolumesAndBalances");
-        this.accountWithVolumesAndBalances = accountWithVolumesAndBalances;
+    public AccountResponse withData(AccountWithVolumesAndBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class AccountResponse {
         }
         AccountResponse other = (AccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.accountWithVolumesAndBalances, other.accountWithVolumesAndBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountWithVolumesAndBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountResponse.class,
-                "accountWithVolumesAndBalances", accountWithVolumesAndBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private AccountWithVolumesAndBalances accountWithVolumesAndBalances;
+        private AccountWithVolumesAndBalances data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder accountWithVolumesAndBalances(AccountWithVolumesAndBalances accountWithVolumesAndBalances) {
-            Utils.checkNotNull(accountWithVolumesAndBalances, "accountWithVolumesAndBalances");
-            this.accountWithVolumesAndBalances = accountWithVolumesAndBalances;
+        public Builder data(AccountWithVolumesAndBalances data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public AccountResponse build() {
 
             return new AccountResponse(
-                accountWithVolumesAndBalances);
+                data);
         }
 
     }

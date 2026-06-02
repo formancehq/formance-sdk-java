@@ -5,4 +5,4 @@
 
 | Field                                                          | Type                                                           | Required                                                       | Description                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `v2LedgerInfo`                                                 | [Optional\<V2LedgerInfo>](../../models/shared/V2LedgerInfo.md) | :heavy_minus_sign:                                             | N/A                                                            |
+| `data`                                                         | [Optional\<V2LedgerInfo>](../../models/shared/V2LedgerInfo.md) | :heavy_minus_sign:                                             | N/A                                                            |

@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2DebitWalletResponse {
 
     @JsonProperty("data")
-    private V2Hold v2Hold;
+    private V2Hold data;
 
     @JsonCreator
     public V2DebitWalletResponse(
-            @JsonProperty("data") V2Hold v2Hold) {
-        Utils.checkNotNull(v2Hold, "v2Hold");
-        this.v2Hold = v2Hold;
+            @JsonProperty("data") V2Hold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Hold v2Hold() {
-        return v2Hold;
+    public V2Hold data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2DebitWalletResponse {
     }
 
 
-    public V2DebitWalletResponse withV2Hold(V2Hold v2Hold) {
-        Utils.checkNotNull(v2Hold, "v2Hold");
-        this.v2Hold = v2Hold;
+    public V2DebitWalletResponse withData(V2Hold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2DebitWalletResponse {
         }
         V2DebitWalletResponse other = (V2DebitWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Hold, other.v2Hold);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Hold);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2DebitWalletResponse.class,
-                "v2Hold", v2Hold);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Hold v2Hold;
+        private V2Hold data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Hold(V2Hold v2Hold) {
-            Utils.checkNotNull(v2Hold, "v2Hold");
-            this.v2Hold = v2Hold;
+        public Builder data(V2Hold data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2DebitWalletResponse build() {
 
             return new V2DebitWalletResponse(
-                v2Hold);
+                data);
         }
 
     }

@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2SchemasCursorResponse {
 
     @JsonProperty("cursor")
-    private V2SchemasCursor v2SchemasCursor;
+    private V2SchemasCursor cursor;
 
     @JsonCreator
     public V2SchemasCursorResponse(
-            @JsonProperty("cursor") V2SchemasCursor v2SchemasCursor) {
-        Utils.checkNotNull(v2SchemasCursor, "v2SchemasCursor");
-        this.v2SchemasCursor = v2SchemasCursor;
+            @JsonProperty("cursor") V2SchemasCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
     }
 
     @JsonIgnore
-    public V2SchemasCursor v2SchemasCursor() {
-        return v2SchemasCursor;
+    public V2SchemasCursor cursor() {
+        return cursor;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2SchemasCursorResponse {
     }
 
 
-    public V2SchemasCursorResponse withV2SchemasCursor(V2SchemasCursor v2SchemasCursor) {
-        Utils.checkNotNull(v2SchemasCursor, "v2SchemasCursor");
-        this.v2SchemasCursor = v2SchemasCursor;
+    public V2SchemasCursorResponse withCursor(V2SchemasCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2SchemasCursorResponse {
         }
         V2SchemasCursorResponse other = (V2SchemasCursorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2SchemasCursor, other.v2SchemasCursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2SchemasCursor);
+            cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2SchemasCursorResponse.class,
-                "v2SchemasCursor", v2SchemasCursor);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2SchemasCursor v2SchemasCursor;
+        private V2SchemasCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2SchemasCursor(V2SchemasCursor v2SchemasCursor) {
-            Utils.checkNotNull(v2SchemasCursor, "v2SchemasCursor");
-            this.v2SchemasCursor = v2SchemasCursor;
+        public Builder cursor(V2SchemasCursor cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
             return this;
         }
 
         public V2SchemasCursorResponse build() {
 
             return new V2SchemasCursorResponse(
-                v2SchemasCursor);
+                cursor);
         }
 
     }

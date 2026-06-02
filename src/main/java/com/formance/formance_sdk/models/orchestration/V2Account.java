@@ -18,57 +18,45 @@ import java.util.Optional;
 
 public class V2Account {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("volumes")
-    private Optional<? extends Map<String, V2Volume>> v2Volumes;
+    @JsonProperty("address")
+    private String address;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("effectiveVolumes")
-    private Optional<? extends Map<String, V2Volume>> v2Volumes1;
-
-
-    @JsonProperty("address")
-    private String address;
+    private Optional<? extends Map<String, V2Volume>> effectiveVolumes;
 
 
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("volumes")
+    private Optional<? extends Map<String, V2Volume>> volumes;
+
     @JsonCreator
     public V2Account(
-            @JsonProperty("volumes") Optional<? extends Map<String, V2Volume>> v2Volumes,
-            @JsonProperty("effectiveVolumes") Optional<? extends Map<String, V2Volume>> v2Volumes1,
             @JsonProperty("address") String address,
-            @JsonProperty("metadata") Map<String, String> metadata) {
-        Utils.checkNotNull(v2Volumes, "v2Volumes");
-        Utils.checkNotNull(v2Volumes1, "v2Volumes1");
+            @JsonProperty("effectiveVolumes") Optional<? extends Map<String, V2Volume>> effectiveVolumes,
+            @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("volumes") Optional<? extends Map<String, V2Volume>> volumes) {
         Utils.checkNotNull(address, "address");
+        Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
-        this.v2Volumes = v2Volumes;
-        this.v2Volumes1 = v2Volumes1;
+        Utils.checkNotNull(volumes, "volumes");
         this.address = address;
+        this.effectiveVolumes = effectiveVolumes;
         this.metadata = metadata;
+        this.volumes = volumes;
     }
     
     public V2Account(
             String address,
             Map<String, String> metadata) {
-        this(Optional.empty(), Optional.empty(), address,
-            metadata);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, V2Volume>> v2Volumes() {
-        return (Optional<Map<String, V2Volume>>) v2Volumes;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, V2Volume>> v2Volumes1() {
-        return (Optional<Map<String, V2Volume>>) v2Volumes1;
+        this(address, Optional.empty(), metadata,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -76,9 +64,21 @@ public class V2Account {
         return address;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V2Volume>> effectiveVolumes() {
+        return (Optional<Map<String, V2Volume>>) effectiveVolumes;
+    }
+
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, V2Volume>> volumes() {
+        return (Optional<Map<String, V2Volume>>) volumes;
     }
 
     public static Builder builder() {
@@ -86,41 +86,41 @@ public class V2Account {
     }
 
 
-    public V2Account withV2Volumes(Map<String, V2Volume> v2Volumes) {
-        Utils.checkNotNull(v2Volumes, "v2Volumes");
-        this.v2Volumes = Optional.ofNullable(v2Volumes);
-        return this;
-    }
-
-
-    public V2Account withV2Volumes(Optional<? extends Map<String, V2Volume>> v2Volumes) {
-        Utils.checkNotNull(v2Volumes, "v2Volumes");
-        this.v2Volumes = v2Volumes;
-        return this;
-    }
-
-    public V2Account withV2Volumes1(Map<String, V2Volume> v2Volumes1) {
-        Utils.checkNotNull(v2Volumes1, "v2Volumes1");
-        this.v2Volumes1 = Optional.ofNullable(v2Volumes1);
-        return this;
-    }
-
-
-    public V2Account withV2Volumes1(Optional<? extends Map<String, V2Volume>> v2Volumes1) {
-        Utils.checkNotNull(v2Volumes1, "v2Volumes1");
-        this.v2Volumes1 = v2Volumes1;
-        return this;
-    }
-
     public V2Account withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    public V2Account withEffectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
+        Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
+        this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
+        return this;
+    }
+
+
+    public V2Account withEffectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
+        Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
+        this.effectiveVolumes = effectiveVolumes;
+        return this;
+    }
+
     public V2Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
+        return this;
+    }
+
+    public V2Account withVolumes(Map<String, V2Volume> volumes) {
+        Utils.checkNotNull(volumes, "volumes");
+        this.volumes = Optional.ofNullable(volumes);
+        return this;
+    }
+
+
+    public V2Account withVolumes(Optional<? extends Map<String, V2Volume>> volumes) {
+        Utils.checkNotNull(volumes, "volumes");
+        this.volumes = volumes;
         return this;
     }
 
@@ -134,67 +134,41 @@ public class V2Account {
         }
         V2Account other = (V2Account) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Volumes, other.v2Volumes) &&
-            Utils.enhancedDeepEquals(this.v2Volumes1, other.v2Volumes1) &&
             Utils.enhancedDeepEquals(this.address, other.address) &&
-            Utils.enhancedDeepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.effectiveVolumes, other.effectiveVolumes) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.volumes, other.volumes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Volumes, v2Volumes1, address,
-            metadata);
+            address, effectiveVolumes, metadata,
+            volumes);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2Account.class,
-                "v2Volumes", v2Volumes,
-                "v2Volumes1", v2Volumes1,
                 "address", address,
-                "metadata", metadata);
+                "effectiveVolumes", effectiveVolumes,
+                "metadata", metadata,
+                "volumes", volumes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, V2Volume>> v2Volumes = Optional.empty();
-
-        private Optional<? extends Map<String, V2Volume>> v2Volumes1 = Optional.empty();
-
         private String address;
+
+        private Optional<? extends Map<String, V2Volume>> effectiveVolumes = Optional.empty();
 
         private Map<String, String> metadata;
 
+        private Optional<? extends Map<String, V2Volume>> volumes = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2Volumes(Map<String, V2Volume> v2Volumes) {
-            Utils.checkNotNull(v2Volumes, "v2Volumes");
-            this.v2Volumes = Optional.ofNullable(v2Volumes);
-            return this;
-        }
-
-        public Builder v2Volumes(Optional<? extends Map<String, V2Volume>> v2Volumes) {
-            Utils.checkNotNull(v2Volumes, "v2Volumes");
-            this.v2Volumes = v2Volumes;
-            return this;
-        }
-
-
-        public Builder v2Volumes1(Map<String, V2Volume> v2Volumes1) {
-            Utils.checkNotNull(v2Volumes1, "v2Volumes1");
-            this.v2Volumes1 = Optional.ofNullable(v2Volumes1);
-            return this;
-        }
-
-        public Builder v2Volumes1(Optional<? extends Map<String, V2Volume>> v2Volumes1) {
-            Utils.checkNotNull(v2Volumes1, "v2Volumes1");
-            this.v2Volumes1 = v2Volumes1;
-            return this;
         }
 
 
@@ -205,17 +179,43 @@ public class V2Account {
         }
 
 
+        public Builder effectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
+            Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
+            this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
+            return this;
+        }
+
+        public Builder effectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
+            Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
+            this.effectiveVolumes = effectiveVolumes;
+            return this;
+        }
+
+
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
         }
 
+
+        public Builder volumes(Map<String, V2Volume> volumes) {
+            Utils.checkNotNull(volumes, "volumes");
+            this.volumes = Optional.ofNullable(volumes);
+            return this;
+        }
+
+        public Builder volumes(Optional<? extends Map<String, V2Volume>> volumes) {
+            Utils.checkNotNull(volumes, "volumes");
+            this.volumes = volumes;
+            return this;
+        }
+
         public V2Account build() {
 
             return new V2Account(
-                v2Volumes, v2Volumes1, address,
-                metadata);
+                address, effectiveVolumes, metadata,
+                volumes);
         }
 
     }

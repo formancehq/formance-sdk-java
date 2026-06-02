@@ -14,18 +14,18 @@ import java.lang.String;
 public class ConfigResponse {
 
     @JsonProperty("data")
-    private WebhooksConfig webhooksConfig;
+    private WebhooksConfig data;
 
     @JsonCreator
     public ConfigResponse(
-            @JsonProperty("data") WebhooksConfig webhooksConfig) {
-        Utils.checkNotNull(webhooksConfig, "webhooksConfig");
-        this.webhooksConfig = webhooksConfig;
+            @JsonProperty("data") WebhooksConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public WebhooksConfig webhooksConfig() {
-        return webhooksConfig;
+    public WebhooksConfig data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class ConfigResponse {
     }
 
 
-    public ConfigResponse withWebhooksConfig(WebhooksConfig webhooksConfig) {
-        Utils.checkNotNull(webhooksConfig, "webhooksConfig");
-        this.webhooksConfig = webhooksConfig;
+    public ConfigResponse withData(WebhooksConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class ConfigResponse {
         }
         ConfigResponse other = (ConfigResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.webhooksConfig, other.webhooksConfig);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            webhooksConfig);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ConfigResponse.class,
-                "webhooksConfig", webhooksConfig);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WebhooksConfig webhooksConfig;
+        private WebhooksConfig data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder webhooksConfig(WebhooksConfig webhooksConfig) {
-            Utils.checkNotNull(webhooksConfig, "webhooksConfig");
-            this.webhooksConfig = webhooksConfig;
+        public Builder data(WebhooksConfig data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ConfigResponse build() {
 
             return new ConfigResponse(
-                webhooksConfig);
+                data);
         }
 
     }

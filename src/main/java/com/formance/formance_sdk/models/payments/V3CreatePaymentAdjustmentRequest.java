@@ -22,15 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class V3CreatePaymentAdjustmentRequest {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
-    @JsonProperty("status")
-    private V3PaymentStatusEnum v3PaymentStatusEnum;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends BigInteger> amount;
 
@@ -44,48 +35,46 @@ public class V3CreatePaymentAdjustmentRequest {
     private OffsetDateTime createdAt;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("reference")
     private String reference;
 
+
+    @JsonProperty("status")
+    private V3PaymentStatusEnum status;
+
     @JsonCreator
     public V3CreatePaymentAdjustmentRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
-            @JsonProperty("status") V3PaymentStatusEnum v3PaymentStatusEnum,
             @JsonProperty("amount") Optional<? extends BigInteger> amount,
             @JsonProperty("asset") Optional<String> asset,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("reference") String reference,
+            @JsonProperty("status") V3PaymentStatusEnum status) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
-        this.v3Metadata = v3Metadata;
-        this.v3PaymentStatusEnum = v3PaymentStatusEnum;
+        Utils.checkNotNull(status, "status");
         this.amount = amount;
         this.asset = asset;
         this.createdAt = createdAt;
+        this.metadata = metadata;
         this.reference = reference;
+        this.status = status;
     }
     
     public V3CreatePaymentAdjustmentRequest(
-            V3PaymentStatusEnum v3PaymentStatusEnum,
             OffsetDateTime createdAt,
-            String reference) {
-        this(JsonNullable.undefined(), v3PaymentStatusEnum, Optional.empty(),
-            Optional.empty(), createdAt, reference);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
-    }
-
-    @JsonIgnore
-    public V3PaymentStatusEnum v3PaymentStatusEnum() {
-        return v3PaymentStatusEnum;
+            String reference,
+            V3PaymentStatusEnum status) {
+        this(Optional.empty(), Optional.empty(), createdAt,
+            JsonNullable.undefined(), reference, status);
     }
 
     @SuppressWarnings("unchecked")
@@ -104,33 +93,26 @@ public class V3CreatePaymentAdjustmentRequest {
         return createdAt;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String reference() {
         return reference;
+    }
+
+    @JsonIgnore
+    public V3PaymentStatusEnum status() {
+        return status;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3CreatePaymentAdjustmentRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3CreatePaymentAdjustmentRequest withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
-
-    public V3CreatePaymentAdjustmentRequest withV3PaymentStatusEnum(V3PaymentStatusEnum v3PaymentStatusEnum) {
-        Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
-        this.v3PaymentStatusEnum = v3PaymentStatusEnum;
-        return this;
-    }
 
     public V3CreatePaymentAdjustmentRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
@@ -169,9 +151,27 @@ public class V3CreatePaymentAdjustmentRequest {
         return this;
     }
 
+    public V3CreatePaymentAdjustmentRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3CreatePaymentAdjustmentRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V3CreatePaymentAdjustmentRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
+        return this;
+    }
+
+    public V3CreatePaymentAdjustmentRequest withStatus(V3PaymentStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
@@ -185,38 +185,34 @@ public class V3CreatePaymentAdjustmentRequest {
         }
         V3CreatePaymentAdjustmentRequest other = (V3CreatePaymentAdjustmentRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
-            Utils.enhancedDeepEquals(this.v3PaymentStatusEnum, other.v3PaymentStatusEnum) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, v3PaymentStatusEnum, amount,
-            asset, createdAt, reference);
+            amount, asset, createdAt,
+            metadata, reference, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CreatePaymentAdjustmentRequest.class,
-                "v3Metadata", v3Metadata,
-                "v3PaymentStatusEnum", v3PaymentStatusEnum,
                 "amount", amount,
                 "asset", asset,
                 "createdAt", createdAt,
-                "reference", reference);
+                "metadata", metadata,
+                "reference", reference,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
-        private V3PaymentStatusEnum v3PaymentStatusEnum;
 
         private Optional<? extends BigInteger> amount = Optional.empty();
 
@@ -224,30 +220,14 @@ public class V3CreatePaymentAdjustmentRequest {
 
         private OffsetDateTime createdAt;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String reference;
+
+        private V3PaymentStatusEnum status;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
-        }
-
-
-        public Builder v3PaymentStatusEnum(V3PaymentStatusEnum v3PaymentStatusEnum) {
-            Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
-            this.v3PaymentStatusEnum = v3PaymentStatusEnum;
-            return this;
         }
 
 
@@ -289,17 +269,37 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
+        public Builder status(V3PaymentStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public V3CreatePaymentAdjustmentRequest build() {
 
             return new V3CreatePaymentAdjustmentRequest(
-                v3Metadata, v3PaymentStatusEnum, amount,
-                asset, createdAt, reference);
+                amount, asset, createdAt,
+                metadata, reference, status);
         }
 
     }

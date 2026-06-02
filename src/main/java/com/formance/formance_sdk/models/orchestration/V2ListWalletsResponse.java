@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2ListWalletsResponse {
 
     @JsonProperty("cursor")
-    private V2Cursor v2Cursor;
+    private V2ListWalletsResponseCursor cursor;
 
     @JsonCreator
     public V2ListWalletsResponse(
-            @JsonProperty("cursor") V2Cursor v2Cursor) {
-        Utils.checkNotNull(v2Cursor, "v2Cursor");
-        this.v2Cursor = v2Cursor;
+            @JsonProperty("cursor") V2ListWalletsResponseCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
     }
 
     @JsonIgnore
-    public V2Cursor v2Cursor() {
-        return v2Cursor;
+    public V2ListWalletsResponseCursor cursor() {
+        return cursor;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2ListWalletsResponse {
     }
 
 
-    public V2ListWalletsResponse withV2Cursor(V2Cursor v2Cursor) {
-        Utils.checkNotNull(v2Cursor, "v2Cursor");
-        this.v2Cursor = v2Cursor;
+    public V2ListWalletsResponse withCursor(V2ListWalletsResponseCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2ListWalletsResponse {
         }
         V2ListWalletsResponse other = (V2ListWalletsResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Cursor, other.v2Cursor);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Cursor);
+            cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ListWalletsResponse.class,
-                "v2Cursor", v2Cursor);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Cursor v2Cursor;
+        private V2ListWalletsResponseCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Cursor(V2Cursor v2Cursor) {
-            Utils.checkNotNull(v2Cursor, "v2Cursor");
-            this.v2Cursor = v2Cursor;
+        public Builder cursor(V2ListWalletsResponseCursor cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
             return this;
         }
 
         public V2ListWalletsResponse build() {
 
             return new V2ListWalletsResponse(
-                v2Cursor);
+                cursor);
         }
 
     }

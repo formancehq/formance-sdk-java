@@ -21,38 +21,38 @@ public class V2LogDataRevertedTransaction {
      * Transaction structure as it appears in log payloads
      */
     @JsonProperty("revertedTransaction")
-    private V2LogTransaction v2LogTransaction;
+    private V2LogTransaction revertedTransaction;
 
     /**
      * Transaction structure as it appears in log payloads
      */
     @JsonProperty("transaction")
-    private V2LogTransaction v2LogTransaction1;
+    private V2LogTransaction transaction;
 
     @JsonCreator
     public V2LogDataRevertedTransaction(
-            @JsonProperty("revertedTransaction") V2LogTransaction v2LogTransaction,
-            @JsonProperty("transaction") V2LogTransaction v2LogTransaction1) {
-        Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-        Utils.checkNotNull(v2LogTransaction1, "v2LogTransaction1");
-        this.v2LogTransaction = v2LogTransaction;
-        this.v2LogTransaction1 = v2LogTransaction1;
+            @JsonProperty("revertedTransaction") V2LogTransaction revertedTransaction,
+            @JsonProperty("transaction") V2LogTransaction transaction) {
+        Utils.checkNotNull(revertedTransaction, "revertedTransaction");
+        Utils.checkNotNull(transaction, "transaction");
+        this.revertedTransaction = revertedTransaction;
+        this.transaction = transaction;
     }
 
     /**
      * Transaction structure as it appears in log payloads
      */
     @JsonIgnore
-    public V2LogTransaction v2LogTransaction() {
-        return v2LogTransaction;
+    public V2LogTransaction revertedTransaction() {
+        return revertedTransaction;
     }
 
     /**
      * Transaction structure as it appears in log payloads
      */
     @JsonIgnore
-    public V2LogTransaction v2LogTransaction1() {
-        return v2LogTransaction1;
+    public V2LogTransaction transaction() {
+        return transaction;
     }
 
     public static Builder builder() {
@@ -63,18 +63,18 @@ public class V2LogDataRevertedTransaction {
     /**
      * Transaction structure as it appears in log payloads
      */
-    public V2LogDataRevertedTransaction withV2LogTransaction(V2LogTransaction v2LogTransaction) {
-        Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-        this.v2LogTransaction = v2LogTransaction;
+    public V2LogDataRevertedTransaction withRevertedTransaction(V2LogTransaction revertedTransaction) {
+        Utils.checkNotNull(revertedTransaction, "revertedTransaction");
+        this.revertedTransaction = revertedTransaction;
         return this;
     }
 
     /**
      * Transaction structure as it appears in log payloads
      */
-    public V2LogDataRevertedTransaction withV2LogTransaction1(V2LogTransaction v2LogTransaction1) {
-        Utils.checkNotNull(v2LogTransaction1, "v2LogTransaction1");
-        this.v2LogTransaction1 = v2LogTransaction1;
+    public V2LogDataRevertedTransaction withTransaction(V2LogTransaction transaction) {
+        Utils.checkNotNull(transaction, "transaction");
+        this.transaction = transaction;
         return this;
     }
 
@@ -88,29 +88,29 @@ public class V2LogDataRevertedTransaction {
         }
         V2LogDataRevertedTransaction other = (V2LogDataRevertedTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.v2LogTransaction, other.v2LogTransaction) &&
-            Utils.enhancedDeepEquals(this.v2LogTransaction1, other.v2LogTransaction1);
+            Utils.enhancedDeepEquals(this.revertedTransaction, other.revertedTransaction) &&
+            Utils.enhancedDeepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2LogTransaction, v2LogTransaction1);
+            revertedTransaction, transaction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2LogDataRevertedTransaction.class,
-                "v2LogTransaction", v2LogTransaction,
-                "v2LogTransaction1", v2LogTransaction1);
+                "revertedTransaction", revertedTransaction,
+                "transaction", transaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2LogTransaction v2LogTransaction;
+        private V2LogTransaction revertedTransaction;
 
-        private V2LogTransaction v2LogTransaction1;
+        private V2LogTransaction transaction;
 
         private Builder() {
           // force use of static builder() method
@@ -120,9 +120,9 @@ public class V2LogDataRevertedTransaction {
         /**
          * Transaction structure as it appears in log payloads
          */
-        public Builder v2LogTransaction(V2LogTransaction v2LogTransaction) {
-            Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-            this.v2LogTransaction = v2LogTransaction;
+        public Builder revertedTransaction(V2LogTransaction revertedTransaction) {
+            Utils.checkNotNull(revertedTransaction, "revertedTransaction");
+            this.revertedTransaction = revertedTransaction;
             return this;
         }
 
@@ -130,16 +130,16 @@ public class V2LogDataRevertedTransaction {
         /**
          * Transaction structure as it appears in log payloads
          */
-        public Builder v2LogTransaction1(V2LogTransaction v2LogTransaction1) {
-            Utils.checkNotNull(v2LogTransaction1, "v2LogTransaction1");
-            this.v2LogTransaction1 = v2LogTransaction1;
+        public Builder transaction(V2LogTransaction transaction) {
+            Utils.checkNotNull(transaction, "transaction");
+            this.transaction = transaction;
             return this;
         }
 
         public V2LogDataRevertedTransaction build() {
 
             return new V2LogDataRevertedTransaction(
-                v2LogTransaction, v2LogTransaction1);
+                revertedTransaction, transaction);
         }
 
     }

@@ -19,10 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransferInitiationAdjustments {
 
-    @JsonProperty("status")
-    private TransferInitiationStatus transferInitiationStatus;
-
-
     @JsonProperty("adjustmentID")
     private String adjustmentID;
 
@@ -40,36 +36,35 @@ public class TransferInitiationAdjustments {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
+
+    @JsonProperty("status")
+    private TransferInitiationStatus status;
+
     @JsonCreator
     public TransferInitiationAdjustments(
-            @JsonProperty("status") TransferInitiationStatus transferInitiationStatus,
             @JsonProperty("adjustmentID") String adjustmentID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") JsonNullable<String> error,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata) {
-        Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("status") TransferInitiationStatus status) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(metadata, "metadata");
-        this.transferInitiationStatus = transferInitiationStatus;
+        Utils.checkNotNull(status, "status");
         this.adjustmentID = adjustmentID;
         this.createdAt = createdAt;
         this.error = error;
         this.metadata = metadata;
+        this.status = status;
     }
     
     public TransferInitiationAdjustments(
-            TransferInitiationStatus transferInitiationStatus,
             String adjustmentID,
-            OffsetDateTime createdAt) {
-        this(transferInitiationStatus, adjustmentID, createdAt,
-            JsonNullable.undefined(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public TransferInitiationStatus transferInitiationStatus() {
-        return transferInitiationStatus;
+            OffsetDateTime createdAt,
+            TransferInitiationStatus status) {
+        this(adjustmentID, createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), status);
     }
 
     @JsonIgnore
@@ -93,16 +88,15 @@ public class TransferInitiationAdjustments {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    @JsonIgnore
+    public TransferInitiationStatus status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public TransferInitiationAdjustments withTransferInitiationStatus(TransferInitiationStatus transferInitiationStatus) {
-        Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
-        this.transferInitiationStatus = transferInitiationStatus;
-        return this;
-    }
 
     public TransferInitiationAdjustments withAdjustmentID(String adjustmentID) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
@@ -140,6 +134,12 @@ public class TransferInitiationAdjustments {
         return this;
     }
 
+    public TransferInitiationAdjustments withStatus(TransferInitiationStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,34 +150,32 @@ public class TransferInitiationAdjustments {
         }
         TransferInitiationAdjustments other = (TransferInitiationAdjustments) o;
         return 
-            Utils.enhancedDeepEquals(this.transferInitiationStatus, other.transferInitiationStatus) &&
             Utils.enhancedDeepEquals(this.adjustmentID, other.adjustmentID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
-            Utils.enhancedDeepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transferInitiationStatus, adjustmentID, createdAt,
-            error, metadata);
+            adjustmentID, createdAt, error,
+            metadata, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransferInitiationAdjustments.class,
-                "transferInitiationStatus", transferInitiationStatus,
                 "adjustmentID", adjustmentID,
                 "createdAt", createdAt,
                 "error", error,
-                "metadata", metadata);
+                "metadata", metadata,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private TransferInitiationStatus transferInitiationStatus;
 
         private String adjustmentID;
 
@@ -187,15 +185,10 @@ public class TransferInitiationAdjustments {
 
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
+        private TransferInitiationStatus status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder transferInitiationStatus(TransferInitiationStatus transferInitiationStatus) {
-            Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
-            this.transferInitiationStatus = transferInitiationStatus;
-            return this;
         }
 
 
@@ -238,11 +231,18 @@ public class TransferInitiationAdjustments {
             return this;
         }
 
+
+        public Builder status(TransferInitiationStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public TransferInitiationAdjustments build() {
 
             return new TransferInitiationAdjustments(
-                transferInitiationStatus, adjustmentID, createdAt,
-                error, metadata);
+                adjustmentID, createdAt, error,
+                metadata, status);
         }
 
     }

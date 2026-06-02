@@ -19,13 +19,13 @@ public class LedgerInfoResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends LedgerInfo> ledgerInfo;
+    private Optional<? extends LedgerInfo> data;
 
     @JsonCreator
     public LedgerInfoResponse(
-            @JsonProperty("data") Optional<? extends LedgerInfo> ledgerInfo) {
-        Utils.checkNotNull(ledgerInfo, "ledgerInfo");
-        this.ledgerInfo = ledgerInfo;
+            @JsonProperty("data") Optional<? extends LedgerInfo> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public LedgerInfoResponse() {
@@ -34,8 +34,8 @@ public class LedgerInfoResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LedgerInfo> ledgerInfo() {
-        return (Optional<LedgerInfo>) ledgerInfo;
+    public Optional<LedgerInfo> data() {
+        return (Optional<LedgerInfo>) data;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class LedgerInfoResponse {
     }
 
 
-    public LedgerInfoResponse withLedgerInfo(LedgerInfo ledgerInfo) {
-        Utils.checkNotNull(ledgerInfo, "ledgerInfo");
-        this.ledgerInfo = Optional.ofNullable(ledgerInfo);
+    public LedgerInfoResponse withData(LedgerInfo data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public LedgerInfoResponse withLedgerInfo(Optional<? extends LedgerInfo> ledgerInfo) {
-        Utils.checkNotNull(ledgerInfo, "ledgerInfo");
-        this.ledgerInfo = ledgerInfo;
+    public LedgerInfoResponse withData(Optional<? extends LedgerInfo> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class LedgerInfoResponse {
         }
         LedgerInfoResponse other = (LedgerInfoResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.ledgerInfo, other.ledgerInfo);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ledgerInfo);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LedgerInfoResponse.class,
-                "ledgerInfo", ledgerInfo);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends LedgerInfo> ledgerInfo = Optional.empty();
+        private Optional<? extends LedgerInfo> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder ledgerInfo(LedgerInfo ledgerInfo) {
-            Utils.checkNotNull(ledgerInfo, "ledgerInfo");
-            this.ledgerInfo = Optional.ofNullable(ledgerInfo);
+        public Builder data(LedgerInfo data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder ledgerInfo(Optional<? extends LedgerInfo> ledgerInfo) {
-            Utils.checkNotNull(ledgerInfo, "ledgerInfo");
-            this.ledgerInfo = ledgerInfo;
+        public Builder data(Optional<? extends LedgerInfo> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public LedgerInfoResponse build() {
 
             return new LedgerInfoResponse(
-                ledgerInfo);
+                data);
         }
 
     }

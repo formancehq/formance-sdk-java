@@ -21,17 +21,12 @@ public class StageSend {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Monetary> monetary;
+    private Optional<? extends Monetary> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends StageSendDestination> stageSendDestination;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("source")
-    private Optional<? extends StageSendSource> stageSendSource;
+    private Optional<? extends StageSendDestination> destination;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -40,25 +35,30 @@ public class StageSend {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source")
+    private Optional<? extends StageSendSource> source;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public StageSend(
-            @JsonProperty("amount") Optional<? extends Monetary> monetary,
-            @JsonProperty("destination") Optional<? extends StageSendDestination> stageSendDestination,
-            @JsonProperty("source") Optional<? extends StageSendSource> stageSendSource,
+            @JsonProperty("amount") Optional<? extends Monetary> amount,
+            @JsonProperty("destination") Optional<? extends StageSendDestination> destination,
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
+            @JsonProperty("source") Optional<? extends StageSendSource> source,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(monetary, "monetary");
-        Utils.checkNotNull(stageSendDestination, "stageSendDestination");
-        Utils.checkNotNull(stageSendSource, "stageSendSource");
+        Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(source, "source");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.monetary = monetary;
-        this.stageSendDestination = stageSendDestination;
-        this.stageSendSource = stageSendSource;
+        this.amount = amount;
+        this.destination = destination;
         this.metadata = metadata;
+        this.source = source;
         this.timestamp = timestamp;
     }
     
@@ -69,26 +69,26 @@ public class StageSend {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Monetary> monetary() {
-        return (Optional<Monetary>) monetary;
+    public Optional<Monetary> amount() {
+        return (Optional<Monetary>) amount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<StageSendDestination> stageSendDestination() {
-        return (Optional<StageSendDestination>) stageSendDestination;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<StageSendSource> stageSendSource() {
-        return (Optional<StageSendSource>) stageSendSource;
+    public Optional<StageSendDestination> destination() {
+        return (Optional<StageSendDestination>) destination;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<StageSendSource> source() {
+        return (Optional<StageSendSource>) source;
     }
 
     @JsonIgnore
@@ -101,42 +101,29 @@ public class StageSend {
     }
 
 
-    public StageSend withMonetary(Monetary monetary) {
-        Utils.checkNotNull(monetary, "monetary");
-        this.monetary = Optional.ofNullable(monetary);
+    public StageSend withAmount(Monetary amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = Optional.ofNullable(amount);
         return this;
     }
 
 
-    public StageSend withMonetary(Optional<? extends Monetary> monetary) {
-        Utils.checkNotNull(monetary, "monetary");
-        this.monetary = monetary;
+    public StageSend withAmount(Optional<? extends Monetary> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
         return this;
     }
 
-    public StageSend withStageSendDestination(StageSendDestination stageSendDestination) {
-        Utils.checkNotNull(stageSendDestination, "stageSendDestination");
-        this.stageSendDestination = Optional.ofNullable(stageSendDestination);
-        return this;
-    }
-
-
-    public StageSend withStageSendDestination(Optional<? extends StageSendDestination> stageSendDestination) {
-        Utils.checkNotNull(stageSendDestination, "stageSendDestination");
-        this.stageSendDestination = stageSendDestination;
-        return this;
-    }
-
-    public StageSend withStageSendSource(StageSendSource stageSendSource) {
-        Utils.checkNotNull(stageSendSource, "stageSendSource");
-        this.stageSendSource = Optional.ofNullable(stageSendSource);
+    public StageSend withDestination(StageSendDestination destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = Optional.ofNullable(destination);
         return this;
     }
 
 
-    public StageSend withStageSendSource(Optional<? extends StageSendSource> stageSendSource) {
-        Utils.checkNotNull(stageSendSource, "stageSendSource");
-        this.stageSendSource = stageSendSource;
+    public StageSend withDestination(Optional<? extends StageSendDestination> destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = destination;
         return this;
     }
 
@@ -150,6 +137,19 @@ public class StageSend {
     public StageSend withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
+        return this;
+    }
+
+    public StageSend withSource(StageSendSource source) {
+        Utils.checkNotNull(source, "source");
+        this.source = Optional.ofNullable(source);
+        return this;
+    }
+
+
+    public StageSend withSource(Optional<? extends StageSendSource> source) {
+        Utils.checkNotNull(source, "source");
+        this.source = source;
         return this;
     }
 
@@ -176,40 +176,40 @@ public class StageSend {
         }
         StageSend other = (StageSend) o;
         return 
-            Utils.enhancedDeepEquals(this.monetary, other.monetary) &&
-            Utils.enhancedDeepEquals(this.stageSendDestination, other.stageSendDestination) &&
-            Utils.enhancedDeepEquals(this.stageSendSource, other.stageSendSource) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
             Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            monetary, stageSendDestination, stageSendSource,
-            metadata, timestamp);
+            amount, destination, metadata,
+            source, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StageSend.class,
-                "monetary", monetary,
-                "stageSendDestination", stageSendDestination,
-                "stageSendSource", stageSendSource,
+                "amount", amount,
+                "destination", destination,
                 "metadata", metadata,
+                "source", source,
                 "timestamp", timestamp);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Monetary> monetary = Optional.empty();
+        private Optional<? extends Monetary> amount = Optional.empty();
 
-        private Optional<? extends StageSendDestination> stageSendDestination = Optional.empty();
-
-        private Optional<? extends StageSendSource> stageSendSource = Optional.empty();
+        private Optional<? extends StageSendDestination> destination = Optional.empty();
 
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
+
+        private Optional<? extends StageSendSource> source = Optional.empty();
 
         private Optional<OffsetDateTime> timestamp = Optional.empty();
 
@@ -218,41 +218,28 @@ public class StageSend {
         }
 
 
-        public Builder monetary(Monetary monetary) {
-            Utils.checkNotNull(monetary, "monetary");
-            this.monetary = Optional.ofNullable(monetary);
+        public Builder amount(Monetary amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
-        public Builder monetary(Optional<? extends Monetary> monetary) {
-            Utils.checkNotNull(monetary, "monetary");
-            this.monetary = monetary;
-            return this;
-        }
-
-
-        public Builder stageSendDestination(StageSendDestination stageSendDestination) {
-            Utils.checkNotNull(stageSendDestination, "stageSendDestination");
-            this.stageSendDestination = Optional.ofNullable(stageSendDestination);
-            return this;
-        }
-
-        public Builder stageSendDestination(Optional<? extends StageSendDestination> stageSendDestination) {
-            Utils.checkNotNull(stageSendDestination, "stageSendDestination");
-            this.stageSendDestination = stageSendDestination;
+        public Builder amount(Optional<? extends Monetary> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
             return this;
         }
 
 
-        public Builder stageSendSource(StageSendSource stageSendSource) {
-            Utils.checkNotNull(stageSendSource, "stageSendSource");
-            this.stageSendSource = Optional.ofNullable(stageSendSource);
+        public Builder destination(StageSendDestination destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = Optional.ofNullable(destination);
             return this;
         }
 
-        public Builder stageSendSource(Optional<? extends StageSendSource> stageSendSource) {
-            Utils.checkNotNull(stageSendSource, "stageSendSource");
-            this.stageSendSource = stageSendSource;
+        public Builder destination(Optional<? extends StageSendDestination> destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = destination;
             return this;
         }
 
@@ -266,6 +253,19 @@ public class StageSend {
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder source(StageSendSource source) {
+            Utils.checkNotNull(source, "source");
+            this.source = Optional.ofNullable(source);
+            return this;
+        }
+
+        public Builder source(Optional<? extends StageSendSource> source) {
+            Utils.checkNotNull(source, "source");
+            this.source = source;
             return this;
         }
 
@@ -285,8 +285,8 @@ public class StageSend {
         public StageSend build() {
 
             return new StageSend(
-                monetary, stageSendDestination, stageSendSource,
-                metadata, timestamp);
+                amount, destination, metadata,
+                source, timestamp);
         }
 
     }

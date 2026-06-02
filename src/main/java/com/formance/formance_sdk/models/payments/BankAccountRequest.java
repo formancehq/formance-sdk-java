@@ -20,11 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class BankAccountRequest {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> bankAccountMetadata;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
@@ -43,6 +38,11 @@ public class BankAccountRequest {
     private Optional<String> iban;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
@@ -53,25 +53,25 @@ public class BankAccountRequest {
 
     @JsonCreator
     public BankAccountRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> bankAccountMetadata,
             @JsonProperty("accountNumber") Optional<String> accountNumber,
             @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("country") String country,
             @JsonProperty("iban") Optional<String> iban,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name,
             @JsonProperty("swiftBicCode") Optional<String> swiftBicCode) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(iban, "iban");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
-        this.bankAccountMetadata = bankAccountMetadata;
         this.accountNumber = accountNumber;
         this.connectorID = connectorID;
         this.country = country;
         this.iban = iban;
+        this.metadata = metadata;
         this.name = name;
         this.swiftBicCode = swiftBicCode;
     }
@@ -79,15 +79,9 @@ public class BankAccountRequest {
     public BankAccountRequest(
             String country,
             String name) {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            country, Optional.empty(), name,
+        this(Optional.empty(), Optional.empty(), country,
+            Optional.empty(), JsonNullable.undefined(), name,
             Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> bankAccountMetadata() {
-        return (JsonNullable<Map<String, String>>) bankAccountMetadata;
     }
 
     @JsonIgnore
@@ -110,6 +104,12 @@ public class BankAccountRequest {
         return iban;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String name() {
         return name;
@@ -124,18 +124,6 @@ public class BankAccountRequest {
         return new Builder();
     }
 
-
-    public BankAccountRequest withBankAccountMetadata(Map<String, String> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = JsonNullable.of(bankAccountMetadata);
-        return this;
-    }
-
-    public BankAccountRequest withBankAccountMetadata(JsonNullable<? extends Map<String, String>> bankAccountMetadata) {
-        Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-        this.bankAccountMetadata = bankAccountMetadata;
-        return this;
-    }
 
     public BankAccountRequest withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -182,6 +170,18 @@ public class BankAccountRequest {
         return this;
     }
 
+    public BankAccountRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public BankAccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public BankAccountRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -211,11 +211,11 @@ public class BankAccountRequest {
         }
         BankAccountRequest other = (BankAccountRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.bankAccountMetadata, other.bankAccountMetadata) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
             Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.swiftBicCode, other.swiftBicCode);
     }
@@ -223,27 +223,25 @@ public class BankAccountRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bankAccountMetadata, accountNumber, connectorID,
-            country, iban, name,
+            accountNumber, connectorID, country,
+            iban, metadata, name,
             swiftBicCode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BankAccountRequest.class,
-                "bankAccountMetadata", bankAccountMetadata,
                 "accountNumber", accountNumber,
                 "connectorID", connectorID,
                 "country", country,
                 "iban", iban,
+                "metadata", metadata,
                 "name", name,
                 "swiftBicCode", swiftBicCode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> bankAccountMetadata = JsonNullable.undefined();
 
         private Optional<String> accountNumber = Optional.empty();
 
@@ -253,25 +251,14 @@ public class BankAccountRequest {
 
         private Optional<String> iban = Optional.empty();
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String name;
 
         private Optional<String> swiftBicCode = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder bankAccountMetadata(Map<String, String> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = JsonNullable.of(bankAccountMetadata);
-            return this;
-        }
-
-        public Builder bankAccountMetadata(JsonNullable<? extends Map<String, String>> bankAccountMetadata) {
-            Utils.checkNotNull(bankAccountMetadata, "bankAccountMetadata");
-            this.bankAccountMetadata = bankAccountMetadata;
-            return this;
         }
 
 
@@ -321,6 +308,19 @@ public class BankAccountRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -343,8 +343,8 @@ public class BankAccountRequest {
         public BankAccountRequest build() {
 
             return new BankAccountRequest(
-                bankAccountMetadata, accountNumber, connectorID,
-                country, iban, name,
+                accountNumber, connectorID, country,
+                iban, metadata, name,
                 swiftBicCode);
         }
 

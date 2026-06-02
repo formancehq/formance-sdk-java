@@ -14,18 +14,18 @@ import java.lang.String;
 public class RunWorkflowResponse {
 
     @JsonProperty("data")
-    private WorkflowInstance workflowInstance;
+    private WorkflowInstance data;
 
     @JsonCreator
     public RunWorkflowResponse(
-            @JsonProperty("data") WorkflowInstance workflowInstance) {
-        Utils.checkNotNull(workflowInstance, "workflowInstance");
-        this.workflowInstance = workflowInstance;
+            @JsonProperty("data") WorkflowInstance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public WorkflowInstance workflowInstance() {
-        return workflowInstance;
+    public WorkflowInstance data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class RunWorkflowResponse {
     }
 
 
-    public RunWorkflowResponse withWorkflowInstance(WorkflowInstance workflowInstance) {
-        Utils.checkNotNull(workflowInstance, "workflowInstance");
-        this.workflowInstance = workflowInstance;
+    public RunWorkflowResponse withData(WorkflowInstance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class RunWorkflowResponse {
         }
         RunWorkflowResponse other = (RunWorkflowResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.workflowInstance, other.workflowInstance);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            workflowInstance);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RunWorkflowResponse.class,
-                "workflowInstance", workflowInstance);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WorkflowInstance workflowInstance;
+        private WorkflowInstance data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder workflowInstance(WorkflowInstance workflowInstance) {
-            Utils.checkNotNull(workflowInstance, "workflowInstance");
-            this.workflowInstance = workflowInstance;
+        public Builder data(WorkflowInstance data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public RunWorkflowResponse build() {
 
             return new RunWorkflowResponse(
-                workflowInstance);
+                data);
         }
 
     }

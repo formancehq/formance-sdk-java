@@ -21,7 +21,7 @@ import java.util.Optional;
 public class V2PostTransaction {
 
     @JsonProperty("metadata")
-    private Map<String, String> v2Metadata;
+    private Map<String, String> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -45,18 +45,18 @@ public class V2PostTransaction {
 
     @JsonCreator
     public V2PostTransaction(
-            @JsonProperty("metadata") Map<String, String> v2Metadata,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("postings") Optional<? extends List<V2Posting>> postings,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("script") Optional<? extends V2PostTransactionScript> script,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        v2Metadata = Utils.emptyMapIfNull(v2Metadata);
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
+        metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(script, "script");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.v2Metadata = v2Metadata;
+        this.metadata = metadata;
         this.postings = postings;
         this.reference = reference;
         this.script = script;
@@ -64,14 +64,14 @@ public class V2PostTransaction {
     }
     
     public V2PostTransaction(
-            Map<String, String> v2Metadata) {
-        this(v2Metadata, Optional.empty(), Optional.empty(),
+            Map<String, String> metadata) {
+        this(metadata, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public Map<String, String> v2Metadata() {
-        return v2Metadata;
+    public Map<String, String> metadata() {
+        return metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -101,9 +101,9 @@ public class V2PostTransaction {
     }
 
 
-    public V2PostTransaction withV2Metadata(Map<String, String> v2Metadata) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
-        this.v2Metadata = v2Metadata;
+    public V2PostTransaction withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -169,7 +169,7 @@ public class V2PostTransaction {
         }
         V2PostTransaction other = (V2PostTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Metadata, other.v2Metadata) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.postings, other.postings) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.script, other.script) &&
@@ -179,14 +179,14 @@ public class V2PostTransaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Metadata, postings, reference,
+            metadata, postings, reference,
             script, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2PostTransaction.class,
-                "v2Metadata", v2Metadata,
+                "metadata", metadata,
                 "postings", postings,
                 "reference", reference,
                 "script", script,
@@ -196,7 +196,7 @@ public class V2PostTransaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, String> v2Metadata;
+        private Map<String, String> metadata;
 
         private Optional<? extends List<V2Posting>> postings = Optional.empty();
 
@@ -211,9 +211,9 @@ public class V2PostTransaction {
         }
 
 
-        public Builder v2Metadata(Map<String, String> v2Metadata) {
-            Utils.checkNotNull(v2Metadata, "v2Metadata");
-            this.v2Metadata = v2Metadata;
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
@@ -272,7 +272,7 @@ public class V2PostTransaction {
         public V2PostTransaction build() {
 
             return new V2PostTransaction(
-                v2Metadata, postings, reference,
+                metadata, postings, reference,
                 script, timestamp);
         }
 

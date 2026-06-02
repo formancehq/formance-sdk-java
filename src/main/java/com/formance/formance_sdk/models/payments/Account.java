@@ -21,15 +21,6 @@ import java.util.Optional;
 
 public class Account {
 
-    @JsonInclude(Include.ALWAYS)
-    @JsonProperty("metadata")
-    private Optional<? extends Map<String, String>> accountMetadata;
-
-
-    @JsonProperty("type")
-    private AccountType accountType;
-
-
     @JsonProperty("accountName")
     private String accountName;
 
@@ -58,6 +49,11 @@ public class Account {
     private String id;
 
 
+    @JsonInclude(Include.ALWAYS)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, String>> metadata;
+
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pools")
     private Optional<? extends List<String>> pools;
@@ -76,70 +72,63 @@ public class Account {
     @JsonProperty("reference")
     private String reference;
 
+
+    @JsonProperty("type")
+    private AccountType type;
+
     @JsonCreator
     public Account(
-            @JsonProperty("metadata") Optional<? extends Map<String, String>> accountMetadata,
-            @JsonProperty("type") AccountType accountType,
             @JsonProperty("accountName") String accountName,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("defaultAsset") String defaultAsset,
             @JsonProperty("defaultCurrency") String defaultCurrency,
             @JsonProperty("id") String id,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("pools") Optional<? extends List<String>> pools,
             @JsonProperty("provider") Optional<String> provider,
             @JsonProperty("raw") Optional<? extends AccountRaw> raw,
-            @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        Utils.checkNotNull(accountType, "accountType");
+            @JsonProperty("reference") String reference,
+            @JsonProperty("type") AccountType type) {
         Utils.checkNotNull(accountName, "accountName");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         Utils.checkNotNull(defaultCurrency, "defaultCurrency");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(pools, "pools");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
-        this.accountMetadata = accountMetadata;
-        this.accountType = accountType;
+        Utils.checkNotNull(type, "type");
         this.accountName = accountName;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.defaultAsset = defaultAsset;
         this.defaultCurrency = defaultCurrency;
         this.id = id;
+        this.metadata = metadata;
         this.pools = pools;
         this.provider = provider;
         this.raw = raw;
         this.reference = reference;
+        this.type = type;
     }
     
     public Account(
-            AccountType accountType,
             String accountName,
             String connectorID,
             OffsetDateTime createdAt,
             String defaultAsset,
             String defaultCurrency,
             String id,
-            String reference) {
-        this(Optional.empty(), accountType, accountName,
-            connectorID, createdAt, defaultAsset,
-            defaultCurrency, id, Optional.empty(),
-            Optional.empty(), Optional.empty(), reference);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, String>> accountMetadata() {
-        return (Optional<Map<String, String>>) accountMetadata;
-    }
-
-    @JsonIgnore
-    public AccountType accountType() {
-        return accountType;
+            String reference,
+            AccountType type) {
+        this(accountName, connectorID, createdAt,
+            defaultAsset, defaultCurrency, id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), reference, type);
     }
 
     @JsonIgnore
@@ -179,6 +168,12 @@ public class Account {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<List<String>> pools() {
         return (Optional<List<String>>) pools;
     }
@@ -199,29 +194,15 @@ public class Account {
         return reference;
     }
 
+    @JsonIgnore
+    public AccountType type() {
+        return type;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public Account withAccountMetadata(Map<String, String> accountMetadata) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        this.accountMetadata = Optional.ofNullable(accountMetadata);
-        return this;
-    }
-
-
-    public Account withAccountMetadata(Optional<? extends Map<String, String>> accountMetadata) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        this.accountMetadata = accountMetadata;
-        return this;
-    }
-
-    public Account withAccountType(AccountType accountType) {
-        Utils.checkNotNull(accountType, "accountType");
-        this.accountType = accountType;
-        return this;
-    }
 
     public Account withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -261,6 +242,19 @@ public class Account {
     public Account withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    public Account withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    public Account withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -309,6 +303,12 @@ public class Account {
         return this;
     }
 
+    public Account withType(AccountType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -319,52 +319,48 @@ public class Account {
         }
         Account other = (Account) o;
         return 
-            Utils.enhancedDeepEquals(this.accountMetadata, other.accountMetadata) &&
-            Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
             Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
             Utils.enhancedDeepEquals(this.defaultCurrency, other.defaultCurrency) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.pools, other.pools) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountMetadata, accountType, accountName,
-            connectorID, createdAt, defaultAsset,
-            defaultCurrency, id, pools,
-            provider, raw, reference);
+            accountName, connectorID, createdAt,
+            defaultAsset, defaultCurrency, id,
+            metadata, pools, provider,
+            raw, reference, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Account.class,
-                "accountMetadata", accountMetadata,
-                "accountType", accountType,
                 "accountName", accountName,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "defaultAsset", defaultAsset,
                 "defaultCurrency", defaultCurrency,
                 "id", id,
+                "metadata", metadata,
                 "pools", pools,
                 "provider", provider,
                 "raw", raw,
-                "reference", reference);
+                "reference", reference,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends Map<String, String>> accountMetadata = Optional.empty();
-
-        private AccountType accountType;
 
         private String accountName;
 
@@ -379,6 +375,8 @@ public class Account {
 
         private String id;
 
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
+
         private Optional<? extends List<String>> pools = Optional.empty();
 
         private Optional<String> provider = Optional.empty();
@@ -387,28 +385,10 @@ public class Account {
 
         private String reference;
 
+        private AccountType type;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder accountMetadata(Map<String, String> accountMetadata) {
-            Utils.checkNotNull(accountMetadata, "accountMetadata");
-            this.accountMetadata = Optional.ofNullable(accountMetadata);
-            return this;
-        }
-
-        public Builder accountMetadata(Optional<? extends Map<String, String>> accountMetadata) {
-            Utils.checkNotNull(accountMetadata, "accountMetadata");
-            this.accountMetadata = accountMetadata;
-            return this;
-        }
-
-
-        public Builder accountType(AccountType accountType) {
-            Utils.checkNotNull(accountType, "accountType");
-            this.accountType = accountType;
-            return this;
         }
 
 
@@ -459,6 +439,19 @@ public class Account {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder pools(List<String> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = Optional.ofNullable(pools);
@@ -504,13 +497,20 @@ public class Account {
             return this;
         }
 
+
+        public Builder type(AccountType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public Account build() {
 
             return new Account(
-                accountMetadata, accountType, accountName,
-                connectorID, createdAt, defaultAsset,
-                defaultCurrency, id, pools,
-                provider, raw, reference);
+                accountName, connectorID, createdAt,
+                defaultAsset, defaultCurrency, id,
+                metadata, pools, provider,
+                raw, reference, type);
         }
 
     }

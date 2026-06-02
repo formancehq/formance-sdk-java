@@ -19,13 +19,13 @@ public class CreateSecretResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends SecretOptions2> secretOptions;
+    private Optional<? extends Secret> data;
 
     @JsonCreator
     public CreateSecretResponse(
-            @JsonProperty("data") Optional<? extends SecretOptions2> secretOptions) {
-        Utils.checkNotNull(secretOptions, "secretOptions");
-        this.secretOptions = secretOptions;
+            @JsonProperty("data") Optional<? extends Secret> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public CreateSecretResponse() {
@@ -34,8 +34,8 @@ public class CreateSecretResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SecretOptions2> secretOptions() {
-        return (Optional<SecretOptions2>) secretOptions;
+    public Optional<Secret> data() {
+        return (Optional<Secret>) data;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class CreateSecretResponse {
     }
 
 
-    public CreateSecretResponse withSecretOptions(SecretOptions2 secretOptions) {
-        Utils.checkNotNull(secretOptions, "secretOptions");
-        this.secretOptions = Optional.ofNullable(secretOptions);
+    public CreateSecretResponse withData(Secret data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public CreateSecretResponse withSecretOptions(Optional<? extends SecretOptions2> secretOptions) {
-        Utils.checkNotNull(secretOptions, "secretOptions");
-        this.secretOptions = secretOptions;
+    public CreateSecretResponse withData(Optional<? extends Secret> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class CreateSecretResponse {
         }
         CreateSecretResponse other = (CreateSecretResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.secretOptions, other.secretOptions);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            secretOptions);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSecretResponse.class,
-                "secretOptions", secretOptions);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends SecretOptions2> secretOptions = Optional.empty();
+        private Optional<? extends Secret> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder secretOptions(SecretOptions2 secretOptions) {
-            Utils.checkNotNull(secretOptions, "secretOptions");
-            this.secretOptions = Optional.ofNullable(secretOptions);
+        public Builder data(Secret data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder secretOptions(Optional<? extends SecretOptions2> secretOptions) {
-            Utils.checkNotNull(secretOptions, "secretOptions");
-            this.secretOptions = secretOptions;
+        public Builder data(Optional<? extends Secret> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public CreateSecretResponse build() {
 
             return new CreateSecretResponse(
-                secretOptions);
+                data);
         }
 
     }

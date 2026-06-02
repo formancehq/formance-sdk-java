@@ -5,4 +5,4 @@
 
 | Field                                     | Type                                      | Required                                  | Description                               |
 | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `balance`                                 | [Balance](../../models/shared/Balance.md) | :heavy_check_mark:                        | N/A                                       |
+| `data`                                    | [Balance](../../models/shared/Balance.md) | :heavy_check_mark:                        | N/A                                       |

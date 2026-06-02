@@ -19,13 +19,13 @@ public class MappingResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private JsonNullable<? extends Mapping> mapping;
+    private JsonNullable<? extends Mapping> data;
 
     @JsonCreator
     public MappingResponse(
-            @JsonProperty("data") JsonNullable<? extends Mapping> mapping) {
-        Utils.checkNotNull(mapping, "mapping");
-        this.mapping = mapping;
+            @JsonProperty("data") JsonNullable<? extends Mapping> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public MappingResponse() {
@@ -34,8 +34,8 @@ public class MappingResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Mapping> mapping() {
-        return (JsonNullable<Mapping>) mapping;
+    public JsonNullable<Mapping> data() {
+        return (JsonNullable<Mapping>) data;
     }
 
     public static Builder builder() {
@@ -43,15 +43,15 @@ public class MappingResponse {
     }
 
 
-    public MappingResponse withMapping(Mapping mapping) {
-        Utils.checkNotNull(mapping, "mapping");
-        this.mapping = JsonNullable.of(mapping);
+    public MappingResponse withData(Mapping data) {
+        Utils.checkNotNull(data, "data");
+        this.data = JsonNullable.of(data);
         return this;
     }
 
-    public MappingResponse withMapping(JsonNullable<? extends Mapping> mapping) {
-        Utils.checkNotNull(mapping, "mapping");
-        this.mapping = mapping;
+    public MappingResponse withData(JsonNullable<? extends Mapping> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -65,47 +65,47 @@ public class MappingResponse {
         }
         MappingResponse other = (MappingResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.mapping, other.mapping);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            mapping);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(MappingResponse.class,
-                "mapping", mapping);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Mapping> mapping = JsonNullable.undefined();
+        private JsonNullable<? extends Mapping> data = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder mapping(Mapping mapping) {
-            Utils.checkNotNull(mapping, "mapping");
-            this.mapping = JsonNullable.of(mapping);
+        public Builder data(Mapping data) {
+            Utils.checkNotNull(data, "data");
+            this.data = JsonNullable.of(data);
             return this;
         }
 
-        public Builder mapping(JsonNullable<? extends Mapping> mapping) {
-            Utils.checkNotNull(mapping, "mapping");
-            this.mapping = mapping;
+        public Builder data(JsonNullable<? extends Mapping> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public MappingResponse build() {
 
             return new MappingResponse(
-                mapping);
+                data);
         }
 
     }

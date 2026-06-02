@@ -18,18 +18,18 @@ import java.lang.String;
 public class BankAccountResponse {
 
     @JsonProperty("data")
-    private BankAccount bankAccount;
+    private BankAccount data;
 
     @JsonCreator
     public BankAccountResponse(
-            @JsonProperty("data") BankAccount bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = bankAccount;
+            @JsonProperty("data") BankAccount data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public BankAccount bankAccount() {
-        return bankAccount;
+    public BankAccount data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class BankAccountResponse {
     }
 
 
-    public BankAccountResponse withBankAccount(BankAccount bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = bankAccount;
+    public BankAccountResponse withData(BankAccount data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class BankAccountResponse {
         }
         BankAccountResponse other = (BankAccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bankAccount);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BankAccountResponse.class,
-                "bankAccount", bankAccount);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private BankAccount bankAccount;
+        private BankAccount data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder bankAccount(BankAccount bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
-            this.bankAccount = bankAccount;
+        public Builder data(BankAccount data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public BankAccountResponse build() {
 
             return new BankAccountResponse(
-                bankAccount);
+                data);
         }
 
     }

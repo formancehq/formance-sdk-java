@@ -18,18 +18,6 @@ import java.util.Optional;
 
 public class PaymentRequest {
 
-    @JsonProperty("scheme")
-    private PaymentScheme paymentScheme;
-
-
-    @JsonProperty("status")
-    private PaymentStatus paymentStatus;
-
-
-    @JsonProperty("type")
-    private PaymentType paymentType;
-
-
     @JsonProperty("amount")
     private BigInteger amount;
 
@@ -55,72 +43,69 @@ public class PaymentRequest {
     private String reference;
 
 
+    @JsonProperty("scheme")
+    private PaymentScheme scheme;
+
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
 
+
+    @JsonProperty("status")
+    private PaymentStatus status;
+
+
+    @JsonProperty("type")
+    private PaymentType type;
+
     @JsonCreator
     public PaymentRequest(
-            @JsonProperty("scheme") PaymentScheme paymentScheme,
-            @JsonProperty("status") PaymentStatus paymentStatus,
-            @JsonProperty("type") PaymentType paymentType,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("destinationAccountID") Optional<String> destinationAccountID,
             @JsonProperty("reference") String reference,
-            @JsonProperty("sourceAccountID") Optional<String> sourceAccountID) {
-        Utils.checkNotNull(paymentScheme, "paymentScheme");
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        Utils.checkNotNull(paymentType, "paymentType");
+            @JsonProperty("scheme") PaymentScheme scheme,
+            @JsonProperty("sourceAccountID") Optional<String> sourceAccountID,
+            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("type") PaymentType type) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(scheme, "scheme");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
-        this.paymentScheme = paymentScheme;
-        this.paymentStatus = paymentStatus;
-        this.paymentType = paymentType;
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(type, "type");
         this.amount = amount;
         this.asset = asset;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.destinationAccountID = destinationAccountID;
         this.reference = reference;
+        this.scheme = scheme;
         this.sourceAccountID = sourceAccountID;
+        this.status = status;
+        this.type = type;
     }
     
     public PaymentRequest(
-            PaymentScheme paymentScheme,
-            PaymentStatus paymentStatus,
-            PaymentType paymentType,
             BigInteger amount,
             String asset,
             String connectorID,
             OffsetDateTime createdAt,
-            String reference) {
-        this(paymentScheme, paymentStatus, paymentType,
-            amount, asset, connectorID,
+            String reference,
+            PaymentScheme scheme,
+            PaymentStatus status,
+            PaymentType type) {
+        this(amount, asset, connectorID,
             createdAt, Optional.empty(), reference,
-            Optional.empty());
-    }
-
-    @JsonIgnore
-    public PaymentScheme paymentScheme() {
-        return paymentScheme;
-    }
-
-    @JsonIgnore
-    public PaymentStatus paymentStatus() {
-        return paymentStatus;
-    }
-
-    @JsonIgnore
-    public PaymentType paymentType() {
-        return paymentType;
+            scheme, Optional.empty(), status,
+            type);
     }
 
     @JsonIgnore
@@ -154,32 +139,29 @@ public class PaymentRequest {
     }
 
     @JsonIgnore
+    public PaymentScheme scheme() {
+        return scheme;
+    }
+
+    @JsonIgnore
     public Optional<String> sourceAccountID() {
         return sourceAccountID;
+    }
+
+    @JsonIgnore
+    public PaymentStatus status() {
+        return status;
+    }
+
+    @JsonIgnore
+    public PaymentType type() {
+        return type;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public PaymentRequest withPaymentScheme(PaymentScheme paymentScheme) {
-        Utils.checkNotNull(paymentScheme, "paymentScheme");
-        this.paymentScheme = paymentScheme;
-        return this;
-    }
-
-    public PaymentRequest withPaymentStatus(PaymentStatus paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        this.paymentStatus = paymentStatus;
-        return this;
-    }
-
-    public PaymentRequest withPaymentType(PaymentType paymentType) {
-        Utils.checkNotNull(paymentType, "paymentType");
-        this.paymentType = paymentType;
-        return this;
-    }
 
     public PaymentRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -229,6 +211,12 @@ public class PaymentRequest {
         return this;
     }
 
+    public PaymentRequest withScheme(PaymentScheme scheme) {
+        Utils.checkNotNull(scheme, "scheme");
+        this.scheme = scheme;
+        return this;
+    }
+
     public PaymentRequest withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = Optional.ofNullable(sourceAccountID);
@@ -242,6 +230,18 @@ public class PaymentRequest {
         return this;
     }
 
+    public PaymentRequest withStatus(PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    public PaymentRequest withType(PaymentType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -252,50 +252,44 @@ public class PaymentRequest {
         }
         PaymentRequest other = (PaymentRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.paymentScheme, other.paymentScheme) &&
-            Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
-            Utils.enhancedDeepEquals(this.paymentType, other.paymentType) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
-            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID);
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentScheme, paymentStatus, paymentType,
             amount, asset, connectorID,
             createdAt, destinationAccountID, reference,
-            sourceAccountID);
+            scheme, sourceAccountID, status,
+            type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentRequest.class,
-                "paymentScheme", paymentScheme,
-                "paymentStatus", paymentStatus,
-                "paymentType", paymentType,
                 "amount", amount,
                 "asset", asset,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "destinationAccountID", destinationAccountID,
                 "reference", reference,
-                "sourceAccountID", sourceAccountID);
+                "scheme", scheme,
+                "sourceAccountID", sourceAccountID,
+                "status", status,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private PaymentScheme paymentScheme;
-
-        private PaymentStatus paymentStatus;
-
-        private PaymentType paymentType;
 
         private BigInteger amount;
 
@@ -309,31 +303,16 @@ public class PaymentRequest {
 
         private String reference;
 
+        private PaymentScheme scheme;
+
         private Optional<String> sourceAccountID = Optional.empty();
+
+        private PaymentStatus status;
+
+        private PaymentType type;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder paymentScheme(PaymentScheme paymentScheme) {
-            Utils.checkNotNull(paymentScheme, "paymentScheme");
-            this.paymentScheme = paymentScheme;
-            return this;
-        }
-
-
-        public Builder paymentStatus(PaymentStatus paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
-            this.paymentStatus = paymentStatus;
-            return this;
-        }
-
-
-        public Builder paymentType(PaymentType paymentType) {
-            Utils.checkNotNull(paymentType, "paymentType");
-            this.paymentType = paymentType;
-            return this;
         }
 
 
@@ -390,6 +369,13 @@ public class PaymentRequest {
         }
 
 
+        public Builder scheme(PaymentScheme scheme) {
+            Utils.checkNotNull(scheme, "scheme");
+            this.scheme = scheme;
+            return this;
+        }
+
+
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = Optional.ofNullable(sourceAccountID);
@@ -402,13 +388,27 @@ public class PaymentRequest {
             return this;
         }
 
+
+        public Builder status(PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        public Builder type(PaymentType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public PaymentRequest build() {
 
             return new PaymentRequest(
-                paymentScheme, paymentStatus, paymentType,
                 amount, asset, connectorID,
                 createdAt, destinationAccountID, reference,
-                sourceAccountID);
+                scheme, sourceAccountID, status,
+                type);
         }
 
     }

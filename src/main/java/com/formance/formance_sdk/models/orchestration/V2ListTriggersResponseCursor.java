@@ -20,7 +20,7 @@ import java.util.Optional;
 public class V2ListTriggersResponseCursor {
 
     @JsonProperty("data")
-    private List<V2TriggerData1> data;
+    private List<V2Trigger> data;
 
 
     @JsonProperty("hasMore")
@@ -42,7 +42,7 @@ public class V2ListTriggersResponseCursor {
 
     @JsonCreator
     public V2ListTriggersResponseCursor(
-            @JsonProperty("data") List<V2TriggerData1> data,
+            @JsonProperty("data") List<V2Trigger> data,
             @JsonProperty("hasMore") boolean hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -60,7 +60,7 @@ public class V2ListTriggersResponseCursor {
     }
     
     public V2ListTriggersResponseCursor(
-            List<V2TriggerData1> data,
+            List<V2Trigger> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(),
@@ -68,7 +68,7 @@ public class V2ListTriggersResponseCursor {
     }
 
     @JsonIgnore
-    public List<V2TriggerData1> data() {
+    public List<V2Trigger> data() {
         return data;
     }
 
@@ -97,7 +97,7 @@ public class V2ListTriggersResponseCursor {
     }
 
 
-    public V2ListTriggersResponseCursor withData(List<V2TriggerData1> data) {
+    public V2ListTriggersResponseCursor withData(List<V2Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -178,7 +178,7 @@ public class V2ListTriggersResponseCursor {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2TriggerData1> data;
+        private List<V2Trigger> data;
 
         private Boolean hasMore;
 
@@ -193,7 +193,7 @@ public class V2ListTriggersResponseCursor {
         }
 
 
-        public Builder data(List<V2TriggerData1> data) {
+        public Builder data(List<V2Trigger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

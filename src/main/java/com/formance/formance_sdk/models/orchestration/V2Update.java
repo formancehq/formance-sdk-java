@@ -19,13 +19,13 @@ public class V2Update {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private Optional<? extends V2UpdateAccount> v2UpdateAccount;
+    private Optional<? extends V2UpdateAccount> account;
 
     @JsonCreator
     public V2Update(
-            @JsonProperty("account") Optional<? extends V2UpdateAccount> v2UpdateAccount) {
-        Utils.checkNotNull(v2UpdateAccount, "v2UpdateAccount");
-        this.v2UpdateAccount = v2UpdateAccount;
+            @JsonProperty("account") Optional<? extends V2UpdateAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
     }
     
     public V2Update() {
@@ -34,8 +34,8 @@ public class V2Update {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2UpdateAccount> v2UpdateAccount() {
-        return (Optional<V2UpdateAccount>) v2UpdateAccount;
+    public Optional<V2UpdateAccount> account() {
+        return (Optional<V2UpdateAccount>) account;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class V2Update {
     }
 
 
-    public V2Update withV2UpdateAccount(V2UpdateAccount v2UpdateAccount) {
-        Utils.checkNotNull(v2UpdateAccount, "v2UpdateAccount");
-        this.v2UpdateAccount = Optional.ofNullable(v2UpdateAccount);
+    public V2Update withAccount(V2UpdateAccount account) {
+        Utils.checkNotNull(account, "account");
+        this.account = Optional.ofNullable(account);
         return this;
     }
 
 
-    public V2Update withV2UpdateAccount(Optional<? extends V2UpdateAccount> v2UpdateAccount) {
-        Utils.checkNotNull(v2UpdateAccount, "v2UpdateAccount");
-        this.v2UpdateAccount = v2UpdateAccount;
+    public V2Update withAccount(Optional<? extends V2UpdateAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class V2Update {
         }
         V2Update other = (V2Update) o;
         return 
-            Utils.enhancedDeepEquals(this.v2UpdateAccount, other.v2UpdateAccount);
+            Utils.enhancedDeepEquals(this.account, other.account);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2UpdateAccount);
+            account);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2Update.class,
-                "v2UpdateAccount", v2UpdateAccount);
+                "account", account);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2UpdateAccount> v2UpdateAccount = Optional.empty();
+        private Optional<? extends V2UpdateAccount> account = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2UpdateAccount(V2UpdateAccount v2UpdateAccount) {
-            Utils.checkNotNull(v2UpdateAccount, "v2UpdateAccount");
-            this.v2UpdateAccount = Optional.ofNullable(v2UpdateAccount);
+        public Builder account(V2UpdateAccount account) {
+            Utils.checkNotNull(account, "account");
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
-        public Builder v2UpdateAccount(Optional<? extends V2UpdateAccount> v2UpdateAccount) {
-            Utils.checkNotNull(v2UpdateAccount, "v2UpdateAccount");
-            this.v2UpdateAccount = v2UpdateAccount;
+        public Builder account(Optional<? extends V2UpdateAccount> account) {
+            Utils.checkNotNull(account, "account");
+            this.account = account;
             return this;
         }
 
         public V2Update build() {
 
             return new V2Update(
-                v2UpdateAccount);
+                account);
         }
 
     }

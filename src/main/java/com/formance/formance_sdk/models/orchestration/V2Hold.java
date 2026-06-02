@@ -18,13 +18,13 @@ import java.util.Optional;
 
 public class V2Hold {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("destination")
-    private Optional<? extends V2Subject> v2Subject;
-
-
     @JsonProperty("description")
     private String description;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("destination")
+    private Optional<? extends V2Subject> destination;
 
     /**
      * The unique ID of the hold.
@@ -46,19 +46,19 @@ public class V2Hold {
 
     @JsonCreator
     public V2Hold(
-            @JsonProperty("destination") Optional<? extends V2Subject> v2Subject,
             @JsonProperty("description") String description,
+            @JsonProperty("destination") Optional<? extends V2Subject> destination,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("walletID") String walletID) {
-        Utils.checkNotNull(v2Subject, "v2Subject");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(walletID, "walletID");
-        this.v2Subject = v2Subject;
         this.description = description;
+        this.destination = destination;
         this.id = id;
         this.metadata = metadata;
         this.walletID = walletID;
@@ -69,19 +69,19 @@ public class V2Hold {
             String id,
             Map<String, String> metadata,
             String walletID) {
-        this(Optional.empty(), description, id,
+        this(description, Optional.empty(), id,
             metadata, walletID);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2Subject> v2Subject() {
-        return (Optional<V2Subject>) v2Subject;
     }
 
     @JsonIgnore
     public String description() {
         return description;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2Subject> destination() {
+        return (Optional<V2Subject>) destination;
     }
 
     /**
@@ -113,22 +113,22 @@ public class V2Hold {
     }
 
 
-    public V2Hold withV2Subject(V2Subject v2Subject) {
-        Utils.checkNotNull(v2Subject, "v2Subject");
-        this.v2Subject = Optional.ofNullable(v2Subject);
-        return this;
-    }
-
-
-    public V2Hold withV2Subject(Optional<? extends V2Subject> v2Subject) {
-        Utils.checkNotNull(v2Subject, "v2Subject");
-        this.v2Subject = v2Subject;
-        return this;
-    }
-
     public V2Hold withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    public V2Hold withDestination(V2Subject destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = Optional.ofNullable(destination);
+        return this;
+    }
+
+
+    public V2Hold withDestination(Optional<? extends V2Subject> destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = destination;
         return this;
     }
 
@@ -169,8 +169,8 @@ public class V2Hold {
         }
         V2Hold other = (V2Hold) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Subject, other.v2Subject) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.walletID, other.walletID);
@@ -179,15 +179,15 @@ public class V2Hold {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Subject, description, id,
+            description, destination, id,
             metadata, walletID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2Hold.class,
-                "v2Subject", v2Subject,
                 "description", description,
+                "destination", destination,
                 "id", id,
                 "metadata", metadata,
                 "walletID", walletID);
@@ -196,9 +196,9 @@ public class V2Hold {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2Subject> v2Subject = Optional.empty();
-
         private String description;
+
+        private Optional<? extends V2Subject> destination = Optional.empty();
 
         private String id;
 
@@ -211,22 +211,22 @@ public class V2Hold {
         }
 
 
-        public Builder v2Subject(V2Subject v2Subject) {
-            Utils.checkNotNull(v2Subject, "v2Subject");
-            this.v2Subject = Optional.ofNullable(v2Subject);
-            return this;
-        }
-
-        public Builder v2Subject(Optional<? extends V2Subject> v2Subject) {
-            Utils.checkNotNull(v2Subject, "v2Subject");
-            this.v2Subject = v2Subject;
-            return this;
-        }
-
-
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        public Builder destination(V2Subject destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = Optional.ofNullable(destination);
+            return this;
+        }
+
+        public Builder destination(Optional<? extends V2Subject> destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = destination;
             return this;
         }
 
@@ -263,7 +263,7 @@ public class V2Hold {
         public V2Hold build() {
 
             return new V2Hold(
-                v2Subject, description, id,
+                description, destination, id,
                 metadata, walletID);
         }
 

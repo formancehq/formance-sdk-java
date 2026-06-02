@@ -14,18 +14,18 @@ import java.lang.String;
 public class CreateWalletResponse {
 
     @JsonProperty("data")
-    private Wallet wallet;
+    private Wallet data;
 
     @JsonCreator
     public CreateWalletResponse(
-            @JsonProperty("data") Wallet wallet) {
-        Utils.checkNotNull(wallet, "wallet");
-        this.wallet = wallet;
+            @JsonProperty("data") Wallet data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Wallet wallet() {
-        return wallet;
+    public Wallet data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class CreateWalletResponse {
     }
 
 
-    public CreateWalletResponse withWallet(Wallet wallet) {
-        Utils.checkNotNull(wallet, "wallet");
-        this.wallet = wallet;
+    public CreateWalletResponse withData(Wallet data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class CreateWalletResponse {
         }
         CreateWalletResponse other = (CreateWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.wallet, other.wallet);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            wallet);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateWalletResponse.class,
-                "wallet", wallet);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Wallet wallet;
+        private Wallet data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder wallet(Wallet wallet) {
-            Utils.checkNotNull(wallet, "wallet");
-            this.wallet = wallet;
+        public Builder data(Wallet data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public CreateWalletResponse build() {
 
             return new CreateWalletResponse(
-                wallet);
+                data);
         }
 
     }

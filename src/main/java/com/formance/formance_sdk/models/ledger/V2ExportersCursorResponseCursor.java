@@ -20,7 +20,7 @@ import java.util.Optional;
 public class V2ExportersCursorResponseCursor {
 
     @JsonProperty("data")
-    private List<V2ExporterConfiguration1> data;
+    private List<V2Exporter> data;
 
 
     @JsonProperty("hasMore")
@@ -42,7 +42,7 @@ public class V2ExportersCursorResponseCursor {
 
     @JsonCreator
     public V2ExportersCursorResponseCursor(
-            @JsonProperty("data") List<V2ExporterConfiguration1> data,
+            @JsonProperty("data") List<V2Exporter> data,
             @JsonProperty("hasMore") boolean hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -60,7 +60,7 @@ public class V2ExportersCursorResponseCursor {
     }
     
     public V2ExportersCursorResponseCursor(
-            List<V2ExporterConfiguration1> data,
+            List<V2Exporter> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(),
@@ -68,7 +68,7 @@ public class V2ExportersCursorResponseCursor {
     }
 
     @JsonIgnore
-    public List<V2ExporterConfiguration1> data() {
+    public List<V2Exporter> data() {
         return data;
     }
 
@@ -97,7 +97,7 @@ public class V2ExportersCursorResponseCursor {
     }
 
 
-    public V2ExportersCursorResponseCursor withData(List<V2ExporterConfiguration1> data) {
+    public V2ExportersCursorResponseCursor withData(List<V2Exporter> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -178,7 +178,7 @@ public class V2ExportersCursorResponseCursor {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2ExporterConfiguration1> data;
+        private List<V2Exporter> data;
 
         private Boolean hasMore;
 
@@ -193,7 +193,7 @@ public class V2ExportersCursorResponseCursor {
         }
 
 
-        public Builder data(List<V2ExporterConfiguration1> data) {
+        public Builder data(List<V2Exporter> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

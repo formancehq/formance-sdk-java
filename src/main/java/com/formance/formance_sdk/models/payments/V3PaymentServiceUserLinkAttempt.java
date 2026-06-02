@@ -17,10 +17,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3PaymentServiceUserLinkAttempt {
 
-    @JsonProperty("status")
-    private V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum;
-
-
     @JsonProperty("clientRedirectURL")
     private String clientRedirectURL;
 
@@ -45,46 +41,45 @@ public class V3PaymentServiceUserLinkAttempt {
     @JsonProperty("psuID")
     private String psuID;
 
+
+    @JsonProperty("status")
+    private V3OpenBankingConnectionAttemptStatusEnum status;
+
     @JsonCreator
     public V3PaymentServiceUserLinkAttempt(
-            @JsonProperty("status") V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum,
             @JsonProperty("clientRedirectURL") String clientRedirectURL,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
-            @JsonProperty("psuID") String psuID) {
-        Utils.checkNotNull(v3OpenBankingConnectionAttemptStatusEnum, "v3OpenBankingConnectionAttemptStatusEnum");
+            @JsonProperty("psuID") String psuID,
+            @JsonProperty("status") V3OpenBankingConnectionAttemptStatusEnum status) {
         Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(psuID, "psuID");
-        this.v3OpenBankingConnectionAttemptStatusEnum = v3OpenBankingConnectionAttemptStatusEnum;
+        Utils.checkNotNull(status, "status");
         this.clientRedirectURL = clientRedirectURL;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.error = error;
         this.id = id;
         this.psuID = psuID;
+        this.status = status;
     }
     
     public V3PaymentServiceUserLinkAttempt(
-            V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum,
             String clientRedirectURL,
             String connectorID,
             OffsetDateTime createdAt,
             String id,
-            String psuID) {
-        this(v3OpenBankingConnectionAttemptStatusEnum, clientRedirectURL, connectorID,
-            createdAt, JsonNullable.undefined(), id,
-            psuID);
-    }
-
-    @JsonIgnore
-    public V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum() {
-        return v3OpenBankingConnectionAttemptStatusEnum;
+            String psuID,
+            V3OpenBankingConnectionAttemptStatusEnum status) {
+        this(clientRedirectURL, connectorID, createdAt,
+            JsonNullable.undefined(), id, psuID,
+            status);
     }
 
     @JsonIgnore
@@ -117,16 +112,15 @@ public class V3PaymentServiceUserLinkAttempt {
         return psuID;
     }
 
+    @JsonIgnore
+    public V3OpenBankingConnectionAttemptStatusEnum status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3PaymentServiceUserLinkAttempt withV3OpenBankingConnectionAttemptStatusEnum(V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum) {
-        Utils.checkNotNull(v3OpenBankingConnectionAttemptStatusEnum, "v3OpenBankingConnectionAttemptStatusEnum");
-        this.v3OpenBankingConnectionAttemptStatusEnum = v3OpenBankingConnectionAttemptStatusEnum;
-        return this;
-    }
 
     public V3PaymentServiceUserLinkAttempt withClientRedirectURL(String clientRedirectURL) {
         Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
@@ -170,6 +164,12 @@ public class V3PaymentServiceUserLinkAttempt {
         return this;
     }
 
+    public V3PaymentServiceUserLinkAttempt withStatus(V3OpenBankingConnectionAttemptStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,39 +180,37 @@ public class V3PaymentServiceUserLinkAttempt {
         }
         V3PaymentServiceUserLinkAttempt other = (V3PaymentServiceUserLinkAttempt) o;
         return 
-            Utils.enhancedDeepEquals(this.v3OpenBankingConnectionAttemptStatusEnum, other.v3OpenBankingConnectionAttemptStatusEnum) &&
             Utils.enhancedDeepEquals(this.clientRedirectURL, other.clientRedirectURL) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.psuID, other.psuID);
+            Utils.enhancedDeepEquals(this.psuID, other.psuID) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3OpenBankingConnectionAttemptStatusEnum, clientRedirectURL, connectorID,
-            createdAt, error, id,
-            psuID);
+            clientRedirectURL, connectorID, createdAt,
+            error, id, psuID,
+            status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3PaymentServiceUserLinkAttempt.class,
-                "v3OpenBankingConnectionAttemptStatusEnum", v3OpenBankingConnectionAttemptStatusEnum,
                 "clientRedirectURL", clientRedirectURL,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "error", error,
                 "id", id,
-                "psuID", psuID);
+                "psuID", psuID,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum;
 
         private String clientRedirectURL;
 
@@ -226,15 +224,10 @@ public class V3PaymentServiceUserLinkAttempt {
 
         private String psuID;
 
+        private V3OpenBankingConnectionAttemptStatusEnum status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3OpenBankingConnectionAttemptStatusEnum(V3OpenBankingConnectionAttemptStatusEnum v3OpenBankingConnectionAttemptStatusEnum) {
-            Utils.checkNotNull(v3OpenBankingConnectionAttemptStatusEnum, "v3OpenBankingConnectionAttemptStatusEnum");
-            this.v3OpenBankingConnectionAttemptStatusEnum = v3OpenBankingConnectionAttemptStatusEnum;
-            return this;
         }
 
 
@@ -285,12 +278,19 @@ public class V3PaymentServiceUserLinkAttempt {
             return this;
         }
 
+
+        public Builder status(V3OpenBankingConnectionAttemptStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public V3PaymentServiceUserLinkAttempt build() {
 
             return new V3PaymentServiceUserLinkAttempt(
-                v3OpenBankingConnectionAttemptStatusEnum, clientRedirectURL, connectorID,
-                createdAt, error, id,
-                psuID);
+                clientRedirectURL, connectorID, createdAt,
+                error, id, psuID,
+                status);
         }
 
     }

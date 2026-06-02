@@ -9,7 +9,7 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
-import com.formance.formance_sdk.models.auth.ClientOptions2;
+import com.formance.formance_sdk.models.auth.ClientOptions;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
@@ -103,13 +103,13 @@ public class CreateClient {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> {
+            implements RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends ClientOptions2> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends ClientOptions2>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends ClientOptions> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends ClientOptions>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -125,7 +125,7 @@ public class CreateClient {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends ClientOptions2> request) {
+        public HttpResponse<InputStream> doRequest(Optional<? extends ClientOptions> request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {

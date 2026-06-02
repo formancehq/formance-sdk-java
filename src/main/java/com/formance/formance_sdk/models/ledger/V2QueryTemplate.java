@@ -20,16 +20,6 @@ import java.util.Optional;
 public class V2QueryTemplate {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("params")
-    private Optional<? extends V2QueryParams> v2QueryParams;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("resource")
-    private Optional<? extends V2QueryResource> v2QueryResource;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("body")
     private Optional<? extends Map<String, Object>> body;
 
@@ -40,43 +30,41 @@ public class V2QueryTemplate {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("params")
+    private Optional<? extends V2QueryParams> params;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("resource")
+    private Optional<? extends V2QueryResource> resource;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends Map<String, V2QueryTemplateVar>> vars;
 
     @JsonCreator
     public V2QueryTemplate(
-            @JsonProperty("params") Optional<? extends V2QueryParams> v2QueryParams,
-            @JsonProperty("resource") Optional<? extends V2QueryResource> v2QueryResource,
             @JsonProperty("body") Optional<? extends Map<String, Object>> body,
             @JsonProperty("description") Optional<String> description,
+            @JsonProperty("params") Optional<? extends V2QueryParams> params,
+            @JsonProperty("resource") Optional<? extends V2QueryResource> resource,
             @JsonProperty("vars") Optional<? extends Map<String, V2QueryTemplateVar>> vars) {
-        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
-        Utils.checkNotNull(v2QueryResource, "v2QueryResource");
         Utils.checkNotNull(body, "body");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(params, "params");
+        Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(vars, "vars");
-        this.v2QueryParams = v2QueryParams;
-        this.v2QueryResource = v2QueryResource;
         this.body = body;
         this.description = description;
+        this.params = params;
+        this.resource = resource;
         this.vars = vars;
     }
     
     public V2QueryTemplate() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2QueryParams> v2QueryParams() {
-        return (Optional<V2QueryParams>) v2QueryParams;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2QueryResource> v2QueryResource() {
-        return (Optional<V2QueryResource>) v2QueryResource;
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +80,18 @@ public class V2QueryTemplate {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<V2QueryParams> params() {
+        return (Optional<V2QueryParams>) params;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2QueryResource> resource() {
+        return (Optional<V2QueryResource>) resource;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<Map<String, V2QueryTemplateVar>> vars() {
         return (Optional<Map<String, V2QueryTemplateVar>>) vars;
     }
@@ -100,32 +100,6 @@ public class V2QueryTemplate {
         return new Builder();
     }
 
-
-    public V2QueryTemplate withV2QueryParams(V2QueryParams v2QueryParams) {
-        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
-        this.v2QueryParams = Optional.ofNullable(v2QueryParams);
-        return this;
-    }
-
-
-    public V2QueryTemplate withV2QueryParams(Optional<? extends V2QueryParams> v2QueryParams) {
-        Utils.checkNotNull(v2QueryParams, "v2QueryParams");
-        this.v2QueryParams = v2QueryParams;
-        return this;
-    }
-
-    public V2QueryTemplate withV2QueryResource(V2QueryResource v2QueryResource) {
-        Utils.checkNotNull(v2QueryResource, "v2QueryResource");
-        this.v2QueryResource = Optional.ofNullable(v2QueryResource);
-        return this;
-    }
-
-
-    public V2QueryTemplate withV2QueryResource(Optional<? extends V2QueryResource> v2QueryResource) {
-        Utils.checkNotNull(v2QueryResource, "v2QueryResource");
-        this.v2QueryResource = v2QueryResource;
-        return this;
-    }
 
     public V2QueryTemplate withBody(Map<String, Object> body) {
         Utils.checkNotNull(body, "body");
@@ -153,6 +127,32 @@ public class V2QueryTemplate {
         return this;
     }
 
+    public V2QueryTemplate withParams(V2QueryParams params) {
+        Utils.checkNotNull(params, "params");
+        this.params = Optional.ofNullable(params);
+        return this;
+    }
+
+
+    public V2QueryTemplate withParams(Optional<? extends V2QueryParams> params) {
+        Utils.checkNotNull(params, "params");
+        this.params = params;
+        return this;
+    }
+
+    public V2QueryTemplate withResource(V2QueryResource resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = Optional.ofNullable(resource);
+        return this;
+    }
+
+
+    public V2QueryTemplate withResource(Optional<? extends V2QueryResource> resource) {
+        Utils.checkNotNull(resource, "resource");
+        this.resource = resource;
+        return this;
+    }
+
     public V2QueryTemplate withVars(Map<String, V2QueryTemplateVar> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
@@ -176,71 +176,45 @@ public class V2QueryTemplate {
         }
         V2QueryTemplate other = (V2QueryTemplate) o;
         return 
-            Utils.enhancedDeepEquals(this.v2QueryParams, other.v2QueryParams) &&
-            Utils.enhancedDeepEquals(this.v2QueryResource, other.v2QueryResource) &&
             Utils.enhancedDeepEquals(this.body, other.body) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.params, other.params) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.vars, other.vars);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2QueryParams, v2QueryResource, body,
-            description, vars);
+            body, description, params,
+            resource, vars);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2QueryTemplate.class,
-                "v2QueryParams", v2QueryParams,
-                "v2QueryResource", v2QueryResource,
                 "body", body,
                 "description", description,
+                "params", params,
+                "resource", resource,
                 "vars", vars);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2QueryParams> v2QueryParams = Optional.empty();
-
-        private Optional<? extends V2QueryResource> v2QueryResource = Optional.empty();
-
         private Optional<? extends Map<String, Object>> body = Optional.empty();
 
         private Optional<String> description = Optional.empty();
+
+        private Optional<? extends V2QueryParams> params = Optional.empty();
+
+        private Optional<? extends V2QueryResource> resource = Optional.empty();
 
         private Optional<? extends Map<String, V2QueryTemplateVar>> vars = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2QueryParams(V2QueryParams v2QueryParams) {
-            Utils.checkNotNull(v2QueryParams, "v2QueryParams");
-            this.v2QueryParams = Optional.ofNullable(v2QueryParams);
-            return this;
-        }
-
-        public Builder v2QueryParams(Optional<? extends V2QueryParams> v2QueryParams) {
-            Utils.checkNotNull(v2QueryParams, "v2QueryParams");
-            this.v2QueryParams = v2QueryParams;
-            return this;
-        }
-
-
-        public Builder v2QueryResource(V2QueryResource v2QueryResource) {
-            Utils.checkNotNull(v2QueryResource, "v2QueryResource");
-            this.v2QueryResource = Optional.ofNullable(v2QueryResource);
-            return this;
-        }
-
-        public Builder v2QueryResource(Optional<? extends V2QueryResource> v2QueryResource) {
-            Utils.checkNotNull(v2QueryResource, "v2QueryResource");
-            this.v2QueryResource = v2QueryResource;
-            return this;
         }
 
 
@@ -270,6 +244,32 @@ public class V2QueryTemplate {
         }
 
 
+        public Builder params(V2QueryParams params) {
+            Utils.checkNotNull(params, "params");
+            this.params = Optional.ofNullable(params);
+            return this;
+        }
+
+        public Builder params(Optional<? extends V2QueryParams> params) {
+            Utils.checkNotNull(params, "params");
+            this.params = params;
+            return this;
+        }
+
+
+        public Builder resource(V2QueryResource resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = Optional.ofNullable(resource);
+            return this;
+        }
+
+        public Builder resource(Optional<? extends V2QueryResource> resource) {
+            Utils.checkNotNull(resource, "resource");
+            this.resource = resource;
+            return this;
+        }
+
+
         public Builder vars(Map<String, V2QueryTemplateVar> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
@@ -285,8 +285,8 @@ public class V2QueryTemplate {
         public V2QueryTemplate build() {
 
             return new V2QueryTemplate(
-                v2QueryParams, v2QueryResource, body,
-                description, vars);
+                body, description, params,
+                resource, vars);
         }
 
     }

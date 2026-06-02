@@ -16,19 +16,19 @@ import java.util.Map;
 public class AggregateBalancesResponse {
 
     @JsonProperty("data")
-    private Map<String, Long> assetsBalances;
+    private Map<String, Long> data;
 
     @JsonCreator
     public AggregateBalancesResponse(
-            @JsonProperty("data") Map<String, Long> assetsBalances) {
-        assetsBalances = Utils.emptyMapIfNull(assetsBalances);
-        Utils.checkNotNull(assetsBalances, "assetsBalances");
-        this.assetsBalances = assetsBalances;
+            @JsonProperty("data") Map<String, Long> data) {
+        data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Map<String, Long> assetsBalances() {
-        return assetsBalances;
+    public Map<String, Long> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -36,9 +36,9 @@ public class AggregateBalancesResponse {
     }
 
 
-    public AggregateBalancesResponse withAssetsBalances(Map<String, Long> assetsBalances) {
-        Utils.checkNotNull(assetsBalances, "assetsBalances");
-        this.assetsBalances = assetsBalances;
+    public AggregateBalancesResponse withData(Map<String, Long> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -52,41 +52,41 @@ public class AggregateBalancesResponse {
         }
         AggregateBalancesResponse other = (AggregateBalancesResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.assetsBalances, other.assetsBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            assetsBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AggregateBalancesResponse.class,
-                "assetsBalances", assetsBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, Long> assetsBalances;
+        private Map<String, Long> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder assetsBalances(Map<String, Long> assetsBalances) {
-            Utils.checkNotNull(assetsBalances, "assetsBalances");
-            this.assetsBalances = assetsBalances;
+        public Builder data(Map<String, Long> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public AggregateBalancesResponse build() {
 
             return new AggregateBalancesResponse(
-                assetsBalances);
+                data);
         }
 
     }

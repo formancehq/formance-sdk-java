@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -15,7 +15,7 @@ import java.lang.String;
 public class V2UpdateExporterRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private V2ExporterConfiguration2 v2ExporterConfiguration;
+    private V2ExporterConfiguration v2ExporterConfiguration;
 
     /**
      * The exporter id
@@ -25,7 +25,7 @@ public class V2UpdateExporterRequest {
 
     @JsonCreator
     public V2UpdateExporterRequest(
-            V2ExporterConfiguration2 v2ExporterConfiguration,
+            V2ExporterConfiguration v2ExporterConfiguration,
             String exporterID) {
         Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
         Utils.checkNotNull(exporterID, "exporterID");
@@ -34,7 +34,7 @@ public class V2UpdateExporterRequest {
     }
 
     @JsonIgnore
-    public V2ExporterConfiguration2 v2ExporterConfiguration() {
+    public V2ExporterConfiguration v2ExporterConfiguration() {
         return v2ExporterConfiguration;
     }
 
@@ -51,7 +51,7 @@ public class V2UpdateExporterRequest {
     }
 
 
-    public V2UpdateExporterRequest withV2ExporterConfiguration(V2ExporterConfiguration2 v2ExporterConfiguration) {
+    public V2UpdateExporterRequest withV2ExporterConfiguration(V2ExporterConfiguration v2ExporterConfiguration) {
         Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
         this.v2ExporterConfiguration = v2ExporterConfiguration;
         return this;
@@ -96,7 +96,7 @@ public class V2UpdateExporterRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2ExporterConfiguration2 v2ExporterConfiguration;
+        private V2ExporterConfiguration v2ExporterConfiguration;
 
         private String exporterID;
 
@@ -105,7 +105,7 @@ public class V2UpdateExporterRequest {
         }
 
 
-        public Builder v2ExporterConfiguration(V2ExporterConfiguration2 v2ExporterConfiguration) {
+        public Builder v2ExporterConfiguration(V2ExporterConfiguration v2ExporterConfiguration) {
             Utils.checkNotNull(v2ExporterConfiguration, "v2ExporterConfiguration");
             this.v2ExporterConfiguration = v2ExporterConfiguration;
             return this;

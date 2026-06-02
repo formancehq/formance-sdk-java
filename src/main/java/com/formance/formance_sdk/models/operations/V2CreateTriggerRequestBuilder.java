@@ -6,7 +6,7 @@ package com.formance.formance_sdk.models.operations;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 
 import com.formance.formance_sdk.SDKConfiguration;
-import com.formance.formance_sdk.models.orchestration.V2TriggerData2;
+import com.formance.formance_sdk.models.orchestration.V2TriggerData;
 import com.formance.formance_sdk.operations.V2CreateTrigger;
 import com.formance.formance_sdk.utils.Headers;
 import com.formance.formance_sdk.utils.Utils;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class V2CreateTriggerRequestBuilder {
 
-    private Optional<? extends V2TriggerData2> request = Optional.empty();
+    private Optional<? extends V2TriggerData> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,13 +22,13 @@ public class V2CreateTriggerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public V2CreateTriggerRequestBuilder request(V2TriggerData2 request) {
+    public V2CreateTriggerRequestBuilder request(V2TriggerData request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public V2CreateTriggerRequestBuilder request(Optional<? extends V2TriggerData2> request) {
+    public V2CreateTriggerRequestBuilder request(Optional<? extends V2TriggerData> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -36,7 +36,7 @@ public class V2CreateTriggerRequestBuilder {
 
     public V2CreateTriggerResponse call() {
         
-        RequestOperation<Optional<? extends V2TriggerData2>, V2CreateTriggerResponse> operation
+        RequestOperation<Optional<? extends V2TriggerData>, V2CreateTriggerResponse> operation
               = new V2CreateTrigger.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));

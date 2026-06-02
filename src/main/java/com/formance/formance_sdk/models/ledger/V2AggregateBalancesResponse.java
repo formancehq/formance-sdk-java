@@ -16,19 +16,19 @@ import java.util.Map;
 public class V2AggregateBalancesResponse {
 
     @JsonProperty("data")
-    private Map<String, BigInteger> v2AssetsBalances;
+    private Map<String, BigInteger> data;
 
     @JsonCreator
     public V2AggregateBalancesResponse(
-            @JsonProperty("data") Map<String, BigInteger> v2AssetsBalances) {
-        v2AssetsBalances = Utils.emptyMapIfNull(v2AssetsBalances);
-        Utils.checkNotNull(v2AssetsBalances, "v2AssetsBalances");
-        this.v2AssetsBalances = v2AssetsBalances;
+            @JsonProperty("data") Map<String, BigInteger> data) {
+        data = Utils.emptyMapIfNull(data);
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Map<String, BigInteger> v2AssetsBalances() {
-        return v2AssetsBalances;
+    public Map<String, BigInteger> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -36,9 +36,9 @@ public class V2AggregateBalancesResponse {
     }
 
 
-    public V2AggregateBalancesResponse withV2AssetsBalances(Map<String, BigInteger> v2AssetsBalances) {
-        Utils.checkNotNull(v2AssetsBalances, "v2AssetsBalances");
-        this.v2AssetsBalances = v2AssetsBalances;
+    public V2AggregateBalancesResponse withData(Map<String, BigInteger> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -52,41 +52,41 @@ public class V2AggregateBalancesResponse {
         }
         V2AggregateBalancesResponse other = (V2AggregateBalancesResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2AssetsBalances, other.v2AssetsBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2AssetsBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2AggregateBalancesResponse.class,
-                "v2AssetsBalances", v2AssetsBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, BigInteger> v2AssetsBalances;
+        private Map<String, BigInteger> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2AssetsBalances(Map<String, BigInteger> v2AssetsBalances) {
-            Utils.checkNotNull(v2AssetsBalances, "v2AssetsBalances");
-            this.v2AssetsBalances = v2AssetsBalances;
+        public Builder data(Map<String, BigInteger> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2AggregateBalancesResponse build() {
 
             return new V2AggregateBalancesResponse(
-                v2AssetsBalances);
+                data);
         }
 
     }

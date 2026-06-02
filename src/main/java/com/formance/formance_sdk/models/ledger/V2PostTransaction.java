@@ -20,18 +20,6 @@ import java.util.Optional;
 
 
 public class V2PostTransaction {
-    /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-     * "--experimental-numscript-interpreter" feature flag is passed.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("runtime")
-    private Optional<? extends Runtime> runtime;
-
-
-    @JsonProperty("metadata")
-    private Map<String, String> v2Metadata;
-
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountMetadata")
@@ -43,6 +31,10 @@ public class V2PostTransaction {
     private Optional<Boolean> force;
 
 
+    @JsonProperty("metadata")
+    private Map<String, String> metadata;
+
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postings")
     private Optional<? extends List<V2Posting>> postings;
@@ -51,6 +43,14 @@ public class V2PostTransaction {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
+
+    /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+     * "--experimental-numscript-interpreter" feature flag is passed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("runtime")
+    private Optional<? extends Runtime> runtime;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -64,53 +64,38 @@ public class V2PostTransaction {
 
     @JsonCreator
     public V2PostTransaction(
-            @JsonProperty("runtime") Optional<? extends Runtime> runtime,
-            @JsonProperty("metadata") Map<String, String> v2Metadata,
             @JsonProperty("accountMetadata") Optional<? extends Map<String, Map<String, String>>> accountMetadata,
             @JsonProperty("force") Optional<Boolean> force,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("postings") Optional<? extends List<V2Posting>> postings,
             @JsonProperty("reference") Optional<String> reference,
+            @JsonProperty("runtime") Optional<? extends Runtime> runtime,
             @JsonProperty("script") Optional<? extends V2PostTransactionScript> script,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(runtime, "runtime");
-        v2Metadata = Utils.emptyMapIfNull(v2Metadata);
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
         Utils.checkNotNull(accountMetadata, "accountMetadata");
         Utils.checkNotNull(force, "force");
+        metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(runtime, "runtime");
         Utils.checkNotNull(script, "script");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.runtime = runtime;
-        this.v2Metadata = v2Metadata;
         this.accountMetadata = accountMetadata;
         this.force = force;
+        this.metadata = metadata;
         this.postings = postings;
         this.reference = reference;
+        this.runtime = runtime;
         this.script = script;
         this.timestamp = timestamp;
     }
     
     public V2PostTransaction(
-            Map<String, String> v2Metadata) {
-        this(Optional.empty(), v2Metadata, Optional.empty(),
+            Map<String, String> metadata) {
+        this(Optional.empty(), Optional.empty(), metadata,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
-    }
-
-    /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-     * "--experimental-numscript-interpreter" feature flag is passed.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Runtime> runtime() {
-        return (Optional<Runtime>) runtime;
-    }
-
-    @JsonIgnore
-    public Map<String, String> v2Metadata() {
-        return v2Metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -124,6 +109,11 @@ public class V2PostTransaction {
         return force;
     }
 
+    @JsonIgnore
+    public Map<String, String> metadata() {
+        return metadata;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V2Posting>> postings() {
@@ -133,6 +123,16 @@ public class V2PostTransaction {
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
+    }
+
+    /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+     * "--experimental-numscript-interpreter" feature flag is passed.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Runtime> runtime() {
+        return (Optional<Runtime>) runtime;
     }
 
     @SuppressWarnings("unchecked")
@@ -150,33 +150,6 @@ public class V2PostTransaction {
         return new Builder();
     }
 
-
-    /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-     * "--experimental-numscript-interpreter" feature flag is passed.
-     */
-    public V2PostTransaction withRuntime(Runtime runtime) {
-        Utils.checkNotNull(runtime, "runtime");
-        this.runtime = Optional.ofNullable(runtime);
-        return this;
-    }
-
-
-    /**
-     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-     * "--experimental-numscript-interpreter" feature flag is passed.
-     */
-    public V2PostTransaction withRuntime(Optional<? extends Runtime> runtime) {
-        Utils.checkNotNull(runtime, "runtime");
-        this.runtime = runtime;
-        return this;
-    }
-
-    public V2PostTransaction withV2Metadata(Map<String, String> v2Metadata) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
-        this.v2Metadata = v2Metadata;
-        return this;
-    }
 
     public V2PostTransaction withAccountMetadata(Map<String, Map<String, String>> accountMetadata) {
         Utils.checkNotNull(accountMetadata, "accountMetadata");
@@ -204,6 +177,12 @@ public class V2PostTransaction {
         return this;
     }
 
+    public V2PostTransaction withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V2PostTransaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = Optional.ofNullable(postings);
@@ -227,6 +206,27 @@ public class V2PostTransaction {
     public V2PostTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
+        return this;
+    }
+
+    /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+     * "--experimental-numscript-interpreter" feature flag is passed.
+     */
+    public V2PostTransaction withRuntime(Runtime runtime) {
+        Utils.checkNotNull(runtime, "runtime");
+        this.runtime = Optional.ofNullable(runtime);
+        return this;
+    }
+
+
+    /**
+     * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+     * "--experimental-numscript-interpreter" feature flag is passed.
+     */
+    public V2PostTransaction withRuntime(Optional<? extends Runtime> runtime) {
+        Utils.checkNotNull(runtime, "runtime");
+        this.runtime = runtime;
         return this;
     }
 
@@ -266,12 +266,12 @@ public class V2PostTransaction {
         }
         V2PostTransaction other = (V2PostTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.runtime, other.runtime) &&
-            Utils.enhancedDeepEquals(this.v2Metadata, other.v2Metadata) &&
             Utils.enhancedDeepEquals(this.accountMetadata, other.accountMetadata) &&
             Utils.enhancedDeepEquals(this.force, other.force) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.postings, other.postings) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.runtime, other.runtime) &&
             Utils.enhancedDeepEquals(this.script, other.script) &&
             Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
@@ -279,20 +279,20 @@ public class V2PostTransaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            runtime, v2Metadata, accountMetadata,
-            force, postings, reference,
+            accountMetadata, force, metadata,
+            postings, reference, runtime,
             script, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2PostTransaction.class,
-                "runtime", runtime,
-                "v2Metadata", v2Metadata,
                 "accountMetadata", accountMetadata,
                 "force", force,
+                "metadata", metadata,
                 "postings", postings,
                 "reference", reference,
+                "runtime", runtime,
                 "script", script,
                 "timestamp", timestamp);
     }
@@ -300,17 +300,17 @@ public class V2PostTransaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Runtime> runtime = Optional.empty();
-
-        private Map<String, String> v2Metadata;
-
         private Optional<? extends Map<String, Map<String, String>>> accountMetadata = Optional.empty();
 
         private Optional<Boolean> force = Optional.empty();
 
+        private Map<String, String> metadata;
+
         private Optional<? extends List<V2Posting>> postings = Optional.empty();
 
         private Optional<String> reference = Optional.empty();
+
+        private Optional<? extends Runtime> runtime = Optional.empty();
 
         private Optional<? extends V2PostTransactionScript> script = Optional.empty();
 
@@ -318,34 +318,6 @@ public class V2PostTransaction {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-         * "--experimental-numscript-interpreter" feature flag is passed.
-         */
-        public Builder runtime(Runtime runtime) {
-            Utils.checkNotNull(runtime, "runtime");
-            this.runtime = Optional.ofNullable(runtime);
-            return this;
-        }
-
-        /**
-         * The numscript runtime used to execute the script. Uses "machine" by default, unless the
-         * "--experimental-numscript-interpreter" feature flag is passed.
-         */
-        public Builder runtime(Optional<? extends Runtime> runtime) {
-            Utils.checkNotNull(runtime, "runtime");
-            this.runtime = runtime;
-            return this;
-        }
-
-
-        public Builder v2Metadata(Map<String, String> v2Metadata) {
-            Utils.checkNotNull(v2Metadata, "v2Metadata");
-            this.v2Metadata = v2Metadata;
-            return this;
         }
 
 
@@ -375,6 +347,13 @@ public class V2PostTransaction {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = Optional.ofNullable(postings);
@@ -397,6 +376,27 @@ public class V2PostTransaction {
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
+            return this;
+        }
+
+
+        /**
+         * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+         * "--experimental-numscript-interpreter" feature flag is passed.
+         */
+        public Builder runtime(Runtime runtime) {
+            Utils.checkNotNull(runtime, "runtime");
+            this.runtime = Optional.ofNullable(runtime);
+            return this;
+        }
+
+        /**
+         * The numscript runtime used to execute the script. Uses "machine" by default, unless the
+         * "--experimental-numscript-interpreter" feature flag is passed.
+         */
+        public Builder runtime(Optional<? extends Runtime> runtime) {
+            Utils.checkNotNull(runtime, "runtime");
+            this.runtime = runtime;
             return this;
         }
 
@@ -429,8 +429,8 @@ public class V2PostTransaction {
         public V2PostTransaction build() {
 
             return new V2PostTransaction(
-                runtime, v2Metadata, accountMetadata,
-                force, postings, reference,
+                accountMetadata, force, metadata,
+                postings, reference, runtime,
                 script, timestamp);
         }
 

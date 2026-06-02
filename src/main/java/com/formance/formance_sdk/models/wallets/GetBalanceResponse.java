@@ -14,18 +14,18 @@ import java.lang.String;
 public class GetBalanceResponse {
 
     @JsonProperty("data")
-    private AssetHolder2 assetHolder;
+    private BalanceWithAssets data;
 
     @JsonCreator
     public GetBalanceResponse(
-            @JsonProperty("data") AssetHolder2 assetHolder) {
-        Utils.checkNotNull(assetHolder, "assetHolder");
-        this.assetHolder = assetHolder;
+            @JsonProperty("data") BalanceWithAssets data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public AssetHolder2 assetHolder() {
-        return assetHolder;
+    public BalanceWithAssets data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class GetBalanceResponse {
     }
 
 
-    public GetBalanceResponse withAssetHolder(AssetHolder2 assetHolder) {
-        Utils.checkNotNull(assetHolder, "assetHolder");
-        this.assetHolder = assetHolder;
+    public GetBalanceResponse withData(BalanceWithAssets data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class GetBalanceResponse {
         }
         GetBalanceResponse other = (GetBalanceResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.assetHolder, other.assetHolder);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            assetHolder);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetBalanceResponse.class,
-                "assetHolder", assetHolder);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private AssetHolder2 assetHolder;
+        private BalanceWithAssets data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder assetHolder(AssetHolder2 assetHolder) {
-            Utils.checkNotNull(assetHolder, "assetHolder");
-            this.assetHolder = assetHolder;
+        public Builder data(BalanceWithAssets data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public GetBalanceResponse build() {
 
             return new GetBalanceResponse(
-                assetHolder);
+                data);
         }
 
     }

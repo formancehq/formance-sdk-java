@@ -21,7 +21,7 @@ public class WalletSummary {
 
 
     @JsonProperty("balances")
-    private List<AssetHolder2> balances;
+    private List<BalanceWithAssets> balances;
 
 
     @JsonProperty("expirableFunds")
@@ -38,7 +38,7 @@ public class WalletSummary {
     @JsonCreator
     public WalletSummary(
             @JsonProperty("availableFunds") Map<String, BigInteger> availableFunds,
-            @JsonProperty("balances") List<AssetHolder2> balances,
+            @JsonProperty("balances") List<BalanceWithAssets> balances,
             @JsonProperty("expirableFunds") Map<String, BigInteger> expirableFunds,
             @JsonProperty("expiredFunds") Map<String, BigInteger> expiredFunds,
             @JsonProperty("holdFunds") Map<String, BigInteger> holdFunds) {
@@ -64,7 +64,7 @@ public class WalletSummary {
     }
 
     @JsonIgnore
-    public List<AssetHolder2> balances() {
+    public List<BalanceWithAssets> balances() {
         return balances;
     }
 
@@ -94,7 +94,7 @@ public class WalletSummary {
         return this;
     }
 
-    public WalletSummary withBalances(List<AssetHolder2> balances) {
+    public WalletSummary withBalances(List<BalanceWithAssets> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -157,7 +157,7 @@ public class WalletSummary {
 
         private Map<String, BigInteger> availableFunds;
 
-        private List<AssetHolder2> balances;
+        private List<BalanceWithAssets> balances;
 
         private Map<String, BigInteger> expirableFunds;
 
@@ -177,7 +177,7 @@ public class WalletSummary {
         }
 
 
-        public Builder balances(List<AssetHolder2> balances) {
+        public Builder balances(List<BalanceWithAssets> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;

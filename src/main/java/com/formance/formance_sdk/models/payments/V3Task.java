@@ -18,10 +18,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3Task {
 
-    @JsonProperty("status")
-    private V3TaskStatusEnum v3TaskStatusEnum;
-
-
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
@@ -45,47 +41,46 @@ public class V3Task {
     private String id;
 
 
+    @JsonProperty("status")
+    private V3TaskStatusEnum status;
+
+
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
     @JsonCreator
     public V3Task(
-            @JsonProperty("status") V3TaskStatusEnum v3TaskStatusEnum,
             @JsonProperty("connectorID") Optional<String> connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("createdObjectID") Optional<String> createdObjectID,
             @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("id") String id,
+            @JsonProperty("status") V3TaskStatusEnum status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
-        Utils.checkNotNull(v3TaskStatusEnum, "v3TaskStatusEnum");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(createdObjectID, "createdObjectID");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.v3TaskStatusEnum = v3TaskStatusEnum;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.createdObjectID = createdObjectID;
         this.error = error;
         this.id = id;
+        this.status = status;
         this.updatedAt = updatedAt;
     }
     
     public V3Task(
-            V3TaskStatusEnum v3TaskStatusEnum,
             OffsetDateTime createdAt,
             String id,
+            V3TaskStatusEnum status,
             OffsetDateTime updatedAt) {
-        this(v3TaskStatusEnum, Optional.empty(), createdAt,
-            Optional.empty(), JsonNullable.undefined(), id,
+        this(Optional.empty(), createdAt, Optional.empty(),
+            JsonNullable.undefined(), id, status,
             updatedAt);
-    }
-
-    @JsonIgnore
-    public V3TaskStatusEnum v3TaskStatusEnum() {
-        return v3TaskStatusEnum;
     }
 
     @JsonIgnore
@@ -114,6 +109,11 @@ public class V3Task {
     }
 
     @JsonIgnore
+    public V3TaskStatusEnum status() {
+        return status;
+    }
+
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
@@ -122,12 +122,6 @@ public class V3Task {
         return new Builder();
     }
 
-
-    public V3Task withV3TaskStatusEnum(V3TaskStatusEnum v3TaskStatusEnum) {
-        Utils.checkNotNull(v3TaskStatusEnum, "v3TaskStatusEnum");
-        this.v3TaskStatusEnum = v3TaskStatusEnum;
-        return this;
-    }
 
     public V3Task withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -179,6 +173,12 @@ public class V3Task {
         return this;
     }
 
+    public V3Task withStatus(V3TaskStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     public V3Task withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -195,39 +195,37 @@ public class V3Task {
         }
         V3Task other = (V3Task) o;
         return 
-            Utils.enhancedDeepEquals(this.v3TaskStatusEnum, other.v3TaskStatusEnum) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.createdObjectID, other.createdObjectID) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3TaskStatusEnum, connectorID, createdAt,
-            createdObjectID, error, id,
+            connectorID, createdAt, createdObjectID,
+            error, id, status,
             updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Task.class,
-                "v3TaskStatusEnum", v3TaskStatusEnum,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "createdObjectID", createdObjectID,
                 "error", error,
                 "id", id,
+                "status", status,
                 "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private V3TaskStatusEnum v3TaskStatusEnum;
 
         private Optional<String> connectorID = Optional.empty();
 
@@ -239,17 +237,12 @@ public class V3Task {
 
         private String id;
 
+        private V3TaskStatusEnum status;
+
         private OffsetDateTime updatedAt;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3TaskStatusEnum(V3TaskStatusEnum v3TaskStatusEnum) {
-            Utils.checkNotNull(v3TaskStatusEnum, "v3TaskStatusEnum");
-            this.v3TaskStatusEnum = v3TaskStatusEnum;
-            return this;
         }
 
 
@@ -306,6 +299,13 @@ public class V3Task {
         }
 
 
+        public Builder status(V3TaskStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
@@ -315,8 +315,8 @@ public class V3Task {
         public V3Task build() {
 
             return new V3Task(
-                v3TaskStatusEnum, connectorID, createdAt,
-                createdObjectID, error, id,
+                connectorID, createdAt, createdObjectID,
+                error, id, status,
                 updatedAt);
         }
 

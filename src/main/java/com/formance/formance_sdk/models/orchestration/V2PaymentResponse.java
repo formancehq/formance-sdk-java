@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2PaymentResponse {
 
     @JsonProperty("data")
-    private V2Payment v2Payment;
+    private V2Payment data;
 
     @JsonCreator
     public V2PaymentResponse(
-            @JsonProperty("data") V2Payment v2Payment) {
-        Utils.checkNotNull(v2Payment, "v2Payment");
-        this.v2Payment = v2Payment;
+            @JsonProperty("data") V2Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Payment v2Payment() {
-        return v2Payment;
+    public V2Payment data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2PaymentResponse {
     }
 
 
-    public V2PaymentResponse withV2Payment(V2Payment v2Payment) {
-        Utils.checkNotNull(v2Payment, "v2Payment");
-        this.v2Payment = v2Payment;
+    public V2PaymentResponse withData(V2Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2PaymentResponse {
         }
         V2PaymentResponse other = (V2PaymentResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Payment, other.v2Payment);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Payment);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2PaymentResponse.class,
-                "v2Payment", v2Payment);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Payment v2Payment;
+        private V2Payment data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Payment(V2Payment v2Payment) {
-            Utils.checkNotNull(v2Payment, "v2Payment");
-            this.v2Payment = v2Payment;
+        public Builder data(V2Payment data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2PaymentResponse build() {
 
             return new V2PaymentResponse(
-                v2Payment);
+                data);
         }
 
     }

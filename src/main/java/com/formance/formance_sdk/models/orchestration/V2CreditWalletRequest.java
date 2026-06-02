@@ -20,7 +20,7 @@ import java.util.Optional;
 public class V2CreditWalletRequest {
 
     @JsonProperty("amount")
-    private V2Monetary v2Monetary;
+    private V2Monetary amount;
 
     /**
      * The balance to credit
@@ -51,20 +51,20 @@ public class V2CreditWalletRequest {
 
     @JsonCreator
     public V2CreditWalletRequest(
-            @JsonProperty("amount") V2Monetary v2Monetary,
+            @JsonProperty("amount") V2Monetary amount,
             @JsonProperty("balance") Optional<String> balance,
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("sources") List<V2Subject> sources,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(v2Monetary, "v2Monetary");
+        Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balance, "balance");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sources, "sources");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.v2Monetary = v2Monetary;
+        this.amount = amount;
         this.balance = balance;
         this.metadata = metadata;
         this.reference = reference;
@@ -73,16 +73,16 @@ public class V2CreditWalletRequest {
     }
     
     public V2CreditWalletRequest(
-            V2Monetary v2Monetary,
+            V2Monetary amount,
             Map<String, String> metadata,
             List<V2Subject> sources) {
-        this(v2Monetary, Optional.empty(), metadata,
+        this(amount, Optional.empty(), metadata,
             Optional.empty(), sources, Optional.empty());
     }
 
     @JsonIgnore
-    public V2Monetary v2Monetary() {
-        return v2Monetary;
+    public V2Monetary amount() {
+        return amount;
     }
 
     /**
@@ -121,9 +121,9 @@ public class V2CreditWalletRequest {
     }
 
 
-    public V2CreditWalletRequest withV2Monetary(V2Monetary v2Monetary) {
-        Utils.checkNotNull(v2Monetary, "v2Monetary");
-        this.v2Monetary = v2Monetary;
+    public V2CreditWalletRequest withAmount(V2Monetary amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
         return this;
     }
 
@@ -197,7 +197,7 @@ public class V2CreditWalletRequest {
         }
         V2CreditWalletRequest other = (V2CreditWalletRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Monetary, other.v2Monetary) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
@@ -208,14 +208,14 @@ public class V2CreditWalletRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Monetary, balance, metadata,
+            amount, balance, metadata,
             reference, sources, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreditWalletRequest.class,
-                "v2Monetary", v2Monetary,
+                "amount", amount,
                 "balance", balance,
                 "metadata", metadata,
                 "reference", reference,
@@ -226,7 +226,7 @@ public class V2CreditWalletRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Monetary v2Monetary;
+        private V2Monetary amount;
 
         private Optional<String> balance = Optional.empty();
 
@@ -243,9 +243,9 @@ public class V2CreditWalletRequest {
         }
 
 
-        public Builder v2Monetary(V2Monetary v2Monetary) {
-            Utils.checkNotNull(v2Monetary, "v2Monetary");
-            this.v2Monetary = v2Monetary;
+        public Builder amount(V2Monetary amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
             return this;
         }
 
@@ -314,7 +314,7 @@ public class V2CreditWalletRequest {
         public V2CreditWalletRequest build() {
 
             return new V2CreditWalletRequest(
-                v2Monetary, balance, metadata,
+                amount, balance, metadata,
                 reference, sources, timestamp);
         }
 

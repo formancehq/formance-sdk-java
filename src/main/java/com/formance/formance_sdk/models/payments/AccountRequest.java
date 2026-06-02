@@ -21,15 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class AccountRequest {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> accountMetadata;
-
-
-    @JsonProperty("type")
-    private AccountType accountType;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountName")
     private Optional<String> accountName;
 
@@ -47,53 +38,51 @@ public class AccountRequest {
     private Optional<String> defaultAsset;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("reference")
     private String reference;
 
+
+    @JsonProperty("type")
+    private AccountType type;
+
     @JsonCreator
     public AccountRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> accountMetadata,
-            @JsonProperty("type") AccountType accountType,
             @JsonProperty("accountName") Optional<String> accountName,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("defaultAsset") Optional<String> defaultAsset,
-            @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        Utils.checkNotNull(accountType, "accountType");
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("reference") String reference,
+            @JsonProperty("type") AccountType type) {
         Utils.checkNotNull(accountName, "accountName");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(defaultAsset, "defaultAsset");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
-        this.accountMetadata = accountMetadata;
-        this.accountType = accountType;
+        Utils.checkNotNull(type, "type");
         this.accountName = accountName;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.defaultAsset = defaultAsset;
+        this.metadata = metadata;
         this.reference = reference;
+        this.type = type;
     }
     
     public AccountRequest(
-            AccountType accountType,
             String connectorID,
             OffsetDateTime createdAt,
-            String reference) {
-        this(JsonNullable.undefined(), accountType, Optional.empty(),
-            connectorID, createdAt, Optional.empty(),
-            reference);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> accountMetadata() {
-        return (JsonNullable<Map<String, String>>) accountMetadata;
-    }
-
-    @JsonIgnore
-    public AccountType accountType() {
-        return accountType;
+            String reference,
+            AccountType type) {
+        this(Optional.empty(), connectorID, createdAt,
+            Optional.empty(), JsonNullable.undefined(), reference,
+            type);
     }
 
     @JsonIgnore
@@ -116,33 +105,26 @@ public class AccountRequest {
         return defaultAsset;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String reference() {
         return reference;
+    }
+
+    @JsonIgnore
+    public AccountType type() {
+        return type;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public AccountRequest withAccountMetadata(Map<String, String> accountMetadata) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        this.accountMetadata = JsonNullable.of(accountMetadata);
-        return this;
-    }
-
-    public AccountRequest withAccountMetadata(JsonNullable<? extends Map<String, String>> accountMetadata) {
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        this.accountMetadata = accountMetadata;
-        return this;
-    }
-
-    public AccountRequest withAccountType(AccountType accountType) {
-        Utils.checkNotNull(accountType, "accountType");
-        this.accountType = accountType;
-        return this;
-    }
 
     public AccountRequest withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -182,9 +164,27 @@ public class AccountRequest {
         return this;
     }
 
+    public AccountRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public AccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public AccountRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
+        return this;
+    }
+
+    public AccountRequest withType(AccountType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -198,41 +198,37 @@ public class AccountRequest {
         }
         AccountRequest other = (AccountRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.accountMetadata, other.accountMetadata) &&
-            Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
             Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.defaultAsset, other.defaultAsset) &&
-            Utils.enhancedDeepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountMetadata, accountType, accountName,
-            connectorID, createdAt, defaultAsset,
-            reference);
+            accountName, connectorID, createdAt,
+            defaultAsset, metadata, reference,
+            type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountRequest.class,
-                "accountMetadata", accountMetadata,
-                "accountType", accountType,
                 "accountName", accountName,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "defaultAsset", defaultAsset,
-                "reference", reference);
+                "metadata", metadata,
+                "reference", reference,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> accountMetadata = JsonNullable.undefined();
-
-        private AccountType accountType;
 
         private Optional<String> accountName = Optional.empty();
 
@@ -242,30 +238,14 @@ public class AccountRequest {
 
         private Optional<String> defaultAsset = Optional.empty();
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String reference;
+
+        private AccountType type;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder accountMetadata(Map<String, String> accountMetadata) {
-            Utils.checkNotNull(accountMetadata, "accountMetadata");
-            this.accountMetadata = JsonNullable.of(accountMetadata);
-            return this;
-        }
-
-        public Builder accountMetadata(JsonNullable<? extends Map<String, String>> accountMetadata) {
-            Utils.checkNotNull(accountMetadata, "accountMetadata");
-            this.accountMetadata = accountMetadata;
-            return this;
-        }
-
-
-        public Builder accountType(AccountType accountType) {
-            Utils.checkNotNull(accountType, "accountType");
-            this.accountType = accountType;
-            return this;
         }
 
 
@@ -309,18 +289,38 @@ public class AccountRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
 
+
+        public Builder type(AccountType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public AccountRequest build() {
 
             return new AccountRequest(
-                accountMetadata, accountType, accountName,
-                connectorID, createdAt, defaultAsset,
-                reference);
+                accountName, connectorID, createdAt,
+                defaultAsset, metadata, reference,
+                type);
         }
 
     }

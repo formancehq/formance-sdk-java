@@ -7,4 +7,4 @@ OK
 
 | Field                                                   | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `reconciliation`                                        | [Reconciliation](../../models/shared/Reconciliation.md) | :heavy_check_mark:                                      | N/A                                                     |
+| `data`                                                  | [Reconciliation](../../models/shared/Reconciliation.md) | :heavy_check_mark:                                      | N/A                                                     |

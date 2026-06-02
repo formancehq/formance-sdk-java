@@ -14,18 +14,18 @@ import java.lang.String;
 public class DebitWalletResponse {
 
     @JsonProperty("data")
-    private Hold1 hold;
+    private Hold data;
 
     @JsonCreator
     public DebitWalletResponse(
-            @JsonProperty("data") Hold1 hold) {
-        Utils.checkNotNull(hold, "hold");
-        this.hold = hold;
+            @JsonProperty("data") Hold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Hold1 hold() {
-        return hold;
+    public Hold data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class DebitWalletResponse {
     }
 
 
-    public DebitWalletResponse withHold(Hold1 hold) {
-        Utils.checkNotNull(hold, "hold");
-        this.hold = hold;
+    public DebitWalletResponse withData(Hold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class DebitWalletResponse {
         }
         DebitWalletResponse other = (DebitWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.hold, other.hold);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            hold);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DebitWalletResponse.class,
-                "hold", hold);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Hold1 hold;
+        private Hold data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder hold(Hold1 hold) {
-            Utils.checkNotNull(hold, "hold");
-            this.hold = hold;
+        public Builder data(Hold data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public DebitWalletResponse build() {
 
             return new DebitWalletResponse(
-                hold);
+                data);
         }
 
     }

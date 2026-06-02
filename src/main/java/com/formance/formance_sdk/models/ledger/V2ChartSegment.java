@@ -36,6 +36,11 @@ public class V2ChartSegment {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty(".rules")
+    private Optional<? extends V2ChartAccountRules> dotRules;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty(".self")
     private Optional<? extends DotSelf> dotSelf;
 
@@ -43,26 +48,21 @@ public class V2ChartSegment {
     @JsonIgnore
     private Map<String, V2ChartSegment> additionalProperties;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty(".rules")
-    private Optional<? extends V2ChartAccountRules> v2ChartAccountRules;
-
     @JsonCreator
     public V2ChartSegment(
             @JsonProperty(".metadata") Optional<? extends Map<String, V2ChartAccountMetadata>> dotMetadata,
             @JsonProperty(".pattern") Optional<String> dotPattern,
-            @JsonProperty(".self") Optional<? extends DotSelf> dotSelf,
-            @JsonProperty(".rules") Optional<? extends V2ChartAccountRules> v2ChartAccountRules) {
+            @JsonProperty(".rules") Optional<? extends V2ChartAccountRules> dotRules,
+            @JsonProperty(".self") Optional<? extends DotSelf> dotSelf) {
         Utils.checkNotNull(dotMetadata, "dotMetadata");
         Utils.checkNotNull(dotPattern, "dotPattern");
+        Utils.checkNotNull(dotRules, "dotRules");
         Utils.checkNotNull(dotSelf, "dotSelf");
-        Utils.checkNotNull(v2ChartAccountRules, "v2ChartAccountRules");
         this.dotMetadata = dotMetadata;
         this.dotPattern = dotPattern;
+        this.dotRules = dotRules;
         this.dotSelf = dotSelf;
         this.additionalProperties = new HashMap<>();
-        this.v2ChartAccountRules = v2ChartAccountRules;
     }
     
     public V2ChartSegment() {
@@ -83,6 +83,12 @@ public class V2ChartSegment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<V2ChartAccountRules> dotRules() {
+        return (Optional<V2ChartAccountRules>) dotRules;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<DotSelf> dotSelf() {
         return (Optional<DotSelf>) dotSelf;
     }
@@ -90,12 +96,6 @@ public class V2ChartSegment {
     @JsonAnyGetter
     public Map<String, V2ChartSegment> additionalProperties() {
         return additionalProperties;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2ChartAccountRules> v2ChartAccountRules() {
-        return (Optional<V2ChartAccountRules>) v2ChartAccountRules;
     }
 
     public static Builder builder() {
@@ -129,6 +129,19 @@ public class V2ChartSegment {
         return this;
     }
 
+    public V2ChartSegment withDotRules(V2ChartAccountRules dotRules) {
+        Utils.checkNotNull(dotRules, "dotRules");
+        this.dotRules = Optional.ofNullable(dotRules);
+        return this;
+    }
+
+
+    public V2ChartSegment withDotRules(Optional<? extends V2ChartAccountRules> dotRules) {
+        Utils.checkNotNull(dotRules, "dotRules");
+        this.dotRules = dotRules;
+        return this;
+    }
+
     public V2ChartSegment withDotSelf(DotSelf dotSelf) {
         Utils.checkNotNull(dotSelf, "dotSelf");
         this.dotSelf = Optional.ofNullable(dotSelf);
@@ -155,19 +168,6 @@ public class V2ChartSegment {
         return this;
     }
 
-    public V2ChartSegment withV2ChartAccountRules(V2ChartAccountRules v2ChartAccountRules) {
-        Utils.checkNotNull(v2ChartAccountRules, "v2ChartAccountRules");
-        this.v2ChartAccountRules = Optional.ofNullable(v2ChartAccountRules);
-        return this;
-    }
-
-
-    public V2ChartSegment withV2ChartAccountRules(Optional<? extends V2ChartAccountRules> v2ChartAccountRules) {
-        Utils.checkNotNull(v2ChartAccountRules, "v2ChartAccountRules");
-        this.v2ChartAccountRules = v2ChartAccountRules;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,16 +180,16 @@ public class V2ChartSegment {
         return 
             Utils.enhancedDeepEquals(this.dotMetadata, other.dotMetadata) &&
             Utils.enhancedDeepEquals(this.dotPattern, other.dotPattern) &&
+            Utils.enhancedDeepEquals(this.dotRules, other.dotRules) &&
             Utils.enhancedDeepEquals(this.dotSelf, other.dotSelf) &&
-            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties) &&
-            Utils.enhancedDeepEquals(this.v2ChartAccountRules, other.v2ChartAccountRules);
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            dotMetadata, dotPattern, dotSelf,
-            additionalProperties, v2ChartAccountRules);
+            dotMetadata, dotPattern, dotRules,
+            dotSelf, additionalProperties);
     }
     
     @Override
@@ -197,9 +197,9 @@ public class V2ChartSegment {
         return Utils.toString(V2ChartSegment.class,
                 "dotMetadata", dotMetadata,
                 "dotPattern", dotPattern,
+                "dotRules", dotRules,
                 "dotSelf", dotSelf,
-                "additionalProperties", additionalProperties,
-                "v2ChartAccountRules", v2ChartAccountRules);
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -209,11 +209,11 @@ public class V2ChartSegment {
 
         private Optional<String> dotPattern = Optional.empty();
 
+        private Optional<? extends V2ChartAccountRules> dotRules = Optional.empty();
+
         private Optional<? extends DotSelf> dotSelf = Optional.empty();
 
         private Map<String, V2ChartSegment> additionalProperties = new HashMap<>();
-
-        private Optional<? extends V2ChartAccountRules> v2ChartAccountRules = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -246,6 +246,19 @@ public class V2ChartSegment {
         }
 
 
+        public Builder dotRules(V2ChartAccountRules dotRules) {
+            Utils.checkNotNull(dotRules, "dotRules");
+            this.dotRules = Optional.ofNullable(dotRules);
+            return this;
+        }
+
+        public Builder dotRules(Optional<? extends V2ChartAccountRules> dotRules) {
+            Utils.checkNotNull(dotRules, "dotRules");
+            this.dotRules = dotRules;
+            return this;
+        }
+
+
         public Builder dotSelf(DotSelf dotSelf) {
             Utils.checkNotNull(dotSelf, "dotSelf");
             this.dotSelf = Optional.ofNullable(dotSelf);
@@ -274,24 +287,11 @@ public class V2ChartSegment {
             return this;
         }
 
-
-        public Builder v2ChartAccountRules(V2ChartAccountRules v2ChartAccountRules) {
-            Utils.checkNotNull(v2ChartAccountRules, "v2ChartAccountRules");
-            this.v2ChartAccountRules = Optional.ofNullable(v2ChartAccountRules);
-            return this;
-        }
-
-        public Builder v2ChartAccountRules(Optional<? extends V2ChartAccountRules> v2ChartAccountRules) {
-            Utils.checkNotNull(v2ChartAccountRules, "v2ChartAccountRules");
-            this.v2ChartAccountRules = v2ChartAccountRules;
-            return this;
-        }
-
         public V2ChartSegment build() {
 
             return new V2ChartSegment(
-                dotMetadata, dotPattern, dotSelf,
-                v2ChartAccountRules)
+                dotMetadata, dotPattern, dotRules,
+                dotSelf)
                 .withAdditionalProperties(additionalProperties);
         }
 

@@ -21,15 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3InitiatePaymentRequest {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
-    @JsonProperty("type")
-    private V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum;
-
-
     @JsonProperty("amount")
     private BigInteger amount;
 
@@ -51,6 +42,11 @@ public class V3InitiatePaymentRequest {
     private Optional<String> destinationAccountID;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("reference")
     private String reference;
 
@@ -63,63 +59,56 @@ public class V3InitiatePaymentRequest {
     @JsonProperty("sourceAccountID")
     private JsonNullable<String> sourceAccountID;
 
+
+    @JsonProperty("type")
+    private V3PaymentInitiationTypeEnum type;
+
     @JsonCreator
     public V3InitiatePaymentRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
-            @JsonProperty("type") V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("description") String description,
             @JsonProperty("destinationAccountID") Optional<String> destinationAccountID,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
-            @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        Utils.checkNotNull(v3PaymentInitiationTypeEnum, "v3PaymentInitiationTypeEnum");
+            @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID,
+            @JsonProperty("type") V3PaymentInitiationTypeEnum type) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
-        this.v3Metadata = v3Metadata;
-        this.v3PaymentInitiationTypeEnum = v3PaymentInitiationTypeEnum;
+        Utils.checkNotNull(type, "type");
         this.amount = amount;
         this.asset = asset;
         this.connectorID = connectorID;
         this.description = description;
         this.destinationAccountID = destinationAccountID;
+        this.metadata = metadata;
         this.reference = reference;
         this.scheduledAt = scheduledAt;
         this.sourceAccountID = sourceAccountID;
+        this.type = type;
     }
     
     public V3InitiatePaymentRequest(
-            V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum,
             BigInteger amount,
             String asset,
             String connectorID,
             String description,
             String reference,
-            OffsetDateTime scheduledAt) {
-        this(JsonNullable.undefined(), v3PaymentInitiationTypeEnum, amount,
-            asset, connectorID, description,
-            Optional.empty(), reference, scheduledAt,
-            JsonNullable.undefined());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
-    }
-
-    @JsonIgnore
-    public V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum() {
-        return v3PaymentInitiationTypeEnum;
+            OffsetDateTime scheduledAt,
+            V3PaymentInitiationTypeEnum type) {
+        this(amount, asset, connectorID,
+            description, Optional.empty(), JsonNullable.undefined(),
+            reference, scheduledAt, JsonNullable.undefined(),
+            type);
     }
 
     @JsonIgnore
@@ -147,6 +136,12 @@ public class V3InitiatePaymentRequest {
         return destinationAccountID;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String reference() {
         return reference;
@@ -162,28 +157,15 @@ public class V3InitiatePaymentRequest {
         return sourceAccountID;
     }
 
+    @JsonIgnore
+    public V3PaymentInitiationTypeEnum type() {
+        return type;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3InitiatePaymentRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3InitiatePaymentRequest withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
-
-    public V3InitiatePaymentRequest withV3PaymentInitiationTypeEnum(V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum) {
-        Utils.checkNotNull(v3PaymentInitiationTypeEnum, "v3PaymentInitiationTypeEnum");
-        this.v3PaymentInitiationTypeEnum = v3PaymentInitiationTypeEnum;
-        return this;
-    }
 
     public V3InitiatePaymentRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -227,6 +209,18 @@ public class V3InitiatePaymentRequest {
         return this;
     }
 
+    public V3InitiatePaymentRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3InitiatePaymentRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V3InitiatePaymentRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -251,6 +245,12 @@ public class V3InitiatePaymentRequest {
         return this;
     }
 
+    public V3InitiatePaymentRequest withType(V3PaymentInitiationTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,48 +261,44 @@ public class V3InitiatePaymentRequest {
         }
         V3InitiatePaymentRequest other = (V3InitiatePaymentRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
-            Utils.enhancedDeepEquals(this.v3PaymentInitiationTypeEnum, other.v3PaymentInitiationTypeEnum) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
-            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID);
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, v3PaymentInitiationTypeEnum, amount,
-            asset, connectorID, description,
-            destinationAccountID, reference, scheduledAt,
-            sourceAccountID);
+            amount, asset, connectorID,
+            description, destinationAccountID, metadata,
+            reference, scheduledAt, sourceAccountID,
+            type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3InitiatePaymentRequest.class,
-                "v3Metadata", v3Metadata,
-                "v3PaymentInitiationTypeEnum", v3PaymentInitiationTypeEnum,
                 "amount", amount,
                 "asset", asset,
                 "connectorID", connectorID,
                 "description", description,
                 "destinationAccountID", destinationAccountID,
+                "metadata", metadata,
                 "reference", reference,
                 "scheduledAt", scheduledAt,
-                "sourceAccountID", sourceAccountID);
+                "sourceAccountID", sourceAccountID,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
-        private V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum;
 
         private BigInteger amount;
 
@@ -314,34 +310,18 @@ public class V3InitiatePaymentRequest {
 
         private Optional<String> destinationAccountID = Optional.empty();
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String reference;
 
         private OffsetDateTime scheduledAt;
 
         private JsonNullable<String> sourceAccountID = JsonNullable.undefined();
 
+        private V3PaymentInitiationTypeEnum type;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
-        }
-
-
-        public Builder v3PaymentInitiationTypeEnum(V3PaymentInitiationTypeEnum v3PaymentInitiationTypeEnum) {
-            Utils.checkNotNull(v3PaymentInitiationTypeEnum, "v3PaymentInitiationTypeEnum");
-            this.v3PaymentInitiationTypeEnum = v3PaymentInitiationTypeEnum;
-            return this;
         }
 
 
@@ -391,6 +371,19 @@ public class V3InitiatePaymentRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -417,13 +410,20 @@ public class V3InitiatePaymentRequest {
             return this;
         }
 
+
+        public Builder type(V3PaymentInitiationTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public V3InitiatePaymentRequest build() {
 
             return new V3InitiatePaymentRequest(
-                v3Metadata, v3PaymentInitiationTypeEnum, amount,
-                asset, connectorID, description,
-                destinationAccountID, reference, scheduledAt,
-                sourceAccountID);
+                amount, asset, connectorID,
+                description, destinationAccountID, metadata,
+                reference, scheduledAt, sourceAccountID,
+                type);
         }
 
     }

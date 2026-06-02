@@ -20,13 +20,13 @@ public class V3GetConversionResponse {
      * Formance records the final state only.
      */
     @JsonProperty("data")
-    private V3Conversion v3Conversion;
+    private V3Conversion data;
 
     @JsonCreator
     public V3GetConversionResponse(
-            @JsonProperty("data") V3Conversion v3Conversion) {
-        Utils.checkNotNull(v3Conversion, "v3Conversion");
-        this.v3Conversion = v3Conversion;
+            @JsonProperty("data") V3Conversion data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     /**
@@ -37,8 +37,8 @@ public class V3GetConversionResponse {
      * Formance records the final state only.
      */
     @JsonIgnore
-    public V3Conversion v3Conversion() {
-        return v3Conversion;
+    public V3Conversion data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -53,9 +53,9 @@ public class V3GetConversionResponse {
      * Unlike orders, conversions do not carry an adjustment history —
      * Formance records the final state only.
      */
-    public V3GetConversionResponse withV3Conversion(V3Conversion v3Conversion) {
-        Utils.checkNotNull(v3Conversion, "v3Conversion");
-        this.v3Conversion = v3Conversion;
+    public V3GetConversionResponse withData(V3Conversion data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -69,25 +69,25 @@ public class V3GetConversionResponse {
         }
         V3GetConversionResponse other = (V3GetConversionResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Conversion, other.v3Conversion);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Conversion);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetConversionResponse.class,
-                "v3Conversion", v3Conversion);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Conversion v3Conversion;
+        private V3Conversion data;
 
         private Builder() {
           // force use of static builder() method
@@ -101,16 +101,16 @@ public class V3GetConversionResponse {
          * Unlike orders, conversions do not carry an adjustment history —
          * Formance records the final state only.
          */
-        public Builder v3Conversion(V3Conversion v3Conversion) {
-            Utils.checkNotNull(v3Conversion, "v3Conversion");
-            this.v3Conversion = v3Conversion;
+        public Builder data(V3Conversion data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetConversionResponse build() {
 
             return new V3GetConversionResponse(
-                v3Conversion);
+                data);
         }
 
     }

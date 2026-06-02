@@ -18,13 +18,13 @@ import java.util.Optional;
 
 public class Hold {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("destination")
-    private Optional<? extends Subject> subject;
-
-
     @JsonProperty("description")
     private String description;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("destination")
+    private Optional<? extends Subject> destination;
 
     /**
      * The unique ID of the hold.
@@ -46,19 +46,19 @@ public class Hold {
 
     @JsonCreator
     public Hold(
-            @JsonProperty("destination") Optional<? extends Subject> subject,
             @JsonProperty("description") String description,
+            @JsonProperty("destination") Optional<? extends Subject> destination,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("walletID") String walletID) {
-        Utils.checkNotNull(subject, "subject");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(walletID, "walletID");
-        this.subject = subject;
         this.description = description;
+        this.destination = destination;
         this.id = id;
         this.metadata = metadata;
         this.walletID = walletID;
@@ -69,19 +69,19 @@ public class Hold {
             String id,
             Map<String, String> metadata,
             String walletID) {
-        this(Optional.empty(), description, id,
+        this(description, Optional.empty(), id,
             metadata, walletID);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Subject> subject() {
-        return (Optional<Subject>) subject;
     }
 
     @JsonIgnore
     public String description() {
         return description;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Subject> destination() {
+        return (Optional<Subject>) destination;
     }
 
     /**
@@ -113,22 +113,22 @@ public class Hold {
     }
 
 
-    public Hold withSubject(Subject subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = Optional.ofNullable(subject);
-        return this;
-    }
-
-
-    public Hold withSubject(Optional<? extends Subject> subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = subject;
-        return this;
-    }
-
     public Hold withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    public Hold withDestination(Subject destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = Optional.ofNullable(destination);
+        return this;
+    }
+
+
+    public Hold withDestination(Optional<? extends Subject> destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = destination;
         return this;
     }
 
@@ -169,8 +169,8 @@ public class Hold {
         }
         Hold other = (Hold) o;
         return 
-            Utils.enhancedDeepEquals(this.subject, other.subject) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.walletID, other.walletID);
@@ -179,15 +179,15 @@ public class Hold {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            subject, description, id,
+            description, destination, id,
             metadata, walletID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Hold.class,
-                "subject", subject,
                 "description", description,
+                "destination", destination,
                 "id", id,
                 "metadata", metadata,
                 "walletID", walletID);
@@ -196,9 +196,9 @@ public class Hold {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Subject> subject = Optional.empty();
-
         private String description;
+
+        private Optional<? extends Subject> destination = Optional.empty();
 
         private String id;
 
@@ -211,22 +211,22 @@ public class Hold {
         }
 
 
-        public Builder subject(Subject subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = Optional.ofNullable(subject);
-            return this;
-        }
-
-        public Builder subject(Optional<? extends Subject> subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = subject;
-            return this;
-        }
-
-
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        public Builder destination(Subject destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = Optional.ofNullable(destination);
+            return this;
+        }
+
+        public Builder destination(Optional<? extends Subject> destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = destination;
             return this;
         }
 
@@ -263,7 +263,7 @@ public class Hold {
         public Hold build() {
 
             return new Hold(
-                subject, description, id,
+                description, destination, id,
                 metadata, walletID);
         }
 

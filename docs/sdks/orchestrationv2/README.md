@@ -120,9 +120,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `request`                                               | [V2TriggerData2](../../models/shared/V2TriggerData2.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [V2TriggerData](../../models/shared/V2TriggerData.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 

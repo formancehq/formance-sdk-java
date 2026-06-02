@@ -19,13 +19,13 @@ public class ReadUserResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends User> user;
+    private Optional<? extends User> data;
 
     @JsonCreator
     public ReadUserResponse(
-            @JsonProperty("data") Optional<? extends User> user) {
-        Utils.checkNotNull(user, "user");
-        this.user = user;
+            @JsonProperty("data") Optional<? extends User> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public ReadUserResponse() {
@@ -34,8 +34,8 @@ public class ReadUserResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<User> user() {
-        return (Optional<User>) user;
+    public Optional<User> data() {
+        return (Optional<User>) data;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class ReadUserResponse {
     }
 
 
-    public ReadUserResponse withUser(User user) {
-        Utils.checkNotNull(user, "user");
-        this.user = Optional.ofNullable(user);
+    public ReadUserResponse withData(User data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public ReadUserResponse withUser(Optional<? extends User> user) {
-        Utils.checkNotNull(user, "user");
-        this.user = user;
+    public ReadUserResponse withData(Optional<? extends User> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class ReadUserResponse {
         }
         ReadUserResponse other = (ReadUserResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.user, other.user);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            user);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ReadUserResponse.class,
-                "user", user);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends User> user = Optional.empty();
+        private Optional<? extends User> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder user(User user) {
-            Utils.checkNotNull(user, "user");
-            this.user = Optional.ofNullable(user);
+        public Builder data(User data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder user(Optional<? extends User> user) {
-            Utils.checkNotNull(user, "user");
-            this.user = user;
+        public Builder data(Optional<? extends User> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ReadUserResponse build() {
 
             return new ReadUserResponse(
-                user);
+                data);
         }
 
     }

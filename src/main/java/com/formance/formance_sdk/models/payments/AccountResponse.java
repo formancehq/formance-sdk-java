@@ -18,18 +18,18 @@ import java.lang.String;
 public class AccountResponse {
 
     @JsonProperty("data")
-    private Account account;
+    private Account data;
 
     @JsonCreator
     public AccountResponse(
-            @JsonProperty("data") Account account) {
-        Utils.checkNotNull(account, "account");
-        this.account = account;
+            @JsonProperty("data") Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Account account() {
-        return account;
+    public Account data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class AccountResponse {
     }
 
 
-    public AccountResponse withAccount(Account account) {
-        Utils.checkNotNull(account, "account");
-        this.account = account;
+    public AccountResponse withData(Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class AccountResponse {
         }
         AccountResponse other = (AccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.account, other.account);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            account);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountResponse.class,
-                "account", account);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Account account;
+        private Account data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder account(Account account) {
-            Utils.checkNotNull(account, "account");
-            this.account = account;
+        public Builder data(Account data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public AccountResponse build() {
 
             return new AccountResponse(
-                account);
+                data);
         }
 
     }

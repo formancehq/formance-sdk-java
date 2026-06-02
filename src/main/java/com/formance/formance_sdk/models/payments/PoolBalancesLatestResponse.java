@@ -19,18 +19,18 @@ import java.util.List;
 public class PoolBalancesLatestResponse {
 
     @JsonProperty("data")
-    private List<PoolBalance> poolBalancesLatest;
+    private List<PoolBalance> data;
 
     @JsonCreator
     public PoolBalancesLatestResponse(
-            @JsonProperty("data") List<PoolBalance> poolBalancesLatest) {
-        Utils.checkNotNull(poolBalancesLatest, "poolBalancesLatest");
-        this.poolBalancesLatest = poolBalancesLatest;
+            @JsonProperty("data") List<PoolBalance> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public List<PoolBalance> poolBalancesLatest() {
-        return poolBalancesLatest;
+    public List<PoolBalance> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -38,9 +38,9 @@ public class PoolBalancesLatestResponse {
     }
 
 
-    public PoolBalancesLatestResponse withPoolBalancesLatest(List<PoolBalance> poolBalancesLatest) {
-        Utils.checkNotNull(poolBalancesLatest, "poolBalancesLatest");
-        this.poolBalancesLatest = poolBalancesLatest;
+    public PoolBalancesLatestResponse withData(List<PoolBalance> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -54,41 +54,41 @@ public class PoolBalancesLatestResponse {
         }
         PoolBalancesLatestResponse other = (PoolBalancesLatestResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.poolBalancesLatest, other.poolBalancesLatest);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            poolBalancesLatest);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PoolBalancesLatestResponse.class,
-                "poolBalancesLatest", poolBalancesLatest);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PoolBalance> poolBalancesLatest;
+        private List<PoolBalance> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder poolBalancesLatest(List<PoolBalance> poolBalancesLatest) {
-            Utils.checkNotNull(poolBalancesLatest, "poolBalancesLatest");
-            this.poolBalancesLatest = poolBalancesLatest;
+        public Builder data(List<PoolBalance> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public PoolBalancesLatestResponse build() {
 
             return new PoolBalancesLatestResponse(
-                poolBalancesLatest);
+                data);
         }
 
     }

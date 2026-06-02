@@ -12,7 +12,7 @@ import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
 import com.formance.formance_sdk.models.orchestration.Error;
-import com.formance.formance_sdk.models.orchestration.TriggerData2;
+import com.formance.formance_sdk.models.orchestration.TriggerData;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -104,13 +104,13 @@ public class CreateTrigger {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends TriggerData2>, CreateTriggerResponse> {
+            implements RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends TriggerData2> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends TriggerData2>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends TriggerData> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends TriggerData>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -126,7 +126,7 @@ public class CreateTrigger {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends TriggerData2> request) {
+        public HttpResponse<InputStream> doRequest(Optional<? extends TriggerData> request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {

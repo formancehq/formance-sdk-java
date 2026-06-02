@@ -20,13 +20,13 @@ public class V3UpdatePaymentMetadataRequest {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private Optional<? extends Map<String, String>> v3Metadata;
+    private Optional<? extends Map<String, String>> metadata;
 
     @JsonCreator
     public V3UpdatePaymentMetadataRequest(
-            @JsonProperty("metadata") Optional<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
     }
     
     public V3UpdatePaymentMetadataRequest() {
@@ -35,8 +35,8 @@ public class V3UpdatePaymentMetadataRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, String>> v3Metadata() {
-        return (Optional<Map<String, String>>) v3Metadata;
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
     }
 
     public static Builder builder() {
@@ -44,16 +44,16 @@ public class V3UpdatePaymentMetadataRequest {
     }
 
 
-    public V3UpdatePaymentMetadataRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = Optional.ofNullable(v3Metadata);
+    public V3UpdatePaymentMetadataRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
         return this;
     }
 
 
-    public V3UpdatePaymentMetadataRequest withV3Metadata(Optional<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
+    public V3UpdatePaymentMetadataRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -67,47 +67,47 @@ public class V3UpdatePaymentMetadataRequest {
         }
         V3UpdatePaymentMetadataRequest other = (V3UpdatePaymentMetadataRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata);
+            metadata);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3UpdatePaymentMetadataRequest.class,
-                "v3Metadata", v3Metadata);
+                "metadata", metadata);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, String>> v3Metadata = Optional.empty();
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = Optional.ofNullable(v3Metadata);
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
-        public Builder v3Metadata(Optional<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
         public V3UpdatePaymentMetadataRequest build() {
 
             return new V3UpdatePaymentMetadataRequest(
-                v3Metadata);
+                metadata);
         }
 
     }

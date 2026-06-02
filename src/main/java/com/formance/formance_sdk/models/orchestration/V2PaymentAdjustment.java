@@ -16,10 +16,6 @@ import java.time.OffsetDateTime;
 
 public class V2PaymentAdjustment {
 
-    @JsonProperty("status")
-    private V2PaymentStatus v2PaymentStatus;
-
-
     @JsonProperty("absolute")
     private boolean absolute;
 
@@ -35,28 +31,27 @@ public class V2PaymentAdjustment {
     @JsonProperty("raw")
     private V2PaymentAdjustmentRaw raw;
 
+
+    @JsonProperty("status")
+    private V2PaymentStatus status;
+
     @JsonCreator
     public V2PaymentAdjustment(
-            @JsonProperty("status") V2PaymentStatus v2PaymentStatus,
             @JsonProperty("absolute") boolean absolute,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("date") OffsetDateTime date,
-            @JsonProperty("raw") V2PaymentAdjustmentRaw raw) {
-        Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
+            @JsonProperty("raw") V2PaymentAdjustmentRaw raw,
+            @JsonProperty("status") V2PaymentStatus status) {
         Utils.checkNotNull(absolute, "absolute");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(raw, "raw");
-        this.v2PaymentStatus = v2PaymentStatus;
+        Utils.checkNotNull(status, "status");
         this.absolute = absolute;
         this.amount = amount;
         this.date = date;
         this.raw = raw;
-    }
-
-    @JsonIgnore
-    public V2PaymentStatus v2PaymentStatus() {
-        return v2PaymentStatus;
+        this.status = status;
     }
 
     @JsonIgnore
@@ -79,16 +74,15 @@ public class V2PaymentAdjustment {
         return raw;
     }
 
+    @JsonIgnore
+    public V2PaymentStatus status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V2PaymentAdjustment withV2PaymentStatus(V2PaymentStatus v2PaymentStatus) {
-        Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
-        this.v2PaymentStatus = v2PaymentStatus;
-        return this;
-    }
 
     public V2PaymentAdjustment withAbsolute(boolean absolute) {
         Utils.checkNotNull(absolute, "absolute");
@@ -119,6 +113,12 @@ public class V2PaymentAdjustment {
         return this;
     }
 
+    public V2PaymentAdjustment withStatus(V2PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -129,34 +129,32 @@ public class V2PaymentAdjustment {
         }
         V2PaymentAdjustment other = (V2PaymentAdjustment) o;
         return 
-            Utils.enhancedDeepEquals(this.v2PaymentStatus, other.v2PaymentStatus) &&
             Utils.enhancedDeepEquals(this.absolute, other.absolute) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.date, other.date) &&
-            Utils.enhancedDeepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2PaymentStatus, absolute, amount,
-            date, raw);
+            absolute, amount, date,
+            raw, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2PaymentAdjustment.class,
-                "v2PaymentStatus", v2PaymentStatus,
                 "absolute", absolute,
                 "amount", amount,
                 "date", date,
-                "raw", raw);
+                "raw", raw,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private V2PaymentStatus v2PaymentStatus;
 
         private Boolean absolute;
 
@@ -166,15 +164,10 @@ public class V2PaymentAdjustment {
 
         private V2PaymentAdjustmentRaw raw;
 
+        private V2PaymentStatus status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2PaymentStatus(V2PaymentStatus v2PaymentStatus) {
-            Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
-            this.v2PaymentStatus = v2PaymentStatus;
-            return this;
         }
 
 
@@ -210,11 +203,18 @@ public class V2PaymentAdjustment {
             return this;
         }
 
+
+        public Builder status(V2PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public V2PaymentAdjustment build() {
 
             return new V2PaymentAdjustment(
-                v2PaymentStatus, absolute, amount,
-                date, raw);
+                absolute, amount, date,
+                raw, status);
         }
 
     }

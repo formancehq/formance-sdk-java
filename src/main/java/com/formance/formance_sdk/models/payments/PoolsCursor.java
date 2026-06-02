@@ -18,18 +18,18 @@ import java.lang.String;
 public class PoolsCursor {
 
     @JsonProperty("cursor")
-    private PoolsCursorCursorBase cursorBase;
+    private PoolsCursorCursor cursor;
 
     @JsonCreator
     public PoolsCursor(
-            @JsonProperty("cursor") PoolsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+            @JsonProperty("cursor") PoolsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
     }
 
     @JsonIgnore
-    public PoolsCursorCursorBase cursorBase() {
-        return cursorBase;
+    public PoolsCursorCursor cursor() {
+        return cursor;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class PoolsCursor {
     }
 
 
-    public PoolsCursor withCursorBase(PoolsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+    public PoolsCursor withCursor(PoolsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class PoolsCursor {
         }
         PoolsCursor other = (PoolsCursor) o;
         return 
-            Utils.enhancedDeepEquals(this.cursorBase, other.cursorBase);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursorBase);
+            cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PoolsCursor.class,
-                "cursorBase", cursorBase);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private PoolsCursorCursorBase cursorBase;
+        private PoolsCursorCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder cursorBase(PoolsCursorCursorBase cursorBase) {
-            Utils.checkNotNull(cursorBase, "cursorBase");
-            this.cursorBase = cursorBase;
+        public Builder cursor(PoolsCursorCursor cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
             return this;
         }
 
         public PoolsCursor build() {
 
             return new PoolsCursor(
-                cursorBase);
+                cursor);
         }
 
     }

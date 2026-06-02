@@ -20,11 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class V3CreateBankAccountRequest {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
@@ -39,6 +34,11 @@ public class V3CreateBankAccountRequest {
     private Optional<String> iban;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
@@ -49,36 +49,30 @@ public class V3CreateBankAccountRequest {
 
     @JsonCreator
     public V3CreateBankAccountRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
             @JsonProperty("accountNumber") Optional<String> accountNumber,
             @JsonProperty("country") Optional<String> country,
             @JsonProperty("iban") Optional<String> iban,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name,
             @JsonProperty("swiftBicCode") Optional<String> swiftBicCode) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(iban, "iban");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
-        this.v3Metadata = v3Metadata;
         this.accountNumber = accountNumber;
         this.country = country;
         this.iban = iban;
+        this.metadata = metadata;
         this.name = name;
         this.swiftBicCode = swiftBicCode;
     }
     
     public V3CreateBankAccountRequest(
             String name) {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), name, Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), name, Optional.empty());
     }
 
     @JsonIgnore
@@ -96,6 +90,12 @@ public class V3CreateBankAccountRequest {
         return iban;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String name() {
         return name;
@@ -110,18 +110,6 @@ public class V3CreateBankAccountRequest {
         return new Builder();
     }
 
-
-    public V3CreateBankAccountRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3CreateBankAccountRequest withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
 
     public V3CreateBankAccountRequest withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -162,6 +150,18 @@ public class V3CreateBankAccountRequest {
         return this;
     }
 
+    public V3CreateBankAccountRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3CreateBankAccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V3CreateBankAccountRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -191,10 +191,10 @@ public class V3CreateBankAccountRequest {
         }
         V3CreateBankAccountRequest other = (V3CreateBankAccountRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
             Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.swiftBicCode, other.swiftBicCode);
     }
@@ -202,17 +202,17 @@ public class V3CreateBankAccountRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, accountNumber, country,
-            iban, name, swiftBicCode);
+            accountNumber, country, iban,
+            metadata, name, swiftBicCode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CreateBankAccountRequest.class,
-                "v3Metadata", v3Metadata,
                 "accountNumber", accountNumber,
                 "country", country,
                 "iban", iban,
+                "metadata", metadata,
                 "name", name,
                 "swiftBicCode", swiftBicCode);
     }
@@ -220,13 +220,13 @@ public class V3CreateBankAccountRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
         private Optional<String> accountNumber = Optional.empty();
 
         private Optional<String> country = Optional.empty();
 
         private Optional<String> iban = Optional.empty();
+
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
         private String name;
 
@@ -234,19 +234,6 @@ public class V3CreateBankAccountRequest {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
         }
 
 
@@ -289,6 +276,19 @@ public class V3CreateBankAccountRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -311,8 +311,8 @@ public class V3CreateBankAccountRequest {
         public V3CreateBankAccountRequest build() {
 
             return new V3CreateBankAccountRequest(
-                v3Metadata, accountNumber, country,
-                iban, name, swiftBicCode);
+                accountNumber, country, iban,
+                metadata, name, swiftBicCode);
         }
 
     }

@@ -22,17 +22,7 @@ public class V3CreatePaymentServiceUserRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends V3AddressRequest> v3AddressRequest;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("contactDetails")
-    private Optional<? extends V3ContactDetailsRequest> v3ContactDetailsRequest;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
+    private Optional<? extends V3AddressRequest> address;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -40,56 +30,66 @@ public class V3CreatePaymentServiceUserRequest {
     private JsonNullable<? extends List<String>> bankAccountIDs;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("contactDetails")
+    private Optional<? extends V3ContactDetailsRequest> contactDetails;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
     @JsonCreator
     public V3CreatePaymentServiceUserRequest(
-            @JsonProperty("address") Optional<? extends V3AddressRequest> v3AddressRequest,
-            @JsonProperty("contactDetails") Optional<? extends V3ContactDetailsRequest> v3ContactDetailsRequest,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
+            @JsonProperty("address") Optional<? extends V3AddressRequest> address,
             @JsonProperty("bankAccountIDs") JsonNullable<? extends List<String>> bankAccountIDs,
+            @JsonProperty("contactDetails") Optional<? extends V3ContactDetailsRequest> contactDetails,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name) {
-        Utils.checkNotNull(v3AddressRequest, "v3AddressRequest");
-        Utils.checkNotNull(v3ContactDetailsRequest, "v3ContactDetailsRequest");
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
+        Utils.checkNotNull(address, "address");
         Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
+        Utils.checkNotNull(contactDetails, "contactDetails");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
-        this.v3AddressRequest = v3AddressRequest;
-        this.v3ContactDetailsRequest = v3ContactDetailsRequest;
-        this.v3Metadata = v3Metadata;
+        this.address = address;
         this.bankAccountIDs = bankAccountIDs;
+        this.contactDetails = contactDetails;
+        this.metadata = metadata;
         this.name = name;
     }
     
     public V3CreatePaymentServiceUserRequest(
             String name) {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), name);
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V3AddressRequest> v3AddressRequest() {
-        return (Optional<V3AddressRequest>) v3AddressRequest;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V3ContactDetailsRequest> v3ContactDetailsRequest() {
-        return (Optional<V3ContactDetailsRequest>) v3ContactDetailsRequest;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
+    public Optional<V3AddressRequest> address() {
+        return (Optional<V3AddressRequest>) address;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<String>> bankAccountIDs() {
         return (JsonNullable<List<String>>) bankAccountIDs;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V3ContactDetailsRequest> contactDetails() {
+        return (Optional<V3ContactDetailsRequest>) contactDetails;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -102,41 +102,16 @@ public class V3CreatePaymentServiceUserRequest {
     }
 
 
-    public V3CreatePaymentServiceUserRequest withV3AddressRequest(V3AddressRequest v3AddressRequest) {
-        Utils.checkNotNull(v3AddressRequest, "v3AddressRequest");
-        this.v3AddressRequest = Optional.ofNullable(v3AddressRequest);
+    public V3CreatePaymentServiceUserRequest withAddress(V3AddressRequest address) {
+        Utils.checkNotNull(address, "address");
+        this.address = Optional.ofNullable(address);
         return this;
     }
 
 
-    public V3CreatePaymentServiceUserRequest withV3AddressRequest(Optional<? extends V3AddressRequest> v3AddressRequest) {
-        Utils.checkNotNull(v3AddressRequest, "v3AddressRequest");
-        this.v3AddressRequest = v3AddressRequest;
-        return this;
-    }
-
-    public V3CreatePaymentServiceUserRequest withV3ContactDetailsRequest(V3ContactDetailsRequest v3ContactDetailsRequest) {
-        Utils.checkNotNull(v3ContactDetailsRequest, "v3ContactDetailsRequest");
-        this.v3ContactDetailsRequest = Optional.ofNullable(v3ContactDetailsRequest);
-        return this;
-    }
-
-
-    public V3CreatePaymentServiceUserRequest withV3ContactDetailsRequest(Optional<? extends V3ContactDetailsRequest> v3ContactDetailsRequest) {
-        Utils.checkNotNull(v3ContactDetailsRequest, "v3ContactDetailsRequest");
-        this.v3ContactDetailsRequest = v3ContactDetailsRequest;
-        return this;
-    }
-
-    public V3CreatePaymentServiceUserRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3CreatePaymentServiceUserRequest withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
+    public V3CreatePaymentServiceUserRequest withAddress(Optional<? extends V3AddressRequest> address) {
+        Utils.checkNotNull(address, "address");
+        this.address = address;
         return this;
     }
 
@@ -149,6 +124,31 @@ public class V3CreatePaymentServiceUserRequest {
     public V3CreatePaymentServiceUserRequest withBankAccountIDs(JsonNullable<? extends List<String>> bankAccountIDs) {
         Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
         this.bankAccountIDs = bankAccountIDs;
+        return this;
+    }
+
+    public V3CreatePaymentServiceUserRequest withContactDetails(V3ContactDetailsRequest contactDetails) {
+        Utils.checkNotNull(contactDetails, "contactDetails");
+        this.contactDetails = Optional.ofNullable(contactDetails);
+        return this;
+    }
+
+
+    public V3CreatePaymentServiceUserRequest withContactDetails(Optional<? extends V3ContactDetailsRequest> contactDetails) {
+        Utils.checkNotNull(contactDetails, "contactDetails");
+        this.contactDetails = contactDetails;
+        return this;
+    }
+
+    public V3CreatePaymentServiceUserRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3CreatePaymentServiceUserRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -168,40 +168,40 @@ public class V3CreatePaymentServiceUserRequest {
         }
         V3CreatePaymentServiceUserRequest other = (V3CreatePaymentServiceUserRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3AddressRequest, other.v3AddressRequest) &&
-            Utils.enhancedDeepEquals(this.v3ContactDetailsRequest, other.v3ContactDetailsRequest) &&
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.bankAccountIDs, other.bankAccountIDs) &&
+            Utils.enhancedDeepEquals(this.contactDetails, other.contactDetails) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3AddressRequest, v3ContactDetailsRequest, v3Metadata,
-            bankAccountIDs, name);
+            address, bankAccountIDs, contactDetails,
+            metadata, name);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CreatePaymentServiceUserRequest.class,
-                "v3AddressRequest", v3AddressRequest,
-                "v3ContactDetailsRequest", v3ContactDetailsRequest,
-                "v3Metadata", v3Metadata,
+                "address", address,
                 "bankAccountIDs", bankAccountIDs,
+                "contactDetails", contactDetails,
+                "metadata", metadata,
                 "name", name);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V3AddressRequest> v3AddressRequest = Optional.empty();
-
-        private Optional<? extends V3ContactDetailsRequest> v3ContactDetailsRequest = Optional.empty();
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
+        private Optional<? extends V3AddressRequest> address = Optional.empty();
 
         private JsonNullable<? extends List<String>> bankAccountIDs = JsonNullable.undefined();
+
+        private Optional<? extends V3ContactDetailsRequest> contactDetails = Optional.empty();
+
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
         private String name;
 
@@ -210,41 +210,15 @@ public class V3CreatePaymentServiceUserRequest {
         }
 
 
-        public Builder v3AddressRequest(V3AddressRequest v3AddressRequest) {
-            Utils.checkNotNull(v3AddressRequest, "v3AddressRequest");
-            this.v3AddressRequest = Optional.ofNullable(v3AddressRequest);
+        public Builder address(V3AddressRequest address) {
+            Utils.checkNotNull(address, "address");
+            this.address = Optional.ofNullable(address);
             return this;
         }
 
-        public Builder v3AddressRequest(Optional<? extends V3AddressRequest> v3AddressRequest) {
-            Utils.checkNotNull(v3AddressRequest, "v3AddressRequest");
-            this.v3AddressRequest = v3AddressRequest;
-            return this;
-        }
-
-
-        public Builder v3ContactDetailsRequest(V3ContactDetailsRequest v3ContactDetailsRequest) {
-            Utils.checkNotNull(v3ContactDetailsRequest, "v3ContactDetailsRequest");
-            this.v3ContactDetailsRequest = Optional.ofNullable(v3ContactDetailsRequest);
-            return this;
-        }
-
-        public Builder v3ContactDetailsRequest(Optional<? extends V3ContactDetailsRequest> v3ContactDetailsRequest) {
-            Utils.checkNotNull(v3ContactDetailsRequest, "v3ContactDetailsRequest");
-            this.v3ContactDetailsRequest = v3ContactDetailsRequest;
-            return this;
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
+        public Builder address(Optional<? extends V3AddressRequest> address) {
+            Utils.checkNotNull(address, "address");
+            this.address = address;
             return this;
         }
 
@@ -262,6 +236,32 @@ public class V3CreatePaymentServiceUserRequest {
         }
 
 
+        public Builder contactDetails(V3ContactDetailsRequest contactDetails) {
+            Utils.checkNotNull(contactDetails, "contactDetails");
+            this.contactDetails = Optional.ofNullable(contactDetails);
+            return this;
+        }
+
+        public Builder contactDetails(Optional<? extends V3ContactDetailsRequest> contactDetails) {
+            Utils.checkNotNull(contactDetails, "contactDetails");
+            this.contactDetails = contactDetails;
+            return this;
+        }
+
+
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -271,8 +271,8 @@ public class V3CreatePaymentServiceUserRequest {
         public V3CreatePaymentServiceUserRequest build() {
 
             return new V3CreatePaymentServiceUserRequest(
-                v3AddressRequest, v3ContactDetailsRequest, v3Metadata,
-                bankAccountIDs, name);
+                address, bankAccountIDs, contactDetails,
+                metadata, name);
         }
 
     }

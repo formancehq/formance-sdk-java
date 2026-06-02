@@ -20,20 +20,6 @@ import java.util.Optional;
 
 public class V2Payment {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("provider")
-    private Optional<? extends V2Connector> v2Connector;
-
-
-    @JsonInclude(Include.ALWAYS)
-    @JsonProperty("metadata")
-    private Optional<? extends V2PaymentMetadata> v2PaymentMetadata;
-
-
-    @JsonProperty("status")
-    private V2PaymentStatus v2PaymentStatus;
-
-
     @JsonProperty("adjustments")
     private List<V2PaymentAdjustment> adjustments;
 
@@ -63,6 +49,16 @@ public class V2Payment {
 
 
     @JsonInclude(Include.ALWAYS)
+    @JsonProperty("metadata")
+    private Optional<? extends V2PaymentMetadata> metadata;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<? extends V2Connector> provider;
+
+
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends V2PaymentRaw> raw;
 
@@ -79,14 +75,15 @@ public class V2Payment {
     private String sourceAccountID;
 
 
+    @JsonProperty("status")
+    private V2PaymentStatus status;
+
+
     @JsonProperty("type")
     private V2PaymentType type;
 
     @JsonCreator
     public V2Payment(
-            @JsonProperty("provider") Optional<? extends V2Connector> v2Connector,
-            @JsonProperty("metadata") Optional<? extends V2PaymentMetadata> v2PaymentMetadata,
-            @JsonProperty("status") V2PaymentStatus v2PaymentStatus,
             @JsonProperty("adjustments") List<V2PaymentAdjustment> adjustments,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
@@ -94,14 +91,14 @@ public class V2Payment {
             @JsonProperty("destinationAccountID") String destinationAccountID,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
+            @JsonProperty("metadata") Optional<? extends V2PaymentMetadata> metadata,
+            @JsonProperty("provider") Optional<? extends V2Connector> provider,
             @JsonProperty("raw") Optional<? extends V2PaymentRaw> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheme") V2PaymentScheme scheme,
             @JsonProperty("sourceAccountID") String sourceAccountID,
+            @JsonProperty("status") V2PaymentStatus status,
             @JsonProperty("type") V2PaymentType type) {
-        Utils.checkNotNull(v2Connector, "v2Connector");
-        Utils.checkNotNull(v2PaymentMetadata, "v2PaymentMetadata");
-        Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
         Utils.checkNotNull(adjustments, "adjustments");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(connectorID, "connectorID");
@@ -109,14 +106,14 @@ public class V2Payment {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(initialAmount, "initialAmount");
+        Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheme, "scheme");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(type, "type");
-        this.v2Connector = v2Connector;
-        this.v2PaymentMetadata = v2PaymentMetadata;
-        this.v2PaymentStatus = v2PaymentStatus;
         this.adjustments = adjustments;
         this.asset = asset;
         this.connectorID = connectorID;
@@ -124,15 +121,17 @@ public class V2Payment {
         this.destinationAccountID = destinationAccountID;
         this.id = id;
         this.initialAmount = initialAmount;
+        this.metadata = metadata;
+        this.provider = provider;
         this.raw = raw;
         this.reference = reference;
         this.scheme = scheme;
         this.sourceAccountID = sourceAccountID;
+        this.status = status;
         this.type = type;
     }
     
     public V2Payment(
-            V2PaymentStatus v2PaymentStatus,
             List<V2PaymentAdjustment> adjustments,
             String asset,
             String connectorID,
@@ -143,29 +142,13 @@ public class V2Payment {
             String reference,
             V2PaymentScheme scheme,
             String sourceAccountID,
+            V2PaymentStatus status,
             V2PaymentType type) {
-        this(Optional.empty(), Optional.empty(), v2PaymentStatus,
-            adjustments, asset, connectorID,
+        this(adjustments, asset, connectorID,
             createdAt, destinationAccountID, id,
-            initialAmount, Optional.empty(), reference,
-            scheme, sourceAccountID, type);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2Connector> v2Connector() {
-        return (Optional<V2Connector>) v2Connector;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2PaymentMetadata> v2PaymentMetadata() {
-        return (Optional<V2PaymentMetadata>) v2PaymentMetadata;
-    }
-
-    @JsonIgnore
-    public V2PaymentStatus v2PaymentStatus() {
-        return v2PaymentStatus;
+            initialAmount, Optional.empty(), Optional.empty(),
+            Optional.empty(), reference, scheme,
+            sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -205,6 +188,18 @@ public class V2Payment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<V2PaymentMetadata> metadata() {
+        return (Optional<V2PaymentMetadata>) metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2Connector> provider() {
+        return (Optional<V2Connector>) provider;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<V2PaymentRaw> raw() {
         return (Optional<V2PaymentRaw>) raw;
     }
@@ -225,6 +220,11 @@ public class V2Payment {
     }
 
     @JsonIgnore
+    public V2PaymentStatus status() {
+        return status;
+    }
+
+    @JsonIgnore
     public V2PaymentType type() {
         return type;
     }
@@ -233,38 +233,6 @@ public class V2Payment {
         return new Builder();
     }
 
-
-    public V2Payment withV2Connector(V2Connector v2Connector) {
-        Utils.checkNotNull(v2Connector, "v2Connector");
-        this.v2Connector = Optional.ofNullable(v2Connector);
-        return this;
-    }
-
-
-    public V2Payment withV2Connector(Optional<? extends V2Connector> v2Connector) {
-        Utils.checkNotNull(v2Connector, "v2Connector");
-        this.v2Connector = v2Connector;
-        return this;
-    }
-
-    public V2Payment withV2PaymentMetadata(V2PaymentMetadata v2PaymentMetadata) {
-        Utils.checkNotNull(v2PaymentMetadata, "v2PaymentMetadata");
-        this.v2PaymentMetadata = Optional.ofNullable(v2PaymentMetadata);
-        return this;
-    }
-
-
-    public V2Payment withV2PaymentMetadata(Optional<? extends V2PaymentMetadata> v2PaymentMetadata) {
-        Utils.checkNotNull(v2PaymentMetadata, "v2PaymentMetadata");
-        this.v2PaymentMetadata = v2PaymentMetadata;
-        return this;
-    }
-
-    public V2Payment withV2PaymentStatus(V2PaymentStatus v2PaymentStatus) {
-        Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
-        this.v2PaymentStatus = v2PaymentStatus;
-        return this;
-    }
 
     public V2Payment withAdjustments(List<V2PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -313,6 +281,32 @@ public class V2Payment {
         return this;
     }
 
+    public V2Payment withMetadata(V2PaymentMetadata metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    public V2Payment withMetadata(Optional<? extends V2PaymentMetadata> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    public V2Payment withProvider(V2Connector provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+
+    public V2Payment withProvider(Optional<? extends V2Connector> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public V2Payment withRaw(V2PaymentRaw raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
@@ -344,6 +338,12 @@ public class V2Payment {
         return this;
     }
 
+    public V2Payment withStatus(V2PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     public V2Payment withType(V2PaymentType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -360,9 +360,6 @@ public class V2Payment {
         }
         V2Payment other = (V2Payment) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Connector, other.v2Connector) &&
-            Utils.enhancedDeepEquals(this.v2PaymentMetadata, other.v2PaymentMetadata) &&
-            Utils.enhancedDeepEquals(this.v2PaymentStatus, other.v2PaymentStatus) &&
             Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
@@ -370,29 +367,29 @@ public class V2Payment {
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
             Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Connector, v2PaymentMetadata, v2PaymentStatus,
             adjustments, asset, connectorID,
             createdAt, destinationAccountID, id,
-            initialAmount, raw, reference,
-            scheme, sourceAccountID, type);
+            initialAmount, metadata, provider,
+            raw, reference, scheme,
+            sourceAccountID, status, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2Payment.class,
-                "v2Connector", v2Connector,
-                "v2PaymentMetadata", v2PaymentMetadata,
-                "v2PaymentStatus", v2PaymentStatus,
                 "adjustments", adjustments,
                 "asset", asset,
                 "connectorID", connectorID,
@@ -400,21 +397,18 @@ public class V2Payment {
                 "destinationAccountID", destinationAccountID,
                 "id", id,
                 "initialAmount", initialAmount,
+                "metadata", metadata,
+                "provider", provider,
                 "raw", raw,
                 "reference", reference,
                 "scheme", scheme,
                 "sourceAccountID", sourceAccountID,
+                "status", status,
                 "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends V2Connector> v2Connector = Optional.empty();
-
-        private Optional<? extends V2PaymentMetadata> v2PaymentMetadata = Optional.empty();
-
-        private V2PaymentStatus v2PaymentStatus;
 
         private List<V2PaymentAdjustment> adjustments;
 
@@ -430,6 +424,10 @@ public class V2Payment {
 
         private BigInteger initialAmount;
 
+        private Optional<? extends V2PaymentMetadata> metadata = Optional.empty();
+
+        private Optional<? extends V2Connector> provider = Optional.empty();
+
         private Optional<? extends V2PaymentRaw> raw = Optional.empty();
 
         private String reference;
@@ -438,43 +436,12 @@ public class V2Payment {
 
         private String sourceAccountID;
 
+        private V2PaymentStatus status;
+
         private V2PaymentType type;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2Connector(V2Connector v2Connector) {
-            Utils.checkNotNull(v2Connector, "v2Connector");
-            this.v2Connector = Optional.ofNullable(v2Connector);
-            return this;
-        }
-
-        public Builder v2Connector(Optional<? extends V2Connector> v2Connector) {
-            Utils.checkNotNull(v2Connector, "v2Connector");
-            this.v2Connector = v2Connector;
-            return this;
-        }
-
-
-        public Builder v2PaymentMetadata(V2PaymentMetadata v2PaymentMetadata) {
-            Utils.checkNotNull(v2PaymentMetadata, "v2PaymentMetadata");
-            this.v2PaymentMetadata = Optional.ofNullable(v2PaymentMetadata);
-            return this;
-        }
-
-        public Builder v2PaymentMetadata(Optional<? extends V2PaymentMetadata> v2PaymentMetadata) {
-            Utils.checkNotNull(v2PaymentMetadata, "v2PaymentMetadata");
-            this.v2PaymentMetadata = v2PaymentMetadata;
-            return this;
-        }
-
-
-        public Builder v2PaymentStatus(V2PaymentStatus v2PaymentStatus) {
-            Utils.checkNotNull(v2PaymentStatus, "v2PaymentStatus");
-            this.v2PaymentStatus = v2PaymentStatus;
-            return this;
         }
 
 
@@ -532,6 +499,32 @@ public class V2Payment {
         }
 
 
+        public Builder metadata(V2PaymentMetadata metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends V2PaymentMetadata> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder provider(V2Connector provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<? extends V2Connector> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
+
         public Builder raw(V2PaymentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
@@ -566,6 +559,13 @@ public class V2Payment {
         }
 
 
+        public Builder status(V2PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
         public Builder type(V2PaymentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
@@ -575,11 +575,11 @@ public class V2Payment {
         public V2Payment build() {
 
             return new V2Payment(
-                v2Connector, v2PaymentMetadata, v2PaymentStatus,
                 adjustments, asset, connectorID,
                 createdAt, destinationAccountID, id,
-                initialAmount, raw, reference,
-                scheme, sourceAccountID, type);
+                initialAmount, metadata, provider,
+                raw, reference, scheme,
+                sourceAccountID, status, type);
         }
 
     }

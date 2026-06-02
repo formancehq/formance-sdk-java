@@ -20,11 +20,6 @@ import java.util.Optional;
 
 public class Pool {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<? extends PoolTypeEnum> poolTypeEnum;
-
-
     @JsonProperty("accounts")
     private List<String> accounts;
 
@@ -41,37 +36,36 @@ public class Pool {
     @JsonProperty("query")
     private Optional<? extends Map<String, Object>> query;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends PoolTypeEnum> type;
+
     @JsonCreator
     public Pool(
-            @JsonProperty("type") Optional<? extends PoolTypeEnum> poolTypeEnum,
             @JsonProperty("accounts") List<String> accounts,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
-            @JsonProperty("query") Optional<? extends Map<String, Object>> query) {
-        Utils.checkNotNull(poolTypeEnum, "poolTypeEnum");
+            @JsonProperty("query") Optional<? extends Map<String, Object>> query,
+            @JsonProperty("type") Optional<? extends PoolTypeEnum> type) {
         Utils.checkNotNull(accounts, "accounts");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(query, "query");
-        this.poolTypeEnum = poolTypeEnum;
+        Utils.checkNotNull(type, "type");
         this.accounts = accounts;
         this.id = id;
         this.name = name;
         this.query = query;
+        this.type = type;
     }
     
     public Pool(
             List<String> accounts,
             String id,
             String name) {
-        this(Optional.empty(), accounts, id,
-            name, Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<PoolTypeEnum> poolTypeEnum() {
-        return (Optional<PoolTypeEnum>) poolTypeEnum;
+        this(accounts, id, name,
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -95,23 +89,16 @@ public class Pool {
         return (Optional<Map<String, Object>>) query;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PoolTypeEnum> type() {
+        return (Optional<PoolTypeEnum>) type;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public Pool withPoolTypeEnum(PoolTypeEnum poolTypeEnum) {
-        Utils.checkNotNull(poolTypeEnum, "poolTypeEnum");
-        this.poolTypeEnum = Optional.ofNullable(poolTypeEnum);
-        return this;
-    }
-
-
-    public Pool withPoolTypeEnum(Optional<? extends PoolTypeEnum> poolTypeEnum) {
-        Utils.checkNotNull(poolTypeEnum, "poolTypeEnum");
-        this.poolTypeEnum = poolTypeEnum;
-        return this;
-    }
 
     public Pool withAccounts(List<String> accounts) {
         Utils.checkNotNull(accounts, "accounts");
@@ -144,6 +131,19 @@ public class Pool {
         return this;
     }
 
+    public Pool withType(PoolTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public Pool withType(Optional<? extends PoolTypeEnum> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,34 +154,32 @@ public class Pool {
         }
         Pool other = (Pool) o;
         return 
-            Utils.enhancedDeepEquals(this.poolTypeEnum, other.poolTypeEnum) &&
             Utils.enhancedDeepEquals(this.accounts, other.accounts) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.query, other.query);
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            poolTypeEnum, accounts, id,
-            name, query);
+            accounts, id, name,
+            query, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Pool.class,
-                "poolTypeEnum", poolTypeEnum,
                 "accounts", accounts,
                 "id", id,
                 "name", name,
-                "query", query);
+                "query", query,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends PoolTypeEnum> poolTypeEnum = Optional.empty();
 
         private List<String> accounts;
 
@@ -191,21 +189,10 @@ public class Pool {
 
         private Optional<? extends Map<String, Object>> query = Optional.empty();
 
+        private Optional<? extends PoolTypeEnum> type = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder poolTypeEnum(PoolTypeEnum poolTypeEnum) {
-            Utils.checkNotNull(poolTypeEnum, "poolTypeEnum");
-            this.poolTypeEnum = Optional.ofNullable(poolTypeEnum);
-            return this;
-        }
-
-        public Builder poolTypeEnum(Optional<? extends PoolTypeEnum> poolTypeEnum) {
-            Utils.checkNotNull(poolTypeEnum, "poolTypeEnum");
-            this.poolTypeEnum = poolTypeEnum;
-            return this;
         }
 
 
@@ -242,11 +229,24 @@ public class Pool {
             return this;
         }
 
+
+        public Builder type(PoolTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<? extends PoolTypeEnum> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public Pool build() {
 
             return new Pool(
-                poolTypeEnum, accounts, id,
-                name, query);
+                accounts, id, name,
+                query, type);
         }
 
     }

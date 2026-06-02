@@ -17,10 +17,6 @@ import java.util.Optional;
 
 public class ConnectorsResponseData {
 
-    @JsonProperty("provider")
-    private Connector connector;
-
-
     @JsonProperty("connectorID")
     private String connectorID;
 
@@ -33,33 +29,32 @@ public class ConnectorsResponseData {
     @JsonProperty("name")
     private String name;
 
+
+    @JsonProperty("provider")
+    private Connector provider;
+
     @JsonCreator
     public ConnectorsResponseData(
-            @JsonProperty("provider") Connector connector,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("enabled") Optional<Boolean> enabled,
-            @JsonProperty("name") String name) {
-        Utils.checkNotNull(connector, "connector");
+            @JsonProperty("name") String name,
+            @JsonProperty("provider") Connector provider) {
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(enabled, "enabled");
         Utils.checkNotNull(name, "name");
-        this.connector = connector;
+        Utils.checkNotNull(provider, "provider");
         this.connectorID = connectorID;
         this.enabled = enabled;
         this.name = name;
+        this.provider = provider;
     }
     
     public ConnectorsResponseData(
-            Connector connector,
             String connectorID,
-            String name) {
-        this(connector, connectorID, Optional.empty(),
-            name);
-    }
-
-    @JsonIgnore
-    public Connector connector() {
-        return connector;
+            String name,
+            Connector provider) {
+        this(connectorID, Optional.empty(), name,
+            provider);
     }
 
     @JsonIgnore
@@ -77,16 +72,15 @@ public class ConnectorsResponseData {
         return name;
     }
 
+    @JsonIgnore
+    public Connector provider() {
+        return provider;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public ConnectorsResponseData withConnector(Connector connector) {
-        Utils.checkNotNull(connector, "connector");
-        this.connector = connector;
-        return this;
-    }
 
     public ConnectorsResponseData withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
@@ -113,6 +107,12 @@ public class ConnectorsResponseData {
         return this;
     }
 
+    public ConnectorsResponseData withProvider(Connector provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -123,32 +123,30 @@ public class ConnectorsResponseData {
         }
         ConnectorsResponseData other = (ConnectorsResponseData) o;
         return 
-            Utils.enhancedDeepEquals(this.connector, other.connector) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connector, connectorID, enabled,
-            name);
+            connectorID, enabled, name,
+            provider);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ConnectorsResponseData.class,
-                "connector", connector,
                 "connectorID", connectorID,
                 "enabled", enabled,
-                "name", name);
+                "name", name,
+                "provider", provider);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Connector connector;
 
         private String connectorID;
 
@@ -156,15 +154,10 @@ public class ConnectorsResponseData {
 
         private String name;
 
+        private Connector provider;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder connector(Connector connector) {
-            Utils.checkNotNull(connector, "connector");
-            this.connector = connector;
-            return this;
         }
 
 
@@ -194,11 +187,18 @@ public class ConnectorsResponseData {
             return this;
         }
 
+
+        public Builder provider(Connector provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
         public ConnectorsResponseData build() {
 
             return new ConnectorsResponseData(
-                connector, connectorID, enabled,
-                name);
+                connectorID, enabled, name,
+                provider);
         }
 
     }

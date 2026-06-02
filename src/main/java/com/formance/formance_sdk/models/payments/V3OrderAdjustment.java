@@ -28,24 +28,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * events over its lifetime.
  */
 public class V3OrderAdjustment {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-    /**
-     * Lifecycle of an order on the exchange.
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     */
-    @JsonProperty("status")
-    private V3OrderStatusEnum v3OrderStatusEnum;
-
     /**
      * Base asset filled at this observation, at the base asset's precision.
      */
@@ -80,6 +62,11 @@ public class V3OrderAdjustment {
     @JsonProperty("id")
     private String id;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      */
@@ -93,53 +80,6 @@ public class V3OrderAdjustment {
     @JsonProperty("reference")
     private String reference;
 
-    @JsonCreator
-    public V3OrderAdjustment(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
-            @JsonProperty("status") V3OrderStatusEnum v3OrderStatusEnum,
-            @JsonProperty("baseQuantityFilled") JsonNullable<? extends BigInteger> baseQuantityFilled,
-            @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("fee") JsonNullable<? extends BigInteger> fee,
-            @JsonProperty("feeAsset") JsonNullable<String> feeAsset,
-            @JsonProperty("id") String id,
-            @JsonProperty("raw") Optional<? extends V3OrderAdjustmentRaw> raw,
-            @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-        Utils.checkNotNull(baseQuantityFilled, "baseQuantityFilled");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(fee, "fee");
-        Utils.checkNotNull(feeAsset, "feeAsset");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(reference, "reference");
-        this.v3Metadata = v3Metadata;
-        this.v3OrderStatusEnum = v3OrderStatusEnum;
-        this.baseQuantityFilled = baseQuantityFilled;
-        this.createdAt = createdAt;
-        this.fee = fee;
-        this.feeAsset = feeAsset;
-        this.id = id;
-        this.raw = raw;
-        this.reference = reference;
-    }
-    
-    public V3OrderAdjustment(
-            V3OrderStatusEnum v3OrderStatusEnum,
-            OffsetDateTime createdAt,
-            String id,
-            String reference) {
-        this(JsonNullable.undefined(), v3OrderStatusEnum, JsonNullable.undefined(),
-            createdAt, JsonNullable.undefined(), JsonNullable.undefined(),
-            id, Optional.empty(), reference);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
-    }
-
     /**
      * Lifecycle of an order on the exchange.
      * `PENDING` — accepted by the exchange, not yet working.
@@ -150,9 +90,48 @@ public class V3OrderAdjustment {
      * `FAILED` — rejected by the exchange, terminal. See `error` for details.
      * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
      */
-    @JsonIgnore
-    public V3OrderStatusEnum v3OrderStatusEnum() {
-        return v3OrderStatusEnum;
+    @JsonProperty("status")
+    private V3OrderStatusEnum status;
+
+    @JsonCreator
+    public V3OrderAdjustment(
+            @JsonProperty("baseQuantityFilled") JsonNullable<? extends BigInteger> baseQuantityFilled,
+            @JsonProperty("createdAt") OffsetDateTime createdAt,
+            @JsonProperty("fee") JsonNullable<? extends BigInteger> fee,
+            @JsonProperty("feeAsset") JsonNullable<String> feeAsset,
+            @JsonProperty("id") String id,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("raw") Optional<? extends V3OrderAdjustmentRaw> raw,
+            @JsonProperty("reference") String reference,
+            @JsonProperty("status") V3OrderStatusEnum status) {
+        Utils.checkNotNull(baseQuantityFilled, "baseQuantityFilled");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(fee, "fee");
+        Utils.checkNotNull(feeAsset, "feeAsset");
+        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(raw, "raw");
+        Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(status, "status");
+        this.baseQuantityFilled = baseQuantityFilled;
+        this.createdAt = createdAt;
+        this.fee = fee;
+        this.feeAsset = feeAsset;
+        this.id = id;
+        this.metadata = metadata;
+        this.raw = raw;
+        this.reference = reference;
+        this.status = status;
+    }
+    
+    public V3OrderAdjustment(
+            OffsetDateTime createdAt,
+            String id,
+            String reference,
+            V3OrderStatusEnum status) {
+        this(JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), id, JsonNullable.undefined(),
+            Optional.empty(), reference, status);
     }
 
     /**
@@ -198,6 +177,12 @@ public class V3OrderAdjustment {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      */
@@ -215,23 +200,6 @@ public class V3OrderAdjustment {
         return reference;
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    public V3OrderAdjustment withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3OrderAdjustment withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
-
     /**
      * Lifecycle of an order on the exchange.
      * `PENDING` — accepted by the exchange, not yet working.
@@ -242,11 +210,15 @@ public class V3OrderAdjustment {
      * `FAILED` — rejected by the exchange, terminal. See `error` for details.
      * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
      */
-    public V3OrderAdjustment withV3OrderStatusEnum(V3OrderStatusEnum v3OrderStatusEnum) {
-        Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-        this.v3OrderStatusEnum = v3OrderStatusEnum;
-        return this;
+    @JsonIgnore
+    public V3OrderStatusEnum status() {
+        return status;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
 
     /**
      * Base asset filled at this observation, at the base asset's precision.
@@ -337,6 +309,18 @@ public class V3OrderAdjustment {
         return this;
     }
 
+    public V3OrderAdjustment withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3OrderAdjustment withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      */
@@ -365,6 +349,22 @@ public class V3OrderAdjustment {
         return this;
     }
 
+    /**
+     * Lifecycle of an order on the exchange.
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     */
+    public V3OrderAdjustment withStatus(V3OrderStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -375,45 +375,41 @@ public class V3OrderAdjustment {
         }
         V3OrderAdjustment other = (V3OrderAdjustment) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
-            Utils.enhancedDeepEquals(this.v3OrderStatusEnum, other.v3OrderStatusEnum) &&
             Utils.enhancedDeepEquals(this.baseQuantityFilled, other.baseQuantityFilled) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.fee, other.fee) &&
             Utils.enhancedDeepEquals(this.feeAsset, other.feeAsset) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, v3OrderStatusEnum, baseQuantityFilled,
-            createdAt, fee, feeAsset,
-            id, raw, reference);
+            baseQuantityFilled, createdAt, fee,
+            feeAsset, id, metadata,
+            raw, reference, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3OrderAdjustment.class,
-                "v3Metadata", v3Metadata,
-                "v3OrderStatusEnum", v3OrderStatusEnum,
                 "baseQuantityFilled", baseQuantityFilled,
                 "createdAt", createdAt,
                 "fee", fee,
                 "feeAsset", feeAsset,
                 "id", id,
+                "metadata", metadata,
                 "raw", raw,
-                "reference", reference);
+                "reference", reference,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
-        private V3OrderStatusEnum v3OrderStatusEnum;
 
         private JsonNullable<? extends BigInteger> baseQuantityFilled = JsonNullable.undefined();
 
@@ -425,42 +421,16 @@ public class V3OrderAdjustment {
 
         private String id;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private Optional<? extends V3OrderAdjustmentRaw> raw = Optional.empty();
 
         private String reference;
 
+        private V3OrderStatusEnum status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
-        }
-
-
-        /**
-         * Lifecycle of an order on the exchange.
-         * `PENDING` — accepted by the exchange, not yet working.
-         * `OPEN` — live on the book, no fills yet.
-         * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-         * `FILLED` — fully filled, terminal.
-         * `CANCELLED` — cancelled by the user or system, terminal.
-         * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-         * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-         */
-        public Builder v3OrderStatusEnum(V3OrderStatusEnum v3OrderStatusEnum) {
-            Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-            this.v3OrderStatusEnum = v3OrderStatusEnum;
-            return this;
         }
 
 
@@ -558,6 +528,19 @@ public class V3OrderAdjustment {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         /**
          * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
          */
@@ -586,12 +569,29 @@ public class V3OrderAdjustment {
             return this;
         }
 
+
+        /**
+         * Lifecycle of an order on the exchange.
+         * `PENDING` — accepted by the exchange, not yet working.
+         * `OPEN` — live on the book, no fills yet.
+         * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+         * `FILLED` — fully filled, terminal.
+         * `CANCELLED` — cancelled by the user or system, terminal.
+         * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+         * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+         */
+        public Builder status(V3OrderStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public V3OrderAdjustment build() {
 
             return new V3OrderAdjustment(
-                v3Metadata, v3OrderStatusEnum, baseQuantityFilled,
-                createdAt, fee, feeAsset,
-                id, raw, reference);
+                baseQuantityFilled, createdAt, fee,
+                feeAsset, id, metadata,
+                raw, reference, status);
         }
 
     }

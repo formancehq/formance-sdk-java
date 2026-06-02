@@ -18,18 +18,18 @@ import java.lang.String;
 public class ConnectorConfigResponse {
 
     @JsonProperty("data")
-    private ConnectorConfig connectorConfig;
+    private ConnectorConfig data;
 
     @JsonCreator
     public ConnectorConfigResponse(
-            @JsonProperty("data") ConnectorConfig connectorConfig) {
-        Utils.checkNotNull(connectorConfig, "connectorConfig");
-        this.connectorConfig = connectorConfig;
+            @JsonProperty("data") ConnectorConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public ConnectorConfig connectorConfig() {
-        return connectorConfig;
+    public ConnectorConfig data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class ConnectorConfigResponse {
     }
 
 
-    public ConnectorConfigResponse withConnectorConfig(ConnectorConfig connectorConfig) {
-        Utils.checkNotNull(connectorConfig, "connectorConfig");
-        this.connectorConfig = connectorConfig;
+    public ConnectorConfigResponse withData(ConnectorConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class ConnectorConfigResponse {
         }
         ConnectorConfigResponse other = (ConnectorConfigResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.connectorConfig, other.connectorConfig);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connectorConfig);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ConnectorConfigResponse.class,
-                "connectorConfig", connectorConfig);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private ConnectorConfig connectorConfig;
+        private ConnectorConfig data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder connectorConfig(ConnectorConfig connectorConfig) {
-            Utils.checkNotNull(connectorConfig, "connectorConfig");
-            this.connectorConfig = connectorConfig;
+        public Builder data(ConnectorConfig data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ConnectorConfigResponse build() {
 
             return new ConnectorConfigResponse(
-                connectorConfig);
+                data);
         }
 
     }

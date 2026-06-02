@@ -7,4 +7,4 @@ OK
 
 | Field                                                           | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `transferInitiation`                                            | [TransferInitiation](../../models/shared/TransferInitiation.md) | :heavy_check_mark:                                              | N/A                                                             |
+| `data`                                                          | [TransferInitiation](../../models/shared/TransferInitiation.md) | :heavy_check_mark:                                              | N/A                                                             |

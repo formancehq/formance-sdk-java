@@ -6,7 +6,7 @@ package com.formance.formance_sdk;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
-import com.formance.formance_sdk.models.auth.ClientOptions2;
+import com.formance.formance_sdk.models.auth.ClientOptions;
 import com.formance.formance_sdk.models.operations.CreateClientRequestBuilder;
 import com.formance.formance_sdk.models.operations.CreateClientResponse;
 import com.formance.formance_sdk.models.operations.CreateSecretRequest;
@@ -90,8 +90,8 @@ public class AuthV1 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClientResponse createClient(Optional<? extends ClientOptions2> request) {
-        RequestOperation<Optional<? extends ClientOptions2>, CreateClientResponse> operation
+    public CreateClientResponse createClient(Optional<? extends ClientOptions> request) {
+        RequestOperation<Optional<? extends ClientOptions>, CreateClientResponse> operation
               = new CreateClient.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

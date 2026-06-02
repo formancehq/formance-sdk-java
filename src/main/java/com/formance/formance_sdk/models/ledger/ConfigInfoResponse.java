@@ -14,18 +14,18 @@ import java.lang.String;
 public class ConfigInfoResponse {
 
     @JsonProperty("data")
-    private ConfigInfo configInfo;
+    private ConfigInfo data;
 
     @JsonCreator
     public ConfigInfoResponse(
-            @JsonProperty("data") ConfigInfo configInfo) {
-        Utils.checkNotNull(configInfo, "configInfo");
-        this.configInfo = configInfo;
+            @JsonProperty("data") ConfigInfo data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public ConfigInfo configInfo() {
-        return configInfo;
+    public ConfigInfo data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class ConfigInfoResponse {
     }
 
 
-    public ConfigInfoResponse withConfigInfo(ConfigInfo configInfo) {
-        Utils.checkNotNull(configInfo, "configInfo");
-        this.configInfo = configInfo;
+    public ConfigInfoResponse withData(ConfigInfo data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class ConfigInfoResponse {
         }
         ConfigInfoResponse other = (ConfigInfoResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.configInfo, other.configInfo);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            configInfo);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ConfigInfoResponse.class,
-                "configInfo", configInfo);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private ConfigInfo configInfo;
+        private ConfigInfo data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder configInfo(ConfigInfo configInfo) {
-            Utils.checkNotNull(configInfo, "configInfo");
-            this.configInfo = configInfo;
+        public Builder data(ConfigInfo data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ConfigInfoResponse build() {
 
             return new ConfigInfoResponse(
-                configInfo);
+                data);
         }
 
     }

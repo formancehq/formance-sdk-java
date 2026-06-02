@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreditWalletRequest {
 
     @JsonProperty("amount")
-    private Monetary monetary;
+    private Monetary amount;
 
     /**
      * The balance to credit
@@ -55,19 +55,19 @@ public class CreditWalletRequest {
 
     @JsonCreator
     public CreditWalletRequest(
-            @JsonProperty("amount") Monetary monetary,
+            @JsonProperty("amount") Monetary amount,
             @JsonProperty("balance") Optional<String> balance,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("sources") JsonNullable<? extends List<Subject>> sources,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(monetary, "monetary");
+        Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sources, "sources");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.monetary = monetary;
+        this.amount = amount;
         this.balance = balance;
         this.metadata = metadata;
         this.reference = reference;
@@ -76,14 +76,14 @@ public class CreditWalletRequest {
     }
     
     public CreditWalletRequest(
-            Monetary monetary) {
-        this(monetary, Optional.empty(), JsonNullable.undefined(),
+            Monetary amount) {
+        this(amount, Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     @JsonIgnore
-    public Monetary monetary() {
-        return monetary;
+    public Monetary amount() {
+        return amount;
     }
 
     /**
@@ -124,9 +124,9 @@ public class CreditWalletRequest {
     }
 
 
-    public CreditWalletRequest withMonetary(Monetary monetary) {
-        Utils.checkNotNull(monetary, "monetary");
-        this.monetary = monetary;
+    public CreditWalletRequest withAmount(Monetary amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
         return this;
     }
 
@@ -215,7 +215,7 @@ public class CreditWalletRequest {
         }
         CreditWalletRequest other = (CreditWalletRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.monetary, other.monetary) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
@@ -226,14 +226,14 @@ public class CreditWalletRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            monetary, balance, metadata,
+            amount, balance, metadata,
             reference, sources, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreditWalletRequest.class,
-                "monetary", monetary,
+                "amount", amount,
                 "balance", balance,
                 "metadata", metadata,
                 "reference", reference,
@@ -244,7 +244,7 @@ public class CreditWalletRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Monetary monetary;
+        private Monetary amount;
 
         private Optional<String> balance = Optional.empty();
 
@@ -261,9 +261,9 @@ public class CreditWalletRequest {
         }
 
 
-        public Builder monetary(Monetary monetary) {
-            Utils.checkNotNull(monetary, "monetary");
-            this.monetary = monetary;
+        public Builder amount(Monetary amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
             return this;
         }
 
@@ -347,7 +347,7 @@ public class CreditWalletRequest {
         public CreditWalletRequest build() {
 
             return new CreditWalletRequest(
-                monetary, balance, metadata,
+                amount, balance, metadata,
                 reference, sources, timestamp);
         }
 

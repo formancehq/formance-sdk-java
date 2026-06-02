@@ -119,9 +119,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                           | Type                                                | Required                                            | Description                                         |
-| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `request`                                           | [TriggerData2](../../models/shared/TriggerData2.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+| Parameter                                         | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `request`                                         | [TriggerData](../../models/shared/TriggerData.md) | :heavy_check_mark:                                | The request object to use for the request.        |
 
 ### Response
 

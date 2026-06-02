@@ -21,11 +21,6 @@ import java.util.Optional;
 
 public class V3Pool {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<? extends V3PoolTypeEnum> v3PoolTypeEnum;
-
-
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -46,26 +41,31 @@ public class V3Pool {
     @JsonProperty("query")
     private Optional<? extends Map<String, Object>> query;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends V3PoolTypeEnum> type;
+
     @JsonCreator
     public V3Pool(
-            @JsonProperty("type") Optional<? extends V3PoolTypeEnum> v3PoolTypeEnum,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("poolAccounts") List<String> poolAccounts,
-            @JsonProperty("query") Optional<? extends Map<String, Object>> query) {
-        Utils.checkNotNull(v3PoolTypeEnum, "v3PoolTypeEnum");
+            @JsonProperty("query") Optional<? extends Map<String, Object>> query,
+            @JsonProperty("type") Optional<? extends V3PoolTypeEnum> type) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(poolAccounts, "poolAccounts");
         Utils.checkNotNull(query, "query");
-        this.v3PoolTypeEnum = v3PoolTypeEnum;
+        Utils.checkNotNull(type, "type");
         this.createdAt = createdAt;
         this.id = id;
         this.name = name;
         this.poolAccounts = poolAccounts;
         this.query = query;
+        this.type = type;
     }
     
     public V3Pool(
@@ -73,14 +73,8 @@ public class V3Pool {
             String id,
             String name,
             List<String> poolAccounts) {
-        this(Optional.empty(), createdAt, id,
-            name, poolAccounts, Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V3PoolTypeEnum> v3PoolTypeEnum() {
-        return (Optional<V3PoolTypeEnum>) v3PoolTypeEnum;
+        this(createdAt, id, name,
+            poolAccounts, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -109,23 +103,16 @@ public class V3Pool {
         return (Optional<Map<String, Object>>) query;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V3PoolTypeEnum> type() {
+        return (Optional<V3PoolTypeEnum>) type;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3Pool withV3PoolTypeEnum(V3PoolTypeEnum v3PoolTypeEnum) {
-        Utils.checkNotNull(v3PoolTypeEnum, "v3PoolTypeEnum");
-        this.v3PoolTypeEnum = Optional.ofNullable(v3PoolTypeEnum);
-        return this;
-    }
-
-
-    public V3Pool withV3PoolTypeEnum(Optional<? extends V3PoolTypeEnum> v3PoolTypeEnum) {
-        Utils.checkNotNull(v3PoolTypeEnum, "v3PoolTypeEnum");
-        this.v3PoolTypeEnum = v3PoolTypeEnum;
-        return this;
-    }
 
     public V3Pool withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -164,6 +151,19 @@ public class V3Pool {
         return this;
     }
 
+    public V3Pool withType(V3PoolTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public V3Pool withType(Optional<? extends V3PoolTypeEnum> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -174,36 +174,34 @@ public class V3Pool {
         }
         V3Pool other = (V3Pool) o;
         return 
-            Utils.enhancedDeepEquals(this.v3PoolTypeEnum, other.v3PoolTypeEnum) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.poolAccounts, other.poolAccounts) &&
-            Utils.enhancedDeepEquals(this.query, other.query);
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3PoolTypeEnum, createdAt, id,
-            name, poolAccounts, query);
+            createdAt, id, name,
+            poolAccounts, query, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Pool.class,
-                "v3PoolTypeEnum", v3PoolTypeEnum,
                 "createdAt", createdAt,
                 "id", id,
                 "name", name,
                 "poolAccounts", poolAccounts,
-                "query", query);
+                "query", query,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends V3PoolTypeEnum> v3PoolTypeEnum = Optional.empty();
 
         private OffsetDateTime createdAt;
 
@@ -215,21 +213,10 @@ public class V3Pool {
 
         private Optional<? extends Map<String, Object>> query = Optional.empty();
 
+        private Optional<? extends V3PoolTypeEnum> type = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3PoolTypeEnum(V3PoolTypeEnum v3PoolTypeEnum) {
-            Utils.checkNotNull(v3PoolTypeEnum, "v3PoolTypeEnum");
-            this.v3PoolTypeEnum = Optional.ofNullable(v3PoolTypeEnum);
-            return this;
-        }
-
-        public Builder v3PoolTypeEnum(Optional<? extends V3PoolTypeEnum> v3PoolTypeEnum) {
-            Utils.checkNotNull(v3PoolTypeEnum, "v3PoolTypeEnum");
-            this.v3PoolTypeEnum = v3PoolTypeEnum;
-            return this;
         }
 
 
@@ -273,11 +260,24 @@ public class V3Pool {
             return this;
         }
 
+
+        public Builder type(V3PoolTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<? extends V3PoolTypeEnum> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public V3Pool build() {
 
             return new V3Pool(
-                v3PoolTypeEnum, createdAt, id,
-                name, poolAccounts, query);
+                createdAt, id, name,
+                poolAccounts, query, type);
         }
 
     }
