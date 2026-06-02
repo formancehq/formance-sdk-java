@@ -5,4 +5,4 @@
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `v2UpdateAccount`                                                    | [Optional\<V2UpdateAccount>](../../models/shared/V2UpdateAccount.md) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `account`                                                            | [Optional\<V2UpdateAccount>](../../models/shared/V2UpdateAccount.md) | :heavy_minus_sign:                                                   | N/A                                                                  |

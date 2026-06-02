@@ -54,9 +54,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `request`                                               | [ClientOptions2](../../models/shared/ClientOptions2.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [ClientOptions](../../models/shared/ClientOptions.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 

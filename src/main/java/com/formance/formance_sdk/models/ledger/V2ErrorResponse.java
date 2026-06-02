@@ -16,13 +16,13 @@ import java.util.Optional;
 
 public class V2ErrorResponse {
 
-    @JsonProperty("errorCode")
-    private V2ErrorsEnum v2ErrorsEnum;
-
-
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
     private Optional<String> details;
+
+
+    @JsonProperty("errorCode")
+    private V2ErrorsEnum errorCode;
 
 
     @JsonProperty("errorMessage")
@@ -30,31 +30,31 @@ public class V2ErrorResponse {
 
     @JsonCreator
     public V2ErrorResponse(
-            @JsonProperty("errorCode") V2ErrorsEnum v2ErrorsEnum,
             @JsonProperty("details") Optional<String> details,
+            @JsonProperty("errorCode") V2ErrorsEnum errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
-        Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
         Utils.checkNotNull(details, "details");
+        Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
-        this.v2ErrorsEnum = v2ErrorsEnum;
         this.details = details;
+        this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
     public V2ErrorResponse(
-            V2ErrorsEnum v2ErrorsEnum,
+            V2ErrorsEnum errorCode,
             String errorMessage) {
-        this(v2ErrorsEnum, Optional.empty(), errorMessage);
-    }
-
-    @JsonIgnore
-    public V2ErrorsEnum v2ErrorsEnum() {
-        return v2ErrorsEnum;
+        this(Optional.empty(), errorCode, errorMessage);
     }
 
     @JsonIgnore
     public Optional<String> details() {
         return details;
+    }
+
+    @JsonIgnore
+    public V2ErrorsEnum errorCode() {
+        return errorCode;
     }
 
     @JsonIgnore
@@ -67,12 +67,6 @@ public class V2ErrorResponse {
     }
 
 
-    public V2ErrorResponse withV2ErrorsEnum(V2ErrorsEnum v2ErrorsEnum) {
-        Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-        this.v2ErrorsEnum = v2ErrorsEnum;
-        return this;
-    }
-
     public V2ErrorResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
@@ -83,6 +77,12 @@ public class V2ErrorResponse {
     public V2ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
+        return this;
+    }
+
+    public V2ErrorResponse withErrorCode(V2ErrorsEnum errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = errorCode;
         return this;
     }
 
@@ -102,43 +102,36 @@ public class V2ErrorResponse {
         }
         V2ErrorResponse other = (V2ErrorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2ErrorsEnum, other.v2ErrorsEnum) &&
             Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
             Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2ErrorsEnum, details, errorMessage);
+            details, errorCode, errorMessage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ErrorResponse.class,
-                "v2ErrorsEnum", v2ErrorsEnum,
                 "details", details,
+                "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2ErrorsEnum v2ErrorsEnum;
-
         private Optional<String> details = Optional.empty();
+
+        private V2ErrorsEnum errorCode;
 
         private String errorMessage;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2ErrorsEnum(V2ErrorsEnum v2ErrorsEnum) {
-            Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-            this.v2ErrorsEnum = v2ErrorsEnum;
-            return this;
         }
 
 
@@ -155,6 +148,13 @@ public class V2ErrorResponse {
         }
 
 
+        public Builder errorCode(V2ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
+            return this;
+        }
+
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -164,7 +164,7 @@ public class V2ErrorResponse {
         public V2ErrorResponse build() {
 
             return new V2ErrorResponse(
-                v2ErrorsEnum, details, errorMessage);
+                details, errorCode, errorMessage);
         }
 
     }

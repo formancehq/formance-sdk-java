@@ -207,10 +207,10 @@ public class Application {
             .build();
 
         AccountRequest req = AccountRequest.builder()
-                .accountType(AccountType.UNKNOWN)
                 .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2025-07-27T08:57:17.388Z"))
                 .reference("<value>")
+                .type(AccountType.UNKNOWN)
                 .build();
 
         CreateAccountResponse res = sdk.payments().v1().createAccount()
@@ -332,14 +332,14 @@ public class Application {
             .build();
 
         PaymentRequest req = PaymentRequest.builder()
-                .paymentScheme(PaymentScheme.RTP)
-                .paymentStatus(PaymentStatus.REFUNDED_FAILURE)
-                .paymentType(PaymentType.PAYOUT)
                 .amount(new BigInteger("100"))
                 .asset("USD")
                 .connectorID("<id>")
                 .createdAt(OffsetDateTime.parse("2025-08-26T06:29:11.777Z"))
                 .reference("<value>")
+                .scheme(PaymentScheme.RTP)
+                .status(PaymentStatus.REFUNDED_FAILURE)
+                .type(PaymentType.PAYOUT)
                 .build();
 
         CreatePaymentResponse res = sdk.payments().v1().createPayment()
@@ -2544,7 +2544,7 @@ public class Application {
 
         com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest req = com.formance.formance_sdk.models.operations.UpdateBankAccountMetadataRequest.builder()
                 .updateBankAccountMetadataRequest(UpdateBankAccountMetadataRequest.builder()
-                    .bankAccountMetadata(Map.ofEntries(
+                    .metadata(Map.ofEntries(
                         Map.entry("key", "<value>"),
                         Map.entry("key1", "<value>"),
                         Map.entry("key2", "<value>")))

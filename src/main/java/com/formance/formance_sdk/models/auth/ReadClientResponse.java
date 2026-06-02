@@ -19,13 +19,13 @@ public class ReadClientResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends ClientOptions1> clientOptions;
+    private Optional<? extends Client> data;
 
     @JsonCreator
     public ReadClientResponse(
-            @JsonProperty("data") Optional<? extends ClientOptions1> clientOptions) {
-        Utils.checkNotNull(clientOptions, "clientOptions");
-        this.clientOptions = clientOptions;
+            @JsonProperty("data") Optional<? extends Client> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
     
     public ReadClientResponse() {
@@ -34,8 +34,8 @@ public class ReadClientResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ClientOptions1> clientOptions() {
-        return (Optional<ClientOptions1>) clientOptions;
+    public Optional<Client> data() {
+        return (Optional<Client>) data;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class ReadClientResponse {
     }
 
 
-    public ReadClientResponse withClientOptions(ClientOptions1 clientOptions) {
-        Utils.checkNotNull(clientOptions, "clientOptions");
-        this.clientOptions = Optional.ofNullable(clientOptions);
+    public ReadClientResponse withData(Client data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public ReadClientResponse withClientOptions(Optional<? extends ClientOptions1> clientOptions) {
-        Utils.checkNotNull(clientOptions, "clientOptions");
-        this.clientOptions = clientOptions;
+    public ReadClientResponse withData(Optional<? extends Client> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class ReadClientResponse {
         }
         ReadClientResponse other = (ReadClientResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.clientOptions, other.clientOptions);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientOptions);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ReadClientResponse.class,
-                "clientOptions", clientOptions);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ClientOptions1> clientOptions = Optional.empty();
+        private Optional<? extends Client> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder clientOptions(ClientOptions1 clientOptions) {
-            Utils.checkNotNull(clientOptions, "clientOptions");
-            this.clientOptions = Optional.ofNullable(clientOptions);
+        public Builder data(Client data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder clientOptions(Optional<? extends ClientOptions1> clientOptions) {
-            Utils.checkNotNull(clientOptions, "clientOptions");
-            this.clientOptions = clientOptions;
+        public Builder data(Optional<? extends Client> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ReadClientResponse build() {
 
             return new ReadClientResponse(
-                clientOptions);
+                data);
         }
 
     }

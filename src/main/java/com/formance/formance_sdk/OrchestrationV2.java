@@ -57,7 +57,7 @@ import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
 import com.formance.formance_sdk.models.operations.V2SendEventRequest;
 import com.formance.formance_sdk.models.operations.V2SendEventRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2SendEventResponse;
-import com.formance.formance_sdk.models.orchestration.V2TriggerData2;
+import com.formance.formance_sdk.models.orchestration.V2TriggerData;
 import com.formance.formance_sdk.models.orchestration.V2WorkflowConfig;
 import com.formance.formance_sdk.operations.TestTrigger;
 import com.formance.formance_sdk.operations.V2CancelEvent;
@@ -157,8 +157,8 @@ public class OrchestrationV2 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateTriggerResponse createTrigger(Optional<? extends V2TriggerData2> request) {
-        RequestOperation<Optional<? extends V2TriggerData2>, V2CreateTriggerResponse> operation
+    public V2CreateTriggerResponse createTrigger(Optional<? extends V2TriggerData> request) {
+        RequestOperation<Optional<? extends V2TriggerData>, V2CreateTriggerResponse> operation
               = new V2CreateTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

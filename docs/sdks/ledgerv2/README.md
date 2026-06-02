@@ -311,8 +311,7 @@ Bulk request
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
-import com.formance.formance_sdk.models.ledger.V2BaseBulkElement;
+import com.formance.formance_sdk.models.ledger.*;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -332,9 +331,9 @@ public class Application {
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .requestBody(List.of(
-                    V2BaseBulkElement.builder()
+                    V2BulkElement.of(V2BulkElementCreateTransaction.builder()
                         .action("REVERT_TRANSACTION")
-                        .build()))
+                        .build())))
                 .ledger("ledger001")
                 .atomic(true)
                 .continueOnFailure(true)
@@ -382,7 +381,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.models.operations.V2CreateExporterResponse;
 import java.lang.Exception;
 import java.util.Map;
@@ -394,7 +393,7 @@ public class Application {
         SDK sdk = SDK.builder()
             .build();
 
-        V2ExporterConfiguration2 req = V2ExporterConfiguration2.builder()
+        V2ExporterConfiguration req = V2ExporterConfiguration.builder()
                 .config(Map.ofEntries(
                     Map.entry("key", "<value>")))
                 .driver("<value>")
@@ -413,9 +412,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [V2ExporterConfiguration2](../../models/shared/V2ExporterConfiguration2.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [V2ExporterConfiguration](../../models/shared/V2ExporterConfiguration.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -459,7 +458,7 @@ public class Application {
 
         com.formance.formance_sdk.models.operations.V2CreateLedgerRequest req = com.formance.formance_sdk.models.operations.V2CreateLedgerRequest.builder()
                 .v2CreateLedgerRequest(V2CreateLedgerRequest.builder()
-                    .v2Metadata(Map.ofEntries(
+                    .metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
                     .build())
                 .ledger("ledger001")
@@ -579,7 +578,7 @@ public class Application {
 
         V2CreateTransactionRequest req = V2CreateTransactionRequest.builder()
                 .v2PostTransaction(V2PostTransaction.builder()
-                    .v2Metadata(Map.ofEntries(
+                    .metadata(Map.ofEntries(
                         Map.entry("admin", "true")))
                     .accountMetadata(Map.ofEntries(
                         Map.entry("key", Map.ofEntries(
@@ -1674,17 +1673,17 @@ public class Application {
             .build();
 
         V2InsertSchemaRequest req = V2InsertSchemaRequest.builder()
-                .v2SchemaData(V2SchemaData2.builder()
-                    .v2ChartOfAccounts(Map.ofEntries(
+                .v2SchemaData(V2SchemaData.builder()
+                    .chart(Map.ofEntries(
                         Map.entry("users", V2ChartSegment.builder()
                             .additionalProperties(Map.ofEntries(
                                 Map.entry("$userID", V2ChartSegment.builder()
                                     .dotPattern("^[0-9]{16}$")
                                     .build())))
                             .build())))
-                    .v2QueryTemplates(Map.ofEntries(
+                    .queries(Map.ofEntries(
                         Map.entry("key", V2QueryTemplate.builder()
-                            .v2QueryParams(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                            .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
                                 .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                                 .pageSize(100L)
                                 .sort("id:desc")
@@ -2413,7 +2412,7 @@ public class Application {
 
         V2RunQueryRequest req = V2RunQueryRequest.builder()
                 .requestBody(V2RunQueryRequestBody.builder()
-                    .v2QueryParams(V2QueryParams.of(QueryTemplateAccountParams.builder()
+                    .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
                         .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
                         .pageSize(100L)
                         .sort("id:desc")
@@ -2591,7 +2590,7 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.models.operations.V2UpdateExporterRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -2610,7 +2609,7 @@ public class Application {
             .build();
 
         V2UpdateExporterRequest req = V2UpdateExporterRequest.builder()
-                .v2ExporterConfiguration(V2ExporterConfiguration2.builder()
+                .v2ExporterConfiguration(V2ExporterConfiguration.builder()
                     .config(Map.ofEntries(
                         Map.entry("key", "<value>"),
                         Map.entry("key1", "<value>"),

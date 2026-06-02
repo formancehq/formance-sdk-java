@@ -55,13 +55,13 @@ public class ErrorsErrorResponse extends SDKBaseError {
     }
 
     @Deprecated
-    public Optional<ErrorsEnum> errorsEnum() {
-        return data().map(Data::errorsEnum);
+    public Optional<String> details() {
+        return data().flatMap(Data::details);
     }
 
     @Deprecated
-    public Optional<String> details() {
-        return data().flatMap(Data::details);
+    public Optional<ErrorsEnum> errorCode() {
+        return data().map(Data::errorCode);
     }
 
     @Deprecated
@@ -82,13 +82,13 @@ public class ErrorsErrorResponse extends SDKBaseError {
 
     public static class Data {
 
-        @JsonProperty("errorCode")
-        private ErrorsEnum errorsEnum;
-
-
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("details")
         private Optional<String> details;
+
+
+        @JsonProperty("errorCode")
+        private ErrorsEnum errorCode;
 
 
         @JsonProperty("errorMessage")
@@ -96,31 +96,31 @@ public class ErrorsErrorResponse extends SDKBaseError {
 
         @JsonCreator
         public Data(
-                @JsonProperty("errorCode") ErrorsEnum errorsEnum,
                 @JsonProperty("details") Optional<String> details,
+                @JsonProperty("errorCode") ErrorsEnum errorCode,
                 @JsonProperty("errorMessage") String errorMessage) {
-            Utils.checkNotNull(errorsEnum, "errorsEnum");
             Utils.checkNotNull(details, "details");
+            Utils.checkNotNull(errorCode, "errorCode");
             Utils.checkNotNull(errorMessage, "errorMessage");
-            this.errorsEnum = errorsEnum;
             this.details = details;
+            this.errorCode = errorCode;
             this.errorMessage = errorMessage;
         }
         
         public Data(
-                ErrorsEnum errorsEnum,
+                ErrorsEnum errorCode,
                 String errorMessage) {
-            this(errorsEnum, Optional.empty(), errorMessage);
-        }
-
-        @JsonIgnore
-        public ErrorsEnum errorsEnum() {
-            return errorsEnum;
+            this(Optional.empty(), errorCode, errorMessage);
         }
 
         @JsonIgnore
         public Optional<String> details() {
             return details;
+        }
+
+        @JsonIgnore
+        public ErrorsEnum errorCode() {
+            return errorCode;
         }
 
         @JsonIgnore
@@ -133,12 +133,6 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
 
 
-        public Data withErrorsEnum(ErrorsEnum errorsEnum) {
-            Utils.checkNotNull(errorsEnum, "errorsEnum");
-            this.errorsEnum = errorsEnum;
-            return this;
-        }
-
         public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -149,6 +143,12 @@ public class ErrorsErrorResponse extends SDKBaseError {
         public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
+            return this;
+        }
+
+        public Data withErrorCode(ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
             return this;
         }
 
@@ -168,43 +168,36 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
             Data other = (Data) o;
             return 
-                Utils.enhancedDeepEquals(this.errorsEnum, other.errorsEnum) &&
                 Utils.enhancedDeepEquals(this.details, other.details) &&
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
                 Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
-                errorsEnum, details, errorMessage);
+                details, errorCode, errorMessage);
         }
         
         @Override
         public String toString() {
             return Utils.toString(Data.class,
-                    "errorsEnum", errorsEnum,
                     "details", details,
+                    "errorCode", errorCode,
                     "errorMessage", errorMessage);
         }
 
         @SuppressWarnings("UnusedReturnValue")
         public final static class Builder {
 
-            private ErrorsEnum errorsEnum;
-
             private Optional<String> details = Optional.empty();
+
+            private ErrorsEnum errorCode;
 
             private String errorMessage;
 
             private Builder() {
               // force use of static builder() method
-            }
-
-
-            public Builder errorsEnum(ErrorsEnum errorsEnum) {
-                Utils.checkNotNull(errorsEnum, "errorsEnum");
-                this.errorsEnum = errorsEnum;
-                return this;
             }
 
 
@@ -221,6 +214,13 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            public Builder errorCode(ErrorsEnum errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;
@@ -230,7 +230,7 @@ public class ErrorsErrorResponse extends SDKBaseError {
             public Data build() {
 
                 return new Data(
-                    errorsEnum, details, errorMessage);
+                    details, errorCode, errorMessage);
             }
 
         }

@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2GetWalletResponse {
 
     @JsonProperty("data")
-    private V2WalletWithBalances v2WalletWithBalances;
+    private V2WalletWithBalances data;
 
     @JsonCreator
     public V2GetWalletResponse(
-            @JsonProperty("data") V2WalletWithBalances v2WalletWithBalances) {
-        Utils.checkNotNull(v2WalletWithBalances, "v2WalletWithBalances");
-        this.v2WalletWithBalances = v2WalletWithBalances;
+            @JsonProperty("data") V2WalletWithBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2WalletWithBalances v2WalletWithBalances() {
-        return v2WalletWithBalances;
+    public V2WalletWithBalances data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2GetWalletResponse {
     }
 
 
-    public V2GetWalletResponse withV2WalletWithBalances(V2WalletWithBalances v2WalletWithBalances) {
-        Utils.checkNotNull(v2WalletWithBalances, "v2WalletWithBalances");
-        this.v2WalletWithBalances = v2WalletWithBalances;
+    public V2GetWalletResponse withData(V2WalletWithBalances data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2GetWalletResponse {
         }
         V2GetWalletResponse other = (V2GetWalletResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2WalletWithBalances, other.v2WalletWithBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2WalletWithBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetWalletResponse.class,
-                "v2WalletWithBalances", v2WalletWithBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2WalletWithBalances v2WalletWithBalances;
+        private V2WalletWithBalances data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2WalletWithBalances(V2WalletWithBalances v2WalletWithBalances) {
-            Utils.checkNotNull(v2WalletWithBalances, "v2WalletWithBalances");
-            this.v2WalletWithBalances = v2WalletWithBalances;
+        public Builder data(V2WalletWithBalances data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2GetWalletResponse build() {
 
             return new V2GetWalletResponse(
-                v2WalletWithBalances);
+                data);
         }
 
     }

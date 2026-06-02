@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetAccountResponse {
 
     @JsonProperty("data")
-    private V3Account v3Account;
+    private V3Account data;
 
     @JsonCreator
     public V3GetAccountResponse(
-            @JsonProperty("data") V3Account v3Account) {
-        Utils.checkNotNull(v3Account, "v3Account");
-        this.v3Account = v3Account;
+            @JsonProperty("data") V3Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3Account v3Account() {
-        return v3Account;
+    public V3Account data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetAccountResponse {
     }
 
 
-    public V3GetAccountResponse withV3Account(V3Account v3Account) {
-        Utils.checkNotNull(v3Account, "v3Account");
-        this.v3Account = v3Account;
+    public V3GetAccountResponse withData(V3Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetAccountResponse {
         }
         V3GetAccountResponse other = (V3GetAccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Account, other.v3Account);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Account);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetAccountResponse.class,
-                "v3Account", v3Account);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Account v3Account;
+        private V3Account data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Account(V3Account v3Account) {
-            Utils.checkNotNull(v3Account, "v3Account");
-            this.v3Account = v3Account;
+        public Builder data(V3Account data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetAccountResponse build() {
 
             return new V3GetAccountResponse(
-                v3Account);
+                data);
         }
 
     }

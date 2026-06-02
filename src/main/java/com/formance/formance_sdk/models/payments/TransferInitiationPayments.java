@@ -17,10 +17,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransferInitiationPayments {
 
-    @JsonProperty("status")
-    private LegacyPaymentStatus legacyPaymentStatus;
-
-
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -33,33 +29,32 @@ public class TransferInitiationPayments {
     @JsonProperty("paymentID")
     private String paymentID;
 
+
+    @JsonProperty("status")
+    private LegacyPaymentStatus status;
+
     @JsonCreator
     public TransferInitiationPayments(
-            @JsonProperty("status") LegacyPaymentStatus legacyPaymentStatus,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("error") JsonNullable<String> error,
-            @JsonProperty("paymentID") String paymentID) {
-        Utils.checkNotNull(legacyPaymentStatus, "legacyPaymentStatus");
+            @JsonProperty("paymentID") String paymentID,
+            @JsonProperty("status") LegacyPaymentStatus status) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(paymentID, "paymentID");
-        this.legacyPaymentStatus = legacyPaymentStatus;
+        Utils.checkNotNull(status, "status");
         this.createdAt = createdAt;
         this.error = error;
         this.paymentID = paymentID;
+        this.status = status;
     }
     
     public TransferInitiationPayments(
-            LegacyPaymentStatus legacyPaymentStatus,
             OffsetDateTime createdAt,
-            String paymentID) {
-        this(legacyPaymentStatus, createdAt, JsonNullable.undefined(),
-            paymentID);
-    }
-
-    @JsonIgnore
-    public LegacyPaymentStatus legacyPaymentStatus() {
-        return legacyPaymentStatus;
+            String paymentID,
+            LegacyPaymentStatus status) {
+        this(createdAt, JsonNullable.undefined(), paymentID,
+            status);
     }
 
     @JsonIgnore
@@ -77,16 +72,15 @@ public class TransferInitiationPayments {
         return paymentID;
     }
 
+    @JsonIgnore
+    public LegacyPaymentStatus status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public TransferInitiationPayments withLegacyPaymentStatus(LegacyPaymentStatus legacyPaymentStatus) {
-        Utils.checkNotNull(legacyPaymentStatus, "legacyPaymentStatus");
-        this.legacyPaymentStatus = legacyPaymentStatus;
-        return this;
-    }
 
     public TransferInitiationPayments withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -112,6 +106,12 @@ public class TransferInitiationPayments {
         return this;
     }
 
+    public TransferInitiationPayments withStatus(LegacyPaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,32 +122,30 @@ public class TransferInitiationPayments {
         }
         TransferInitiationPayments other = (TransferInitiationPayments) o;
         return 
-            Utils.enhancedDeepEquals(this.legacyPaymentStatus, other.legacyPaymentStatus) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
-            Utils.enhancedDeepEquals(this.paymentID, other.paymentID);
+            Utils.enhancedDeepEquals(this.paymentID, other.paymentID) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            legacyPaymentStatus, createdAt, error,
-            paymentID);
+            createdAt, error, paymentID,
+            status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransferInitiationPayments.class,
-                "legacyPaymentStatus", legacyPaymentStatus,
                 "createdAt", createdAt,
                 "error", error,
-                "paymentID", paymentID);
+                "paymentID", paymentID,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private LegacyPaymentStatus legacyPaymentStatus;
 
         private OffsetDateTime createdAt;
 
@@ -155,15 +153,10 @@ public class TransferInitiationPayments {
 
         private String paymentID;
 
+        private LegacyPaymentStatus status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder legacyPaymentStatus(LegacyPaymentStatus legacyPaymentStatus) {
-            Utils.checkNotNull(legacyPaymentStatus, "legacyPaymentStatus");
-            this.legacyPaymentStatus = legacyPaymentStatus;
-            return this;
         }
 
 
@@ -193,11 +186,18 @@ public class TransferInitiationPayments {
             return this;
         }
 
+
+        public Builder status(LegacyPaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public TransferInitiationPayments build() {
 
             return new TransferInitiationPayments(
-                legacyPaymentStatus, createdAt, error,
-                paymentID);
+                createdAt, error, paymentID,
+                status);
         }
 
     }

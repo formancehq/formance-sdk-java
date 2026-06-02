@@ -19,7 +19,7 @@ import java.util.Optional;
 public class Attempt {
 
     @JsonProperty("config")
-    private WebhooksConfig webhooksConfig;
+    private WebhooksConfig config;
 
 
     @JsonProperty("createdAt")
@@ -60,7 +60,7 @@ public class Attempt {
 
     @JsonCreator
     public Attempt(
-            @JsonProperty("config") WebhooksConfig webhooksConfig,
+            @JsonProperty("config") WebhooksConfig config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("nextRetryAfter") Optional<OffsetDateTime> nextRetryAfter,
@@ -70,7 +70,7 @@ public class Attempt {
             @JsonProperty("statusCode") long statusCode,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt,
             @JsonProperty("webhookID") String webhookID) {
-        Utils.checkNotNull(webhooksConfig, "webhooksConfig");
+        Utils.checkNotNull(config, "config");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
@@ -80,7 +80,7 @@ public class Attempt {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(webhookID, "webhookID");
-        this.webhooksConfig = webhooksConfig;
+        this.config = config;
         this.createdAt = createdAt;
         this.id = id;
         this.nextRetryAfter = nextRetryAfter;
@@ -93,7 +93,7 @@ public class Attempt {
     }
     
     public Attempt(
-            WebhooksConfig webhooksConfig,
+            WebhooksConfig config,
             OffsetDateTime createdAt,
             String id,
             String payload,
@@ -102,15 +102,15 @@ public class Attempt {
             long statusCode,
             OffsetDateTime updatedAt,
             String webhookID) {
-        this(webhooksConfig, createdAt, id,
+        this(config, createdAt, id,
             Optional.empty(), payload, retryAttempt,
             status, statusCode, updatedAt,
             webhookID);
     }
 
     @JsonIgnore
-    public WebhooksConfig webhooksConfig() {
-        return webhooksConfig;
+    public WebhooksConfig config() {
+        return config;
     }
 
     @JsonIgnore
@@ -163,9 +163,9 @@ public class Attempt {
     }
 
 
-    public Attempt withWebhooksConfig(WebhooksConfig webhooksConfig) {
-        Utils.checkNotNull(webhooksConfig, "webhooksConfig");
-        this.webhooksConfig = webhooksConfig;
+    public Attempt withConfig(WebhooksConfig config) {
+        Utils.checkNotNull(config, "config");
+        this.config = config;
         return this;
     }
 
@@ -240,7 +240,7 @@ public class Attempt {
         }
         Attempt other = (Attempt) o;
         return 
-            Utils.enhancedDeepEquals(this.webhooksConfig, other.webhooksConfig) &&
+            Utils.enhancedDeepEquals(this.config, other.config) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.nextRetryAfter, other.nextRetryAfter) &&
@@ -255,7 +255,7 @@ public class Attempt {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            webhooksConfig, createdAt, id,
+            config, createdAt, id,
             nextRetryAfter, payload, retryAttempt,
             status, statusCode, updatedAt,
             webhookID);
@@ -264,7 +264,7 @@ public class Attempt {
     @Override
     public String toString() {
         return Utils.toString(Attempt.class,
-                "webhooksConfig", webhooksConfig,
+                "config", config,
                 "createdAt", createdAt,
                 "id", id,
                 "nextRetryAfter", nextRetryAfter,
@@ -279,7 +279,7 @@ public class Attempt {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WebhooksConfig webhooksConfig;
+        private WebhooksConfig config;
 
         private OffsetDateTime createdAt;
 
@@ -304,9 +304,9 @@ public class Attempt {
         }
 
 
-        public Builder webhooksConfig(WebhooksConfig webhooksConfig) {
-            Utils.checkNotNull(webhooksConfig, "webhooksConfig");
-            this.webhooksConfig = webhooksConfig;
+        public Builder config(WebhooksConfig config) {
+            Utils.checkNotNull(config, "config");
+            this.config = config;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class Attempt {
         public Attempt build() {
 
             return new Attempt(
-                webhooksConfig, createdAt, id,
+                config, createdAt, id,
                 nextRetryAfter, payload, retryAttempt,
                 status, statusCode, updatedAt,
                 webhookID);

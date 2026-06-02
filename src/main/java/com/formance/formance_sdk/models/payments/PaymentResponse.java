@@ -18,18 +18,18 @@ import java.lang.String;
 public class PaymentResponse {
 
     @JsonProperty("data")
-    private Payment payment;
+    private Payment data;
 
     @JsonCreator
     public PaymentResponse(
-            @JsonProperty("data") Payment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+            @JsonProperty("data") Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Payment payment() {
-        return payment;
+    public Payment data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class PaymentResponse {
     }
 
 
-    public PaymentResponse withPayment(Payment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+    public PaymentResponse withData(Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class PaymentResponse {
         }
         PaymentResponse other = (PaymentResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.payment, other.payment);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            payment);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentResponse.class,
-                "payment", payment);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Payment payment;
+        private Payment data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder payment(Payment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = payment;
+        public Builder data(Payment data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public PaymentResponse build() {
 
             return new PaymentResponse(
-                payment);
+                data);
         }
 
     }

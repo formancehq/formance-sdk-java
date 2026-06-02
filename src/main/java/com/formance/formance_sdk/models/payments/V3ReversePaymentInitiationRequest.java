@@ -19,11 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3ReversePaymentInitiationRequest {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
     @JsonProperty("amount")
     private BigInteger amount;
 
@@ -36,25 +31,30 @@ public class V3ReversePaymentInitiationRequest {
     private String description;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("reference")
     private String reference;
 
     @JsonCreator
     public V3ReversePaymentInitiationRequest(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("description") String description,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(reference, "reference");
-        this.v3Metadata = v3Metadata;
         this.amount = amount;
         this.asset = asset;
         this.description = description;
+        this.metadata = metadata;
         this.reference = reference;
     }
     
@@ -63,14 +63,8 @@ public class V3ReversePaymentInitiationRequest {
             String asset,
             String description,
             String reference) {
-        this(JsonNullable.undefined(), amount, asset,
-            description, reference);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
+        this(amount, asset, description,
+            JsonNullable.undefined(), reference);
     }
 
     @JsonIgnore
@@ -88,6 +82,12 @@ public class V3ReversePaymentInitiationRequest {
         return description;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String reference() {
         return reference;
@@ -97,18 +97,6 @@ public class V3ReversePaymentInitiationRequest {
         return new Builder();
     }
 
-
-    public V3ReversePaymentInitiationRequest withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3ReversePaymentInitiationRequest withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
 
     public V3ReversePaymentInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -133,6 +121,18 @@ public class V3ReversePaymentInitiationRequest {
         return this;
     }
 
+    public V3ReversePaymentInitiationRequest withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3ReversePaymentInitiationRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V3ReversePaymentInitiationRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -149,34 +149,32 @@ public class V3ReversePaymentInitiationRequest {
         }
         V3ReversePaymentInitiationRequest other = (V3ReversePaymentInitiationRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.reference, other.reference);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, amount, asset,
-            description, reference);
+            amount, asset, description,
+            metadata, reference);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ReversePaymentInitiationRequest.class,
-                "v3Metadata", v3Metadata,
                 "amount", amount,
                 "asset", asset,
                 "description", description,
+                "metadata", metadata,
                 "reference", reference);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
 
         private BigInteger amount;
 
@@ -184,23 +182,12 @@ public class V3ReversePaymentInitiationRequest {
 
         private String description;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String reference;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
         }
 
 
@@ -230,6 +217,19 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -239,8 +239,8 @@ public class V3ReversePaymentInitiationRequest {
         public V3ReversePaymentInitiationRequest build() {
 
             return new V3ReversePaymentInitiationRequest(
-                v3Metadata, amount, asset,
-                description, reference);
+                amount, asset, description,
+                metadata, reference);
         }
 
     }

@@ -5,4 +5,4 @@
 
 | Field                                       | Type                                        | Required                                    | Description                                 |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| `workflow`                                  | [Workflow](../../models/shared/Workflow.md) | :heavy_check_mark:                          | N/A                                         |
+| `data`                                      | [Workflow](../../models/shared/Workflow.md) | :heavy_check_mark:                          | N/A                                         |

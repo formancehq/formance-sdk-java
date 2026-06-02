@@ -18,38 +18,38 @@ import java.util.Optional;
 public class ScriptResponse {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("errorCode")
-    private Optional<? extends ErrorsEnum> errorsEnum;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("transaction")
-    private Optional<? extends Transaction> transaction;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
     private Optional<String> details;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("errorCode")
+    private Optional<? extends ErrorsEnum> errorCode;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
     private Optional<String> errorMessage;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transaction")
+    private Optional<? extends Transaction> transaction;
+
     @JsonCreator
     public ScriptResponse(
-            @JsonProperty("errorCode") Optional<? extends ErrorsEnum> errorsEnum,
-            @JsonProperty("transaction") Optional<? extends Transaction> transaction,
             @JsonProperty("details") Optional<String> details,
-            @JsonProperty("errorMessage") Optional<String> errorMessage) {
-        Utils.checkNotNull(errorsEnum, "errorsEnum");
-        Utils.checkNotNull(transaction, "transaction");
+            @JsonProperty("errorCode") Optional<? extends ErrorsEnum> errorCode,
+            @JsonProperty("errorMessage") Optional<String> errorMessage,
+            @JsonProperty("transaction") Optional<? extends Transaction> transaction) {
         Utils.checkNotNull(details, "details");
+        Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorsEnum = errorsEnum;
-        this.transaction = transaction;
+        Utils.checkNotNull(transaction, "transaction");
         this.details = details;
+        this.errorCode = errorCode;
         this.errorMessage = errorMessage;
+        this.transaction = transaction;
     }
     
     public ScriptResponse() {
@@ -57,10 +57,20 @@ public class ScriptResponse {
             Optional.empty());
     }
 
+    @JsonIgnore
+    public Optional<String> details() {
+        return details;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ErrorsEnum> errorsEnum() {
-        return (Optional<ErrorsEnum>) errorsEnum;
+    public Optional<ErrorsEnum> errorCode() {
+        return (Optional<ErrorsEnum>) errorCode;
+    }
+
+    @JsonIgnore
+    public Optional<String> errorMessage() {
+        return errorMessage;
     }
 
     @SuppressWarnings("unchecked")
@@ -69,46 +79,10 @@ public class ScriptResponse {
         return (Optional<Transaction>) transaction;
     }
 
-    @JsonIgnore
-    public Optional<String> details() {
-        return details;
-    }
-
-    @JsonIgnore
-    public Optional<String> errorMessage() {
-        return errorMessage;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public ScriptResponse withErrorsEnum(ErrorsEnum errorsEnum) {
-        Utils.checkNotNull(errorsEnum, "errorsEnum");
-        this.errorsEnum = Optional.ofNullable(errorsEnum);
-        return this;
-    }
-
-
-    public ScriptResponse withErrorsEnum(Optional<? extends ErrorsEnum> errorsEnum) {
-        Utils.checkNotNull(errorsEnum, "errorsEnum");
-        this.errorsEnum = errorsEnum;
-        return this;
-    }
-
-    public ScriptResponse withTransaction(Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = Optional.ofNullable(transaction);
-        return this;
-    }
-
-
-    public ScriptResponse withTransaction(Optional<? extends Transaction> transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
-        return this;
-    }
 
     public ScriptResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
@@ -120,6 +94,19 @@ public class ScriptResponse {
     public ScriptResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
+        return this;
+    }
+
+    public ScriptResponse withErrorCode(ErrorsEnum errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = Optional.ofNullable(errorCode);
+        return this;
+    }
+
+
+    public ScriptResponse withErrorCode(Optional<? extends ErrorsEnum> errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = errorCode;
         return this;
     }
 
@@ -136,6 +123,19 @@ public class ScriptResponse {
         return this;
     }
 
+    public ScriptResponse withTransaction(Transaction transaction) {
+        Utils.checkNotNull(transaction, "transaction");
+        this.transaction = Optional.ofNullable(transaction);
+        return this;
+    }
+
+
+    public ScriptResponse withTransaction(Optional<? extends Transaction> transaction) {
+        Utils.checkNotNull(transaction, "transaction");
+        this.transaction = transaction;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,67 +146,41 @@ public class ScriptResponse {
         }
         ScriptResponse other = (ScriptResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.errorsEnum, other.errorsEnum) &&
-            Utils.enhancedDeepEquals(this.transaction, other.transaction) &&
             Utils.enhancedDeepEquals(this.details, other.details) &&
-            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage) &&
+            Utils.enhancedDeepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            errorsEnum, transaction, details,
-            errorMessage);
+            details, errorCode, errorMessage,
+            transaction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ScriptResponse.class,
-                "errorsEnum", errorsEnum,
-                "transaction", transaction,
                 "details", details,
-                "errorMessage", errorMessage);
+                "errorCode", errorCode,
+                "errorMessage", errorMessage,
+                "transaction", transaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ErrorsEnum> errorsEnum = Optional.empty();
-
-        private Optional<? extends Transaction> transaction = Optional.empty();
-
         private Optional<String> details = Optional.empty();
+
+        private Optional<? extends ErrorsEnum> errorCode = Optional.empty();
 
         private Optional<String> errorMessage = Optional.empty();
 
+        private Optional<? extends Transaction> transaction = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder errorsEnum(ErrorsEnum errorsEnum) {
-            Utils.checkNotNull(errorsEnum, "errorsEnum");
-            this.errorsEnum = Optional.ofNullable(errorsEnum);
-            return this;
-        }
-
-        public Builder errorsEnum(Optional<? extends ErrorsEnum> errorsEnum) {
-            Utils.checkNotNull(errorsEnum, "errorsEnum");
-            this.errorsEnum = errorsEnum;
-            return this;
-        }
-
-
-        public Builder transaction(Transaction transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = Optional.ofNullable(transaction);
-            return this;
-        }
-
-        public Builder transaction(Optional<? extends Transaction> transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = transaction;
-            return this;
         }
 
 
@@ -223,6 +197,19 @@ public class ScriptResponse {
         }
 
 
+        public Builder errorCode(ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = Optional.ofNullable(errorCode);
+            return this;
+        }
+
+        public Builder errorCode(Optional<? extends ErrorsEnum> errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
+            return this;
+        }
+
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = Optional.ofNullable(errorMessage);
@@ -235,11 +222,24 @@ public class ScriptResponse {
             return this;
         }
 
+
+        public Builder transaction(Transaction transaction) {
+            Utils.checkNotNull(transaction, "transaction");
+            this.transaction = Optional.ofNullable(transaction);
+            return this;
+        }
+
+        public Builder transaction(Optional<? extends Transaction> transaction) {
+            Utils.checkNotNull(transaction, "transaction");
+            this.transaction = transaction;
+            return this;
+        }
+
         public ScriptResponse build() {
 
             return new ScriptResponse(
-                errorsEnum, transaction, details,
-                errorMessage);
+                details, errorCode, errorMessage,
+                transaction);
         }
 
     }

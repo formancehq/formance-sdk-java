@@ -19,13 +19,13 @@ public class Update {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private Optional<? extends UpdateAccount> updateAccount;
+    private Optional<? extends UpdateAccount> account;
 
     @JsonCreator
     public Update(
-            @JsonProperty("account") Optional<? extends UpdateAccount> updateAccount) {
-        Utils.checkNotNull(updateAccount, "updateAccount");
-        this.updateAccount = updateAccount;
+            @JsonProperty("account") Optional<? extends UpdateAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
     }
     
     public Update() {
@@ -34,8 +34,8 @@ public class Update {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateAccount> updateAccount() {
-        return (Optional<UpdateAccount>) updateAccount;
+    public Optional<UpdateAccount> account() {
+        return (Optional<UpdateAccount>) account;
     }
 
     public static Builder builder() {
@@ -43,16 +43,16 @@ public class Update {
     }
 
 
-    public Update withUpdateAccount(UpdateAccount updateAccount) {
-        Utils.checkNotNull(updateAccount, "updateAccount");
-        this.updateAccount = Optional.ofNullable(updateAccount);
+    public Update withAccount(UpdateAccount account) {
+        Utils.checkNotNull(account, "account");
+        this.account = Optional.ofNullable(account);
         return this;
     }
 
 
-    public Update withUpdateAccount(Optional<? extends UpdateAccount> updateAccount) {
-        Utils.checkNotNull(updateAccount, "updateAccount");
-        this.updateAccount = updateAccount;
+    public Update withAccount(Optional<? extends UpdateAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
         return this;
     }
 
@@ -66,47 +66,47 @@ public class Update {
         }
         Update other = (Update) o;
         return 
-            Utils.enhancedDeepEquals(this.updateAccount, other.updateAccount);
+            Utils.enhancedDeepEquals(this.account, other.account);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updateAccount);
+            account);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Update.class,
-                "updateAccount", updateAccount);
+                "account", account);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends UpdateAccount> updateAccount = Optional.empty();
+        private Optional<? extends UpdateAccount> account = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder updateAccount(UpdateAccount updateAccount) {
-            Utils.checkNotNull(updateAccount, "updateAccount");
-            this.updateAccount = Optional.ofNullable(updateAccount);
+        public Builder account(UpdateAccount account) {
+            Utils.checkNotNull(account, "account");
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
-        public Builder updateAccount(Optional<? extends UpdateAccount> updateAccount) {
-            Utils.checkNotNull(updateAccount, "updateAccount");
-            this.updateAccount = updateAccount;
+        public Builder account(Optional<? extends UpdateAccount> account) {
+            Utils.checkNotNull(account, "account");
+            this.account = account;
             return this;
         }
 
         public Update build() {
 
             return new Update(
-                updateAccount);
+                account);
         }
 
     }

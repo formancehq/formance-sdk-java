@@ -20,7 +20,7 @@ import java.util.Optional;
 public class V2PipelinesCursorResponseCursor {
 
     @JsonProperty("data")
-    private List<V2PipelineConfiguration> data;
+    private List<V2Pipeline> data;
 
 
     @JsonProperty("hasMore")
@@ -42,7 +42,7 @@ public class V2PipelinesCursorResponseCursor {
 
     @JsonCreator
     public V2PipelinesCursorResponseCursor(
-            @JsonProperty("data") List<V2PipelineConfiguration> data,
+            @JsonProperty("data") List<V2Pipeline> data,
             @JsonProperty("hasMore") boolean hasMore,
             @JsonProperty("next") Optional<String> next,
             @JsonProperty("pageSize") long pageSize,
@@ -60,7 +60,7 @@ public class V2PipelinesCursorResponseCursor {
     }
     
     public V2PipelinesCursorResponseCursor(
-            List<V2PipelineConfiguration> data,
+            List<V2Pipeline> data,
             boolean hasMore,
             long pageSize) {
         this(data, hasMore, Optional.empty(),
@@ -68,7 +68,7 @@ public class V2PipelinesCursorResponseCursor {
     }
 
     @JsonIgnore
-    public List<V2PipelineConfiguration> data() {
+    public List<V2Pipeline> data() {
         return data;
     }
 
@@ -97,7 +97,7 @@ public class V2PipelinesCursorResponseCursor {
     }
 
 
-    public V2PipelinesCursorResponseCursor withData(List<V2PipelineConfiguration> data) {
+    public V2PipelinesCursorResponseCursor withData(List<V2Pipeline> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -178,7 +178,7 @@ public class V2PipelinesCursorResponseCursor {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2PipelineConfiguration> data;
+        private List<V2Pipeline> data;
 
         private Boolean hasMore;
 
@@ -193,7 +193,7 @@ public class V2PipelinesCursorResponseCursor {
         }
 
 
-        public Builder data(List<V2PipelineConfiguration> data) {
+        public Builder data(List<V2Pipeline> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetPoolResponse {
 
     @JsonProperty("data")
-    private V3Pool v3Pool;
+    private V3Pool data;
 
     @JsonCreator
     public V3GetPoolResponse(
-            @JsonProperty("data") V3Pool v3Pool) {
-        Utils.checkNotNull(v3Pool, "v3Pool");
-        this.v3Pool = v3Pool;
+            @JsonProperty("data") V3Pool data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3Pool v3Pool() {
-        return v3Pool;
+    public V3Pool data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetPoolResponse {
     }
 
 
-    public V3GetPoolResponse withV3Pool(V3Pool v3Pool) {
-        Utils.checkNotNull(v3Pool, "v3Pool");
-        this.v3Pool = v3Pool;
+    public V3GetPoolResponse withData(V3Pool data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetPoolResponse {
         }
         V3GetPoolResponse other = (V3GetPoolResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Pool, other.v3Pool);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Pool);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetPoolResponse.class,
-                "v3Pool", v3Pool);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Pool v3Pool;
+        private V3Pool data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Pool(V3Pool v3Pool) {
-            Utils.checkNotNull(v3Pool, "v3Pool");
-            this.v3Pool = v3Pool;
+        public Builder data(V3Pool data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetPoolResponse build() {
 
             return new V3GetPoolResponse(
-                v3Pool);
+                data);
         }
 
     }

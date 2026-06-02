@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetBankAccountResponse {
 
     @JsonProperty("data")
-    private V3BankAccount v3BankAccount;
+    private V3BankAccount data;
 
     @JsonCreator
     public V3GetBankAccountResponse(
-            @JsonProperty("data") V3BankAccount v3BankAccount) {
-        Utils.checkNotNull(v3BankAccount, "v3BankAccount");
-        this.v3BankAccount = v3BankAccount;
+            @JsonProperty("data") V3BankAccount data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3BankAccount v3BankAccount() {
-        return v3BankAccount;
+    public V3BankAccount data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetBankAccountResponse {
     }
 
 
-    public V3GetBankAccountResponse withV3BankAccount(V3BankAccount v3BankAccount) {
-        Utils.checkNotNull(v3BankAccount, "v3BankAccount");
-        this.v3BankAccount = v3BankAccount;
+    public V3GetBankAccountResponse withData(V3BankAccount data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetBankAccountResponse {
         }
         V3GetBankAccountResponse other = (V3GetBankAccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3BankAccount, other.v3BankAccount);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3BankAccount);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetBankAccountResponse.class,
-                "v3BankAccount", v3BankAccount);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3BankAccount v3BankAccount;
+        private V3BankAccount data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3BankAccount(V3BankAccount v3BankAccount) {
-            Utils.checkNotNull(v3BankAccount, "v3BankAccount");
-            this.v3BankAccount = v3BankAccount;
+        public Builder data(V3BankAccount data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetBankAccountResponse build() {
 
             return new V3GetBankAccountResponse(
-                v3BankAccount);
+                data);
         }
 
     }

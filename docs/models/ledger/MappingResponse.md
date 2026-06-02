@@ -5,4 +5,4 @@
 
 | Field                                                    | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `mapping`                                                | [JsonNullable\<Mapping>](../../models/shared/Mapping.md) | :heavy_minus_sign:                                       | N/A                                                      |
+| `data`                                                   | [JsonNullable\<Mapping>](../../models/shared/Mapping.md) | :heavy_minus_sign:                                       | N/A                                                      |

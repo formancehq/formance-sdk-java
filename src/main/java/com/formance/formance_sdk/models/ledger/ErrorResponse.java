@@ -16,13 +16,13 @@ import java.util.Optional;
 
 public class ErrorResponse {
 
-    @JsonProperty("errorCode")
-    private ErrorsEnum errorsEnum;
-
-
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
     private Optional<String> details;
+
+
+    @JsonProperty("errorCode")
+    private ErrorsEnum errorCode;
 
 
     @JsonProperty("errorMessage")
@@ -30,31 +30,31 @@ public class ErrorResponse {
 
     @JsonCreator
     public ErrorResponse(
-            @JsonProperty("errorCode") ErrorsEnum errorsEnum,
             @JsonProperty("details") Optional<String> details,
+            @JsonProperty("errorCode") ErrorsEnum errorCode,
             @JsonProperty("errorMessage") String errorMessage) {
-        Utils.checkNotNull(errorsEnum, "errorsEnum");
         Utils.checkNotNull(details, "details");
+        Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorsEnum = errorsEnum;
         this.details = details;
+        this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
     public ErrorResponse(
-            ErrorsEnum errorsEnum,
+            ErrorsEnum errorCode,
             String errorMessage) {
-        this(errorsEnum, Optional.empty(), errorMessage);
-    }
-
-    @JsonIgnore
-    public ErrorsEnum errorsEnum() {
-        return errorsEnum;
+        this(Optional.empty(), errorCode, errorMessage);
     }
 
     @JsonIgnore
     public Optional<String> details() {
         return details;
+    }
+
+    @JsonIgnore
+    public ErrorsEnum errorCode() {
+        return errorCode;
     }
 
     @JsonIgnore
@@ -67,12 +67,6 @@ public class ErrorResponse {
     }
 
 
-    public ErrorResponse withErrorsEnum(ErrorsEnum errorsEnum) {
-        Utils.checkNotNull(errorsEnum, "errorsEnum");
-        this.errorsEnum = errorsEnum;
-        return this;
-    }
-
     public ErrorResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
@@ -83,6 +77,12 @@ public class ErrorResponse {
     public ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
+        return this;
+    }
+
+    public ErrorResponse withErrorCode(ErrorsEnum errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = errorCode;
         return this;
     }
 
@@ -102,43 +102,36 @@ public class ErrorResponse {
         }
         ErrorResponse other = (ErrorResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.errorsEnum, other.errorsEnum) &&
             Utils.enhancedDeepEquals(this.details, other.details) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
             Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            errorsEnum, details, errorMessage);
+            details, errorCode, errorMessage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ErrorResponse.class,
-                "errorsEnum", errorsEnum,
                 "details", details,
+                "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private ErrorsEnum errorsEnum;
-
         private Optional<String> details = Optional.empty();
+
+        private ErrorsEnum errorCode;
 
         private String errorMessage;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder errorsEnum(ErrorsEnum errorsEnum) {
-            Utils.checkNotNull(errorsEnum, "errorsEnum");
-            this.errorsEnum = errorsEnum;
-            return this;
         }
 
 
@@ -155,6 +148,13 @@ public class ErrorResponse {
         }
 
 
+        public Builder errorCode(ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
+            return this;
+        }
+
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -164,7 +164,7 @@ public class ErrorResponse {
         public ErrorResponse build() {
 
             return new ErrorResponse(
-                errorsEnum, details, errorMessage);
+                details, errorCode, errorMessage);
         }
 
     }

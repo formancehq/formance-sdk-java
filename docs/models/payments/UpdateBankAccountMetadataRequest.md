@@ -5,4 +5,4 @@
 
 | Field                  | Type                   | Required               | Description            |
 | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `bankAccountMetadata`  | Map\<String, *String*> | :heavy_check_mark:     | N/A                    |
+| `metadata`             | Map\<String, *String*> | :heavy_check_mark:     | N/A                    |

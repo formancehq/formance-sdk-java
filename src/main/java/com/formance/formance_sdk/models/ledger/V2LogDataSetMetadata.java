@@ -19,7 +19,7 @@ import java.util.Map;
 public class V2LogDataSetMetadata {
 
     @JsonProperty("metadata")
-    private Map<String, String> v2Metadata;
+    private Map<String, String> metadata;
 
 
     @JsonProperty("targetId")
@@ -33,21 +33,21 @@ public class V2LogDataSetMetadata {
 
     @JsonCreator
     public V2LogDataSetMetadata(
-            @JsonProperty("metadata") Map<String, String> v2Metadata,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("targetId") V2LogDataSetMetadataTargetId targetId,
             @JsonProperty("targetType") V2LogDataSetMetadataTargetType targetType) {
-        v2Metadata = Utils.emptyMapIfNull(v2Metadata);
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
+        metadata = Utils.emptyMapIfNull(metadata);
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(targetId, "targetId");
         Utils.checkNotNull(targetType, "targetType");
-        this.v2Metadata = v2Metadata;
+        this.metadata = metadata;
         this.targetId = targetId;
         this.targetType = targetType;
     }
 
     @JsonIgnore
-    public Map<String, String> v2Metadata() {
-        return v2Metadata;
+    public Map<String, String> metadata() {
+        return metadata;
     }
 
     @JsonIgnore
@@ -68,9 +68,9 @@ public class V2LogDataSetMetadata {
     }
 
 
-    public V2LogDataSetMetadata withV2Metadata(Map<String, String> v2Metadata) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
-        this.v2Metadata = v2Metadata;
+    public V2LogDataSetMetadata withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -99,7 +99,7 @@ public class V2LogDataSetMetadata {
         }
         V2LogDataSetMetadata other = (V2LogDataSetMetadata) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Metadata, other.v2Metadata) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
             Utils.enhancedDeepEquals(this.targetType, other.targetType);
     }
@@ -107,13 +107,13 @@ public class V2LogDataSetMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Metadata, targetId, targetType);
+            metadata, targetId, targetType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2LogDataSetMetadata.class,
-                "v2Metadata", v2Metadata,
+                "metadata", metadata,
                 "targetId", targetId,
                 "targetType", targetType);
     }
@@ -121,7 +121,7 @@ public class V2LogDataSetMetadata {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, String> v2Metadata;
+        private Map<String, String> metadata;
 
         private V2LogDataSetMetadataTargetId targetId;
 
@@ -132,9 +132,9 @@ public class V2LogDataSetMetadata {
         }
 
 
-        public Builder v2Metadata(Map<String, String> v2Metadata) {
-            Utils.checkNotNull(v2Metadata, "v2Metadata");
-            this.v2Metadata = v2Metadata;
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
@@ -158,7 +158,7 @@ public class V2LogDataSetMetadata {
         public V2LogDataSetMetadata build() {
 
             return new V2LogDataSetMetadata(
-                v2Metadata, targetId, targetType);
+                metadata, targetId, targetType);
         }
 
     }

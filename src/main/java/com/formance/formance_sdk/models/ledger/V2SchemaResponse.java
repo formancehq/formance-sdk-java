@@ -16,21 +16,21 @@ public class V2SchemaResponse {
      * Complete schema structure with metadata
      */
     @JsonProperty("data")
-    private V2SchemaData1 v2SchemaData;
+    private V2Schema data;
 
     @JsonCreator
     public V2SchemaResponse(
-            @JsonProperty("data") V2SchemaData1 v2SchemaData) {
-        Utils.checkNotNull(v2SchemaData, "v2SchemaData");
-        this.v2SchemaData = v2SchemaData;
+            @JsonProperty("data") V2Schema data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     /**
      * Complete schema structure with metadata
      */
     @JsonIgnore
-    public V2SchemaData1 v2SchemaData() {
-        return v2SchemaData;
+    public V2Schema data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -41,9 +41,9 @@ public class V2SchemaResponse {
     /**
      * Complete schema structure with metadata
      */
-    public V2SchemaResponse withV2SchemaData(V2SchemaData1 v2SchemaData) {
-        Utils.checkNotNull(v2SchemaData, "v2SchemaData");
-        this.v2SchemaData = v2SchemaData;
+    public V2SchemaResponse withData(V2Schema data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -57,25 +57,25 @@ public class V2SchemaResponse {
         }
         V2SchemaResponse other = (V2SchemaResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2SchemaData, other.v2SchemaData);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2SchemaData);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2SchemaResponse.class,
-                "v2SchemaData", v2SchemaData);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2SchemaData1 v2SchemaData;
+        private V2Schema data;
 
         private Builder() {
           // force use of static builder() method
@@ -85,16 +85,16 @@ public class V2SchemaResponse {
         /**
          * Complete schema structure with metadata
          */
-        public Builder v2SchemaData(V2SchemaData1 v2SchemaData) {
-            Utils.checkNotNull(v2SchemaData, "v2SchemaData");
-            this.v2SchemaData = v2SchemaData;
+        public Builder data(V2Schema data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2SchemaResponse build() {
 
             return new V2SchemaResponse(
-                v2SchemaData);
+                data);
         }
 
     }

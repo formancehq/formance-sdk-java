@@ -21,11 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V2Ledger {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private Optional<? extends Map<String, String>> v2Metadata;
-
-
     @JsonProperty("addedAt")
     private OffsetDateTime addedAt;
 
@@ -49,31 +44,36 @@ public class V2Ledger {
     private Optional<Long> id;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
     @JsonCreator
     public V2Ledger(
-            @JsonProperty("metadata") Optional<? extends Map<String, String>> v2Metadata,
             @JsonProperty("addedAt") OffsetDateTime addedAt,
             @JsonProperty("bucket") String bucket,
             @JsonProperty("deletedAt") JsonNullable<OffsetDateTime> deletedAt,
             @JsonProperty("features") Optional<? extends Map<String, String>> features,
             @JsonProperty("id") Optional<Long> id,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
         Utils.checkNotNull(addedAt, "addedAt");
         Utils.checkNotNull(bucket, "bucket");
         Utils.checkNotNull(deletedAt, "deletedAt");
         Utils.checkNotNull(features, "features");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
-        this.v2Metadata = v2Metadata;
         this.addedAt = addedAt;
         this.bucket = bucket;
         this.deletedAt = deletedAt;
         this.features = features;
         this.id = id;
+        this.metadata = metadata;
         this.name = name;
     }
     
@@ -81,15 +81,9 @@ public class V2Ledger {
             OffsetDateTime addedAt,
             String bucket,
             String name) {
-        this(Optional.empty(), addedAt, bucket,
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+        this(addedAt, bucket, JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             name);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, String>> v2Metadata() {
-        return (Optional<Map<String, String>>) v2Metadata;
     }
 
     @JsonIgnore
@@ -118,6 +112,12 @@ public class V2Ledger {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String name() {
         return name;
@@ -127,19 +127,6 @@ public class V2Ledger {
         return new Builder();
     }
 
-
-    public V2Ledger withV2Metadata(Map<String, String> v2Metadata) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
-        this.v2Metadata = Optional.ofNullable(v2Metadata);
-        return this;
-    }
-
-
-    public V2Ledger withV2Metadata(Optional<? extends Map<String, String>> v2Metadata) {
-        Utils.checkNotNull(v2Metadata, "v2Metadata");
-        this.v2Metadata = v2Metadata;
-        return this;
-    }
 
     public V2Ledger withAddedAt(OffsetDateTime addedAt) {
         Utils.checkNotNull(addedAt, "addedAt");
@@ -191,6 +178,19 @@ public class V2Ledger {
         return this;
     }
 
+    public V2Ledger withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    public V2Ledger withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V2Ledger withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -207,39 +207,37 @@ public class V2Ledger {
         }
         V2Ledger other = (V2Ledger) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Metadata, other.v2Metadata) &&
             Utils.enhancedDeepEquals(this.addedAt, other.addedAt) &&
             Utils.enhancedDeepEquals(this.bucket, other.bucket) &&
             Utils.enhancedDeepEquals(this.deletedAt, other.deletedAt) &&
             Utils.enhancedDeepEquals(this.features, other.features) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Metadata, addedAt, bucket,
-            deletedAt, features, id,
+            addedAt, bucket, deletedAt,
+            features, id, metadata,
             name);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2Ledger.class,
-                "v2Metadata", v2Metadata,
                 "addedAt", addedAt,
                 "bucket", bucket,
                 "deletedAt", deletedAt,
                 "features", features,
                 "id", id,
+                "metadata", metadata,
                 "name", name);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends Map<String, String>> v2Metadata = Optional.empty();
 
         private OffsetDateTime addedAt;
 
@@ -251,23 +249,12 @@ public class V2Ledger {
 
         private Optional<Long> id = Optional.empty();
 
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
+
         private String name;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2Metadata(Map<String, String> v2Metadata) {
-            Utils.checkNotNull(v2Metadata, "v2Metadata");
-            this.v2Metadata = Optional.ofNullable(v2Metadata);
-            return this;
-        }
-
-        public Builder v2Metadata(Optional<? extends Map<String, String>> v2Metadata) {
-            Utils.checkNotNull(v2Metadata, "v2Metadata");
-            this.v2Metadata = v2Metadata;
-            return this;
         }
 
 
@@ -324,6 +311,19 @@ public class V2Ledger {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -333,8 +333,8 @@ public class V2Ledger {
         public V2Ledger build() {
 
             return new V2Ledger(
-                v2Metadata, addedAt, bucket,
-                deletedAt, features, id,
+                addedAt, bucket, deletedAt,
+                features, id, metadata,
                 name);
         }
 

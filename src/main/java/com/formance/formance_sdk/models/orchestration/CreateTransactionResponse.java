@@ -14,18 +14,18 @@ import java.lang.String;
 public class CreateTransactionResponse {
 
     @JsonProperty("data")
-    private Transaction transaction;
+    private Transaction data;
 
     @JsonCreator
     public CreateTransactionResponse(
-            @JsonProperty("data") Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
+            @JsonProperty("data") Transaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Transaction transaction() {
-        return transaction;
+    public Transaction data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class CreateTransactionResponse {
     }
 
 
-    public CreateTransactionResponse withTransaction(Transaction transaction) {
-        Utils.checkNotNull(transaction, "transaction");
-        this.transaction = transaction;
+    public CreateTransactionResponse withData(Transaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class CreateTransactionResponse {
         }
         CreateTransactionResponse other = (CreateTransactionResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.transaction, other.transaction);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transaction);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateTransactionResponse.class,
-                "transaction", transaction);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Transaction transaction;
+        private Transaction data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder transaction(Transaction transaction) {
-            Utils.checkNotNull(transaction, "transaction");
-            this.transaction = transaction;
+        public Builder data(Transaction data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public CreateTransactionResponse build() {
 
             return new CreateTransactionResponse(
-                transaction);
+                data);
         }
 
     }

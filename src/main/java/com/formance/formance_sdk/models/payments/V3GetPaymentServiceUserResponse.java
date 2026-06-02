@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetPaymentServiceUserResponse {
 
     @JsonProperty("data")
-    private V3PaymentServiceUser v3PaymentServiceUser;
+    private V3PaymentServiceUser data;
 
     @JsonCreator
     public V3GetPaymentServiceUserResponse(
-            @JsonProperty("data") V3PaymentServiceUser v3PaymentServiceUser) {
-        Utils.checkNotNull(v3PaymentServiceUser, "v3PaymentServiceUser");
-        this.v3PaymentServiceUser = v3PaymentServiceUser;
+            @JsonProperty("data") V3PaymentServiceUser data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3PaymentServiceUser v3PaymentServiceUser() {
-        return v3PaymentServiceUser;
+    public V3PaymentServiceUser data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetPaymentServiceUserResponse {
     }
 
 
-    public V3GetPaymentServiceUserResponse withV3PaymentServiceUser(V3PaymentServiceUser v3PaymentServiceUser) {
-        Utils.checkNotNull(v3PaymentServiceUser, "v3PaymentServiceUser");
-        this.v3PaymentServiceUser = v3PaymentServiceUser;
+    public V3GetPaymentServiceUserResponse withData(V3PaymentServiceUser data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetPaymentServiceUserResponse {
         }
         V3GetPaymentServiceUserResponse other = (V3GetPaymentServiceUserResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3PaymentServiceUser, other.v3PaymentServiceUser);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3PaymentServiceUser);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetPaymentServiceUserResponse.class,
-                "v3PaymentServiceUser", v3PaymentServiceUser);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3PaymentServiceUser v3PaymentServiceUser;
+        private V3PaymentServiceUser data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3PaymentServiceUser(V3PaymentServiceUser v3PaymentServiceUser) {
-            Utils.checkNotNull(v3PaymentServiceUser, "v3PaymentServiceUser");
-            this.v3PaymentServiceUser = v3PaymentServiceUser;
+        public Builder data(V3PaymentServiceUser data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetPaymentServiceUserResponse build() {
 
             return new V3GetPaymentServiceUserResponse(
-                v3PaymentServiceUser);
+                data);
         }
 
     }

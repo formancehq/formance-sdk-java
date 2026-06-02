@@ -12,7 +12,7 @@ import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
 import com.formance.formance_sdk.models.orchestration.V2Error;
-import com.formance.formance_sdk.models.orchestration.V2TriggerData2;
+import com.formance.formance_sdk.models.orchestration.V2TriggerData;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -104,13 +104,13 @@ public class V2CreateTrigger {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends V2TriggerData2>, V2CreateTriggerResponse> {
+            implements RequestOperation<Optional<? extends V2TriggerData>, V2CreateTriggerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends V2TriggerData2> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends V2TriggerData2>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends V2TriggerData> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends V2TriggerData>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -126,7 +126,7 @@ public class V2CreateTrigger {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends V2TriggerData2> request) {
+        public HttpResponse<InputStream> doRequest(Optional<? extends V2TriggerData> request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {

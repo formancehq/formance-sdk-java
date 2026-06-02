@@ -15,18 +15,18 @@ import java.util.List;
 public class GetWorkflowInstanceHistoryResponse {
 
     @JsonProperty("data")
-    private List<WorkflowInstanceHistory> workflowInstanceHistoryList;
+    private List<WorkflowInstanceHistory> data;
 
     @JsonCreator
     public GetWorkflowInstanceHistoryResponse(
-            @JsonProperty("data") List<WorkflowInstanceHistory> workflowInstanceHistoryList) {
-        Utils.checkNotNull(workflowInstanceHistoryList, "workflowInstanceHistoryList");
-        this.workflowInstanceHistoryList = workflowInstanceHistoryList;
+            @JsonProperty("data") List<WorkflowInstanceHistory> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public List<WorkflowInstanceHistory> workflowInstanceHistoryList() {
-        return workflowInstanceHistoryList;
+    public List<WorkflowInstanceHistory> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -34,9 +34,9 @@ public class GetWorkflowInstanceHistoryResponse {
     }
 
 
-    public GetWorkflowInstanceHistoryResponse withWorkflowInstanceHistoryList(List<WorkflowInstanceHistory> workflowInstanceHistoryList) {
-        Utils.checkNotNull(workflowInstanceHistoryList, "workflowInstanceHistoryList");
-        this.workflowInstanceHistoryList = workflowInstanceHistoryList;
+    public GetWorkflowInstanceHistoryResponse withData(List<WorkflowInstanceHistory> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -50,41 +50,41 @@ public class GetWorkflowInstanceHistoryResponse {
         }
         GetWorkflowInstanceHistoryResponse other = (GetWorkflowInstanceHistoryResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.workflowInstanceHistoryList, other.workflowInstanceHistoryList);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            workflowInstanceHistoryList);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWorkflowInstanceHistoryResponse.class,
-                "workflowInstanceHistoryList", workflowInstanceHistoryList);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<WorkflowInstanceHistory> workflowInstanceHistoryList;
+        private List<WorkflowInstanceHistory> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder workflowInstanceHistoryList(List<WorkflowInstanceHistory> workflowInstanceHistoryList) {
-            Utils.checkNotNull(workflowInstanceHistoryList, "workflowInstanceHistoryList");
-            this.workflowInstanceHistoryList = workflowInstanceHistoryList;
+        public Builder data(List<WorkflowInstanceHistory> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public GetWorkflowInstanceHistoryResponse build() {
 
             return new GetWorkflowInstanceHistoryResponse(
-                workflowInstanceHistoryList);
+                data);
         }
 
     }

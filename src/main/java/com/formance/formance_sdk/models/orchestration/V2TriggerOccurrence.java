@@ -20,11 +20,6 @@ import java.util.Optional;
 
 public class V2TriggerOccurrence {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflowInstance")
-    private Optional<? extends V2WorkflowInstance> v2WorkflowInstance;
-
-
     @JsonProperty("date")
     private OffsetDateTime date;
 
@@ -43,29 +38,34 @@ public class V2TriggerOccurrence {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflowInstance")
+    private Optional<? extends V2WorkflowInstance> workflowInstance;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstanceID")
     private Optional<String> workflowInstanceID;
 
     @JsonCreator
     public V2TriggerOccurrence(
-            @JsonProperty("workflowInstance") Optional<? extends V2WorkflowInstance> v2WorkflowInstance,
             @JsonProperty("date") OffsetDateTime date,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("event") Map<String, Object> event,
             @JsonProperty("triggerID") String triggerID,
+            @JsonProperty("workflowInstance") Optional<? extends V2WorkflowInstance> workflowInstance,
             @JsonProperty("workflowInstanceID") Optional<String> workflowInstanceID) {
-        Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(error, "error");
         event = Utils.emptyMapIfNull(event);
         Utils.checkNotNull(event, "event");
         Utils.checkNotNull(triggerID, "triggerID");
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
-        this.v2WorkflowInstance = v2WorkflowInstance;
         this.date = date;
         this.error = error;
         this.event = event;
         this.triggerID = triggerID;
+        this.workflowInstance = workflowInstance;
         this.workflowInstanceID = workflowInstanceID;
     }
     
@@ -73,14 +73,8 @@ public class V2TriggerOccurrence {
             OffsetDateTime date,
             Map<String, Object> event,
             String triggerID) {
-        this(Optional.empty(), date, Optional.empty(),
-            event, triggerID, Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2WorkflowInstance> v2WorkflowInstance() {
-        return (Optional<V2WorkflowInstance>) v2WorkflowInstance;
+        this(date, Optional.empty(), event,
+            triggerID, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -103,6 +97,12 @@ public class V2TriggerOccurrence {
         return triggerID;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2WorkflowInstance> workflowInstance() {
+        return (Optional<V2WorkflowInstance>) workflowInstance;
+    }
+
     @JsonIgnore
     public Optional<String> workflowInstanceID() {
         return workflowInstanceID;
@@ -112,19 +112,6 @@ public class V2TriggerOccurrence {
         return new Builder();
     }
 
-
-    public V2TriggerOccurrence withV2WorkflowInstance(V2WorkflowInstance v2WorkflowInstance) {
-        Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-        this.v2WorkflowInstance = Optional.ofNullable(v2WorkflowInstance);
-        return this;
-    }
-
-
-    public V2TriggerOccurrence withV2WorkflowInstance(Optional<? extends V2WorkflowInstance> v2WorkflowInstance) {
-        Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-        this.v2WorkflowInstance = v2WorkflowInstance;
-        return this;
-    }
 
     public V2TriggerOccurrence withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
@@ -157,6 +144,19 @@ public class V2TriggerOccurrence {
         return this;
     }
 
+    public V2TriggerOccurrence withWorkflowInstance(V2WorkflowInstance workflowInstance) {
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
+        this.workflowInstance = Optional.ofNullable(workflowInstance);
+        return this;
+    }
+
+
+    public V2TriggerOccurrence withWorkflowInstance(Optional<? extends V2WorkflowInstance> workflowInstance) {
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
+        this.workflowInstance = workflowInstance;
+        return this;
+    }
+
     public V2TriggerOccurrence withWorkflowInstanceID(String workflowInstanceID) {
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
         this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -180,36 +180,34 @@ public class V2TriggerOccurrence {
         }
         V2TriggerOccurrence other = (V2TriggerOccurrence) o;
         return 
-            Utils.enhancedDeepEquals(this.v2WorkflowInstance, other.v2WorkflowInstance) &&
             Utils.enhancedDeepEquals(this.date, other.date) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.event, other.event) &&
             Utils.enhancedDeepEquals(this.triggerID, other.triggerID) &&
+            Utils.enhancedDeepEquals(this.workflowInstance, other.workflowInstance) &&
             Utils.enhancedDeepEquals(this.workflowInstanceID, other.workflowInstanceID);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2WorkflowInstance, date, error,
-            event, triggerID, workflowInstanceID);
+            date, error, event,
+            triggerID, workflowInstance, workflowInstanceID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2TriggerOccurrence.class,
-                "v2WorkflowInstance", v2WorkflowInstance,
                 "date", date,
                 "error", error,
                 "event", event,
                 "triggerID", triggerID,
+                "workflowInstance", workflowInstance,
                 "workflowInstanceID", workflowInstanceID);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends V2WorkflowInstance> v2WorkflowInstance = Optional.empty();
 
         private OffsetDateTime date;
 
@@ -219,23 +217,12 @@ public class V2TriggerOccurrence {
 
         private String triggerID;
 
+        private Optional<? extends V2WorkflowInstance> workflowInstance = Optional.empty();
+
         private Optional<String> workflowInstanceID = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2WorkflowInstance(V2WorkflowInstance v2WorkflowInstance) {
-            Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-            this.v2WorkflowInstance = Optional.ofNullable(v2WorkflowInstance);
-            return this;
-        }
-
-        public Builder v2WorkflowInstance(Optional<? extends V2WorkflowInstance> v2WorkflowInstance) {
-            Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-            this.v2WorkflowInstance = v2WorkflowInstance;
-            return this;
         }
 
 
@@ -273,6 +260,19 @@ public class V2TriggerOccurrence {
         }
 
 
+        public Builder workflowInstance(V2WorkflowInstance workflowInstance) {
+            Utils.checkNotNull(workflowInstance, "workflowInstance");
+            this.workflowInstance = Optional.ofNullable(workflowInstance);
+            return this;
+        }
+
+        public Builder workflowInstance(Optional<? extends V2WorkflowInstance> workflowInstance) {
+            Utils.checkNotNull(workflowInstance, "workflowInstance");
+            this.workflowInstance = workflowInstance;
+            return this;
+        }
+
+
         public Builder workflowInstanceID(String workflowInstanceID) {
             Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
             this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -288,8 +288,8 @@ public class V2TriggerOccurrence {
         public V2TriggerOccurrence build() {
 
             return new V2TriggerOccurrence(
-                v2WorkflowInstance, date, error,
-                event, triggerID, workflowInstanceID);
+                date, error, event,
+                triggerID, workflowInstance, workflowInstanceID);
         }
 
     }

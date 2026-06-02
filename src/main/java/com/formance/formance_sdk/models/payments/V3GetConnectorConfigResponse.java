@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetConnectorConfigResponse {
 
     @JsonProperty("data")
-    private V3ConnectorConfig v3ConnectorConfig;
+    private V3ConnectorConfig data;
 
     @JsonCreator
     public V3GetConnectorConfigResponse(
-            @JsonProperty("data") V3ConnectorConfig v3ConnectorConfig) {
-        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
-        this.v3ConnectorConfig = v3ConnectorConfig;
+            @JsonProperty("data") V3ConnectorConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3ConnectorConfig v3ConnectorConfig() {
-        return v3ConnectorConfig;
+    public V3ConnectorConfig data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetConnectorConfigResponse {
     }
 
 
-    public V3GetConnectorConfigResponse withV3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
-        Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
-        this.v3ConnectorConfig = v3ConnectorConfig;
+    public V3GetConnectorConfigResponse withData(V3ConnectorConfig data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetConnectorConfigResponse {
         }
         V3GetConnectorConfigResponse other = (V3GetConnectorConfigResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3ConnectorConfig, other.v3ConnectorConfig);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3ConnectorConfig);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetConnectorConfigResponse.class,
-                "v3ConnectorConfig", v3ConnectorConfig);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3ConnectorConfig v3ConnectorConfig;
+        private V3ConnectorConfig data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3ConnectorConfig(V3ConnectorConfig v3ConnectorConfig) {
-            Utils.checkNotNull(v3ConnectorConfig, "v3ConnectorConfig");
-            this.v3ConnectorConfig = v3ConnectorConfig;
+        public Builder data(V3ConnectorConfig data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetConnectorConfigResponse build() {
 
             return new V3GetConnectorConfigResponse(
-                v3ConnectorConfig);
+                data);
         }
 
     }

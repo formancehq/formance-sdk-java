@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2CreateWorkflowResponse {
 
     @JsonProperty("data")
-    private V2Workflow v2Workflow;
+    private V2Workflow data;
 
     @JsonCreator
     public V2CreateWorkflowResponse(
-            @JsonProperty("data") V2Workflow v2Workflow) {
-        Utils.checkNotNull(v2Workflow, "v2Workflow");
-        this.v2Workflow = v2Workflow;
+            @JsonProperty("data") V2Workflow data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Workflow v2Workflow() {
-        return v2Workflow;
+    public V2Workflow data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2CreateWorkflowResponse {
     }
 
 
-    public V2CreateWorkflowResponse withV2Workflow(V2Workflow v2Workflow) {
-        Utils.checkNotNull(v2Workflow, "v2Workflow");
-        this.v2Workflow = v2Workflow;
+    public V2CreateWorkflowResponse withData(V2Workflow data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2CreateWorkflowResponse {
         }
         V2CreateWorkflowResponse other = (V2CreateWorkflowResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Workflow, other.v2Workflow);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Workflow);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreateWorkflowResponse.class,
-                "v2Workflow", v2Workflow);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Workflow v2Workflow;
+        private V2Workflow data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Workflow(V2Workflow v2Workflow) {
-            Utils.checkNotNull(v2Workflow, "v2Workflow");
-            this.v2Workflow = v2Workflow;
+        public Builder data(V2Workflow data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2CreateWorkflowResponse build() {
 
             return new V2CreateWorkflowResponse(
-                v2Workflow);
+                data);
         }
 
     }

@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2GetLedgerResponse {
 
     @JsonProperty("data")
-    private V2Ledger v2Ledger;
+    private V2Ledger data;
 
     @JsonCreator
     public V2GetLedgerResponse(
-            @JsonProperty("data") V2Ledger v2Ledger) {
-        Utils.checkNotNull(v2Ledger, "v2Ledger");
-        this.v2Ledger = v2Ledger;
+            @JsonProperty("data") V2Ledger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Ledger v2Ledger() {
-        return v2Ledger;
+    public V2Ledger data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2GetLedgerResponse {
     }
 
 
-    public V2GetLedgerResponse withV2Ledger(V2Ledger v2Ledger) {
-        Utils.checkNotNull(v2Ledger, "v2Ledger");
-        this.v2Ledger = v2Ledger;
+    public V2GetLedgerResponse withData(V2Ledger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2GetLedgerResponse {
         }
         V2GetLedgerResponse other = (V2GetLedgerResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Ledger, other.v2Ledger);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Ledger);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetLedgerResponse.class,
-                "v2Ledger", v2Ledger);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Ledger v2Ledger;
+        private V2Ledger data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Ledger(V2Ledger v2Ledger) {
-            Utils.checkNotNull(v2Ledger, "v2Ledger");
-            this.v2Ledger = v2Ledger;
+        public Builder data(V2Ledger data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2GetLedgerResponse build() {
 
             return new V2GetLedgerResponse(
-                v2Ledger);
+                data);
         }
 
     }

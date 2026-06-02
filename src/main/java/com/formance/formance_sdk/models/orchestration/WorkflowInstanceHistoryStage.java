@@ -20,15 +20,6 @@ import java.util.Optional;
 
 public class WorkflowInstanceHistoryStage {
 
-    @JsonProperty("input")
-    private WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("output")
-    private Optional<? extends WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput;
-
-
     @JsonProperty("attempt")
     private long attempt;
 
@@ -36,6 +27,10 @@ public class WorkflowInstanceHistoryStage {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
+
+
+    @JsonProperty("input")
+    private WorkflowInstanceHistoryStageInput input;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -52,6 +47,11 @@ public class WorkflowInstanceHistoryStage {
     private Optional<OffsetDateTime> nextExecution;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("output")
+    private Optional<? extends WorkflowInstanceHistoryStageOutput> output;
+
+
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
@@ -66,59 +66,48 @@ public class WorkflowInstanceHistoryStage {
 
     @JsonCreator
     public WorkflowInstanceHistoryStage(
-            @JsonProperty("input") WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput,
-            @JsonProperty("output") Optional<? extends WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput,
             @JsonProperty("attempt") long attempt,
             @JsonProperty("error") Optional<String> error,
+            @JsonProperty("input") WorkflowInstanceHistoryStageInput input,
             @JsonProperty("lastFailure") Optional<String> lastFailure,
             @JsonProperty("name") String name,
             @JsonProperty("nextExecution") Optional<OffsetDateTime> nextExecution,
+            @JsonProperty("output") Optional<? extends WorkflowInstanceHistoryStageOutput> output,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
-        Utils.checkNotNull(workflowInstanceHistoryStageInput, "workflowInstanceHistoryStageInput");
-        Utils.checkNotNull(workflowInstanceHistoryStageOutput, "workflowInstanceHistoryStageOutput");
         Utils.checkNotNull(attempt, "attempt");
         Utils.checkNotNull(error, "error");
+        Utils.checkNotNull(input, "input");
         Utils.checkNotNull(lastFailure, "lastFailure");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nextExecution, "nextExecution");
+        Utils.checkNotNull(output, "output");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(terminated, "terminated");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
-        this.workflowInstanceHistoryStageInput = workflowInstanceHistoryStageInput;
-        this.workflowInstanceHistoryStageOutput = workflowInstanceHistoryStageOutput;
         this.attempt = attempt;
         this.error = error;
+        this.input = input;
         this.lastFailure = lastFailure;
         this.name = name;
         this.nextExecution = nextExecution;
+        this.output = output;
         this.startedAt = startedAt;
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
     }
     
     public WorkflowInstanceHistoryStage(
-            WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput,
             long attempt,
+            WorkflowInstanceHistoryStageInput input,
             String name,
             OffsetDateTime startedAt,
             boolean terminated) {
-        this(workflowInstanceHistoryStageInput, Optional.empty(), attempt,
-            Optional.empty(), Optional.empty(), name,
+        this(attempt, Optional.empty(), input,
+            Optional.empty(), name, Optional.empty(),
             Optional.empty(), startedAt, terminated,
             Optional.empty());
-    }
-
-    @JsonIgnore
-    public WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput() {
-        return workflowInstanceHistoryStageInput;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput() {
-        return (Optional<WorkflowInstanceHistoryStageOutput>) workflowInstanceHistoryStageOutput;
     }
 
     @JsonIgnore
@@ -129,6 +118,11 @@ public class WorkflowInstanceHistoryStage {
     @JsonIgnore
     public Optional<String> error() {
         return error;
+    }
+
+    @JsonIgnore
+    public WorkflowInstanceHistoryStageInput input() {
+        return input;
     }
 
     @JsonIgnore
@@ -144,6 +138,12 @@ public class WorkflowInstanceHistoryStage {
     @JsonIgnore
     public Optional<OffsetDateTime> nextExecution() {
         return nextExecution;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<WorkflowInstanceHistoryStageOutput> output() {
+        return (Optional<WorkflowInstanceHistoryStageOutput>) output;
     }
 
     @JsonIgnore
@@ -166,25 +166,6 @@ public class WorkflowInstanceHistoryStage {
     }
 
 
-    public WorkflowInstanceHistoryStage withWorkflowInstanceHistoryStageInput(WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput) {
-        Utils.checkNotNull(workflowInstanceHistoryStageInput, "workflowInstanceHistoryStageInput");
-        this.workflowInstanceHistoryStageInput = workflowInstanceHistoryStageInput;
-        return this;
-    }
-
-    public WorkflowInstanceHistoryStage withWorkflowInstanceHistoryStageOutput(WorkflowInstanceHistoryStageOutput workflowInstanceHistoryStageOutput) {
-        Utils.checkNotNull(workflowInstanceHistoryStageOutput, "workflowInstanceHistoryStageOutput");
-        this.workflowInstanceHistoryStageOutput = Optional.ofNullable(workflowInstanceHistoryStageOutput);
-        return this;
-    }
-
-
-    public WorkflowInstanceHistoryStage withWorkflowInstanceHistoryStageOutput(Optional<? extends WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput) {
-        Utils.checkNotNull(workflowInstanceHistoryStageOutput, "workflowInstanceHistoryStageOutput");
-        this.workflowInstanceHistoryStageOutput = workflowInstanceHistoryStageOutput;
-        return this;
-    }
-
     public WorkflowInstanceHistoryStage withAttempt(long attempt) {
         Utils.checkNotNull(attempt, "attempt");
         this.attempt = attempt;
@@ -201,6 +182,12 @@ public class WorkflowInstanceHistoryStage {
     public WorkflowInstanceHistoryStage withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStage withInput(WorkflowInstanceHistoryStageInput input) {
+        Utils.checkNotNull(input, "input");
+        this.input = input;
         return this;
     }
 
@@ -233,6 +220,19 @@ public class WorkflowInstanceHistoryStage {
     public WorkflowInstanceHistoryStage withNextExecution(Optional<OffsetDateTime> nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = nextExecution;
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStage withOutput(WorkflowInstanceHistoryStageOutput output) {
+        Utils.checkNotNull(output, "output");
+        this.output = Optional.ofNullable(output);
+        return this;
+    }
+
+
+    public WorkflowInstanceHistoryStage withOutput(Optional<? extends WorkflowInstanceHistoryStageOutput> output) {
+        Utils.checkNotNull(output, "output");
+        this.output = output;
         return this;
     }
 
@@ -271,13 +271,13 @@ public class WorkflowInstanceHistoryStage {
         }
         WorkflowInstanceHistoryStage other = (WorkflowInstanceHistoryStage) o;
         return 
-            Utils.enhancedDeepEquals(this.workflowInstanceHistoryStageInput, other.workflowInstanceHistoryStageInput) &&
-            Utils.enhancedDeepEquals(this.workflowInstanceHistoryStageOutput, other.workflowInstanceHistoryStageOutput) &&
             Utils.enhancedDeepEquals(this.attempt, other.attempt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.lastFailure, other.lastFailure) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nextExecution, other.nextExecution) &&
+            Utils.enhancedDeepEquals(this.output, other.output) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
             Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
             Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
@@ -286,22 +286,22 @@ public class WorkflowInstanceHistoryStage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            workflowInstanceHistoryStageInput, workflowInstanceHistoryStageOutput, attempt,
-            error, lastFailure, name,
-            nextExecution, startedAt, terminated,
+            attempt, error, input,
+            lastFailure, name, nextExecution,
+            output, startedAt, terminated,
             terminatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(WorkflowInstanceHistoryStage.class,
-                "workflowInstanceHistoryStageInput", workflowInstanceHistoryStageInput,
-                "workflowInstanceHistoryStageOutput", workflowInstanceHistoryStageOutput,
                 "attempt", attempt,
                 "error", error,
+                "input", input,
                 "lastFailure", lastFailure,
                 "name", name,
                 "nextExecution", nextExecution,
+                "output", output,
                 "startedAt", startedAt,
                 "terminated", terminated,
                 "terminatedAt", terminatedAt);
@@ -310,19 +310,19 @@ public class WorkflowInstanceHistoryStage {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput;
-
-        private Optional<? extends WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput = Optional.empty();
-
         private Long attempt;
 
         private Optional<String> error = Optional.empty();
+
+        private WorkflowInstanceHistoryStageInput input;
 
         private Optional<String> lastFailure = Optional.empty();
 
         private String name;
 
         private Optional<OffsetDateTime> nextExecution = Optional.empty();
+
+        private Optional<? extends WorkflowInstanceHistoryStageOutput> output = Optional.empty();
 
         private OffsetDateTime startedAt;
 
@@ -332,26 +332,6 @@ public class WorkflowInstanceHistoryStage {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder workflowInstanceHistoryStageInput(WorkflowInstanceHistoryStageInput workflowInstanceHistoryStageInput) {
-            Utils.checkNotNull(workflowInstanceHistoryStageInput, "workflowInstanceHistoryStageInput");
-            this.workflowInstanceHistoryStageInput = workflowInstanceHistoryStageInput;
-            return this;
-        }
-
-
-        public Builder workflowInstanceHistoryStageOutput(WorkflowInstanceHistoryStageOutput workflowInstanceHistoryStageOutput) {
-            Utils.checkNotNull(workflowInstanceHistoryStageOutput, "workflowInstanceHistoryStageOutput");
-            this.workflowInstanceHistoryStageOutput = Optional.ofNullable(workflowInstanceHistoryStageOutput);
-            return this;
-        }
-
-        public Builder workflowInstanceHistoryStageOutput(Optional<? extends WorkflowInstanceHistoryStageOutput> workflowInstanceHistoryStageOutput) {
-            Utils.checkNotNull(workflowInstanceHistoryStageOutput, "workflowInstanceHistoryStageOutput");
-            this.workflowInstanceHistoryStageOutput = workflowInstanceHistoryStageOutput;
-            return this;
         }
 
 
@@ -371,6 +351,13 @@ public class WorkflowInstanceHistoryStage {
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
+            return this;
+        }
+
+
+        public Builder input(WorkflowInstanceHistoryStageInput input) {
+            Utils.checkNotNull(input, "input");
+            this.input = input;
             return this;
         }
 
@@ -408,6 +395,19 @@ public class WorkflowInstanceHistoryStage {
         }
 
 
+        public Builder output(WorkflowInstanceHistoryStageOutput output) {
+            Utils.checkNotNull(output, "output");
+            this.output = Optional.ofNullable(output);
+            return this;
+        }
+
+        public Builder output(Optional<? extends WorkflowInstanceHistoryStageOutput> output) {
+            Utils.checkNotNull(output, "output");
+            this.output = output;
+            return this;
+        }
+
+
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
@@ -437,9 +437,9 @@ public class WorkflowInstanceHistoryStage {
         public WorkflowInstanceHistoryStage build() {
 
             return new WorkflowInstanceHistoryStage(
-                workflowInstanceHistoryStageInput, workflowInstanceHistoryStageOutput, attempt,
-                error, lastFailure, name,
-                nextExecution, startedAt, terminated,
+                attempt, error, input,
+                lastFailure, name, nextExecution,
+                output, startedAt, terminated,
                 terminatedAt);
         }
 

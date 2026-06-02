@@ -21,12 +21,12 @@ import java.util.Optional;
 
 public class Transaction {
 
-    @JsonProperty("metadata")
-    private Map<String, String> metadata;
-
-
     @JsonProperty("id")
     private BigInteger id;
+
+
+    @JsonProperty("metadata")
+    private Map<String, String> metadata;
 
 
     @JsonProperty("postings")
@@ -47,21 +47,21 @@ public class Transaction {
 
     @JsonCreator
     public Transaction(
-            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("id") BigInteger id,
+            @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("postings") List<Posting> postings,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("reverted") boolean reverted,
             @JsonProperty("timestamp") OffsetDateTime timestamp) {
+        Utils.checkNotNull(id, "id");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(postings, "postings");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(reverted, "reverted");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.metadata = metadata;
         this.id = id;
+        this.metadata = metadata;
         this.postings = postings;
         this.reference = reference;
         this.reverted = reverted;
@@ -69,23 +69,23 @@ public class Transaction {
     }
     
     public Transaction(
-            Map<String, String> metadata,
             BigInteger id,
+            Map<String, String> metadata,
             List<Posting> postings,
             boolean reverted,
             OffsetDateTime timestamp) {
-        this(metadata, id, postings,
+        this(id, metadata, postings,
             Optional.empty(), reverted, timestamp);
-    }
-
-    @JsonIgnore
-    public Map<String, String> metadata() {
-        return metadata;
     }
 
     @JsonIgnore
     public BigInteger id() {
         return id;
+    }
+
+    @JsonIgnore
+    public Map<String, String> metadata() {
+        return metadata;
     }
 
     @JsonIgnore
@@ -113,12 +113,6 @@ public class Transaction {
     }
 
 
-    public Transaction withMetadata(Map<String, String> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = metadata;
-        return this;
-    }
-
     public Transaction withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
@@ -127,6 +121,12 @@ public class Transaction {
     public Transaction withId(BigInteger id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    public Transaction withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -171,8 +171,8 @@ public class Transaction {
         }
         Transaction other = (Transaction) o;
         return 
-            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.postings, other.postings) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.reverted, other.reverted) &&
@@ -182,15 +182,15 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            metadata, id, postings,
+            id, metadata, postings,
             reference, reverted, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Transaction.class,
-                "metadata", metadata,
                 "id", id,
+                "metadata", metadata,
                 "postings", postings,
                 "reference", reference,
                 "reverted", reverted,
@@ -200,9 +200,9 @@ public class Transaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Map<String, String> metadata;
-
         private BigInteger id;
+
+        private Map<String, String> metadata;
 
         private List<Posting> postings;
 
@@ -217,13 +217,6 @@ public class Transaction {
         }
 
 
-        public Builder metadata(Map<String, String> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = metadata;
-            return this;
-        }
-
-
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
             return this;
@@ -232,6 +225,13 @@ public class Transaction {
         public Builder id(BigInteger id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
@@ -272,7 +272,7 @@ public class Transaction {
         public Transaction build() {
 
             return new Transaction(
-                metadata, id, postings,
+                id, metadata, postings,
                 reference, reverted, timestamp);
         }
 

@@ -21,17 +21,12 @@ public class V2StageSend {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends V2Monetary> v2Monetary;
+    private Optional<? extends V2Monetary> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends V2StageSendDestination> v2StageSendDestination;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("source")
-    private Optional<? extends V2StageSendSource> v2StageSendSource;
+    private Optional<? extends V2StageSendDestination> destination;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -40,25 +35,30 @@ public class V2StageSend {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source")
+    private Optional<? extends V2StageSendSource> source;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
 
     @JsonCreator
     public V2StageSend(
-            @JsonProperty("amount") Optional<? extends V2Monetary> v2Monetary,
-            @JsonProperty("destination") Optional<? extends V2StageSendDestination> v2StageSendDestination,
-            @JsonProperty("source") Optional<? extends V2StageSendSource> v2StageSendSource,
+            @JsonProperty("amount") Optional<? extends V2Monetary> amount,
+            @JsonProperty("destination") Optional<? extends V2StageSendDestination> destination,
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
+            @JsonProperty("source") Optional<? extends V2StageSendSource> source,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(v2Monetary, "v2Monetary");
-        Utils.checkNotNull(v2StageSendDestination, "v2StageSendDestination");
-        Utils.checkNotNull(v2StageSendSource, "v2StageSendSource");
+        Utils.checkNotNull(amount, "amount");
+        Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(source, "source");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.v2Monetary = v2Monetary;
-        this.v2StageSendDestination = v2StageSendDestination;
-        this.v2StageSendSource = v2StageSendSource;
+        this.amount = amount;
+        this.destination = destination;
         this.metadata = metadata;
+        this.source = source;
         this.timestamp = timestamp;
     }
     
@@ -69,26 +69,26 @@ public class V2StageSend {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2Monetary> v2Monetary() {
-        return (Optional<V2Monetary>) v2Monetary;
+    public Optional<V2Monetary> amount() {
+        return (Optional<V2Monetary>) amount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2StageSendDestination> v2StageSendDestination() {
-        return (Optional<V2StageSendDestination>) v2StageSendDestination;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2StageSendSource> v2StageSendSource() {
-        return (Optional<V2StageSendSource>) v2StageSendSource;
+    public Optional<V2StageSendDestination> destination() {
+        return (Optional<V2StageSendDestination>) destination;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2StageSendSource> source() {
+        return (Optional<V2StageSendSource>) source;
     }
 
     @JsonIgnore
@@ -101,42 +101,29 @@ public class V2StageSend {
     }
 
 
-    public V2StageSend withV2Monetary(V2Monetary v2Monetary) {
-        Utils.checkNotNull(v2Monetary, "v2Monetary");
-        this.v2Monetary = Optional.ofNullable(v2Monetary);
+    public V2StageSend withAmount(V2Monetary amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = Optional.ofNullable(amount);
         return this;
     }
 
 
-    public V2StageSend withV2Monetary(Optional<? extends V2Monetary> v2Monetary) {
-        Utils.checkNotNull(v2Monetary, "v2Monetary");
-        this.v2Monetary = v2Monetary;
+    public V2StageSend withAmount(Optional<? extends V2Monetary> amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
         return this;
     }
 
-    public V2StageSend withV2StageSendDestination(V2StageSendDestination v2StageSendDestination) {
-        Utils.checkNotNull(v2StageSendDestination, "v2StageSendDestination");
-        this.v2StageSendDestination = Optional.ofNullable(v2StageSendDestination);
-        return this;
-    }
-
-
-    public V2StageSend withV2StageSendDestination(Optional<? extends V2StageSendDestination> v2StageSendDestination) {
-        Utils.checkNotNull(v2StageSendDestination, "v2StageSendDestination");
-        this.v2StageSendDestination = v2StageSendDestination;
-        return this;
-    }
-
-    public V2StageSend withV2StageSendSource(V2StageSendSource v2StageSendSource) {
-        Utils.checkNotNull(v2StageSendSource, "v2StageSendSource");
-        this.v2StageSendSource = Optional.ofNullable(v2StageSendSource);
+    public V2StageSend withDestination(V2StageSendDestination destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = Optional.ofNullable(destination);
         return this;
     }
 
 
-    public V2StageSend withV2StageSendSource(Optional<? extends V2StageSendSource> v2StageSendSource) {
-        Utils.checkNotNull(v2StageSendSource, "v2StageSendSource");
-        this.v2StageSendSource = v2StageSendSource;
+    public V2StageSend withDestination(Optional<? extends V2StageSendDestination> destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = destination;
         return this;
     }
 
@@ -150,6 +137,19 @@ public class V2StageSend {
     public V2StageSend withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
+        return this;
+    }
+
+    public V2StageSend withSource(V2StageSendSource source) {
+        Utils.checkNotNull(source, "source");
+        this.source = Optional.ofNullable(source);
+        return this;
+    }
+
+
+    public V2StageSend withSource(Optional<? extends V2StageSendSource> source) {
+        Utils.checkNotNull(source, "source");
+        this.source = source;
         return this;
     }
 
@@ -176,40 +176,40 @@ public class V2StageSend {
         }
         V2StageSend other = (V2StageSend) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Monetary, other.v2Monetary) &&
-            Utils.enhancedDeepEquals(this.v2StageSendDestination, other.v2StageSendDestination) &&
-            Utils.enhancedDeepEquals(this.v2StageSendSource, other.v2StageSendSource) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
             Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Monetary, v2StageSendDestination, v2StageSendSource,
-            metadata, timestamp);
+            amount, destination, metadata,
+            source, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2StageSend.class,
-                "v2Monetary", v2Monetary,
-                "v2StageSendDestination", v2StageSendDestination,
-                "v2StageSendSource", v2StageSendSource,
+                "amount", amount,
+                "destination", destination,
                 "metadata", metadata,
+                "source", source,
                 "timestamp", timestamp);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2Monetary> v2Monetary = Optional.empty();
+        private Optional<? extends V2Monetary> amount = Optional.empty();
 
-        private Optional<? extends V2StageSendDestination> v2StageSendDestination = Optional.empty();
-
-        private Optional<? extends V2StageSendSource> v2StageSendSource = Optional.empty();
+        private Optional<? extends V2StageSendDestination> destination = Optional.empty();
 
         private Optional<? extends Map<String, String>> metadata = Optional.empty();
+
+        private Optional<? extends V2StageSendSource> source = Optional.empty();
 
         private Optional<OffsetDateTime> timestamp = Optional.empty();
 
@@ -218,41 +218,28 @@ public class V2StageSend {
         }
 
 
-        public Builder v2Monetary(V2Monetary v2Monetary) {
-            Utils.checkNotNull(v2Monetary, "v2Monetary");
-            this.v2Monetary = Optional.ofNullable(v2Monetary);
+        public Builder amount(V2Monetary amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
-        public Builder v2Monetary(Optional<? extends V2Monetary> v2Monetary) {
-            Utils.checkNotNull(v2Monetary, "v2Monetary");
-            this.v2Monetary = v2Monetary;
-            return this;
-        }
-
-
-        public Builder v2StageSendDestination(V2StageSendDestination v2StageSendDestination) {
-            Utils.checkNotNull(v2StageSendDestination, "v2StageSendDestination");
-            this.v2StageSendDestination = Optional.ofNullable(v2StageSendDestination);
-            return this;
-        }
-
-        public Builder v2StageSendDestination(Optional<? extends V2StageSendDestination> v2StageSendDestination) {
-            Utils.checkNotNull(v2StageSendDestination, "v2StageSendDestination");
-            this.v2StageSendDestination = v2StageSendDestination;
+        public Builder amount(Optional<? extends V2Monetary> amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
             return this;
         }
 
 
-        public Builder v2StageSendSource(V2StageSendSource v2StageSendSource) {
-            Utils.checkNotNull(v2StageSendSource, "v2StageSendSource");
-            this.v2StageSendSource = Optional.ofNullable(v2StageSendSource);
+        public Builder destination(V2StageSendDestination destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = Optional.ofNullable(destination);
             return this;
         }
 
-        public Builder v2StageSendSource(Optional<? extends V2StageSendSource> v2StageSendSource) {
-            Utils.checkNotNull(v2StageSendSource, "v2StageSendSource");
-            this.v2StageSendSource = v2StageSendSource;
+        public Builder destination(Optional<? extends V2StageSendDestination> destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = destination;
             return this;
         }
 
@@ -266,6 +253,19 @@ public class V2StageSend {
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder source(V2StageSendSource source) {
+            Utils.checkNotNull(source, "source");
+            this.source = Optional.ofNullable(source);
+            return this;
+        }
+
+        public Builder source(Optional<? extends V2StageSendSource> source) {
+            Utils.checkNotNull(source, "source");
+            this.source = source;
             return this;
         }
 
@@ -285,8 +285,8 @@ public class V2StageSend {
         public V2StageSend build() {
 
             return new V2StageSend(
-                v2Monetary, v2StageSendDestination, v2StageSendSource,
-                metadata, timestamp);
+                amount, destination, metadata,
+                source, timestamp);
         }
 
     }

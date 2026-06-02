@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2ReadTriggerResponse {
 
     @JsonProperty("data")
-    private V2TriggerData1 v2TriggerData;
+    private V2Trigger data;
 
     @JsonCreator
     public V2ReadTriggerResponse(
-            @JsonProperty("data") V2TriggerData1 v2TriggerData) {
-        Utils.checkNotNull(v2TriggerData, "v2TriggerData");
-        this.v2TriggerData = v2TriggerData;
+            @JsonProperty("data") V2Trigger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2TriggerData1 v2TriggerData() {
-        return v2TriggerData;
+    public V2Trigger data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2ReadTriggerResponse {
     }
 
 
-    public V2ReadTriggerResponse withV2TriggerData(V2TriggerData1 v2TriggerData) {
-        Utils.checkNotNull(v2TriggerData, "v2TriggerData");
-        this.v2TriggerData = v2TriggerData;
+    public V2ReadTriggerResponse withData(V2Trigger data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2ReadTriggerResponse {
         }
         V2ReadTriggerResponse other = (V2ReadTriggerResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2TriggerData, other.v2TriggerData);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2TriggerData);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ReadTriggerResponse.class,
-                "v2TriggerData", v2TriggerData);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2TriggerData1 v2TriggerData;
+        private V2Trigger data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2TriggerData(V2TriggerData1 v2TriggerData) {
-            Utils.checkNotNull(v2TriggerData, "v2TriggerData");
-            this.v2TriggerData = v2TriggerData;
+        public Builder data(V2Trigger data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2ReadTriggerResponse build() {
 
             return new V2ReadTriggerResponse(
-                v2TriggerData);
+                data);
         }
 
     }

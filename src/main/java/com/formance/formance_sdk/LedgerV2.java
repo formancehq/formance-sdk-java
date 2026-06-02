@@ -6,7 +6,7 @@ package com.formance.formance_sdk;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
-import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration2;
+import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
@@ -334,8 +334,8 @@ public class LedgerV2 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public V2CreateExporterResponse createExporter(V2ExporterConfiguration2 request) {
-        RequestOperation<V2ExporterConfiguration2, V2CreateExporterResponse> operation
+    public V2CreateExporterResponse createExporter(V2ExporterConfiguration request) {
+        RequestOperation<V2ExporterConfiguration, V2CreateExporterResponse> operation
               = new V2CreateExporter.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

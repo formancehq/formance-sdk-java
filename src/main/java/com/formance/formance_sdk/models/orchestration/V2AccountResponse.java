@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2AccountResponse {
 
     @JsonProperty("data")
-    private V2Account v2Account;
+    private V2Account data;
 
     @JsonCreator
     public V2AccountResponse(
-            @JsonProperty("data") V2Account v2Account) {
-        Utils.checkNotNull(v2Account, "v2Account");
-        this.v2Account = v2Account;
+            @JsonProperty("data") V2Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Account v2Account() {
-        return v2Account;
+    public V2Account data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2AccountResponse {
     }
 
 
-    public V2AccountResponse withV2Account(V2Account v2Account) {
-        Utils.checkNotNull(v2Account, "v2Account");
-        this.v2Account = v2Account;
+    public V2AccountResponse withData(V2Account data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2AccountResponse {
         }
         V2AccountResponse other = (V2AccountResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Account, other.v2Account);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Account);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2AccountResponse.class,
-                "v2Account", v2Account);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Account v2Account;
+        private V2Account data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Account(V2Account v2Account) {
-            Utils.checkNotNull(v2Account, "v2Account");
-            this.v2Account = v2Account;
+        public Builder data(V2Account data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2AccountResponse build() {
 
             return new V2AccountResponse(
-                v2Account);
+                data);
         }
 
     }

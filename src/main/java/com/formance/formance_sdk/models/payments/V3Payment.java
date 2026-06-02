@@ -22,19 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class V3Payment {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
-    @JsonProperty("status")
-    private V3PaymentStatusEnum v3PaymentStatusEnum;
-
-
-    @JsonProperty("type")
-    private V3PaymentTypeEnum v3PaymentTypeEnum;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("adjustments")
     private JsonNullable<? extends List<V3PaymentAdjustment>> adjustments;
 
@@ -68,6 +55,11 @@ public class V3Payment {
     private BigInteger initialAmount;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("provider")
     private String provider;
 
@@ -84,11 +76,16 @@ public class V3Payment {
     @JsonProperty("sourceAccountID")
     private JsonNullable<String> sourceAccountID;
 
+
+    @JsonProperty("status")
+    private V3PaymentStatusEnum status;
+
+
+    @JsonProperty("type")
+    private V3PaymentTypeEnum type;
+
     @JsonCreator
     public V3Payment(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
-            @JsonProperty("status") V3PaymentStatusEnum v3PaymentStatusEnum,
-            @JsonProperty("type") V3PaymentTypeEnum v3PaymentTypeEnum,
             @JsonProperty("adjustments") JsonNullable<? extends List<V3PaymentAdjustment>> adjustments,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -97,13 +94,13 @@ public class V3Payment {
             @JsonProperty("destinationAccountID") JsonNullable<String> destinationAccountID,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("provider") String provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheme") String scheme,
-            @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
-        Utils.checkNotNull(v3PaymentTypeEnum, "v3PaymentTypeEnum");
+            @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID,
+            @JsonProperty("status") V3PaymentStatusEnum status,
+            @JsonProperty("type") V3PaymentTypeEnum type) {
         Utils.checkNotNull(adjustments, "adjustments");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
@@ -112,13 +109,13 @@ public class V3Payment {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(initialAmount, "initialAmount");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheme, "scheme");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
-        this.v3Metadata = v3Metadata;
-        this.v3PaymentStatusEnum = v3PaymentStatusEnum;
-        this.v3PaymentTypeEnum = v3PaymentTypeEnum;
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(type, "type");
         this.adjustments = adjustments;
         this.amount = amount;
         this.asset = asset;
@@ -127,15 +124,16 @@ public class V3Payment {
         this.destinationAccountID = destinationAccountID;
         this.id = id;
         this.initialAmount = initialAmount;
+        this.metadata = metadata;
         this.provider = provider;
         this.reference = reference;
         this.scheme = scheme;
         this.sourceAccountID = sourceAccountID;
+        this.status = status;
+        this.type = type;
     }
     
     public V3Payment(
-            V3PaymentStatusEnum v3PaymentStatusEnum,
-            V3PaymentTypeEnum v3PaymentTypeEnum,
             BigInteger amount,
             String asset,
             String connectorID,
@@ -144,28 +142,14 @@ public class V3Payment {
             BigInteger initialAmount,
             String provider,
             String reference,
-            String scheme) {
-        this(JsonNullable.undefined(), v3PaymentStatusEnum, v3PaymentTypeEnum,
-            JsonNullable.undefined(), amount, asset,
+            String scheme,
+            V3PaymentStatusEnum status,
+            V3PaymentTypeEnum type) {
+        this(JsonNullable.undefined(), amount, asset,
             connectorID, createdAt, JsonNullable.undefined(),
-            id, initialAmount, provider,
-            reference, scheme, JsonNullable.undefined());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
-    }
-
-    @JsonIgnore
-    public V3PaymentStatusEnum v3PaymentStatusEnum() {
-        return v3PaymentStatusEnum;
-    }
-
-    @JsonIgnore
-    public V3PaymentTypeEnum v3PaymentTypeEnum() {
-        return v3PaymentTypeEnum;
+            id, initialAmount, JsonNullable.undefined(),
+            provider, reference, scheme,
+            JsonNullable.undefined(), status, type);
     }
 
     @SuppressWarnings("unchecked")
@@ -209,6 +193,12 @@ public class V3Payment {
         return initialAmount;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String provider() {
         return provider;
@@ -229,34 +219,20 @@ public class V3Payment {
         return sourceAccountID;
     }
 
+    @JsonIgnore
+    public V3PaymentStatusEnum status() {
+        return status;
+    }
+
+    @JsonIgnore
+    public V3PaymentTypeEnum type() {
+        return type;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3Payment withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3Payment withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
-
-    public V3Payment withV3PaymentStatusEnum(V3PaymentStatusEnum v3PaymentStatusEnum) {
-        Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
-        this.v3PaymentStatusEnum = v3PaymentStatusEnum;
-        return this;
-    }
-
-    public V3Payment withV3PaymentTypeEnum(V3PaymentTypeEnum v3PaymentTypeEnum) {
-        Utils.checkNotNull(v3PaymentTypeEnum, "v3PaymentTypeEnum");
-        this.v3PaymentTypeEnum = v3PaymentTypeEnum;
-        return this;
-    }
 
     public V3Payment withAdjustments(List<V3PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -328,6 +304,18 @@ public class V3Payment {
         return this;
     }
 
+    public V3Payment withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3Payment withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     public V3Payment withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -358,6 +346,18 @@ public class V3Payment {
         return this;
     }
 
+    public V3Payment withStatus(V3PaymentStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    public V3Payment withType(V3PaymentTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -368,9 +368,6 @@ public class V3Payment {
         }
         V3Payment other = (V3Payment) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
-            Utils.enhancedDeepEquals(this.v3PaymentStatusEnum, other.v3PaymentStatusEnum) &&
-            Utils.enhancedDeepEquals(this.v3PaymentTypeEnum, other.v3PaymentTypeEnum) &&
             Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
@@ -379,28 +376,28 @@ public class V3Payment {
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
-            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID);
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, v3PaymentStatusEnum, v3PaymentTypeEnum,
             adjustments, amount, asset,
             connectorID, createdAt, destinationAccountID,
-            id, initialAmount, provider,
-            reference, scheme, sourceAccountID);
+            id, initialAmount, metadata,
+            provider, reference, scheme,
+            sourceAccountID, status, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Payment.class,
-                "v3Metadata", v3Metadata,
-                "v3PaymentStatusEnum", v3PaymentStatusEnum,
-                "v3PaymentTypeEnum", v3PaymentTypeEnum,
                 "adjustments", adjustments,
                 "amount", amount,
                 "asset", asset,
@@ -409,20 +406,17 @@ public class V3Payment {
                 "destinationAccountID", destinationAccountID,
                 "id", id,
                 "initialAmount", initialAmount,
+                "metadata", metadata,
                 "provider", provider,
                 "reference", reference,
                 "scheme", scheme,
-                "sourceAccountID", sourceAccountID);
+                "sourceAccountID", sourceAccountID,
+                "status", status,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
-        private V3PaymentStatusEnum v3PaymentStatusEnum;
-
-        private V3PaymentTypeEnum v3PaymentTypeEnum;
 
         private JsonNullable<? extends List<V3PaymentAdjustment>> adjustments = JsonNullable.undefined();
 
@@ -440,6 +434,8 @@ public class V3Payment {
 
         private BigInteger initialAmount;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String provider;
 
         private String reference;
@@ -448,35 +444,12 @@ public class V3Payment {
 
         private JsonNullable<String> sourceAccountID = JsonNullable.undefined();
 
+        private V3PaymentStatusEnum status;
+
+        private V3PaymentTypeEnum type;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
-        }
-
-
-        public Builder v3PaymentStatusEnum(V3PaymentStatusEnum v3PaymentStatusEnum) {
-            Utils.checkNotNull(v3PaymentStatusEnum, "v3PaymentStatusEnum");
-            this.v3PaymentStatusEnum = v3PaymentStatusEnum;
-            return this;
-        }
-
-
-        public Builder v3PaymentTypeEnum(V3PaymentTypeEnum v3PaymentTypeEnum) {
-            Utils.checkNotNull(v3PaymentTypeEnum, "v3PaymentTypeEnum");
-            this.v3PaymentTypeEnum = v3PaymentTypeEnum;
-            return this;
         }
 
 
@@ -558,6 +531,19 @@ public class V3Payment {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -591,14 +577,28 @@ public class V3Payment {
             return this;
         }
 
+
+        public Builder status(V3PaymentStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        public Builder type(V3PaymentTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public V3Payment build() {
 
             return new V3Payment(
-                v3Metadata, v3PaymentStatusEnum, v3PaymentTypeEnum,
                 adjustments, amount, asset,
                 connectorID, createdAt, destinationAccountID,
-                id, initialAmount, provider,
-                reference, scheme, sourceAccountID);
+                id, initialAmount, metadata,
+                provider, reference, scheme,
+                sourceAccountID, status, type);
         }
 
     }

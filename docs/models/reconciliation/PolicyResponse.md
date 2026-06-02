@@ -7,4 +7,4 @@ OK
 
 | Field                                   | Type                                    | Required                                | Description                             |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `policy`                                | [Policy](../../models/shared/Policy.md) | :heavy_check_mark:                      | N/A                                     |
+| `data`                                  | [Policy](../../models/shared/Policy.md) | :heavy_check_mark:                      | N/A                                     |

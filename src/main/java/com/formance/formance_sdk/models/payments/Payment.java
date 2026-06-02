@@ -21,28 +21,6 @@ import java.util.Optional;
 
 public class Payment {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("provider")
-    private Optional<? extends Connector> connector;
-
-
-    @JsonInclude(Include.ALWAYS)
-    @JsonProperty("metadata")
-    private Optional<? extends Map<String, String>> paymentMetadata;
-
-
-    @JsonProperty("scheme")
-    private PaymentScheme paymentScheme;
-
-
-    @JsonProperty("status")
-    private PaymentStatus paymentStatus;
-
-
-    @JsonProperty("type")
-    private PaymentType paymentType;
-
-
     @JsonProperty("adjustments")
     private List<PaymentAdjustment> adjustments;
 
@@ -76,6 +54,16 @@ public class Payment {
 
 
     @JsonInclude(Include.ALWAYS)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, String>> metadata;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provider")
+    private Optional<? extends Connector> provider;
+
+
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends PaymentRaw> raw;
 
@@ -84,16 +72,23 @@ public class Payment {
     private String reference;
 
 
+    @JsonProperty("scheme")
+    private PaymentScheme scheme;
+
+
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
+
+    @JsonProperty("status")
+    private PaymentStatus status;
+
+
+    @JsonProperty("type")
+    private PaymentType type;
+
     @JsonCreator
     public Payment(
-            @JsonProperty("provider") Optional<? extends Connector> connector,
-            @JsonProperty("metadata") Optional<? extends Map<String, String>> paymentMetadata,
-            @JsonProperty("scheme") PaymentScheme paymentScheme,
-            @JsonProperty("status") PaymentStatus paymentStatus,
-            @JsonProperty("type") PaymentType paymentType,
             @JsonProperty("adjustments") List<PaymentAdjustment> adjustments,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
@@ -102,14 +97,14 @@ public class Payment {
             @JsonProperty("destinationAccountID") String destinationAccountID,
             @JsonProperty("id") String id,
             @JsonProperty("initialAmount") BigInteger initialAmount,
+            @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
+            @JsonProperty("provider") Optional<? extends Connector> provider,
             @JsonProperty("raw") Optional<? extends PaymentRaw> raw,
             @JsonProperty("reference") String reference,
-            @JsonProperty("sourceAccountID") String sourceAccountID) {
-        Utils.checkNotNull(connector, "connector");
-        Utils.checkNotNull(paymentMetadata, "paymentMetadata");
-        Utils.checkNotNull(paymentScheme, "paymentScheme");
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        Utils.checkNotNull(paymentType, "paymentType");
+            @JsonProperty("scheme") PaymentScheme scheme,
+            @JsonProperty("sourceAccountID") String sourceAccountID,
+            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("type") PaymentType type) {
         Utils.checkNotNull(adjustments, "adjustments");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
@@ -118,14 +113,14 @@ public class Payment {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(initialAmount, "initialAmount");
+        Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(scheme, "scheme");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
-        this.connector = connector;
-        this.paymentMetadata = paymentMetadata;
-        this.paymentScheme = paymentScheme;
-        this.paymentStatus = paymentStatus;
-        this.paymentType = paymentType;
+        Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(type, "type");
         this.adjustments = adjustments;
         this.amount = amount;
         this.asset = asset;
@@ -134,15 +129,17 @@ public class Payment {
         this.destinationAccountID = destinationAccountID;
         this.id = id;
         this.initialAmount = initialAmount;
+        this.metadata = metadata;
+        this.provider = provider;
         this.raw = raw;
         this.reference = reference;
+        this.scheme = scheme;
         this.sourceAccountID = sourceAccountID;
+        this.status = status;
+        this.type = type;
     }
     
     public Payment(
-            PaymentScheme paymentScheme,
-            PaymentStatus paymentStatus,
-            PaymentType paymentType,
             List<PaymentAdjustment> adjustments,
             BigInteger amount,
             String asset,
@@ -152,40 +149,16 @@ public class Payment {
             String id,
             BigInteger initialAmount,
             String reference,
-            String sourceAccountID) {
-        this(Optional.empty(), Optional.empty(), paymentScheme,
-            paymentStatus, paymentType, adjustments,
-            amount, asset, connectorID,
-            createdAt, destinationAccountID, id,
-            initialAmount, Optional.empty(), reference,
-            sourceAccountID);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Connector> connector() {
-        return (Optional<Connector>) connector;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, String>> paymentMetadata() {
-        return (Optional<Map<String, String>>) paymentMetadata;
-    }
-
-    @JsonIgnore
-    public PaymentScheme paymentScheme() {
-        return paymentScheme;
-    }
-
-    @JsonIgnore
-    public PaymentStatus paymentStatus() {
-        return paymentStatus;
-    }
-
-    @JsonIgnore
-    public PaymentType paymentType() {
-        return paymentType;
+            PaymentScheme scheme,
+            String sourceAccountID,
+            PaymentStatus status,
+            PaymentType type) {
+        this(adjustments, amount, asset,
+            connectorID, createdAt, destinationAccountID,
+            id, initialAmount, Optional.empty(),
+            Optional.empty(), Optional.empty(), reference,
+            scheme, sourceAccountID, status,
+            type);
     }
 
     @JsonIgnore
@@ -230,6 +203,18 @@ public class Payment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<Map<String, String>> metadata() {
+        return (Optional<Map<String, String>>) metadata;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Connector> provider() {
+        return (Optional<Connector>) provider;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<PaymentRaw> raw() {
         return (Optional<PaymentRaw>) raw;
     }
@@ -240,58 +225,29 @@ public class Payment {
     }
 
     @JsonIgnore
+    public PaymentScheme scheme() {
+        return scheme;
+    }
+
+    @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
+    }
+
+    @JsonIgnore
+    public PaymentStatus status() {
+        return status;
+    }
+
+    @JsonIgnore
+    public PaymentType type() {
+        return type;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public Payment withConnector(Connector connector) {
-        Utils.checkNotNull(connector, "connector");
-        this.connector = Optional.ofNullable(connector);
-        return this;
-    }
-
-
-    public Payment withConnector(Optional<? extends Connector> connector) {
-        Utils.checkNotNull(connector, "connector");
-        this.connector = connector;
-        return this;
-    }
-
-    public Payment withPaymentMetadata(Map<String, String> paymentMetadata) {
-        Utils.checkNotNull(paymentMetadata, "paymentMetadata");
-        this.paymentMetadata = Optional.ofNullable(paymentMetadata);
-        return this;
-    }
-
-
-    public Payment withPaymentMetadata(Optional<? extends Map<String, String>> paymentMetadata) {
-        Utils.checkNotNull(paymentMetadata, "paymentMetadata");
-        this.paymentMetadata = paymentMetadata;
-        return this;
-    }
-
-    public Payment withPaymentScheme(PaymentScheme paymentScheme) {
-        Utils.checkNotNull(paymentScheme, "paymentScheme");
-        this.paymentScheme = paymentScheme;
-        return this;
-    }
-
-    public Payment withPaymentStatus(PaymentStatus paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        this.paymentStatus = paymentStatus;
-        return this;
-    }
-
-    public Payment withPaymentType(PaymentType paymentType) {
-        Utils.checkNotNull(paymentType, "paymentType");
-        this.paymentType = paymentType;
-        return this;
-    }
 
     public Payment withAdjustments(List<PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
@@ -351,6 +307,32 @@ public class Payment {
         return this;
     }
 
+    public Payment withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    public Payment withMetadata(Optional<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    public Payment withProvider(Connector provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = Optional.ofNullable(provider);
+        return this;
+    }
+
+
+    public Payment withProvider(Optional<? extends Connector> provider) {
+        Utils.checkNotNull(provider, "provider");
+        this.provider = provider;
+        return this;
+    }
+
     public Payment withRaw(PaymentRaw raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
@@ -370,9 +352,27 @@ public class Payment {
         return this;
     }
 
+    public Payment withScheme(PaymentScheme scheme) {
+        Utils.checkNotNull(scheme, "scheme");
+        this.scheme = scheme;
+        return this;
+    }
+
     public Payment withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
+        return this;
+    }
+
+    public Payment withStatus(PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    public Payment withType(PaymentType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -386,11 +386,6 @@ public class Payment {
         }
         Payment other = (Payment) o;
         return 
-            Utils.enhancedDeepEquals(this.connector, other.connector) &&
-            Utils.enhancedDeepEquals(this.paymentMetadata, other.paymentMetadata) &&
-            Utils.enhancedDeepEquals(this.paymentScheme, other.paymentScheme) &&
-            Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
-            Utils.enhancedDeepEquals(this.paymentType, other.paymentType) &&
             Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
@@ -399,30 +394,30 @@ public class Payment {
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
-            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID);
+            Utils.enhancedDeepEquals(this.scheme, other.scheme) &&
+            Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connector, paymentMetadata, paymentScheme,
-            paymentStatus, paymentType, adjustments,
-            amount, asset, connectorID,
-            createdAt, destinationAccountID, id,
-            initialAmount, raw, reference,
-            sourceAccountID);
+            adjustments, amount, asset,
+            connectorID, createdAt, destinationAccountID,
+            id, initialAmount, metadata,
+            provider, raw, reference,
+            scheme, sourceAccountID, status,
+            type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Payment.class,
-                "connector", connector,
-                "paymentMetadata", paymentMetadata,
-                "paymentScheme", paymentScheme,
-                "paymentStatus", paymentStatus,
-                "paymentType", paymentType,
                 "adjustments", adjustments,
                 "amount", amount,
                 "asset", asset,
@@ -431,23 +426,18 @@ public class Payment {
                 "destinationAccountID", destinationAccountID,
                 "id", id,
                 "initialAmount", initialAmount,
+                "metadata", metadata,
+                "provider", provider,
                 "raw", raw,
                 "reference", reference,
-                "sourceAccountID", sourceAccountID);
+                "scheme", scheme,
+                "sourceAccountID", sourceAccountID,
+                "status", status,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends Connector> connector = Optional.empty();
-
-        private Optional<? extends Map<String, String>> paymentMetadata = Optional.empty();
-
-        private PaymentScheme paymentScheme;
-
-        private PaymentStatus paymentStatus;
-
-        private PaymentType paymentType;
 
         private List<PaymentAdjustment> adjustments;
 
@@ -465,61 +455,24 @@ public class Payment {
 
         private BigInteger initialAmount;
 
+        private Optional<? extends Map<String, String>> metadata = Optional.empty();
+
+        private Optional<? extends Connector> provider = Optional.empty();
+
         private Optional<? extends PaymentRaw> raw = Optional.empty();
 
         private String reference;
 
+        private PaymentScheme scheme;
+
         private String sourceAccountID;
+
+        private PaymentStatus status;
+
+        private PaymentType type;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder connector(Connector connector) {
-            Utils.checkNotNull(connector, "connector");
-            this.connector = Optional.ofNullable(connector);
-            return this;
-        }
-
-        public Builder connector(Optional<? extends Connector> connector) {
-            Utils.checkNotNull(connector, "connector");
-            this.connector = connector;
-            return this;
-        }
-
-
-        public Builder paymentMetadata(Map<String, String> paymentMetadata) {
-            Utils.checkNotNull(paymentMetadata, "paymentMetadata");
-            this.paymentMetadata = Optional.ofNullable(paymentMetadata);
-            return this;
-        }
-
-        public Builder paymentMetadata(Optional<? extends Map<String, String>> paymentMetadata) {
-            Utils.checkNotNull(paymentMetadata, "paymentMetadata");
-            this.paymentMetadata = paymentMetadata;
-            return this;
-        }
-
-
-        public Builder paymentScheme(PaymentScheme paymentScheme) {
-            Utils.checkNotNull(paymentScheme, "paymentScheme");
-            this.paymentScheme = paymentScheme;
-            return this;
-        }
-
-
-        public Builder paymentStatus(PaymentStatus paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
-            this.paymentStatus = paymentStatus;
-            return this;
-        }
-
-
-        public Builder paymentType(PaymentType paymentType) {
-            Utils.checkNotNull(paymentType, "paymentType");
-            this.paymentType = paymentType;
-            return this;
         }
 
 
@@ -589,6 +542,32 @@ public class Payment {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        public Builder metadata(Optional<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder provider(Connector provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = Optional.ofNullable(provider);
+            return this;
+        }
+
+        public Builder provider(Optional<? extends Connector> provider) {
+            Utils.checkNotNull(provider, "provider");
+            this.provider = provider;
+            return this;
+        }
+
+
         public Builder raw(PaymentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
@@ -609,21 +588,42 @@ public class Payment {
         }
 
 
+        public Builder scheme(PaymentScheme scheme) {
+            Utils.checkNotNull(scheme, "scheme");
+            this.scheme = scheme;
+            return this;
+        }
+
+
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
             return this;
         }
 
+
+        public Builder status(PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        public Builder type(PaymentType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public Payment build() {
 
             return new Payment(
-                connector, paymentMetadata, paymentScheme,
-                paymentStatus, paymentType, adjustments,
-                amount, asset, connectorID,
-                createdAt, destinationAccountID, id,
-                initialAmount, raw, reference,
-                sourceAccountID);
+                adjustments, amount, asset,
+                connectorID, createdAt, destinationAccountID,
+                id, initialAmount, metadata,
+                provider, raw, reference,
+                scheme, sourceAccountID, status,
+                type);
         }
 
     }

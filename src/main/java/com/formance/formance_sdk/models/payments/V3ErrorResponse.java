@@ -55,13 +55,13 @@ public class V3ErrorResponse extends SDKBaseError {
     }
 
     @Deprecated
-    public Optional<V3ErrorsEnum> v3ErrorsEnum() {
-        return data().map(Data::v3ErrorsEnum);
+    public Optional<String> details() {
+        return data().flatMap(Data::details);
     }
 
     @Deprecated
-    public Optional<String> details() {
-        return data().flatMap(Data::details);
+    public Optional<V3ErrorsEnum> errorCode() {
+        return data().map(Data::errorCode);
     }
 
     @Deprecated
@@ -82,13 +82,13 @@ public class V3ErrorResponse extends SDKBaseError {
 
     public static class Data {
 
-        @JsonProperty("errorCode")
-        private V3ErrorsEnum v3ErrorsEnum;
-
-
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("details")
         private Optional<String> details;
+
+
+        @JsonProperty("errorCode")
+        private V3ErrorsEnum errorCode;
 
 
         @JsonProperty("errorMessage")
@@ -96,31 +96,31 @@ public class V3ErrorResponse extends SDKBaseError {
 
         @JsonCreator
         public Data(
-                @JsonProperty("errorCode") V3ErrorsEnum v3ErrorsEnum,
                 @JsonProperty("details") Optional<String> details,
+                @JsonProperty("errorCode") V3ErrorsEnum errorCode,
                 @JsonProperty("errorMessage") String errorMessage) {
-            Utils.checkNotNull(v3ErrorsEnum, "v3ErrorsEnum");
             Utils.checkNotNull(details, "details");
+            Utils.checkNotNull(errorCode, "errorCode");
             Utils.checkNotNull(errorMessage, "errorMessage");
-            this.v3ErrorsEnum = v3ErrorsEnum;
             this.details = details;
+            this.errorCode = errorCode;
             this.errorMessage = errorMessage;
         }
         
         public Data(
-                V3ErrorsEnum v3ErrorsEnum,
+                V3ErrorsEnum errorCode,
                 String errorMessage) {
-            this(v3ErrorsEnum, Optional.empty(), errorMessage);
-        }
-
-        @JsonIgnore
-        public V3ErrorsEnum v3ErrorsEnum() {
-            return v3ErrorsEnum;
+            this(Optional.empty(), errorCode, errorMessage);
         }
 
         @JsonIgnore
         public Optional<String> details() {
             return details;
+        }
+
+        @JsonIgnore
+        public V3ErrorsEnum errorCode() {
+            return errorCode;
         }
 
         @JsonIgnore
@@ -133,12 +133,6 @@ public class V3ErrorResponse extends SDKBaseError {
         }
 
 
-        public Data withV3ErrorsEnum(V3ErrorsEnum v3ErrorsEnum) {
-            Utils.checkNotNull(v3ErrorsEnum, "v3ErrorsEnum");
-            this.v3ErrorsEnum = v3ErrorsEnum;
-            return this;
-        }
-
         public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -149,6 +143,12 @@ public class V3ErrorResponse extends SDKBaseError {
         public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
+            return this;
+        }
+
+        public Data withErrorCode(V3ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
             return this;
         }
 
@@ -168,43 +168,36 @@ public class V3ErrorResponse extends SDKBaseError {
             }
             Data other = (Data) o;
             return 
-                Utils.enhancedDeepEquals(this.v3ErrorsEnum, other.v3ErrorsEnum) &&
                 Utils.enhancedDeepEquals(this.details, other.details) &&
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
                 Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
-                v3ErrorsEnum, details, errorMessage);
+                details, errorCode, errorMessage);
         }
         
         @Override
         public String toString() {
             return Utils.toString(Data.class,
-                    "v3ErrorsEnum", v3ErrorsEnum,
                     "details", details,
+                    "errorCode", errorCode,
                     "errorMessage", errorMessage);
         }
 
         @SuppressWarnings("UnusedReturnValue")
         public final static class Builder {
 
-            private V3ErrorsEnum v3ErrorsEnum;
-
             private Optional<String> details = Optional.empty();
+
+            private V3ErrorsEnum errorCode;
 
             private String errorMessage;
 
             private Builder() {
               // force use of static builder() method
-            }
-
-
-            public Builder v3ErrorsEnum(V3ErrorsEnum v3ErrorsEnum) {
-                Utils.checkNotNull(v3ErrorsEnum, "v3ErrorsEnum");
-                this.v3ErrorsEnum = v3ErrorsEnum;
-                return this;
             }
 
 
@@ -221,6 +214,13 @@ public class V3ErrorResponse extends SDKBaseError {
             }
 
 
+            public Builder errorCode(V3ErrorsEnum errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;
@@ -230,7 +230,7 @@ public class V3ErrorResponse extends SDKBaseError {
             public Data build() {
 
                 return new Data(
-                    v3ErrorsEnum, details, errorMessage);
+                    details, errorCode, errorMessage);
             }
 
         }

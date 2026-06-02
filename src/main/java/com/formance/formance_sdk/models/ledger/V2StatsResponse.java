@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2StatsResponse {
 
     @JsonProperty("data")
-    private V2Stats v2Stats;
+    private V2Stats data;
 
     @JsonCreator
     public V2StatsResponse(
-            @JsonProperty("data") V2Stats v2Stats) {
-        Utils.checkNotNull(v2Stats, "v2Stats");
-        this.v2Stats = v2Stats;
+            @JsonProperty("data") V2Stats data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Stats v2Stats() {
-        return v2Stats;
+    public V2Stats data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2StatsResponse {
     }
 
 
-    public V2StatsResponse withV2Stats(V2Stats v2Stats) {
-        Utils.checkNotNull(v2Stats, "v2Stats");
-        this.v2Stats = v2Stats;
+    public V2StatsResponse withData(V2Stats data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2StatsResponse {
         }
         V2StatsResponse other = (V2StatsResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Stats, other.v2Stats);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Stats);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2StatsResponse.class,
-                "v2Stats", v2Stats);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Stats v2Stats;
+        private V2Stats data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Stats(V2Stats v2Stats) {
-            Utils.checkNotNull(v2Stats, "v2Stats");
-            this.v2Stats = v2Stats;
+        public Builder data(V2Stats data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2StatsResponse build() {
 
             return new V2StatsResponse(
-                v2Stats);
+                data);
         }
 
     }

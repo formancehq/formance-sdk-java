@@ -14,18 +14,18 @@ import java.lang.String;
 public class GetWalletSummaryResponse {
 
     @JsonProperty("data")
-    private WalletSummary walletSummary;
+    private WalletSummary data;
 
     @JsonCreator
     public GetWalletSummaryResponse(
-            @JsonProperty("data") WalletSummary walletSummary) {
-        Utils.checkNotNull(walletSummary, "walletSummary");
-        this.walletSummary = walletSummary;
+            @JsonProperty("data") WalletSummary data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public WalletSummary walletSummary() {
-        return walletSummary;
+    public WalletSummary data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class GetWalletSummaryResponse {
     }
 
 
-    public GetWalletSummaryResponse withWalletSummary(WalletSummary walletSummary) {
-        Utils.checkNotNull(walletSummary, "walletSummary");
-        this.walletSummary = walletSummary;
+    public GetWalletSummaryResponse withData(WalletSummary data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class GetWalletSummaryResponse {
         }
         GetWalletSummaryResponse other = (GetWalletSummaryResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.walletSummary, other.walletSummary);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            walletSummary);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWalletSummaryResponse.class,
-                "walletSummary", walletSummary);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WalletSummary walletSummary;
+        private WalletSummary data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder walletSummary(WalletSummary walletSummary) {
-            Utils.checkNotNull(walletSummary, "walletSummary");
-            this.walletSummary = walletSummary;
+        public Builder data(WalletSummary data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public GetWalletSummaryResponse build() {
 
             return new GetWalletSummaryResponse(
-                walletSummary);
+                data);
         }
 
     }

@@ -19,13 +19,13 @@ public class V3GetOrderResponse {
      * adjustment is a point-in-time snapshot from the PSP.
      */
     @JsonProperty("data")
-    private V3Order v3Order;
+    private V3Order data;
 
     @JsonCreator
     public V3GetOrderResponse(
-            @JsonProperty("data") V3Order v3Order) {
-        Utils.checkNotNull(v3Order, "v3Order");
-        this.v3Order = v3Order;
+            @JsonProperty("data") V3Order data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     /**
@@ -35,8 +35,8 @@ public class V3GetOrderResponse {
      * adjustment is a point-in-time snapshot from the PSP.
      */
     @JsonIgnore
-    public V3Order v3Order() {
-        return v3Order;
+    public V3Order data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -50,9 +50,9 @@ public class V3GetOrderResponse {
      * Status transitions are captured via the `adjustments` array; each
      * adjustment is a point-in-time snapshot from the PSP.
      */
-    public V3GetOrderResponse withV3Order(V3Order v3Order) {
-        Utils.checkNotNull(v3Order, "v3Order");
-        this.v3Order = v3Order;
+    public V3GetOrderResponse withData(V3Order data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -66,25 +66,25 @@ public class V3GetOrderResponse {
         }
         V3GetOrderResponse other = (V3GetOrderResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Order, other.v3Order);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Order);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetOrderResponse.class,
-                "v3Order", v3Order);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Order v3Order;
+        private V3Order data;
 
         private Builder() {
           // force use of static builder() method
@@ -97,16 +97,16 @@ public class V3GetOrderResponse {
          * Status transitions are captured via the `adjustments` array; each
          * adjustment is a point-in-time snapshot from the PSP.
          */
-        public Builder v3Order(V3Order v3Order) {
-            Utils.checkNotNull(v3Order, "v3Order");
-            this.v3Order = v3Order;
+        public Builder data(V3Order data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetOrderResponse build() {
 
             return new V3GetOrderResponse(
-                v3Order);
+                data);
         }
 
     }

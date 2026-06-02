@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3ConnectorScheduleResponse {
 
     @JsonProperty("data")
-    private V3Schedule v3Schedule;
+    private V3Schedule data;
 
     @JsonCreator
     public V3ConnectorScheduleResponse(
-            @JsonProperty("data") V3Schedule v3Schedule) {
-        Utils.checkNotNull(v3Schedule, "v3Schedule");
-        this.v3Schedule = v3Schedule;
+            @JsonProperty("data") V3Schedule data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3Schedule v3Schedule() {
-        return v3Schedule;
+    public V3Schedule data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3ConnectorScheduleResponse {
     }
 
 
-    public V3ConnectorScheduleResponse withV3Schedule(V3Schedule v3Schedule) {
-        Utils.checkNotNull(v3Schedule, "v3Schedule");
-        this.v3Schedule = v3Schedule;
+    public V3ConnectorScheduleResponse withData(V3Schedule data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3ConnectorScheduleResponse {
         }
         V3ConnectorScheduleResponse other = (V3ConnectorScheduleResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Schedule, other.v3Schedule);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Schedule);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3ConnectorScheduleResponse.class,
-                "v3Schedule", v3Schedule);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Schedule v3Schedule;
+        private V3Schedule data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Schedule(V3Schedule v3Schedule) {
-            Utils.checkNotNull(v3Schedule, "v3Schedule");
-            this.v3Schedule = v3Schedule;
+        public Builder data(V3Schedule data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3ConnectorScheduleResponse build() {
 
             return new V3ConnectorScheduleResponse(
-                v3Schedule);
+                data);
         }
 
     }

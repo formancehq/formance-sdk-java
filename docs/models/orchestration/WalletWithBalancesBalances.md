@@ -5,4 +5,4 @@
 
 | Field                                             | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `assetHolder`                                     | [AssetHolder](../../models/shared/AssetHolder.md) | :heavy_check_mark:                                | N/A                                               |
+| `main`                                            | [AssetHolder](../../models/shared/AssetHolder.md) | :heavy_check_mark:                                | N/A                                               |

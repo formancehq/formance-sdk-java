@@ -15,18 +15,18 @@ import java.util.List;
 public class V3PoolBalancesResponse {
 
     @JsonProperty("data")
-    private List<V3PoolBalance> v3PoolBalances;
+    private List<V3PoolBalance> data;
 
     @JsonCreator
     public V3PoolBalancesResponse(
-            @JsonProperty("data") List<V3PoolBalance> v3PoolBalances) {
-        Utils.checkNotNull(v3PoolBalances, "v3PoolBalances");
-        this.v3PoolBalances = v3PoolBalances;
+            @JsonProperty("data") List<V3PoolBalance> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public List<V3PoolBalance> v3PoolBalances() {
-        return v3PoolBalances;
+    public List<V3PoolBalance> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -34,9 +34,9 @@ public class V3PoolBalancesResponse {
     }
 
 
-    public V3PoolBalancesResponse withV3PoolBalances(List<V3PoolBalance> v3PoolBalances) {
-        Utils.checkNotNull(v3PoolBalances, "v3PoolBalances");
-        this.v3PoolBalances = v3PoolBalances;
+    public V3PoolBalancesResponse withData(List<V3PoolBalance> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -50,41 +50,41 @@ public class V3PoolBalancesResponse {
         }
         V3PoolBalancesResponse other = (V3PoolBalancesResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3PoolBalances, other.v3PoolBalances);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3PoolBalances);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3PoolBalancesResponse.class,
-                "v3PoolBalances", v3PoolBalances);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V3PoolBalance> v3PoolBalances;
+        private List<V3PoolBalance> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3PoolBalances(List<V3PoolBalance> v3PoolBalances) {
-            Utils.checkNotNull(v3PoolBalances, "v3PoolBalances");
-            this.v3PoolBalances = v3PoolBalances;
+        public Builder data(List<V3PoolBalance> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3PoolBalancesResponse build() {
 
             return new V3PoolBalancesResponse(
-                v3PoolBalances);
+                data);
         }
 
     }

@@ -18,54 +18,54 @@ import java.util.Optional;
 public class V2WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("GetAccount")
-    private Optional<? extends V2AccountResponse> v2AccountResponse;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
-    private Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse;
+    private Optional<? extends V2CreateTransactionResponse> createTransaction;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
-    private Optional<? extends V2DebitWalletResponse> v2DebitWalletResponse;
+    private Optional<? extends V2DebitWalletResponse> debitWallet;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("GetWallet")
-    private Optional<? extends V2GetWalletResponse> v2GetWalletResponse;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("ListWallets")
-    private Optional<? extends V2ListWalletsResponse> v2ListWalletsResponse;
+    @JsonProperty("GetAccount")
+    private Optional<? extends V2AccountResponse> getAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
-    private Optional<? extends V2PaymentResponse> v2PaymentResponse;
+    private Optional<? extends V2PaymentResponse> getPayment;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("GetWallet")
+    private Optional<? extends V2GetWalletResponse> getWallet;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ListWallets")
+    private Optional<? extends V2ListWalletsResponse> listWallets;
 
     @JsonCreator
     public V2WorkflowInstanceHistoryStageOutput(
-            @JsonProperty("GetAccount") Optional<? extends V2AccountResponse> v2AccountResponse,
-            @JsonProperty("CreateTransaction") Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse,
-            @JsonProperty("DebitWallet") Optional<? extends V2DebitWalletResponse> v2DebitWalletResponse,
-            @JsonProperty("GetWallet") Optional<? extends V2GetWalletResponse> v2GetWalletResponse,
-            @JsonProperty("ListWallets") Optional<? extends V2ListWalletsResponse> v2ListWalletsResponse,
-            @JsonProperty("GetPayment") Optional<? extends V2PaymentResponse> v2PaymentResponse) {
-        Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-        Utils.checkNotNull(v2DebitWalletResponse, "v2DebitWalletResponse");
-        Utils.checkNotNull(v2GetWalletResponse, "v2GetWalletResponse");
-        Utils.checkNotNull(v2ListWalletsResponse, "v2ListWalletsResponse");
-        Utils.checkNotNull(v2PaymentResponse, "v2PaymentResponse");
-        this.v2AccountResponse = v2AccountResponse;
-        this.v2CreateTransactionResponse = v2CreateTransactionResponse;
-        this.v2DebitWalletResponse = v2DebitWalletResponse;
-        this.v2GetWalletResponse = v2GetWalletResponse;
-        this.v2ListWalletsResponse = v2ListWalletsResponse;
-        this.v2PaymentResponse = v2PaymentResponse;
+            @JsonProperty("CreateTransaction") Optional<? extends V2CreateTransactionResponse> createTransaction,
+            @JsonProperty("DebitWallet") Optional<? extends V2DebitWalletResponse> debitWallet,
+            @JsonProperty("GetAccount") Optional<? extends V2AccountResponse> getAccount,
+            @JsonProperty("GetPayment") Optional<? extends V2PaymentResponse> getPayment,
+            @JsonProperty("GetWallet") Optional<? extends V2GetWalletResponse> getWallet,
+            @JsonProperty("ListWallets") Optional<? extends V2ListWalletsResponse> listWallets) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        Utils.checkNotNull(getAccount, "getAccount");
+        Utils.checkNotNull(getPayment, "getPayment");
+        Utils.checkNotNull(getWallet, "getWallet");
+        Utils.checkNotNull(listWallets, "listWallets");
+        this.createTransaction = createTransaction;
+        this.debitWallet = debitWallet;
+        this.getAccount = getAccount;
+        this.getPayment = getPayment;
+        this.getWallet = getWallet;
+        this.listWallets = listWallets;
     }
     
     public V2WorkflowInstanceHistoryStageOutput() {
@@ -75,38 +75,38 @@ public class V2WorkflowInstanceHistoryStageOutput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2AccountResponse> v2AccountResponse() {
-        return (Optional<V2AccountResponse>) v2AccountResponse;
+    public Optional<V2CreateTransactionResponse> createTransaction() {
+        return (Optional<V2CreateTransactionResponse>) createTransaction;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2CreateTransactionResponse> v2CreateTransactionResponse() {
-        return (Optional<V2CreateTransactionResponse>) v2CreateTransactionResponse;
+    public Optional<V2DebitWalletResponse> debitWallet() {
+        return (Optional<V2DebitWalletResponse>) debitWallet;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2DebitWalletResponse> v2DebitWalletResponse() {
-        return (Optional<V2DebitWalletResponse>) v2DebitWalletResponse;
+    public Optional<V2AccountResponse> getAccount() {
+        return (Optional<V2AccountResponse>) getAccount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2GetWalletResponse> v2GetWalletResponse() {
-        return (Optional<V2GetWalletResponse>) v2GetWalletResponse;
+    public Optional<V2PaymentResponse> getPayment() {
+        return (Optional<V2PaymentResponse>) getPayment;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2ListWalletsResponse> v2ListWalletsResponse() {
-        return (Optional<V2ListWalletsResponse>) v2ListWalletsResponse;
+    public Optional<V2GetWalletResponse> getWallet() {
+        return (Optional<V2GetWalletResponse>) getWallet;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2PaymentResponse> v2PaymentResponse() {
-        return (Optional<V2PaymentResponse>) v2PaymentResponse;
+    public Optional<V2ListWalletsResponse> listWallets() {
+        return (Optional<V2ListWalletsResponse>) listWallets;
     }
 
     public static Builder builder() {
@@ -114,81 +114,81 @@ public class V2WorkflowInstanceHistoryStageOutput {
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withV2AccountResponse(V2AccountResponse v2AccountResponse) {
-        Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-        this.v2AccountResponse = Optional.ofNullable(v2AccountResponse);
+    public V2WorkflowInstanceHistoryStageOutput withCreateTransaction(V2CreateTransactionResponse createTransaction) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withV2AccountResponse(Optional<? extends V2AccountResponse> v2AccountResponse) {
-        Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-        this.v2AccountResponse = v2AccountResponse;
+    public V2WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends V2CreateTransactionResponse> createTransaction) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        this.createTransaction = createTransaction;
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStageOutput withV2CreateTransactionResponse(V2CreateTransactionResponse v2CreateTransactionResponse) {
-        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-        this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
-        return this;
-    }
-
-
-    public V2WorkflowInstanceHistoryStageOutput withV2CreateTransactionResponse(Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse) {
-        Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-        this.v2CreateTransactionResponse = v2CreateTransactionResponse;
-        return this;
-    }
-
-    public V2WorkflowInstanceHistoryStageOutput withV2DebitWalletResponse(V2DebitWalletResponse v2DebitWalletResponse) {
-        Utils.checkNotNull(v2DebitWalletResponse, "v2DebitWalletResponse");
-        this.v2DebitWalletResponse = Optional.ofNullable(v2DebitWalletResponse);
+    public V2WorkflowInstanceHistoryStageOutput withDebitWallet(V2DebitWalletResponse debitWallet) {
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        this.debitWallet = Optional.ofNullable(debitWallet);
         return this;
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withV2DebitWalletResponse(Optional<? extends V2DebitWalletResponse> v2DebitWalletResponse) {
-        Utils.checkNotNull(v2DebitWalletResponse, "v2DebitWalletResponse");
-        this.v2DebitWalletResponse = v2DebitWalletResponse;
+    public V2WorkflowInstanceHistoryStageOutput withDebitWallet(Optional<? extends V2DebitWalletResponse> debitWallet) {
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        this.debitWallet = debitWallet;
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStageOutput withV2GetWalletResponse(V2GetWalletResponse v2GetWalletResponse) {
-        Utils.checkNotNull(v2GetWalletResponse, "v2GetWalletResponse");
-        this.v2GetWalletResponse = Optional.ofNullable(v2GetWalletResponse);
-        return this;
-    }
-
-
-    public V2WorkflowInstanceHistoryStageOutput withV2GetWalletResponse(Optional<? extends V2GetWalletResponse> v2GetWalletResponse) {
-        Utils.checkNotNull(v2GetWalletResponse, "v2GetWalletResponse");
-        this.v2GetWalletResponse = v2GetWalletResponse;
-        return this;
-    }
-
-    public V2WorkflowInstanceHistoryStageOutput withV2ListWalletsResponse(V2ListWalletsResponse v2ListWalletsResponse) {
-        Utils.checkNotNull(v2ListWalletsResponse, "v2ListWalletsResponse");
-        this.v2ListWalletsResponse = Optional.ofNullable(v2ListWalletsResponse);
+    public V2WorkflowInstanceHistoryStageOutput withGetAccount(V2AccountResponse getAccount) {
+        Utils.checkNotNull(getAccount, "getAccount");
+        this.getAccount = Optional.ofNullable(getAccount);
         return this;
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withV2ListWalletsResponse(Optional<? extends V2ListWalletsResponse> v2ListWalletsResponse) {
-        Utils.checkNotNull(v2ListWalletsResponse, "v2ListWalletsResponse");
-        this.v2ListWalletsResponse = v2ListWalletsResponse;
+    public V2WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends V2AccountResponse> getAccount) {
+        Utils.checkNotNull(getAccount, "getAccount");
+        this.getAccount = getAccount;
         return this;
     }
 
-    public V2WorkflowInstanceHistoryStageOutput withV2PaymentResponse(V2PaymentResponse v2PaymentResponse) {
-        Utils.checkNotNull(v2PaymentResponse, "v2PaymentResponse");
-        this.v2PaymentResponse = Optional.ofNullable(v2PaymentResponse);
+    public V2WorkflowInstanceHistoryStageOutput withGetPayment(V2PaymentResponse getPayment) {
+        Utils.checkNotNull(getPayment, "getPayment");
+        this.getPayment = Optional.ofNullable(getPayment);
         return this;
     }
 
 
-    public V2WorkflowInstanceHistoryStageOutput withV2PaymentResponse(Optional<? extends V2PaymentResponse> v2PaymentResponse) {
-        Utils.checkNotNull(v2PaymentResponse, "v2PaymentResponse");
-        this.v2PaymentResponse = v2PaymentResponse;
+    public V2WorkflowInstanceHistoryStageOutput withGetPayment(Optional<? extends V2PaymentResponse> getPayment) {
+        Utils.checkNotNull(getPayment, "getPayment");
+        this.getPayment = getPayment;
+        return this;
+    }
+
+    public V2WorkflowInstanceHistoryStageOutput withGetWallet(V2GetWalletResponse getWallet) {
+        Utils.checkNotNull(getWallet, "getWallet");
+        this.getWallet = Optional.ofNullable(getWallet);
+        return this;
+    }
+
+
+    public V2WorkflowInstanceHistoryStageOutput withGetWallet(Optional<? extends V2GetWalletResponse> getWallet) {
+        Utils.checkNotNull(getWallet, "getWallet");
+        this.getWallet = getWallet;
+        return this;
+    }
+
+    public V2WorkflowInstanceHistoryStageOutput withListWallets(V2ListWalletsResponse listWallets) {
+        Utils.checkNotNull(listWallets, "listWallets");
+        this.listWallets = Optional.ofNullable(listWallets);
+        return this;
+    }
+
+
+    public V2WorkflowInstanceHistoryStageOutput withListWallets(Optional<? extends V2ListWalletsResponse> listWallets) {
+        Utils.checkNotNull(listWallets, "listWallets");
+        this.listWallets = listWallets;
         return this;
     }
 
@@ -202,134 +202,134 @@ public class V2WorkflowInstanceHistoryStageOutput {
         }
         V2WorkflowInstanceHistoryStageOutput other = (V2WorkflowInstanceHistoryStageOutput) o;
         return 
-            Utils.enhancedDeepEquals(this.v2AccountResponse, other.v2AccountResponse) &&
-            Utils.enhancedDeepEquals(this.v2CreateTransactionResponse, other.v2CreateTransactionResponse) &&
-            Utils.enhancedDeepEquals(this.v2DebitWalletResponse, other.v2DebitWalletResponse) &&
-            Utils.enhancedDeepEquals(this.v2GetWalletResponse, other.v2GetWalletResponse) &&
-            Utils.enhancedDeepEquals(this.v2ListWalletsResponse, other.v2ListWalletsResponse) &&
-            Utils.enhancedDeepEquals(this.v2PaymentResponse, other.v2PaymentResponse);
+            Utils.enhancedDeepEquals(this.createTransaction, other.createTransaction) &&
+            Utils.enhancedDeepEquals(this.debitWallet, other.debitWallet) &&
+            Utils.enhancedDeepEquals(this.getAccount, other.getAccount) &&
+            Utils.enhancedDeepEquals(this.getPayment, other.getPayment) &&
+            Utils.enhancedDeepEquals(this.getWallet, other.getWallet) &&
+            Utils.enhancedDeepEquals(this.listWallets, other.listWallets);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2AccountResponse, v2CreateTransactionResponse, v2DebitWalletResponse,
-            v2GetWalletResponse, v2ListWalletsResponse, v2PaymentResponse);
+            createTransaction, debitWallet, getAccount,
+            getPayment, getWallet, listWallets);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2WorkflowInstanceHistoryStageOutput.class,
-                "v2AccountResponse", v2AccountResponse,
-                "v2CreateTransactionResponse", v2CreateTransactionResponse,
-                "v2DebitWalletResponse", v2DebitWalletResponse,
-                "v2GetWalletResponse", v2GetWalletResponse,
-                "v2ListWalletsResponse", v2ListWalletsResponse,
-                "v2PaymentResponse", v2PaymentResponse);
+                "createTransaction", createTransaction,
+                "debitWallet", debitWallet,
+                "getAccount", getAccount,
+                "getPayment", getPayment,
+                "getWallet", getWallet,
+                "listWallets", listWallets);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2AccountResponse> v2AccountResponse = Optional.empty();
+        private Optional<? extends V2CreateTransactionResponse> createTransaction = Optional.empty();
 
-        private Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse = Optional.empty();
+        private Optional<? extends V2DebitWalletResponse> debitWallet = Optional.empty();
 
-        private Optional<? extends V2DebitWalletResponse> v2DebitWalletResponse = Optional.empty();
+        private Optional<? extends V2AccountResponse> getAccount = Optional.empty();
 
-        private Optional<? extends V2GetWalletResponse> v2GetWalletResponse = Optional.empty();
+        private Optional<? extends V2PaymentResponse> getPayment = Optional.empty();
 
-        private Optional<? extends V2ListWalletsResponse> v2ListWalletsResponse = Optional.empty();
+        private Optional<? extends V2GetWalletResponse> getWallet = Optional.empty();
 
-        private Optional<? extends V2PaymentResponse> v2PaymentResponse = Optional.empty();
+        private Optional<? extends V2ListWalletsResponse> listWallets = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2AccountResponse(V2AccountResponse v2AccountResponse) {
-            Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-            this.v2AccountResponse = Optional.ofNullable(v2AccountResponse);
+        public Builder createTransaction(V2CreateTransactionResponse createTransaction) {
+            Utils.checkNotNull(createTransaction, "createTransaction");
+            this.createTransaction = Optional.ofNullable(createTransaction);
             return this;
         }
 
-        public Builder v2AccountResponse(Optional<? extends V2AccountResponse> v2AccountResponse) {
-            Utils.checkNotNull(v2AccountResponse, "v2AccountResponse");
-            this.v2AccountResponse = v2AccountResponse;
-            return this;
-        }
-
-
-        public Builder v2CreateTransactionResponse(V2CreateTransactionResponse v2CreateTransactionResponse) {
-            Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-            this.v2CreateTransactionResponse = Optional.ofNullable(v2CreateTransactionResponse);
-            return this;
-        }
-
-        public Builder v2CreateTransactionResponse(Optional<? extends V2CreateTransactionResponse> v2CreateTransactionResponse) {
-            Utils.checkNotNull(v2CreateTransactionResponse, "v2CreateTransactionResponse");
-            this.v2CreateTransactionResponse = v2CreateTransactionResponse;
+        public Builder createTransaction(Optional<? extends V2CreateTransactionResponse> createTransaction) {
+            Utils.checkNotNull(createTransaction, "createTransaction");
+            this.createTransaction = createTransaction;
             return this;
         }
 
 
-        public Builder v2DebitWalletResponse(V2DebitWalletResponse v2DebitWalletResponse) {
-            Utils.checkNotNull(v2DebitWalletResponse, "v2DebitWalletResponse");
-            this.v2DebitWalletResponse = Optional.ofNullable(v2DebitWalletResponse);
+        public Builder debitWallet(V2DebitWalletResponse debitWallet) {
+            Utils.checkNotNull(debitWallet, "debitWallet");
+            this.debitWallet = Optional.ofNullable(debitWallet);
             return this;
         }
 
-        public Builder v2DebitWalletResponse(Optional<? extends V2DebitWalletResponse> v2DebitWalletResponse) {
-            Utils.checkNotNull(v2DebitWalletResponse, "v2DebitWalletResponse");
-            this.v2DebitWalletResponse = v2DebitWalletResponse;
-            return this;
-        }
-
-
-        public Builder v2GetWalletResponse(V2GetWalletResponse v2GetWalletResponse) {
-            Utils.checkNotNull(v2GetWalletResponse, "v2GetWalletResponse");
-            this.v2GetWalletResponse = Optional.ofNullable(v2GetWalletResponse);
-            return this;
-        }
-
-        public Builder v2GetWalletResponse(Optional<? extends V2GetWalletResponse> v2GetWalletResponse) {
-            Utils.checkNotNull(v2GetWalletResponse, "v2GetWalletResponse");
-            this.v2GetWalletResponse = v2GetWalletResponse;
+        public Builder debitWallet(Optional<? extends V2DebitWalletResponse> debitWallet) {
+            Utils.checkNotNull(debitWallet, "debitWallet");
+            this.debitWallet = debitWallet;
             return this;
         }
 
 
-        public Builder v2ListWalletsResponse(V2ListWalletsResponse v2ListWalletsResponse) {
-            Utils.checkNotNull(v2ListWalletsResponse, "v2ListWalletsResponse");
-            this.v2ListWalletsResponse = Optional.ofNullable(v2ListWalletsResponse);
+        public Builder getAccount(V2AccountResponse getAccount) {
+            Utils.checkNotNull(getAccount, "getAccount");
+            this.getAccount = Optional.ofNullable(getAccount);
             return this;
         }
 
-        public Builder v2ListWalletsResponse(Optional<? extends V2ListWalletsResponse> v2ListWalletsResponse) {
-            Utils.checkNotNull(v2ListWalletsResponse, "v2ListWalletsResponse");
-            this.v2ListWalletsResponse = v2ListWalletsResponse;
+        public Builder getAccount(Optional<? extends V2AccountResponse> getAccount) {
+            Utils.checkNotNull(getAccount, "getAccount");
+            this.getAccount = getAccount;
             return this;
         }
 
 
-        public Builder v2PaymentResponse(V2PaymentResponse v2PaymentResponse) {
-            Utils.checkNotNull(v2PaymentResponse, "v2PaymentResponse");
-            this.v2PaymentResponse = Optional.ofNullable(v2PaymentResponse);
+        public Builder getPayment(V2PaymentResponse getPayment) {
+            Utils.checkNotNull(getPayment, "getPayment");
+            this.getPayment = Optional.ofNullable(getPayment);
             return this;
         }
 
-        public Builder v2PaymentResponse(Optional<? extends V2PaymentResponse> v2PaymentResponse) {
-            Utils.checkNotNull(v2PaymentResponse, "v2PaymentResponse");
-            this.v2PaymentResponse = v2PaymentResponse;
+        public Builder getPayment(Optional<? extends V2PaymentResponse> getPayment) {
+            Utils.checkNotNull(getPayment, "getPayment");
+            this.getPayment = getPayment;
+            return this;
+        }
+
+
+        public Builder getWallet(V2GetWalletResponse getWallet) {
+            Utils.checkNotNull(getWallet, "getWallet");
+            this.getWallet = Optional.ofNullable(getWallet);
+            return this;
+        }
+
+        public Builder getWallet(Optional<? extends V2GetWalletResponse> getWallet) {
+            Utils.checkNotNull(getWallet, "getWallet");
+            this.getWallet = getWallet;
+            return this;
+        }
+
+
+        public Builder listWallets(V2ListWalletsResponse listWallets) {
+            Utils.checkNotNull(listWallets, "listWallets");
+            this.listWallets = Optional.ofNullable(listWallets);
+            return this;
+        }
+
+        public Builder listWallets(Optional<? extends V2ListWalletsResponse> listWallets) {
+            Utils.checkNotNull(listWallets, "listWallets");
+            this.listWallets = listWallets;
             return this;
         }
 
         public V2WorkflowInstanceHistoryStageOutput build() {
 
             return new V2WorkflowInstanceHistoryStageOutput(
-                v2AccountResponse, v2CreateTransactionResponse, v2DebitWalletResponse,
-                v2GetWalletResponse, v2ListWalletsResponse, v2PaymentResponse);
+                createTransaction, debitWallet, getAccount,
+                getPayment, getWallet, listWallets);
         }
 
     }

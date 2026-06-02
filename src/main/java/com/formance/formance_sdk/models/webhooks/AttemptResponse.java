@@ -14,18 +14,18 @@ import java.lang.String;
 public class AttemptResponse {
 
     @JsonProperty("data")
-    private Attempt attempt;
+    private Attempt data;
 
     @JsonCreator
     public AttemptResponse(
-            @JsonProperty("data") Attempt attempt) {
-        Utils.checkNotNull(attempt, "attempt");
-        this.attempt = attempt;
+            @JsonProperty("data") Attempt data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Attempt attempt() {
-        return attempt;
+    public Attempt data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class AttemptResponse {
     }
 
 
-    public AttemptResponse withAttempt(Attempt attempt) {
-        Utils.checkNotNull(attempt, "attempt");
-        this.attempt = attempt;
+    public AttemptResponse withData(Attempt data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class AttemptResponse {
         }
         AttemptResponse other = (AttemptResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.attempt, other.attempt);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            attempt);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AttemptResponse.class,
-                "attempt", attempt);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Attempt attempt;
+        private Attempt data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder attempt(Attempt attempt) {
-            Utils.checkNotNull(attempt, "attempt");
-            this.attempt = attempt;
+        public Builder data(Attempt data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public AttemptResponse build() {
 
             return new AttemptResponse(
-                attempt);
+                data);
         }
 
     }

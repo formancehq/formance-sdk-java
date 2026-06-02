@@ -27,48 +27,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * adjustment is a point-in-time snapshot from the PSP.
  */
 public class V3Order {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-    /**
-     * Whether an order buys or sells the base asset.
-     */
-    @JsonProperty("direction")
-    private V3OrderDirectionEnum v3OrderDirectionEnum;
-
-    /**
-     * Lifecycle of an order on the exchange.
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     */
-    @JsonProperty("status")
-    private V3OrderStatusEnum v3OrderStatusEnum;
-
-    /**
-     * Exchange order type. Determines which price fields are meaningful on
-     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-     */
-    @JsonProperty("type")
-    private V3OrderTypeEnum v3OrderTypeEnum;
-
-    /**
-     * How long an order is valid on the exchange.
-     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-     */
-    @JsonProperty("timeInForce")
-    private V3TimeInForceEnum v3TimeInForceEnum;
-
     /**
      * Ordered history of state snapshots for this order. The most recent element reflects the current
      * `status`.
@@ -136,6 +94,12 @@ public class V3Order {
     private String destinationAsset;
 
     /**
+     * Whether an order buys or sells the base asset.
+     */
+    @JsonProperty("direction")
+    private V3OrderDirectionEnum direction;
+
+    /**
      * Human-readable error from the PSP (e.g. rejection reason) when `status` is `FAILED`. Null otherwise.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -176,6 +140,11 @@ public class V3Order {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("limitPrice")
     private JsonNullable<? extends BigInteger> limitPrice;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
 
     /**
      * Currency + precision under which `limitPrice`, `stopPrice`, and
@@ -234,12 +203,43 @@ public class V3Order {
     private String sourceAsset;
 
     /**
+     * Lifecycle of an order on the exchange.
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     */
+    @JsonProperty("status")
+    private V3OrderStatusEnum status;
+
+    /**
      * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for
      * non-stop order types.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stopPrice")
     private JsonNullable<? extends BigInteger> stopPrice;
+
+    /**
+     * How long an order is valid on the exchange.
+     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+     */
+    @JsonProperty("timeInForce")
+    private V3TimeInForceEnum timeInForce;
+
+    /**
+     * Exchange order type. Determines which price fields are meaningful on
+     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+     */
+    @JsonProperty("type")
+    private V3OrderTypeEnum type;
 
     /**
      * When Formance last observed a state change on the order. Equivalent to the latest adjustment's
@@ -250,11 +250,6 @@ public class V3Order {
 
     @JsonCreator
     public V3Order(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
-            @JsonProperty("direction") V3OrderDirectionEnum v3OrderDirectionEnum,
-            @JsonProperty("status") V3OrderStatusEnum v3OrderStatusEnum,
-            @JsonProperty("type") V3OrderTypeEnum v3OrderTypeEnum,
-            @JsonProperty("timeInForce") V3TimeInForceEnum v3TimeInForceEnum,
             @JsonProperty("adjustments") JsonNullable<? extends List<V3OrderAdjustment>> adjustments,
             @JsonProperty("averageFillPrice") JsonNullable<? extends BigInteger> averageFillPrice,
             @JsonProperty("baseQuantityFilled") JsonNullable<? extends BigInteger> baseQuantityFilled,
@@ -264,12 +259,14 @@ public class V3Order {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("destinationAccountID") JsonNullable<String> destinationAccountID,
             @JsonProperty("destinationAsset") String destinationAsset,
+            @JsonProperty("direction") V3OrderDirectionEnum direction,
             @JsonProperty("error") JsonNullable<String> error,
             @JsonProperty("expiresAt") JsonNullable<OffsetDateTime> expiresAt,
             @JsonProperty("fee") JsonNullable<? extends BigInteger> fee,
             @JsonProperty("feeAsset") JsonNullable<String> feeAsset,
             @JsonProperty("id") String id,
             @JsonProperty("limitPrice") JsonNullable<? extends BigInteger> limitPrice,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("priceAsset") JsonNullable<String> priceAsset,
             @JsonProperty("provider") String provider,
             @JsonProperty("quoteAmount") JsonNullable<? extends BigInteger> quoteAmount,
@@ -277,13 +274,11 @@ public class V3Order {
             @JsonProperty("reference") String reference,
             @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID,
             @JsonProperty("sourceAsset") String sourceAsset,
+            @JsonProperty("status") V3OrderStatusEnum status,
             @JsonProperty("stopPrice") JsonNullable<? extends BigInteger> stopPrice,
+            @JsonProperty("timeInForce") V3TimeInForceEnum timeInForce,
+            @JsonProperty("type") V3OrderTypeEnum type,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        Utils.checkNotNull(v3OrderDirectionEnum, "v3OrderDirectionEnum");
-        Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-        Utils.checkNotNull(v3OrderTypeEnum, "v3OrderTypeEnum");
-        Utils.checkNotNull(v3TimeInForceEnum, "v3TimeInForceEnum");
         Utils.checkNotNull(adjustments, "adjustments");
         Utils.checkNotNull(averageFillPrice, "averageFillPrice");
         Utils.checkNotNull(baseQuantityFilled, "baseQuantityFilled");
@@ -293,12 +288,14 @@ public class V3Order {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         Utils.checkNotNull(destinationAsset, "destinationAsset");
+        Utils.checkNotNull(direction, "direction");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(expiresAt, "expiresAt");
         Utils.checkNotNull(fee, "fee");
         Utils.checkNotNull(feeAsset, "feeAsset");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(limitPrice, "limitPrice");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(priceAsset, "priceAsset");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(quoteAmount, "quoteAmount");
@@ -306,13 +303,11 @@ public class V3Order {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         Utils.checkNotNull(sourceAsset, "sourceAsset");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(stopPrice, "stopPrice");
+        Utils.checkNotNull(timeInForce, "timeInForce");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.v3Metadata = v3Metadata;
-        this.v3OrderDirectionEnum = v3OrderDirectionEnum;
-        this.v3OrderStatusEnum = v3OrderStatusEnum;
-        this.v3OrderTypeEnum = v3OrderTypeEnum;
-        this.v3TimeInForceEnum = v3TimeInForceEnum;
         this.adjustments = adjustments;
         this.averageFillPrice = averageFillPrice;
         this.baseQuantityFilled = baseQuantityFilled;
@@ -322,12 +317,14 @@ public class V3Order {
         this.createdAt = createdAt;
         this.destinationAccountID = destinationAccountID;
         this.destinationAsset = destinationAsset;
+        this.direction = direction;
         this.error = error;
         this.expiresAt = expiresAt;
         this.fee = fee;
         this.feeAsset = feeAsset;
         this.id = id;
         this.limitPrice = limitPrice;
+        this.metadata = metadata;
         this.priceAsset = priceAsset;
         this.provider = provider;
         this.quoteAmount = quoteAmount;
@@ -335,85 +332,37 @@ public class V3Order {
         this.reference = reference;
         this.sourceAccountID = sourceAccountID;
         this.sourceAsset = sourceAsset;
+        this.status = status;
         this.stopPrice = stopPrice;
+        this.timeInForce = timeInForce;
+        this.type = type;
         this.updatedAt = updatedAt;
     }
     
     public V3Order(
-            V3OrderDirectionEnum v3OrderDirectionEnum,
-            V3OrderStatusEnum v3OrderStatusEnum,
-            V3OrderTypeEnum v3OrderTypeEnum,
-            V3TimeInForceEnum v3TimeInForceEnum,
             BigInteger baseQuantityOrdered,
             String connectorID,
             OffsetDateTime createdAt,
             String destinationAsset,
+            V3OrderDirectionEnum direction,
             String id,
             String provider,
             String reference,
             String sourceAsset,
+            V3OrderStatusEnum status,
+            V3TimeInForceEnum timeInForce,
+            V3OrderTypeEnum type,
             OffsetDateTime updatedAt) {
-        this(JsonNullable.undefined(), v3OrderDirectionEnum, v3OrderStatusEnum,
-            v3OrderTypeEnum, v3TimeInForceEnum, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), baseQuantityOrdered,
-            JsonNullable.undefined(), connectorID, createdAt,
-            JsonNullable.undefined(), destinationAsset, JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            baseQuantityOrdered, JsonNullable.undefined(), connectorID,
+            createdAt, JsonNullable.undefined(), destinationAsset,
+            direction, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), id,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            id, JsonNullable.undefined(), JsonNullable.undefined(),
             provider, JsonNullable.undefined(), JsonNullable.undefined(),
             reference, JsonNullable.undefined(), sourceAsset,
-            JsonNullable.undefined(), updatedAt);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
-    }
-
-    /**
-     * Whether an order buys or sells the base asset.
-     */
-    @JsonIgnore
-    public V3OrderDirectionEnum v3OrderDirectionEnum() {
-        return v3OrderDirectionEnum;
-    }
-
-    /**
-     * Lifecycle of an order on the exchange.
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     */
-    @JsonIgnore
-    public V3OrderStatusEnum v3OrderStatusEnum() {
-        return v3OrderStatusEnum;
-    }
-
-    /**
-     * Exchange order type. Determines which price fields are meaningful on
-     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-     */
-    @JsonIgnore
-    public V3OrderTypeEnum v3OrderTypeEnum() {
-        return v3OrderTypeEnum;
-    }
-
-    /**
-     * How long an order is valid on the exchange.
-     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-     */
-    @JsonIgnore
-    public V3TimeInForceEnum v3TimeInForceEnum() {
-        return v3TimeInForceEnum;
+            status, JsonNullable.undefined(), timeInForce,
+            type, updatedAt);
     }
 
     /**
@@ -499,6 +448,14 @@ public class V3Order {
     }
 
     /**
+     * Whether an order buys or sells the base asset.
+     */
+    @JsonIgnore
+    public V3OrderDirectionEnum direction() {
+        return direction;
+    }
+
+    /**
      * Human-readable error from the PSP (e.g. rejection reason) when `status` is `FAILED`. Null otherwise.
      */
     @JsonIgnore
@@ -547,6 +504,12 @@ public class V3Order {
     @JsonIgnore
     public JsonNullable<BigInteger> limitPrice() {
         return (JsonNullable<BigInteger>) limitPrice;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     /**
@@ -617,6 +580,21 @@ public class V3Order {
     }
 
     /**
+     * Lifecycle of an order on the exchange.
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     */
+    @JsonIgnore
+    public V3OrderStatusEnum status() {
+        return status;
+    }
+
+    /**
      * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for
      * non-stop order types.
      */
@@ -624,6 +602,28 @@ public class V3Order {
     @JsonIgnore
     public JsonNullable<BigInteger> stopPrice() {
         return (JsonNullable<BigInteger>) stopPrice;
+    }
+
+    /**
+     * How long an order is valid on the exchange.
+     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+     */
+    @JsonIgnore
+    public V3TimeInForceEnum timeInForce() {
+        return timeInForce;
+    }
+
+    /**
+     * Exchange order type. Determines which price fields are meaningful on
+     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+     */
+    @JsonIgnore
+    public V3OrderTypeEnum type() {
+        return type;
     }
 
     /**
@@ -639,67 +639,6 @@ public class V3Order {
         return new Builder();
     }
 
-
-    public V3Order withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3Order withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
-
-    /**
-     * Whether an order buys or sells the base asset.
-     */
-    public V3Order withV3OrderDirectionEnum(V3OrderDirectionEnum v3OrderDirectionEnum) {
-        Utils.checkNotNull(v3OrderDirectionEnum, "v3OrderDirectionEnum");
-        this.v3OrderDirectionEnum = v3OrderDirectionEnum;
-        return this;
-    }
-
-    /**
-     * Lifecycle of an order on the exchange.
-     * `PENDING` — accepted by the exchange, not yet working.
-     * `OPEN` — live on the book, no fills yet.
-     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-     * `FILLED` — fully filled, terminal.
-     * `CANCELLED` — cancelled by the user or system, terminal.
-     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-     */
-    public V3Order withV3OrderStatusEnum(V3OrderStatusEnum v3OrderStatusEnum) {
-        Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-        this.v3OrderStatusEnum = v3OrderStatusEnum;
-        return this;
-    }
-
-    /**
-     * Exchange order type. Determines which price fields are meaningful on
-     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-     */
-    public V3Order withV3OrderTypeEnum(V3OrderTypeEnum v3OrderTypeEnum) {
-        Utils.checkNotNull(v3OrderTypeEnum, "v3OrderTypeEnum");
-        this.v3OrderTypeEnum = v3OrderTypeEnum;
-        return this;
-    }
-
-    /**
-     * How long an order is valid on the exchange.
-     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-     */
-    public V3Order withV3TimeInForceEnum(V3TimeInForceEnum v3TimeInForceEnum) {
-        Utils.checkNotNull(v3TimeInForceEnum, "v3TimeInForceEnum");
-        this.v3TimeInForceEnum = v3TimeInForceEnum;
-        return this;
-    }
 
     /**
      * Ordered history of state snapshots for this order. The most recent element reflects the current
@@ -867,6 +806,15 @@ public class V3Order {
     }
 
     /**
+     * Whether an order buys or sells the base asset.
+     */
+    public V3Order withDirection(V3OrderDirectionEnum direction) {
+        Utils.checkNotNull(direction, "direction");
+        this.direction = direction;
+        return this;
+    }
+
+    /**
      * Human-readable error from the PSP (e.g. rejection reason) when `status` is `FAILED`. Null otherwise.
      */
     public V3Order withError(String error) {
@@ -981,6 +929,18 @@ public class V3Order {
     public V3Order withLimitPrice(JsonNullable<? extends BigInteger> limitPrice) {
         Utils.checkNotNull(limitPrice, "limitPrice");
         this.limitPrice = limitPrice;
+        return this;
+    }
+
+    public V3Order withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3Order withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -1112,6 +1072,22 @@ public class V3Order {
     }
 
     /**
+     * Lifecycle of an order on the exchange.
+     * `PENDING` — accepted by the exchange, not yet working.
+     * `OPEN` — live on the book, no fills yet.
+     * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+     * `FILLED` — fully filled, terminal.
+     * `CANCELLED` — cancelled by the user or system, terminal.
+     * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+     * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+     */
+    public V3Order withStatus(V3OrderStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for
      * non-stop order types.
      */
@@ -1141,6 +1117,30 @@ public class V3Order {
     }
 
     /**
+     * How long an order is valid on the exchange.
+     * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+     * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+     * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+     * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+     */
+    public V3Order withTimeInForce(V3TimeInForceEnum timeInForce) {
+        Utils.checkNotNull(timeInForce, "timeInForce");
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * Exchange order type. Determines which price fields are meaningful on
+     * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+     * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+     */
+    public V3Order withType(V3OrderTypeEnum type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
+    /**
      * When Formance last observed a state change on the order. Equivalent to the latest adjustment's
      * `createdAt`.
      */
@@ -1160,11 +1160,6 @@ public class V3Order {
         }
         V3Order other = (V3Order) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
-            Utils.enhancedDeepEquals(this.v3OrderDirectionEnum, other.v3OrderDirectionEnum) &&
-            Utils.enhancedDeepEquals(this.v3OrderStatusEnum, other.v3OrderStatusEnum) &&
-            Utils.enhancedDeepEquals(this.v3OrderTypeEnum, other.v3OrderTypeEnum) &&
-            Utils.enhancedDeepEquals(this.v3TimeInForceEnum, other.v3TimeInForceEnum) &&
             Utils.enhancedDeepEquals(this.adjustments, other.adjustments) &&
             Utils.enhancedDeepEquals(this.averageFillPrice, other.averageFillPrice) &&
             Utils.enhancedDeepEquals(this.baseQuantityFilled, other.baseQuantityFilled) &&
@@ -1174,12 +1169,14 @@ public class V3Order {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
             Utils.enhancedDeepEquals(this.destinationAsset, other.destinationAsset) &&
+            Utils.enhancedDeepEquals(this.direction, other.direction) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
             Utils.enhancedDeepEquals(this.fee, other.fee) &&
             Utils.enhancedDeepEquals(this.feeAsset, other.feeAsset) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.limitPrice, other.limitPrice) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.priceAsset, other.priceAsset) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.quoteAmount, other.quoteAmount) &&
@@ -1187,33 +1184,31 @@ public class V3Order {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
             Utils.enhancedDeepEquals(this.sourceAsset, other.sourceAsset) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.stopPrice, other.stopPrice) &&
+            Utils.enhancedDeepEquals(this.timeInForce, other.timeInForce) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Metadata, v3OrderDirectionEnum, v3OrderStatusEnum,
-            v3OrderTypeEnum, v3TimeInForceEnum, adjustments,
-            averageFillPrice, baseQuantityFilled, baseQuantityOrdered,
-            clientOrderID, connectorID, createdAt,
-            destinationAccountID, destinationAsset, error,
-            expiresAt, fee, feeAsset,
-            id, limitPrice, priceAsset,
+            adjustments, averageFillPrice, baseQuantityFilled,
+            baseQuantityOrdered, clientOrderID, connectorID,
+            createdAt, destinationAccountID, destinationAsset,
+            direction, error, expiresAt,
+            fee, feeAsset, id,
+            limitPrice, metadata, priceAsset,
             provider, quoteAmount, quoteAsset,
             reference, sourceAccountID, sourceAsset,
-            stopPrice, updatedAt);
+            status, stopPrice, timeInForce,
+            type, updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Order.class,
-                "v3Metadata", v3Metadata,
-                "v3OrderDirectionEnum", v3OrderDirectionEnum,
-                "v3OrderStatusEnum", v3OrderStatusEnum,
-                "v3OrderTypeEnum", v3OrderTypeEnum,
-                "v3TimeInForceEnum", v3TimeInForceEnum,
                 "adjustments", adjustments,
                 "averageFillPrice", averageFillPrice,
                 "baseQuantityFilled", baseQuantityFilled,
@@ -1223,12 +1218,14 @@ public class V3Order {
                 "createdAt", createdAt,
                 "destinationAccountID", destinationAccountID,
                 "destinationAsset", destinationAsset,
+                "direction", direction,
                 "error", error,
                 "expiresAt", expiresAt,
                 "fee", fee,
                 "feeAsset", feeAsset,
                 "id", id,
                 "limitPrice", limitPrice,
+                "metadata", metadata,
                 "priceAsset", priceAsset,
                 "provider", provider,
                 "quoteAmount", quoteAmount,
@@ -1236,22 +1233,15 @@ public class V3Order {
                 "reference", reference,
                 "sourceAccountID", sourceAccountID,
                 "sourceAsset", sourceAsset,
+                "status", status,
                 "stopPrice", stopPrice,
+                "timeInForce", timeInForce,
+                "type", type,
                 "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
-
-        private V3OrderDirectionEnum v3OrderDirectionEnum;
-
-        private V3OrderStatusEnum v3OrderStatusEnum;
-
-        private V3OrderTypeEnum v3OrderTypeEnum;
-
-        private V3TimeInForceEnum v3TimeInForceEnum;
 
         private JsonNullable<? extends List<V3OrderAdjustment>> adjustments = JsonNullable.undefined();
 
@@ -1271,6 +1261,8 @@ public class V3Order {
 
         private String destinationAsset;
 
+        private V3OrderDirectionEnum direction;
+
         private JsonNullable<String> error = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
@@ -1282,6 +1274,8 @@ public class V3Order {
         private String id;
 
         private JsonNullable<? extends BigInteger> limitPrice = JsonNullable.undefined();
+
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
         private JsonNullable<String> priceAsset = JsonNullable.undefined();
 
@@ -1297,78 +1291,18 @@ public class V3Order {
 
         private String sourceAsset;
 
+        private V3OrderStatusEnum status;
+
         private JsonNullable<? extends BigInteger> stopPrice = JsonNullable.undefined();
+
+        private V3TimeInForceEnum timeInForce;
+
+        private V3OrderTypeEnum type;
 
         private OffsetDateTime updatedAt;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
-        }
-
-
-        /**
-         * Whether an order buys or sells the base asset.
-         */
-        public Builder v3OrderDirectionEnum(V3OrderDirectionEnum v3OrderDirectionEnum) {
-            Utils.checkNotNull(v3OrderDirectionEnum, "v3OrderDirectionEnum");
-            this.v3OrderDirectionEnum = v3OrderDirectionEnum;
-            return this;
-        }
-
-
-        /**
-         * Lifecycle of an order on the exchange.
-         * `PENDING` — accepted by the exchange, not yet working.
-         * `OPEN` — live on the book, no fills yet.
-         * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-         * `FILLED` — fully filled, terminal.
-         * `CANCELLED` — cancelled by the user or system, terminal.
-         * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-         * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-         */
-        public Builder v3OrderStatusEnum(V3OrderStatusEnum v3OrderStatusEnum) {
-            Utils.checkNotNull(v3OrderStatusEnum, "v3OrderStatusEnum");
-            this.v3OrderStatusEnum = v3OrderStatusEnum;
-            return this;
-        }
-
-
-        /**
-         * Exchange order type. Determines which price fields are meaningful on
-         * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-         * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-         */
-        public Builder v3OrderTypeEnum(V3OrderTypeEnum v3OrderTypeEnum) {
-            Utils.checkNotNull(v3OrderTypeEnum, "v3OrderTypeEnum");
-            this.v3OrderTypeEnum = v3OrderTypeEnum;
-            return this;
-        }
-
-
-        /**
-         * How long an order is valid on the exchange.
-         * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-         * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-         * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-         * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-         */
-        public Builder v3TimeInForceEnum(V3TimeInForceEnum v3TimeInForceEnum) {
-            Utils.checkNotNull(v3TimeInForceEnum, "v3TimeInForceEnum");
-            this.v3TimeInForceEnum = v3TimeInForceEnum;
-            return this;
         }
 
 
@@ -1547,6 +1481,16 @@ public class V3Order {
 
 
         /**
+         * Whether an order buys or sells the base asset.
+         */
+        public Builder direction(V3OrderDirectionEnum direction) {
+            Utils.checkNotNull(direction, "direction");
+            this.direction = direction;
+            return this;
+        }
+
+
+        /**
          * Human-readable error from the PSP (e.g. rejection reason) when `status` is `FAILED`. Null otherwise.
          */
         public Builder error(String error) {
@@ -1666,6 +1610,19 @@ public class V3Order {
         public Builder limitPrice(JsonNullable<? extends BigInteger> limitPrice) {
             Utils.checkNotNull(limitPrice, "limitPrice");
             this.limitPrice = limitPrice;
+            return this;
+        }
+
+
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
             return this;
         }
 
@@ -1805,6 +1762,23 @@ public class V3Order {
 
 
         /**
+         * Lifecycle of an order on the exchange.
+         * `PENDING` — accepted by the exchange, not yet working.
+         * `OPEN` — live on the book, no fills yet.
+         * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+         * `FILLED` — fully filled, terminal.
+         * `CANCELLED` — cancelled by the user or system, terminal.
+         * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+         * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+         */
+        public Builder status(V3OrderStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for
          * non-stop order types.
          */
@@ -1835,6 +1809,32 @@ public class V3Order {
 
 
         /**
+         * How long an order is valid on the exchange.
+         * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+         * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+         * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+         * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+         */
+        public Builder timeInForce(V3TimeInForceEnum timeInForce) {
+            Utils.checkNotNull(timeInForce, "timeInForce");
+            this.timeInForce = timeInForce;
+            return this;
+        }
+
+
+        /**
+         * Exchange order type. Determines which price fields are meaningful on
+         * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+         * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+         */
+        public Builder type(V3OrderTypeEnum type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
+
+        /**
          * When Formance last observed a state change on the order. Equivalent to the latest adjustment's
          * `createdAt`.
          */
@@ -1847,16 +1847,16 @@ public class V3Order {
         public V3Order build() {
 
             return new V3Order(
-                v3Metadata, v3OrderDirectionEnum, v3OrderStatusEnum,
-                v3OrderTypeEnum, v3TimeInForceEnum, adjustments,
-                averageFillPrice, baseQuantityFilled, baseQuantityOrdered,
-                clientOrderID, connectorID, createdAt,
-                destinationAccountID, destinationAsset, error,
-                expiresAt, fee, feeAsset,
-                id, limitPrice, priceAsset,
+                adjustments, averageFillPrice, baseQuantityFilled,
+                baseQuantityOrdered, clientOrderID, connectorID,
+                createdAt, destinationAccountID, destinationAsset,
+                direction, error, expiresAt,
+                fee, feeAsset, id,
+                limitPrice, metadata, priceAsset,
                 provider, quoteAmount, quoteAsset,
                 reference, sourceAccountID, sourceAsset,
-                stopPrice, updatedAt);
+                status, stopPrice, timeInForce,
+                type, updatedAt);
         }
 
     }

@@ -16,6 +16,11 @@ import java.util.Optional;
 
 
 public class V2TransactionTemplate {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("description")
+    private Optional<String> description;
+
     /**
      * The numscript runtime used to execute the script. Uses "machine" by default, unless the
      * "--experimental-numscript-interpreter" feature flag is passed.
@@ -25,30 +30,30 @@ public class V2TransactionTemplate {
     private Optional<? extends Runtime> runtime;
 
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("description")
-    private Optional<String> description;
-
-
     @JsonProperty("script")
     private String script;
 
     @JsonCreator
     public V2TransactionTemplate(
-            @JsonProperty("runtime") Optional<? extends Runtime> runtime,
             @JsonProperty("description") Optional<String> description,
+            @JsonProperty("runtime") Optional<? extends Runtime> runtime,
             @JsonProperty("script") String script) {
-        Utils.checkNotNull(runtime, "runtime");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(runtime, "runtime");
         Utils.checkNotNull(script, "script");
-        this.runtime = runtime;
         this.description = description;
+        this.runtime = runtime;
         this.script = script;
     }
     
     public V2TransactionTemplate(
             String script) {
         this(Optional.empty(), Optional.empty(), script);
+    }
+
+    @JsonIgnore
+    public Optional<String> description() {
+        return description;
     }
 
     /**
@@ -62,11 +67,6 @@ public class V2TransactionTemplate {
     }
 
     @JsonIgnore
-    public Optional<String> description() {
-        return description;
-    }
-
-    @JsonIgnore
     public String script() {
         return script;
     }
@@ -75,6 +75,19 @@ public class V2TransactionTemplate {
         return new Builder();
     }
 
+
+    public V2TransactionTemplate withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    public V2TransactionTemplate withDescription(Optional<String> description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
 
     /**
      * The numscript runtime used to execute the script. Uses "machine" by default, unless the
@@ -97,19 +110,6 @@ public class V2TransactionTemplate {
         return this;
     }
 
-    public V2TransactionTemplate withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    public V2TransactionTemplate withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
-
     public V2TransactionTemplate withScript(String script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
@@ -126,36 +126,49 @@ public class V2TransactionTemplate {
         }
         V2TransactionTemplate other = (V2TransactionTemplate) o;
         return 
-            Utils.enhancedDeepEquals(this.runtime, other.runtime) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.runtime, other.runtime) &&
             Utils.enhancedDeepEquals(this.script, other.script);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            runtime, description, script);
+            description, runtime, script);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2TransactionTemplate.class,
-                "runtime", runtime,
                 "description", description,
+                "runtime", runtime,
                 "script", script);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Runtime> runtime = Optional.empty();
-
         private Optional<String> description = Optional.empty();
+
+        private Optional<? extends Runtime> runtime = Optional.empty();
 
         private String script;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Optional<String> description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
+            return this;
         }
 
 
@@ -180,19 +193,6 @@ public class V2TransactionTemplate {
         }
 
 
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
         public Builder script(String script) {
             Utils.checkNotNull(script, "script");
             this.script = script;
@@ -202,7 +202,7 @@ public class V2TransactionTemplate {
         public V2TransactionTemplate build() {
 
             return new V2TransactionTemplate(
-                runtime, description, script);
+                description, runtime, script);
         }
 
     }

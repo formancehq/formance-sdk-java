@@ -22,10 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TransferInitiation {
 
-    @JsonProperty("status")
-    private TransferInitiationStatus transferInitiationStatus;
-
-
     @JsonProperty("amount")
     private BigInteger amount;
 
@@ -95,12 +91,15 @@ public class TransferInitiation {
     private String sourceAccountID;
 
 
+    @JsonProperty("status")
+    private TransferInitiationStatus status;
+
+
     @JsonProperty("type")
     private TransferInitiationType type;
 
     @JsonCreator
     public TransferInitiation(
-            @JsonProperty("status") TransferInitiationStatus transferInitiationStatus,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("asset") String asset,
             @JsonProperty("connectorID") String connectorID,
@@ -117,8 +116,8 @@ public class TransferInitiation {
             @JsonProperty("relatedPayments") JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments,
             @JsonProperty("scheduledAt") OffsetDateTime scheduledAt,
             @JsonProperty("sourceAccountID") String sourceAccountID,
+            @JsonProperty("status") TransferInitiationStatus status,
             @JsonProperty("type") TransferInitiationType type) {
-        Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(asset, "asset");
         Utils.checkNotNull(connectorID, "connectorID");
@@ -135,8 +134,8 @@ public class TransferInitiation {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(type, "type");
-        this.transferInitiationStatus = transferInitiationStatus;
         this.amount = amount;
         this.asset = asset;
         this.connectorID = connectorID;
@@ -153,11 +152,11 @@ public class TransferInitiation {
         this.relatedPayments = relatedPayments;
         this.scheduledAt = scheduledAt;
         this.sourceAccountID = sourceAccountID;
+        this.status = status;
         this.type = type;
     }
     
     public TransferInitiation(
-            TransferInitiationStatus transferInitiationStatus,
             BigInteger amount,
             String asset,
             String connectorID,
@@ -169,18 +168,14 @@ public class TransferInitiation {
             String reference,
             OffsetDateTime scheduledAt,
             String sourceAccountID,
+            TransferInitiationStatus status,
             TransferInitiationType type) {
-        this(transferInitiationStatus, amount, asset,
-            connectorID, createdAt, description,
-            destinationAccountID, JsonNullable.undefined(), id,
-            initialAmount, JsonNullable.undefined(), Optional.empty(),
-            reference, Optional.empty(), JsonNullable.undefined(),
-            scheduledAt, sourceAccountID, type);
-    }
-
-    @JsonIgnore
-    public TransferInitiationStatus transferInitiationStatus() {
-        return transferInitiationStatus;
+        this(amount, asset, connectorID,
+            createdAt, description, destinationAccountID,
+            JsonNullable.undefined(), id, initialAmount,
+            JsonNullable.undefined(), Optional.empty(), reference,
+            Optional.empty(), JsonNullable.undefined(), scheduledAt,
+            sourceAccountID, status, type);
     }
 
     @JsonIgnore
@@ -267,6 +262,11 @@ public class TransferInitiation {
     }
 
     @JsonIgnore
+    public TransferInitiationStatus status() {
+        return status;
+    }
+
+    @JsonIgnore
     public TransferInitiationType type() {
         return type;
     }
@@ -275,12 +275,6 @@ public class TransferInitiation {
         return new Builder();
     }
 
-
-    public TransferInitiation withTransferInitiationStatus(TransferInitiationStatus transferInitiationStatus) {
-        Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
-        this.transferInitiationStatus = transferInitiationStatus;
-        return this;
-    }
 
     public TransferInitiation withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -420,6 +414,12 @@ public class TransferInitiation {
         return this;
     }
 
+    public TransferInitiation withStatus(TransferInitiationStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     public TransferInitiation withType(TransferInitiationType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -436,7 +436,6 @@ public class TransferInitiation {
         }
         TransferInitiation other = (TransferInitiation) o;
         return 
-            Utils.enhancedDeepEquals(this.transferInitiationStatus, other.transferInitiationStatus) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.asset, other.asset) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
@@ -453,24 +452,24 @@ public class TransferInitiation {
             Utils.enhancedDeepEquals(this.relatedPayments, other.relatedPayments) &&
             Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
             Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            transferInitiationStatus, amount, asset,
-            connectorID, createdAt, description,
-            destinationAccountID, error, id,
-            initialAmount, metadata, provider,
-            reference, relatedAdjustments, relatedPayments,
-            scheduledAt, sourceAccountID, type);
+            amount, asset, connectorID,
+            createdAt, description, destinationAccountID,
+            error, id, initialAmount,
+            metadata, provider, reference,
+            relatedAdjustments, relatedPayments, scheduledAt,
+            sourceAccountID, status, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransferInitiation.class,
-                "transferInitiationStatus", transferInitiationStatus,
                 "amount", amount,
                 "asset", asset,
                 "connectorID", connectorID,
@@ -487,13 +486,12 @@ public class TransferInitiation {
                 "relatedPayments", relatedPayments,
                 "scheduledAt", scheduledAt,
                 "sourceAccountID", sourceAccountID,
+                "status", status,
                 "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private TransferInitiationStatus transferInitiationStatus;
 
         private BigInteger amount;
 
@@ -527,17 +525,12 @@ public class TransferInitiation {
 
         private String sourceAccountID;
 
+        private TransferInitiationStatus status;
+
         private TransferInitiationType type;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder transferInitiationStatus(TransferInitiationStatus transferInitiationStatus) {
-            Utils.checkNotNull(transferInitiationStatus, "transferInitiationStatus");
-            this.transferInitiationStatus = transferInitiationStatus;
-            return this;
         }
 
 
@@ -693,6 +686,13 @@ public class TransferInitiation {
         }
 
 
+        public Builder status(TransferInitiationStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
         public Builder type(TransferInitiationType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
@@ -702,12 +702,12 @@ public class TransferInitiation {
         public TransferInitiation build() {
 
             return new TransferInitiation(
-                transferInitiationStatus, amount, asset,
-                connectorID, createdAt, description,
-                destinationAccountID, error, id,
-                initialAmount, metadata, provider,
-                reference, relatedAdjustments, relatedPayments,
-                scheduledAt, sourceAccountID, type);
+                amount, asset, connectorID,
+                createdAt, description, destinationAccountID,
+                error, id, initialAmount,
+                metadata, provider, reference,
+                relatedAdjustments, relatedPayments, scheduledAt,
+                sourceAccountID, status, type);
         }
 
     }

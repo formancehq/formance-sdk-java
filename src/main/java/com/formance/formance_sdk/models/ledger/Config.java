@@ -14,18 +14,18 @@ import java.lang.String;
 public class Config {
 
     @JsonProperty("storage")
-    private LedgerStorage ledgerStorage;
+    private LedgerStorage storage;
 
     @JsonCreator
     public Config(
-            @JsonProperty("storage") LedgerStorage ledgerStorage) {
-        Utils.checkNotNull(ledgerStorage, "ledgerStorage");
-        this.ledgerStorage = ledgerStorage;
+            @JsonProperty("storage") LedgerStorage storage) {
+        Utils.checkNotNull(storage, "storage");
+        this.storage = storage;
     }
 
     @JsonIgnore
-    public LedgerStorage ledgerStorage() {
-        return ledgerStorage;
+    public LedgerStorage storage() {
+        return storage;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class Config {
     }
 
 
-    public Config withLedgerStorage(LedgerStorage ledgerStorage) {
-        Utils.checkNotNull(ledgerStorage, "ledgerStorage");
-        this.ledgerStorage = ledgerStorage;
+    public Config withStorage(LedgerStorage storage) {
+        Utils.checkNotNull(storage, "storage");
+        this.storage = storage;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class Config {
         }
         Config other = (Config) o;
         return 
-            Utils.enhancedDeepEquals(this.ledgerStorage, other.ledgerStorage);
+            Utils.enhancedDeepEquals(this.storage, other.storage);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ledgerStorage);
+            storage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Config.class,
-                "ledgerStorage", ledgerStorage);
+                "storage", storage);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private LedgerStorage ledgerStorage;
+        private LedgerStorage storage;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder ledgerStorage(LedgerStorage ledgerStorage) {
-            Utils.checkNotNull(ledgerStorage, "ledgerStorage");
-            this.ledgerStorage = ledgerStorage;
+        public Builder storage(LedgerStorage storage) {
+            Utils.checkNotNull(storage, "storage");
+            this.storage = storage;
             return this;
         }
 
         public Config build() {
 
             return new Config(
-                ledgerStorage);
+                storage);
         }
 
     }

@@ -20,11 +20,6 @@ import java.util.Optional;
 
 public class TriggerOccurrence {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflowInstance")
-    private Optional<? extends WorkflowInstance> workflowInstance;
-
-
     @JsonProperty("date")
     private OffsetDateTime date;
 
@@ -43,29 +38,34 @@ public class TriggerOccurrence {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflowInstance")
+    private Optional<? extends WorkflowInstance> workflowInstance;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstanceID")
     private Optional<String> workflowInstanceID;
 
     @JsonCreator
     public TriggerOccurrence(
-            @JsonProperty("workflowInstance") Optional<? extends WorkflowInstance> workflowInstance,
             @JsonProperty("date") OffsetDateTime date,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("event") Map<String, Object> event,
             @JsonProperty("triggerID") String triggerID,
+            @JsonProperty("workflowInstance") Optional<? extends WorkflowInstance> workflowInstance,
             @JsonProperty("workflowInstanceID") Optional<String> workflowInstanceID) {
-        Utils.checkNotNull(workflowInstance, "workflowInstance");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(error, "error");
         event = Utils.emptyMapIfNull(event);
         Utils.checkNotNull(event, "event");
         Utils.checkNotNull(triggerID, "triggerID");
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
-        this.workflowInstance = workflowInstance;
         this.date = date;
         this.error = error;
         this.event = event;
         this.triggerID = triggerID;
+        this.workflowInstance = workflowInstance;
         this.workflowInstanceID = workflowInstanceID;
     }
     
@@ -73,14 +73,8 @@ public class TriggerOccurrence {
             OffsetDateTime date,
             Map<String, Object> event,
             String triggerID) {
-        this(Optional.empty(), date, Optional.empty(),
-            event, triggerID, Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<WorkflowInstance> workflowInstance() {
-        return (Optional<WorkflowInstance>) workflowInstance;
+        this(date, Optional.empty(), event,
+            triggerID, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -103,6 +97,12 @@ public class TriggerOccurrence {
         return triggerID;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<WorkflowInstance> workflowInstance() {
+        return (Optional<WorkflowInstance>) workflowInstance;
+    }
+
     @JsonIgnore
     public Optional<String> workflowInstanceID() {
         return workflowInstanceID;
@@ -112,19 +112,6 @@ public class TriggerOccurrence {
         return new Builder();
     }
 
-
-    public TriggerOccurrence withWorkflowInstance(WorkflowInstance workflowInstance) {
-        Utils.checkNotNull(workflowInstance, "workflowInstance");
-        this.workflowInstance = Optional.ofNullable(workflowInstance);
-        return this;
-    }
-
-
-    public TriggerOccurrence withWorkflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
-        Utils.checkNotNull(workflowInstance, "workflowInstance");
-        this.workflowInstance = workflowInstance;
-        return this;
-    }
 
     public TriggerOccurrence withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
@@ -157,6 +144,19 @@ public class TriggerOccurrence {
         return this;
     }
 
+    public TriggerOccurrence withWorkflowInstance(WorkflowInstance workflowInstance) {
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
+        this.workflowInstance = Optional.ofNullable(workflowInstance);
+        return this;
+    }
+
+
+    public TriggerOccurrence withWorkflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
+        Utils.checkNotNull(workflowInstance, "workflowInstance");
+        this.workflowInstance = workflowInstance;
+        return this;
+    }
+
     public TriggerOccurrence withWorkflowInstanceID(String workflowInstanceID) {
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
         this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -180,36 +180,34 @@ public class TriggerOccurrence {
         }
         TriggerOccurrence other = (TriggerOccurrence) o;
         return 
-            Utils.enhancedDeepEquals(this.workflowInstance, other.workflowInstance) &&
             Utils.enhancedDeepEquals(this.date, other.date) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.event, other.event) &&
             Utils.enhancedDeepEquals(this.triggerID, other.triggerID) &&
+            Utils.enhancedDeepEquals(this.workflowInstance, other.workflowInstance) &&
             Utils.enhancedDeepEquals(this.workflowInstanceID, other.workflowInstanceID);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            workflowInstance, date, error,
-            event, triggerID, workflowInstanceID);
+            date, error, event,
+            triggerID, workflowInstance, workflowInstanceID);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TriggerOccurrence.class,
-                "workflowInstance", workflowInstance,
                 "date", date,
                 "error", error,
                 "event", event,
                 "triggerID", triggerID,
+                "workflowInstance", workflowInstance,
                 "workflowInstanceID", workflowInstanceID);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<? extends WorkflowInstance> workflowInstance = Optional.empty();
 
         private OffsetDateTime date;
 
@@ -219,23 +217,12 @@ public class TriggerOccurrence {
 
         private String triggerID;
 
+        private Optional<? extends WorkflowInstance> workflowInstance = Optional.empty();
+
         private Optional<String> workflowInstanceID = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder workflowInstance(WorkflowInstance workflowInstance) {
-            Utils.checkNotNull(workflowInstance, "workflowInstance");
-            this.workflowInstance = Optional.ofNullable(workflowInstance);
-            return this;
-        }
-
-        public Builder workflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
-            Utils.checkNotNull(workflowInstance, "workflowInstance");
-            this.workflowInstance = workflowInstance;
-            return this;
         }
 
 
@@ -273,6 +260,19 @@ public class TriggerOccurrence {
         }
 
 
+        public Builder workflowInstance(WorkflowInstance workflowInstance) {
+            Utils.checkNotNull(workflowInstance, "workflowInstance");
+            this.workflowInstance = Optional.ofNullable(workflowInstance);
+            return this;
+        }
+
+        public Builder workflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
+            Utils.checkNotNull(workflowInstance, "workflowInstance");
+            this.workflowInstance = workflowInstance;
+            return this;
+        }
+
+
         public Builder workflowInstanceID(String workflowInstanceID) {
             Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
             this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -288,8 +288,8 @@ public class TriggerOccurrence {
         public TriggerOccurrence build() {
 
             return new TriggerOccurrence(
-                workflowInstance, date, error,
-                event, triggerID, workflowInstanceID);
+                date, error, event,
+                triggerID, workflowInstance, workflowInstanceID);
         }
 
     }

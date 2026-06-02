@@ -20,15 +20,6 @@ import java.util.Optional;
 
 public class V2WorkflowInstanceHistoryStage {
 
-    @JsonProperty("input")
-    private V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("output")
-    private Optional<? extends V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput;
-
-
     @JsonProperty("attempt")
     private long attempt;
 
@@ -36,6 +27,10 @@ public class V2WorkflowInstanceHistoryStage {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
+
+
+    @JsonProperty("input")
+    private V2WorkflowInstanceHistoryStageInput input;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -52,6 +47,11 @@ public class V2WorkflowInstanceHistoryStage {
     private Optional<OffsetDateTime> nextExecution;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("output")
+    private Optional<? extends V2WorkflowInstanceHistoryStageOutput> output;
+
+
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
@@ -66,59 +66,48 @@ public class V2WorkflowInstanceHistoryStage {
 
     @JsonCreator
     public V2WorkflowInstanceHistoryStage(
-            @JsonProperty("input") V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput,
-            @JsonProperty("output") Optional<? extends V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput,
             @JsonProperty("attempt") long attempt,
             @JsonProperty("error") Optional<String> error,
+            @JsonProperty("input") V2WorkflowInstanceHistoryStageInput input,
             @JsonProperty("lastFailure") Optional<String> lastFailure,
             @JsonProperty("name") String name,
             @JsonProperty("nextExecution") Optional<OffsetDateTime> nextExecution,
+            @JsonProperty("output") Optional<? extends V2WorkflowInstanceHistoryStageOutput> output,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageInput, "v2WorkflowInstanceHistoryStageInput");
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageOutput, "v2WorkflowInstanceHistoryStageOutput");
         Utils.checkNotNull(attempt, "attempt");
         Utils.checkNotNull(error, "error");
+        Utils.checkNotNull(input, "input");
         Utils.checkNotNull(lastFailure, "lastFailure");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nextExecution, "nextExecution");
+        Utils.checkNotNull(output, "output");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(terminated, "terminated");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
-        this.v2WorkflowInstanceHistoryStageInput = v2WorkflowInstanceHistoryStageInput;
-        this.v2WorkflowInstanceHistoryStageOutput = v2WorkflowInstanceHistoryStageOutput;
         this.attempt = attempt;
         this.error = error;
+        this.input = input;
         this.lastFailure = lastFailure;
         this.name = name;
         this.nextExecution = nextExecution;
+        this.output = output;
         this.startedAt = startedAt;
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
     }
     
     public V2WorkflowInstanceHistoryStage(
-            V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput,
             long attempt,
+            V2WorkflowInstanceHistoryStageInput input,
             String name,
             OffsetDateTime startedAt,
             boolean terminated) {
-        this(v2WorkflowInstanceHistoryStageInput, Optional.empty(), attempt,
-            Optional.empty(), Optional.empty(), name,
+        this(attempt, Optional.empty(), input,
+            Optional.empty(), name, Optional.empty(),
             Optional.empty(), startedAt, terminated,
             Optional.empty());
-    }
-
-    @JsonIgnore
-    public V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput() {
-        return v2WorkflowInstanceHistoryStageInput;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput() {
-        return (Optional<V2WorkflowInstanceHistoryStageOutput>) v2WorkflowInstanceHistoryStageOutput;
     }
 
     @JsonIgnore
@@ -129,6 +118,11 @@ public class V2WorkflowInstanceHistoryStage {
     @JsonIgnore
     public Optional<String> error() {
         return error;
+    }
+
+    @JsonIgnore
+    public V2WorkflowInstanceHistoryStageInput input() {
+        return input;
     }
 
     @JsonIgnore
@@ -144,6 +138,12 @@ public class V2WorkflowInstanceHistoryStage {
     @JsonIgnore
     public Optional<OffsetDateTime> nextExecution() {
         return nextExecution;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<V2WorkflowInstanceHistoryStageOutput> output() {
+        return (Optional<V2WorkflowInstanceHistoryStageOutput>) output;
     }
 
     @JsonIgnore
@@ -166,25 +166,6 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
-    public V2WorkflowInstanceHistoryStage withV2WorkflowInstanceHistoryStageInput(V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageInput, "v2WorkflowInstanceHistoryStageInput");
-        this.v2WorkflowInstanceHistoryStageInput = v2WorkflowInstanceHistoryStageInput;
-        return this;
-    }
-
-    public V2WorkflowInstanceHistoryStage withV2WorkflowInstanceHistoryStageOutput(V2WorkflowInstanceHistoryStageOutput v2WorkflowInstanceHistoryStageOutput) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageOutput, "v2WorkflowInstanceHistoryStageOutput");
-        this.v2WorkflowInstanceHistoryStageOutput = Optional.ofNullable(v2WorkflowInstanceHistoryStageOutput);
-        return this;
-    }
-
-
-    public V2WorkflowInstanceHistoryStage withV2WorkflowInstanceHistoryStageOutput(Optional<? extends V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageOutput, "v2WorkflowInstanceHistoryStageOutput");
-        this.v2WorkflowInstanceHistoryStageOutput = v2WorkflowInstanceHistoryStageOutput;
-        return this;
-    }
-
     public V2WorkflowInstanceHistoryStage withAttempt(long attempt) {
         Utils.checkNotNull(attempt, "attempt");
         this.attempt = attempt;
@@ -201,6 +182,12 @@ public class V2WorkflowInstanceHistoryStage {
     public V2WorkflowInstanceHistoryStage withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
+        return this;
+    }
+
+    public V2WorkflowInstanceHistoryStage withInput(V2WorkflowInstanceHistoryStageInput input) {
+        Utils.checkNotNull(input, "input");
+        this.input = input;
         return this;
     }
 
@@ -233,6 +220,19 @@ public class V2WorkflowInstanceHistoryStage {
     public V2WorkflowInstanceHistoryStage withNextExecution(Optional<OffsetDateTime> nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = nextExecution;
+        return this;
+    }
+
+    public V2WorkflowInstanceHistoryStage withOutput(V2WorkflowInstanceHistoryStageOutput output) {
+        Utils.checkNotNull(output, "output");
+        this.output = Optional.ofNullable(output);
+        return this;
+    }
+
+
+    public V2WorkflowInstanceHistoryStage withOutput(Optional<? extends V2WorkflowInstanceHistoryStageOutput> output) {
+        Utils.checkNotNull(output, "output");
+        this.output = output;
         return this;
     }
 
@@ -271,13 +271,13 @@ public class V2WorkflowInstanceHistoryStage {
         }
         V2WorkflowInstanceHistoryStage other = (V2WorkflowInstanceHistoryStage) o;
         return 
-            Utils.enhancedDeepEquals(this.v2WorkflowInstanceHistoryStageInput, other.v2WorkflowInstanceHistoryStageInput) &&
-            Utils.enhancedDeepEquals(this.v2WorkflowInstanceHistoryStageOutput, other.v2WorkflowInstanceHistoryStageOutput) &&
             Utils.enhancedDeepEquals(this.attempt, other.attempt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.lastFailure, other.lastFailure) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nextExecution, other.nextExecution) &&
+            Utils.enhancedDeepEquals(this.output, other.output) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
             Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
             Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
@@ -286,22 +286,22 @@ public class V2WorkflowInstanceHistoryStage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2WorkflowInstanceHistoryStageInput, v2WorkflowInstanceHistoryStageOutput, attempt,
-            error, lastFailure, name,
-            nextExecution, startedAt, terminated,
+            attempt, error, input,
+            lastFailure, name, nextExecution,
+            output, startedAt, terminated,
             terminatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2WorkflowInstanceHistoryStage.class,
-                "v2WorkflowInstanceHistoryStageInput", v2WorkflowInstanceHistoryStageInput,
-                "v2WorkflowInstanceHistoryStageOutput", v2WorkflowInstanceHistoryStageOutput,
                 "attempt", attempt,
                 "error", error,
+                "input", input,
                 "lastFailure", lastFailure,
                 "name", name,
                 "nextExecution", nextExecution,
+                "output", output,
                 "startedAt", startedAt,
                 "terminated", terminated,
                 "terminatedAt", terminatedAt);
@@ -310,19 +310,19 @@ public class V2WorkflowInstanceHistoryStage {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput;
-
-        private Optional<? extends V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput = Optional.empty();
-
         private Long attempt;
 
         private Optional<String> error = Optional.empty();
+
+        private V2WorkflowInstanceHistoryStageInput input;
 
         private Optional<String> lastFailure = Optional.empty();
 
         private String name;
 
         private Optional<OffsetDateTime> nextExecution = Optional.empty();
+
+        private Optional<? extends V2WorkflowInstanceHistoryStageOutput> output = Optional.empty();
 
         private OffsetDateTime startedAt;
 
@@ -332,26 +332,6 @@ public class V2WorkflowInstanceHistoryStage {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2WorkflowInstanceHistoryStageInput(V2WorkflowInstanceHistoryStageInput v2WorkflowInstanceHistoryStageInput) {
-            Utils.checkNotNull(v2WorkflowInstanceHistoryStageInput, "v2WorkflowInstanceHistoryStageInput");
-            this.v2WorkflowInstanceHistoryStageInput = v2WorkflowInstanceHistoryStageInput;
-            return this;
-        }
-
-
-        public Builder v2WorkflowInstanceHistoryStageOutput(V2WorkflowInstanceHistoryStageOutput v2WorkflowInstanceHistoryStageOutput) {
-            Utils.checkNotNull(v2WorkflowInstanceHistoryStageOutput, "v2WorkflowInstanceHistoryStageOutput");
-            this.v2WorkflowInstanceHistoryStageOutput = Optional.ofNullable(v2WorkflowInstanceHistoryStageOutput);
-            return this;
-        }
-
-        public Builder v2WorkflowInstanceHistoryStageOutput(Optional<? extends V2WorkflowInstanceHistoryStageOutput> v2WorkflowInstanceHistoryStageOutput) {
-            Utils.checkNotNull(v2WorkflowInstanceHistoryStageOutput, "v2WorkflowInstanceHistoryStageOutput");
-            this.v2WorkflowInstanceHistoryStageOutput = v2WorkflowInstanceHistoryStageOutput;
-            return this;
         }
 
 
@@ -371,6 +351,13 @@ public class V2WorkflowInstanceHistoryStage {
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
+            return this;
+        }
+
+
+        public Builder input(V2WorkflowInstanceHistoryStageInput input) {
+            Utils.checkNotNull(input, "input");
+            this.input = input;
             return this;
         }
 
@@ -408,6 +395,19 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        public Builder output(V2WorkflowInstanceHistoryStageOutput output) {
+            Utils.checkNotNull(output, "output");
+            this.output = Optional.ofNullable(output);
+            return this;
+        }
+
+        public Builder output(Optional<? extends V2WorkflowInstanceHistoryStageOutput> output) {
+            Utils.checkNotNull(output, "output");
+            this.output = output;
+            return this;
+        }
+
+
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
@@ -437,9 +437,9 @@ public class V2WorkflowInstanceHistoryStage {
         public V2WorkflowInstanceHistoryStage build() {
 
             return new V2WorkflowInstanceHistoryStage(
-                v2WorkflowInstanceHistoryStageInput, v2WorkflowInstanceHistoryStageOutput, attempt,
-                error, lastFailure, name,
-                nextExecution, startedAt, terminated,
+                attempt, error, input,
+                lastFailure, name, nextExecution,
+                output, startedAt, terminated,
                 terminatedAt);
         }
 

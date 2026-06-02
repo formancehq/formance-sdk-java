@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
 public class Workflow {
 
     @JsonProperty("config")
-    private WorkflowConfig workflowConfig;
+    private WorkflowConfig config;
 
 
     @JsonProperty("createdAt")
@@ -31,23 +31,23 @@ public class Workflow {
 
     @JsonCreator
     public Workflow(
-            @JsonProperty("config") WorkflowConfig workflowConfig,
+            @JsonProperty("config") WorkflowConfig config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
-        Utils.checkNotNull(workflowConfig, "workflowConfig");
+        Utils.checkNotNull(config, "config");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.workflowConfig = workflowConfig;
+        this.config = config;
         this.createdAt = createdAt;
         this.id = id;
         this.updatedAt = updatedAt;
     }
 
     @JsonIgnore
-    public WorkflowConfig workflowConfig() {
-        return workflowConfig;
+    public WorkflowConfig config() {
+        return config;
     }
 
     @JsonIgnore
@@ -70,9 +70,9 @@ public class Workflow {
     }
 
 
-    public Workflow withWorkflowConfig(WorkflowConfig workflowConfig) {
-        Utils.checkNotNull(workflowConfig, "workflowConfig");
-        this.workflowConfig = workflowConfig;
+    public Workflow withConfig(WorkflowConfig config) {
+        Utils.checkNotNull(config, "config");
+        this.config = config;
         return this;
     }
 
@@ -104,7 +104,7 @@ public class Workflow {
         }
         Workflow other = (Workflow) o;
         return 
-            Utils.enhancedDeepEquals(this.workflowConfig, other.workflowConfig) &&
+            Utils.enhancedDeepEquals(this.config, other.config) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
@@ -113,14 +113,14 @@ public class Workflow {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            workflowConfig, createdAt, id,
+            config, createdAt, id,
             updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Workflow.class,
-                "workflowConfig", workflowConfig,
+                "config", config,
                 "createdAt", createdAt,
                 "id", id,
                 "updatedAt", updatedAt);
@@ -129,7 +129,7 @@ public class Workflow {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private WorkflowConfig workflowConfig;
+        private WorkflowConfig config;
 
         private OffsetDateTime createdAt;
 
@@ -142,9 +142,9 @@ public class Workflow {
         }
 
 
-        public Builder workflowConfig(WorkflowConfig workflowConfig) {
-            Utils.checkNotNull(workflowConfig, "workflowConfig");
-            this.workflowConfig = workflowConfig;
+        public Builder config(WorkflowConfig config) {
+            Utils.checkNotNull(config, "config");
+            this.config = config;
             return this;
         }
 
@@ -172,7 +172,7 @@ public class Workflow {
         public Workflow build() {
 
             return new Workflow(
-                workflowConfig, createdAt, id,
+                config, createdAt, id,
                 updatedAt);
         }
 

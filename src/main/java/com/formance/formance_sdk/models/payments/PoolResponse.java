@@ -18,18 +18,18 @@ import java.lang.String;
 public class PoolResponse {
 
     @JsonProperty("data")
-    private Pool pool;
+    private Pool data;
 
     @JsonCreator
     public PoolResponse(
-            @JsonProperty("data") Pool pool) {
-        Utils.checkNotNull(pool, "pool");
-        this.pool = pool;
+            @JsonProperty("data") Pool data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Pool pool() {
-        return pool;
+    public Pool data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class PoolResponse {
     }
 
 
-    public PoolResponse withPool(Pool pool) {
-        Utils.checkNotNull(pool, "pool");
-        this.pool = pool;
+    public PoolResponse withData(Pool data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class PoolResponse {
         }
         PoolResponse other = (PoolResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.pool, other.pool);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pool);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PoolResponse.class,
-                "pool", pool);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Pool pool;
+        private Pool data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder pool(Pool pool) {
-            Utils.checkNotNull(pool, "pool");
-            this.pool = pool;
+        public Builder data(Pool data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public PoolResponse build() {
 
             return new PoolResponse(
-                pool);
+                data);
         }
 
     }

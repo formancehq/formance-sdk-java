@@ -16,10 +16,6 @@ import java.time.OffsetDateTime;
 
 public class PaymentAdjustment {
 
-    @JsonProperty("status")
-    private PaymentStatus paymentStatus;
-
-
     @JsonProperty("absolute")
     private boolean absolute;
 
@@ -35,28 +31,27 @@ public class PaymentAdjustment {
     @JsonProperty("raw")
     private PaymentAdjustmentRaw raw;
 
+
+    @JsonProperty("status")
+    private PaymentStatus status;
+
     @JsonCreator
     public PaymentAdjustment(
-            @JsonProperty("status") PaymentStatus paymentStatus,
             @JsonProperty("absolute") boolean absolute,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("date") OffsetDateTime date,
-            @JsonProperty("raw") PaymentAdjustmentRaw raw) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
+            @JsonProperty("raw") PaymentAdjustmentRaw raw,
+            @JsonProperty("status") PaymentStatus status) {
         Utils.checkNotNull(absolute, "absolute");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(date, "date");
         Utils.checkNotNull(raw, "raw");
-        this.paymentStatus = paymentStatus;
+        Utils.checkNotNull(status, "status");
         this.absolute = absolute;
         this.amount = amount;
         this.date = date;
         this.raw = raw;
-    }
-
-    @JsonIgnore
-    public PaymentStatus paymentStatus() {
-        return paymentStatus;
+        this.status = status;
     }
 
     @JsonIgnore
@@ -79,16 +74,15 @@ public class PaymentAdjustment {
         return raw;
     }
 
+    @JsonIgnore
+    public PaymentStatus status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public PaymentAdjustment withPaymentStatus(PaymentStatus paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        this.paymentStatus = paymentStatus;
-        return this;
-    }
 
     public PaymentAdjustment withAbsolute(boolean absolute) {
         Utils.checkNotNull(absolute, "absolute");
@@ -119,6 +113,12 @@ public class PaymentAdjustment {
         return this;
     }
 
+    public PaymentAdjustment withStatus(PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -129,34 +129,32 @@ public class PaymentAdjustment {
         }
         PaymentAdjustment other = (PaymentAdjustment) o;
         return 
-            Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
             Utils.enhancedDeepEquals(this.absolute, other.absolute) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.date, other.date) &&
-            Utils.enhancedDeepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentStatus, absolute, amount,
-            date, raw);
+            absolute, amount, date,
+            raw, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentAdjustment.class,
-                "paymentStatus", paymentStatus,
                 "absolute", absolute,
                 "amount", amount,
                 "date", date,
-                "raw", raw);
+                "raw", raw,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private PaymentStatus paymentStatus;
 
         private Boolean absolute;
 
@@ -166,15 +164,10 @@ public class PaymentAdjustment {
 
         private PaymentAdjustmentRaw raw;
 
+        private PaymentStatus status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder paymentStatus(PaymentStatus paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
-            this.paymentStatus = paymentStatus;
-            return this;
         }
 
 
@@ -210,11 +203,18 @@ public class PaymentAdjustment {
             return this;
         }
 
+
+        public Builder status(PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public PaymentAdjustment build() {
 
             return new PaymentAdjustment(
-                paymentStatus, absolute, amount,
-                date, raw);
+                absolute, amount, date,
+                raw, status);
         }
 
     }

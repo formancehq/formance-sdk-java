@@ -53,7 +53,7 @@ import com.formance.formance_sdk.models.operations.RunWorkflowResponse;
 import com.formance.formance_sdk.models.operations.SendEventRequest;
 import com.formance.formance_sdk.models.operations.SendEventRequestBuilder;
 import com.formance.formance_sdk.models.operations.SendEventResponse;
-import com.formance.formance_sdk.models.orchestration.TriggerData2;
+import com.formance.formance_sdk.models.orchestration.TriggerData;
 import com.formance.formance_sdk.models.orchestration.WorkflowConfig;
 import com.formance.formance_sdk.operations.CancelEvent;
 import com.formance.formance_sdk.operations.CreateTrigger;
@@ -152,8 +152,8 @@ public class OrchestrationV1 {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTriggerResponse createTrigger(Optional<? extends TriggerData2> request) {
-        RequestOperation<Optional<? extends TriggerData2>, CreateTriggerResponse> operation
+    public CreateTriggerResponse createTrigger(Optional<? extends TriggerData> request) {
+        RequestOperation<Optional<? extends TriggerData>, CreateTriggerResponse> operation
               = new CreateTrigger.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

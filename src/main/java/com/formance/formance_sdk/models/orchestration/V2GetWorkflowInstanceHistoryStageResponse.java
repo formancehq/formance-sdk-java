@@ -15,18 +15,18 @@ import java.util.List;
 public class V2GetWorkflowInstanceHistoryStageResponse {
 
     @JsonProperty("data")
-    private List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList;
+    private List<V2WorkflowInstanceHistoryStage> data;
 
     @JsonCreator
     public V2GetWorkflowInstanceHistoryStageResponse(
-            @JsonProperty("data") List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageList, "v2WorkflowInstanceHistoryStageList");
-        this.v2WorkflowInstanceHistoryStageList = v2WorkflowInstanceHistoryStageList;
+            @JsonProperty("data") List<V2WorkflowInstanceHistoryStage> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList() {
-        return v2WorkflowInstanceHistoryStageList;
+    public List<V2WorkflowInstanceHistoryStage> data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -34,9 +34,9 @@ public class V2GetWorkflowInstanceHistoryStageResponse {
     }
 
 
-    public V2GetWorkflowInstanceHistoryStageResponse withV2WorkflowInstanceHistoryStageList(List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList) {
-        Utils.checkNotNull(v2WorkflowInstanceHistoryStageList, "v2WorkflowInstanceHistoryStageList");
-        this.v2WorkflowInstanceHistoryStageList = v2WorkflowInstanceHistoryStageList;
+    public V2GetWorkflowInstanceHistoryStageResponse withData(List<V2WorkflowInstanceHistoryStage> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -50,41 +50,41 @@ public class V2GetWorkflowInstanceHistoryStageResponse {
         }
         V2GetWorkflowInstanceHistoryStageResponse other = (V2GetWorkflowInstanceHistoryStageResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2WorkflowInstanceHistoryStageList, other.v2WorkflowInstanceHistoryStageList);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2WorkflowInstanceHistoryStageList);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetWorkflowInstanceHistoryStageResponse.class,
-                "v2WorkflowInstanceHistoryStageList", v2WorkflowInstanceHistoryStageList);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList;
+        private List<V2WorkflowInstanceHistoryStage> data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2WorkflowInstanceHistoryStageList(List<V2WorkflowInstanceHistoryStage> v2WorkflowInstanceHistoryStageList) {
-            Utils.checkNotNull(v2WorkflowInstanceHistoryStageList, "v2WorkflowInstanceHistoryStageList");
-            this.v2WorkflowInstanceHistoryStageList = v2WorkflowInstanceHistoryStageList;
+        public Builder data(List<V2WorkflowInstanceHistoryStage> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2GetWorkflowInstanceHistoryStageResponse build() {
 
             return new V2GetWorkflowInstanceHistoryStageResponse(
-                v2WorkflowInstanceHistoryStageList);
+                data);
         }
 
     }

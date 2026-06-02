@@ -14,18 +14,18 @@ import java.lang.String;
 public class GetHoldResponse {
 
     @JsonProperty("data")
-    private Hold2 hold;
+    private ExpandedDebitHold data;
 
     @JsonCreator
     public GetHoldResponse(
-            @JsonProperty("data") Hold2 hold) {
-        Utils.checkNotNull(hold, "hold");
-        this.hold = hold;
+            @JsonProperty("data") ExpandedDebitHold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Hold2 hold() {
-        return hold;
+    public ExpandedDebitHold data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class GetHoldResponse {
     }
 
 
-    public GetHoldResponse withHold(Hold2 hold) {
-        Utils.checkNotNull(hold, "hold");
-        this.hold = hold;
+    public GetHoldResponse withData(ExpandedDebitHold data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class GetHoldResponse {
         }
         GetHoldResponse other = (GetHoldResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.hold, other.hold);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            hold);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetHoldResponse.class,
-                "hold", hold);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Hold2 hold;
+        private ExpandedDebitHold data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder hold(Hold2 hold) {
-            Utils.checkNotNull(hold, "hold");
-            this.hold = hold;
+        public Builder data(ExpandedDebitHold data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public GetHoldResponse build() {
 
             return new GetHoldResponse(
-                hold);
+                data);
         }
 
     }

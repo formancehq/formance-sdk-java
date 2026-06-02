@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3CreatePaymentResponse {
 
     @JsonProperty("data")
-    private V3Payment v3Payment;
+    private V3Payment data;
 
     @JsonCreator
     public V3CreatePaymentResponse(
-            @JsonProperty("data") V3Payment v3Payment) {
-        Utils.checkNotNull(v3Payment, "v3Payment");
-        this.v3Payment = v3Payment;
+            @JsonProperty("data") V3Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3Payment v3Payment() {
-        return v3Payment;
+    public V3Payment data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3CreatePaymentResponse {
     }
 
 
-    public V3CreatePaymentResponse withV3Payment(V3Payment v3Payment) {
-        Utils.checkNotNull(v3Payment, "v3Payment");
-        this.v3Payment = v3Payment;
+    public V3CreatePaymentResponse withData(V3Payment data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3CreatePaymentResponse {
         }
         V3CreatePaymentResponse other = (V3CreatePaymentResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Payment, other.v3Payment);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Payment);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3CreatePaymentResponse.class,
-                "v3Payment", v3Payment);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Payment v3Payment;
+        private V3Payment data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Payment(V3Payment v3Payment) {
-            Utils.checkNotNull(v3Payment, "v3Payment");
-            this.v3Payment = v3Payment;
+        public Builder data(V3Payment data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3CreatePaymentResponse build() {
 
             return new V3CreatePaymentResponse(
-                v3Payment);
+                data);
         }
 
     }

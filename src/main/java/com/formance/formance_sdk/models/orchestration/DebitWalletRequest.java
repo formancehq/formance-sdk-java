@@ -22,12 +22,7 @@ import java.util.Optional;
 public class DebitWalletRequest {
 
     @JsonProperty("amount")
-    private Monetary monetary;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("destination")
-    private Optional<? extends Subject> subject;
+    private Monetary amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,6 +33,11 @@ public class DebitWalletRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("destination")
+    private Optional<? extends Subject> destination;
 
     /**
      * Metadata associated with the wallet.
@@ -61,47 +61,41 @@ public class DebitWalletRequest {
 
     @JsonCreator
     public DebitWalletRequest(
-            @JsonProperty("amount") Monetary monetary,
-            @JsonProperty("destination") Optional<? extends Subject> subject,
+            @JsonProperty("amount") Monetary amount,
             @JsonProperty("balances") Optional<? extends List<String>> balances,
             @JsonProperty("description") Optional<String> description,
+            @JsonProperty("destination") Optional<? extends Subject> destination,
             @JsonProperty("metadata") Map<String, String> metadata,
             @JsonProperty("pending") Optional<Boolean> pending,
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp) {
-        Utils.checkNotNull(monetary, "monetary");
-        Utils.checkNotNull(subject, "subject");
+        Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(balances, "balances");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(destination, "destination");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(pending, "pending");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.monetary = monetary;
-        this.subject = subject;
+        this.amount = amount;
         this.balances = balances;
         this.description = description;
+        this.destination = destination;
         this.metadata = metadata;
         this.pending = pending;
         this.timestamp = timestamp;
     }
     
     public DebitWalletRequest(
-            Monetary monetary,
+            Monetary amount,
             Map<String, String> metadata) {
-        this(monetary, Optional.empty(), Optional.empty(),
+        this(amount, Optional.empty(), Optional.empty(),
             Optional.empty(), metadata, Optional.empty(),
             Optional.empty());
     }
 
     @JsonIgnore
-    public Monetary monetary() {
-        return monetary;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Subject> subject() {
-        return (Optional<Subject>) subject;
+    public Monetary amount() {
+        return amount;
     }
 
     @SuppressWarnings("unchecked")
@@ -113,6 +107,12 @@ public class DebitWalletRequest {
     @JsonIgnore
     public Optional<String> description() {
         return description;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Subject> destination() {
+        return (Optional<Subject>) destination;
     }
 
     /**
@@ -144,22 +144,9 @@ public class DebitWalletRequest {
     }
 
 
-    public DebitWalletRequest withMonetary(Monetary monetary) {
-        Utils.checkNotNull(monetary, "monetary");
-        this.monetary = monetary;
-        return this;
-    }
-
-    public DebitWalletRequest withSubject(Subject subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = Optional.ofNullable(subject);
-        return this;
-    }
-
-
-    public DebitWalletRequest withSubject(Optional<? extends Subject> subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = subject;
+    public DebitWalletRequest withAmount(Monetary amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = amount;
         return this;
     }
 
@@ -186,6 +173,19 @@ public class DebitWalletRequest {
     public DebitWalletRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    public DebitWalletRequest withDestination(Subject destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = Optional.ofNullable(destination);
+        return this;
+    }
+
+
+    public DebitWalletRequest withDestination(Optional<? extends Subject> destination) {
+        Utils.checkNotNull(destination, "destination");
+        this.destination = destination;
         return this;
     }
 
@@ -246,10 +246,10 @@ public class DebitWalletRequest {
         }
         DebitWalletRequest other = (DebitWalletRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.monetary, other.monetary) &&
-            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.balances, other.balances) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.pending, other.pending) &&
             Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
@@ -258,18 +258,18 @@ public class DebitWalletRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            monetary, subject, balances,
-            description, metadata, pending,
+            amount, balances, description,
+            destination, metadata, pending,
             timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DebitWalletRequest.class,
-                "monetary", monetary,
-                "subject", subject,
+                "amount", amount,
                 "balances", balances,
                 "description", description,
+                "destination", destination,
                 "metadata", metadata,
                 "pending", pending,
                 "timestamp", timestamp);
@@ -278,13 +278,13 @@ public class DebitWalletRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Monetary monetary;
-
-        private Optional<? extends Subject> subject = Optional.empty();
+        private Monetary amount;
 
         private Optional<? extends List<String>> balances = Optional.empty();
 
         private Optional<String> description = Optional.empty();
+
+        private Optional<? extends Subject> destination = Optional.empty();
 
         private Map<String, String> metadata;
 
@@ -297,22 +297,9 @@ public class DebitWalletRequest {
         }
 
 
-        public Builder monetary(Monetary monetary) {
-            Utils.checkNotNull(monetary, "monetary");
-            this.monetary = monetary;
-            return this;
-        }
-
-
-        public Builder subject(Subject subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = Optional.ofNullable(subject);
-            return this;
-        }
-
-        public Builder subject(Optional<? extends Subject> subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = subject;
+        public Builder amount(Monetary amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = amount;
             return this;
         }
 
@@ -339,6 +326,19 @@ public class DebitWalletRequest {
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        public Builder destination(Subject destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = Optional.ofNullable(destination);
+            return this;
+        }
+
+        public Builder destination(Optional<? extends Subject> destination) {
+            Utils.checkNotNull(destination, "destination");
+            this.destination = destination;
             return this;
         }
 
@@ -393,8 +393,8 @@ public class DebitWalletRequest {
         public DebitWalletRequest build() {
 
             return new DebitWalletRequest(
-                monetary, subject, balances,
-                description, metadata, pending,
+                amount, balances, description,
+                destination, metadata, pending,
                 timestamp);
         }
 

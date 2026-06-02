@@ -19,7 +19,7 @@ public class V2ActivityCreditWallet {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends V2CreditWalletRequest> v2CreditWalletRequest;
+    private Optional<? extends V2CreditWalletRequest> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -28,11 +28,11 @@ public class V2ActivityCreditWallet {
 
     @JsonCreator
     public V2ActivityCreditWallet(
-            @JsonProperty("data") Optional<? extends V2CreditWalletRequest> v2CreditWalletRequest,
+            @JsonProperty("data") Optional<? extends V2CreditWalletRequest> data,
             @JsonProperty("id") Optional<String> id) {
-        Utils.checkNotNull(v2CreditWalletRequest, "v2CreditWalletRequest");
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(id, "id");
-        this.v2CreditWalletRequest = v2CreditWalletRequest;
+        this.data = data;
         this.id = id;
     }
     
@@ -42,8 +42,8 @@ public class V2ActivityCreditWallet {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2CreditWalletRequest> v2CreditWalletRequest() {
-        return (Optional<V2CreditWalletRequest>) v2CreditWalletRequest;
+    public Optional<V2CreditWalletRequest> data() {
+        return (Optional<V2CreditWalletRequest>) data;
     }
 
     @JsonIgnore
@@ -56,16 +56,16 @@ public class V2ActivityCreditWallet {
     }
 
 
-    public V2ActivityCreditWallet withV2CreditWalletRequest(V2CreditWalletRequest v2CreditWalletRequest) {
-        Utils.checkNotNull(v2CreditWalletRequest, "v2CreditWalletRequest");
-        this.v2CreditWalletRequest = Optional.ofNullable(v2CreditWalletRequest);
+    public V2ActivityCreditWallet withData(V2CreditWalletRequest data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public V2ActivityCreditWallet withV2CreditWalletRequest(Optional<? extends V2CreditWalletRequest> v2CreditWalletRequest) {
-        Utils.checkNotNull(v2CreditWalletRequest, "v2CreditWalletRequest");
-        this.v2CreditWalletRequest = v2CreditWalletRequest;
+    public V2ActivityCreditWallet withData(Optional<? extends V2CreditWalletRequest> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -92,27 +92,27 @@ public class V2ActivityCreditWallet {
         }
         V2ActivityCreditWallet other = (V2ActivityCreditWallet) o;
         return 
-            Utils.enhancedDeepEquals(this.v2CreditWalletRequest, other.v2CreditWalletRequest) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
             Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2CreditWalletRequest, id);
+            data, id);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ActivityCreditWallet.class,
-                "v2CreditWalletRequest", v2CreditWalletRequest,
+                "data", data,
                 "id", id);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2CreditWalletRequest> v2CreditWalletRequest = Optional.empty();
+        private Optional<? extends V2CreditWalletRequest> data = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -121,15 +121,15 @@ public class V2ActivityCreditWallet {
         }
 
 
-        public Builder v2CreditWalletRequest(V2CreditWalletRequest v2CreditWalletRequest) {
-            Utils.checkNotNull(v2CreditWalletRequest, "v2CreditWalletRequest");
-            this.v2CreditWalletRequest = Optional.ofNullable(v2CreditWalletRequest);
+        public Builder data(V2CreditWalletRequest data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder v2CreditWalletRequest(Optional<? extends V2CreditWalletRequest> v2CreditWalletRequest) {
-            Utils.checkNotNull(v2CreditWalletRequest, "v2CreditWalletRequest");
-            this.v2CreditWalletRequest = v2CreditWalletRequest;
+        public Builder data(Optional<? extends V2CreditWalletRequest> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
@@ -149,7 +149,7 @@ public class V2ActivityCreditWallet {
         public V2ActivityCreditWallet build() {
 
             return new V2ActivityCreditWallet(
-                v2CreditWalletRequest, id);
+                data, id);
         }
 
     }

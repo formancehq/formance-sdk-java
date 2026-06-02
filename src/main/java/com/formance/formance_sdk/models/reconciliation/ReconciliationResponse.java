@@ -18,18 +18,18 @@ import java.lang.String;
 public class ReconciliationResponse {
 
     @JsonProperty("data")
-    private Reconciliation reconciliation;
+    private Reconciliation data;
 
     @JsonCreator
     public ReconciliationResponse(
-            @JsonProperty("data") Reconciliation reconciliation) {
-        Utils.checkNotNull(reconciliation, "reconciliation");
-        this.reconciliation = reconciliation;
+            @JsonProperty("data") Reconciliation data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Reconciliation reconciliation() {
-        return reconciliation;
+    public Reconciliation data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class ReconciliationResponse {
     }
 
 
-    public ReconciliationResponse withReconciliation(Reconciliation reconciliation) {
-        Utils.checkNotNull(reconciliation, "reconciliation");
-        this.reconciliation = reconciliation;
+    public ReconciliationResponse withData(Reconciliation data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class ReconciliationResponse {
         }
         ReconciliationResponse other = (ReconciliationResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.reconciliation, other.reconciliation);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reconciliation);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ReconciliationResponse.class,
-                "reconciliation", reconciliation);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Reconciliation reconciliation;
+        private Reconciliation data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder reconciliation(Reconciliation reconciliation) {
-            Utils.checkNotNull(reconciliation, "reconciliation");
-            this.reconciliation = reconciliation;
+        public Builder data(Reconciliation data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public ReconciliationResponse build() {
 
             return new ReconciliationResponse(
-                reconciliation);
+                data);
         }
 
     }

@@ -18,11 +18,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ClientSecret {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> metadata;
-
-
     @JsonProperty("id")
     private String id;
 
@@ -31,22 +26,27 @@ public class ClientSecret {
     private String lastDigits;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
     @JsonProperty("name")
     private String name;
 
     @JsonCreator
     public ClientSecret(
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("id") String id,
             @JsonProperty("lastDigits") String lastDigits,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") String name) {
-        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(lastDigits, "lastDigits");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
-        this.metadata = metadata;
         this.id = id;
         this.lastDigits = lastDigits;
+        this.metadata = metadata;
         this.name = name;
     }
     
@@ -54,14 +54,8 @@ public class ClientSecret {
             String id,
             String lastDigits,
             String name) {
-        this(JsonNullable.undefined(), id, lastDigits,
+        this(id, lastDigits, JsonNullable.undefined(),
             name);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> metadata() {
-        return (JsonNullable<Map<String, String>>) metadata;
     }
 
     @JsonIgnore
@@ -74,6 +68,12 @@ public class ClientSecret {
         return lastDigits;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     @JsonIgnore
     public String name() {
         return name;
@@ -84,18 +84,6 @@ public class ClientSecret {
     }
 
 
-    public ClientSecret withMetadata(Map<String, String> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = JsonNullable.of(metadata);
-        return this;
-    }
-
-    public ClientSecret withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = metadata;
-        return this;
-    }
-
     public ClientSecret withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -105,6 +93,18 @@ public class ClientSecret {
     public ClientSecret withLastDigits(String lastDigits) {
         Utils.checkNotNull(lastDigits, "lastDigits");
         this.lastDigits = lastDigits;
+        return this;
+    }
+
+    public ClientSecret withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public ClientSecret withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
         return this;
     }
 
@@ -124,54 +124,41 @@ public class ClientSecret {
         }
         ClientSecret other = (ClientSecret) o;
         return 
-            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.lastDigits, other.lastDigits) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            metadata, id, lastDigits,
+            id, lastDigits, metadata,
             name);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ClientSecret.class,
-                "metadata", metadata,
                 "id", id,
                 "lastDigits", lastDigits,
+                "metadata", metadata,
                 "name", name);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
-
         private String id;
 
         private String lastDigits;
+
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
         private String name;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder metadata(Map<String, String> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = JsonNullable.of(metadata);
-            return this;
-        }
-
-        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = metadata;
-            return this;
         }
 
 
@@ -189,6 +176,19 @@ public class ClientSecret {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -198,7 +198,7 @@ public class ClientSecret {
         public ClientSecret build() {
 
             return new ClientSecret(
-                metadata, id, lastDigits,
+                id, lastDigits, metadata,
                 name);
         }
 

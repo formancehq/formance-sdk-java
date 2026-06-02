@@ -18,18 +18,18 @@ import java.lang.String;
 public class TransferInitiationsCursor {
 
     @JsonProperty("cursor")
-    private TransferInitiationsCursorCursorBase cursorBase;
+    private TransferInitiationsCursorCursor cursor;
 
     @JsonCreator
     public TransferInitiationsCursor(
-            @JsonProperty("cursor") TransferInitiationsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+            @JsonProperty("cursor") TransferInitiationsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
     }
 
     @JsonIgnore
-    public TransferInitiationsCursorCursorBase cursorBase() {
-        return cursorBase;
+    public TransferInitiationsCursorCursor cursor() {
+        return cursor;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class TransferInitiationsCursor {
     }
 
 
-    public TransferInitiationsCursor withCursorBase(TransferInitiationsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+    public TransferInitiationsCursor withCursor(TransferInitiationsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class TransferInitiationsCursor {
         }
         TransferInitiationsCursor other = (TransferInitiationsCursor) o;
         return 
-            Utils.enhancedDeepEquals(this.cursorBase, other.cursorBase);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursorBase);
+            cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TransferInitiationsCursor.class,
-                "cursorBase", cursorBase);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private TransferInitiationsCursorCursorBase cursorBase;
+        private TransferInitiationsCursorCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder cursorBase(TransferInitiationsCursorCursorBase cursorBase) {
-            Utils.checkNotNull(cursorBase, "cursorBase");
-            this.cursorBase = cursorBase;
+        public Builder cursor(TransferInitiationsCursorCursor cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
             return this;
         }
 
         public TransferInitiationsCursor build() {
 
             return new TransferInitiationsCursor(
-                cursorBase);
+                cursor);
         }
 
     }

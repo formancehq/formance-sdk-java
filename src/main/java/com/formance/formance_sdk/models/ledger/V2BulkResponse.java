@@ -19,13 +19,13 @@ import java.util.Optional;
 public class V2BulkResponse {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("errorCode")
-    private Optional<? extends V2ErrorsEnum> v2ErrorsEnum;
+    @JsonProperty("data")
+    private Optional<? extends List<V2BulkElementResult>> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("data")
-    private Optional<? extends List<V2BulkElementResult>> data;
+    @JsonProperty("errorCode")
+    private Optional<? extends V2ErrorsEnum> errorCode;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -34,14 +34,14 @@ public class V2BulkResponse {
 
     @JsonCreator
     public V2BulkResponse(
-            @JsonProperty("errorCode") Optional<? extends V2ErrorsEnum> v2ErrorsEnum,
             @JsonProperty("data") Optional<? extends List<V2BulkElementResult>> data,
+            @JsonProperty("errorCode") Optional<? extends V2ErrorsEnum> errorCode,
             @JsonProperty("errorMessage") Optional<String> errorMessage) {
-        Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(errorMessage, "errorMessage");
-        this.v2ErrorsEnum = v2ErrorsEnum;
         this.data = data;
+        this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
     
@@ -51,14 +51,14 @@ public class V2BulkResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2ErrorsEnum> v2ErrorsEnum() {
-        return (Optional<V2ErrorsEnum>) v2ErrorsEnum;
+    public Optional<List<V2BulkElementResult>> data() {
+        return (Optional<List<V2BulkElementResult>>) data;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<V2BulkElementResult>> data() {
-        return (Optional<List<V2BulkElementResult>>) data;
+    public Optional<V2ErrorsEnum> errorCode() {
+        return (Optional<V2ErrorsEnum>) errorCode;
     }
 
     @JsonIgnore
@@ -71,19 +71,6 @@ public class V2BulkResponse {
     }
 
 
-    public V2BulkResponse withV2ErrorsEnum(V2ErrorsEnum v2ErrorsEnum) {
-        Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-        this.v2ErrorsEnum = Optional.ofNullable(v2ErrorsEnum);
-        return this;
-    }
-
-
-    public V2BulkResponse withV2ErrorsEnum(Optional<? extends V2ErrorsEnum> v2ErrorsEnum) {
-        Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-        this.v2ErrorsEnum = v2ErrorsEnum;
-        return this;
-    }
-
     public V2BulkResponse withData(List<V2BulkElementResult> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -94,6 +81,19 @@ public class V2BulkResponse {
     public V2BulkResponse withData(Optional<? extends List<V2BulkElementResult>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
+        return this;
+    }
+
+    public V2BulkResponse withErrorCode(V2ErrorsEnum errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = Optional.ofNullable(errorCode);
+        return this;
+    }
+
+
+    public V2BulkResponse withErrorCode(Optional<? extends V2ErrorsEnum> errorCode) {
+        Utils.checkNotNull(errorCode, "errorCode");
+        this.errorCode = errorCode;
         return this;
     }
 
@@ -120,49 +120,36 @@ public class V2BulkResponse {
         }
         V2BulkResponse other = (V2BulkResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2ErrorsEnum, other.v2ErrorsEnum) &&
             Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
             Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2ErrorsEnum, data, errorMessage);
+            data, errorCode, errorMessage);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2BulkResponse.class,
-                "v2ErrorsEnum", v2ErrorsEnum,
                 "data", data,
+                "errorCode", errorCode,
                 "errorMessage", errorMessage);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2ErrorsEnum> v2ErrorsEnum = Optional.empty();
-
         private Optional<? extends List<V2BulkElementResult>> data = Optional.empty();
+
+        private Optional<? extends V2ErrorsEnum> errorCode = Optional.empty();
 
         private Optional<String> errorMessage = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v2ErrorsEnum(V2ErrorsEnum v2ErrorsEnum) {
-            Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-            this.v2ErrorsEnum = Optional.ofNullable(v2ErrorsEnum);
-            return this;
-        }
-
-        public Builder v2ErrorsEnum(Optional<? extends V2ErrorsEnum> v2ErrorsEnum) {
-            Utils.checkNotNull(v2ErrorsEnum, "v2ErrorsEnum");
-            this.v2ErrorsEnum = v2ErrorsEnum;
-            return this;
         }
 
 
@@ -175,6 +162,19 @@ public class V2BulkResponse {
         public Builder data(Optional<? extends List<V2BulkElementResult>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
+            return this;
+        }
+
+
+        public Builder errorCode(V2ErrorsEnum errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = Optional.ofNullable(errorCode);
+            return this;
+        }
+
+        public Builder errorCode(Optional<? extends V2ErrorsEnum> errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
             return this;
         }
 
@@ -194,7 +194,7 @@ public class V2BulkResponse {
         public V2BulkResponse build() {
 
             return new V2BulkResponse(
-                v2ErrorsEnum, data, errorMessage);
+                data, errorCode, errorMessage);
         }
 
     }

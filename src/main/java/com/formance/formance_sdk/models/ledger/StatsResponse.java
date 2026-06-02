@@ -14,18 +14,18 @@ import java.lang.String;
 public class StatsResponse {
 
     @JsonProperty("data")
-    private Stats stats;
+    private Stats data;
 
     @JsonCreator
     public StatsResponse(
-            @JsonProperty("data") Stats stats) {
-        Utils.checkNotNull(stats, "stats");
-        this.stats = stats;
+            @JsonProperty("data") Stats data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Stats stats() {
-        return stats;
+    public Stats data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class StatsResponse {
     }
 
 
-    public StatsResponse withStats(Stats stats) {
-        Utils.checkNotNull(stats, "stats");
-        this.stats = stats;
+    public StatsResponse withData(Stats data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class StatsResponse {
         }
         StatsResponse other = (StatsResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.stats, other.stats);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            stats);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(StatsResponse.class,
-                "stats", stats);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Stats stats;
+        private Stats data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder stats(Stats stats) {
-            Utils.checkNotNull(stats, "stats");
-            this.stats = stats;
+        public Builder data(Stats data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public StatsResponse build() {
 
             return new StatsResponse(
-                stats);
+                data);
         }
 
     }

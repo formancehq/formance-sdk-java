@@ -18,18 +18,18 @@ import java.lang.String;
 public class V2CreatePipelineResponse {
 
     @JsonProperty("data")
-    private V2PipelineConfiguration v2PipelineConfiguration;
+    private V2Pipeline data;
 
     @JsonCreator
     public V2CreatePipelineResponse(
-            @JsonProperty("data") V2PipelineConfiguration v2PipelineConfiguration) {
-        Utils.checkNotNull(v2PipelineConfiguration, "v2PipelineConfiguration");
-        this.v2PipelineConfiguration = v2PipelineConfiguration;
+            @JsonProperty("data") V2Pipeline data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2PipelineConfiguration v2PipelineConfiguration() {
-        return v2PipelineConfiguration;
+    public V2Pipeline data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class V2CreatePipelineResponse {
     }
 
 
-    public V2CreatePipelineResponse withV2PipelineConfiguration(V2PipelineConfiguration v2PipelineConfiguration) {
-        Utils.checkNotNull(v2PipelineConfiguration, "v2PipelineConfiguration");
-        this.v2PipelineConfiguration = v2PipelineConfiguration;
+    public V2CreatePipelineResponse withData(V2Pipeline data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class V2CreatePipelineResponse {
         }
         V2CreatePipelineResponse other = (V2CreatePipelineResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2PipelineConfiguration, other.v2PipelineConfiguration);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2PipelineConfiguration);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreatePipelineResponse.class,
-                "v2PipelineConfiguration", v2PipelineConfiguration);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2PipelineConfiguration v2PipelineConfiguration;
+        private V2Pipeline data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2PipelineConfiguration(V2PipelineConfiguration v2PipelineConfiguration) {
-            Utils.checkNotNull(v2PipelineConfiguration, "v2PipelineConfiguration");
-            this.v2PipelineConfiguration = v2PipelineConfiguration;
+        public Builder data(V2Pipeline data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2CreatePipelineResponse build() {
 
             return new V2CreatePipelineResponse(
-                v2PipelineConfiguration);
+                data);
         }
 
     }

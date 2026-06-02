@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2WalletWithBalancesBalances {
 
     @JsonProperty("main")
-    private V2AssetHolder v2AssetHolder;
+    private V2AssetHolder main;
 
     @JsonCreator
     public V2WalletWithBalancesBalances(
-            @JsonProperty("main") V2AssetHolder v2AssetHolder) {
-        Utils.checkNotNull(v2AssetHolder, "v2AssetHolder");
-        this.v2AssetHolder = v2AssetHolder;
+            @JsonProperty("main") V2AssetHolder main) {
+        Utils.checkNotNull(main, "main");
+        this.main = main;
     }
 
     @JsonIgnore
-    public V2AssetHolder v2AssetHolder() {
-        return v2AssetHolder;
+    public V2AssetHolder main() {
+        return main;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2WalletWithBalancesBalances {
     }
 
 
-    public V2WalletWithBalancesBalances withV2AssetHolder(V2AssetHolder v2AssetHolder) {
-        Utils.checkNotNull(v2AssetHolder, "v2AssetHolder");
-        this.v2AssetHolder = v2AssetHolder;
+    public V2WalletWithBalancesBalances withMain(V2AssetHolder main) {
+        Utils.checkNotNull(main, "main");
+        this.main = main;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2WalletWithBalancesBalances {
         }
         V2WalletWithBalancesBalances other = (V2WalletWithBalancesBalances) o;
         return 
-            Utils.enhancedDeepEquals(this.v2AssetHolder, other.v2AssetHolder);
+            Utils.enhancedDeepEquals(this.main, other.main);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2AssetHolder);
+            main);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2WalletWithBalancesBalances.class,
-                "v2AssetHolder", v2AssetHolder);
+                "main", main);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2AssetHolder v2AssetHolder;
+        private V2AssetHolder main;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2AssetHolder(V2AssetHolder v2AssetHolder) {
-            Utils.checkNotNull(v2AssetHolder, "v2AssetHolder");
-            this.v2AssetHolder = v2AssetHolder;
+        public Builder main(V2AssetHolder main) {
+            Utils.checkNotNull(main, "main");
+            this.main = main;
             return this;
         }
 
         public V2WalletWithBalancesBalances build() {
 
             return new V2WalletWithBalancesBalances(
-                v2AssetHolder);
+                main);
         }
 
     }

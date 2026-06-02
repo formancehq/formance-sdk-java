@@ -14,18 +14,18 @@ import java.lang.String;
 public class V3GetTaskResponse {
 
     @JsonProperty("data")
-    private V3Task v3Task;
+    private V3Task data;
 
     @JsonCreator
     public V3GetTaskResponse(
-            @JsonProperty("data") V3Task v3Task) {
-        Utils.checkNotNull(v3Task, "v3Task");
-        this.v3Task = v3Task;
+            @JsonProperty("data") V3Task data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V3Task v3Task() {
-        return v3Task;
+    public V3Task data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V3GetTaskResponse {
     }
 
 
-    public V3GetTaskResponse withV3Task(V3Task v3Task) {
-        Utils.checkNotNull(v3Task, "v3Task");
-        this.v3Task = v3Task;
+    public V3GetTaskResponse withData(V3Task data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V3GetTaskResponse {
         }
         V3GetTaskResponse other = (V3GetTaskResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v3Task, other.v3Task);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3Task);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3GetTaskResponse.class,
-                "v3Task", v3Task);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V3Task v3Task;
+        private V3Task data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v3Task(V3Task v3Task) {
-            Utils.checkNotNull(v3Task, "v3Task");
-            this.v3Task = v3Task;
+        public Builder data(V3Task data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V3GetTaskResponse build() {
 
             return new V3GetTaskResponse(
-                v3Task);
+                data);
         }
 
     }

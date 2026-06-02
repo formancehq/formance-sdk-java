@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2RunWorkflowResponse {
 
     @JsonProperty("data")
-    private V2WorkflowInstance v2WorkflowInstance;
+    private V2WorkflowInstance data;
 
     @JsonCreator
     public V2RunWorkflowResponse(
-            @JsonProperty("data") V2WorkflowInstance v2WorkflowInstance) {
-        Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-        this.v2WorkflowInstance = v2WorkflowInstance;
+            @JsonProperty("data") V2WorkflowInstance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2WorkflowInstance v2WorkflowInstance() {
-        return v2WorkflowInstance;
+    public V2WorkflowInstance data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2RunWorkflowResponse {
     }
 
 
-    public V2RunWorkflowResponse withV2WorkflowInstance(V2WorkflowInstance v2WorkflowInstance) {
-        Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-        this.v2WorkflowInstance = v2WorkflowInstance;
+    public V2RunWorkflowResponse withData(V2WorkflowInstance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2RunWorkflowResponse {
         }
         V2RunWorkflowResponse other = (V2RunWorkflowResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2WorkflowInstance, other.v2WorkflowInstance);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2WorkflowInstance);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RunWorkflowResponse.class,
-                "v2WorkflowInstance", v2WorkflowInstance);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2WorkflowInstance v2WorkflowInstance;
+        private V2WorkflowInstance data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2WorkflowInstance(V2WorkflowInstance v2WorkflowInstance) {
-            Utils.checkNotNull(v2WorkflowInstance, "v2WorkflowInstance");
-            this.v2WorkflowInstance = v2WorkflowInstance;
+        public Builder data(V2WorkflowInstance data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2RunWorkflowResponse build() {
 
             return new V2RunWorkflowResponse(
-                v2WorkflowInstance);
+                data);
         }
 
     }

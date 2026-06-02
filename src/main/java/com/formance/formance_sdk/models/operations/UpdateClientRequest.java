@@ -5,7 +5,7 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.formance.formance_sdk.models.auth.ClientOptions2;
+import com.formance.formance_sdk.models.auth.ClientOptions;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class UpdateClientRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends ClientOptions2> clientOptions;
+    private Optional<? extends ClientOptions> clientOptions;
 
     /**
      * Client ID
@@ -27,7 +27,7 @@ public class UpdateClientRequest {
 
     @JsonCreator
     public UpdateClientRequest(
-            Optional<? extends ClientOptions2> clientOptions,
+            Optional<? extends ClientOptions> clientOptions,
             String clientId) {
         Utils.checkNotNull(clientOptions, "clientOptions");
         Utils.checkNotNull(clientId, "clientId");
@@ -42,8 +42,8 @@ public class UpdateClientRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ClientOptions2> clientOptions() {
-        return (Optional<ClientOptions2>) clientOptions;
+    public Optional<ClientOptions> clientOptions() {
+        return (Optional<ClientOptions>) clientOptions;
     }
 
     /**
@@ -59,14 +59,14 @@ public class UpdateClientRequest {
     }
 
 
-    public UpdateClientRequest withClientOptions(ClientOptions2 clientOptions) {
+    public UpdateClientRequest withClientOptions(ClientOptions clientOptions) {
         Utils.checkNotNull(clientOptions, "clientOptions");
         this.clientOptions = Optional.ofNullable(clientOptions);
         return this;
     }
 
 
-    public UpdateClientRequest withClientOptions(Optional<? extends ClientOptions2> clientOptions) {
+    public UpdateClientRequest withClientOptions(Optional<? extends ClientOptions> clientOptions) {
         Utils.checkNotNull(clientOptions, "clientOptions");
         this.clientOptions = clientOptions;
         return this;
@@ -111,7 +111,7 @@ public class UpdateClientRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ClientOptions2> clientOptions = Optional.empty();
+        private Optional<? extends ClientOptions> clientOptions = Optional.empty();
 
         private String clientId;
 
@@ -120,13 +120,13 @@ public class UpdateClientRequest {
         }
 
 
-        public Builder clientOptions(ClientOptions2 clientOptions) {
+        public Builder clientOptions(ClientOptions clientOptions) {
             Utils.checkNotNull(clientOptions, "clientOptions");
             this.clientOptions = Optional.ofNullable(clientOptions);
             return this;
         }
 
-        public Builder clientOptions(Optional<? extends ClientOptions2> clientOptions) {
+        public Builder clientOptions(Optional<? extends ClientOptions> clientOptions) {
             Utils.checkNotNull(clientOptions, "clientOptions");
             this.clientOptions = clientOptions;
             return this;

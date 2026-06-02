@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 
@@ -19,17 +18,17 @@ import java.lang.String;
 public class TaskResponse {
 
     @JsonProperty("data")
-    private Object data;
+    private TaskResponseData data;
 
     @JsonCreator
     public TaskResponse(
-            @JsonProperty("data") Object data) {
+            @JsonProperty("data") TaskResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
 
     @JsonIgnore
-    public Object data() {
+    public TaskResponseData data() {
         return data;
     }
 
@@ -38,7 +37,7 @@ public class TaskResponse {
     }
 
 
-    public TaskResponse withData(Object data) {
+    public TaskResponse withData(TaskResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -72,14 +71,14 @@ public class TaskResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Object data;
+        private TaskResponseData data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder data(Object data) {
+        public Builder data(TaskResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

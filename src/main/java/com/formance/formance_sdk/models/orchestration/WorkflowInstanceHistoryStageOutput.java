@@ -18,62 +18,62 @@ import java.util.Optional;
 public class WorkflowInstanceHistoryStageOutput {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("GetAccount")
-    private Optional<? extends AccountResponse> accountResponse;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
-    private Optional<? extends CreateTransactionResponse> createTransactionResponse;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("RevertTransaction")
-    private Optional<? extends CreateTransactionResponse> createTransactionResponse1;
+    private Optional<? extends CreateTransactionResponse> createTransaction;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
-    private Optional<? extends DebitWalletResponse> debitWalletResponse;
+    private Optional<? extends DebitWalletResponse> debitWallet;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("GetWallet")
-    private Optional<? extends GetWalletResponse> getWalletResponse;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("ListWallets")
-    private Optional<? extends ListWalletsResponse> listWalletsResponse;
+    @JsonProperty("GetAccount")
+    private Optional<? extends AccountResponse> getAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
-    private Optional<? extends PaymentResponse> paymentResponse;
+    private Optional<? extends PaymentResponse> getPayment;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("GetWallet")
+    private Optional<? extends GetWalletResponse> getWallet;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ListWallets")
+    private Optional<? extends ListWalletsResponse> listWallets;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("RevertTransaction")
+    private Optional<? extends CreateTransactionResponse> revertTransaction;
 
     @JsonCreator
     public WorkflowInstanceHistoryStageOutput(
-            @JsonProperty("GetAccount") Optional<? extends AccountResponse> accountResponse,
-            @JsonProperty("CreateTransaction") Optional<? extends CreateTransactionResponse> createTransactionResponse,
-            @JsonProperty("RevertTransaction") Optional<? extends CreateTransactionResponse> createTransactionResponse1,
-            @JsonProperty("DebitWallet") Optional<? extends DebitWalletResponse> debitWalletResponse,
-            @JsonProperty("GetWallet") Optional<? extends GetWalletResponse> getWalletResponse,
-            @JsonProperty("ListWallets") Optional<? extends ListWalletsResponse> listWalletsResponse,
-            @JsonProperty("GetPayment") Optional<? extends PaymentResponse> paymentResponse) {
-        Utils.checkNotNull(accountResponse, "accountResponse");
-        Utils.checkNotNull(createTransactionResponse, "createTransactionResponse");
-        Utils.checkNotNull(createTransactionResponse1, "createTransactionResponse1");
-        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
-        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
-        Utils.checkNotNull(listWalletsResponse, "listWalletsResponse");
-        Utils.checkNotNull(paymentResponse, "paymentResponse");
-        this.accountResponse = accountResponse;
-        this.createTransactionResponse = createTransactionResponse;
-        this.createTransactionResponse1 = createTransactionResponse1;
-        this.debitWalletResponse = debitWalletResponse;
-        this.getWalletResponse = getWalletResponse;
-        this.listWalletsResponse = listWalletsResponse;
-        this.paymentResponse = paymentResponse;
+            @JsonProperty("CreateTransaction") Optional<? extends CreateTransactionResponse> createTransaction,
+            @JsonProperty("DebitWallet") Optional<? extends DebitWalletResponse> debitWallet,
+            @JsonProperty("GetAccount") Optional<? extends AccountResponse> getAccount,
+            @JsonProperty("GetPayment") Optional<? extends PaymentResponse> getPayment,
+            @JsonProperty("GetWallet") Optional<? extends GetWalletResponse> getWallet,
+            @JsonProperty("ListWallets") Optional<? extends ListWalletsResponse> listWallets,
+            @JsonProperty("RevertTransaction") Optional<? extends CreateTransactionResponse> revertTransaction) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        Utils.checkNotNull(getAccount, "getAccount");
+        Utils.checkNotNull(getPayment, "getPayment");
+        Utils.checkNotNull(getWallet, "getWallet");
+        Utils.checkNotNull(listWallets, "listWallets");
+        Utils.checkNotNull(revertTransaction, "revertTransaction");
+        this.createTransaction = createTransaction;
+        this.debitWallet = debitWallet;
+        this.getAccount = getAccount;
+        this.getPayment = getPayment;
+        this.getWallet = getWallet;
+        this.listWallets = listWallets;
+        this.revertTransaction = revertTransaction;
     }
     
     public WorkflowInstanceHistoryStageOutput() {
@@ -84,44 +84,44 @@ public class WorkflowInstanceHistoryStageOutput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AccountResponse> accountResponse() {
-        return (Optional<AccountResponse>) accountResponse;
+    public Optional<CreateTransactionResponse> createTransaction() {
+        return (Optional<CreateTransactionResponse>) createTransaction;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateTransactionResponse> createTransactionResponse() {
-        return (Optional<CreateTransactionResponse>) createTransactionResponse;
+    public Optional<DebitWalletResponse> debitWallet() {
+        return (Optional<DebitWalletResponse>) debitWallet;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateTransactionResponse> createTransactionResponse1() {
-        return (Optional<CreateTransactionResponse>) createTransactionResponse1;
+    public Optional<AccountResponse> getAccount() {
+        return (Optional<AccountResponse>) getAccount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DebitWalletResponse> debitWalletResponse() {
-        return (Optional<DebitWalletResponse>) debitWalletResponse;
+    public Optional<PaymentResponse> getPayment() {
+        return (Optional<PaymentResponse>) getPayment;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWalletResponse> getWalletResponse() {
-        return (Optional<GetWalletResponse>) getWalletResponse;
+    public Optional<GetWalletResponse> getWallet() {
+        return (Optional<GetWalletResponse>) getWallet;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListWalletsResponse> listWalletsResponse() {
-        return (Optional<ListWalletsResponse>) listWalletsResponse;
+    public Optional<ListWalletsResponse> listWallets() {
+        return (Optional<ListWalletsResponse>) listWallets;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentResponse> paymentResponse() {
-        return (Optional<PaymentResponse>) paymentResponse;
+    public Optional<CreateTransactionResponse> revertTransaction() {
+        return (Optional<CreateTransactionResponse>) revertTransaction;
     }
 
     public static Builder builder() {
@@ -129,94 +129,94 @@ public class WorkflowInstanceHistoryStageOutput {
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withAccountResponse(AccountResponse accountResponse) {
-        Utils.checkNotNull(accountResponse, "accountResponse");
-        this.accountResponse = Optional.ofNullable(accountResponse);
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(CreateTransactionResponse createTransaction) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withAccountResponse(Optional<? extends AccountResponse> accountResponse) {
-        Utils.checkNotNull(accountResponse, "accountResponse");
-        this.accountResponse = accountResponse;
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends CreateTransactionResponse> createTransaction) {
+        Utils.checkNotNull(createTransaction, "createTransaction");
+        this.createTransaction = createTransaction;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransactionResponse(CreateTransactionResponse createTransactionResponse) {
-        Utils.checkNotNull(createTransactionResponse, "createTransactionResponse");
-        this.createTransactionResponse = Optional.ofNullable(createTransactionResponse);
-        return this;
-    }
-
-
-    public WorkflowInstanceHistoryStageOutput withCreateTransactionResponse(Optional<? extends CreateTransactionResponse> createTransactionResponse) {
-        Utils.checkNotNull(createTransactionResponse, "createTransactionResponse");
-        this.createTransactionResponse = createTransactionResponse;
-        return this;
-    }
-
-    public WorkflowInstanceHistoryStageOutput withCreateTransactionResponse1(CreateTransactionResponse createTransactionResponse1) {
-        Utils.checkNotNull(createTransactionResponse1, "createTransactionResponse1");
-        this.createTransactionResponse1 = Optional.ofNullable(createTransactionResponse1);
+    public WorkflowInstanceHistoryStageOutput withDebitWallet(DebitWalletResponse debitWallet) {
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        this.debitWallet = Optional.ofNullable(debitWallet);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransactionResponse1(Optional<? extends CreateTransactionResponse> createTransactionResponse1) {
-        Utils.checkNotNull(createTransactionResponse1, "createTransactionResponse1");
-        this.createTransactionResponse1 = createTransactionResponse1;
+    public WorkflowInstanceHistoryStageOutput withDebitWallet(Optional<? extends DebitWalletResponse> debitWallet) {
+        Utils.checkNotNull(debitWallet, "debitWallet");
+        this.debitWallet = debitWallet;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withDebitWalletResponse(DebitWalletResponse debitWalletResponse) {
-        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
-        this.debitWalletResponse = Optional.ofNullable(debitWalletResponse);
-        return this;
-    }
-
-
-    public WorkflowInstanceHistoryStageOutput withDebitWalletResponse(Optional<? extends DebitWalletResponse> debitWalletResponse) {
-        Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
-        this.debitWalletResponse = debitWalletResponse;
-        return this;
-    }
-
-    public WorkflowInstanceHistoryStageOutput withGetWalletResponse(GetWalletResponse getWalletResponse) {
-        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
-        this.getWalletResponse = Optional.ofNullable(getWalletResponse);
+    public WorkflowInstanceHistoryStageOutput withGetAccount(AccountResponse getAccount) {
+        Utils.checkNotNull(getAccount, "getAccount");
+        this.getAccount = Optional.ofNullable(getAccount);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withGetWalletResponse(Optional<? extends GetWalletResponse> getWalletResponse) {
-        Utils.checkNotNull(getWalletResponse, "getWalletResponse");
-        this.getWalletResponse = getWalletResponse;
+    public WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends AccountResponse> getAccount) {
+        Utils.checkNotNull(getAccount, "getAccount");
+        this.getAccount = getAccount;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withListWalletsResponse(ListWalletsResponse listWalletsResponse) {
-        Utils.checkNotNull(listWalletsResponse, "listWalletsResponse");
-        this.listWalletsResponse = Optional.ofNullable(listWalletsResponse);
-        return this;
-    }
-
-
-    public WorkflowInstanceHistoryStageOutput withListWalletsResponse(Optional<? extends ListWalletsResponse> listWalletsResponse) {
-        Utils.checkNotNull(listWalletsResponse, "listWalletsResponse");
-        this.listWalletsResponse = listWalletsResponse;
-        return this;
-    }
-
-    public WorkflowInstanceHistoryStageOutput withPaymentResponse(PaymentResponse paymentResponse) {
-        Utils.checkNotNull(paymentResponse, "paymentResponse");
-        this.paymentResponse = Optional.ofNullable(paymentResponse);
+    public WorkflowInstanceHistoryStageOutput withGetPayment(PaymentResponse getPayment) {
+        Utils.checkNotNull(getPayment, "getPayment");
+        this.getPayment = Optional.ofNullable(getPayment);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withPaymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
-        Utils.checkNotNull(paymentResponse, "paymentResponse");
-        this.paymentResponse = paymentResponse;
+    public WorkflowInstanceHistoryStageOutput withGetPayment(Optional<? extends PaymentResponse> getPayment) {
+        Utils.checkNotNull(getPayment, "getPayment");
+        this.getPayment = getPayment;
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStageOutput withGetWallet(GetWalletResponse getWallet) {
+        Utils.checkNotNull(getWallet, "getWallet");
+        this.getWallet = Optional.ofNullable(getWallet);
+        return this;
+    }
+
+
+    public WorkflowInstanceHistoryStageOutput withGetWallet(Optional<? extends GetWalletResponse> getWallet) {
+        Utils.checkNotNull(getWallet, "getWallet");
+        this.getWallet = getWallet;
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStageOutput withListWallets(ListWalletsResponse listWallets) {
+        Utils.checkNotNull(listWallets, "listWallets");
+        this.listWallets = Optional.ofNullable(listWallets);
+        return this;
+    }
+
+
+    public WorkflowInstanceHistoryStageOutput withListWallets(Optional<? extends ListWalletsResponse> listWallets) {
+        Utils.checkNotNull(listWallets, "listWallets");
+        this.listWallets = listWallets;
+        return this;
+    }
+
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(CreateTransactionResponse revertTransaction) {
+        Utils.checkNotNull(revertTransaction, "revertTransaction");
+        this.revertTransaction = Optional.ofNullable(revertTransaction);
+        return this;
+    }
+
+
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(Optional<? extends CreateTransactionResponse> revertTransaction) {
+        Utils.checkNotNull(revertTransaction, "revertTransaction");
+        this.revertTransaction = revertTransaction;
         return this;
     }
 
@@ -230,153 +230,153 @@ public class WorkflowInstanceHistoryStageOutput {
         }
         WorkflowInstanceHistoryStageOutput other = (WorkflowInstanceHistoryStageOutput) o;
         return 
-            Utils.enhancedDeepEquals(this.accountResponse, other.accountResponse) &&
-            Utils.enhancedDeepEquals(this.createTransactionResponse, other.createTransactionResponse) &&
-            Utils.enhancedDeepEquals(this.createTransactionResponse1, other.createTransactionResponse1) &&
-            Utils.enhancedDeepEquals(this.debitWalletResponse, other.debitWalletResponse) &&
-            Utils.enhancedDeepEquals(this.getWalletResponse, other.getWalletResponse) &&
-            Utils.enhancedDeepEquals(this.listWalletsResponse, other.listWalletsResponse) &&
-            Utils.enhancedDeepEquals(this.paymentResponse, other.paymentResponse);
+            Utils.enhancedDeepEquals(this.createTransaction, other.createTransaction) &&
+            Utils.enhancedDeepEquals(this.debitWallet, other.debitWallet) &&
+            Utils.enhancedDeepEquals(this.getAccount, other.getAccount) &&
+            Utils.enhancedDeepEquals(this.getPayment, other.getPayment) &&
+            Utils.enhancedDeepEquals(this.getWallet, other.getWallet) &&
+            Utils.enhancedDeepEquals(this.listWallets, other.listWallets) &&
+            Utils.enhancedDeepEquals(this.revertTransaction, other.revertTransaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accountResponse, createTransactionResponse, createTransactionResponse1,
-            debitWalletResponse, getWalletResponse, listWalletsResponse,
-            paymentResponse);
+            createTransaction, debitWallet, getAccount,
+            getPayment, getWallet, listWallets,
+            revertTransaction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(WorkflowInstanceHistoryStageOutput.class,
-                "accountResponse", accountResponse,
-                "createTransactionResponse", createTransactionResponse,
-                "createTransactionResponse1", createTransactionResponse1,
-                "debitWalletResponse", debitWalletResponse,
-                "getWalletResponse", getWalletResponse,
-                "listWalletsResponse", listWalletsResponse,
-                "paymentResponse", paymentResponse);
+                "createTransaction", createTransaction,
+                "debitWallet", debitWallet,
+                "getAccount", getAccount,
+                "getPayment", getPayment,
+                "getWallet", getWallet,
+                "listWallets", listWallets,
+                "revertTransaction", revertTransaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends AccountResponse> accountResponse = Optional.empty();
+        private Optional<? extends CreateTransactionResponse> createTransaction = Optional.empty();
 
-        private Optional<? extends CreateTransactionResponse> createTransactionResponse = Optional.empty();
+        private Optional<? extends DebitWalletResponse> debitWallet = Optional.empty();
 
-        private Optional<? extends CreateTransactionResponse> createTransactionResponse1 = Optional.empty();
+        private Optional<? extends AccountResponse> getAccount = Optional.empty();
 
-        private Optional<? extends DebitWalletResponse> debitWalletResponse = Optional.empty();
+        private Optional<? extends PaymentResponse> getPayment = Optional.empty();
 
-        private Optional<? extends GetWalletResponse> getWalletResponse = Optional.empty();
+        private Optional<? extends GetWalletResponse> getWallet = Optional.empty();
 
-        private Optional<? extends ListWalletsResponse> listWalletsResponse = Optional.empty();
+        private Optional<? extends ListWalletsResponse> listWallets = Optional.empty();
 
-        private Optional<? extends PaymentResponse> paymentResponse = Optional.empty();
+        private Optional<? extends CreateTransactionResponse> revertTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder accountResponse(AccountResponse accountResponse) {
-            Utils.checkNotNull(accountResponse, "accountResponse");
-            this.accountResponse = Optional.ofNullable(accountResponse);
+        public Builder createTransaction(CreateTransactionResponse createTransaction) {
+            Utils.checkNotNull(createTransaction, "createTransaction");
+            this.createTransaction = Optional.ofNullable(createTransaction);
             return this;
         }
 
-        public Builder accountResponse(Optional<? extends AccountResponse> accountResponse) {
-            Utils.checkNotNull(accountResponse, "accountResponse");
-            this.accountResponse = accountResponse;
-            return this;
-        }
-
-
-        public Builder createTransactionResponse(CreateTransactionResponse createTransactionResponse) {
-            Utils.checkNotNull(createTransactionResponse, "createTransactionResponse");
-            this.createTransactionResponse = Optional.ofNullable(createTransactionResponse);
-            return this;
-        }
-
-        public Builder createTransactionResponse(Optional<? extends CreateTransactionResponse> createTransactionResponse) {
-            Utils.checkNotNull(createTransactionResponse, "createTransactionResponse");
-            this.createTransactionResponse = createTransactionResponse;
+        public Builder createTransaction(Optional<? extends CreateTransactionResponse> createTransaction) {
+            Utils.checkNotNull(createTransaction, "createTransaction");
+            this.createTransaction = createTransaction;
             return this;
         }
 
 
-        public Builder createTransactionResponse1(CreateTransactionResponse createTransactionResponse1) {
-            Utils.checkNotNull(createTransactionResponse1, "createTransactionResponse1");
-            this.createTransactionResponse1 = Optional.ofNullable(createTransactionResponse1);
+        public Builder debitWallet(DebitWalletResponse debitWallet) {
+            Utils.checkNotNull(debitWallet, "debitWallet");
+            this.debitWallet = Optional.ofNullable(debitWallet);
             return this;
         }
 
-        public Builder createTransactionResponse1(Optional<? extends CreateTransactionResponse> createTransactionResponse1) {
-            Utils.checkNotNull(createTransactionResponse1, "createTransactionResponse1");
-            this.createTransactionResponse1 = createTransactionResponse1;
-            return this;
-        }
-
-
-        public Builder debitWalletResponse(DebitWalletResponse debitWalletResponse) {
-            Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
-            this.debitWalletResponse = Optional.ofNullable(debitWalletResponse);
-            return this;
-        }
-
-        public Builder debitWalletResponse(Optional<? extends DebitWalletResponse> debitWalletResponse) {
-            Utils.checkNotNull(debitWalletResponse, "debitWalletResponse");
-            this.debitWalletResponse = debitWalletResponse;
+        public Builder debitWallet(Optional<? extends DebitWalletResponse> debitWallet) {
+            Utils.checkNotNull(debitWallet, "debitWallet");
+            this.debitWallet = debitWallet;
             return this;
         }
 
 
-        public Builder getWalletResponse(GetWalletResponse getWalletResponse) {
-            Utils.checkNotNull(getWalletResponse, "getWalletResponse");
-            this.getWalletResponse = Optional.ofNullable(getWalletResponse);
+        public Builder getAccount(AccountResponse getAccount) {
+            Utils.checkNotNull(getAccount, "getAccount");
+            this.getAccount = Optional.ofNullable(getAccount);
             return this;
         }
 
-        public Builder getWalletResponse(Optional<? extends GetWalletResponse> getWalletResponse) {
-            Utils.checkNotNull(getWalletResponse, "getWalletResponse");
-            this.getWalletResponse = getWalletResponse;
-            return this;
-        }
-
-
-        public Builder listWalletsResponse(ListWalletsResponse listWalletsResponse) {
-            Utils.checkNotNull(listWalletsResponse, "listWalletsResponse");
-            this.listWalletsResponse = Optional.ofNullable(listWalletsResponse);
-            return this;
-        }
-
-        public Builder listWalletsResponse(Optional<? extends ListWalletsResponse> listWalletsResponse) {
-            Utils.checkNotNull(listWalletsResponse, "listWalletsResponse");
-            this.listWalletsResponse = listWalletsResponse;
+        public Builder getAccount(Optional<? extends AccountResponse> getAccount) {
+            Utils.checkNotNull(getAccount, "getAccount");
+            this.getAccount = getAccount;
             return this;
         }
 
 
-        public Builder paymentResponse(PaymentResponse paymentResponse) {
-            Utils.checkNotNull(paymentResponse, "paymentResponse");
-            this.paymentResponse = Optional.ofNullable(paymentResponse);
+        public Builder getPayment(PaymentResponse getPayment) {
+            Utils.checkNotNull(getPayment, "getPayment");
+            this.getPayment = Optional.ofNullable(getPayment);
             return this;
         }
 
-        public Builder paymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
-            Utils.checkNotNull(paymentResponse, "paymentResponse");
-            this.paymentResponse = paymentResponse;
+        public Builder getPayment(Optional<? extends PaymentResponse> getPayment) {
+            Utils.checkNotNull(getPayment, "getPayment");
+            this.getPayment = getPayment;
+            return this;
+        }
+
+
+        public Builder getWallet(GetWalletResponse getWallet) {
+            Utils.checkNotNull(getWallet, "getWallet");
+            this.getWallet = Optional.ofNullable(getWallet);
+            return this;
+        }
+
+        public Builder getWallet(Optional<? extends GetWalletResponse> getWallet) {
+            Utils.checkNotNull(getWallet, "getWallet");
+            this.getWallet = getWallet;
+            return this;
+        }
+
+
+        public Builder listWallets(ListWalletsResponse listWallets) {
+            Utils.checkNotNull(listWallets, "listWallets");
+            this.listWallets = Optional.ofNullable(listWallets);
+            return this;
+        }
+
+        public Builder listWallets(Optional<? extends ListWalletsResponse> listWallets) {
+            Utils.checkNotNull(listWallets, "listWallets");
+            this.listWallets = listWallets;
+            return this;
+        }
+
+
+        public Builder revertTransaction(CreateTransactionResponse revertTransaction) {
+            Utils.checkNotNull(revertTransaction, "revertTransaction");
+            this.revertTransaction = Optional.ofNullable(revertTransaction);
+            return this;
+        }
+
+        public Builder revertTransaction(Optional<? extends CreateTransactionResponse> revertTransaction) {
+            Utils.checkNotNull(revertTransaction, "revertTransaction");
+            this.revertTransaction = revertTransaction;
             return this;
         }
 
         public WorkflowInstanceHistoryStageOutput build() {
 
             return new WorkflowInstanceHistoryStageOutput(
-                accountResponse, createTransactionResponse, createTransactionResponse1,
-                debitWalletResponse, getWalletResponse, listWalletsResponse,
-                paymentResponse);
+                createTransaction, debitWallet, getAccount,
+                getPayment, getWallet, listWallets,
+                revertTransaction);
         }
 
     }

@@ -19,29 +19,29 @@ public class V2StageSendSource {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private Optional<? extends V2StageSendSourceAccount> v2StageSendSourceAccount;
+    private Optional<? extends V2StageSendSourceAccount> account;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private Optional<? extends V2StageSendSourcePayment> v2StageSendSourcePayment;
+    private Optional<? extends V2StageSendSourcePayment> payment;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("wallet")
-    private Optional<? extends V2StageSendSourceWallet> v2StageSendSourceWallet;
+    private Optional<? extends V2StageSendSourceWallet> wallet;
 
     @JsonCreator
     public V2StageSendSource(
-            @JsonProperty("account") Optional<? extends V2StageSendSourceAccount> v2StageSendSourceAccount,
-            @JsonProperty("payment") Optional<? extends V2StageSendSourcePayment> v2StageSendSourcePayment,
-            @JsonProperty("wallet") Optional<? extends V2StageSendSourceWallet> v2StageSendSourceWallet) {
-        Utils.checkNotNull(v2StageSendSourceAccount, "v2StageSendSourceAccount");
-        Utils.checkNotNull(v2StageSendSourcePayment, "v2StageSendSourcePayment");
-        Utils.checkNotNull(v2StageSendSourceWallet, "v2StageSendSourceWallet");
-        this.v2StageSendSourceAccount = v2StageSendSourceAccount;
-        this.v2StageSendSourcePayment = v2StageSendSourcePayment;
-        this.v2StageSendSourceWallet = v2StageSendSourceWallet;
+            @JsonProperty("account") Optional<? extends V2StageSendSourceAccount> account,
+            @JsonProperty("payment") Optional<? extends V2StageSendSourcePayment> payment,
+            @JsonProperty("wallet") Optional<? extends V2StageSendSourceWallet> wallet) {
+        Utils.checkNotNull(account, "account");
+        Utils.checkNotNull(payment, "payment");
+        Utils.checkNotNull(wallet, "wallet");
+        this.account = account;
+        this.payment = payment;
+        this.wallet = wallet;
     }
     
     public V2StageSendSource() {
@@ -50,20 +50,20 @@ public class V2StageSendSource {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2StageSendSourceAccount> v2StageSendSourceAccount() {
-        return (Optional<V2StageSendSourceAccount>) v2StageSendSourceAccount;
+    public Optional<V2StageSendSourceAccount> account() {
+        return (Optional<V2StageSendSourceAccount>) account;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2StageSendSourcePayment> v2StageSendSourcePayment() {
-        return (Optional<V2StageSendSourcePayment>) v2StageSendSourcePayment;
+    public Optional<V2StageSendSourcePayment> payment() {
+        return (Optional<V2StageSendSourcePayment>) payment;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2StageSendSourceWallet> v2StageSendSourceWallet() {
-        return (Optional<V2StageSendSourceWallet>) v2StageSendSourceWallet;
+    public Optional<V2StageSendSourceWallet> wallet() {
+        return (Optional<V2StageSendSourceWallet>) wallet;
     }
 
     public static Builder builder() {
@@ -71,42 +71,42 @@ public class V2StageSendSource {
     }
 
 
-    public V2StageSendSource withV2StageSendSourceAccount(V2StageSendSourceAccount v2StageSendSourceAccount) {
-        Utils.checkNotNull(v2StageSendSourceAccount, "v2StageSendSourceAccount");
-        this.v2StageSendSourceAccount = Optional.ofNullable(v2StageSendSourceAccount);
+    public V2StageSendSource withAccount(V2StageSendSourceAccount account) {
+        Utils.checkNotNull(account, "account");
+        this.account = Optional.ofNullable(account);
         return this;
     }
 
 
-    public V2StageSendSource withV2StageSendSourceAccount(Optional<? extends V2StageSendSourceAccount> v2StageSendSourceAccount) {
-        Utils.checkNotNull(v2StageSendSourceAccount, "v2StageSendSourceAccount");
-        this.v2StageSendSourceAccount = v2StageSendSourceAccount;
+    public V2StageSendSource withAccount(Optional<? extends V2StageSendSourceAccount> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
         return this;
     }
 
-    public V2StageSendSource withV2StageSendSourcePayment(V2StageSendSourcePayment v2StageSendSourcePayment) {
-        Utils.checkNotNull(v2StageSendSourcePayment, "v2StageSendSourcePayment");
-        this.v2StageSendSourcePayment = Optional.ofNullable(v2StageSendSourcePayment);
-        return this;
-    }
-
-
-    public V2StageSendSource withV2StageSendSourcePayment(Optional<? extends V2StageSendSourcePayment> v2StageSendSourcePayment) {
-        Utils.checkNotNull(v2StageSendSourcePayment, "v2StageSendSourcePayment");
-        this.v2StageSendSourcePayment = v2StageSendSourcePayment;
-        return this;
-    }
-
-    public V2StageSendSource withV2StageSendSourceWallet(V2StageSendSourceWallet v2StageSendSourceWallet) {
-        Utils.checkNotNull(v2StageSendSourceWallet, "v2StageSendSourceWallet");
-        this.v2StageSendSourceWallet = Optional.ofNullable(v2StageSendSourceWallet);
+    public V2StageSendSource withPayment(V2StageSendSourcePayment payment) {
+        Utils.checkNotNull(payment, "payment");
+        this.payment = Optional.ofNullable(payment);
         return this;
     }
 
 
-    public V2StageSendSource withV2StageSendSourceWallet(Optional<? extends V2StageSendSourceWallet> v2StageSendSourceWallet) {
-        Utils.checkNotNull(v2StageSendSourceWallet, "v2StageSendSourceWallet");
-        this.v2StageSendSourceWallet = v2StageSendSourceWallet;
+    public V2StageSendSource withPayment(Optional<? extends V2StageSendSourcePayment> payment) {
+        Utils.checkNotNull(payment, "payment");
+        this.payment = payment;
+        return this;
+    }
+
+    public V2StageSendSource withWallet(V2StageSendSourceWallet wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = Optional.ofNullable(wallet);
+        return this;
+    }
+
+
+    public V2StageSendSource withWallet(Optional<? extends V2StageSendSourceWallet> wallet) {
+        Utils.checkNotNull(wallet, "wallet");
+        this.wallet = wallet;
         return this;
     }
 
@@ -120,81 +120,81 @@ public class V2StageSendSource {
         }
         V2StageSendSource other = (V2StageSendSource) o;
         return 
-            Utils.enhancedDeepEquals(this.v2StageSendSourceAccount, other.v2StageSendSourceAccount) &&
-            Utils.enhancedDeepEquals(this.v2StageSendSourcePayment, other.v2StageSendSourcePayment) &&
-            Utils.enhancedDeepEquals(this.v2StageSendSourceWallet, other.v2StageSendSourceWallet);
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.payment, other.payment) &&
+            Utils.enhancedDeepEquals(this.wallet, other.wallet);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2StageSendSourceAccount, v2StageSendSourcePayment, v2StageSendSourceWallet);
+            account, payment, wallet);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2StageSendSource.class,
-                "v2StageSendSourceAccount", v2StageSendSourceAccount,
-                "v2StageSendSourcePayment", v2StageSendSourcePayment,
-                "v2StageSendSourceWallet", v2StageSendSourceWallet);
+                "account", account,
+                "payment", payment,
+                "wallet", wallet);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2StageSendSourceAccount> v2StageSendSourceAccount = Optional.empty();
+        private Optional<? extends V2StageSendSourceAccount> account = Optional.empty();
 
-        private Optional<? extends V2StageSendSourcePayment> v2StageSendSourcePayment = Optional.empty();
+        private Optional<? extends V2StageSendSourcePayment> payment = Optional.empty();
 
-        private Optional<? extends V2StageSendSourceWallet> v2StageSendSourceWallet = Optional.empty();
+        private Optional<? extends V2StageSendSourceWallet> wallet = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2StageSendSourceAccount(V2StageSendSourceAccount v2StageSendSourceAccount) {
-            Utils.checkNotNull(v2StageSendSourceAccount, "v2StageSendSourceAccount");
-            this.v2StageSendSourceAccount = Optional.ofNullable(v2StageSendSourceAccount);
+        public Builder account(V2StageSendSourceAccount account) {
+            Utils.checkNotNull(account, "account");
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
-        public Builder v2StageSendSourceAccount(Optional<? extends V2StageSendSourceAccount> v2StageSendSourceAccount) {
-            Utils.checkNotNull(v2StageSendSourceAccount, "v2StageSendSourceAccount");
-            this.v2StageSendSourceAccount = v2StageSendSourceAccount;
-            return this;
-        }
-
-
-        public Builder v2StageSendSourcePayment(V2StageSendSourcePayment v2StageSendSourcePayment) {
-            Utils.checkNotNull(v2StageSendSourcePayment, "v2StageSendSourcePayment");
-            this.v2StageSendSourcePayment = Optional.ofNullable(v2StageSendSourcePayment);
-            return this;
-        }
-
-        public Builder v2StageSendSourcePayment(Optional<? extends V2StageSendSourcePayment> v2StageSendSourcePayment) {
-            Utils.checkNotNull(v2StageSendSourcePayment, "v2StageSendSourcePayment");
-            this.v2StageSendSourcePayment = v2StageSendSourcePayment;
+        public Builder account(Optional<? extends V2StageSendSourceAccount> account) {
+            Utils.checkNotNull(account, "account");
+            this.account = account;
             return this;
         }
 
 
-        public Builder v2StageSendSourceWallet(V2StageSendSourceWallet v2StageSendSourceWallet) {
-            Utils.checkNotNull(v2StageSendSourceWallet, "v2StageSendSourceWallet");
-            this.v2StageSendSourceWallet = Optional.ofNullable(v2StageSendSourceWallet);
+        public Builder payment(V2StageSendSourcePayment payment) {
+            Utils.checkNotNull(payment, "payment");
+            this.payment = Optional.ofNullable(payment);
             return this;
         }
 
-        public Builder v2StageSendSourceWallet(Optional<? extends V2StageSendSourceWallet> v2StageSendSourceWallet) {
-            Utils.checkNotNull(v2StageSendSourceWallet, "v2StageSendSourceWallet");
-            this.v2StageSendSourceWallet = v2StageSendSourceWallet;
+        public Builder payment(Optional<? extends V2StageSendSourcePayment> payment) {
+            Utils.checkNotNull(payment, "payment");
+            this.payment = payment;
+            return this;
+        }
+
+
+        public Builder wallet(V2StageSendSourceWallet wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = Optional.ofNullable(wallet);
+            return this;
+        }
+
+        public Builder wallet(Optional<? extends V2StageSendSourceWallet> wallet) {
+            Utils.checkNotNull(wallet, "wallet");
+            this.wallet = wallet;
             return this;
         }
 
         public V2StageSendSource build() {
 
             return new V2StageSendSource(
-                v2StageSendSourceAccount, v2StageSendSourcePayment, v2StageSendSourceWallet);
+                account, payment, wallet);
         }
 
     }

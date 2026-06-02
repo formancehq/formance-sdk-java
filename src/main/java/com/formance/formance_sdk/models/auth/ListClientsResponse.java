@@ -20,11 +20,11 @@ public class ListClientsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends List<ClientOptions1>> data;
+    private Optional<? extends List<Client>> data;
 
     @JsonCreator
     public ListClientsResponse(
-            @JsonProperty("data") Optional<? extends List<ClientOptions1>> data) {
+            @JsonProperty("data") Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
     }
@@ -35,8 +35,8 @@ public class ListClientsResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ClientOptions1>> data() {
-        return (Optional<List<ClientOptions1>>) data;
+    public Optional<List<Client>> data() {
+        return (Optional<List<Client>>) data;
     }
 
     public static Builder builder() {
@@ -44,14 +44,14 @@ public class ListClientsResponse {
     }
 
 
-    public ListClientsResponse withData(List<ClientOptions1> data) {
+    public ListClientsResponse withData(List<Client> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public ListClientsResponse withData(Optional<? extends List<ClientOptions1>> data) {
+    public ListClientsResponse withData(Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -85,20 +85,20 @@ public class ListClientsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ClientOptions1>> data = Optional.empty();
+        private Optional<? extends List<Client>> data = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder data(List<ClientOptions1> data) {
+        public Builder data(List<Client> data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder data(Optional<? extends List<ClientOptions1>> data) {
+        public Builder data(Optional<? extends List<Client>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

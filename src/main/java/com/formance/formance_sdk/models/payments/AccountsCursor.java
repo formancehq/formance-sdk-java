@@ -18,18 +18,18 @@ import java.lang.String;
 public class AccountsCursor {
 
     @JsonProperty("cursor")
-    private AccountsCursorCursorBase cursorBase;
+    private AccountsCursorCursor cursor;
 
     @JsonCreator
     public AccountsCursor(
-            @JsonProperty("cursor") AccountsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+            @JsonProperty("cursor") AccountsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
     }
 
     @JsonIgnore
-    public AccountsCursorCursorBase cursorBase() {
-        return cursorBase;
+    public AccountsCursorCursor cursor() {
+        return cursor;
     }
 
     public static Builder builder() {
@@ -37,9 +37,9 @@ public class AccountsCursor {
     }
 
 
-    public AccountsCursor withCursorBase(AccountsCursorCursorBase cursorBase) {
-        Utils.checkNotNull(cursorBase, "cursorBase");
-        this.cursorBase = cursorBase;
+    public AccountsCursor withCursor(AccountsCursorCursor cursor) {
+        Utils.checkNotNull(cursor, "cursor");
+        this.cursor = cursor;
         return this;
     }
 
@@ -53,41 +53,41 @@ public class AccountsCursor {
         }
         AccountsCursor other = (AccountsCursor) o;
         return 
-            Utils.enhancedDeepEquals(this.cursorBase, other.cursorBase);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursorBase);
+            cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountsCursor.class,
-                "cursorBase", cursorBase);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private AccountsCursorCursorBase cursorBase;
+        private AccountsCursorCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder cursorBase(AccountsCursorCursorBase cursorBase) {
-            Utils.checkNotNull(cursorBase, "cursorBase");
-            this.cursorBase = cursorBase;
+        public Builder cursor(AccountsCursorCursor cursor) {
+            Utils.checkNotNull(cursor, "cursor");
+            this.cursor = cursor;
             return this;
         }
 
         public AccountsCursor build() {
 
             return new AccountsCursor(
-                cursorBase);
+                cursor);
         }
 
     }

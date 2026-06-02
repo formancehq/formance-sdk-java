@@ -18,13 +18,13 @@ import java.util.Optional;
 
 public class WorkflowInstanceHistory {
 
-    @JsonProperty("input")
-    private Stage stage;
-
-
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
+
+
+    @JsonProperty("input")
+    private Stage input;
 
 
     @JsonProperty("name")
@@ -45,20 +45,20 @@ public class WorkflowInstanceHistory {
 
     @JsonCreator
     public WorkflowInstanceHistory(
-            @JsonProperty("input") Stage stage,
             @JsonProperty("error") Optional<String> error,
+            @JsonProperty("input") Stage input,
             @JsonProperty("name") String name,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
-        Utils.checkNotNull(stage, "stage");
         Utils.checkNotNull(error, "error");
+        Utils.checkNotNull(input, "input");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(terminated, "terminated");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
-        this.stage = stage;
         this.error = error;
+        this.input = input;
         this.name = name;
         this.startedAt = startedAt;
         this.terminated = terminated;
@@ -66,22 +66,22 @@ public class WorkflowInstanceHistory {
     }
     
     public WorkflowInstanceHistory(
-            Stage stage,
+            Stage input,
             String name,
             OffsetDateTime startedAt,
             boolean terminated) {
-        this(stage, Optional.empty(), name,
+        this(Optional.empty(), input, name,
             startedAt, terminated, Optional.empty());
-    }
-
-    @JsonIgnore
-    public Stage stage() {
-        return stage;
     }
 
     @JsonIgnore
     public Optional<String> error() {
         return error;
+    }
+
+    @JsonIgnore
+    public Stage input() {
+        return input;
     }
 
     @JsonIgnore
@@ -109,12 +109,6 @@ public class WorkflowInstanceHistory {
     }
 
 
-    public WorkflowInstanceHistory withStage(Stage stage) {
-        Utils.checkNotNull(stage, "stage");
-        this.stage = stage;
-        return this;
-    }
-
     public WorkflowInstanceHistory withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -125,6 +119,12 @@ public class WorkflowInstanceHistory {
     public WorkflowInstanceHistory withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
+        return this;
+    }
+
+    public WorkflowInstanceHistory withInput(Stage input) {
+        Utils.checkNotNull(input, "input");
+        this.input = input;
         return this;
     }
 
@@ -169,8 +169,8 @@ public class WorkflowInstanceHistory {
         }
         WorkflowInstanceHistory other = (WorkflowInstanceHistory) o;
         return 
-            Utils.enhancedDeepEquals(this.stage, other.stage) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
             Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
@@ -180,15 +180,15 @@ public class WorkflowInstanceHistory {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            stage, error, name,
+            error, input, name,
             startedAt, terminated, terminatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(WorkflowInstanceHistory.class,
-                "stage", stage,
                 "error", error,
+                "input", input,
                 "name", name,
                 "startedAt", startedAt,
                 "terminated", terminated,
@@ -198,9 +198,9 @@ public class WorkflowInstanceHistory {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Stage stage;
-
         private Optional<String> error = Optional.empty();
+
+        private Stage input;
 
         private String name;
 
@@ -215,13 +215,6 @@ public class WorkflowInstanceHistory {
         }
 
 
-        public Builder stage(Stage stage) {
-            Utils.checkNotNull(stage, "stage");
-            this.stage = stage;
-            return this;
-        }
-
-
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -231,6 +224,13 @@ public class WorkflowInstanceHistory {
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
+            return this;
+        }
+
+
+        public Builder input(Stage input) {
+            Utils.checkNotNull(input, "input");
+            this.input = input;
             return this;
         }
 
@@ -271,7 +271,7 @@ public class WorkflowInstanceHistory {
         public WorkflowInstanceHistory build() {
 
             return new WorkflowInstanceHistory(
-                stage, error, name,
+                error, input, name,
                 startedAt, terminated, terminatedAt);
         }
 

@@ -19,15 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class V3PaymentServiceUserConnection {
 
-    @JsonProperty("status")
-    private V3ConnectionStatusEnum v3ConnectionStatusEnum;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-
     @JsonProperty("connectionID")
     private String connectionID;
 
@@ -48,51 +39,49 @@ public class V3PaymentServiceUserConnection {
     @JsonProperty("error")
     private JsonNullable<String> error;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
+
+    @JsonProperty("status")
+    private V3ConnectionStatusEnum status;
+
     @JsonCreator
     public V3PaymentServiceUserConnection(
-            @JsonProperty("status") V3ConnectionStatusEnum v3ConnectionStatusEnum,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
             @JsonProperty("connectionID") String connectionID,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("dataUpdatedAt") OffsetDateTime dataUpdatedAt,
-            @JsonProperty("error") JsonNullable<String> error) {
-        Utils.checkNotNull(v3ConnectionStatusEnum, "v3ConnectionStatusEnum");
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
+            @JsonProperty("error") JsonNullable<String> error,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
+            @JsonProperty("status") V3ConnectionStatusEnum status) {
         Utils.checkNotNull(connectionID, "connectionID");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(dataUpdatedAt, "dataUpdatedAt");
         Utils.checkNotNull(error, "error");
-        this.v3ConnectionStatusEnum = v3ConnectionStatusEnum;
-        this.v3Metadata = v3Metadata;
+        Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(status, "status");
         this.connectionID = connectionID;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.dataUpdatedAt = dataUpdatedAt;
         this.error = error;
+        this.metadata = metadata;
+        this.status = status;
     }
     
     public V3PaymentServiceUserConnection(
-            V3ConnectionStatusEnum v3ConnectionStatusEnum,
             String connectionID,
             String connectorID,
             OffsetDateTime createdAt,
-            OffsetDateTime dataUpdatedAt) {
-        this(v3ConnectionStatusEnum, JsonNullable.undefined(), connectionID,
-            connectorID, createdAt, dataUpdatedAt,
-            JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public V3ConnectionStatusEnum v3ConnectionStatusEnum() {
-        return v3ConnectionStatusEnum;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
+            OffsetDateTime dataUpdatedAt,
+            V3ConnectionStatusEnum status) {
+        this(connectionID, connectorID, createdAt,
+            dataUpdatedAt, JsonNullable.undefined(), JsonNullable.undefined(),
+            status);
     }
 
     @JsonIgnore
@@ -120,28 +109,21 @@ public class V3PaymentServiceUserConnection {
         return error;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
+    @JsonIgnore
+    public V3ConnectionStatusEnum status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public V3PaymentServiceUserConnection withV3ConnectionStatusEnum(V3ConnectionStatusEnum v3ConnectionStatusEnum) {
-        Utils.checkNotNull(v3ConnectionStatusEnum, "v3ConnectionStatusEnum");
-        this.v3ConnectionStatusEnum = v3ConnectionStatusEnum;
-        return this;
-    }
-
-    public V3PaymentServiceUserConnection withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3PaymentServiceUserConnection withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
 
     public V3PaymentServiceUserConnection withConnectionID(String connectionID) {
         Utils.checkNotNull(connectionID, "connectionID");
@@ -179,6 +161,24 @@ public class V3PaymentServiceUserConnection {
         return this;
     }
 
+    public V3PaymentServiceUserConnection withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3PaymentServiceUserConnection withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    public V3PaymentServiceUserConnection withStatus(V3ConnectionStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,41 +189,37 @@ public class V3PaymentServiceUserConnection {
         }
         V3PaymentServiceUserConnection other = (V3PaymentServiceUserConnection) o;
         return 
-            Utils.enhancedDeepEquals(this.v3ConnectionStatusEnum, other.v3ConnectionStatusEnum) &&
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
             Utils.enhancedDeepEquals(this.connectionID, other.connectionID) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.dataUpdatedAt, other.dataUpdatedAt) &&
-            Utils.enhancedDeepEquals(this.error, other.error);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3ConnectionStatusEnum, v3Metadata, connectionID,
-            connectorID, createdAt, dataUpdatedAt,
-            error);
+            connectionID, connectorID, createdAt,
+            dataUpdatedAt, error, metadata,
+            status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3PaymentServiceUserConnection.class,
-                "v3ConnectionStatusEnum", v3ConnectionStatusEnum,
-                "v3Metadata", v3Metadata,
                 "connectionID", connectionID,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "dataUpdatedAt", dataUpdatedAt,
-                "error", error);
+                "error", error,
+                "metadata", metadata,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private V3ConnectionStatusEnum v3ConnectionStatusEnum;
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
 
         private String connectionID;
 
@@ -235,28 +231,12 @@ public class V3PaymentServiceUserConnection {
 
         private JsonNullable<String> error = JsonNullable.undefined();
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
+        private V3ConnectionStatusEnum status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder v3ConnectionStatusEnum(V3ConnectionStatusEnum v3ConnectionStatusEnum) {
-            Utils.checkNotNull(v3ConnectionStatusEnum, "v3ConnectionStatusEnum");
-            this.v3ConnectionStatusEnum = v3ConnectionStatusEnum;
-            return this;
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
         }
 
 
@@ -300,12 +280,32 @@ public class V3PaymentServiceUserConnection {
             return this;
         }
 
+
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
+        public Builder status(V3ConnectionStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public V3PaymentServiceUserConnection build() {
 
             return new V3PaymentServiceUserConnection(
-                v3ConnectionStatusEnum, v3Metadata, connectionID,
-                connectorID, createdAt, dataUpdatedAt,
-                error);
+                connectionID, connectorID, createdAt,
+                dataUpdatedAt, error, metadata,
+                status);
         }
 
     }

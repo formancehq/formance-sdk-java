@@ -7,4 +7,4 @@ OK
 
 | Field                               | Type                                | Required                            | Description                         |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| `pool`                              | [Pool](../../models/shared/Pool.md) | :heavy_check_mark:                  | N/A                                 |
+| `data`                              | [Pool](../../models/shared/Pool.md) | :heavy_check_mark:                  | N/A                                 |

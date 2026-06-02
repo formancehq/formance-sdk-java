@@ -5,4 +5,4 @@
 
 | Field                                           | Type                                            | Required                                        | Description                                     |
 | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `v3Schedule`                                    | [V3Schedule](../../models/shared/V3Schedule.md) | :heavy_check_mark:                              | N/A                                             |
+| `data`                                          | [V3Schedule](../../models/shared/V3Schedule.md) | :heavy_check_mark:                              | N/A                                             |

@@ -15,10 +15,6 @@ import java.time.OffsetDateTime;
 
 public class PaymentAdjustment {
 
-    @JsonProperty("status")
-    private PaymentStatus paymentStatus;
-
-
     @JsonProperty("amount")
     private BigInteger amount;
 
@@ -34,28 +30,27 @@ public class PaymentAdjustment {
     @JsonProperty("reference")
     private String reference;
 
+
+    @JsonProperty("status")
+    private PaymentStatus status;
+
     @JsonCreator
     public PaymentAdjustment(
-            @JsonProperty("status") PaymentStatus paymentStatus,
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("raw") PaymentAdjustmentRaw raw,
-            @JsonProperty("reference") String reference) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
+            @JsonProperty("reference") String reference,
+            @JsonProperty("status") PaymentStatus status) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
-        this.paymentStatus = paymentStatus;
+        Utils.checkNotNull(status, "status");
         this.amount = amount;
         this.createdAt = createdAt;
         this.raw = raw;
         this.reference = reference;
-    }
-
-    @JsonIgnore
-    public PaymentStatus paymentStatus() {
-        return paymentStatus;
+        this.status = status;
     }
 
     @JsonIgnore
@@ -78,16 +73,15 @@ public class PaymentAdjustment {
         return reference;
     }
 
+    @JsonIgnore
+    public PaymentStatus status() {
+        return status;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public PaymentAdjustment withPaymentStatus(PaymentStatus paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        this.paymentStatus = paymentStatus;
-        return this;
-    }
 
     public PaymentAdjustment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
@@ -118,6 +112,12 @@ public class PaymentAdjustment {
         return this;
     }
 
+    public PaymentAdjustment withStatus(PaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -128,34 +128,32 @@ public class PaymentAdjustment {
         }
         PaymentAdjustment other = (PaymentAdjustment) o;
         return 
-            Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.reference, other.reference);
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentStatus, amount, createdAt,
-            raw, reference);
+            amount, createdAt, raw,
+            reference, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentAdjustment.class,
-                "paymentStatus", paymentStatus,
                 "amount", amount,
                 "createdAt", createdAt,
                 "raw", raw,
-                "reference", reference);
+                "reference", reference,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private PaymentStatus paymentStatus;
 
         private BigInteger amount;
 
@@ -165,15 +163,10 @@ public class PaymentAdjustment {
 
         private String reference;
 
+        private PaymentStatus status;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder paymentStatus(PaymentStatus paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
-            this.paymentStatus = paymentStatus;
-            return this;
         }
 
 
@@ -209,11 +202,18 @@ public class PaymentAdjustment {
             return this;
         }
 
+
+        public Builder status(PaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public PaymentAdjustment build() {
 
             return new PaymentAdjustment(
-                paymentStatus, amount, createdAt,
-                raw, reference);
+                amount, createdAt, raw,
+                reference, status);
         }
 
     }

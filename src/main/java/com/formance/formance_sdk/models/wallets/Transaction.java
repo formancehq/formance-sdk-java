@@ -21,16 +21,6 @@ import java.util.Optional;
 
 public class Transaction {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("preCommitVolumes")
-    private Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("postCommitVolumes")
-    private Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes1;
-
-
     @JsonProperty("id")
     private long id;
 
@@ -46,8 +36,18 @@ public class Transaction {
     private Map<String, String> metadata;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("postCommitVolumes")
+    private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes;
+
+
     @JsonProperty("postings")
     private List<Posting> postings;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("preCommitVolumes")
+    private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -60,29 +60,29 @@ public class Transaction {
 
     @JsonCreator
     public Transaction(
-            @JsonProperty("preCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes,
-            @JsonProperty("postCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes1,
             @JsonProperty("id") long id,
             @JsonProperty("ledger") Optional<String> ledger,
             @JsonProperty("metadata") Map<String, String> metadata,
+            @JsonProperty("postCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes,
             @JsonProperty("postings") List<Posting> postings,
+            @JsonProperty("preCommitVolumes") Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("timestamp") OffsetDateTime timestamp) {
-        Utils.checkNotNull(aggregatedVolumes, "aggregatedVolumes");
-        Utils.checkNotNull(aggregatedVolumes1, "aggregatedVolumes1");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         metadata = Utils.emptyMapIfNull(metadata);
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         Utils.checkNotNull(postings, "postings");
+        Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(timestamp, "timestamp");
-        this.aggregatedVolumes = aggregatedVolumes;
-        this.aggregatedVolumes1 = aggregatedVolumes1;
         this.id = id;
         this.ledger = ledger;
         this.metadata = metadata;
+        this.postCommitVolumes = postCommitVolumes;
         this.postings = postings;
+        this.preCommitVolumes = preCommitVolumes;
         this.reference = reference;
         this.timestamp = timestamp;
     }
@@ -92,21 +92,9 @@ public class Transaction {
             Map<String, String> metadata,
             List<Posting> postings,
             OffsetDateTime timestamp) {
-        this(Optional.empty(), Optional.empty(), id,
-            Optional.empty(), metadata, postings,
+        this(id, Optional.empty(), metadata,
+            Optional.empty(), postings, Optional.empty(),
             Optional.empty(), timestamp);
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, Map<String, Volume>>> aggregatedVolumes() {
-        return (Optional<Map<String, Map<String, Volume>>>) aggregatedVolumes;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Map<String, Map<String, Volume>>> aggregatedVolumes1() {
-        return (Optional<Map<String, Map<String, Volume>>>) aggregatedVolumes1;
     }
 
     @JsonIgnore
@@ -127,9 +115,21 @@ public class Transaction {
         return metadata;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Map<String, Volume>>> postCommitVolumes() {
+        return (Optional<Map<String, Map<String, Volume>>>) postCommitVolumes;
+    }
+
     @JsonIgnore
     public List<Posting> postings() {
         return postings;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Map<String, Volume>>> preCommitVolumes() {
+        return (Optional<Map<String, Map<String, Volume>>>) preCommitVolumes;
     }
 
     @JsonIgnore
@@ -146,32 +146,6 @@ public class Transaction {
         return new Builder();
     }
 
-
-    public Transaction withAggregatedVolumes(Map<String, Map<String, Volume>> aggregatedVolumes) {
-        Utils.checkNotNull(aggregatedVolumes, "aggregatedVolumes");
-        this.aggregatedVolumes = Optional.ofNullable(aggregatedVolumes);
-        return this;
-    }
-
-
-    public Transaction withAggregatedVolumes(Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes) {
-        Utils.checkNotNull(aggregatedVolumes, "aggregatedVolumes");
-        this.aggregatedVolumes = aggregatedVolumes;
-        return this;
-    }
-
-    public Transaction withAggregatedVolumes1(Map<String, Map<String, Volume>> aggregatedVolumes1) {
-        Utils.checkNotNull(aggregatedVolumes1, "aggregatedVolumes1");
-        this.aggregatedVolumes1 = Optional.ofNullable(aggregatedVolumes1);
-        return this;
-    }
-
-
-    public Transaction withAggregatedVolumes1(Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes1) {
-        Utils.checkNotNull(aggregatedVolumes1, "aggregatedVolumes1");
-        this.aggregatedVolumes1 = aggregatedVolumes1;
-        return this;
-    }
 
     public Transaction withId(long id) {
         Utils.checkNotNull(id, "id");
@@ -201,9 +175,35 @@ public class Transaction {
         return this;
     }
 
+    public Transaction withPostCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
+        Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
+        this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
+        return this;
+    }
+
+
+    public Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
+        Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
+        this.postCommitVolumes = postCommitVolumes;
+        return this;
+    }
+
     public Transaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
+        return this;
+    }
+
+    public Transaction withPreCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
+        Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
+        this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
+        return this;
+    }
+
+
+    public Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
+        Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
+        this.preCommitVolumes = preCommitVolumes;
         return this;
     }
 
@@ -236,12 +236,12 @@ public class Transaction {
         }
         Transaction other = (Transaction) o;
         return 
-            Utils.enhancedDeepEquals(this.aggregatedVolumes, other.aggregatedVolumes) &&
-            Utils.enhancedDeepEquals(this.aggregatedVolumes1, other.aggregatedVolumes1) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.postCommitVolumes, other.postCommitVolumes) &&
             Utils.enhancedDeepEquals(this.postings, other.postings) &&
+            Utils.enhancedDeepEquals(this.preCommitVolumes, other.preCommitVolumes) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.timestamp, other.timestamp);
     }
@@ -249,20 +249,20 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            aggregatedVolumes, aggregatedVolumes1, id,
-            ledger, metadata, postings,
+            id, ledger, metadata,
+            postCommitVolumes, postings, preCommitVolumes,
             reference, timestamp);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Transaction.class,
-                "aggregatedVolumes", aggregatedVolumes,
-                "aggregatedVolumes1", aggregatedVolumes1,
                 "id", id,
                 "ledger", ledger,
                 "metadata", metadata,
+                "postCommitVolumes", postCommitVolumes,
                 "postings", postings,
+                "preCommitVolumes", preCommitVolumes,
                 "reference", reference,
                 "timestamp", timestamp);
     }
@@ -270,17 +270,17 @@ public class Transaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes = Optional.empty();
-
-        private Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes1 = Optional.empty();
-
         private Long id;
 
         private Optional<String> ledger = Optional.empty();
 
         private Map<String, String> metadata;
 
+        private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes = Optional.empty();
+
         private List<Posting> postings;
+
+        private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes = Optional.empty();
 
         private Optional<String> reference = Optional.empty();
 
@@ -288,32 +288,6 @@ public class Transaction {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder aggregatedVolumes(Map<String, Map<String, Volume>> aggregatedVolumes) {
-            Utils.checkNotNull(aggregatedVolumes, "aggregatedVolumes");
-            this.aggregatedVolumes = Optional.ofNullable(aggregatedVolumes);
-            return this;
-        }
-
-        public Builder aggregatedVolumes(Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes) {
-            Utils.checkNotNull(aggregatedVolumes, "aggregatedVolumes");
-            this.aggregatedVolumes = aggregatedVolumes;
-            return this;
-        }
-
-
-        public Builder aggregatedVolumes1(Map<String, Map<String, Volume>> aggregatedVolumes1) {
-            Utils.checkNotNull(aggregatedVolumes1, "aggregatedVolumes1");
-            this.aggregatedVolumes1 = Optional.ofNullable(aggregatedVolumes1);
-            return this;
-        }
-
-        public Builder aggregatedVolumes1(Optional<? extends Map<String, Map<String, Volume>>> aggregatedVolumes1) {
-            Utils.checkNotNull(aggregatedVolumes1, "aggregatedVolumes1");
-            this.aggregatedVolumes1 = aggregatedVolumes1;
-            return this;
         }
 
 
@@ -347,9 +321,35 @@ public class Transaction {
         }
 
 
+        public Builder postCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
+            Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
+            this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
+            return this;
+        }
+
+        public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
+            Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
+            this.postCommitVolumes = postCommitVolumes;
+            return this;
+        }
+
+
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
+            return this;
+        }
+
+
+        public Builder preCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
+            Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
+            this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
+            return this;
+        }
+
+        public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
+            Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
+            this.preCommitVolumes = preCommitVolumes;
             return this;
         }
 
@@ -376,8 +376,8 @@ public class Transaction {
         public Transaction build() {
 
             return new Transaction(
-                aggregatedVolumes, aggregatedVolumes1, id,
-                ledger, metadata, postings,
+                id, ledger, metadata,
+                postCommitVolumes, postings, preCommitVolumes,
                 reference, timestamp);
         }
 

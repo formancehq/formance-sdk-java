@@ -28,20 +28,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class V3Conversion {
     /**
-     * Lifecycle of a conversion.
-     * `PENDING` — accepted by the PSP, not yet settled.
-     * `COMPLETED` — settled, terminal.
-     * `FAILED` — rejected or reverted, terminal. See `error`.
-     */
-    @JsonProperty("status")
-    private V3ConversionStatusEnum v3ConversionStatusEnum;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, String>> v3Metadata;
-
-    /**
      * ID of the Formance connector this conversion was fetched from.
      */
     @JsonProperty("connectorID")
@@ -101,6 +87,11 @@ public class V3Conversion {
     @JsonProperty("id")
     private String id;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private JsonNullable<? extends Map<String, String>> metadata;
+
     /**
      * Provider name of the connector (e.g. `coinbaseprime`).
      */
@@ -133,6 +124,15 @@ public class V3Conversion {
     private String sourceAsset;
 
     /**
+     * Lifecycle of a conversion.
+     * `PENDING` — accepted by the PSP, not yet settled.
+     * `COMPLETED` — settled, terminal.
+     * `FAILED` — rejected or reverted, terminal. See `error`.
+     */
+    @JsonProperty("status")
+    private V3ConversionStatusEnum status;
+
+    /**
      * When Formance last observed a state change on the conversion.
      */
     @JsonProperty("updatedAt")
@@ -140,8 +140,6 @@ public class V3Conversion {
 
     @JsonCreator
     public V3Conversion(
-            @JsonProperty("status") V3ConversionStatusEnum v3ConversionStatusEnum,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> v3Metadata,
             @JsonProperty("connectorID") String connectorID,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("destinationAccountID") JsonNullable<String> destinationAccountID,
@@ -151,14 +149,14 @@ public class V3Conversion {
             @JsonProperty("fee") JsonNullable<? extends BigInteger> fee,
             @JsonProperty("feeAsset") JsonNullable<String> feeAsset,
             @JsonProperty("id") String id,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("provider") String provider,
             @JsonProperty("reference") String reference,
             @JsonProperty("sourceAccountID") JsonNullable<String> sourceAccountID,
             @JsonProperty("sourceAmount") BigInteger sourceAmount,
             @JsonProperty("sourceAsset") String sourceAsset,
+            @JsonProperty("status") V3ConversionStatusEnum status,
             @JsonProperty("updatedAt") OffsetDateTime updatedAt) {
-        Utils.checkNotNull(v3ConversionStatusEnum, "v3ConversionStatusEnum");
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
         Utils.checkNotNull(connectorID, "connectorID");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
@@ -168,14 +166,14 @@ public class V3Conversion {
         Utils.checkNotNull(fee, "fee");
         Utils.checkNotNull(feeAsset, "feeAsset");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         Utils.checkNotNull(sourceAmount, "sourceAmount");
         Utils.checkNotNull(sourceAsset, "sourceAsset");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.v3ConversionStatusEnum = v3ConversionStatusEnum;
-        this.v3Metadata = v3Metadata;
         this.connectorID = connectorID;
         this.createdAt = createdAt;
         this.destinationAccountID = destinationAccountID;
@@ -185,16 +183,17 @@ public class V3Conversion {
         this.fee = fee;
         this.feeAsset = feeAsset;
         this.id = id;
+        this.metadata = metadata;
         this.provider = provider;
         this.reference = reference;
         this.sourceAccountID = sourceAccountID;
         this.sourceAmount = sourceAmount;
         this.sourceAsset = sourceAsset;
+        this.status = status;
         this.updatedAt = updatedAt;
     }
     
     public V3Conversion(
-            V3ConversionStatusEnum v3ConversionStatusEnum,
             String connectorID,
             OffsetDateTime createdAt,
             String destinationAsset,
@@ -203,30 +202,14 @@ public class V3Conversion {
             String reference,
             BigInteger sourceAmount,
             String sourceAsset,
+            V3ConversionStatusEnum status,
             OffsetDateTime updatedAt) {
-        this(v3ConversionStatusEnum, JsonNullable.undefined(), connectorID,
-            createdAt, JsonNullable.undefined(), JsonNullable.undefined(),
-            destinationAsset, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), id, provider,
-            reference, JsonNullable.undefined(), sourceAmount,
-            sourceAsset, updatedAt);
-    }
-
-    /**
-     * Lifecycle of a conversion.
-     * `PENDING` — accepted by the PSP, not yet settled.
-     * `COMPLETED` — settled, terminal.
-     * `FAILED` — rejected or reverted, terminal. See `error`.
-     */
-    @JsonIgnore
-    public V3ConversionStatusEnum v3ConversionStatusEnum() {
-        return v3ConversionStatusEnum;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, String>> v3Metadata() {
-        return (JsonNullable<Map<String, String>>) v3Metadata;
+        this(connectorID, createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), destinationAsset, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), id,
+            JsonNullable.undefined(), provider, reference,
+            JsonNullable.undefined(), sourceAmount, sourceAsset,
+            status, updatedAt);
     }
 
     /**
@@ -304,6 +287,12 @@ public class V3Conversion {
         return id;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, String>> metadata() {
+        return (JsonNullable<Map<String, String>>) metadata;
+    }
+
     /**
      * Provider name of the connector (e.g. `coinbaseprime`).
      */
@@ -345,6 +334,17 @@ public class V3Conversion {
     }
 
     /**
+     * Lifecycle of a conversion.
+     * `PENDING` — accepted by the PSP, not yet settled.
+     * `COMPLETED` — settled, terminal.
+     * `FAILED` — rejected or reverted, terminal. See `error`.
+     */
+    @JsonIgnore
+    public V3ConversionStatusEnum status() {
+        return status;
+    }
+
+    /**
      * When Formance last observed a state change on the conversion.
      */
     @JsonIgnore
@@ -356,30 +356,6 @@ public class V3Conversion {
         return new Builder();
     }
 
-
-    /**
-     * Lifecycle of a conversion.
-     * `PENDING` — accepted by the PSP, not yet settled.
-     * `COMPLETED` — settled, terminal.
-     * `FAILED` — rejected or reverted, terminal. See `error`.
-     */
-    public V3Conversion withV3ConversionStatusEnum(V3ConversionStatusEnum v3ConversionStatusEnum) {
-        Utils.checkNotNull(v3ConversionStatusEnum, "v3ConversionStatusEnum");
-        this.v3ConversionStatusEnum = v3ConversionStatusEnum;
-        return this;
-    }
-
-    public V3Conversion withV3Metadata(Map<String, String> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = JsonNullable.of(v3Metadata);
-        return this;
-    }
-
-    public V3Conversion withV3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-        Utils.checkNotNull(v3Metadata, "v3Metadata");
-        this.v3Metadata = v3Metadata;
-        return this;
-    }
 
     /**
      * ID of the Formance connector this conversion was fetched from.
@@ -526,6 +502,18 @@ public class V3Conversion {
         return this;
     }
 
+    public V3Conversion withMetadata(Map<String, String> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = JsonNullable.of(metadata);
+        return this;
+    }
+
+    public V3Conversion withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     /**
      * Provider name of the connector (e.g. `coinbaseprime`).
      */
@@ -589,6 +577,18 @@ public class V3Conversion {
     }
 
     /**
+     * Lifecycle of a conversion.
+     * `PENDING` — accepted by the PSP, not yet settled.
+     * `COMPLETED` — settled, terminal.
+     * `FAILED` — rejected or reverted, terminal. See `error`.
+     */
+    public V3Conversion withStatus(V3ConversionStatusEnum status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * When Formance last observed a state change on the conversion.
      */
     public V3Conversion withUpdatedAt(OffsetDateTime updatedAt) {
@@ -607,8 +607,6 @@ public class V3Conversion {
         }
         V3Conversion other = (V3Conversion) o;
         return 
-            Utils.enhancedDeepEquals(this.v3ConversionStatusEnum, other.v3ConversionStatusEnum) &&
-            Utils.enhancedDeepEquals(this.v3Metadata, other.v3Metadata) &&
             Utils.enhancedDeepEquals(this.connectorID, other.connectorID) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.destinationAccountID, other.destinationAccountID) &&
@@ -618,30 +616,30 @@ public class V3Conversion {
             Utils.enhancedDeepEquals(this.fee, other.fee) &&
             Utils.enhancedDeepEquals(this.feeAsset, other.feeAsset) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.sourceAccountID, other.sourceAccountID) &&
             Utils.enhancedDeepEquals(this.sourceAmount, other.sourceAmount) &&
             Utils.enhancedDeepEquals(this.sourceAsset, other.sourceAsset) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v3ConversionStatusEnum, v3Metadata, connectorID,
-            createdAt, destinationAccountID, destinationAmount,
-            destinationAsset, error, fee,
-            feeAsset, id, provider,
-            reference, sourceAccountID, sourceAmount,
-            sourceAsset, updatedAt);
+            connectorID, createdAt, destinationAccountID,
+            destinationAmount, destinationAsset, error,
+            fee, feeAsset, id,
+            metadata, provider, reference,
+            sourceAccountID, sourceAmount, sourceAsset,
+            status, updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Conversion.class,
-                "v3ConversionStatusEnum", v3ConversionStatusEnum,
-                "v3Metadata", v3Metadata,
                 "connectorID", connectorID,
                 "createdAt", createdAt,
                 "destinationAccountID", destinationAccountID,
@@ -651,20 +649,18 @@ public class V3Conversion {
                 "fee", fee,
                 "feeAsset", feeAsset,
                 "id", id,
+                "metadata", metadata,
                 "provider", provider,
                 "reference", reference,
                 "sourceAccountID", sourceAccountID,
                 "sourceAmount", sourceAmount,
                 "sourceAsset", sourceAsset,
+                "status", status,
                 "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private V3ConversionStatusEnum v3ConversionStatusEnum;
-
-        private JsonNullable<? extends Map<String, String>> v3Metadata = JsonNullable.undefined();
 
         private String connectorID;
 
@@ -684,6 +680,8 @@ public class V3Conversion {
 
         private String id;
 
+        private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
+
         private String provider;
 
         private String reference;
@@ -694,36 +692,12 @@ public class V3Conversion {
 
         private String sourceAsset;
 
+        private V3ConversionStatusEnum status;
+
         private OffsetDateTime updatedAt;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * Lifecycle of a conversion.
-         * `PENDING` — accepted by the PSP, not yet settled.
-         * `COMPLETED` — settled, terminal.
-         * `FAILED` — rejected or reverted, terminal. See `error`.
-         */
-        public Builder v3ConversionStatusEnum(V3ConversionStatusEnum v3ConversionStatusEnum) {
-            Utils.checkNotNull(v3ConversionStatusEnum, "v3ConversionStatusEnum");
-            this.v3ConversionStatusEnum = v3ConversionStatusEnum;
-            return this;
-        }
-
-
-        public Builder v3Metadata(Map<String, String> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = JsonNullable.of(v3Metadata);
-            return this;
-        }
-
-        public Builder v3Metadata(JsonNullable<? extends Map<String, String>> v3Metadata) {
-            Utils.checkNotNull(v3Metadata, "v3Metadata");
-            this.v3Metadata = v3Metadata;
-            return this;
         }
 
 
@@ -881,6 +855,19 @@ public class V3Conversion {
         }
 
 
+        public Builder metadata(Map<String, String> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = JsonNullable.of(metadata);
+            return this;
+        }
+
+        public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
         /**
          * Provider name of the connector (e.g. `coinbaseprime`).
          */
@@ -949,6 +936,19 @@ public class V3Conversion {
 
 
         /**
+         * Lifecycle of a conversion.
+         * `PENDING` — accepted by the PSP, not yet settled.
+         * `COMPLETED` — settled, terminal.
+         * `FAILED` — rejected or reverted, terminal. See `error`.
+         */
+        public Builder status(V3ConversionStatusEnum status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * When Formance last observed a state change on the conversion.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
@@ -960,12 +960,12 @@ public class V3Conversion {
         public V3Conversion build() {
 
             return new V3Conversion(
-                v3ConversionStatusEnum, v3Metadata, connectorID,
-                createdAt, destinationAccountID, destinationAmount,
-                destinationAsset, error, fee,
-                feeAsset, id, provider,
-                reference, sourceAccountID, sourceAmount,
-                sourceAsset, updatedAt);
+                connectorID, createdAt, destinationAccountID,
+                destinationAmount, destinationAsset, error,
+                fee, feeAsset, id,
+                metadata, provider, reference,
+                sourceAccountID, sourceAmount, sourceAsset,
+                status, updatedAt);
         }
 
     }

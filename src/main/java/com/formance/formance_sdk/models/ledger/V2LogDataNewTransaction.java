@@ -19,34 +19,26 @@ import java.util.Map;
  */
 public class V2LogDataNewTransaction {
     /**
-     * Transaction structure as it appears in log payloads
-     */
-    @JsonProperty("transaction")
-    private V2LogTransaction v2LogTransaction;
-
-    /**
      * Metadata applied to accounts involved in the transaction
      */
     @JsonProperty("accountMetadata")
     private Map<String, Map<String, String>> accountMetadata;
 
-    @JsonCreator
-    public V2LogDataNewTransaction(
-            @JsonProperty("transaction") V2LogTransaction v2LogTransaction,
-            @JsonProperty("accountMetadata") Map<String, Map<String, String>> accountMetadata) {
-        Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-        accountMetadata = Utils.emptyMapIfNull(accountMetadata);
-        Utils.checkNotNull(accountMetadata, "accountMetadata");
-        this.v2LogTransaction = v2LogTransaction;
-        this.accountMetadata = accountMetadata;
-    }
-
     /**
      * Transaction structure as it appears in log payloads
      */
-    @JsonIgnore
-    public V2LogTransaction v2LogTransaction() {
-        return v2LogTransaction;
+    @JsonProperty("transaction")
+    private V2LogTransaction transaction;
+
+    @JsonCreator
+    public V2LogDataNewTransaction(
+            @JsonProperty("accountMetadata") Map<String, Map<String, String>> accountMetadata,
+            @JsonProperty("transaction") V2LogTransaction transaction) {
+        accountMetadata = Utils.emptyMapIfNull(accountMetadata);
+        Utils.checkNotNull(accountMetadata, "accountMetadata");
+        Utils.checkNotNull(transaction, "transaction");
+        this.accountMetadata = accountMetadata;
+        this.transaction = transaction;
     }
 
     /**
@@ -57,19 +49,18 @@ public class V2LogDataNewTransaction {
         return accountMetadata;
     }
 
+    /**
+     * Transaction structure as it appears in log payloads
+     */
+    @JsonIgnore
+    public V2LogTransaction transaction() {
+        return transaction;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    /**
-     * Transaction structure as it appears in log payloads
-     */
-    public V2LogDataNewTransaction withV2LogTransaction(V2LogTransaction v2LogTransaction) {
-        Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-        this.v2LogTransaction = v2LogTransaction;
-        return this;
-    }
 
     /**
      * Metadata applied to accounts involved in the transaction
@@ -77,6 +68,15 @@ public class V2LogDataNewTransaction {
     public V2LogDataNewTransaction withAccountMetadata(Map<String, Map<String, String>> accountMetadata) {
         Utils.checkNotNull(accountMetadata, "accountMetadata");
         this.accountMetadata = accountMetadata;
+        return this;
+    }
+
+    /**
+     * Transaction structure as it appears in log payloads
+     */
+    public V2LogDataNewTransaction withTransaction(V2LogTransaction transaction) {
+        Utils.checkNotNull(transaction, "transaction");
+        this.transaction = transaction;
         return this;
     }
 
@@ -90,42 +90,32 @@ public class V2LogDataNewTransaction {
         }
         V2LogDataNewTransaction other = (V2LogDataNewTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.v2LogTransaction, other.v2LogTransaction) &&
-            Utils.enhancedDeepEquals(this.accountMetadata, other.accountMetadata);
+            Utils.enhancedDeepEquals(this.accountMetadata, other.accountMetadata) &&
+            Utils.enhancedDeepEquals(this.transaction, other.transaction);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2LogTransaction, accountMetadata);
+            accountMetadata, transaction);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2LogDataNewTransaction.class,
-                "v2LogTransaction", v2LogTransaction,
-                "accountMetadata", accountMetadata);
+                "accountMetadata", accountMetadata,
+                "transaction", transaction);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2LogTransaction v2LogTransaction;
-
         private Map<String, Map<String, String>> accountMetadata;
+
+        private V2LogTransaction transaction;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * Transaction structure as it appears in log payloads
-         */
-        public Builder v2LogTransaction(V2LogTransaction v2LogTransaction) {
-            Utils.checkNotNull(v2LogTransaction, "v2LogTransaction");
-            this.v2LogTransaction = v2LogTransaction;
-            return this;
         }
 
 
@@ -138,10 +128,20 @@ public class V2LogDataNewTransaction {
             return this;
         }
 
+
+        /**
+         * Transaction structure as it appears in log payloads
+         */
+        public Builder transaction(V2LogTransaction transaction) {
+            Utils.checkNotNull(transaction, "transaction");
+            this.transaction = transaction;
+            return this;
+        }
+
         public V2LogDataNewTransaction build() {
 
             return new V2LogDataNewTransaction(
-                v2LogTransaction, accountMetadata);
+                accountMetadata, transaction);
         }
 
     }

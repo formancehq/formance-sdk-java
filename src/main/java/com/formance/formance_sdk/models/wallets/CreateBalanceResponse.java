@@ -14,18 +14,18 @@ import java.lang.String;
 public class CreateBalanceResponse {
 
     @JsonProperty("data")
-    private Balance balance;
+    private Balance data;
 
     @JsonCreator
     public CreateBalanceResponse(
-            @JsonProperty("data") Balance balance) {
-        Utils.checkNotNull(balance, "balance");
-        this.balance = balance;
+            @JsonProperty("data") Balance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public Balance balance() {
-        return balance;
+    public Balance data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class CreateBalanceResponse {
     }
 
 
-    public CreateBalanceResponse withBalance(Balance balance) {
-        Utils.checkNotNull(balance, "balance");
-        this.balance = balance;
+    public CreateBalanceResponse withData(Balance data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class CreateBalanceResponse {
         }
         CreateBalanceResponse other = (CreateBalanceResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.balance, other.balance);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            balance);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateBalanceResponse.class,
-                "balance", balance);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Balance balance;
+        private Balance data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder balance(Balance balance) {
-            Utils.checkNotNull(balance, "balance");
-            this.balance = balance;
+        public Builder data(Balance data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public CreateBalanceResponse build() {
 
             return new CreateBalanceResponse(
-                balance);
+                data);
         }
 
     }

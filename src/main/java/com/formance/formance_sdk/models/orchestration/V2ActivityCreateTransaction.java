@@ -19,7 +19,7 @@ public class V2ActivityCreateTransaction {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
-    private Optional<? extends V2PostTransaction> v2PostTransaction;
+    private Optional<? extends V2PostTransaction> data;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -28,11 +28,11 @@ public class V2ActivityCreateTransaction {
 
     @JsonCreator
     public V2ActivityCreateTransaction(
-            @JsonProperty("data") Optional<? extends V2PostTransaction> v2PostTransaction,
+            @JsonProperty("data") Optional<? extends V2PostTransaction> data,
             @JsonProperty("ledger") Optional<String> ledger) {
-        Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
+        Utils.checkNotNull(data, "data");
         Utils.checkNotNull(ledger, "ledger");
-        this.v2PostTransaction = v2PostTransaction;
+        this.data = data;
         this.ledger = ledger;
     }
     
@@ -42,8 +42,8 @@ public class V2ActivityCreateTransaction {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2PostTransaction> v2PostTransaction() {
-        return (Optional<V2PostTransaction>) v2PostTransaction;
+    public Optional<V2PostTransaction> data() {
+        return (Optional<V2PostTransaction>) data;
     }
 
     @JsonIgnore
@@ -56,16 +56,16 @@ public class V2ActivityCreateTransaction {
     }
 
 
-    public V2ActivityCreateTransaction withV2PostTransaction(V2PostTransaction v2PostTransaction) {
-        Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
-        this.v2PostTransaction = Optional.ofNullable(v2PostTransaction);
+    public V2ActivityCreateTransaction withData(V2PostTransaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = Optional.ofNullable(data);
         return this;
     }
 
 
-    public V2ActivityCreateTransaction withV2PostTransaction(Optional<? extends V2PostTransaction> v2PostTransaction) {
-        Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
-        this.v2PostTransaction = v2PostTransaction;
+    public V2ActivityCreateTransaction withData(Optional<? extends V2PostTransaction> data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -92,27 +92,27 @@ public class V2ActivityCreateTransaction {
         }
         V2ActivityCreateTransaction other = (V2ActivityCreateTransaction) o;
         return 
-            Utils.enhancedDeepEquals(this.v2PostTransaction, other.v2PostTransaction) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2PostTransaction, ledger);
+            data, ledger);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2ActivityCreateTransaction.class,
-                "v2PostTransaction", v2PostTransaction,
+                "data", data,
                 "ledger", ledger);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends V2PostTransaction> v2PostTransaction = Optional.empty();
+        private Optional<? extends V2PostTransaction> data = Optional.empty();
 
         private Optional<String> ledger = Optional.empty();
 
@@ -121,15 +121,15 @@ public class V2ActivityCreateTransaction {
         }
 
 
-        public Builder v2PostTransaction(V2PostTransaction v2PostTransaction) {
-            Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
-            this.v2PostTransaction = Optional.ofNullable(v2PostTransaction);
+        public Builder data(V2PostTransaction data) {
+            Utils.checkNotNull(data, "data");
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
-        public Builder v2PostTransaction(Optional<? extends V2PostTransaction> v2PostTransaction) {
-            Utils.checkNotNull(v2PostTransaction, "v2PostTransaction");
-            this.v2PostTransaction = v2PostTransaction;
+        public Builder data(Optional<? extends V2PostTransaction> data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
@@ -149,7 +149,7 @@ public class V2ActivityCreateTransaction {
         public V2ActivityCreateTransaction build() {
 
             return new V2ActivityCreateTransaction(
-                v2PostTransaction, ledger);
+                data, ledger);
         }
 
     }

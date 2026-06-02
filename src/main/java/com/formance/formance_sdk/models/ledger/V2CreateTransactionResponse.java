@@ -14,18 +14,18 @@ import java.lang.String;
 public class V2CreateTransactionResponse {
 
     @JsonProperty("data")
-    private V2Transaction v2Transaction;
+    private V2Transaction data;
 
     @JsonCreator
     public V2CreateTransactionResponse(
-            @JsonProperty("data") V2Transaction v2Transaction) {
-        Utils.checkNotNull(v2Transaction, "v2Transaction");
-        this.v2Transaction = v2Transaction;
+            @JsonProperty("data") V2Transaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
     }
 
     @JsonIgnore
-    public V2Transaction v2Transaction() {
-        return v2Transaction;
+    public V2Transaction data() {
+        return data;
     }
 
     public static Builder builder() {
@@ -33,9 +33,9 @@ public class V2CreateTransactionResponse {
     }
 
 
-    public V2CreateTransactionResponse withV2Transaction(V2Transaction v2Transaction) {
-        Utils.checkNotNull(v2Transaction, "v2Transaction");
-        this.v2Transaction = v2Transaction;
+    public V2CreateTransactionResponse withData(V2Transaction data) {
+        Utils.checkNotNull(data, "data");
+        this.data = data;
         return this;
     }
 
@@ -49,41 +49,41 @@ public class V2CreateTransactionResponse {
         }
         V2CreateTransactionResponse other = (V2CreateTransactionResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.v2Transaction, other.v2Transaction);
+            Utils.enhancedDeepEquals(this.data, other.data);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            v2Transaction);
+            data);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2CreateTransactionResponse.class,
-                "v2Transaction", v2Transaction);
+                "data", data);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2Transaction v2Transaction;
+        private V2Transaction data;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder v2Transaction(V2Transaction v2Transaction) {
-            Utils.checkNotNull(v2Transaction, "v2Transaction");
-            this.v2Transaction = v2Transaction;
+        public Builder data(V2Transaction data) {
+            Utils.checkNotNull(data, "data");
+            this.data = data;
             return this;
         }
 
         public V2CreateTransactionResponse build() {
 
             return new V2CreateTransactionResponse(
-                v2Transaction);
+                data);
         }
 
     }
