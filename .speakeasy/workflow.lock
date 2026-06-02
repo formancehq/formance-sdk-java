@@ -20,7 +20,7 @@ targets:
         sourceRevisionDigest: sha256:c85e21f1f000f0409f58d4ace7aaac0d708f4577a19b638347b41dd37e19f317
         sourceBlobDigest: sha256:24159a4c5e03fd9ebc0727cecb2bff5ed6695d519aeb3fe80346af6ce1fabcfa
         codeSamplesNamespace: stacks-source-java-code-samples
-        codeSamplesRevisionDigest: sha256:5ac423dada294922a1e116503487f40d8ee1bb18893721cf7b42a8543669168d
+        codeSamplesRevisionDigest: sha256:f30561198f82ad8f9e7bb38a52f30fde6a885f70cb7b87a56e5dbd6ab5690e1b
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

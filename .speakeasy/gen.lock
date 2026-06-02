@@ -5,16 +5,16 @@ management:
   docVersion: SDK_VERSION
   speakeasyVersion: 1.770.0
   generationVersion: 2.893.0
-  releaseVersion: 9.1.1
-  configChecksum: f2bde8aa207c959065b7f09723c469d1
+  releaseVersion: 9.1.2
+  configChecksum: 05a7d14a10d4208002c109bf88eaa75d
   repoURL: https://github.com/formancehq/formance-sdk-java.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-java
   published: true
 persistentEdits:
-  generation_id: b3fa1186-dc69-4682-b477-0551d68e4b85
-  pristine_commit_hash: 6d3fc54abf6a6a43aa0c9af5af04f74e0fc3ee7a
-  pristine_tree_hash: 790cf4620763512cbd0e064cb25747336cd4f710
+  generation_id: 32afb842-9418-446b-bc02-1f99670f024b
+  pristine_commit_hash: 297643ea8e955e26c984705eb21bd61db01b4f9d
+  pristine_tree_hash: 469385c0de49c6a75ae037bac6ffa242d972ff01
 features:
   java:
     additionalDependencies: 0.1.0
@@ -4743,8 +4743,8 @@ trackedFiles:
     pristine_git_object: 36a000f3d9a15692ac8273197bf0626755a6bd31
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0b76a171b943eaaaf00ff04db0bfe5f4cf3cdbc8
-    pristine_git_object: 62574dbb9f138809ad70f864fde1ef540a6c775b
+    last_write_checksum: sha1:c6827a1f036d9f71d52c32dd7dd9e6bac819df71
+    pristine_git_object: fd9c16901ff037d5b39bb68765f593a9590abbc8
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4851,8 +4851,8 @@ trackedFiles:
     pristine_git_object: 40b385ffd39063b0d9058cc779bcb1989a00bf50
   src/main/java/com/formance/formance_sdk/SDKConfiguration.java:
     id: de4dbe77587e
-    last_write_checksum: sha1:d8584e746af24f345d7eb65c3f43e47bcca06d12
-    pristine_git_object: d56404068dfea95ec39b7d3dbd2247ed2966f862
+    last_write_checksum: sha1:0fa2b4db9636d9057c78967cc3a7307437dbdfeb
+    pristine_git_object: 8c7e07393374af0a4e43ed2532d93b744095513b
   src/main/java/com/formance/formance_sdk/Search.java:
     id: "857427518e56"
     last_write_checksum: sha1:519c982d8e240810db1a534f27a3fb978e7adc37
