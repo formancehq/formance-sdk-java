@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class GenericConfig {
+public class GenericConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -92,8 +92,9 @@ public class GenericConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

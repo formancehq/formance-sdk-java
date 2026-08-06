@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -45,7 +46,7 @@ public class V3PaymentAdjustment {
 
 
     @JsonProperty("raw")
-    private V3PaymentAdjustmentRaw raw;
+    private Map<String, Object> raw;
 
 
     @JsonProperty("reference")
@@ -62,7 +63,7 @@ public class V3PaymentAdjustment {
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
-            @JsonProperty("raw") V3PaymentAdjustmentRaw raw,
+            @JsonProperty("raw") Map<String, Object> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("status") V3PaymentStatusEnum status) {
         Utils.checkNotNull(amount, "amount");
@@ -70,6 +71,7 @@ public class V3PaymentAdjustment {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(metadata, "metadata");
+        raw = Utils.emptyMapIfNull(raw);
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
@@ -86,7 +88,7 @@ public class V3PaymentAdjustment {
     public V3PaymentAdjustment(
             OffsetDateTime createdAt,
             String id,
-            V3PaymentAdjustmentRaw raw,
+            Map<String, Object> raw,
             String reference,
             V3PaymentStatusEnum status) {
         this(Optional.empty(), Optional.empty(), createdAt,
@@ -122,7 +124,7 @@ public class V3PaymentAdjustment {
     }
 
     @JsonIgnore
-    public V3PaymentAdjustmentRaw raw() {
+    public Map<String, Object> raw() {
         return raw;
     }
 
@@ -196,7 +198,7 @@ public class V3PaymentAdjustment {
         return this;
     }
 
-    public V3PaymentAdjustment withRaw(V3PaymentAdjustmentRaw raw) {
+    public V3PaymentAdjustment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -268,7 +270,7 @@ public class V3PaymentAdjustment {
 
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
-        private V3PaymentAdjustmentRaw raw;
+        private Map<String, Object> raw;
 
         private String reference;
 
@@ -337,7 +339,7 @@ public class V3PaymentAdjustment {
         }
 
 
-        public Builder raw(V3PaymentAdjustmentRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

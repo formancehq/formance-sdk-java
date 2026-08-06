@@ -8,8 +8,13 @@
 * [changeConfigSecret](#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](#deactivateconfig) - Deactivate one config
 * [deleteConfig](#deleteconfig) - Delete one config
+* [getDeliveries](#getdeliveries) - List webhook deliveries
+* [getDelivery](#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](#getmanyconfigs) - Get many configs
 * [insertConfig](#insertconfig) - Insert a new config
+* [replayDeliveries](#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](#testconfig) - Test one config
 * [updateConfig](#updateconfig) - Update one config
 
@@ -259,6 +264,185 @@ public class Application {
 | models/errors/ErrorResponse | default                     | application/json            |
 | models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
+## getDeliveries
+
+List webhook deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getDeliveries" method="get" path="/api/webhooks/deliveries" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetDeliveriesRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveriesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetDeliveriesRequest req = GetDeliveriesRequest.builder()
+                .build();
+
+        GetDeliveriesResponse res = sdk.webhooks().v1().getDeliveries()
+                .request(req)
+                .call();
+
+        if (res.deliveriesResponse().isPresent()) {
+            System.out.println(res.deliveriesResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetDeliveriesRequest](../../models/operations/GetDeliveriesRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetDeliveriesResponse](../../models/operations/GetDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## getDelivery
+
+Get a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getDelivery" method="get" path="/api/webhooks/deliveries/{id}" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetDeliveryRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetDeliveryRequest req = GetDeliveryRequest.builder()
+                .id("01e5cac6-75f1-4720-81ca-5563ce22d2e0")
+                .build();
+
+        GetDeliveryResponse res = sdk.webhooks().v1().getDelivery()
+                .request(req)
+                .call();
+
+        if (res.deliveryResponse().isPresent()) {
+            System.out.println(res.deliveryResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetDeliveryRequest](../../models/operations/GetDeliveryRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+### Response
+
+**[GetDeliveryResponse](../../models/operations/GetDeliveryResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## getDeliveryAttempts
+
+List attempts for a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getDeliveryAttempts" method="get" path="/api/webhooks/deliveries/{id}/attempts" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.GetDeliveryAttemptsRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveryAttemptsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetDeliveryAttemptsRequest req = GetDeliveryAttemptsRequest.builder()
+                .id("967e7a38-b11b-4809-92cf-6789e24dbe13")
+                .build();
+
+        GetDeliveryAttemptsResponse res = sdk.webhooks().v1().getDeliveryAttempts()
+                .request(req)
+                .call();
+
+        if (res.deliveryAttemptsResponse().isPresent()) {
+            System.out.println(res.deliveryAttemptsResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [GetDeliveryAttemptsRequest](../../models/operations/GetDeliveryAttemptsRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[GetDeliveryAttemptsResponse](../../models/operations/GetDeliveryAttemptsResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
 ## getManyConfigs
 
 Sorted by updated date descending
@@ -363,7 +547,6 @@ public class Application {
                 .eventTypes(List.of(
                     "TYPE1",
                     "TYPE2"))
-                .name("customer_payment")
                 .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
                 .build();
 
@@ -387,6 +570,131 @@ public class Application {
 ### Response
 
 **[InsertConfigResponse](../../models/operations/InsertConfigResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## replayDeliveries
+
+Replay a page of failed or pending deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="replayDeliveries" method="post" path="/api/webhooks/deliveries/replay" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.ReplayDeliveriesResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
+import com.formance.formance_sdk.models.webhooks.ReplayDeliveriesRequest;
+import java.lang.Exception;
+import java.time.OffsetDateTime;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        com.formance.formance_sdk.models.operations.ReplayDeliveriesRequest req = com.formance.formance_sdk.models.operations.ReplayDeliveriesRequest.builder()
+                .idempotencyKey("<value>")
+                .replayDeliveriesRequest(ReplayDeliveriesRequest.builder()
+                    .createdAtFrom(OffsetDateTime.parse("2026-10-16T11:02:44.647Z"))
+                    .build())
+                .build();
+
+        ReplayDeliveriesResponse res = sdk.webhooks().v1().replayDeliveries()
+                .request(req)
+                .call();
+
+        if (res.replayDeliveriesResponse().isPresent()) {
+            System.out.println(res.replayDeliveriesResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [ReplayDeliveriesRequest](../../models/operations/ReplayDeliveriesRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[ReplayDeliveriesResponse](../../models/operations/ReplayDeliveriesResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## replayDelivery
+
+Replay one failed or pending delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="replayDelivery" method="post" path="/api/webhooks/deliveries/{id}/replay" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.ReplayDeliveryRequest;
+import com.formance.formance_sdk.models.operations.ReplayDeliveryResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.webhooks.ErrorResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        ReplayDeliveryRequest req = ReplayDeliveryRequest.builder()
+                .idempotencyKey("<value>")
+                .id("06a0d0bb-48de-45f0-b12f-6458a3a41bbe")
+                .build();
+
+        ReplayDeliveryResponse res = sdk.webhooks().v1().replayDelivery()
+                .request(req)
+                .call();
+
+        if (res.deliveryResponse().isPresent()) {
+            System.out.println(res.deliveryResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [ReplayDeliveryRequest](../../models/operations/ReplayDeliveryRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[ReplayDeliveryResponse](../../models/operations/ReplayDeliveryResponse.md)**
 
 ### Errors
 
@@ -491,7 +799,6 @@ public class Application {
                     .eventTypes(List.of(
                         "TYPE1",
                         "TYPE2"))
-                    .name("customer_payment")
                     .secret("V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3")
                     .build())
                 .id("4997257d-dfb6-445b-929c-cbe2ab182818")

@@ -16,7 +16,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class BankingCircleConfig {
+public class BankingCircleConfig implements ConnectorConfig {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
@@ -132,8 +132,9 @@ public class BankingCircleConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore

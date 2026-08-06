@@ -40,8 +40,8 @@ afterEvaluate {
 
                 pom {
                     properties = [
-                            'maven.compiler.source': '11',
-                            'maven.compiler.target': '11',
+                            'maven.compiler.source': '17',
+                            'maven.compiler.target': '17',
                     ]
                     name = config.name
                     description = config.description

@@ -6,37 +6,101 @@ package com.formance.formance_sdk;
 import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
+import com.formance.formance_sdk.models.operations.AcceptAlertRequest;
+import com.formance.formance_sdk.models.operations.AcceptAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.AcceptAlertResponse;
+import com.formance.formance_sdk.models.operations.AckAlertRequest;
+import com.formance.formance_sdk.models.operations.AckAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.AckAlertResponse;
 import com.formance.formance_sdk.models.operations.CreatePolicyRequestBuilder;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
+import com.formance.formance_sdk.models.operations.CreateRuleRequestBuilder;
+import com.formance.formance_sdk.models.operations.CreateRuleResponse;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequest;
 import com.formance.formance_sdk.models.operations.DeletePolicyRequestBuilder;
 import com.formance.formance_sdk.models.operations.DeletePolicyResponse;
+import com.formance.formance_sdk.models.operations.DeleteRuleRequest;
+import com.formance.formance_sdk.models.operations.DeleteRuleRequestBuilder;
+import com.formance.formance_sdk.models.operations.DeleteRuleResponse;
+import com.formance.formance_sdk.models.operations.EvaluateRuleRequest;
+import com.formance.formance_sdk.models.operations.EvaluateRuleRequestBuilder;
+import com.formance.formance_sdk.models.operations.EvaluateRuleResponse;
+import com.formance.formance_sdk.models.operations.GetAlertRequest;
+import com.formance.formance_sdk.models.operations.GetAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetAlertResponse;
+import com.formance.formance_sdk.models.operations.GetEvaluationRequest;
+import com.formance.formance_sdk.models.operations.GetEvaluationRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetEvaluationResponse;
 import com.formance.formance_sdk.models.operations.GetPolicyRequest;
 import com.formance.formance_sdk.models.operations.GetPolicyRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetPolicyResponse;
 import com.formance.formance_sdk.models.operations.GetReconciliationRequest;
 import com.formance.formance_sdk.models.operations.GetReconciliationRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetReconciliationResponse;
+import com.formance.formance_sdk.models.operations.GetRuleRequest;
+import com.formance.formance_sdk.models.operations.GetRuleRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetRuleResponse;
 import com.formance.formance_sdk.models.operations.GetServerInfoReconciliationRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetServerInfoReconciliationResponse;
+import com.formance.formance_sdk.models.operations.ListAlertEventsRequest;
+import com.formance.formance_sdk.models.operations.ListAlertEventsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAlertEventsResponse;
+import com.formance.formance_sdk.models.operations.ListAlertsRequest;
+import com.formance.formance_sdk.models.operations.ListAlertsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListAlertsResponse;
+import com.formance.formance_sdk.models.operations.ListEvaluationsRequest;
+import com.formance.formance_sdk.models.operations.ListEvaluationsRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListEvaluationsResponse;
 import com.formance.formance_sdk.models.operations.ListPoliciesRequest;
 import com.formance.formance_sdk.models.operations.ListPoliciesRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListPoliciesResponse;
 import com.formance.formance_sdk.models.operations.ListReconciliationsRequest;
 import com.formance.formance_sdk.models.operations.ListReconciliationsRequestBuilder;
 import com.formance.formance_sdk.models.operations.ListReconciliationsResponse;
+import com.formance.formance_sdk.models.operations.ListRulesRequest;
+import com.formance.formance_sdk.models.operations.ListRulesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ListRulesResponse;
+import com.formance.formance_sdk.models.operations.PatchRuleRequest;
+import com.formance.formance_sdk.models.operations.PatchRuleRequestBuilder;
+import com.formance.formance_sdk.models.operations.PatchRuleResponse;
 import com.formance.formance_sdk.models.operations.ReconcileRequest;
 import com.formance.formance_sdk.models.operations.ReconcileRequestBuilder;
 import com.formance.formance_sdk.models.operations.ReconcileResponse;
+import com.formance.formance_sdk.models.operations.ResolveAlertRequest;
+import com.formance.formance_sdk.models.operations.ResolveAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.ResolveAlertResponse;
+import com.formance.formance_sdk.models.operations.SnoozeAlertRequest;
+import com.formance.formance_sdk.models.operations.SnoozeAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.SnoozeAlertResponse;
+import com.formance.formance_sdk.models.operations.UnsnoozeAlertRequest;
+import com.formance.formance_sdk.models.operations.UnsnoozeAlertRequestBuilder;
+import com.formance.formance_sdk.models.operations.UnsnoozeAlertResponse;
 import com.formance.formance_sdk.models.reconciliation.PolicyRequest;
+import com.formance.formance_sdk.models.reconciliation.RuleRequest;
+import com.formance.formance_sdk.operations.AcceptAlert;
+import com.formance.formance_sdk.operations.AckAlert;
 import com.formance.formance_sdk.operations.CreatePolicy;
+import com.formance.formance_sdk.operations.CreateRule;
 import com.formance.formance_sdk.operations.DeletePolicy;
+import com.formance.formance_sdk.operations.DeleteRule;
+import com.formance.formance_sdk.operations.EvaluateRule;
+import com.formance.formance_sdk.operations.GetAlert;
+import com.formance.formance_sdk.operations.GetEvaluation;
 import com.formance.formance_sdk.operations.GetPolicy;
 import com.formance.formance_sdk.operations.GetReconciliation;
+import com.formance.formance_sdk.operations.GetRule;
 import com.formance.formance_sdk.operations.GetServerInfoReconciliation;
+import com.formance.formance_sdk.operations.ListAlertEvents;
+import com.formance.formance_sdk.operations.ListAlerts;
+import com.formance.formance_sdk.operations.ListEvaluations;
 import com.formance.formance_sdk.operations.ListPolicies;
 import com.formance.formance_sdk.operations.ListReconciliations;
+import com.formance.formance_sdk.operations.ListRules;
+import com.formance.formance_sdk.operations.PatchRule;
 import com.formance.formance_sdk.operations.Reconcile;
+import com.formance.formance_sdk.operations.ResolveAlert;
+import com.formance.formance_sdk.operations.SnoozeAlert;
+import com.formance.formance_sdk.operations.UnsnoozeAlert;
 import com.formance.formance_sdk.utils.Headers;
 
 
@@ -46,6 +110,58 @@ public class ReconciliationV1 {
 
     ReconciliationV1(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    /**
+     * Accept an alert (accepted_by_business)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public AcceptAlertRequestBuilder acceptAlert() {
+        return new AcceptAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Accept an alert (accepted_by_business)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AcceptAlertResponse acceptAlert(AcceptAlertRequest request) {
+        RequestOperation<AcceptAlertRequest, AcceptAlertResponse> operation
+              = new AcceptAlert.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Acknowledge an alert
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public AckAlertRequestBuilder ackAlert() {
+        return new AckAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Acknowledge an alert
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AckAlertResponse ackAlert(AckAlertRequest request) {
+        RequestOperation<AckAlertRequest, AckAlertResponse> operation
+              = new AckAlert.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -79,6 +195,32 @@ public class ReconciliationV1 {
     }
 
     /**
+     * Create a rule
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public CreateRuleRequestBuilder createRule() {
+        return new CreateRuleRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create a rule
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateRuleResponse createRule(RuleRequest request) {
+        RequestOperation<RuleRequest, CreateRuleResponse> operation
+              = new CreateRule.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Delete a policy
      * 
      * <p>Delete a policy by its id.
@@ -105,6 +247,110 @@ public class ReconciliationV1 {
     public DeletePolicyResponse deletePolicy(DeletePolicyRequest request) {
         RequestOperation<DeletePolicyRequest, DeletePolicyResponse> operation
               = new DeletePolicy.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete a rule (cascades to evaluations + alerts + alert events)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public DeleteRuleRequestBuilder deleteRule() {
+        return new DeleteRuleRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete a rule (cascades to evaluations + alerts + alert events)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteRuleResponse deleteRule(DeleteRuleRequest request) {
+        RequestOperation<DeleteRuleRequest, DeleteRuleResponse> operation
+              = new DeleteRule.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Evaluate a rule now
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public EvaluateRuleRequestBuilder evaluateRule() {
+        return new EvaluateRuleRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Evaluate a rule now
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EvaluateRuleResponse evaluateRule(EvaluateRuleRequest request) {
+        RequestOperation<EvaluateRuleRequest, EvaluateRuleResponse> operation
+              = new EvaluateRule.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get an alert
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetAlertRequestBuilder getAlert() {
+        return new GetAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get an alert
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetAlertResponse getAlert(GetAlertRequest request) {
+        RequestOperation<GetAlertRequest, GetAlertResponse> operation
+              = new GetAlert.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get an evaluation
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetEvaluationRequestBuilder getEvaluation() {
+        return new GetEvaluationRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get an evaluation
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetEvaluationResponse getEvaluation(GetEvaluationRequest request) {
+        RequestOperation<GetEvaluationRequest, GetEvaluationResponse> operation
+              = new GetEvaluation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,6 +407,32 @@ public class ReconciliationV1 {
     }
 
     /**
+     * Get a rule
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetRuleRequestBuilder getRule() {
+        return new GetRuleRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a rule
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetRuleResponse getRule(GetRuleRequest request) {
+        RequestOperation<GetRuleRequest, GetRuleResponse> operation
+              = new GetRule.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Get server info
      * 
      * <p>If set, this operation will use Security#clientID from the global security.
@@ -183,6 +455,96 @@ public class ReconciliationV1 {
         RequestlessOperation<GetServerInfoReconciliationResponse> operation
             = new GetServerInfoReconciliation.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
+     * List alert events (append-only timeline)
+     * 
+     * <p>Returns a page of the events recorded for this alert — every evaluation
+     * that touched it plus every manual transition. The list is append-only;
+     * events are never modified or deleted. Ordered most-recent-first and
+     * cursor-paginated: a long-lived alert's timeline is unbounded (one row per
+     * failing evaluation), so callers must page through it.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ListAlertEventsRequestBuilder listAlertEvents() {
+        return new ListAlertEventsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List alert events (append-only timeline)
+     * 
+     * <p>Returns a page of the events recorded for this alert — every evaluation
+     * that touched it plus every manual transition. The list is append-only;
+     * events are never modified or deleted. Ordered most-recent-first and
+     * cursor-paginated: a long-lived alert's timeline is unbounded (one row per
+     * failing evaluation), so callers must page through it.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAlertEventsResponse listAlertEvents(ListAlertEventsRequest request) {
+        RequestOperation<ListAlertEventsRequest, ListAlertEventsResponse> operation
+              = new ListAlertEvents.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List alerts
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ListAlertsRequestBuilder listAlerts() {
+        return new ListAlertsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List alerts
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListAlertsResponse listAlerts(ListAlertsRequest request) {
+        RequestOperation<ListAlertsRequest, ListAlertsResponse> operation
+              = new ListAlerts.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List evaluations
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ListEvaluationsRequestBuilder listEvaluations() {
+        return new ListEvaluationsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List evaluations
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListEvaluationsResponse listEvaluations(ListEvaluationsRequest request) {
+        RequestOperation<ListEvaluationsRequest, ListEvaluationsResponse> operation
+              = new ListEvaluations.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -238,6 +600,58 @@ public class ReconciliationV1 {
     }
 
     /**
+     * List rules
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ListRulesRequestBuilder listRules() {
+        return new ListRulesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List rules
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListRulesResponse listRules(ListRulesRequest request) {
+        RequestOperation<ListRulesRequest, ListRulesResponse> operation
+              = new ListRules.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Patch a rule (partial update)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public PatchRuleRequestBuilder patchRule() {
+        return new PatchRuleRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Patch a rule (partial update)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PatchRuleResponse patchRule(PatchRuleRequest request) {
+        RequestOperation<PatchRuleRequest, PatchRuleResponse> operation
+              = new PatchRule.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Reconcile using a policy
      * 
      * <p>Reconcile using a policy
@@ -264,6 +678,104 @@ public class ReconciliationV1 {
     public ReconcileResponse reconcile(ReconcileRequest request) {
         RequestOperation<ReconcileRequest, ReconcileResponse> operation
               = new Reconcile.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Resolve an alert (fixed_by_booking)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ResolveAlertRequestBuilder resolveAlert() {
+        return new ResolveAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Resolve an alert (fixed_by_booking)
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ResolveAlertResponse resolveAlert(ResolveAlertRequest request) {
+        RequestOperation<ResolveAlertRequest, ResolveAlertResponse> operation
+              = new ResolveAlert.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Snooze an alert's notifications until a future instant
+     * 
+     * <p>Mutes the alert's webhook notifications until `until`. The alert keeps
+     * failing, keeps its status, and keeps counting against period-green —
+     * only its notifications are suppressed, even if the discrepancy changes.
+     * The first failing evaluation at or after `until` clears the snooze and
+     * notifies once. Re-snoozing overwrites the window. Rejects RESOLVED
+     * alerts and a non-future `until`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public SnoozeAlertRequestBuilder snoozeAlert() {
+        return new SnoozeAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Snooze an alert's notifications until a future instant
+     * 
+     * <p>Mutes the alert's webhook notifications until `until`. The alert keeps
+     * failing, keeps its status, and keeps counting against period-green —
+     * only its notifications are suppressed, even if the discrepancy changes.
+     * The first failing evaluation at or after `until` clears the snooze and
+     * notifies once. Re-snoozing overwrites the window. Rejects RESOLVED
+     * alerts and a non-future `until`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SnoozeAlertResponse snoozeAlert(SnoozeAlertRequest request) {
+        RequestOperation<SnoozeAlertRequest, SnoozeAlertResponse> operation
+              = new SnoozeAlert.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Lift a snooze early
+     * 
+     * <p>Clears an active snooze before its window elapses. Idempotent —
+     * unsnoozing an alert that is not snoozed returns it unchanged.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public UnsnoozeAlertRequestBuilder unsnoozeAlert() {
+        return new UnsnoozeAlertRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Lift a snooze early
+     * 
+     * <p>Clears an active snooze before its window elapses. Idempotent —
+     * unsnoozing an alert that is not snoozed returns it unchanged.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UnsnoozeAlertResponse unsnoozeAlert(UnsnoozeAlertRequest request) {
+        RequestOperation<UnsnoozeAlertRequest, UnsnoozeAlertResponse> operation
+              = new UnsnoozeAlert.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

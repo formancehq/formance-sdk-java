@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
-public class V2BulkElementRevertTransaction {
+public class V2BulkElementRevertTransaction implements V2BulkElement {
 
     @JsonProperty("action")
     private String action;
@@ -49,8 +49,9 @@ public class V2BulkElementRevertTransaction {
     }
 
     @JsonIgnore
+    @Override
     public String action() {
-        return action;
+        return Utils.discriminatorToString(action);
     }
 
     @SuppressWarnings("unchecked")

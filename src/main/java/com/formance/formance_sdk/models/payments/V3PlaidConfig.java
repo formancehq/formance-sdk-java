@@ -19,7 +19,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3PlaidConfig {
+public class V3PlaidConfig implements V3ConnectorConfig {
 
     @JsonProperty("clientID")
     private String clientID;
@@ -126,8 +126,9 @@ public class V3PlaidConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

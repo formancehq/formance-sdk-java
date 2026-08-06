@@ -12,11 +12,21 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3Connector {
+    /**
+     * Plugin capabilities advertised by the connector's provider.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("capabilities")
+    private Optional<? extends List<V3Capability>> capabilities;
+
 
     @JsonProperty("config")
     private Config config;
@@ -52,6 +62,7 @@ public class V3Connector {
 
     @JsonCreator
     public V3Connector(
+            @JsonProperty("capabilities") Optional<? extends List<V3Capability>> capabilities,
             @JsonProperty("config") Config config,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
@@ -60,6 +71,7 @@ public class V3Connector {
             @JsonProperty("reference") String reference,
             @JsonProperty("scheduledForDeletion") boolean scheduledForDeletion,
             @JsonProperty("updatedAt") JsonNullable<OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(capabilities, "capabilities");
         Utils.checkNotNull(config, "config");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
@@ -68,6 +80,7 @@ public class V3Connector {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(scheduledForDeletion, "scheduledForDeletion");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        this.capabilities = capabilities;
         this.config = config;
         this.createdAt = createdAt;
         this.id = id;
@@ -86,9 +99,18 @@ public class V3Connector {
             String provider,
             String reference,
             boolean scheduledForDeletion) {
-        this(config, createdAt, id,
-            name, provider, reference,
-            scheduledForDeletion, JsonNullable.undefined());
+        this(Optional.empty(), config, createdAt,
+            id, name, provider,
+            reference, scheduledForDeletion, JsonNullable.undefined());
+    }
+
+    /**
+     * Plugin capabilities advertised by the connector's provider.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<V3Capability>> capabilities() {
+        return (Optional<List<V3Capability>>) capabilities;
     }
 
     @JsonIgnore
@@ -135,6 +157,25 @@ public class V3Connector {
         return new Builder();
     }
 
+
+    /**
+     * Plugin capabilities advertised by the connector's provider.
+     */
+    public V3Connector withCapabilities(List<V3Capability> capabilities) {
+        Utils.checkNotNull(capabilities, "capabilities");
+        this.capabilities = Optional.ofNullable(capabilities);
+        return this;
+    }
+
+
+    /**
+     * Plugin capabilities advertised by the connector's provider.
+     */
+    public V3Connector withCapabilities(Optional<? extends List<V3Capability>> capabilities) {
+        Utils.checkNotNull(capabilities, "capabilities");
+        this.capabilities = capabilities;
+        return this;
+    }
 
     public V3Connector withConfig(Config config) {
         Utils.checkNotNull(config, "config");
@@ -200,6 +241,7 @@ public class V3Connector {
         }
         V3Connector other = (V3Connector) o;
         return 
+            Utils.enhancedDeepEquals(this.capabilities, other.capabilities) &&
             Utils.enhancedDeepEquals(this.config, other.config) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -213,14 +255,15 @@ public class V3Connector {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            config, createdAt, id,
-            name, provider, reference,
-            scheduledForDeletion, updatedAt);
+            capabilities, config, createdAt,
+            id, name, provider,
+            reference, scheduledForDeletion, updatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3Connector.class,
+                "capabilities", capabilities,
                 "config", config,
                 "createdAt", createdAt,
                 "id", id,
@@ -233,6 +276,8 @@ public class V3Connector {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends List<V3Capability>> capabilities = Optional.empty();
 
         private Config config;
 
@@ -252,6 +297,25 @@ public class V3Connector {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Plugin capabilities advertised by the connector's provider.
+         */
+        public Builder capabilities(List<V3Capability> capabilities) {
+            Utils.checkNotNull(capabilities, "capabilities");
+            this.capabilities = Optional.ofNullable(capabilities);
+            return this;
+        }
+
+        /**
+         * Plugin capabilities advertised by the connector's provider.
+         */
+        public Builder capabilities(Optional<? extends List<V3Capability>> capabilities) {
+            Utils.checkNotNull(capabilities, "capabilities");
+            this.capabilities = capabilities;
+            return this;
         }
 
 
@@ -319,9 +383,9 @@ public class V3Connector {
         public V3Connector build() {
 
             return new V3Connector(
-                config, createdAt, id,
-                name, provider, reference,
-                scheduledForDeletion, updatedAt);
+                capabilities, config, createdAt,
+                id, name, provider,
+                reference, scheduledForDeletion, updatedAt);
         }
 
     }

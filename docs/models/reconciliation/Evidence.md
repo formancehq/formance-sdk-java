@@ -1,0 +1,12 @@
+# Evidence
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `additionalProperties`                                                               | Map\<String, *Object*>                                                               | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `evidence`                                                                           | Map\<String, *Object*>                                                               | :heavy_minus_sign:                                                                   | Full breakdown. Present on FAIL entries.                                             |
+| `fingerprint`                                                                        | *Optional\<String>*                                                                  | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `passed`                                                                             | *Optional\<Boolean>*                                                                 | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `proof`                                                                              | Map\<String, *String*>                                                               | :heavy_minus_sign:                                                                   | Compact green-proof (observed balance integers as strings). Present on PASS entries. |

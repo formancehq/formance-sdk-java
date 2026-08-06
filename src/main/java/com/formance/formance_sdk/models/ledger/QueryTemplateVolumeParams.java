@@ -8,12 +8,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -57,9 +58,8 @@ public class QueryTemplateVolumeParams {
     private Optional<OffsetDateTime> pit;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<? extends V2QueryParamsResourceVolumes> resource;
+    private String resource;
 
     /**
      * Sort results using a field name and order (ascending or descending).
@@ -78,7 +78,6 @@ public class QueryTemplateVolumeParams {
             @JsonProperty("insertionDate") Optional<Boolean> insertionDate,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pit") Optional<OffsetDateTime> pit,
-            @JsonProperty("resource") Optional<? extends V2QueryParamsResourceVolumes> resource,
             @JsonProperty("sort") Optional<String> sort) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
@@ -86,7 +85,6 @@ public class QueryTemplateVolumeParams {
         Utils.checkNotNull(insertionDate, "insertionDate");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
-        Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(sort, "sort");
         this.cursor = cursor;
         this.expand = expand;
@@ -94,14 +92,14 @@ public class QueryTemplateVolumeParams {
         this.insertionDate = insertionDate;
         this.pageSize = pageSize;
         this.pit = pit;
-        this.resource = resource;
+        this.resource = Builder._SINGLETON_VALUE_Resource.value();
         this.sort = sort;
     }
     
     public QueryTemplateVolumeParams() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -143,10 +141,9 @@ public class QueryTemplateVolumeParams {
         return pit;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2QueryParamsResourceVolumes> resource() {
-        return (Optional<V2QueryParamsResourceVolumes>) resource;
+    public String resource() {
+        return resource;
     }
 
     /**
@@ -260,19 +257,6 @@ public class QueryTemplateVolumeParams {
         return this;
     }
 
-    public QueryTemplateVolumeParams withResource(V2QueryParamsResourceVolumes resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    public QueryTemplateVolumeParams withResource(Optional<? extends V2QueryParamsResourceVolumes> resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
-        return this;
-    }
-
     /**
      * Sort results using a field name and order (ascending or descending).
      * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -351,8 +335,6 @@ public class QueryTemplateVolumeParams {
         private Optional<Long> pageSize = Optional.empty();
 
         private Optional<OffsetDateTime> pit = Optional.empty();
-
-        private Optional<? extends V2QueryParamsResourceVolumes> resource = Optional.empty();
 
         private Optional<String> sort = Optional.empty();
 
@@ -457,19 +439,6 @@ public class QueryTemplateVolumeParams {
         }
 
 
-        public Builder resource(V2QueryParamsResourceVolumes resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        public Builder resource(Optional<? extends V2QueryParamsResourceVolumes> resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
-            return this;
-        }
-
-
         /**
          * Sort results using a field name and order (ascending or descending).
          * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -497,8 +466,14 @@ public class QueryTemplateVolumeParams {
             return new QueryTemplateVolumeParams(
                 cursor, expand, groupBy,
                 insertionDate, pageSize, pit,
-                resource, sort);
+                sort);
         }
 
+
+        private static final LazySingletonValue<String> _SINGLETON_VALUE_Resource =
+                new LazySingletonValue<>(
+                        "resource",
+                        "\"volumes\"",
+                        new TypeReference<String>() {});
     }
 }

@@ -12,7 +12,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class V2BulkElementResultRevertTransaction {
+public class V2BulkElementResultRevertTransaction implements V2BulkElementResult {
 
     @JsonProperty("data")
     private V2Transaction data;
@@ -49,8 +49,9 @@ public class V2BulkElementResultRevertTransaction {
     }
 
     @JsonIgnore
+    @Override
     public String responseType() {
-        return responseType;
+        return Utils.discriminatorToString(responseType);
     }
 
     public static Builder builder() {

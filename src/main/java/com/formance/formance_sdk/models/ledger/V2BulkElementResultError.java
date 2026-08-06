@@ -15,7 +15,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V2BulkElementResultError {
+public class V2BulkElementResultError implements V2BulkElementResult {
 
     @JsonProperty("errorCode")
     private String errorCode;
@@ -86,8 +86,9 @@ public class V2BulkElementResultError {
     }
 
     @JsonIgnore
+    @Override
     public String responseType() {
-        return responseType;
+        return Utils.discriminatorToString(responseType);
     }
 
     public static Builder builder() {

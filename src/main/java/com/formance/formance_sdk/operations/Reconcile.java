@@ -12,7 +12,7 @@ import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ReconcileRequest;
 import com.formance.formance_sdk.models.operations.ReconcileResponse;
-import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.reconciliation.ReconciliationResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
@@ -175,7 +175,7 @@ public class Reconcile {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw ErrorResponse.from(response);
+                    throw ErrorsErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

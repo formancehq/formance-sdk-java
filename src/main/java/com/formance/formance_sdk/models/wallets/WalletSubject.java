@@ -14,7 +14,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class WalletSubject {
+public class WalletSubject implements Subject {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
@@ -58,8 +58,9 @@ public class WalletSubject {
     }
 
     @JsonIgnore
+    @Override
     public String type() {
-        return type;
+        return Utils.discriminatorToString(type);
     }
 
     public static Builder builder() {

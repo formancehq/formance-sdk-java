@@ -7,6 +7,8 @@ import static com.formance.formance_sdk.operations.Operations.RequestOperation;
 import static com.formance.formance_sdk.operations.Operations.RequestlessOperation;
 
 import com.formance.formance_sdk.models.ledger.V2ExporterConfiguration;
+import com.formance.formance_sdk.models.operations.GetMetricsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetMetricsResponse;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
@@ -63,6 +65,8 @@ import com.formance.formance_sdk.models.operations.V2GetBalancesAggregatedRespon
 import com.formance.formance_sdk.models.operations.V2GetExporterStateRequest;
 import com.formance.formance_sdk.models.operations.V2GetExporterStateRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2GetExporterStateResponse;
+import com.formance.formance_sdk.models.operations.V2GetInfoRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequest;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2GetLedgerInfoResponse;
@@ -134,6 +138,7 @@ import com.formance.formance_sdk.models.operations.V2UpdateExporterResponse;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequest;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2UpdateLedgerMetadataResponse;
+import com.formance.formance_sdk.operations.GetMetrics;
 import com.formance.formance_sdk.operations.V2AddMetadataOnTransaction;
 import com.formance.formance_sdk.operations.V2AddMetadataToAccount;
 import com.formance.formance_sdk.operations.V2CountAccounts;
@@ -153,6 +158,7 @@ import com.formance.formance_sdk.operations.V2ExportLogs;
 import com.formance.formance_sdk.operations.V2GetAccount;
 import com.formance.formance_sdk.operations.V2GetBalancesAggregated;
 import com.formance.formance_sdk.operations.V2GetExporterState;
+import com.formance.formance_sdk.operations.V2GetInfo;
 import com.formance.formance_sdk.operations.V2GetLedger;
 import com.formance.formance_sdk.operations.V2GetLedgerInfo;
 import com.formance.formance_sdk.operations.V2GetPipelineState;
@@ -677,6 +683,31 @@ public class LedgerV2 {
     }
 
     /**
+     * Show server information
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public V2GetInfoRequestBuilder getInfo() {
+        return new V2GetInfoRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Show server information
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2GetInfoResponse getInfoDirect() {
+        RequestlessOperation<V2GetInfoResponse> operation
+            = new V2GetInfo.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest());
+    }
+
+    /**
      * Get a ledger
      * 
      * <p>If set, this operation will use Security#clientID from the global security.
@@ -726,6 +757,31 @@ public class LedgerV2 {
         RequestOperation<V2GetLedgerInfoRequest, V2GetLedgerInfoResponse> operation
               = new V2GetLedgerInfo.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Read in memory metrics
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetMetricsRequestBuilder getMetrics() {
+        return new GetMetricsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Read in memory metrics
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetMetricsResponse getMetricsDirect() {
+        RequestlessOperation<GetMetricsResponse> operation
+            = new GetMetrics.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest());
     }
 
     /**

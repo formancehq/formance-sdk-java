@@ -55,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:9.1.2'
+implementation 'com.formance:formance-sdk:10.0.0'
 ```
 
 Maven:
@@ -63,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>9.1.2</version>
+    <version>10.0.0</version>
 </dependency>
 ```
 
@@ -145,12 +145,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [readUser](docs/sdks/authv1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/authv1/README.md#updateclient) - Update client
 
-### [Ledger](docs/sdks/ledger/README.md)
-
-* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
-* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
-
-#### [Ledger.V1](docs/sdks/ledgerv1/README.md)
+### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [createTransactions](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -173,7 +168,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [~~runScript~~](docs/sdks/ledgerv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/ledgerv1/README.md#updatemapping) - Update the mapping of a ledger
 
-#### [Ledger.V2](docs/sdks/ledgerv2/README.md)
+### [Ledger.V2](docs/sdks/ledgerv2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/ledgerv2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/ledgerv2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -194,8 +189,10 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [getAccount](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getExporterState](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
+* [getInfo](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
+* [getMetrics](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
 * [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 * [getSchema](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
@@ -333,6 +330,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 * [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
 * [getConversion](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
@@ -349,6 +347,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
 * [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
 * [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
 * [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
@@ -380,14 +379,30 @@ Allows to check if users used the link and completed the oauth flow.
 
 ### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
+* [acceptAlert](docs/sdks/reconciliationv1/README.md#acceptalert) - Accept an alert (accepted_by_business)
+* [ackAlert](docs/sdks/reconciliationv1/README.md#ackalert) - Acknowledge an alert
 * [createPolicy](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
+* [createRule](docs/sdks/reconciliationv1/README.md#createrule) - Create a rule
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
+* [deleteRule](docs/sdks/reconciliationv1/README.md#deleterule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [evaluateRule](docs/sdks/reconciliationv1/README.md#evaluaterule) - Evaluate a rule now
+* [getAlert](docs/sdks/reconciliationv1/README.md#getalert) - Get an alert
+* [getEvaluation](docs/sdks/reconciliationv1/README.md#getevaluation) - Get an evaluation
 * [getPolicy](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getRule](docs/sdks/reconciliationv1/README.md#getrule) - Get a rule
 * [getServerInfoReconciliation](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
+* [listAlertEvents](docs/sdks/reconciliationv1/README.md#listalertevents) - List alert events (append-only timeline)
+* [listAlerts](docs/sdks/reconciliationv1/README.md#listalerts) - List alerts
+* [listEvaluations](docs/sdks/reconciliationv1/README.md#listevaluations) - List evaluations
 * [listPolicies](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
+* [listRules](docs/sdks/reconciliationv1/README.md#listrules) - List rules
+* [patchRule](docs/sdks/reconciliationv1/README.md#patchrule) - Patch a rule (partial update)
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
+* [resolveAlert](docs/sdks/reconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
+* [snoozeAlert](docs/sdks/reconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
+* [unsnoozeAlert](docs/sdks/reconciliationv1/README.md#unsnoozealert) - Lift a snooze early
 
 ### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
@@ -419,8 +434,13 @@ Allows to check if users used the link and completed the oauth flow.
 * [changeConfigSecret](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](docs/sdks/webhooksv1/README.md#deactivateconfig) - Deactivate one config
 * [deleteConfig](docs/sdks/webhooksv1/README.md#deleteconfig) - Delete one config
+* [getDeliveries](docs/sdks/webhooksv1/README.md#getdeliveries) - List webhook deliveries
+* [getDelivery](docs/sdks/webhooksv1/README.md#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](docs/sdks/webhooksv1/README.md#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](docs/sdks/webhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/webhooksv1/README.md#insertconfig) - Insert a new config
+* [replayDeliveries](docs/sdks/webhooksv1/README.md#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](docs/sdks/webhooksv1/README.md#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](docs/sdks/webhooksv1/README.md#testconfig) - Test one config
 * [updateConfig](docs/sdks/webhooksv1/README.md#updateconfig) - Update one config
 
@@ -452,11 +472,14 @@ import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.errors.SDKBaseError;
 import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.ledger.V2ErrorsEnum;
-import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
+import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
 import com.formance.formance_sdk.models.shared.Security;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
+import java.math.BigInteger;
+import java.util.Map;
 import java.util.Optional;
 
 public class Application {
@@ -471,12 +494,20 @@ public class Application {
             .build();
         try {
 
-            V2GetInfoResponse res = sdk.ledger().getInfo()
+            V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
+                    .requestBody(Map.ofEntries(
+                        Map.entry("admin", "true")))
+                    .id(new BigInteger("1234"))
+                    .ledger("ledger001")
+                    .dryRun(true)
+                    .schemaVersion("v1.0.0")
+                    .build();
+
+            V2AddMetadataOnTransactionResponse res = sdk.ledger().v2().addMetadataOnTransaction()
+                    .request(req)
                     .call();
 
-            if (res.v2ConfigInfo().isPresent()) {
-                System.out.println(res.v2ConfigInfo().get());
-            }
+            // handle response
         } catch (SDKBaseError ex) { // all SDK exceptions inherit from SDKBaseError
 
             // ex.ToString() provides a detailed error message including
@@ -528,13 +559,13 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java)**:
-* [`com.formance.formance_sdk.models.payments.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.V3ErrorResponse.java): Error. Applicable to 61 of 253 methods.*
-* [`com.formance.formance_sdk.models.payments.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.PaymentsErrorResponse.java): Error. Applicable to 46 of 253 methods.*
-* [`com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse.java): Applicable to 44 of 253 methods.*
-* [`com.formance.formance_sdk.models.reconciliation.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.reconciliation.ErrorResponse.java): Applicable to 31 of 253 methods.*
-* [`com.formance.formance_sdk.models.ledger.ErrorsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsErrorResponse.java): Applicable to 19 of 253 methods.*
-* [`com.formance.formance_sdk.models.orchestration.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.V2Error.java): General error. Applicable to 18 of 253 methods.*
-* [`com.formance.formance_sdk.models.orchestration.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.Error.java): General error. Applicable to 17 of 253 methods.*
+* [`com.formance.formance_sdk.models.payments.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.V3ErrorResponse.java): Error. Applicable to 63 of 276 methods.*
+* [`com.formance.formance_sdk.models.payments.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.PaymentsErrorResponse.java): Error. Applicable to 46 of 276 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse.java): Applicable to 44 of 276 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsErrorResponse.java): Applicable to 43 of 276 methods.*
+* [`com.formance.formance_sdk.models.wallets.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.wallets.ErrorResponse.java): Applicable to 28 of 276 methods.*
+* [`com.formance.formance_sdk.models.orchestration.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.V2Error.java): General error. Applicable to 18 of 276 methods.*
+* [`com.formance.formance_sdk.models.orchestration.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.Error.java): General error. Applicable to 17 of 276 methods.*
 
 
 </details>

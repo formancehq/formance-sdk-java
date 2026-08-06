@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Deprecated;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -66,7 +67,7 @@ public class Account {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
-    private Optional<? extends AccountRaw> raw;
+    private Optional<? extends Map<String, Object>> raw;
 
 
     @JsonProperty("reference")
@@ -87,7 +88,7 @@ public class Account {
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("pools") Optional<? extends List<String>> pools,
             @JsonProperty("provider") Optional<String> provider,
-            @JsonProperty("raw") Optional<? extends AccountRaw> raw,
+            @JsonProperty("raw") Optional<? extends Map<String, Object>> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("type") AccountType type) {
         Utils.checkNotNull(accountName, "accountName");
@@ -185,8 +186,8 @@ public class Account {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AccountRaw> raw() {
-        return (Optional<AccountRaw>) raw;
+    public Optional<Map<String, Object>> raw() {
+        return (Optional<Map<String, Object>>) raw;
     }
 
     @JsonIgnore
@@ -284,14 +285,14 @@ public class Account {
         return this;
     }
 
-    public Account withRaw(AccountRaw raw) {
+    public Account withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
         return this;
     }
 
 
-    public Account withRaw(Optional<? extends AccountRaw> raw) {
+    public Account withRaw(Optional<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -381,7 +382,7 @@ public class Account {
 
         private Optional<String> provider = Optional.empty();
 
-        private Optional<? extends AccountRaw> raw = Optional.empty();
+        private Optional<? extends Map<String, Object>> raw = Optional.empty();
 
         private String reference;
 
@@ -478,13 +479,13 @@ public class Account {
         }
 
 
-        public Builder raw(AccountRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
         }
 
-        public Builder raw(Optional<? extends AccountRaw> raw) {
+        public Builder raw(Optional<? extends Map<String, Object>> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

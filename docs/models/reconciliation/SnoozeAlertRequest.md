@@ -1,0 +1,12 @@
+# SnoozeAlertRequest
+
+Mute an alert's notifications until `until` (which must be in the future).
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `by`                                                                                      | *String*                                                                                  | :heavy_check_mark:                                                                        | N/A                                                                                       | ops@buildr.com                                                                            |
+| `note`                                                                                    | *Optional\<String>*                                                                       | :heavy_minus_sign:                                                                        | N/A                                                                                       |                                                                                           |
+| `until`                                                                                   | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |

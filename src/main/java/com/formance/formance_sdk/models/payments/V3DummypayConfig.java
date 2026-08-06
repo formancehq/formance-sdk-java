@@ -19,7 +19,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3DummypayConfig {
+public class V3DummypayConfig implements V3ConnectorConfig {
 
     @JsonProperty("directory")
     private String directory;
@@ -121,8 +121,9 @@ public class V3DummypayConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore

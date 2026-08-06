@@ -11,7 +11,8 @@ import java.util.Optional;
 public enum ErrorsEnum {
     INTERNAL("INTERNAL"),
     VALIDATION("VALIDATION"),
-    NOT_FOUND("NOT_FOUND");
+    NOT_FOUND("NOT_FOUND"),
+    CONFLICT("CONFLICT");
 
     @JsonValue
     private final String value;

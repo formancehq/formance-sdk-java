@@ -7,10 +7,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 
 public class PaymentAdjustment {
@@ -24,7 +26,7 @@ public class PaymentAdjustment {
 
 
     @JsonProperty("raw")
-    private PaymentAdjustmentRaw raw;
+    private Map<String, Object> raw;
 
 
     @JsonProperty("reference")
@@ -38,11 +40,12 @@ public class PaymentAdjustment {
     public PaymentAdjustment(
             @JsonProperty("amount") BigInteger amount,
             @JsonProperty("createdAt") OffsetDateTime createdAt,
-            @JsonProperty("raw") PaymentAdjustmentRaw raw,
+            @JsonProperty("raw") Map<String, Object> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("status") PaymentStatus status) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(createdAt, "createdAt");
+        raw = Utils.emptyMapIfNull(raw);
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
@@ -64,7 +67,7 @@ public class PaymentAdjustment {
     }
 
     @JsonIgnore
-    public PaymentAdjustmentRaw raw() {
+    public Map<String, Object> raw() {
         return raw;
     }
 
@@ -100,7 +103,7 @@ public class PaymentAdjustment {
         return this;
     }
 
-    public PaymentAdjustment withRaw(PaymentAdjustmentRaw raw) {
+    public PaymentAdjustment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -159,7 +162,7 @@ public class PaymentAdjustment {
 
         private OffsetDateTime createdAt;
 
-        private PaymentAdjustmentRaw raw;
+        private Map<String, Object> raw;
 
         private String reference;
 
@@ -189,7 +192,7 @@ public class PaymentAdjustment {
         }
 
 
-        public Builder raw(PaymentAdjustmentRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;
