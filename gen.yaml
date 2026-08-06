@@ -63,7 +63,7 @@ java:
       webhooks: models/webhooks
   inferUnionDiscriminators: false
   inputModelSuffix: input
-  languageVersion: 11
+  languageVersion: 17
   license:
     name: The MIT License (MIT)
     shortName: MIT
