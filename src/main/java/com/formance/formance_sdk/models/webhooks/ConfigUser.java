@@ -26,11 +26,6 @@ public class ConfigUser {
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("name")
-    private Optional<String> name;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secret")
     private Optional<String> secret;
 
@@ -38,23 +33,19 @@ public class ConfigUser {
     public ConfigUser(
             @JsonProperty("endpoint") String endpoint,
             @JsonProperty("eventTypes") List<String> eventTypes,
-            @JsonProperty("name") Optional<String> name,
             @JsonProperty("secret") Optional<String> secret) {
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(eventTypes, "eventTypes");
-        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(secret, "secret");
         this.endpoint = endpoint;
         this.eventTypes = eventTypes;
-        this.name = name;
         this.secret = secret;
     }
     
     public ConfigUser(
             String endpoint,
             List<String> eventTypes) {
-        this(endpoint, eventTypes, Optional.empty(),
-            Optional.empty());
+        this(endpoint, eventTypes, Optional.empty());
     }
 
     @JsonIgnore
@@ -65,11 +56,6 @@ public class ConfigUser {
     @JsonIgnore
     public List<String> eventTypes() {
         return eventTypes;
-    }
-
-    @JsonIgnore
-    public Optional<String> name() {
-        return name;
     }
 
     @JsonIgnore
@@ -91,19 +77,6 @@ public class ConfigUser {
     public ConfigUser withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
-        return this;
-    }
-
-    public ConfigUser withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    public ConfigUser withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
         return this;
     }
 
@@ -132,15 +105,13 @@ public class ConfigUser {
         return 
             Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
             Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
-            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.secret, other.secret);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            endpoint, eventTypes, name,
-            secret);
+            endpoint, eventTypes, secret);
     }
     
     @Override
@@ -148,7 +119,6 @@ public class ConfigUser {
         return Utils.toString(ConfigUser.class,
                 "endpoint", endpoint,
                 "eventTypes", eventTypes,
-                "name", name,
                 "secret", secret);
     }
 
@@ -158,8 +128,6 @@ public class ConfigUser {
         private String endpoint;
 
         private List<String> eventTypes;
-
-        private Optional<String> name = Optional.empty();
 
         private Optional<String> secret = Optional.empty();
 
@@ -182,19 +150,6 @@ public class ConfigUser {
         }
 
 
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = Optional.ofNullable(secret);
@@ -210,8 +165,7 @@ public class ConfigUser {
         public ConfigUser build() {
 
             return new ConfigUser(
-                endpoint, eventTypes, name,
-                secret);
+                endpoint, eventTypes, secret);
         }
 
     }

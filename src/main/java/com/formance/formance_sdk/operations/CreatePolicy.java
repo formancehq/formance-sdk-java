@@ -11,7 +11,7 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreatePolicyResponse;
-import com.formance.formance_sdk.models.reconciliation.ErrorResponse;
+import com.formance.formance_sdk.models.reconciliation.ErrorsErrorResponse;
 import com.formance.formance_sdk.models.reconciliation.PolicyRequest;
 import com.formance.formance_sdk.models.reconciliation.PolicyResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
@@ -173,7 +173,7 @@ public class CreatePolicy {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw ErrorResponse.from(response);
+                    throw ErrorsErrorResponse.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

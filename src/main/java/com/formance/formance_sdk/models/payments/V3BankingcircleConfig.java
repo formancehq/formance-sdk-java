@@ -18,7 +18,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3BankingcircleConfig {
+public class V3BankingcircleConfig implements V3ConnectorConfig {
 
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
@@ -150,8 +150,9 @@ public class V3BankingcircleConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     @JsonIgnore

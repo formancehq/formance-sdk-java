@@ -360,3 +360,13 @@ Based on:
 - [java v9.1.2] .
 ### Releases
 - [Maven Central v9.1.2] https://central.sonatype.com/artifact/com.formance/formance-sdk/9.1.2 - .
+
+## 2026-08-06 15:27:04
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.770.0 (2.893.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v10.0.0] .
+### Releases
+- [Maven Central v10.0.0] https://central.sonatype.com/artifact/com.formance/formance-sdk/10.0.0 - .

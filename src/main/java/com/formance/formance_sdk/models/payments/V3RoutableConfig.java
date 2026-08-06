@@ -18,7 +18,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3RoutableConfig {
+public class V3RoutableConfig implements V3ConnectorConfig {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("actingTeamMember")
@@ -125,8 +125,9 @@ public class V3RoutableConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

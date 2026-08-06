@@ -61,6 +61,9 @@ import com.formance.formance_sdk.models.operations.V3GetAccountResponse;
 import com.formance.formance_sdk.models.operations.V3GetBankAccountRequest;
 import com.formance.formance_sdk.models.operations.V3GetBankAccountRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetBankAccountResponse;
+import com.formance.formance_sdk.models.operations.V3GetConnectorCapabilitiesRequest;
+import com.formance.formance_sdk.models.operations.V3GetConnectorCapabilitiesRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3GetConnectorCapabilitiesResponse;
 import com.formance.formance_sdk.models.operations.V3GetConnectorConfigRequest;
 import com.formance.formance_sdk.models.operations.V3GetConnectorConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3GetConnectorConfigResponse;
@@ -109,6 +112,9 @@ import com.formance.formance_sdk.models.operations.V3ListAccountsResponse;
 import com.formance.formance_sdk.models.operations.V3ListBankAccountsRequest;
 import com.formance.formance_sdk.models.operations.V3ListBankAccountsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListBankAccountsResponse;
+import com.formance.formance_sdk.models.operations.V3ListConnectorCapabilitiesRequest;
+import com.formance.formance_sdk.models.operations.V3ListConnectorCapabilitiesRequestBuilder;
+import com.formance.formance_sdk.models.operations.V3ListConnectorCapabilitiesResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorConfigsRequestBuilder;
 import com.formance.formance_sdk.models.operations.V3ListConnectorConfigsResponse;
 import com.formance.formance_sdk.models.operations.V3ListConnectorScheduleInstancesRequest;
@@ -211,6 +217,7 @@ import com.formance.formance_sdk.operations.V3ForwardPaymentServiceUserToProvide
 import com.formance.formance_sdk.operations.V3GetAccount;
 import com.formance.formance_sdk.operations.V3GetAccountBalances;
 import com.formance.formance_sdk.operations.V3GetBankAccount;
+import com.formance.formance_sdk.operations.V3GetConnectorCapabilities;
 import com.formance.formance_sdk.operations.V3GetConnectorConfig;
 import com.formance.formance_sdk.operations.V3GetConnectorSchedule;
 import com.formance.formance_sdk.operations.V3GetConversion;
@@ -227,6 +234,7 @@ import com.formance.formance_sdk.operations.V3InitiatePayment;
 import com.formance.formance_sdk.operations.V3InstallConnector;
 import com.formance.formance_sdk.operations.V3ListAccounts;
 import com.formance.formance_sdk.operations.V3ListBankAccounts;
+import com.formance.formance_sdk.operations.V3ListConnectorCapabilities;
 import com.formance.formance_sdk.operations.V3ListConnectorConfigs;
 import com.formance.formance_sdk.operations.V3ListConnectorScheduleInstances;
 import com.formance.formance_sdk.operations.V3ListConnectorSchedules;
@@ -847,6 +855,40 @@ public class V3 {
     }
 
     /**
+     * Get the plugin capabilities of an installed connector
+     * 
+     * <p>Returns the list of plugin capabilities advertised by the provider backing this installed connector
+     * (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of
+     * `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public V3GetConnectorCapabilitiesRequestBuilder getConnectorCapabilities() {
+        return new V3GetConnectorCapabilitiesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get the plugin capabilities of an installed connector
+     * 
+     * <p>Returns the list of plugin capabilities advertised by the provider backing this installed connector
+     * (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of
+     * `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3GetConnectorCapabilitiesResponse getConnectorCapabilities(V3GetConnectorCapabilitiesRequest request) {
+        RequestOperation<V3GetConnectorCapabilitiesRequest, V3GetConnectorCapabilitiesResponse> operation
+              = new V3GetConnectorCapabilities.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Get a connector configuration by ID
      * 
      * <p>If set, this operation will use Security#clientID from the global security.
@@ -1295,6 +1337,46 @@ public class V3 {
     public V3ListBankAccountsResponse listBankAccounts(V3ListBankAccountsRequest request) {
         RequestOperation<V3ListBankAccountsRequest, V3ListBankAccountsResponse> operation
               = new V3ListBankAccounts.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List the plugin capabilities advertised by every supported provider
+     * 
+     * <p>Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`,
+     * `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the
+     * process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control:
+     * public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g.
+     * 
+     * <p>console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public V3ListConnectorCapabilitiesRequestBuilder listConnectorCapabilities() {
+        return new V3ListConnectorCapabilitiesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List the plugin capabilities advertised by every supported provider
+     * 
+     * <p>Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`,
+     * `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the
+     * process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control:
+     * public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g.
+     * 
+     * <p>console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V3ListConnectorCapabilitiesResponse listConnectorCapabilities(V3ListConnectorCapabilitiesRequest request) {
+        RequestOperation<V3ListConnectorCapabilitiesRequest, V3ListConnectorCapabilitiesResponse> operation
+              = new V3ListConnectorCapabilities.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

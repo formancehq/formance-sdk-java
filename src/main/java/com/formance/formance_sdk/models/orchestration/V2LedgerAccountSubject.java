@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class V2LedgerAccountSubject {
+public class V2LedgerAccountSubject implements V2Subject {
 
     @JsonProperty("identifier")
     private String identifier;
@@ -36,8 +36,9 @@ public class V2LedgerAccountSubject {
     }
 
     @JsonIgnore
+    @Override
     public String type() {
-        return type;
+        return Utils.discriminatorToString(type);
     }
 
     public static Builder builder() {

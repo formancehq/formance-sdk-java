@@ -1370,12 +1370,12 @@ public class Application {
             .build();
 
         InstallConnectorRequest req = InstallConnectorRequest.builder()
-                .connectorConfig(ConnectorConfig.of(CurrencyCloudConfig.builder()
+                .connectorConfig(CurrencyCloudConfig.builder()
                     .apiKey("XXX")
                     .loginID("XXX")
                     .name("My CurrencyCloud Account")
                     .pollingPeriod("60s")
-                    .build()))
+                    .build())
                 .connector(Connector.MANGOPAY)
                 .build();
 
@@ -2607,12 +2607,12 @@ public class Application {
             .build();
 
         UpdateConnectorConfigV1Request req = UpdateConnectorConfigV1Request.builder()
-                .connectorConfig(ConnectorConfig.of(ModulrConfig.builder()
+                .connectorConfig(ModulrConfig.builder()
                     .apiKey("XXX")
                     .apiSecret("XXX")
                     .name("My Modulr Account")
                     .pollingPeriod("60s")
-                    .build()))
+                    .build())
                 .connector(Connector.MANGOPAY)
                 .connectorId("XXX")
                 .build();

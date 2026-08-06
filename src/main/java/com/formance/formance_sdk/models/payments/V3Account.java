@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -57,7 +58,7 @@ public class V3Account {
 
 
     @JsonProperty("raw")
-    private V3AccountRaw raw;
+    private Map<String, Object> raw;
 
 
     @JsonProperty("reference")
@@ -77,7 +78,7 @@ public class V3Account {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("provider") String provider,
-            @JsonProperty("raw") V3AccountRaw raw,
+            @JsonProperty("raw") Map<String, Object> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("type") V3AccountTypeEnum type) {
         Utils.checkNotNull(connector, "connector");
@@ -88,6 +89,7 @@ public class V3Account {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(provider, "provider");
+        raw = Utils.emptyMapIfNull(raw);
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(type, "type");
@@ -109,7 +111,7 @@ public class V3Account {
             OffsetDateTime createdAt,
             String id,
             String provider,
-            V3AccountRaw raw,
+            Map<String, Object> raw,
             String reference,
             V3AccountTypeEnum type) {
         this(Optional.empty(), connectorID, createdAt,
@@ -161,7 +163,7 @@ public class V3Account {
     }
 
     @JsonIgnore
-    public V3AccountRaw raw() {
+    public Map<String, Object> raw() {
         return raw;
     }
 
@@ -253,7 +255,7 @@ public class V3Account {
         return this;
     }
 
-    public V3Account withRaw(V3AccountRaw raw) {
+    public V3Account withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -338,7 +340,7 @@ public class V3Account {
 
         private String provider;
 
-        private V3AccountRaw raw;
+        private Map<String, Object> raw;
 
         private String reference;
 
@@ -429,7 +431,7 @@ public class V3Account {
         }
 
 
-        public Builder raw(V3AccountRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

@@ -17,11 +17,26 @@ import com.formance.formance_sdk.models.operations.DeactivateConfigResponse;
 import com.formance.formance_sdk.models.operations.DeleteConfigRequest;
 import com.formance.formance_sdk.models.operations.DeleteConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.DeleteConfigResponse;
+import com.formance.formance_sdk.models.operations.GetDeliveriesRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveriesRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetDeliveriesResponse;
+import com.formance.formance_sdk.models.operations.GetDeliveryAttemptsRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveryAttemptsRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetDeliveryAttemptsResponse;
+import com.formance.formance_sdk.models.operations.GetDeliveryRequest;
+import com.formance.formance_sdk.models.operations.GetDeliveryRequestBuilder;
+import com.formance.formance_sdk.models.operations.GetDeliveryResponse;
 import com.formance.formance_sdk.models.operations.GetManyConfigsRequest;
 import com.formance.formance_sdk.models.operations.GetManyConfigsRequestBuilder;
 import com.formance.formance_sdk.models.operations.GetManyConfigsResponse;
 import com.formance.formance_sdk.models.operations.InsertConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.InsertConfigResponse;
+import com.formance.formance_sdk.models.operations.ReplayDeliveriesRequest;
+import com.formance.formance_sdk.models.operations.ReplayDeliveriesRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReplayDeliveriesResponse;
+import com.formance.formance_sdk.models.operations.ReplayDeliveryRequest;
+import com.formance.formance_sdk.models.operations.ReplayDeliveryRequestBuilder;
+import com.formance.formance_sdk.models.operations.ReplayDeliveryResponse;
 import com.formance.formance_sdk.models.operations.TestConfigRequest;
 import com.formance.formance_sdk.models.operations.TestConfigRequestBuilder;
 import com.formance.formance_sdk.models.operations.TestConfigResponse;
@@ -33,8 +48,13 @@ import com.formance.formance_sdk.operations.ActivateConfig;
 import com.formance.formance_sdk.operations.ChangeConfigSecret;
 import com.formance.formance_sdk.operations.DeactivateConfig;
 import com.formance.formance_sdk.operations.DeleteConfig;
+import com.formance.formance_sdk.operations.GetDeliveries;
+import com.formance.formance_sdk.operations.GetDelivery;
+import com.formance.formance_sdk.operations.GetDeliveryAttempts;
 import com.formance.formance_sdk.operations.GetManyConfigs;
 import com.formance.formance_sdk.operations.InsertConfig;
+import com.formance.formance_sdk.operations.ReplayDeliveries;
+import com.formance.formance_sdk.operations.ReplayDelivery;
 import com.formance.formance_sdk.operations.TestConfig;
 import com.formance.formance_sdk.operations.UpdateConfig;
 import com.formance.formance_sdk.utils.Headers;
@@ -175,6 +195,84 @@ public class WebhooksV1 {
     }
 
     /**
+     * List webhook deliveries
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetDeliveriesRequestBuilder getDeliveries() {
+        return new GetDeliveriesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List webhook deliveries
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetDeliveriesResponse getDeliveries(GetDeliveriesRequest request) {
+        RequestOperation<GetDeliveriesRequest, GetDeliveriesResponse> operation
+              = new GetDeliveries.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get a webhook delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetDeliveryRequestBuilder getDelivery() {
+        return new GetDeliveryRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a webhook delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetDeliveryResponse getDelivery(GetDeliveryRequest request) {
+        RequestOperation<GetDeliveryRequest, GetDeliveryResponse> operation
+              = new GetDelivery.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List attempts for a webhook delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public GetDeliveryAttemptsRequestBuilder getDeliveryAttempts() {
+        return new GetDeliveryAttemptsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List attempts for a webhook delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetDeliveryAttemptsResponse getDeliveryAttempts(GetDeliveryAttemptsRequest request) {
+        RequestOperation<GetDeliveryAttemptsRequest, GetDeliveryAttemptsResponse> operation
+              = new GetDeliveryAttempts.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Get many configs
      * 
      * <p>Sorted by updated date descending
@@ -247,6 +345,58 @@ public class WebhooksV1 {
     public InsertConfigResponse insertConfig(ConfigUser request) {
         RequestOperation<ConfigUser, InsertConfigResponse> operation
               = new InsertConfig.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Replay a page of failed or pending deliveries
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ReplayDeliveriesRequestBuilder replayDeliveries() {
+        return new ReplayDeliveriesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Replay a page of failed or pending deliveries
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReplayDeliveriesResponse replayDeliveries(ReplayDeliveriesRequest request) {
+        RequestOperation<ReplayDeliveriesRequest, ReplayDeliveriesResponse> operation
+              = new ReplayDeliveries.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Replay one failed or pending delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public ReplayDeliveryRequestBuilder replayDelivery() {
+        return new ReplayDeliveryRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Replay one failed or pending delivery
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReplayDeliveryResponse replayDelivery(ReplayDeliveryRequest request) {
+        RequestOperation<ReplayDeliveryRequest, ReplayDeliveryResponse> operation
+              = new ReplayDelivery.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

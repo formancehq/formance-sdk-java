@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -65,7 +66,7 @@ public class Payment {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
-    private Optional<? extends PaymentRaw> raw;
+    private Optional<? extends Map<String, Object>> raw;
 
 
     @JsonProperty("reference")
@@ -99,7 +100,7 @@ public class Payment {
             @JsonProperty("initialAmount") BigInteger initialAmount,
             @JsonProperty("metadata") Optional<? extends Map<String, String>> metadata,
             @JsonProperty("provider") Optional<? extends Connector> provider,
-            @JsonProperty("raw") Optional<? extends PaymentRaw> raw,
+            @JsonProperty("raw") Optional<? extends Map<String, Object>> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("scheme") PaymentScheme scheme,
             @JsonProperty("sourceAccountID") String sourceAccountID,
@@ -215,8 +216,8 @@ public class Payment {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentRaw> raw() {
-        return (Optional<PaymentRaw>) raw;
+    public Optional<Map<String, Object>> raw() {
+        return (Optional<Map<String, Object>>) raw;
     }
 
     @JsonIgnore
@@ -333,14 +334,14 @@ public class Payment {
         return this;
     }
 
-    public Payment withRaw(PaymentRaw raw) {
+    public Payment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
         return this;
     }
 
 
-    public Payment withRaw(Optional<? extends PaymentRaw> raw) {
+    public Payment withRaw(Optional<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -459,7 +460,7 @@ public class Payment {
 
         private Optional<? extends Connector> provider = Optional.empty();
 
-        private Optional<? extends PaymentRaw> raw = Optional.empty();
+        private Optional<? extends Map<String, Object>> raw = Optional.empty();
 
         private String reference;
 
@@ -568,13 +569,13 @@ public class Payment {
         }
 
 
-        public Builder raw(PaymentRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
         }
 
-        public Builder raw(Optional<? extends PaymentRaw> raw) {
+        public Builder raw(Optional<? extends Map<String, Object>> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

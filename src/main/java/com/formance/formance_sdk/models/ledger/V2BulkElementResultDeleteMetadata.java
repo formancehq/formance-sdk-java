@@ -12,7 +12,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class V2BulkElementResultDeleteMetadata {
+public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
 
     @JsonProperty("logID")
     private long logID;
@@ -37,8 +37,9 @@ public class V2BulkElementResultDeleteMetadata {
     }
 
     @JsonIgnore
+    @Override
     public String responseType() {
-        return responseType;
+        return Utils.discriminatorToString(responseType);
     }
 
     public static Builder builder() {

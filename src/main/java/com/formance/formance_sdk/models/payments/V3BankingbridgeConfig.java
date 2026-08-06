@@ -18,7 +18,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3BankingbridgeConfig {
+public class V3BankingbridgeConfig implements V3ConnectorConfig {
 
     @JsonProperty("authEndpoint")
     private String authEndpoint;
@@ -138,8 +138,9 @@ public class V3BankingbridgeConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

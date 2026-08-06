@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class DummyPayConfig {
+public class DummyPayConfig implements ConnectorConfig {
 
     @JsonProperty("directory")
     private String directory;
@@ -120,8 +120,9 @@ public class DummyPayConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

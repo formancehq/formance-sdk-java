@@ -17,7 +17,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class StripeConfig {
+public class StripeConfig implements ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -100,8 +100,9 @@ public class StripeConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

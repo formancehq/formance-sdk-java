@@ -3,106 +3,23 @@
  */
 package com.formance.formance_sdk.models.ledger;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.formance.formance_sdk.utils.OneOfDeserializer;
-import com.formance.formance_sdk.utils.TypedObject;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
-import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
-import com.formance.formance_sdk.utils.Utils;
-import java.lang.Override;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 
-@JsonDeserialize(using = V2BulkElement._Deserializer.class)
-public class V2BulkElement {
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "action",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownV2BulkElement.class
+)
+@JsonTypeIdResolver(V2BulkElementTypeIdResolver.class)
+public interface V2BulkElement {
 
-    @JsonValue
-    private final TypedObject value;
-    
-    private V2BulkElement(TypedObject value) {
-        this.value = value;
-    }
-
-    public static V2BulkElement of(V2BulkElementCreateTransaction value) {
-        Utils.checkNotNull(value, "value");
-        return new V2BulkElement(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2BulkElement of(V2BulkElementAddMetadata value) {
-        Utils.checkNotNull(value, "value");
-        return new V2BulkElement(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2BulkElement of(V2BulkElementRevertTransaction value) {
-        Utils.checkNotNull(value, "value");
-        return new V2BulkElement(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2BulkElement of(V2BulkElementDeleteMetadata value) {
-        Utils.checkNotNull(value, "value");
-        return new V2BulkElement(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-    
-    /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementCreateTransaction}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementAddMetadata}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementRevertTransaction}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.V2BulkElementDeleteMetadata}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }
-    
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        V2BulkElement other = (V2BulkElement) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<V2BulkElement> {
-
-        public _Deserializer() {
-            super(V2BulkElement.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementCreateTransaction>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementAddMetadata>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementRevertTransaction>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<V2BulkElementDeleteMetadata>() {}, JsonShape.DEFAULT));
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(V2BulkElement.class,
-                "value", value);
-    }
+    String action();
 
 }
 

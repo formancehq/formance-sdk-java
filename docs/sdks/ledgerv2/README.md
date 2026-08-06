@@ -23,8 +23,10 @@
 * [getAccount](#getaccount) - Get account by its address
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getExporterState](#getexporterstate) - Get exporter state
+* [getInfo](#getinfo) - Show server information
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
+* [getMetrics](#getmetrics) - Read in memory metrics
 * [getPipelineState](#getpipelinestate) - Get pipeline state
 * [getSchema](#getschema) - Get a schema for a ledger by version
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
@@ -311,7 +313,8 @@ Bulk request
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
-import com.formance.formance_sdk.models.ledger.*;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.ledger.V2BulkElementRevertTransaction;
 import com.formance.formance_sdk.models.operations.V2CreateBulkRequest;
 import com.formance.formance_sdk.models.operations.V2CreateBulkResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -331,9 +334,9 @@ public class Application {
 
         V2CreateBulkRequest req = V2CreateBulkRequest.builder()
                 .requestBody(List.of(
-                    V2BulkElement.of(V2BulkElementCreateTransaction.builder()
+                    V2BulkElementRevertTransaction.builder()
                         .action("REVERT_TRANSACTION")
-                        .build())))
+                        .build()))
                 .ledger("ledger001")
                 .atomic(true)
                 .continueOnFailure(true)
@@ -1220,6 +1223,54 @@ public class Application {
 | models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
 | models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
+## getInfo
+
+Show server information
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.operations.V2GetInfoResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2GetInfoResponse res = sdk.ledger().v2().getInfo()
+                .call();
+
+        if (res.v2ConfigInfo().isPresent()) {
+            System.out.println(res.v2ConfigInfo().get());
+        }
+    }
+}
+```
+
+### Response
+
+**[V2GetInfoResponse](../../models/operations/V2GetInfoResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
 ## getLedger
 
 Get a ledger
@@ -1332,6 +1383,54 @@ public class Application {
 ### Response
 
 **[V2GetLedgerInfoResponse](../../models/operations/V2GetLedgerInfoResponse.md)**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
+
+## getMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
+import com.formance.formance_sdk.models.operations.GetMetricsResponse;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        GetMetricsResponse res = sdk.ledger().v2().getMetrics()
+                .call();
+
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
+        }
+    }
+}
+```
+
+### Response
+
+**[GetMetricsResponse](../../models/operations/GetMetricsResponse.md)**
 
 ### Errors
 

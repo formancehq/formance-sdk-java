@@ -18,7 +18,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class V3StripeConfig {
+public class V3StripeConfig implements V3ConnectorConfig {
 
     @JsonProperty("apiKey")
     private String apiKey;
@@ -98,8 +98,9 @@ public class V3StripeConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     public static Builder builder() {

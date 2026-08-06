@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -72,7 +73,7 @@ public class V3OrderAdjustment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("raw")
-    private Optional<? extends V3OrderAdjustmentRaw> raw;
+    private Optional<? extends Map<String, Object>> raw;
 
     /**
      * PSP reference the adjustment belongs to (equal to the parent order's `reference`).
@@ -101,7 +102,7 @@ public class V3OrderAdjustment {
             @JsonProperty("feeAsset") JsonNullable<String> feeAsset,
             @JsonProperty("id") String id,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, String>> metadata,
-            @JsonProperty("raw") Optional<? extends V3OrderAdjustmentRaw> raw,
+            @JsonProperty("raw") Optional<? extends Map<String, Object>> raw,
             @JsonProperty("reference") String reference,
             @JsonProperty("status") V3OrderStatusEnum status) {
         Utils.checkNotNull(baseQuantityFilled, "baseQuantityFilled");
@@ -188,8 +189,8 @@ public class V3OrderAdjustment {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V3OrderAdjustmentRaw> raw() {
-        return (Optional<V3OrderAdjustmentRaw>) raw;
+    public Optional<Map<String, Object>> raw() {
+        return (Optional<Map<String, Object>>) raw;
     }
 
     /**
@@ -324,7 +325,7 @@ public class V3OrderAdjustment {
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      */
-    public V3OrderAdjustment withRaw(V3OrderAdjustmentRaw raw) {
+    public V3OrderAdjustment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
         return this;
@@ -334,7 +335,7 @@ public class V3OrderAdjustment {
     /**
      * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
      */
-    public V3OrderAdjustment withRaw(Optional<? extends V3OrderAdjustmentRaw> raw) {
+    public V3OrderAdjustment withRaw(Optional<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -423,7 +424,7 @@ public class V3OrderAdjustment {
 
         private JsonNullable<? extends Map<String, String>> metadata = JsonNullable.undefined();
 
-        private Optional<? extends V3OrderAdjustmentRaw> raw = Optional.empty();
+        private Optional<? extends Map<String, Object>> raw = Optional.empty();
 
         private String reference;
 
@@ -544,7 +545,7 @@ public class V3OrderAdjustment {
         /**
          * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
          */
-        public Builder raw(V3OrderAdjustmentRaw raw) {
+        public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
@@ -553,7 +554,7 @@ public class V3OrderAdjustment {
         /**
          * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
          */
-        public Builder raw(Optional<? extends V3OrderAdjustmentRaw> raw) {
+        public Builder raw(Optional<? extends Map<String, Object>> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
             return this;

@@ -14,17 +14,17 @@ import java.lang.String;
 public class ConfigsResponse {
 
     @JsonProperty("cursor")
-    private Cursor cursor;
+    private ConfigsResponseCursor cursor;
 
     @JsonCreator
     public ConfigsResponse(
-            @JsonProperty("cursor") Cursor cursor) {
+            @JsonProperty("cursor") ConfigsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
     }
 
     @JsonIgnore
-    public Cursor cursor() {
+    public ConfigsResponseCursor cursor() {
         return cursor;
     }
 
@@ -33,7 +33,7 @@ public class ConfigsResponse {
     }
 
 
-    public ConfigsResponse withCursor(Cursor cursor) {
+    public ConfigsResponse withCursor(ConfigsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -67,14 +67,14 @@ public class ConfigsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Cursor cursor;
+        private ConfigsResponseCursor cursor;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder cursor(Cursor cursor) {
+        public Builder cursor(ConfigsResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
             return this;

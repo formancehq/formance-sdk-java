@@ -18,7 +18,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class AtlarConfig {
+public class AtlarConfig implements ConnectorConfig {
     /**
      * The access key used by the connector for authorizing requests to the Atlar API.
      * You can obtain it along with the associated secret from the Atlar dashboard.
@@ -150,8 +150,9 @@ public class AtlarConfig {
     }
 
     @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    @Override
+    public String provider() {
+        return Utils.discriminatorToString(provider);
     }
 
     /**

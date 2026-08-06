@@ -8,11 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -46,9 +47,8 @@ public class QueryTemplateAccountParams {
     private Optional<OffsetDateTime> pit;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<? extends V2QueryParamsResourceAccounts> resource;
+    private String resource;
 
     /**
      * Sort results using a field name and order (ascending or descending).
@@ -65,25 +65,23 @@ public class QueryTemplateAccountParams {
             @JsonProperty("expand") Optional<String> expand,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pit") Optional<OffsetDateTime> pit,
-            @JsonProperty("resource") Optional<? extends V2QueryParamsResourceAccounts> resource,
             @JsonProperty("sort") Optional<String> sort) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pit, "pit");
-        Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(sort, "sort");
         this.cursor = cursor;
         this.expand = expand;
         this.pageSize = pageSize;
         this.pit = pit;
-        this.resource = resource;
+        this.resource = Builder._SINGLETON_VALUE_Resource.value();
         this.sort = sort;
     }
     
     public QueryTemplateAccountParams() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -115,10 +113,9 @@ public class QueryTemplateAccountParams {
         return pit;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2QueryParamsResourceAccounts> resource() {
-        return (Optional<V2QueryParamsResourceAccounts>) resource;
+    public String resource() {
+        return resource;
     }
 
     /**
@@ -206,19 +203,6 @@ public class QueryTemplateAccountParams {
         return this;
     }
 
-    public QueryTemplateAccountParams withResource(V2QueryParamsResourceAccounts resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    public QueryTemplateAccountParams withResource(Optional<? extends V2QueryParamsResourceAccounts> resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
-        return this;
-    }
-
     /**
      * Sort results using a field name and order (ascending or descending).
      * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -288,8 +272,6 @@ public class QueryTemplateAccountParams {
         private Optional<Long> pageSize = Optional.empty();
 
         private Optional<OffsetDateTime> pit = Optional.empty();
-
-        private Optional<? extends V2QueryParamsResourceAccounts> resource = Optional.empty();
 
         private Optional<String> sort = Optional.empty();
 
@@ -368,19 +350,6 @@ public class QueryTemplateAccountParams {
         }
 
 
-        public Builder resource(V2QueryParamsResourceAccounts resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        public Builder resource(Optional<? extends V2QueryParamsResourceAccounts> resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
-            return this;
-        }
-
-
         /**
          * Sort results using a field name and order (ascending or descending).
          * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
@@ -407,8 +376,14 @@ public class QueryTemplateAccountParams {
 
             return new QueryTemplateAccountParams(
                 cursor, expand, pageSize,
-                pit, resource, sort);
+                pit, sort);
         }
 
+
+        private static final LazySingletonValue<String> _SINGLETON_VALUE_Resource =
+                new LazySingletonValue<>(
+                        "resource",
+                        "\"accounts\"",
+                        new TypeReference<String>() {});
     }
 }
