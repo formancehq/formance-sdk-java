@@ -49,7 +49,7 @@ and standard method from web, mobile and desktop applications.
 
 ### Getting started
 
-JDK 11 or later is required.
+JDK 17 or later is required.
 
 The samples below show how a published SDK artifact is used:
 

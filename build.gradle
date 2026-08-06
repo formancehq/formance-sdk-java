@@ -63,7 +63,7 @@ tasks.withType(Javadoc).configureEach {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.release = 11
+    options.release = 17
 }
 
 sourcesJar {
@@ -118,7 +118,7 @@ subprojects {
             withJavadocJar()
         }
         tasks.withType(JavaCompile).configureEach {
-            options.release = 11
+            options.release = 17
         }
 
         // Apply publishing configuration to all subprojects - they'll check for publishingConfig internally
