@@ -23,17 +23,21 @@ import java.util.Optional;
  * <p>Query and dynamic pools are available from Connectivity v3.1
  */
 public class V3CreatePoolRequest {
-
+    /**
+     * Accounts to place in the pool. Omit when the pool is driven by a query
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountIDs")
     private Optional<? extends List<String>> accountIDs;
 
-
+    /**
+     * Human-readable name for the pool
+     */
     @JsonProperty("name")
     private String name;
 
     /**
-     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
      * default_asset, name, psu_id, open_banking_connection_id and metadata.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -58,19 +62,25 @@ public class V3CreatePoolRequest {
         this(Optional.empty(), name, Optional.empty());
     }
 
+    /**
+     * Accounts to place in the pool. Omit when the pool is driven by a query
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> accountIDs() {
         return (Optional<List<String>>) accountIDs;
     }
 
+    /**
+     * Human-readable name for the pool
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
     /**
-     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
      * default_asset, name, psu_id, open_banking_connection_id and metadata.
      */
     @SuppressWarnings("unchecked")
@@ -84,6 +94,9 @@ public class V3CreatePoolRequest {
     }
 
 
+    /**
+     * Accounts to place in the pool. Omit when the pool is driven by a query
+     */
     public V3CreatePoolRequest withAccountIDs(List<String> accountIDs) {
         Utils.checkNotNull(accountIDs, "accountIDs");
         this.accountIDs = Optional.ofNullable(accountIDs);
@@ -91,12 +104,18 @@ public class V3CreatePoolRequest {
     }
 
 
+    /**
+     * Accounts to place in the pool. Omit when the pool is driven by a query
+     */
     public V3CreatePoolRequest withAccountIDs(Optional<? extends List<String>> accountIDs) {
         Utils.checkNotNull(accountIDs, "accountIDs");
         this.accountIDs = accountIDs;
         return this;
     }
 
+    /**
+     * Human-readable name for the pool
+     */
     public V3CreatePoolRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -104,7 +123,7 @@ public class V3CreatePoolRequest {
     }
 
     /**
-     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
      * default_asset, name, psu_id, open_banking_connection_id and metadata.
      */
     public V3CreatePoolRequest withQuery(Map<String, Object> query) {
@@ -115,7 +134,7 @@ public class V3CreatePoolRequest {
 
 
     /**
-     * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+     * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
      * default_asset, name, psu_id, open_banking_connection_id and metadata.
      */
     public V3CreatePoolRequest withQuery(Optional<? extends Map<String, Object>> query) {
@@ -167,12 +186,18 @@ public class V3CreatePoolRequest {
         }
 
 
+        /**
+         * Accounts to place in the pool. Omit when the pool is driven by a query
+         */
         public Builder accountIDs(List<String> accountIDs) {
             Utils.checkNotNull(accountIDs, "accountIDs");
             this.accountIDs = Optional.ofNullable(accountIDs);
             return this;
         }
 
+        /**
+         * Accounts to place in the pool. Omit when the pool is driven by a query
+         */
         public Builder accountIDs(Optional<? extends List<String>> accountIDs) {
             Utils.checkNotNull(accountIDs, "accountIDs");
             this.accountIDs = accountIDs;
@@ -180,6 +205,9 @@ public class V3CreatePoolRequest {
         }
 
 
+        /**
+         * Human-readable name for the pool
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -188,7 +216,7 @@ public class V3CreatePoolRequest {
 
 
         /**
-         * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+         * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
          * default_asset, name, psu_id, open_banking_connection_id and metadata.
          */
         public Builder query(Map<String, Object> query) {
@@ -198,7 +226,7 @@ public class V3CreatePoolRequest {
         }
 
         /**
-         * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type,
+         * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type,
          * default_asset, name, psu_id, open_banking_connection_id and metadata.
          */
         public Builder query(Optional<? extends Map<String, Object>> query) {

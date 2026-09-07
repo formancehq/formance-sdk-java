@@ -13,7 +13,9 @@ import java.util.Map;
 
 
 public class V3ConnectorConfigsResponse {
-
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     @JsonProperty("data")
     private Map<String, Map<String, V3ConnectorConfigsResponseData>> data;
 
@@ -25,6 +27,9 @@ public class V3ConnectorConfigsResponse {
         this.data = data;
     }
 
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     @JsonIgnore
     public Map<String, Map<String, V3ConnectorConfigsResponseData>> data() {
         return data;
@@ -35,6 +40,9 @@ public class V3ConnectorConfigsResponse {
     }
 
 
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     public V3ConnectorConfigsResponse withData(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -76,6 +84,9 @@ public class V3ConnectorConfigsResponse {
         }
 
 
+        /**
+         * Configuration schema of every available connector, keyed by provider
+         */
         public Builder data(Map<String, Map<String, V3ConnectorConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

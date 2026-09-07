@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3CreateAccountResponse {
-
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     @JsonProperty("data")
     private V3Account data;
 
@@ -23,6 +25,9 @@ public class V3CreateAccountResponse {
         this.data = data;
     }
 
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     @JsonIgnore
     public V3Account data() {
         return data;
@@ -33,6 +38,9 @@ public class V3CreateAccountResponse {
     }
 
 
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     public V3CreateAccountResponse withData(V3Account data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3CreateAccountResponse {
         }
 
 
+        /**
+         * An account held at a payment provider, surfaced through a connector
+         */
         public Builder data(V3Account data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

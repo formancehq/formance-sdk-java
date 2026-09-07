@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3TaskStatusEnum
+ * 
+ * <p>Where a task stands, from processing through to succeeded or failed
+ */
 public enum V3TaskStatusEnum {
     PROCESSING("PROCESSING"),
     SUCCEEDED("SUCCEEDED"),

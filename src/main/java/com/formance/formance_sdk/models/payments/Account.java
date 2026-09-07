@@ -19,25 +19,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Account
+ * 
+ * <p>An account held at a payment provider, surfaced through a connector
+ */
 public class Account {
-
+    /**
+     * Human-readable name of the account
+     */
     @JsonProperty("accountName")
     private String accountName;
 
-
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the account was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonProperty("defaultAsset")
     private String defaultAsset;
 
     /**
+     * Deprecated alias of defaultAsset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -45,35 +58,49 @@ public class Account {
     @Deprecated
     private String defaultCurrency;
 
-
+    /**
+     * Unique identifier of the account within Formance
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Pools this account belongs to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pools")
     private Optional<? extends List<String>> pools;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
-
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends Map<String, Object>> raw;
 
-
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonProperty("type")
     private AccountType type;
 
@@ -132,27 +159,40 @@ public class Account {
             Optional.empty(), reference, type);
     }
 
+    /**
+     * Human-readable name of the account
+     */
     @JsonIgnore
     public String accountName() {
         return accountName;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonIgnore
     public String defaultAsset() {
         return defaultAsset;
     }
 
     /**
+     * Deprecated alias of defaultAsset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -162,39 +202,60 @@ public class Account {
         return defaultCurrency;
     }
 
+    /**
+     * Unique identifier of the account within Formance
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
     }
 
+    /**
+     * Pools this account belongs to
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> pools() {
         return (Optional<List<String>>) pools;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public Optional<String> provider() {
         return provider;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> raw() {
         return (Optional<Map<String, Object>>) raw;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonIgnore
     public AccountType type() {
         return type;
@@ -205,24 +266,36 @@ public class Account {
     }
 
 
+    /**
+     * Human-readable name of the account
+     */
     public Account withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = accountName;
         return this;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     public Account withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     public Account withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public Account withDefaultAsset(String defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = defaultAsset;
@@ -230,6 +303,7 @@ public class Account {
     }
 
     /**
+     * Deprecated alias of defaultAsset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -240,12 +314,18 @@ public class Account {
         return this;
     }
 
+    /**
+     * Unique identifier of the account within Formance
+     */
     public Account withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -253,12 +333,18 @@ public class Account {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public Account withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Pools this account belongs to
+     */
     public Account withPools(List<String> pools) {
         Utils.checkNotNull(pools, "pools");
         this.pools = Optional.ofNullable(pools);
@@ -266,12 +352,18 @@ public class Account {
     }
 
 
+    /**
+     * Pools this account belongs to
+     */
     public Account withPools(Optional<? extends List<String>> pools) {
         Utils.checkNotNull(pools, "pools");
         this.pools = pools;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public Account withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -279,12 +371,18 @@ public class Account {
     }
 
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public Account withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     public Account withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
@@ -292,18 +390,27 @@ public class Account {
     }
 
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     public Account withRaw(Optional<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     public Account withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     public Account withType(AccountType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -393,6 +500,9 @@ public class Account {
         }
 
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
             this.accountName = accountName;
@@ -400,6 +510,9 @@ public class Account {
         }
 
 
+        /**
+         * Identifier of the connector the account belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -407,6 +520,9 @@ public class Account {
         }
 
 
+        /**
+         * When the account was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -414,6 +530,9 @@ public class Account {
         }
 
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = defaultAsset;
@@ -422,6 +541,7 @@ public class Account {
 
 
         /**
+         * Deprecated alias of defaultAsset, kept for backwards compatibility
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -433,6 +553,9 @@ public class Account {
         }
 
 
+        /**
+         * Unique identifier of the account within Formance
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -440,12 +563,18 @@ public class Account {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -453,12 +582,18 @@ public class Account {
         }
 
 
+        /**
+         * Pools this account belongs to
+         */
         public Builder pools(List<String> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = Optional.ofNullable(pools);
             return this;
         }
 
+        /**
+         * Pools this account belongs to
+         */
         public Builder pools(Optional<? extends List<String>> pools) {
             Utils.checkNotNull(pools, "pools");
             this.pools = pools;
@@ -466,12 +601,18 @@ public class Account {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -479,12 +620,18 @@ public class Account {
         }
 
 
+        /**
+         * The provider's original payload, passed through untouched
+         */
         public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
         }
 
+        /**
+         * The provider's original payload, passed through untouched
+         */
         public Builder raw(Optional<? extends Map<String, Object>> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -492,6 +639,9 @@ public class Account {
         }
 
 
+        /**
+         * Identifier the account carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -499,6 +649,9 @@ public class Account {
         }
 
 
+        /**
+         * Whether an account is internal to the provider or belongs to an external party
+         */
         public Builder type(AccountType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

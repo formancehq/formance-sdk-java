@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3BankAccountsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of bank accounts
+ */
 public class V3BankAccountsCursorResponseCursor {
 
     @JsonProperty("data")

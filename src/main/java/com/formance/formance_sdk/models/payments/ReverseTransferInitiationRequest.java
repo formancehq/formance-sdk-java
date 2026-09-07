@@ -18,24 +18,34 @@ import java.util.Optional;
 
 
 public class ReverseTransferInitiationRequest {
-
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the reversal is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Human-readable reason for the reversal
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * Arbitrary key/value pairs to attach to the reversal
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     @JsonProperty("reference")
     private String reference;
 
@@ -67,27 +77,42 @@ public class ReverseTransferInitiationRequest {
             Optional.empty(), reference);
     }
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the reversal is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Human-readable reason for the reversal
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the reversal
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
     }
 
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     @JsonIgnore
     public String reference() {
         return reference;
@@ -98,29 +123,44 @@ public class ReverseTransferInitiationRequest {
     }
 
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     public ReverseTransferInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     public ReverseTransferInitiationRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the reversal is denominated in
+     */
     public ReverseTransferInitiationRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Human-readable reason for the reversal
+     */
     public ReverseTransferInitiationRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the reversal
+     */
     public ReverseTransferInitiationRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -128,12 +168,18 @@ public class ReverseTransferInitiationRequest {
     }
 
 
+    /**
+     * Arbitrary key/value pairs to attach to the reversal
+     */
     public ReverseTransferInitiationRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     public ReverseTransferInitiationRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -192,11 +238,17 @@ public class ReverseTransferInitiationRequest {
         }
 
 
+        /**
+         * Amount to reverse, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to reverse, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -204,6 +256,9 @@ public class ReverseTransferInitiationRequest {
         }
 
 
+        /**
+         * Asset the reversal is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -211,6 +266,9 @@ public class ReverseTransferInitiationRequest {
         }
 
 
+        /**
+         * Human-readable reason for the reversal
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -218,12 +276,18 @@ public class ReverseTransferInitiationRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs to attach to the reversal
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs to attach to the reversal
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -231,6 +295,9 @@ public class ReverseTransferInitiationRequest {
         }
 
 
+        /**
+         * Caller-supplied identifier for the reversal, used to deduplicate retries
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;

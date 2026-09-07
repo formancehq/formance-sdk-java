@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ConnectorScheduleInstancesCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the schedule's runs
+     */
     @JsonProperty("cursor")
     private V3ConnectorScheduleInstancesCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the schedule's runs
+     */
     @JsonIgnore
     public V3ConnectorScheduleInstancesCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V3ConnectorScheduleInstancesCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the schedule's runs
+     */
     public V3ConnectorScheduleInstancesCursorResponse withCursor(V3ConnectorScheduleInstancesCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V3ConnectorScheduleInstancesCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the schedule's runs
+         */
         public Builder cursor(V3ConnectorScheduleInstancesCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

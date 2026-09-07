@@ -16,23 +16,33 @@ import java.util.Map;
 
 
 public class PaymentAdjustment {
-
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * When the adjustment occurred at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonProperty("raw")
     private Map<String, Object> raw;
 
-
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private PaymentStatus status;
 
@@ -56,26 +66,41 @@ public class PaymentAdjustment {
         this.status = status;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * When the adjustment occurred at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonIgnore
     public Map<String, Object> raw() {
         return raw;
     }
 
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public PaymentStatus status() {
         return status;
@@ -86,35 +111,53 @@ public class PaymentAdjustment {
     }
 
 
+    /**
+     * Amount carried by this adjustment
+     */
     public PaymentAdjustment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public PaymentAdjustment withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * When the adjustment occurred at the provider
+     */
     public PaymentAdjustment withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     public PaymentAdjustment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     public PaymentAdjustment withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public PaymentAdjustment withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -173,11 +216,17 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -185,6 +234,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * When the adjustment occurred at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -192,6 +244,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * The provider's original payload for this adjustment
+         */
         public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -199,6 +254,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Identifier the adjustment carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -206,6 +264,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

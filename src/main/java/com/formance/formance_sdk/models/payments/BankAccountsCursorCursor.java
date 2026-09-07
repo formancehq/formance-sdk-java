@@ -16,26 +16,38 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * BankAccountsCursorCursor
+ * 
+ * <p>Paginated cursor wrapping the list of bank accounts
+ */
 public class BankAccountsCursorCursor {
 
     @JsonProperty("data")
     private List<BankAccount> data;
 
-
+    /**
+     * Whether further pages are available
+     */
     @JsonProperty("hasMore")
     private boolean hasMore;
 
-
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
     private Optional<String> next;
 
-
+    /**
+     * Number of items requested per page
+     */
     @JsonProperty("pageSize")
     private long pageSize;
 
-
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
     private Optional<String> previous;
@@ -72,21 +84,33 @@ public class BankAccountsCursorCursor {
         return data;
     }
 
+    /**
+     * Whether further pages are available
+     */
     @JsonIgnore
     public boolean hasMore() {
         return hasMore;
     }
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     @JsonIgnore
     public Optional<String> next() {
         return next;
     }
 
+    /**
+     * Number of items requested per page
+     */
     @JsonIgnore
     public long pageSize() {
         return pageSize;
     }
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     @JsonIgnore
     public Optional<String> previous() {
         return previous;
@@ -103,12 +127,18 @@ public class BankAccountsCursorCursor {
         return this;
     }
 
+    /**
+     * Whether further pages are available
+     */
     public BankAccountsCursorCursor withHasMore(boolean hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
         return this;
     }
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     public BankAccountsCursorCursor withNext(String next) {
         Utils.checkNotNull(next, "next");
         this.next = Optional.ofNullable(next);
@@ -116,18 +146,27 @@ public class BankAccountsCursorCursor {
     }
 
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     public BankAccountsCursorCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
     }
 
+    /**
+     * Number of items requested per page
+     */
     public BankAccountsCursorCursor withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
     }
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     public BankAccountsCursorCursor withPrevious(String previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = Optional.ofNullable(previous);
@@ -135,6 +174,9 @@ public class BankAccountsCursorCursor {
     }
 
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     public BankAccountsCursorCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
@@ -200,6 +242,9 @@ public class BankAccountsCursorCursor {
         }
 
 
+        /**
+         * Whether further pages are available
+         */
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;
@@ -207,12 +252,18 @@ public class BankAccountsCursorCursor {
         }
 
 
+        /**
+         * Cursor for the next page, absent on the last page
+         */
         public Builder next(String next) {
             Utils.checkNotNull(next, "next");
             this.next = Optional.ofNullable(next);
             return this;
         }
 
+        /**
+         * Cursor for the next page, absent on the last page
+         */
         public Builder next(Optional<String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
@@ -220,6 +271,9 @@ public class BankAccountsCursorCursor {
         }
 
 
+        /**
+         * Number of items requested per page
+         */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
@@ -227,12 +281,18 @@ public class BankAccountsCursorCursor {
         }
 
 
+        /**
+         * Cursor for the previous page, absent on the first page
+         */
         public Builder previous(String previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = Optional.ofNullable(previous);
             return this;
         }
 
+        /**
+         * Cursor for the previous page, absent on the first page
+         */
         public Builder previous(Optional<String> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;

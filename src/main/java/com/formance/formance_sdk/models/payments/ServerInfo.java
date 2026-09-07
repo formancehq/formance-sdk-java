@@ -20,12 +20,16 @@ import java.util.Optional;
  * <p>Server information
  */
 public class ServerInfo {
-
+    /**
+     * Whether the service is running in debug mode
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("debug")
     private Optional<Boolean> debug;
 
-
+    /**
+     * Version of the payments service
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
     private Optional<String> version;
@@ -44,11 +48,17 @@ public class ServerInfo {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Whether the service is running in debug mode
+     */
     @JsonIgnore
     public Optional<Boolean> debug() {
         return debug;
     }
 
+    /**
+     * Version of the payments service
+     */
     @JsonIgnore
     public Optional<String> version() {
         return version;
@@ -59,6 +69,9 @@ public class ServerInfo {
     }
 
 
+    /**
+     * Whether the service is running in debug mode
+     */
     public ServerInfo withDebug(boolean debug) {
         Utils.checkNotNull(debug, "debug");
         this.debug = Optional.ofNullable(debug);
@@ -66,12 +79,18 @@ public class ServerInfo {
     }
 
 
+    /**
+     * Whether the service is running in debug mode
+     */
     public ServerInfo withDebug(Optional<Boolean> debug) {
         Utils.checkNotNull(debug, "debug");
         this.debug = debug;
         return this;
     }
 
+    /**
+     * Version of the payments service
+     */
     public ServerInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = Optional.ofNullable(version);
@@ -79,6 +98,9 @@ public class ServerInfo {
     }
 
 
+    /**
+     * Version of the payments service
+     */
     public ServerInfo withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -124,12 +146,18 @@ public class ServerInfo {
         }
 
 
+        /**
+         * Whether the service is running in debug mode
+         */
         public Builder debug(boolean debug) {
             Utils.checkNotNull(debug, "debug");
             this.debug = Optional.ofNullable(debug);
             return this;
         }
 
+        /**
+         * Whether the service is running in debug mode
+         */
         public Builder debug(Optional<Boolean> debug) {
             Utils.checkNotNull(debug, "debug");
             this.debug = debug;
@@ -137,12 +165,18 @@ public class ServerInfo {
         }
 
 
+        /**
+         * Version of the payments service
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
             return this;
         }
 
+        /**
+         * Version of the payments service
+         */
         public Builder version(Optional<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

@@ -16,19 +16,27 @@ import java.util.Optional;
 
 
 public class TransferRequest {
-
+    /**
+     * Amount to transfer, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Provider-side account receiving the funds
+     */
     @JsonProperty("destination")
     private String destination;
 
-
+    /**
+     * Provider-side account the funds leave. Defaults to the connector's main account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private Optional<String> source;
@@ -57,21 +65,33 @@ public class TransferRequest {
             Optional.empty());
     }
 
+    /**
+     * Amount to transfer, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Provider-side account receiving the funds
+     */
     @JsonIgnore
     public String destination() {
         return destination;
     }
 
+    /**
+     * Provider-side account the funds leave. Defaults to the connector's main account
+     */
     @JsonIgnore
     public Optional<String> source() {
         return source;
@@ -82,29 +102,44 @@ public class TransferRequest {
     }
 
 
+    /**
+     * Amount to transfer, in the asset's smallest unit
+     */
     public TransferRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to transfer, in the asset's smallest unit
+     */
     public TransferRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     public TransferRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Provider-side account receiving the funds
+     */
     public TransferRequest withDestination(String destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
     }
 
+    /**
+     * Provider-side account the funds leave. Defaults to the connector's main account
+     */
     public TransferRequest withSource(String source) {
         Utils.checkNotNull(source, "source");
         this.source = Optional.ofNullable(source);
@@ -112,6 +147,9 @@ public class TransferRequest {
     }
 
 
+    /**
+     * Provider-side account the funds leave. Defaults to the connector's main account
+     */
     public TransferRequest withSource(Optional<String> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
@@ -166,11 +204,17 @@ public class TransferRequest {
         }
 
 
+        /**
+         * Amount to transfer, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to transfer, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -178,6 +222,9 @@ public class TransferRequest {
         }
 
 
+        /**
+         * Asset the transfer is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -185,6 +232,9 @@ public class TransferRequest {
         }
 
 
+        /**
+         * Provider-side account receiving the funds
+         */
         public Builder destination(String destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
@@ -192,12 +242,18 @@ public class TransferRequest {
         }
 
 
+        /**
+         * Provider-side account the funds leave. Defaults to the connector's main account
+         */
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
             return this;
         }
 
+        /**
+         * Provider-side account the funds leave. Defaults to the connector's main account
+         */
         public Builder source(Optional<String> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;

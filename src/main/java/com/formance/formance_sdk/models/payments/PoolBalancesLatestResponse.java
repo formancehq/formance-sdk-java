@@ -17,7 +17,9 @@ import java.util.List;
  * <p>OK
  */
 public class PoolBalancesLatestResponse {
-
+    /**
+     * Most recent aggregated balances across a pool's accounts
+     */
     @JsonProperty("data")
     private List<PoolBalance> data;
 
@@ -28,6 +30,9 @@ public class PoolBalancesLatestResponse {
         this.data = data;
     }
 
+    /**
+     * Most recent aggregated balances across a pool's accounts
+     */
     @JsonIgnore
     public List<PoolBalance> data() {
         return data;
@@ -38,6 +43,9 @@ public class PoolBalancesLatestResponse {
     }
 
 
+    /**
+     * Most recent aggregated balances across a pool's accounts
+     */
     public PoolBalancesLatestResponse withData(List<PoolBalance> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -79,6 +87,9 @@ public class PoolBalancesLatestResponse {
         }
 
 
+        /**
+         * Most recent aggregated balances across a pool's accounts
+         */
         public Builder data(List<PoolBalance> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

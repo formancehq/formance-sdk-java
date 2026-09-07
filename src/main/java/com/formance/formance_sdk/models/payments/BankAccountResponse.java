@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class BankAccountResponse {
-
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     @JsonProperty("data")
     private BankAccount data;
 
@@ -27,6 +29,9 @@ public class BankAccountResponse {
         this.data = data;
     }
 
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     @JsonIgnore
     public BankAccount data() {
         return data;
@@ -37,6 +42,9 @@ public class BankAccountResponse {
     }
 
 
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     public BankAccountResponse withData(BankAccount data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class BankAccountResponse {
         }
 
 
+        /**
+         * A bank account registered with Formance and forwardable to connectors
+         */
         public Builder data(BankAccount data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

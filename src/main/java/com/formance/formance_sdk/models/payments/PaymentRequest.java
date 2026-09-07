@@ -17,45 +17,65 @@ import java.util.Optional;
 
 
 public class PaymentRequest {
-
+    /**
+     * Amount of the payment, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the payment was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private Optional<String> destinationAccountID;
 
-
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     @JsonProperty("scheme")
     private PaymentScheme scheme;
 
-
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private PaymentStatus status;
 
-
+    /**
+     * Direction of a payment
+     */
     @JsonProperty("type")
     private PaymentType type;
 
@@ -108,51 +128,81 @@ public class PaymentRequest {
             type);
     }
 
+    /**
+     * Amount of the payment, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonIgnore
     public Optional<String> destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     @JsonIgnore
     public PaymentScheme scheme() {
         return scheme;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonIgnore
     public Optional<String> sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public PaymentStatus status() {
         return status;
     }
 
+    /**
+     * Direction of a payment
+     */
     @JsonIgnore
     public PaymentType type() {
         return type;
@@ -163,35 +213,53 @@ public class PaymentRequest {
     }
 
 
+    /**
+     * Amount of the payment, in the asset's smallest unit
+     */
     public PaymentRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount of the payment, in the asset's smallest unit
+     */
     public PaymentRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     public PaymentRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     public PaymentRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     public PaymentRequest withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public PaymentRequest withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = Optional.ofNullable(destinationAccountID);
@@ -199,24 +267,36 @@ public class PaymentRequest {
     }
 
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public PaymentRequest withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     public PaymentRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     public PaymentRequest withScheme(PaymentScheme scheme) {
         Utils.checkNotNull(scheme, "scheme");
         this.scheme = scheme;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public PaymentRequest withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = Optional.ofNullable(sourceAccountID);
@@ -224,18 +304,27 @@ public class PaymentRequest {
     }
 
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public PaymentRequest withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public PaymentRequest withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * Direction of a payment
+     */
     public PaymentRequest withType(PaymentType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -316,11 +405,17 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Amount of the payment, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount of the payment, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -328,6 +423,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Asset the payment is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -335,6 +433,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Identifier of the connector the payment belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -342,6 +443,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * When the payment was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -349,12 +453,18 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = Optional.ofNullable(destinationAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(Optional<String> destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -362,6 +472,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Identifier the payment carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -369,6 +482,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Payment scheme or rail a payment travels over
+         */
         public Builder scheme(PaymentScheme scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
@@ -376,12 +492,18 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = Optional.ofNullable(sourceAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(Optional<String> sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -389,6 +511,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -396,6 +521,9 @@ public class PaymentRequest {
         }
 
 
+        /**
+         * Direction of a payment
+         */
         public Builder type(PaymentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

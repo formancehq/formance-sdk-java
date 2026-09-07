@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3GetPaymentServiceUserResponse {
-
+    /**
+     * An end user on whose behalf payments and open banking connections are made
+     */
     @JsonProperty("data")
     private V3PaymentServiceUser data;
 
@@ -23,6 +25,9 @@ public class V3GetPaymentServiceUserResponse {
         this.data = data;
     }
 
+    /**
+     * An end user on whose behalf payments and open banking connections are made
+     */
     @JsonIgnore
     public V3PaymentServiceUser data() {
         return data;
@@ -33,6 +38,9 @@ public class V3GetPaymentServiceUserResponse {
     }
 
 
+    /**
+     * An end user on whose behalf payments and open banking connections are made
+     */
     public V3GetPaymentServiceUserResponse withData(V3PaymentServiceUser data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3GetPaymentServiceUserResponse {
         }
 
 
+        /**
+         * An end user on whose behalf payments and open banking connections are made
+         */
         public Builder data(V3PaymentServiceUser data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

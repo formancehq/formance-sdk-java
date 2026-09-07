@@ -7,4 +7,4 @@ OK
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `cursor`                                                            | [PaymentsCursorCursor](../../models/shared/PaymentsCursorCursor.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `cursor`                                                            | [PaymentsCursorCursor](../../models/shared/PaymentsCursorCursor.md) | :heavy_check_mark:                                                  | Paginated cursor wrapping the list of payments                      |

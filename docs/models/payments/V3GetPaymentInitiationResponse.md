@@ -5,4 +5,4 @@
 
 | Field                                                             | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `data`                                                            | [V3PaymentInitiation](../../models/shared/V3PaymentInitiation.md) | :heavy_check_mark:                                                | N/A                                                               |
+| `data`                                                            | [V3PaymentInitiation](../../models/shared/V3PaymentInitiation.md) | :heavy_check_mark:                                                | A payment Formance asked a connector to execute                   |

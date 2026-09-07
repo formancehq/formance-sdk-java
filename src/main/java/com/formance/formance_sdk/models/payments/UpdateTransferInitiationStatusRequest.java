@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class UpdateTransferInitiationStatusRequest {
-
+    /**
+     * Whether to approve or reject the pending transfer
+     */
     @JsonProperty("status")
     private Status status;
 
@@ -23,6 +25,9 @@ public class UpdateTransferInitiationStatusRequest {
         this.status = status;
     }
 
+    /**
+     * Whether to approve or reject the pending transfer
+     */
     @JsonIgnore
     public Status status() {
         return status;
@@ -33,6 +38,9 @@ public class UpdateTransferInitiationStatusRequest {
     }
 
 
+    /**
+     * Whether to approve or reject the pending transfer
+     */
     public UpdateTransferInitiationStatusRequest withStatus(Status status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -74,6 +82,9 @@ public class UpdateTransferInitiationStatusRequest {
         }
 
 
+        /**
+         * Whether to approve or reject the pending transfer
+         */
         public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

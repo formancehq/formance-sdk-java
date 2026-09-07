@@ -18,46 +18,68 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3BankAccount
+ * 
+ * <p>A bank account registered with Formance and forwardable to connectors
+ */
 public class V3BankAccount {
-
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
     private JsonNullable<String> accountNumber;
 
-
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
 
-
+    /**
+     * When the bank account was registered
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * International bank account number, when the account is identified that way
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private JsonNullable<String> iban;
 
-
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name of the bank account
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAccounts")
     private Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts;
 
-
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
     private JsonNullable<String> swiftBicCode;
@@ -102,48 +124,75 @@ public class V3BankAccount {
             name, Optional.empty(), JsonNullable.undefined());
     }
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
         return accountNumber;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonIgnore
     public JsonNullable<String> country() {
         return country;
     }
 
+    /**
+     * When the bank account was registered
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     @JsonIgnore
     public JsonNullable<String> iban() {
         return iban;
     }
 
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name of the bank account
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V3BankAccountRelatedAccount>> relatedAccounts() {
         return (Optional<List<V3BankAccountRelatedAccount>>) relatedAccounts;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonIgnore
     public JsonNullable<String> swiftBicCode() {
         return swiftBicCode;
@@ -154,72 +203,108 @@ public class V3BankAccount {
     }
 
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     public V3BankAccount withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = JsonNullable.of(accountNumber);
         return this;
     }
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     public V3BankAccount withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     public V3BankAccount withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = JsonNullable.of(country);
         return this;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     public V3BankAccount withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
     }
 
+    /**
+     * When the bank account was registered
+     */
     public V3BankAccount withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     public V3BankAccount withIban(String iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = JsonNullable.of(iban);
         return this;
     }
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     public V3BankAccount withIban(JsonNullable<String> iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = iban;
         return this;
     }
 
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     public V3BankAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3BankAccount withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3BankAccount withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name of the bank account
+     */
     public V3BankAccount withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     public V3BankAccount withRelatedAccounts(List<V3BankAccountRelatedAccount> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = Optional.ofNullable(relatedAccounts);
@@ -227,18 +312,27 @@ public class V3BankAccount {
     }
 
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     public V3BankAccount withRelatedAccounts(Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = relatedAccounts;
         return this;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public V3BankAccount withSwiftBicCode(String swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = JsonNullable.of(swiftBicCode);
         return this;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public V3BankAccount withSwiftBicCode(JsonNullable<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
@@ -314,12 +408,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Domestic account number, when the account is identified that way
+         */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = JsonNullable.of(accountNumber);
             return this;
         }
 
+        /**
+         * Domestic account number, when the account is identified that way
+         */
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = accountNumber;
@@ -327,12 +427,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Country the account is held in, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = JsonNullable.of(country);
             return this;
         }
 
+        /**
+         * Country the account is held in, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(JsonNullable<String> country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
@@ -340,6 +446,9 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * When the bank account was registered
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -347,12 +456,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * International bank account number, when the account is identified that way
+         */
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = JsonNullable.of(iban);
             return this;
         }
 
+        /**
+         * International bank account number, when the account is identified that way
+         */
         public Builder iban(JsonNullable<String> iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = iban;
@@ -360,6 +475,9 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Unique identifier of the bank account within Formance
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -367,12 +485,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -380,6 +504,9 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Human-readable name of the bank account
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -387,12 +514,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * Provider-side accounts this bank account has been forwarded to
+         */
         public Builder relatedAccounts(List<V3BankAccountRelatedAccount> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = Optional.ofNullable(relatedAccounts);
             return this;
         }
 
+        /**
+         * Provider-side accounts this bank account has been forwarded to
+         */
         public Builder relatedAccounts(Optional<? extends List<V3BankAccountRelatedAccount>> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = relatedAccounts;
@@ -400,12 +533,18 @@ public class V3BankAccount {
         }
 
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = JsonNullable.of(swiftBicCode);
             return this;
         }
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(JsonNullable<String> swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = swiftBicCode;

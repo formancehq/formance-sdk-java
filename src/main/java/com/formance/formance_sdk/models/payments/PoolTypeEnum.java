@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PoolTypeEnum
+ * 
+ * <p>Whether a pool holds a fixed account list or is driven by a query
+ */
 public enum PoolTypeEnum {
     STATIC("STATIC"),
     DYNAMIC("DYNAMIC");

@@ -17,26 +17,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Pool
+ * 
+ * <p>A named group of accounts whose balances are aggregated together
+ */
 public class Pool {
-
+    /**
+     * Accounts currently in the pool
+     */
     @JsonProperty("accounts")
     private List<String> accounts;
 
-
+    /**
+     * Unique identifier of the pool
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Human-readable name of the pool
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("query")
     private Optional<? extends Map<String, Object>> query;
 
-
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends PoolTypeEnum> type;
@@ -68,27 +82,42 @@ public class Pool {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Accounts currently in the pool
+     */
     @JsonIgnore
     public List<String> accounts() {
         return accounts;
     }
 
+    /**
+     * Unique identifier of the pool
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Human-readable name of the pool
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> query() {
         return (Optional<Map<String, Object>>) query;
     }
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PoolTypeEnum> type() {
@@ -100,24 +129,36 @@ public class Pool {
     }
 
 
+    /**
+     * Accounts currently in the pool
+     */
     public Pool withAccounts(List<String> accounts) {
         Utils.checkNotNull(accounts, "accounts");
         this.accounts = accounts;
         return this;
     }
 
+    /**
+     * Unique identifier of the pool
+     */
     public Pool withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Human-readable name of the pool
+     */
     public Pool withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     public Pool withQuery(Map<String, Object> query) {
         Utils.checkNotNull(query, "query");
         this.query = Optional.ofNullable(query);
@@ -125,12 +166,18 @@ public class Pool {
     }
 
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     public Pool withQuery(Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(query, "query");
         this.query = query;
         return this;
     }
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     public Pool withType(PoolTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
@@ -138,6 +185,9 @@ public class Pool {
     }
 
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     public Pool withType(Optional<? extends PoolTypeEnum> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -196,6 +246,9 @@ public class Pool {
         }
 
 
+        /**
+         * Accounts currently in the pool
+         */
         public Builder accounts(List<String> accounts) {
             Utils.checkNotNull(accounts, "accounts");
             this.accounts = accounts;
@@ -203,6 +256,9 @@ public class Pool {
         }
 
 
+        /**
+         * Unique identifier of the pool
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -210,6 +266,9 @@ public class Pool {
         }
 
 
+        /**
+         * Human-readable name of the pool
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -217,12 +276,18 @@ public class Pool {
         }
 
 
+        /**
+         * Filter selecting the accounts a dynamic pool contains
+         */
         public Builder query(Map<String, Object> query) {
             Utils.checkNotNull(query, "query");
             this.query = Optional.ofNullable(query);
             return this;
         }
 
+        /**
+         * Filter selecting the accounts a dynamic pool contains
+         */
         public Builder query(Optional<? extends Map<String, Object>> query) {
             Utils.checkNotNull(query, "query");
             this.query = query;
@@ -230,12 +295,18 @@ public class Pool {
         }
 
 
+        /**
+         * Whether a pool holds a fixed account list or is driven by a query
+         */
         public Builder type(PoolTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * Whether a pool holds a fixed account list or is driven by a query
+         */
         public Builder type(Optional<? extends PoolTypeEnum> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

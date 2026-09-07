@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ForwardPaymentServiceUserBankAccountResponse {
-
+    /**
+     * The task tracking the forwarding, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3ForwardPaymentServiceUserBankAccountResponseData data;
 
@@ -23,6 +25,9 @@ public class V3ForwardPaymentServiceUserBankAccountResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the forwarding, which completes asynchronously
+     */
     @JsonIgnore
     public V3ForwardPaymentServiceUserBankAccountResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3ForwardPaymentServiceUserBankAccountResponse {
     }
 
 
+    /**
+     * The task tracking the forwarding, which completes asynchronously
+     */
     public V3ForwardPaymentServiceUserBankAccountResponse withData(V3ForwardPaymentServiceUserBankAccountResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3ForwardPaymentServiceUserBankAccountResponse {
         }
 
 
+        /**
+         * The task tracking the forwarding, which completes asynchronously
+         */
         public Builder data(V3ForwardPaymentServiceUserBankAccountResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3BalancesCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of balances
+ */
 public class V3BalancesCursorResponseCursor {
 
     @JsonProperty("data")

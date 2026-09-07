@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3PaymentTypeEnum
+ * 
+ * <p>Direction of a payment
+ */
 public enum V3PaymentTypeEnum {
     UNKNOWN("UNKNOWN"),
     PAY_IN("PAY-IN"),

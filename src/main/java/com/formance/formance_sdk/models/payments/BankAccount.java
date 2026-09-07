@@ -18,60 +18,88 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * BankAccount
+ * 
+ * <p>A bank account registered with Formance and forwardable to connectors
+ */
 public class BankAccount {
-
+    /**
+     * Identifier of the provider-side account created by forwarding
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountID")
     private Optional<String> accountID;
 
-
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
-
+    /**
+     * Identifier of the connector the account has been forwarded to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
-
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonProperty("country")
     private String country;
 
-
+    /**
+     * When the bank account was registered
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * International bank account number, when the account is identified that way
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private Optional<String> iban;
 
-
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name of the bank account
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
-
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAccounts")
     private Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts;
 
-
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
     private Optional<String> swiftBicCode;
@@ -127,63 +155,99 @@ public class BankAccount {
             Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Identifier of the provider-side account created by forwarding
+     */
     @JsonIgnore
     public Optional<String> accountID() {
         return accountID;
     }
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     @JsonIgnore
     public Optional<String> accountNumber() {
         return accountNumber;
     }
 
+    /**
+     * Identifier of the connector the account has been forwarded to
+     */
     @JsonIgnore
     public Optional<String> connectorID() {
         return connectorID;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonIgnore
     public String country() {
         return country;
     }
 
+    /**
+     * When the bank account was registered
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     @JsonIgnore
     public Optional<String> iban() {
         return iban;
     }
 
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name of the bank account
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public Optional<String> provider() {
         return provider;
     }
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<BankAccountRelatedAccounts>> relatedAccounts() {
         return (Optional<List<BankAccountRelatedAccounts>>) relatedAccounts;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonIgnore
     public Optional<String> swiftBicCode() {
         return swiftBicCode;
@@ -194,6 +258,9 @@ public class BankAccount {
     }
 
 
+    /**
+     * Identifier of the provider-side account created by forwarding
+     */
     public BankAccount withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = Optional.ofNullable(accountID);
@@ -201,12 +268,18 @@ public class BankAccount {
     }
 
 
+    /**
+     * Identifier of the provider-side account created by forwarding
+     */
     public BankAccount withAccountID(Optional<String> accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
         return this;
     }
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     public BankAccount withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = Optional.ofNullable(accountNumber);
@@ -214,12 +287,18 @@ public class BankAccount {
     }
 
 
+    /**
+     * Domestic account number, when the account is identified that way
+     */
     public BankAccount withAccountNumber(Optional<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
     }
 
+    /**
+     * Identifier of the connector the account has been forwarded to
+     */
     public BankAccount withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = Optional.ofNullable(connectorID);
@@ -227,24 +306,36 @@ public class BankAccount {
     }
 
 
+    /**
+     * Identifier of the connector the account has been forwarded to
+     */
     public BankAccount withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     public BankAccount withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
     }
 
+    /**
+     * When the bank account was registered
+     */
     public BankAccount withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     public BankAccount withIban(String iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = Optional.ofNullable(iban);
@@ -252,36 +343,54 @@ public class BankAccount {
     }
 
 
+    /**
+     * International bank account number, when the account is identified that way
+     */
     public BankAccount withIban(Optional<String> iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = iban;
         return this;
     }
 
+    /**
+     * Unique identifier of the bank account within Formance
+     */
     public BankAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     public BankAccount withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     public BankAccount withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name of the bank account
+     */
     public BankAccount withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public BankAccount withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -289,12 +398,18 @@ public class BankAccount {
     }
 
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public BankAccount withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     public BankAccount withRelatedAccounts(List<BankAccountRelatedAccounts> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = Optional.ofNullable(relatedAccounts);
@@ -302,12 +417,18 @@ public class BankAccount {
     }
 
 
+    /**
+     * Provider-side accounts this bank account has been forwarded to
+     */
     public BankAccount withRelatedAccounts(Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = relatedAccounts;
         return this;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public BankAccount withSwiftBicCode(String swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = Optional.ofNullable(swiftBicCode);
@@ -315,6 +436,9 @@ public class BankAccount {
     }
 
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public BankAccount withSwiftBicCode(Optional<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
@@ -403,12 +527,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Identifier of the provider-side account created by forwarding
+         */
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = Optional.ofNullable(accountID);
             return this;
         }
 
+        /**
+         * Identifier of the provider-side account created by forwarding
+         */
         public Builder accountID(Optional<String> accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
@@ -416,12 +546,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Domestic account number, when the account is identified that way
+         */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = Optional.ofNullable(accountNumber);
             return this;
         }
 
+        /**
+         * Domestic account number, when the account is identified that way
+         */
         public Builder accountNumber(Optional<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = accountNumber;
@@ -429,12 +565,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Identifier of the connector the account has been forwarded to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = Optional.ofNullable(connectorID);
             return this;
         }
 
+        /**
+         * Identifier of the connector the account has been forwarded to
+         */
         public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -442,6 +584,9 @@ public class BankAccount {
         }
 
 
+        /**
+         * Country the account is held in, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
@@ -449,6 +594,9 @@ public class BankAccount {
         }
 
 
+        /**
+         * When the bank account was registered
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -456,12 +604,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * International bank account number, when the account is identified that way
+         */
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = Optional.ofNullable(iban);
             return this;
         }
 
+        /**
+         * International bank account number, when the account is identified that way
+         */
         public Builder iban(Optional<String> iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = iban;
@@ -469,6 +623,9 @@ public class BankAccount {
         }
 
 
+        /**
+         * Unique identifier of the bank account within Formance
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -476,12 +633,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the bank account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the bank account
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -489,6 +652,9 @@ public class BankAccount {
         }
 
 
+        /**
+         * Human-readable name of the bank account
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -496,12 +662,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -509,12 +681,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * Provider-side accounts this bank account has been forwarded to
+         */
         public Builder relatedAccounts(List<BankAccountRelatedAccounts> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = Optional.ofNullable(relatedAccounts);
             return this;
         }
 
+        /**
+         * Provider-side accounts this bank account has been forwarded to
+         */
         public Builder relatedAccounts(Optional<? extends List<BankAccountRelatedAccounts>> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = relatedAccounts;
@@ -522,12 +700,18 @@ public class BankAccount {
         }
 
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = Optional.ofNullable(swiftBicCode);
             return this;
         }
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(Optional<String> swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = swiftBicCode;

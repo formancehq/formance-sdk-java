@@ -7,4 +7,4 @@ OK
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `cursor`                                                            | [BalancesCursorCursor](../../models/shared/BalancesCursorCursor.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `cursor`                                                            | [BalancesCursorCursor](../../models/shared/BalancesCursorCursor.md) | :heavy_check_mark:                                                  | Paginated cursor wrapping the list of balances                      |

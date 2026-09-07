@@ -18,37 +18,53 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3Instance {
-
+    /**
+     * Identifier of the connector this run belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the run started
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the run
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Identifier of the schedule that started this run
+     */
     @JsonProperty("scheduleID")
     private String scheduleID;
 
-
+    /**
+     * Whether the run has finished, successfully or not
+     */
     @JsonProperty("terminated")
     private boolean terminated;
 
-
+    /**
+     * When the run finished, absent while it is still running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
 
-
+    /**
+     * When the run was last updated
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -92,41 +108,65 @@ public class V3Instance {
             Optional.empty(), updatedAt);
     }
 
+    /**
+     * Identifier of the connector this run belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the run started
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the run
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Identifier of the schedule that started this run
+     */
     @JsonIgnore
     public String scheduleID() {
         return scheduleID;
     }
 
+    /**
+     * Whether the run has finished, successfully or not
+     */
     @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }
 
+    /**
+     * When the run was last updated
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -137,48 +177,72 @@ public class V3Instance {
     }
 
 
+    /**
+     * Identifier of the connector this run belongs to
+     */
     public V3Instance withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the run started
+     */
     public V3Instance withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     public V3Instance withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     public V3Instance withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the run
+     */
     public V3Instance withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Identifier of the schedule that started this run
+     */
     public V3Instance withScheduleID(String scheduleID) {
         Utils.checkNotNull(scheduleID, "scheduleID");
         this.scheduleID = scheduleID;
         return this;
     }
 
+    /**
+     * Whether the run has finished, successfully or not
+     */
     public V3Instance withTerminated(boolean terminated) {
         Utils.checkNotNull(terminated, "terminated");
         this.terminated = terminated;
         return this;
     }
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     public V3Instance withTerminatedAt(OffsetDateTime terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = Optional.ofNullable(terminatedAt);
@@ -186,12 +250,18 @@ public class V3Instance {
     }
 
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     public V3Instance withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
     }
 
+    /**
+     * When the run was last updated
+     */
     public V3Instance withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -263,6 +333,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * Identifier of the connector this run belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -270,6 +343,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * When the run started
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -277,12 +353,18 @@ public class V3Instance {
         }
 
 
+        /**
+         * Why the run failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the run failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -290,6 +372,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * Unique identifier of the run
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -297,6 +382,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * Identifier of the schedule that started this run
+         */
         public Builder scheduleID(String scheduleID) {
             Utils.checkNotNull(scheduleID, "scheduleID");
             this.scheduleID = scheduleID;
@@ -304,6 +392,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * Whether the run has finished, successfully or not
+         */
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
@@ -311,12 +402,18 @@ public class V3Instance {
         }
 
 
+        /**
+         * When the run finished, absent while it is still running
+         */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = Optional.ofNullable(terminatedAt);
             return this;
         }
 
+        /**
+         * When the run finished, absent while it is still running
+         */
         public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
@@ -324,6 +421,9 @@ public class V3Instance {
         }
 
 
+        /**
+         * When the run was last updated
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

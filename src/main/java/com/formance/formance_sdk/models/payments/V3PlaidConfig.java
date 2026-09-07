@@ -21,6 +21,11 @@ import java.util.Optional;
 
 public class V3PlaidConfig implements V3ConnectorConfig {
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("baseURL")
+    private Optional<String> baseURL;
+
+
     @JsonProperty("clientID")
     private String clientID;
 
@@ -58,6 +63,7 @@ public class V3PlaidConfig implements V3ConnectorConfig {
 
     @JsonCreator
     public V3PlaidConfig(
+            @JsonProperty("baseURL") Optional<String> baseURL,
             @JsonProperty("clientID") String clientID,
             @JsonProperty("clientSecret") String clientSecret,
             @JsonProperty("isSandbox") Optional<Boolean> isSandbox,
@@ -65,6 +71,7 @@ public class V3PlaidConfig implements V3ConnectorConfig {
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
             @JsonProperty("provider") Optional<String> provider) {
+        Utils.checkNotNull(baseURL, "baseURL");
         Utils.checkNotNull(clientID, "clientID");
         Utils.checkNotNull(clientSecret, "clientSecret");
         Utils.checkNotNull(isSandbox, "isSandbox");
@@ -72,6 +79,7 @@ public class V3PlaidConfig implements V3ConnectorConfig {
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         Utils.checkNotNull(provider, "provider");
+        this.baseURL = baseURL;
         this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.isSandbox = isSandbox;
@@ -85,9 +93,14 @@ public class V3PlaidConfig implements V3ConnectorConfig {
             String clientID,
             String clientSecret,
             String name) {
-        this(clientID, clientSecret, Optional.empty(),
-            name, Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(Optional.empty(), clientID, clientSecret,
+            Optional.empty(), name, Optional.empty(),
+            Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Optional<String> baseURL() {
+        return baseURL;
     }
 
     @JsonIgnore
@@ -135,6 +148,19 @@ public class V3PlaidConfig implements V3ConnectorConfig {
         return new Builder();
     }
 
+
+    public V3PlaidConfig withBaseURL(String baseURL) {
+        Utils.checkNotNull(baseURL, "baseURL");
+        this.baseURL = Optional.ofNullable(baseURL);
+        return this;
+    }
+
+
+    public V3PlaidConfig withBaseURL(Optional<String> baseURL) {
+        Utils.checkNotNull(baseURL, "baseURL");
+        this.baseURL = baseURL;
+        return this;
+    }
 
     public V3PlaidConfig withClientID(String clientID) {
         Utils.checkNotNull(clientID, "clientID");
@@ -226,6 +252,7 @@ public class V3PlaidConfig implements V3ConnectorConfig {
         }
         V3PlaidConfig other = (V3PlaidConfig) o;
         return 
+            Utils.enhancedDeepEquals(this.baseURL, other.baseURL) &&
             Utils.enhancedDeepEquals(this.clientID, other.clientID) &&
             Utils.enhancedDeepEquals(this.clientSecret, other.clientSecret) &&
             Utils.enhancedDeepEquals(this.isSandbox, other.isSandbox) &&
@@ -238,14 +265,15 @@ public class V3PlaidConfig implements V3ConnectorConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clientID, clientSecret, isSandbox,
-            name, pageSize, pollingPeriod,
-            provider);
+            baseURL, clientID, clientSecret,
+            isSandbox, name, pageSize,
+            pollingPeriod, provider);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V3PlaidConfig.class,
+                "baseURL", baseURL,
                 "clientID", clientID,
                 "clientSecret", clientSecret,
                 "isSandbox", isSandbox,
@@ -257,6 +285,8 @@ public class V3PlaidConfig implements V3ConnectorConfig {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> baseURL = Optional.empty();
 
         private String clientID;
 
@@ -275,6 +305,19 @@ public class V3PlaidConfig implements V3ConnectorConfig {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder baseURL(String baseURL) {
+            Utils.checkNotNull(baseURL, "baseURL");
+            this.baseURL = Optional.ofNullable(baseURL);
+            return this;
+        }
+
+        public Builder baseURL(Optional<String> baseURL) {
+            Utils.checkNotNull(baseURL, "baseURL");
+            this.baseURL = baseURL;
+            return this;
         }
 
 
@@ -372,9 +415,9 @@ public class V3PlaidConfig implements V3ConnectorConfig {
             }
 
             return new V3PlaidConfig(
-                clientID, clientSecret, isSandbox,
-                name, pageSize, pollingPeriod,
-                provider);
+                baseURL, clientID, clientSecret,
+                isSandbox, name, pageSize,
+                pollingPeriod, provider);
         }
 
 

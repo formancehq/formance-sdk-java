@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3GetPaymentInitiationResponse {
-
+    /**
+     * A payment Formance asked a connector to execute
+     */
     @JsonProperty("data")
     private V3PaymentInitiation data;
 
@@ -23,6 +25,9 @@ public class V3GetPaymentInitiationResponse {
         this.data = data;
     }
 
+    /**
+     * A payment Formance asked a connector to execute
+     */
     @JsonIgnore
     public V3PaymentInitiation data() {
         return data;
@@ -33,6 +38,9 @@ public class V3GetPaymentInitiationResponse {
     }
 
 
+    /**
+     * A payment Formance asked a connector to execute
+     */
     public V3GetPaymentInitiationResponse withData(V3PaymentInitiation data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3GetPaymentInitiationResponse {
         }
 
 
+        /**
+         * A payment Formance asked a connector to execute
+         */
         public Builder data(V3PaymentInitiation data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

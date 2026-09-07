@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class AddAccountToPoolRequest {
-
+    /**
+     * Identifier of the account to add to the pool
+     */
     @JsonProperty("accountID")
     private String accountID;
 
@@ -23,6 +25,9 @@ public class AddAccountToPoolRequest {
         this.accountID = accountID;
     }
 
+    /**
+     * Identifier of the account to add to the pool
+     */
     @JsonIgnore
     public String accountID() {
         return accountID;
@@ -33,6 +38,9 @@ public class AddAccountToPoolRequest {
     }
 
 
+    /**
+     * Identifier of the account to add to the pool
+     */
     public AddAccountToPoolRequest withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
@@ -74,6 +82,9 @@ public class AddAccountToPoolRequest {
         }
 
 
+        /**
+         * Identifier of the account to add to the pool
+         */
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;

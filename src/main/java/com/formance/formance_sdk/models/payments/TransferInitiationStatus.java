@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * TransferInitiationStatus
+ * 
+ * <p>Where a transfer initiation stands in its lifecycle
+ */
 public enum TransferInitiationStatus {
     WAITING_FOR_VALIDATION("WAITING_FOR_VALIDATION"),
     PROCESSING("PROCESSING"),

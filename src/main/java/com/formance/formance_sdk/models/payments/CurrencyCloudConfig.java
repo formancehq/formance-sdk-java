@@ -17,7 +17,9 @@ import java.util.Optional;
 
 
 public class CurrencyCloudConfig implements ConnectorConfig {
-
+    /**
+     * API key issued by Currencycloud, used to authenticate the connector's requests
+     */
     @JsonProperty("apiKey")
     private String apiKey;
 
@@ -34,7 +36,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
     @JsonProperty("loginID")
     private String loginID;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
@@ -45,7 +49,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -80,6 +86,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
             name, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * API key issued by Currencycloud, used to authenticate the connector's requests
+     */
     @JsonIgnore
     public String apiKey() {
         return apiKey;
@@ -101,6 +110,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         return loginID;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -114,6 +126,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -125,6 +140,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * API key issued by Currencycloud, used to authenticate the connector's requests
+     */
     public CurrencyCloudConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
@@ -159,6 +177,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public CurrencyCloudConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -184,6 +205,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public CurrencyCloudConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -191,6 +215,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public CurrencyCloudConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -253,6 +280,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API key issued by Currencycloud, used to authenticate the connector's requests
+         */
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
@@ -289,6 +319,9 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -315,12 +348,18 @@ public class CurrencyCloudConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

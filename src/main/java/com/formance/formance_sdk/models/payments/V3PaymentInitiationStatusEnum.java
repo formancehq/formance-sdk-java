@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3PaymentInitiationStatusEnum
+ * 
+ * <p>Where a payment initiation stands in its lifecycle
+ */
 public enum V3PaymentInitiationStatusEnum {
     UNKNOWN("UNKNOWN"),
     WAITING_FOR_VALIDATION("WAITING_FOR_VALIDATION"),

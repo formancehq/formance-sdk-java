@@ -18,53 +18,79 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3Account
+ * 
+ * <p>An account held at a payment provider, surfaced through a connector
+ */
 public class V3Account {
-
+    /**
+     * Summary of a connector, without its configuration
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connector")
     private Optional<? extends V3ConnectorBase> connector;
 
-
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the account was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultAsset")
     private JsonNullable<String> defaultAsset;
 
-
+    /**
+     * Unique identifier of the account within Formance
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name of the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private JsonNullable<String> name;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonProperty("provider")
     private String provider;
 
-
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @JsonProperty("raw")
     private Map<String, Object> raw;
 
-
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonProperty("type")
     private V3AccountTypeEnum type;
 
@@ -120,58 +146,91 @@ public class V3Account {
             reference, type);
     }
 
+    /**
+     * Summary of a connector, without its configuration
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V3ConnectorBase> connector() {
         return (Optional<V3ConnectorBase>) connector;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonIgnore
     public JsonNullable<String> defaultAsset() {
         return defaultAsset;
     }
 
+    /**
+     * Unique identifier of the account within Formance
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name of the account
+     */
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public String provider() {
         return provider;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @JsonIgnore
     public Map<String, Object> raw() {
         return raw;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonIgnore
     public V3AccountTypeEnum type() {
         return type;
@@ -182,6 +241,9 @@ public class V3Account {
     }
 
 
+    /**
+     * Summary of a connector, without its configuration
+     */
     public V3Account withConnector(V3ConnectorBase connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = Optional.ofNullable(connector);
@@ -189,84 +251,126 @@ public class V3Account {
     }
 
 
+    /**
+     * Summary of a connector, without its configuration
+     */
     public V3Account withConnector(Optional<? extends V3ConnectorBase> connector) {
         Utils.checkNotNull(connector, "connector");
         this.connector = connector;
         return this;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     public V3Account withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     public V3Account withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public V3Account withDefaultAsset(String defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = JsonNullable.of(defaultAsset);
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public V3Account withDefaultAsset(JsonNullable<String> defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = defaultAsset;
         return this;
     }
 
+    /**
+     * Unique identifier of the account within Formance
+     */
     public V3Account withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3Account withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name of the account
+     */
     public V3Account withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = JsonNullable.of(name);
         return this;
     }
 
+    /**
+     * Human-readable name of the account
+     */
     public V3Account withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public V3Account withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     public V3Account withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     public V3Account withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     public V3Account withType(V3AccountTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -351,12 +455,18 @@ public class V3Account {
         }
 
 
+        /**
+         * Summary of a connector, without its configuration
+         */
         public Builder connector(V3ConnectorBase connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = Optional.ofNullable(connector);
             return this;
         }
 
+        /**
+         * Summary of a connector, without its configuration
+         */
         public Builder connector(Optional<? extends V3ConnectorBase> connector) {
             Utils.checkNotNull(connector, "connector");
             this.connector = connector;
@@ -364,6 +474,9 @@ public class V3Account {
         }
 
 
+        /**
+         * Identifier of the connector the account belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -371,6 +484,9 @@ public class V3Account {
         }
 
 
+        /**
+         * When the account was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -378,12 +494,18 @@ public class V3Account {
         }
 
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = JsonNullable.of(defaultAsset);
             return this;
         }
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(JsonNullable<String> defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = defaultAsset;
@@ -391,6 +513,9 @@ public class V3Account {
         }
 
 
+        /**
+         * Unique identifier of the account within Formance
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -398,12 +523,18 @@ public class V3Account {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -411,12 +542,18 @@ public class V3Account {
         }
 
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = JsonNullable.of(name);
             return this;
         }
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -424,6 +561,9 @@ public class V3Account {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -431,6 +571,9 @@ public class V3Account {
         }
 
 
+        /**
+         * The provider's original payload, passed through untouched
+         */
         public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -438,6 +581,9 @@ public class V3Account {
         }
 
 
+        /**
+         * Identifier the account carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -445,6 +591,9 @@ public class V3Account {
         }
 
 
+        /**
+         * Whether an account is internal to the provider or belongs to an external party
+         */
         public Builder type(V3AccountTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

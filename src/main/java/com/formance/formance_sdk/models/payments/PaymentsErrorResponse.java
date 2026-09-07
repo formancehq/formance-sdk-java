@@ -52,11 +52,17 @@ public class PaymentsErrorResponse extends SDKBaseError {
         }
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @Deprecated
     public Optional<PaymentsErrorsEnum> errorCode() {
         return data().map(Data::errorCode);
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @Deprecated
     public Optional<String> errorMessage() {
         return data().map(Data::errorMessage);
@@ -78,11 +84,15 @@ public class PaymentsErrorResponse extends SDKBaseError {
      * <p>Error
      */
     public static class Data {
-
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonProperty("errorCode")
         private PaymentsErrorsEnum errorCode;
 
-
+        /**
+         * Human-readable description of the error
+         */
         @JsonProperty("errorMessage")
         private String errorMessage;
 
@@ -96,11 +106,17 @@ public class PaymentsErrorResponse extends SDKBaseError {
             this.errorMessage = errorMessage;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonIgnore
         public PaymentsErrorsEnum errorCode() {
             return errorCode;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         @JsonIgnore
         public String errorMessage() {
             return errorMessage;
@@ -111,12 +127,18 @@ public class PaymentsErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Data withErrorCode(PaymentsErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -162,6 +184,9 @@ public class PaymentsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Machine-readable error code identifying the failure
+             */
             public Builder errorCode(PaymentsErrorsEnum errorCode) {
                 Utils.checkNotNull(errorCode, "errorCode");
                 this.errorCode = errorCode;
@@ -169,6 +194,9 @@ public class PaymentsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Human-readable description of the error
+             */
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;

@@ -11,6 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 
 
+/**
+ * ConnectorConfigTypeIdResolver
+ * 
+ * <p>A connector's configuration, whose shape depends on the provider
+ */
 public class ConnectorConfigTypeIdResolver extends GenericTypeIdResolver<ConnectorConfig> {
 
     public ConnectorConfigTypeIdResolver() {

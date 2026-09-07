@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * TaskStatus
+ * 
+ * <p>Where a task stands, from pending or active through to stopped, terminated or failed
+ */
 public enum TaskStatus {
     PENDING("PENDING"),
     ACTIVE("ACTIVE"),

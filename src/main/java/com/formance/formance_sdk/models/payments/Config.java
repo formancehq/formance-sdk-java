@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * Config
+ * 
+ * <p>The connector's configuration, whose shape depends on the provider
+ */
 public class Config {
     @JsonCreator
     public Config() {

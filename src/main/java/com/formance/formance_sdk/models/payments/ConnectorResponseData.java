@@ -10,7 +10,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * ConnectorResponseData
+ * 
+ * <p>The connector that was installed
+ */
 public class ConnectorResponseData {
 
     @JsonProperty("connectorID")

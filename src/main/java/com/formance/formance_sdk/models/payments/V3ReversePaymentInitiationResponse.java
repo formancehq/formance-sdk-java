@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ReversePaymentInitiationResponse {
-
+    /**
+     * The task tracking the reversal, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3ReversePaymentInitiationResponseData data;
 
@@ -23,6 +25,9 @@ public class V3ReversePaymentInitiationResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the reversal, which completes asynchronously
+     */
     @JsonIgnore
     public V3ReversePaymentInitiationResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3ReversePaymentInitiationResponse {
     }
 
 
+    /**
+     * The task tracking the reversal, which completes asynchronously
+     */
     public V3ReversePaymentInitiationResponse withData(V3ReversePaymentInitiationResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3ReversePaymentInitiationResponse {
         }
 
 
+        /**
+         * The task tracking the reversal, which completes asynchronously
+         */
         public Builder data(V3ReversePaymentInitiationResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

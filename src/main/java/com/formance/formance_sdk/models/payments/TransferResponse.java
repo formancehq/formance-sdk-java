@@ -19,7 +19,9 @@ import java.util.Optional;
  * <p>OK
  */
 public class TransferResponse {
-
+    /**
+     * Identifier of the transfer created at the provider
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
@@ -35,6 +37,9 @@ public class TransferResponse {
         this(Optional.empty());
     }
 
+    /**
+     * Identifier of the transfer created at the provider
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
@@ -45,6 +50,9 @@ public class TransferResponse {
     }
 
 
+    /**
+     * Identifier of the transfer created at the provider
+     */
     public TransferResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -52,6 +60,9 @@ public class TransferResponse {
     }
 
 
+    /**
+     * Identifier of the transfer created at the provider
+     */
     public TransferResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -93,12 +104,18 @@ public class TransferResponse {
         }
 
 
+        /**
+         * Identifier of the transfer created at the provider
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Identifier of the transfer created at the provider
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

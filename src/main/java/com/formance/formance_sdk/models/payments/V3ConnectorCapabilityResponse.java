@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class V3ConnectorCapabilityResponse {
-
+    /**
+     * Operations this connector supports
+     */
     @JsonProperty("data")
     private List<V3Capability> data;
 
@@ -24,6 +26,9 @@ public class V3ConnectorCapabilityResponse {
         this.data = data;
     }
 
+    /**
+     * Operations this connector supports
+     */
     @JsonIgnore
     public List<V3Capability> data() {
         return data;
@@ -34,6 +39,9 @@ public class V3ConnectorCapabilityResponse {
     }
 
 
+    /**
+     * Operations this connector supports
+     */
     public V3ConnectorCapabilityResponse withData(List<V3Capability> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class V3ConnectorCapabilityResponse {
         }
 
 
+        /**
+         * Operations this connector supports
+         */
         public Builder data(List<V3Capability> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -11,9 +11,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-
+/**
+ * PoolBalances
+ * 
+ * <p>Aggregated balances across a pool's accounts
+ */
 public class PoolBalances {
-
+    /**
+     * Aggregated balance per asset across the pool's accounts
+     */
     @JsonProperty("balances")
     private List<PoolBalance> balances;
 
@@ -24,6 +30,9 @@ public class PoolBalances {
         this.balances = balances;
     }
 
+    /**
+     * Aggregated balance per asset across the pool's accounts
+     */
     @JsonIgnore
     public List<PoolBalance> balances() {
         return balances;
@@ -34,6 +43,9 @@ public class PoolBalances {
     }
 
 
+    /**
+     * Aggregated balance per asset across the pool's accounts
+     */
     public PoolBalances withBalances(List<PoolBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
@@ -75,6 +87,9 @@ public class PoolBalances {
         }
 
 
+        /**
+         * Aggregated balance per asset across the pool's accounts
+         */
         public Builder balances(List<PoolBalance> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;

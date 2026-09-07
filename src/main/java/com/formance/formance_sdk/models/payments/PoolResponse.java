@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class PoolResponse {
-
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     @JsonProperty("data")
     private Pool data;
 
@@ -27,6 +29,9 @@ public class PoolResponse {
         this.data = data;
     }
 
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     @JsonIgnore
     public Pool data() {
         return data;
@@ -37,6 +42,9 @@ public class PoolResponse {
     }
 
 
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     public PoolResponse withData(Pool data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class PoolResponse {
         }
 
 
+        /**
+         * A named group of accounts whose balances are aggregated together
+         */
         public Builder data(Pool data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -54,16 +54,25 @@ public class V3ErrorResponse extends SDKBaseError {
         }
     }
 
+    /**
+     * Optional link carrying additional context about the error
+     */
     @Deprecated
     public Optional<String> details() {
         return data().flatMap(Data::details);
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @Deprecated
     public Optional<V3ErrorsEnum> errorCode() {
         return data().map(Data::errorCode);
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @Deprecated
     public Optional<String> errorMessage() {
         return data().map(Data::errorMessage);
@@ -81,16 +90,22 @@ public class V3ErrorResponse extends SDKBaseError {
     }
 
     public static class Data {
-
+        /**
+         * Optional link carrying additional context about the error
+         */
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("details")
         private Optional<String> details;
 
-
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonProperty("errorCode")
         private V3ErrorsEnum errorCode;
 
-
+        /**
+         * Human-readable description of the error
+         */
         @JsonProperty("errorMessage")
         private String errorMessage;
 
@@ -113,16 +128,25 @@ public class V3ErrorResponse extends SDKBaseError {
             this(Optional.empty(), errorCode, errorMessage);
         }
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         @JsonIgnore
         public Optional<String> details() {
             return details;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonIgnore
         public V3ErrorsEnum errorCode() {
             return errorCode;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         @JsonIgnore
         public String errorMessage() {
             return errorMessage;
@@ -133,6 +157,9 @@ public class V3ErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -140,18 +167,27 @@ public class V3ErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Data withErrorCode(V3ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -201,12 +237,18 @@ public class V3ErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Optional link carrying additional context about the error
+             */
             public Builder details(String details) {
                 Utils.checkNotNull(details, "details");
                 this.details = Optional.ofNullable(details);
                 return this;
             }
 
+            /**
+             * Optional link carrying additional context about the error
+             */
             public Builder details(Optional<String> details) {
                 Utils.checkNotNull(details, "details");
                 this.details = details;
@@ -214,6 +256,9 @@ public class V3ErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Machine-readable error code identifying the failure
+             */
             public Builder errorCode(V3ErrorsEnum errorCode) {
                 Utils.checkNotNull(errorCode, "errorCode");
                 this.errorCode = errorCode;
@@ -221,6 +266,9 @@ public class V3ErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Human-readable description of the error
+             */
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;

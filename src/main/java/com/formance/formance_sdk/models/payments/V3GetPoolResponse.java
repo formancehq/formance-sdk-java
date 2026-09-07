@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3GetPoolResponse {
-
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     @JsonProperty("data")
     private V3Pool data;
 
@@ -23,6 +25,9 @@ public class V3GetPoolResponse {
         this.data = data;
     }
 
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     @JsonIgnore
     public V3Pool data() {
         return data;
@@ -33,6 +38,9 @@ public class V3GetPoolResponse {
     }
 
 
+    /**
+     * A named group of accounts whose balances are aggregated together
+     */
     public V3GetPoolResponse withData(V3Pool data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3GetPoolResponse {
         }
 
 
+        /**
+         * A named group of accounts whose balances are aggregated together
+         */
         public Builder data(V3Pool data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

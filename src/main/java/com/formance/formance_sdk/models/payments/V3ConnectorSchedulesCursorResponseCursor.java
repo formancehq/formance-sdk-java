@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3ConnectorSchedulesCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the connector's schedules
+ */
 public class V3ConnectorSchedulesCursorResponseCursor {
 
     @JsonProperty("data")

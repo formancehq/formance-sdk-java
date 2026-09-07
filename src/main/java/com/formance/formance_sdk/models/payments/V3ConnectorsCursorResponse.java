@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ConnectorsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of connectors
+     */
     @JsonProperty("cursor")
     private V3ConnectorsCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V3ConnectorsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of connectors
+     */
     @JsonIgnore
     public V3ConnectorsCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V3ConnectorsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of connectors
+     */
     public V3ConnectorsCursorResponse withCursor(V3ConnectorsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V3ConnectorsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of connectors
+         */
         public Builder cursor(V3ConnectorsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

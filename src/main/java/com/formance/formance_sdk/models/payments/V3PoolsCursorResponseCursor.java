@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3PoolsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of pools
+ */
 public class V3PoolsCursorResponseCursor {
 
     @JsonProperty("data")

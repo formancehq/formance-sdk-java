@@ -23,7 +23,9 @@ public class V3PaymentServiceUserUpdateLinkRequest {
     @JsonProperty("applicationName")
     private Optional<String> applicationName;
 
-
+    /**
+     * URL to send the user back to once the provider's flow finishes
+     */
     @JsonProperty("clientRedirectURL")
     private String clientRedirectURL;
 
@@ -51,6 +53,9 @@ public class V3PaymentServiceUserUpdateLinkRequest {
         return applicationName;
     }
 
+    /**
+     * URL to send the user back to once the provider's flow finishes
+     */
     @JsonIgnore
     public String clientRedirectURL() {
         return clientRedirectURL;
@@ -82,6 +87,9 @@ public class V3PaymentServiceUserUpdateLinkRequest {
         return this;
     }
 
+    /**
+     * URL to send the user back to once the provider's flow finishes
+     */
     public V3PaymentServiceUserUpdateLinkRequest withClientRedirectURL(String clientRedirectURL) {
         Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
         this.clientRedirectURL = clientRedirectURL;
@@ -148,6 +156,9 @@ public class V3PaymentServiceUserUpdateLinkRequest {
         }
 
 
+        /**
+         * URL to send the user back to once the provider's flow finishes
+         */
         public Builder clientRedirectURL(String clientRedirectURL) {
             Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
             this.clientRedirectURL = clientRedirectURL;

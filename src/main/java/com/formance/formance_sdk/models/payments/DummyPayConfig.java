@@ -18,7 +18,9 @@ import java.util.Optional;
 
 
 public class DummyPayConfig implements ConnectorConfig {
-
+    /**
+     * Filesystem directory the connector reads payment files from
+     */
     @JsonProperty("directory")
     private String directory;
 
@@ -29,26 +31,36 @@ public class DummyPayConfig implements ConnectorConfig {
     @JsonProperty("filePollingPeriod")
     private Optional<String> filePollingPeriod;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * How many synthetic accounts to create on startup
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfAccountsPreGenerated")
     private Optional<Long> numberOfAccountsPreGenerated;
 
-
+    /**
+     * How many synthetic payments to create on startup
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberOfPaymentsPreGenerated")
     private Optional<Long> numberOfPaymentsPreGenerated;
 
-
+    /**
+     * Only ingest files whose name starts with this prefix
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prefixFileToIngest")
     private Optional<String> prefixFileToIngest;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -86,6 +98,9 @@ public class DummyPayConfig implements ConnectorConfig {
             Optional.empty());
     }
 
+    /**
+     * Filesystem directory the connector reads payment files from
+     */
     @JsonIgnore
     public String directory() {
         return directory;
@@ -99,26 +114,41 @@ public class DummyPayConfig implements ConnectorConfig {
         return filePollingPeriod;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * How many synthetic accounts to create on startup
+     */
     @JsonIgnore
     public Optional<Long> numberOfAccountsPreGenerated() {
         return numberOfAccountsPreGenerated;
     }
 
+    /**
+     * How many synthetic payments to create on startup
+     */
     @JsonIgnore
     public Optional<Long> numberOfPaymentsPreGenerated() {
         return numberOfPaymentsPreGenerated;
     }
 
+    /**
+     * Only ingest files whose name starts with this prefix
+     */
     @JsonIgnore
     public Optional<String> prefixFileToIngest() {
         return prefixFileToIngest;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -130,6 +160,9 @@ public class DummyPayConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Filesystem directory the connector reads payment files from
+     */
     public DummyPayConfig withDirectory(String directory) {
         Utils.checkNotNull(directory, "directory");
         this.directory = directory;
@@ -155,12 +188,18 @@ public class DummyPayConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public DummyPayConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * How many synthetic accounts to create on startup
+     */
     public DummyPayConfig withNumberOfAccountsPreGenerated(long numberOfAccountsPreGenerated) {
         Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
         this.numberOfAccountsPreGenerated = Optional.ofNullable(numberOfAccountsPreGenerated);
@@ -168,12 +207,18 @@ public class DummyPayConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * How many synthetic accounts to create on startup
+     */
     public DummyPayConfig withNumberOfAccountsPreGenerated(Optional<Long> numberOfAccountsPreGenerated) {
         Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
         this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
         return this;
     }
 
+    /**
+     * How many synthetic payments to create on startup
+     */
     public DummyPayConfig withNumberOfPaymentsPreGenerated(long numberOfPaymentsPreGenerated) {
         Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
         this.numberOfPaymentsPreGenerated = Optional.ofNullable(numberOfPaymentsPreGenerated);
@@ -181,12 +226,18 @@ public class DummyPayConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * How many synthetic payments to create on startup
+     */
     public DummyPayConfig withNumberOfPaymentsPreGenerated(Optional<Long> numberOfPaymentsPreGenerated) {
         Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
         this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
         return this;
     }
 
+    /**
+     * Only ingest files whose name starts with this prefix
+     */
     public DummyPayConfig withPrefixFileToIngest(String prefixFileToIngest) {
         Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
         this.prefixFileToIngest = Optional.ofNullable(prefixFileToIngest);
@@ -194,12 +245,18 @@ public class DummyPayConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Only ingest files whose name starts with this prefix
+     */
     public DummyPayConfig withPrefixFileToIngest(Optional<String> prefixFileToIngest) {
         Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
         this.prefixFileToIngest = prefixFileToIngest;
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public DummyPayConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -207,6 +264,9 @@ public class DummyPayConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public DummyPayConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -274,6 +334,9 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Filesystem directory the connector reads payment files from
+         */
         public Builder directory(String directory) {
             Utils.checkNotNull(directory, "directory");
             this.directory = directory;
@@ -300,6 +363,9 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -307,12 +373,18 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * How many synthetic accounts to create on startup
+         */
         public Builder numberOfAccountsPreGenerated(long numberOfAccountsPreGenerated) {
             Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
             this.numberOfAccountsPreGenerated = Optional.ofNullable(numberOfAccountsPreGenerated);
             return this;
         }
 
+        /**
+         * How many synthetic accounts to create on startup
+         */
         public Builder numberOfAccountsPreGenerated(Optional<Long> numberOfAccountsPreGenerated) {
             Utils.checkNotNull(numberOfAccountsPreGenerated, "numberOfAccountsPreGenerated");
             this.numberOfAccountsPreGenerated = numberOfAccountsPreGenerated;
@@ -320,12 +392,18 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * How many synthetic payments to create on startup
+         */
         public Builder numberOfPaymentsPreGenerated(long numberOfPaymentsPreGenerated) {
             Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
             this.numberOfPaymentsPreGenerated = Optional.ofNullable(numberOfPaymentsPreGenerated);
             return this;
         }
 
+        /**
+         * How many synthetic payments to create on startup
+         */
         public Builder numberOfPaymentsPreGenerated(Optional<Long> numberOfPaymentsPreGenerated) {
             Utils.checkNotNull(numberOfPaymentsPreGenerated, "numberOfPaymentsPreGenerated");
             this.numberOfPaymentsPreGenerated = numberOfPaymentsPreGenerated;
@@ -333,12 +411,18 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Only ingest files whose name starts with this prefix
+         */
         public Builder prefixFileToIngest(String prefixFileToIngest) {
             Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
             this.prefixFileToIngest = Optional.ofNullable(prefixFileToIngest);
             return this;
         }
 
+        /**
+         * Only ingest files whose name starts with this prefix
+         */
         public Builder prefixFileToIngest(Optional<String> prefixFileToIngest) {
             Utils.checkNotNull(prefixFileToIngest, "prefixFileToIngest");
             this.prefixFileToIngest = prefixFileToIngest;
@@ -346,12 +430,18 @@ public class DummyPayConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

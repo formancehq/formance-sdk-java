@@ -29,7 +29,9 @@ public class ConnectorsResponseData {
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * The payment provider behind a connector
+     */
     @JsonProperty("provider")
     private Connector provider;
 
@@ -72,6 +74,9 @@ public class ConnectorsResponseData {
         return name;
     }
 
+    /**
+     * The payment provider behind a connector
+     */
     @JsonIgnore
     public Connector provider() {
         return provider;
@@ -107,6 +112,9 @@ public class ConnectorsResponseData {
         return this;
     }
 
+    /**
+     * The payment provider behind a connector
+     */
     public ConnectorsResponseData withProvider(Connector provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -188,6 +196,9 @@ public class ConnectorsResponseData {
         }
 
 
+        /**
+         * The payment provider behind a connector
+         */
         public Builder provider(Connector provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

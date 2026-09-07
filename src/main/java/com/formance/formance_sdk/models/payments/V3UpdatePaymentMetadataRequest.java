@@ -17,7 +17,9 @@ import java.util.Optional;
 
 
 public class V3UpdatePaymentMetadataRequest {
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
@@ -33,6 +35,9 @@ public class V3UpdatePaymentMetadataRequest {
         this(Optional.empty());
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
@@ -44,6 +49,9 @@ public class V3UpdatePaymentMetadataRequest {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3UpdatePaymentMetadataRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -51,6 +59,9 @@ public class V3UpdatePaymentMetadataRequest {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3UpdatePaymentMetadataRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -92,12 +103,18 @@ public class V3UpdatePaymentMetadataRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;

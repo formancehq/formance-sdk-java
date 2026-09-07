@@ -9,6 +9,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
+/**
+ * ConnectorConfig
+ * 
+ * <p>A connector's configuration, whose shape depends on the provider
+ */
 @JsonTypeInfo(
         use = Id.CUSTOM,
         property = "provider",

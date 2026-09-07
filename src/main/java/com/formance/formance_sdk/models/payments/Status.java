@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Status
+ * 
+ * <p>Whether to approve or reject the pending transfer
+ */
 public enum Status {
     REJECTED("REJECTED"),
     VALIDATED("VALIDATED");

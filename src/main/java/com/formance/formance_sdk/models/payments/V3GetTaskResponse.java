@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3GetTaskResponse {
-
+    /**
+     * An asynchronous unit of work, tracking an operation that completes in the background
+     */
     @JsonProperty("data")
     private V3Task data;
 
@@ -23,6 +25,9 @@ public class V3GetTaskResponse {
         this.data = data;
     }
 
+    /**
+     * An asynchronous unit of work, tracking an operation that completes in the background
+     */
     @JsonIgnore
     public V3Task data() {
         return data;
@@ -33,6 +38,9 @@ public class V3GetTaskResponse {
     }
 
 
+    /**
+     * An asynchronous unit of work, tracking an operation that completes in the background
+     */
     public V3GetTaskResponse withData(V3Task data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3GetTaskResponse {
         }
 
 
+        /**
+         * An asynchronous unit of work, tracking an operation that completes in the background
+         */
         public Builder data(V3Task data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -18,33 +18,47 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3CreateAccountRequest {
-
+    /**
+     * Human-readable name of the account
+     */
     @JsonProperty("accountName")
     private String accountName;
 
-
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the account was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultAsset")
     private JsonNullable<String> defaultAsset;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonProperty("type")
     private V3AccountTypeEnum type;
 
@@ -84,37 +98,58 @@ public class V3CreateAccountRequest {
             type);
     }
 
+    /**
+     * Human-readable name of the account
+     */
     @JsonIgnore
     public String accountName() {
         return accountName;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonIgnore
     public JsonNullable<String> defaultAsset() {
         return defaultAsset;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonIgnore
     public V3AccountTypeEnum type() {
         return type;
@@ -125,54 +160,81 @@ public class V3CreateAccountRequest {
     }
 
 
+    /**
+     * Human-readable name of the account
+     */
     public V3CreateAccountRequest withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = accountName;
         return this;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     public V3CreateAccountRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     public V3CreateAccountRequest withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public V3CreateAccountRequest withDefaultAsset(String defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = JsonNullable.of(defaultAsset);
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public V3CreateAccountRequest withDefaultAsset(JsonNullable<String> defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = defaultAsset;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreateAccountRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreateAccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     public V3CreateAccountRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     public V3CreateAccountRequest withType(V3AccountTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -240,6 +302,9 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
             this.accountName = accountName;
@@ -247,6 +312,9 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Identifier of the connector the account belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -254,6 +322,9 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * When the account was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -261,12 +332,18 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = JsonNullable.of(defaultAsset);
             return this;
         }
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(JsonNullable<String> defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = defaultAsset;
@@ -274,12 +351,18 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -287,6 +370,9 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Identifier the account carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -294,6 +380,9 @@ public class V3CreateAccountRequest {
         }
 
 
+        /**
+         * Whether an account is internal to the provider or belongs to an external party
+         */
         public Builder type(V3AccountTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

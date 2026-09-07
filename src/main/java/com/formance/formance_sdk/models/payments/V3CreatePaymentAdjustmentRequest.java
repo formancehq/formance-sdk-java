@@ -20,30 +20,42 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3CreatePaymentAdjustmentRequest {
-
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends BigInteger> amount;
 
-
+    /**
+     * Asset the adjustment is denominated in
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset")
     private Optional<String> asset;
 
-
+    /**
+     * When the adjustment occurred at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private V3PaymentStatusEnum status;
 
@@ -77,33 +89,51 @@ public class V3CreatePaymentAdjustmentRequest {
             JsonNullable.undefined(), reference, status);
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<BigInteger> amount() {
         return (Optional<BigInteger>) amount;
     }
 
+    /**
+     * Asset the adjustment is denominated in
+     */
     @JsonIgnore
     public Optional<String> asset() {
         return asset;
     }
 
+    /**
+     * When the adjustment occurred at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public V3PaymentStatusEnum status() {
         return status;
@@ -114,24 +144,36 @@ public class V3CreatePaymentAdjustmentRequest {
     }
 
 
+    /**
+     * Amount carried by this adjustment
+     */
     public V3CreatePaymentAdjustmentRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public V3CreatePaymentAdjustmentRequest withAmount(long amount) {
         this.amount = Optional.of(BigInteger.valueOf(amount));
         return this;
     }
 
 
+    /**
+     * Amount carried by this adjustment
+     */
     public V3CreatePaymentAdjustmentRequest withAmount(Optional<? extends BigInteger> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the adjustment is denominated in
+     */
     public V3CreatePaymentAdjustmentRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = Optional.ofNullable(asset);
@@ -139,36 +181,54 @@ public class V3CreatePaymentAdjustmentRequest {
     }
 
 
+    /**
+     * Asset the adjustment is denominated in
+     */
     public V3CreatePaymentAdjustmentRequest withAsset(Optional<String> asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * When the adjustment occurred at the provider
+     */
     public V3CreatePaymentAdjustmentRequest withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreatePaymentAdjustmentRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreatePaymentAdjustmentRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Identifier the adjustment carries at the provider
+     */
     public V3CreatePaymentAdjustmentRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public V3CreatePaymentAdjustmentRequest withStatus(V3PaymentStatusEnum status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -231,17 +291,26 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
         }
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(long amount) {
             this.amount = Optional.of(BigInteger.valueOf(amount));
             return this;
         }
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(Optional<? extends BigInteger> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -249,12 +318,18 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * Asset the adjustment is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = Optional.ofNullable(asset);
             return this;
         }
 
+        /**
+         * Asset the adjustment is denominated in
+         */
         public Builder asset(Optional<String> asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -262,6 +337,9 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * When the adjustment occurred at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -269,12 +347,18 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -282,6 +366,9 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * Identifier the adjustment carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -289,6 +376,9 @@ public class V3CreatePaymentAdjustmentRequest {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(V3PaymentStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

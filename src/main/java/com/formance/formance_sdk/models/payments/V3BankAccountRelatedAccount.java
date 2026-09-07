@@ -13,11 +13,15 @@ import java.time.OffsetDateTime;
 
 
 public class V3BankAccountRelatedAccount {
-
+    /**
+     * Identifier of the provider-side account
+     */
     @JsonProperty("accountID")
     private String accountID;
 
-
+    /**
+     * When the bank account was forwarded to this provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -31,11 +35,17 @@ public class V3BankAccountRelatedAccount {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Identifier of the provider-side account
+     */
     @JsonIgnore
     public String accountID() {
         return accountID;
     }
 
+    /**
+     * When the bank account was forwarded to this provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
@@ -46,12 +56,18 @@ public class V3BankAccountRelatedAccount {
     }
 
 
+    /**
+     * Identifier of the provider-side account
+     */
     public V3BankAccountRelatedAccount withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
         return this;
     }
 
+    /**
+     * When the bank account was forwarded to this provider
+     */
     public V3BankAccountRelatedAccount withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -97,6 +113,9 @@ public class V3BankAccountRelatedAccount {
         }
 
 
+        /**
+         * Identifier of the provider-side account
+         */
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
@@ -104,6 +123,9 @@ public class V3BankAccountRelatedAccount {
         }
 
 
+        /**
+         * When the bank account was forwarded to this provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;

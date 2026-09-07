@@ -7,4 +7,4 @@ OK
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `data`                                                      | [TaskResponseData](../../models/shared/TaskResponseData.md) | :heavy_check_mark:                                          | N/A                                                         |
+| `data`                                                      | [TaskResponseData](../../models/shared/TaskResponseData.md) | :heavy_check_mark:                                          | The requested task                                          |

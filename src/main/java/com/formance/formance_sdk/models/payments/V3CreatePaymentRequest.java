@@ -21,55 +21,79 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3CreatePaymentRequest {
-
+    /**
+     * Status and amount changes to record alongside the payment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("adjustments")
     private Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments;
 
-
+    /**
+     * Current amount of the payment, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the payment was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private Optional<String> destinationAccountID;
 
-
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Payment scheme or rail the payment travels over
+     */
     @JsonProperty("scheme")
     private String scheme;
 
-
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
 
-
+    /**
+     * Direction of a payment
+     */
     @JsonProperty("type")
     private V3PaymentTypeEnum type;
 
@@ -128,63 +152,99 @@ public class V3CreatePaymentRequest {
             scheme, Optional.empty(), type);
     }
 
+    /**
+     * Status and amount changes to record alongside the payment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V3CreatePaymentAdjustmentRequest>> adjustments() {
         return (Optional<List<V3CreatePaymentAdjustmentRequest>>) adjustments;
     }
 
+    /**
+     * Current amount of the payment, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonIgnore
     public Optional<String> destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Payment scheme or rail the payment travels over
+     */
     @JsonIgnore
     public String scheme() {
         return scheme;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonIgnore
     public Optional<String> sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Direction of a payment
+     */
     @JsonIgnore
     public V3PaymentTypeEnum type() {
         return type;
@@ -195,6 +255,9 @@ public class V3CreatePaymentRequest {
     }
 
 
+    /**
+     * Status and amount changes to record alongside the payment
+     */
     public V3CreatePaymentRequest withAdjustments(List<V3CreatePaymentAdjustmentRequest> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = Optional.ofNullable(adjustments);
@@ -202,41 +265,62 @@ public class V3CreatePaymentRequest {
     }
 
 
+    /**
+     * Status and amount changes to record alongside the payment
+     */
     public V3CreatePaymentRequest withAdjustments(Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = adjustments;
         return this;
     }
 
+    /**
+     * Current amount of the payment, in the asset's smallest unit
+     */
     public V3CreatePaymentRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Current amount of the payment, in the asset's smallest unit
+     */
     public V3CreatePaymentRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     public V3CreatePaymentRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     public V3CreatePaymentRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     public V3CreatePaymentRequest withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public V3CreatePaymentRequest withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = Optional.ofNullable(destinationAccountID);
@@ -244,47 +328,71 @@ public class V3CreatePaymentRequest {
     }
 
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public V3CreatePaymentRequest withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     public V3CreatePaymentRequest withInitialAmount(long initialAmount) {
         this.initialAmount = BigInteger.valueOf(initialAmount);
         return this;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     public V3CreatePaymentRequest withInitialAmount(BigInteger initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
         this.initialAmount = initialAmount;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreatePaymentRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3CreatePaymentRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     public V3CreatePaymentRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Payment scheme or rail the payment travels over
+     */
     public V3CreatePaymentRequest withScheme(String scheme) {
         Utils.checkNotNull(scheme, "scheme");
         this.scheme = scheme;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public V3CreatePaymentRequest withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = Optional.ofNullable(sourceAccountID);
@@ -292,12 +400,18 @@ public class V3CreatePaymentRequest {
     }
 
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public V3CreatePaymentRequest withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Direction of a payment
+     */
     public V3CreatePaymentRequest withType(V3PaymentTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -386,12 +500,18 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Status and amount changes to record alongside the payment
+         */
         public Builder adjustments(List<V3CreatePaymentAdjustmentRequest> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
             this.adjustments = Optional.ofNullable(adjustments);
             return this;
         }
 
+        /**
+         * Status and amount changes to record alongside the payment
+         */
         public Builder adjustments(Optional<? extends List<V3CreatePaymentAdjustmentRequest>> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
             this.adjustments = adjustments;
@@ -399,11 +519,17 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Current amount of the payment, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Current amount of the payment, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -411,6 +537,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Asset the payment is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -418,6 +547,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Identifier of the connector the payment belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -425,6 +557,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * When the payment was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -432,12 +567,18 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = Optional.ofNullable(destinationAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(Optional<String> destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -445,11 +586,17 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Amount the payment was created with, before any adjustment
+         */
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
             return this;
         }
 
+        /**
+         * Amount the payment was created with, before any adjustment
+         */
         public Builder initialAmount(BigInteger initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
             this.initialAmount = initialAmount;
@@ -457,12 +604,18 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -470,6 +623,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Identifier the payment carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -477,6 +633,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Payment scheme or rail the payment travels over
+         */
         public Builder scheme(String scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
@@ -484,12 +643,18 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = Optional.ofNullable(sourceAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(Optional<String> sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -497,6 +662,9 @@ public class V3CreatePaymentRequest {
         }
 
 
+        /**
+         * Direction of a payment
+         */
         public Builder type(V3PaymentTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

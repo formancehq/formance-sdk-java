@@ -18,35 +18,49 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class BankAccountRequest {
-
+    /**
+     * Domestic account number. Supply this or an IBAN
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountNumber")
     private Optional<String> accountNumber;
 
-
+    /**
+     * Connector to forward the bank account to on creation
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
-
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonProperty("country")
     private String country;
 
-
+    /**
+     * International bank account number. Supply this or an account number
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private Optional<String> iban;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name for the bank account
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("swiftBicCode")
     private Optional<String> swiftBicCode;
@@ -84,37 +98,58 @@ public class BankAccountRequest {
             Optional.empty());
     }
 
+    /**
+     * Domestic account number. Supply this or an IBAN
+     */
     @JsonIgnore
     public Optional<String> accountNumber() {
         return accountNumber;
     }
 
+    /**
+     * Connector to forward the bank account to on creation
+     */
     @JsonIgnore
     public Optional<String> connectorID() {
         return connectorID;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     @JsonIgnore
     public String country() {
         return country;
     }
 
+    /**
+     * International bank account number. Supply this or an account number
+     */
     @JsonIgnore
     public Optional<String> iban() {
         return iban;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name for the bank account
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     @JsonIgnore
     public Optional<String> swiftBicCode() {
         return swiftBicCode;
@@ -125,6 +160,9 @@ public class BankAccountRequest {
     }
 
 
+    /**
+     * Domestic account number. Supply this or an IBAN
+     */
     public BankAccountRequest withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = Optional.ofNullable(accountNumber);
@@ -132,12 +170,18 @@ public class BankAccountRequest {
     }
 
 
+    /**
+     * Domestic account number. Supply this or an IBAN
+     */
     public BankAccountRequest withAccountNumber(Optional<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
     }
 
+    /**
+     * Connector to forward the bank account to on creation
+     */
     public BankAccountRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = Optional.ofNullable(connectorID);
@@ -145,18 +189,27 @@ public class BankAccountRequest {
     }
 
 
+    /**
+     * Connector to forward the bank account to on creation
+     */
     public BankAccountRequest withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * Country the account is held in, as an ISO 3166-1 alpha-2 code
+     */
     public BankAccountRequest withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
     }
 
+    /**
+     * International bank account number. Supply this or an account number
+     */
     public BankAccountRequest withIban(String iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = Optional.ofNullable(iban);
@@ -164,30 +217,45 @@ public class BankAccountRequest {
     }
 
 
+    /**
+     * International bank account number. Supply this or an account number
+     */
     public BankAccountRequest withIban(Optional<String> iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = iban;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     public BankAccountRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the bank account
+     */
     public BankAccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name for the bank account
+     */
     public BankAccountRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public BankAccountRequest withSwiftBicCode(String swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = Optional.ofNullable(swiftBicCode);
@@ -195,6 +263,9 @@ public class BankAccountRequest {
     }
 
 
+    /**
+     * SWIFT/BIC code identifying the bank
+     */
     public BankAccountRequest withSwiftBicCode(Optional<String> swiftBicCode) {
         Utils.checkNotNull(swiftBicCode, "swiftBicCode");
         this.swiftBicCode = swiftBicCode;
@@ -262,12 +333,18 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * Domestic account number. Supply this or an IBAN
+         */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = Optional.ofNullable(accountNumber);
             return this;
         }
 
+        /**
+         * Domestic account number. Supply this or an IBAN
+         */
         public Builder accountNumber(Optional<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
             this.accountNumber = accountNumber;
@@ -275,12 +352,18 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * Connector to forward the bank account to on creation
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = Optional.ofNullable(connectorID);
             return this;
         }
 
+        /**
+         * Connector to forward the bank account to on creation
+         */
         public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -288,6 +371,9 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * Country the account is held in, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
@@ -295,12 +381,18 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * International bank account number. Supply this or an account number
+         */
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = Optional.ofNullable(iban);
             return this;
         }
 
+        /**
+         * International bank account number. Supply this or an account number
+         */
         public Builder iban(Optional<String> iban) {
             Utils.checkNotNull(iban, "iban");
             this.iban = iban;
@@ -308,12 +400,18 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the bank account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the bank account
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -321,6 +419,9 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * Human-readable name for the bank account
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -328,12 +429,18 @@ public class BankAccountRequest {
         }
 
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(String swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = Optional.ofNullable(swiftBicCode);
             return this;
         }
 
+        /**
+         * SWIFT/BIC code identifying the bank
+         */
         public Builder swiftBicCode(Optional<String> swiftBicCode) {
             Utils.checkNotNull(swiftBicCode, "swiftBicCode");
             this.swiftBicCode = swiftBicCode;
