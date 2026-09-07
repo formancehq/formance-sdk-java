@@ -10,7 +10,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V3UninstallConnectorResponseData
+ * 
+ * <p>The task tracking the uninstall, which completes asynchronously
+ */
 public class V3UninstallConnectorResponseData {
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to

@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class ConnectorResponse {
-
+    /**
+     * The connector that was installed
+     */
     @JsonProperty("data")
     private ConnectorResponseData data;
 
@@ -27,6 +29,9 @@ public class ConnectorResponse {
         this.data = data;
     }
 
+    /**
+     * The connector that was installed
+     */
     @JsonIgnore
     public ConnectorResponseData data() {
         return data;
@@ -37,6 +42,9 @@ public class ConnectorResponse {
     }
 
 
+    /**
+     * The connector that was installed
+     */
     public ConnectorResponse withData(ConnectorResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class ConnectorResponse {
         }
 
 
+        /**
+         * The connector that was installed
+         */
         public Builder data(ConnectorResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -14,29 +14,43 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
+/**
+ * V3ConnectorBase
+ * 
+ * <p>Summary of a connector, without its configuration
+ */
 public class V3ConnectorBase {
-
+    /**
+     * When the connector was installed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<OffsetDateTime> createdAt;
 
-
+    /**
+     * Unique identifier of the connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
-
+    /**
+     * Human-readable name of the connector instance
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
-
+    /**
+     * Stable reference identifying the connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
@@ -65,26 +79,41 @@ public class V3ConnectorBase {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * When the connector was installed
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the connector
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
     }
 
+    /**
+     * Human-readable name of the connector instance
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public Optional<String> provider() {
         return provider;
     }
 
+    /**
+     * Stable reference identifying the connector
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
@@ -95,6 +124,9 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * When the connector was installed
+     */
     public V3ConnectorBase withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = Optional.ofNullable(createdAt);
@@ -102,12 +134,18 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * When the connector was installed
+     */
     public V3ConnectorBase withCreatedAt(Optional<OffsetDateTime> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the connector
+     */
     public V3ConnectorBase withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -115,12 +153,18 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * Unique identifier of the connector
+     */
     public V3ConnectorBase withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Human-readable name of the connector instance
+     */
     public V3ConnectorBase withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -128,12 +172,18 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * Human-readable name of the connector instance
+     */
     public V3ConnectorBase withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public V3ConnectorBase withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -141,12 +191,18 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public V3ConnectorBase withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Stable reference identifying the connector
+     */
     public V3ConnectorBase withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -154,6 +210,9 @@ public class V3ConnectorBase {
     }
 
 
+    /**
+     * Stable reference identifying the connector
+     */
     public V3ConnectorBase withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -212,12 +271,18 @@ public class V3ConnectorBase {
         }
 
 
+        /**
+         * When the connector was installed
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
+        /**
+         * When the connector was installed
+         */
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -225,12 +290,18 @@ public class V3ConnectorBase {
         }
 
 
+        /**
+         * Unique identifier of the connector
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Unique identifier of the connector
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -238,12 +309,18 @@ public class V3ConnectorBase {
         }
 
 
+        /**
+         * Human-readable name of the connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Human-readable name of the connector instance
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -251,12 +328,18 @@ public class V3ConnectorBase {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -264,12 +347,18 @@ public class V3ConnectorBase {
         }
 
 
+        /**
+         * Stable reference identifying the connector
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Stable reference identifying the connector
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;

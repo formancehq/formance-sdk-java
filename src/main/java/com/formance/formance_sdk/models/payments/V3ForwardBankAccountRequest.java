@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ForwardBankAccountRequest {
-
+    /**
+     * Identifier of the connector to forward the bank account to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
@@ -23,6 +25,9 @@ public class V3ForwardBankAccountRequest {
         this.connectorID = connectorID;
     }
 
+    /**
+     * Identifier of the connector to forward the bank account to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
@@ -33,6 +38,9 @@ public class V3ForwardBankAccountRequest {
     }
 
 
+    /**
+     * Identifier of the connector to forward the bank account to
+     */
     public V3ForwardBankAccountRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
@@ -74,6 +82,9 @@ public class V3ForwardBankAccountRequest {
         }
 
 
+        /**
+         * Identifier of the connector to forward the bank account to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;

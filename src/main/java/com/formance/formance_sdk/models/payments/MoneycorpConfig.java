@@ -17,19 +17,27 @@ import java.util.Optional;
 
 
 public class MoneycorpConfig implements ConnectorConfig {
-
+    /**
+     * API key issued by Moneycorp, used to authenticate the connector's requests
+     */
     @JsonProperty("apiKey")
     private String apiKey;
 
-
+    /**
+     * Client ID issued by Moneycorp
+     */
     @JsonProperty("clientID")
     private String clientID;
 
-
+    /**
+     * Base URL of the Moneycorp API the connector calls
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
@@ -41,7 +49,9 @@ public class MoneycorpConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -77,21 +87,33 @@ public class MoneycorpConfig implements ConnectorConfig {
             name, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * API key issued by Moneycorp, used to authenticate the connector's requests
+     */
     @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    /**
+     * Client ID issued by Moneycorp
+     */
     @JsonIgnore
     public String clientID() {
         return clientID;
     }
 
+    /**
+     * Base URL of the Moneycorp API the connector calls
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -106,6 +128,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -117,24 +142,36 @@ public class MoneycorpConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * API key issued by Moneycorp, used to authenticate the connector's requests
+     */
     public MoneycorpConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
         return this;
     }
 
+    /**
+     * Client ID issued by Moneycorp
+     */
     public MoneycorpConfig withClientID(String clientID) {
         Utils.checkNotNull(clientID, "clientID");
         this.clientID = clientID;
         return this;
     }
 
+    /**
+     * Base URL of the Moneycorp API the connector calls
+     */
     public MoneycorpConfig withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public MoneycorpConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -162,6 +199,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public MoneycorpConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -169,6 +209,9 @@ public class MoneycorpConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public MoneycorpConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -231,6 +274,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API key issued by Moneycorp, used to authenticate the connector's requests
+         */
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
@@ -238,6 +284,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Client ID issued by Moneycorp
+         */
         public Builder clientID(String clientID) {
             Utils.checkNotNull(clientID, "clientID");
             this.clientID = clientID;
@@ -245,6 +294,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Base URL of the Moneycorp API the connector calls
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -252,6 +304,9 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -280,12 +335,18 @@ public class MoneycorpConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

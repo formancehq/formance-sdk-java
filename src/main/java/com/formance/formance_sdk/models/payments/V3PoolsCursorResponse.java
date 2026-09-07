@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3PoolsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     @JsonProperty("cursor")
     private V3PoolsCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V3PoolsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     @JsonIgnore
     public V3PoolsCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V3PoolsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     public V3PoolsCursorResponse withCursor(V3PoolsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V3PoolsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of pools
+         */
         public Builder cursor(V3PoolsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

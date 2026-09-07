@@ -17,20 +17,28 @@ import java.util.Optional;
 
 
 public class AdyenConfig implements ConnectorConfig {
-
+    /**
+     * API key issued by Adyen, used to authenticate the connector's requests
+     */
     @JsonProperty("apiKey")
     private String apiKey;
 
-
+    /**
+     * HMAC key used to verify the signature on webhooks sent by Adyen
+     */
     @JsonProperty("hmacKey")
     private String hmacKey;
 
-
+    /**
+     * Prefix of your live Adyen endpoint. Required when the connector runs against production
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("liveEndpointPrefix")
     private Optional<String> liveEndpointPrefix;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
@@ -42,7 +50,9 @@ public class AdyenConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -77,21 +87,33 @@ public class AdyenConfig implements ConnectorConfig {
             name, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * API key issued by Adyen, used to authenticate the connector's requests
+     */
     @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    /**
+     * HMAC key used to verify the signature on webhooks sent by Adyen
+     */
     @JsonIgnore
     public String hmacKey() {
         return hmacKey;
     }
 
+    /**
+     * Prefix of your live Adyen endpoint. Required when the connector runs against production
+     */
     @JsonIgnore
     public Optional<String> liveEndpointPrefix() {
         return liveEndpointPrefix;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -106,6 +128,9 @@ public class AdyenConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -117,18 +142,27 @@ public class AdyenConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * API key issued by Adyen, used to authenticate the connector's requests
+     */
     public AdyenConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
         return this;
     }
 
+    /**
+     * HMAC key used to verify the signature on webhooks sent by Adyen
+     */
     public AdyenConfig withHmacKey(String hmacKey) {
         Utils.checkNotNull(hmacKey, "hmacKey");
         this.hmacKey = hmacKey;
         return this;
     }
 
+    /**
+     * Prefix of your live Adyen endpoint. Required when the connector runs against production
+     */
     public AdyenConfig withLiveEndpointPrefix(String liveEndpointPrefix) {
         Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
         this.liveEndpointPrefix = Optional.ofNullable(liveEndpointPrefix);
@@ -136,12 +170,18 @@ public class AdyenConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Prefix of your live Adyen endpoint. Required when the connector runs against production
+     */
     public AdyenConfig withLiveEndpointPrefix(Optional<String> liveEndpointPrefix) {
         Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
         this.liveEndpointPrefix = liveEndpointPrefix;
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public AdyenConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -169,6 +209,9 @@ public class AdyenConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public AdyenConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -176,6 +219,9 @@ public class AdyenConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public AdyenConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -238,6 +284,9 @@ public class AdyenConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API key issued by Adyen, used to authenticate the connector's requests
+         */
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
@@ -245,6 +294,9 @@ public class AdyenConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * HMAC key used to verify the signature on webhooks sent by Adyen
+         */
         public Builder hmacKey(String hmacKey) {
             Utils.checkNotNull(hmacKey, "hmacKey");
             this.hmacKey = hmacKey;
@@ -252,12 +304,18 @@ public class AdyenConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Prefix of your live Adyen endpoint. Required when the connector runs against production
+         */
         public Builder liveEndpointPrefix(String liveEndpointPrefix) {
             Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
             this.liveEndpointPrefix = Optional.ofNullable(liveEndpointPrefix);
             return this;
         }
 
+        /**
+         * Prefix of your live Adyen endpoint. Required when the connector runs against production
+         */
         public Builder liveEndpointPrefix(Optional<String> liveEndpointPrefix) {
             Utils.checkNotNull(liveEndpointPrefix, "liveEndpointPrefix");
             this.liveEndpointPrefix = liveEndpointPrefix;
@@ -265,6 +323,9 @@ public class AdyenConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -293,12 +354,18 @@ public class AdyenConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

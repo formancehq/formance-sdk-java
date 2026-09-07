@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class ConnectorConfigResponse {
-
+    /**
+     * A connector's configuration, whose shape depends on the provider
+     */
     @JsonProperty("data")
     private ConnectorConfig data;
 
@@ -27,6 +29,9 @@ public class ConnectorConfigResponse {
         this.data = data;
     }
 
+    /**
+     * A connector's configuration, whose shape depends on the provider
+     */
     @JsonIgnore
     public ConnectorConfig data() {
         return data;
@@ -37,6 +42,9 @@ public class ConnectorConfigResponse {
     }
 
 
+    /**
+     * A connector's configuration, whose shape depends on the provider
+     */
     public ConnectorConfigResponse withData(ConnectorConfig data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class ConnectorConfigResponse {
         }
 
 
+        /**
+         * A connector's configuration, whose shape depends on the provider
+         */
         public Builder data(ConnectorConfig data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

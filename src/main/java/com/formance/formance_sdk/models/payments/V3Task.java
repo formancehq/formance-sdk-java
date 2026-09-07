@@ -15,36 +15,54 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3Task
+ * 
+ * <p>An asynchronous unit of work, tracking an operation that completes in the background
+ */
 public class V3Task {
-
+    /**
+     * Identifier of the connector the task runs against
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
-
+    /**
+     * When the task was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Identifier of the object the task created, once it has succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdObjectID")
     private Optional<String> createdObjectID;
 
-
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the task
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Where a task stands, from processing through to succeeded or failed
+     */
     @JsonProperty("status")
     private V3TaskStatusEnum status;
 
-
+    /**
+     * When the task was last updated
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -83,36 +101,57 @@ public class V3Task {
             updatedAt);
     }
 
+    /**
+     * Identifier of the connector the task runs against
+     */
     @JsonIgnore
     public Optional<String> connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the task was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Identifier of the object the task created, once it has succeeded
+     */
     @JsonIgnore
     public Optional<String> createdObjectID() {
         return createdObjectID;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the task
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Where a task stands, from processing through to succeeded or failed
+     */
     @JsonIgnore
     public V3TaskStatusEnum status() {
         return status;
     }
 
+    /**
+     * When the task was last updated
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -123,6 +162,9 @@ public class V3Task {
     }
 
 
+    /**
+     * Identifier of the connector the task runs against
+     */
     public V3Task withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = Optional.ofNullable(connectorID);
@@ -130,18 +172,27 @@ public class V3Task {
     }
 
 
+    /**
+     * Identifier of the connector the task runs against
+     */
     public V3Task withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the task was created
+     */
     public V3Task withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Identifier of the object the task created, once it has succeeded
+     */
     public V3Task withCreatedObjectID(String createdObjectID) {
         Utils.checkNotNull(createdObjectID, "createdObjectID");
         this.createdObjectID = Optional.ofNullable(createdObjectID);
@@ -149,36 +200,54 @@ public class V3Task {
     }
 
 
+    /**
+     * Identifier of the object the task created, once it has succeeded
+     */
     public V3Task withCreatedObjectID(Optional<String> createdObjectID) {
         Utils.checkNotNull(createdObjectID, "createdObjectID");
         this.createdObjectID = createdObjectID;
         return this;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     public V3Task withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     public V3Task withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the task
+     */
     public V3Task withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Where a task stands, from processing through to succeeded or failed
+     */
     public V3Task withStatus(V3TaskStatusEnum status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * When the task was last updated
+     */
     public V3Task withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -246,12 +315,18 @@ public class V3Task {
         }
 
 
+        /**
+         * Identifier of the connector the task runs against
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = Optional.ofNullable(connectorID);
             return this;
         }
 
+        /**
+         * Identifier of the connector the task runs against
+         */
         public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -259,6 +334,9 @@ public class V3Task {
         }
 
 
+        /**
+         * When the task was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -266,12 +344,18 @@ public class V3Task {
         }
 
 
+        /**
+         * Identifier of the object the task created, once it has succeeded
+         */
         public Builder createdObjectID(String createdObjectID) {
             Utils.checkNotNull(createdObjectID, "createdObjectID");
             this.createdObjectID = Optional.ofNullable(createdObjectID);
             return this;
         }
 
+        /**
+         * Identifier of the object the task created, once it has succeeded
+         */
         public Builder createdObjectID(Optional<String> createdObjectID) {
             Utils.checkNotNull(createdObjectID, "createdObjectID");
             this.createdObjectID = createdObjectID;
@@ -279,12 +363,18 @@ public class V3Task {
         }
 
 
+        /**
+         * Why the task failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the task failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -292,6 +382,9 @@ public class V3Task {
         }
 
 
+        /**
+         * Unique identifier of the task
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -299,6 +392,9 @@ public class V3Task {
         }
 
 
+        /**
+         * Where a task stands, from processing through to succeeded or failed
+         */
         public Builder status(V3TaskStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -306,6 +402,9 @@ public class V3Task {
         }
 
 
+        /**
+         * When the task was last updated
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

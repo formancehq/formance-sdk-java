@@ -17,15 +17,21 @@ import java.util.Optional;
 
 
 public class GenericConfig implements ConnectorConfig {
-
+    /**
+     * API key used to authenticate the connector's requests
+     */
     @JsonProperty("apiKey")
     private String apiKey;
 
-
+    /**
+     * Base URL of the API the connector calls
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
@@ -36,7 +42,9 @@ public class GenericConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -68,16 +76,25 @@ public class GenericConfig implements ConnectorConfig {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * API key used to authenticate the connector's requests
+     */
     @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    /**
+     * Base URL of the API the connector calls
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -91,6 +108,9 @@ public class GenericConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -102,18 +122,27 @@ public class GenericConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * API key used to authenticate the connector's requests
+     */
     public GenericConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
         return this;
     }
 
+    /**
+     * Base URL of the API the connector calls
+     */
     public GenericConfig withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public GenericConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -139,6 +168,9 @@ public class GenericConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public GenericConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -146,6 +178,9 @@ public class GenericConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public GenericConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -204,6 +239,9 @@ public class GenericConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API key used to authenticate the connector's requests
+         */
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
@@ -211,6 +249,9 @@ public class GenericConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Base URL of the API the connector calls
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -218,6 +259,9 @@ public class GenericConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -244,12 +288,18 @@ public class GenericConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

@@ -13,23 +13,33 @@ import java.time.OffsetDateTime;
 
 
 public class BankAccountRelatedAccounts {
-
+    /**
+     * Identifier of the provider-side account
+     */
     @JsonProperty("accountID")
     private String accountID;
 
-
+    /**
+     * Identifier of the connector holding the provider-side account
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the bank account was forwarded to this provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the link between the bank account and the provider
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonProperty("provider")
     private String provider;
 
@@ -52,26 +62,41 @@ public class BankAccountRelatedAccounts {
         this.provider = provider;
     }
 
+    /**
+     * Identifier of the provider-side account
+     */
     @JsonIgnore
     public String accountID() {
         return accountID;
     }
 
+    /**
+     * Identifier of the connector holding the provider-side account
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the bank account was forwarded to this provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the link between the bank account and the provider
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public String provider() {
         return provider;
@@ -82,30 +107,45 @@ public class BankAccountRelatedAccounts {
     }
 
 
+    /**
+     * Identifier of the provider-side account
+     */
     public BankAccountRelatedAccounts withAccountID(String accountID) {
         Utils.checkNotNull(accountID, "accountID");
         this.accountID = accountID;
         return this;
     }
 
+    /**
+     * Identifier of the connector holding the provider-side account
+     */
     public BankAccountRelatedAccounts withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the bank account was forwarded to this provider
+     */
     public BankAccountRelatedAccounts withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the link between the bank account and the provider
+     */
     public BankAccountRelatedAccounts withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public BankAccountRelatedAccounts withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -164,6 +204,9 @@ public class BankAccountRelatedAccounts {
         }
 
 
+        /**
+         * Identifier of the provider-side account
+         */
         public Builder accountID(String accountID) {
             Utils.checkNotNull(accountID, "accountID");
             this.accountID = accountID;
@@ -171,6 +214,9 @@ public class BankAccountRelatedAccounts {
         }
 
 
+        /**
+         * Identifier of the connector holding the provider-side account
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -178,6 +224,9 @@ public class BankAccountRelatedAccounts {
         }
 
 
+        /**
+         * When the bank account was forwarded to this provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -185,6 +234,9 @@ public class BankAccountRelatedAccounts {
         }
 
 
+        /**
+         * Unique identifier of the link between the bank account and the provider
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -192,6 +244,9 @@ public class BankAccountRelatedAccounts {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

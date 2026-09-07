@@ -18,33 +18,47 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3PaymentServiceUserConnection {
-
+    /**
+     * Identifier of the open banking connection at the provider
+     */
     @JsonProperty("connectionID")
     private String connectionID;
 
-
+    /**
+     * Identifier of the connector holding the connection
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the connection was established
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * When data was last refreshed over this connection
+     */
     @JsonProperty("dataUpdatedAt")
     private OffsetDateTime dataUpdatedAt;
 
-
+    /**
+     * Why the connection is failing, absent while it is healthy
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Whether an open banking connection is still usable or needs the user to reconnect
+     */
     @JsonProperty("status")
     private V3ConnectionStatusEnum status;
 
@@ -84,37 +98,58 @@ public class V3PaymentServiceUserConnection {
             status);
     }
 
+    /**
+     * Identifier of the open banking connection at the provider
+     */
     @JsonIgnore
     public String connectionID() {
         return connectionID;
     }
 
+    /**
+     * Identifier of the connector holding the connection
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the connection was established
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * When data was last refreshed over this connection
+     */
     @JsonIgnore
     public OffsetDateTime dataUpdatedAt() {
         return dataUpdatedAt;
     }
 
+    /**
+     * Why the connection is failing, absent while it is healthy
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Whether an open banking connection is still usable or needs the user to reconnect
+     */
     @JsonIgnore
     public V3ConnectionStatusEnum status() {
         return status;
@@ -125,54 +160,81 @@ public class V3PaymentServiceUserConnection {
     }
 
 
+    /**
+     * Identifier of the open banking connection at the provider
+     */
     public V3PaymentServiceUserConnection withConnectionID(String connectionID) {
         Utils.checkNotNull(connectionID, "connectionID");
         this.connectionID = connectionID;
         return this;
     }
 
+    /**
+     * Identifier of the connector holding the connection
+     */
     public V3PaymentServiceUserConnection withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the connection was established
+     */
     public V3PaymentServiceUserConnection withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * When data was last refreshed over this connection
+     */
     public V3PaymentServiceUserConnection withDataUpdatedAt(OffsetDateTime dataUpdatedAt) {
         Utils.checkNotNull(dataUpdatedAt, "dataUpdatedAt");
         this.dataUpdatedAt = dataUpdatedAt;
         return this;
     }
 
+    /**
+     * Why the connection is failing, absent while it is healthy
+     */
     public V3PaymentServiceUserConnection withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the connection is failing, absent while it is healthy
+     */
     public V3PaymentServiceUserConnection withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentServiceUserConnection withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentServiceUserConnection withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Whether an open banking connection is still usable or needs the user to reconnect
+     */
     public V3PaymentServiceUserConnection withStatus(V3ConnectionStatusEnum status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -240,6 +302,9 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * Identifier of the open banking connection at the provider
+         */
         public Builder connectionID(String connectionID) {
             Utils.checkNotNull(connectionID, "connectionID");
             this.connectionID = connectionID;
@@ -247,6 +312,9 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * Identifier of the connector holding the connection
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -254,6 +322,9 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * When the connection was established
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -261,6 +332,9 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * When data was last refreshed over this connection
+         */
         public Builder dataUpdatedAt(OffsetDateTime dataUpdatedAt) {
             Utils.checkNotNull(dataUpdatedAt, "dataUpdatedAt");
             this.dataUpdatedAt = dataUpdatedAt;
@@ -268,12 +342,18 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * Why the connection is failing, absent while it is healthy
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the connection is failing, absent while it is healthy
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -281,12 +361,18 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -294,6 +380,9 @@ public class V3PaymentServiceUserConnection {
         }
 
 
+        /**
+         * Whether an open banking connection is still usable or needs the user to reconnect
+         */
         public Builder status(V3ConnectionStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

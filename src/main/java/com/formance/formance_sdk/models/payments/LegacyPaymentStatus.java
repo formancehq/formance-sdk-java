@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * LegacyPaymentStatus
+ * 
+ * <p>Status of a payment as reported by the legacy payments API
+ */
 public enum LegacyPaymentStatus {
     PENDING("PENDING"),
     SUCCEEDED("SUCCEEDED"),

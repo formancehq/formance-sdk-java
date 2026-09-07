@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3GetBankAccountResponse {
-
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     @JsonProperty("data")
     private V3BankAccount data;
 
@@ -23,6 +25,9 @@ public class V3GetBankAccountResponse {
         this.data = data;
     }
 
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     @JsonIgnore
     public V3BankAccount data() {
         return data;
@@ -33,6 +38,9 @@ public class V3GetBankAccountResponse {
     }
 
 
+    /**
+     * A bank account registered with Formance and forwardable to connectors
+     */
     public V3GetBankAccountResponse withData(V3BankAccount data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3GetBankAccountResponse {
         }
 
 
+        /**
+         * A bank account registered with Formance and forwardable to connectors
+         */
         public Builder data(V3BankAccount data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

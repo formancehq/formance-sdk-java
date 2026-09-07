@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3UninstallConnectorResponse {
-
+    /**
+     * The task tracking the uninstall, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3UninstallConnectorResponseData data;
 
@@ -23,6 +25,9 @@ public class V3UninstallConnectorResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the uninstall, which completes asynchronously
+     */
     @JsonIgnore
     public V3UninstallConnectorResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3UninstallConnectorResponse {
     }
 
 
+    /**
+     * The task tracking the uninstall, which completes asynchronously
+     */
     public V3UninstallConnectorResponse withData(V3UninstallConnectorResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3UninstallConnectorResponse {
         }
 
 
+        /**
+         * The task tracking the uninstall, which completes asynchronously
+         */
         public Builder data(V3UninstallConnectorResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

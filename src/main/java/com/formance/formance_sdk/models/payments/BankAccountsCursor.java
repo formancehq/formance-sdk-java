@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class BankAccountsCursor {
-
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     @JsonProperty("cursor")
     private BankAccountsCursorCursor cursor;
 
@@ -27,6 +29,9 @@ public class BankAccountsCursor {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     @JsonIgnore
     public BankAccountsCursorCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class BankAccountsCursor {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     public BankAccountsCursor withCursor(BankAccountsCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class BankAccountsCursor {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of bank accounts
+         */
         public Builder cursor(BankAccountsCursorCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

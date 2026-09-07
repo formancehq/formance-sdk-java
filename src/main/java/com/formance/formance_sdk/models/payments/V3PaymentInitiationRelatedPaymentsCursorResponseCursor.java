@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3PaymentInitiationRelatedPaymentsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the payments produced by the initiation
+ */
 public class V3PaymentInitiationRelatedPaymentsCursorResponseCursor {
 
     @JsonProperty("data")

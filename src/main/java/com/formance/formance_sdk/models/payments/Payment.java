@@ -19,72 +19,108 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Payment
+ * 
+ * <p>A payment observed at a provider and surfaced through a connector
+ */
 public class Payment {
-
+    /**
+     * Successive changes to the payment's amount and status
+     */
     @JsonProperty("adjustments")
     private List<PaymentAdjustment> adjustments;
 
-
+    /**
+     * Current amount of the payment after applying its adjustments
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the payment was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Identifier of the account the funds reached
+     */
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
 
-
+    /**
+     * Unique identifier of the payment within Formance
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the payment
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
-
+    /**
+     * The payment provider behind a connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<? extends Connector> provider;
 
-
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("raw")
     private Optional<? extends Map<String, Object>> raw;
 
-
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     @JsonProperty("scheme")
     private PaymentScheme scheme;
 
-
+    /**
+     * Identifier of the account the funds left
+     */
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private PaymentStatus status;
 
-
+    /**
+     * Direction of a payment
+     */
     @JsonProperty("type")
     private PaymentType type;
 
@@ -162,84 +198,132 @@ public class Payment {
             type);
     }
 
+    /**
+     * Successive changes to the payment's amount and status
+     */
     @JsonIgnore
     public List<PaymentAdjustment> adjustments() {
         return adjustments;
     }
 
+    /**
+     * Current amount of the payment after applying its adjustments
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Identifier of the account the funds reached
+     */
     @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Unique identifier of the payment within Formance
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the payment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
     }
 
+    /**
+     * The payment provider behind a connector
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Connector> provider() {
         return (Optional<Connector>) provider;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> raw() {
         return (Optional<Map<String, Object>>) raw;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     @JsonIgnore
     public PaymentScheme scheme() {
         return scheme;
     }
 
+    /**
+     * Identifier of the account the funds left
+     */
     @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public PaymentStatus status() {
         return status;
     }
 
+    /**
+     * Direction of a payment
+     */
     @JsonIgnore
     public PaymentType type() {
         return type;
@@ -250,64 +334,97 @@ public class Payment {
     }
 
 
+    /**
+     * Successive changes to the payment's amount and status
+     */
     public Payment withAdjustments(List<PaymentAdjustment> adjustments) {
         Utils.checkNotNull(adjustments, "adjustments");
         this.adjustments = adjustments;
         return this;
     }
 
+    /**
+     * Current amount of the payment after applying its adjustments
+     */
     public Payment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Current amount of the payment after applying its adjustments
+     */
     public Payment withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     public Payment withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector the payment belongs to
+     */
     public Payment withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the payment was created at the provider
+     */
     public Payment withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reached
+     */
     public Payment withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Unique identifier of the payment within Formance
+     */
     public Payment withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     public Payment withInitialAmount(long initialAmount) {
         this.initialAmount = BigInteger.valueOf(initialAmount);
         return this;
     }
 
+    /**
+     * Amount the payment was created with, before any adjustment
+     */
     public Payment withInitialAmount(BigInteger initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
         this.initialAmount = initialAmount;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the payment
+     */
     public Payment withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -315,12 +432,18 @@ public class Payment {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the payment
+     */
     public Payment withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * The payment provider behind a connector
+     */
     public Payment withProvider(Connector provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -328,12 +451,18 @@ public class Payment {
     }
 
 
+    /**
+     * The payment provider behind a connector
+     */
     public Payment withProvider(Optional<? extends Connector> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     public Payment withRaw(Map<String, Object> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
@@ -341,36 +470,54 @@ public class Payment {
     }
 
 
+    /**
+     * The provider's original payload, passed through untouched
+     */
     public Payment withRaw(Optional<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Identifier the payment carries at the provider
+     */
     public Payment withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Payment scheme or rail a payment travels over
+     */
     public Payment withScheme(PaymentScheme scheme) {
         Utils.checkNotNull(scheme, "scheme");
         this.scheme = scheme;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds left
+     */
     public Payment withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public Payment withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * Direction of a payment
+     */
     public Payment withType(PaymentType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -477,6 +624,9 @@ public class Payment {
         }
 
 
+        /**
+         * Successive changes to the payment's amount and status
+         */
         public Builder adjustments(List<PaymentAdjustment> adjustments) {
             Utils.checkNotNull(adjustments, "adjustments");
             this.adjustments = adjustments;
@@ -484,11 +634,17 @@ public class Payment {
         }
 
 
+        /**
+         * Current amount of the payment after applying its adjustments
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Current amount of the payment after applying its adjustments
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -496,6 +652,9 @@ public class Payment {
         }
 
 
+        /**
+         * Asset the payment is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -503,6 +662,9 @@ public class Payment {
         }
 
 
+        /**
+         * Identifier of the connector the payment belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -510,6 +672,9 @@ public class Payment {
         }
 
 
+        /**
+         * When the payment was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -517,6 +682,9 @@ public class Payment {
         }
 
 
+        /**
+         * Identifier of the account the funds reached
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -524,6 +692,9 @@ public class Payment {
         }
 
 
+        /**
+         * Unique identifier of the payment within Formance
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -531,11 +702,17 @@ public class Payment {
         }
 
 
+        /**
+         * Amount the payment was created with, before any adjustment
+         */
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
             return this;
         }
 
+        /**
+         * Amount the payment was created with, before any adjustment
+         */
         public Builder initialAmount(BigInteger initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
             this.initialAmount = initialAmount;
@@ -543,12 +720,18 @@ public class Payment {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the payment
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the payment
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -556,12 +739,18 @@ public class Payment {
         }
 
 
+        /**
+         * The payment provider behind a connector
+         */
         public Builder provider(Connector provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * The payment provider behind a connector
+         */
         public Builder provider(Optional<? extends Connector> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -569,12 +758,18 @@ public class Payment {
         }
 
 
+        /**
+         * The provider's original payload, passed through untouched
+         */
         public Builder raw(Map<String, Object> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = Optional.ofNullable(raw);
             return this;
         }
 
+        /**
+         * The provider's original payload, passed through untouched
+         */
         public Builder raw(Optional<? extends Map<String, Object>> raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -582,6 +777,9 @@ public class Payment {
         }
 
 
+        /**
+         * Identifier the payment carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -589,6 +787,9 @@ public class Payment {
         }
 
 
+        /**
+         * Payment scheme or rail a payment travels over
+         */
         public Builder scheme(PaymentScheme scheme) {
             Utils.checkNotNull(scheme, "scheme");
             this.scheme = scheme;
@@ -596,6 +797,9 @@ public class Payment {
         }
 
 
+        /**
+         * Identifier of the account the funds left
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -603,6 +807,9 @@ public class Payment {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -610,6 +817,9 @@ public class Payment {
         }
 
 
+        /**
+         * Direction of a payment
+         */
         public Builder type(PaymentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

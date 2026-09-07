@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PaymentScheme
+ * 
+ * <p>Payment scheme or rail a payment travels over
+ */
 public enum PaymentScheme {
     UNKNOWN("unknown"),
     OTHER("other"),

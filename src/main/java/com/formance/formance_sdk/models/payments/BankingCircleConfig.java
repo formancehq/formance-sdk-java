@@ -17,19 +17,27 @@ import java.util.Optional;
 
 
 public class BankingCircleConfig implements ConnectorConfig {
-
+    /**
+     * URL the connector calls to obtain an access token
+     */
     @JsonProperty("authorizationEndpoint")
     private String authorizationEndpoint;
 
-
+    /**
+     * Base URL of the Banking Circle API the connector calls
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Password issued by Banking Circle, used to authenticate the connector
+     */
     @JsonProperty("password")
     private String password;
 
@@ -41,20 +49,28 @@ public class BankingCircleConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
 
-
+    /**
+     * Client certificate presented on the mutual-TLS connection to Banking Circle
+     */
     @JsonProperty("userCertificate")
     private String userCertificate;
 
-
+    /**
+     * Private key matching the client certificate
+     */
     @JsonProperty("userCertificateKey")
     private String userCertificateKey;
 
-
+    /**
+     * Username issued by Banking Circle, used to authenticate the connector
+     */
     @JsonProperty("username")
     private String username;
 
@@ -102,21 +118,33 @@ public class BankingCircleConfig implements ConnectorConfig {
             userCertificate, userCertificateKey, username);
     }
 
+    /**
+     * URL the connector calls to obtain an access token
+     */
     @JsonIgnore
     public String authorizationEndpoint() {
         return authorizationEndpoint;
     }
 
+    /**
+     * Base URL of the Banking Circle API the connector calls
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Password issued by Banking Circle, used to authenticate the connector
+     */
     @JsonIgnore
     public String password() {
         return password;
@@ -131,22 +159,34 @@ public class BankingCircleConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
         return Utils.discriminatorToString(provider);
     }
 
+    /**
+     * Client certificate presented on the mutual-TLS connection to Banking Circle
+     */
     @JsonIgnore
     public String userCertificate() {
         return userCertificate;
     }
 
+    /**
+     * Private key matching the client certificate
+     */
     @JsonIgnore
     public String userCertificateKey() {
         return userCertificateKey;
     }
 
+    /**
+     * Username issued by Banking Circle, used to authenticate the connector
+     */
     @JsonIgnore
     public String username() {
         return username;
@@ -157,24 +197,36 @@ public class BankingCircleConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * URL the connector calls to obtain an access token
+     */
     public BankingCircleConfig withAuthorizationEndpoint(String authorizationEndpoint) {
         Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
         this.authorizationEndpoint = authorizationEndpoint;
         return this;
     }
 
+    /**
+     * Base URL of the Banking Circle API the connector calls
+     */
     public BankingCircleConfig withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public BankingCircleConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Password issued by Banking Circle, used to authenticate the connector
+     */
     public BankingCircleConfig withPassword(String password) {
         Utils.checkNotNull(password, "password");
         this.password = password;
@@ -202,6 +254,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public BankingCircleConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -209,24 +264,36 @@ public class BankingCircleConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public BankingCircleConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Client certificate presented on the mutual-TLS connection to Banking Circle
+     */
     public BankingCircleConfig withUserCertificate(String userCertificate) {
         Utils.checkNotNull(userCertificate, "userCertificate");
         this.userCertificate = userCertificate;
         return this;
     }
 
+    /**
+     * Private key matching the client certificate
+     */
     public BankingCircleConfig withUserCertificateKey(String userCertificateKey) {
         Utils.checkNotNull(userCertificateKey, "userCertificateKey");
         this.userCertificateKey = userCertificateKey;
         return this;
     }
 
+    /**
+     * Username issued by Banking Circle, used to authenticate the connector
+     */
     public BankingCircleConfig withUsername(String username) {
         Utils.checkNotNull(username, "username");
         this.username = username;
@@ -302,6 +369,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * URL the connector calls to obtain an access token
+         */
         public Builder authorizationEndpoint(String authorizationEndpoint) {
             Utils.checkNotNull(authorizationEndpoint, "authorizationEndpoint");
             this.authorizationEndpoint = authorizationEndpoint;
@@ -309,6 +379,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Base URL of the Banking Circle API the connector calls
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -316,6 +389,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -323,6 +399,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Password issued by Banking Circle, used to authenticate the connector
+         */
         public Builder password(String password) {
             Utils.checkNotNull(password, "password");
             this.password = password;
@@ -351,12 +430,18 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -364,6 +449,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Client certificate presented on the mutual-TLS connection to Banking Circle
+         */
         public Builder userCertificate(String userCertificate) {
             Utils.checkNotNull(userCertificate, "userCertificate");
             this.userCertificate = userCertificate;
@@ -371,6 +459,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Private key matching the client certificate
+         */
         public Builder userCertificateKey(String userCertificateKey) {
             Utils.checkNotNull(userCertificateKey, "userCertificateKey");
             this.userCertificateKey = userCertificateKey;
@@ -378,6 +469,9 @@ public class BankingCircleConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Username issued by Banking Circle, used to authenticate the connector
+         */
         public Builder username(String username) {
             Utils.checkNotNull(username, "username");
             this.username = username;

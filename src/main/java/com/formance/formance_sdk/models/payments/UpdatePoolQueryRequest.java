@@ -14,7 +14,9 @@ import java.util.Map;
 
 
 public class UpdatePoolQueryRequest {
-
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @JsonProperty("query")
     private Map<String, Object> query;
 
@@ -26,6 +28,9 @@ public class UpdatePoolQueryRequest {
         this.query = query;
     }
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @JsonIgnore
     public Map<String, Object> query() {
         return query;
@@ -36,6 +41,9 @@ public class UpdatePoolQueryRequest {
     }
 
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     public UpdatePoolQueryRequest withQuery(Map<String, Object> query) {
         Utils.checkNotNull(query, "query");
         this.query = query;
@@ -77,6 +85,9 @@ public class UpdatePoolQueryRequest {
         }
 
 
+        /**
+         * Filter selecting the accounts a dynamic pool contains
+         */
         public Builder query(Map<String, Object> query) {
             Utils.checkNotNull(query, "query");
             this.query = query;

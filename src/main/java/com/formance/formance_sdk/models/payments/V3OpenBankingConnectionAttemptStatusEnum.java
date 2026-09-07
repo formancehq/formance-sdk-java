@@ -8,6 +8,12 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3OpenBankingConnectionAttemptStatusEnum
+ * 
+ * <p>Where a link attempt stands, from pending through to completed on success or exited when the user
+ * abandoned the flow or the provider reported an error
+ */
 public enum V3OpenBankingConnectionAttemptStatusEnum {
     PENDING("pending"),
     COMPLETED("completed"),

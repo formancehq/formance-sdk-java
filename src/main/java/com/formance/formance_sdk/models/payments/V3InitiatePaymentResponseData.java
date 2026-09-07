@@ -13,7 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V3InitiatePaymentResponseData
+ * 
+ * <p>The task tracking the initiation, which completes asynchronously
+ */
 public class V3InitiatePaymentResponseData {
     /**
      * Related payment initiation object ID created.

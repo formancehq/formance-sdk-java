@@ -18,37 +18,55 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3PaymentServiceUser
+ * 
+ * <p>An end user on whose behalf payments and open banking connections are made
+ */
 public class V3PaymentServiceUser {
-
+    /**
+     * A postal address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
     private Optional<? extends V3Address> address;
 
-
+    /**
+     * Bank accounts associated with the user
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bankAccountIDs")
     private JsonNullable<? extends List<String>> bankAccountIDs;
 
-
+    /**
+     * How to reach a payment service user
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contactDetails")
     private Optional<? extends V3ContactDetails> contactDetails;
 
-
+    /**
+     * When the user was registered
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the payment service user
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Full name of the payment service user
+     */
     @JsonProperty("name")
     private String name;
 
@@ -86,40 +104,61 @@ public class V3PaymentServiceUser {
             name);
     }
 
+    /**
+     * A postal address
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V3Address> address() {
         return (Optional<V3Address>) address;
     }
 
+    /**
+     * Bank accounts associated with the user
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<String>> bankAccountIDs() {
         return (JsonNullable<List<String>>) bankAccountIDs;
     }
 
+    /**
+     * How to reach a payment service user
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V3ContactDetails> contactDetails() {
         return (Optional<V3ContactDetails>) contactDetails;
     }
 
+    /**
+     * When the user was registered
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the payment service user
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Full name of the payment service user
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -130,6 +169,9 @@ public class V3PaymentServiceUser {
     }
 
 
+    /**
+     * A postal address
+     */
     public V3PaymentServiceUser withAddress(V3Address address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
@@ -137,24 +179,36 @@ public class V3PaymentServiceUser {
     }
 
 
+    /**
+     * A postal address
+     */
     public V3PaymentServiceUser withAddress(Optional<? extends V3Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    /**
+     * Bank accounts associated with the user
+     */
     public V3PaymentServiceUser withBankAccountIDs(List<String> bankAccountIDs) {
         Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
         this.bankAccountIDs = JsonNullable.of(bankAccountIDs);
         return this;
     }
 
+    /**
+     * Bank accounts associated with the user
+     */
     public V3PaymentServiceUser withBankAccountIDs(JsonNullable<? extends List<String>> bankAccountIDs) {
         Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
         this.bankAccountIDs = bankAccountIDs;
         return this;
     }
 
+    /**
+     * How to reach a payment service user
+     */
     public V3PaymentServiceUser withContactDetails(V3ContactDetails contactDetails) {
         Utils.checkNotNull(contactDetails, "contactDetails");
         this.contactDetails = Optional.ofNullable(contactDetails);
@@ -162,36 +216,54 @@ public class V3PaymentServiceUser {
     }
 
 
+    /**
+     * How to reach a payment service user
+     */
     public V3PaymentServiceUser withContactDetails(Optional<? extends V3ContactDetails> contactDetails) {
         Utils.checkNotNull(contactDetails, "contactDetails");
         this.contactDetails = contactDetails;
         return this;
     }
 
+    /**
+     * When the user was registered
+     */
     public V3PaymentServiceUser withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the payment service user
+     */
     public V3PaymentServiceUser withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentServiceUser withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentServiceUser withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Full name of the payment service user
+     */
     public V3PaymentServiceUser withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -259,12 +331,18 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * A postal address
+         */
         public Builder address(V3Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
             return this;
         }
 
+        /**
+         * A postal address
+         */
         public Builder address(Optional<? extends V3Address> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
@@ -272,12 +350,18 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * Bank accounts associated with the user
+         */
         public Builder bankAccountIDs(List<String> bankAccountIDs) {
             Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
             this.bankAccountIDs = JsonNullable.of(bankAccountIDs);
             return this;
         }
 
+        /**
+         * Bank accounts associated with the user
+         */
         public Builder bankAccountIDs(JsonNullable<? extends List<String>> bankAccountIDs) {
             Utils.checkNotNull(bankAccountIDs, "bankAccountIDs");
             this.bankAccountIDs = bankAccountIDs;
@@ -285,12 +369,18 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * How to reach a payment service user
+         */
         public Builder contactDetails(V3ContactDetails contactDetails) {
             Utils.checkNotNull(contactDetails, "contactDetails");
             this.contactDetails = Optional.ofNullable(contactDetails);
             return this;
         }
 
+        /**
+         * How to reach a payment service user
+         */
         public Builder contactDetails(Optional<? extends V3ContactDetails> contactDetails) {
             Utils.checkNotNull(contactDetails, "contactDetails");
             this.contactDetails = contactDetails;
@@ -298,6 +388,9 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * When the user was registered
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -305,6 +398,9 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * Unique identifier of the payment service user
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -312,12 +408,18 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -325,6 +427,9 @@ public class V3PaymentServiceUser {
         }
 
 
+        /**
+         * Full name of the payment service user
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

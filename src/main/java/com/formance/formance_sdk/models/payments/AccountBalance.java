@@ -15,23 +15,32 @@ import java.time.OffsetDateTime;
 
 
 public class AccountBalance {
-
+    /**
+     * Identifier of the account this balance belongs to
+     */
     @JsonProperty("accountId")
     private String accountId;
 
-
+    /**
+     * Asset the balance is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Amount held, in the asset's smallest unit
+     */
     @JsonProperty("balance")
     private BigInteger balance;
 
-
+    /**
+     * Start of the period this balance covers
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
     /**
+     * Deprecated alias of asset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -39,7 +48,9 @@ public class AccountBalance {
     @Deprecated
     private String currency;
 
-
+    /**
+     * When the balance was last refreshed from the provider
+     */
     @JsonProperty("lastUpdatedAt")
     private OffsetDateTime lastUpdatedAt;
 
@@ -65,27 +76,40 @@ public class AccountBalance {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
+    /**
+     * Identifier of the account this balance belongs to
+     */
     @JsonIgnore
     public String accountId() {
         return accountId;
     }
 
+    /**
+     * Asset the balance is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Amount held, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger balance() {
         return balance;
     }
 
+    /**
+     * Start of the period this balance covers
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
     /**
+     * Deprecated alias of asset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -95,6 +119,9 @@ public class AccountBalance {
         return currency;
     }
 
+    /**
+     * When the balance was last refreshed from the provider
+     */
     @JsonIgnore
     public OffsetDateTime lastUpdatedAt() {
         return lastUpdatedAt;
@@ -105,29 +132,44 @@ public class AccountBalance {
     }
 
 
+    /**
+     * Identifier of the account this balance belongs to
+     */
     public AccountBalance withAccountId(String accountId) {
         Utils.checkNotNull(accountId, "accountId");
         this.accountId = accountId;
         return this;
     }
 
+    /**
+     * Asset the balance is denominated in
+     */
     public AccountBalance withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Amount held, in the asset's smallest unit
+     */
     public AccountBalance withBalance(long balance) {
         this.balance = BigInteger.valueOf(balance);
         return this;
     }
 
+    /**
+     * Amount held, in the asset's smallest unit
+     */
     public AccountBalance withBalance(BigInteger balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
     }
 
+    /**
+     * Start of the period this balance covers
+     */
     public AccountBalance withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -135,6 +177,7 @@ public class AccountBalance {
     }
 
     /**
+     * Deprecated alias of asset, kept for backwards compatibility
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -145,6 +188,9 @@ public class AccountBalance {
         return this;
     }
 
+    /**
+     * When the balance was last refreshed from the provider
+     */
     public AccountBalance withLastUpdatedAt(OffsetDateTime lastUpdatedAt) {
         Utils.checkNotNull(lastUpdatedAt, "lastUpdatedAt");
         this.lastUpdatedAt = lastUpdatedAt;
@@ -208,6 +254,9 @@ public class AccountBalance {
         }
 
 
+        /**
+         * Identifier of the account this balance belongs to
+         */
         public Builder accountId(String accountId) {
             Utils.checkNotNull(accountId, "accountId");
             this.accountId = accountId;
@@ -215,6 +264,9 @@ public class AccountBalance {
         }
 
 
+        /**
+         * Asset the balance is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -222,11 +274,17 @@ public class AccountBalance {
         }
 
 
+        /**
+         * Amount held, in the asset's smallest unit
+         */
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
             return this;
         }
 
+        /**
+         * Amount held, in the asset's smallest unit
+         */
         public Builder balance(BigInteger balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
@@ -234,6 +292,9 @@ public class AccountBalance {
         }
 
 
+        /**
+         * Start of the period this balance covers
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -242,6 +303,7 @@ public class AccountBalance {
 
 
         /**
+         * Deprecated alias of asset, kept for backwards compatibility
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -253,6 +315,9 @@ public class AccountBalance {
         }
 
 
+        /**
+         * When the balance was last refreshed from the provider
+         */
         public Builder lastUpdatedAt(OffsetDateTime lastUpdatedAt) {
             Utils.checkNotNull(lastUpdatedAt, "lastUpdatedAt");
             this.lastUpdatedAt = lastUpdatedAt;

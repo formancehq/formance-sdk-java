@@ -13,14 +13,22 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V3ContactDetails
+ * 
+ * <p>How to reach a payment service user
+ */
 public class V3ContactDetails {
-
+    /**
+     * Email address of the user
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
     private Optional<String> email;
 
-
+    /**
+     * Phone number of the user, in international format
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phoneNumber")
     private Optional<String> phoneNumber;
@@ -39,11 +47,17 @@ public class V3ContactDetails {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Email address of the user
+     */
     @JsonIgnore
     public Optional<String> email() {
         return email;
     }
 
+    /**
+     * Phone number of the user, in international format
+     */
     @JsonIgnore
     public Optional<String> phoneNumber() {
         return phoneNumber;
@@ -54,6 +68,9 @@ public class V3ContactDetails {
     }
 
 
+    /**
+     * Email address of the user
+     */
     public V3ContactDetails withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
@@ -61,12 +78,18 @@ public class V3ContactDetails {
     }
 
 
+    /**
+     * Email address of the user
+     */
     public V3ContactDetails withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
     }
 
+    /**
+     * Phone number of the user, in international format
+     */
     public V3ContactDetails withPhoneNumber(String phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = Optional.ofNullable(phoneNumber);
@@ -74,6 +97,9 @@ public class V3ContactDetails {
     }
 
 
+    /**
+     * Phone number of the user, in international format
+     */
     public V3ContactDetails withPhoneNumber(Optional<String> phoneNumber) {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         this.phoneNumber = phoneNumber;
@@ -119,12 +145,18 @@ public class V3ContactDetails {
         }
 
 
+        /**
+         * Email address of the user
+         */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
             this.email = Optional.ofNullable(email);
             return this;
         }
 
+        /**
+         * Email address of the user
+         */
         public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
@@ -132,12 +164,18 @@ public class V3ContactDetails {
         }
 
 
+        /**
+         * Phone number of the user, in international format
+         */
         public Builder phoneNumber(String phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = Optional.ofNullable(phoneNumber);
             return this;
         }
 
+        /**
+         * Phone number of the user, in international format
+         */
         public Builder phoneNumber(Optional<String> phoneNumber) {
             Utils.checkNotNull(phoneNumber, "phoneNumber");
             this.phoneNumber = phoneNumber;

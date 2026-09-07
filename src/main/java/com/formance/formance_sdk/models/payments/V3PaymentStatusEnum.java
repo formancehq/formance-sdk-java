@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3PaymentStatusEnum
+ * 
+ * <p>Where a payment stands in its lifecycle
+ */
 public enum V3PaymentStatusEnum {
     UNKNOWN("UNKNOWN"),
     PENDING("PENDING"),

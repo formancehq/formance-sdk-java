@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3OrdersCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of orders
+     */
     @JsonProperty("cursor")
     private V3OrdersCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V3OrdersCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of orders
+     */
     @JsonIgnore
     public V3OrdersCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V3OrdersCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of orders
+     */
     public V3OrdersCursorResponse withCursor(V3OrdersCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V3OrdersCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of orders
+         */
         public Builder cursor(V3OrdersCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

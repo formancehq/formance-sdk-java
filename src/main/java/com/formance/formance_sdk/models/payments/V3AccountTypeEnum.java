@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3AccountTypeEnum
+ * 
+ * <p>Whether an account is internal to the provider or belongs to an external party
+ */
 public enum V3AccountTypeEnum {
     UNKNOWN("UNKNOWN"),
     INTERNAL("INTERNAL"),

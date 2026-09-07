@@ -18,24 +18,34 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3ReversePaymentInitiationRequest {
-
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the reversal is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Human-readable reason for the reversal
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     @JsonProperty("reference")
     private String reference;
 
@@ -67,27 +77,42 @@ public class V3ReversePaymentInitiationRequest {
             JsonNullable.undefined(), reference);
     }
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the reversal is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Human-readable reason for the reversal
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     @JsonIgnore
     public String reference() {
         return reference;
@@ -98,41 +123,62 @@ public class V3ReversePaymentInitiationRequest {
     }
 
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     public V3ReversePaymentInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to reverse, in the asset's smallest unit
+     */
     public V3ReversePaymentInitiationRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the reversal is denominated in
+     */
     public V3ReversePaymentInitiationRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Human-readable reason for the reversal
+     */
     public V3ReversePaymentInitiationRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3ReversePaymentInitiationRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3ReversePaymentInitiationRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Caller-supplied identifier for the reversal, used to deduplicate retries
+     */
     public V3ReversePaymentInitiationRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -191,11 +237,17 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        /**
+         * Amount to reverse, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to reverse, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -203,6 +255,9 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        /**
+         * Asset the reversal is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -210,6 +265,9 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        /**
+         * Human-readable reason for the reversal
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -217,12 +275,18 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -230,6 +294,9 @@ public class V3ReversePaymentInitiationRequest {
         }
 
 
+        /**
+         * Caller-supplied identifier for the reversal, used to deduplicate retries
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;

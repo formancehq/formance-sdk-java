@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3PaymentServiceUserDeleteConnectionResponse {
-
+    /**
+     * The task tracking the deletion, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3PaymentServiceUserDeleteConnectionResponseData data;
 
@@ -23,6 +25,9 @@ public class V3PaymentServiceUserDeleteConnectionResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the deletion, which completes asynchronously
+     */
     @JsonIgnore
     public V3PaymentServiceUserDeleteConnectionResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3PaymentServiceUserDeleteConnectionResponse {
     }
 
 
+    /**
+     * The task tracking the deletion, which completes asynchronously
+     */
     public V3PaymentServiceUserDeleteConnectionResponse withData(V3PaymentServiceUserDeleteConnectionResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3PaymentServiceUserDeleteConnectionResponse {
         }
 
 
+        /**
+         * The task tracking the deletion, which completes asynchronously
+         */
         public Builder data(V3PaymentServiceUserDeleteConnectionResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

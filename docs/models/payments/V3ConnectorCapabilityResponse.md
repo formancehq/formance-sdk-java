@@ -5,4 +5,4 @@
 
 | Field                                                      | Type                                                       | Required                                                   | Description                                                |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `data`                                                     | List\<[V3Capability](../../models/shared/V3Capability.md)> | :heavy_check_mark:                                         | N/A                                                        |
+| `data`                                                     | List\<[V3Capability](../../models/shared/V3Capability.md)> | :heavy_check_mark:                                         | Operations this connector supports                         |

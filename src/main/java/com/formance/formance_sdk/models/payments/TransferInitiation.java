@@ -19,82 +19,122 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * TransferInitiation
+ * 
+ * <p>A transfer Formance asked a connector to execute
+ */
 public class TransferInitiation {
-
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector executing the transfer
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the initiation was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Human-readable description carried with the transfer
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
 
-
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the transfer initiation
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Amount the initiation was created with, before any adjustment
+     */
     @JsonProperty("initialAmount")
     private BigInteger initialAmount;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the initiation
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("provider")
     private Optional<String> provider;
 
-
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Successive status changes recorded against the initiation
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAdjustments")
     private Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments;
 
-
+    /**
+     * Payments produced by this initiation
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedPayments")
     private JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments;
 
-
+    /**
+     * When the transfer is scheduled to execute
+     */
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
 
-
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
-
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     @JsonProperty("status")
     private TransferInitiationStatus status;
 
-
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     @JsonProperty("type")
     private TransferInitiationType type;
 
@@ -178,94 +218,148 @@ public class TransferInitiation {
             sourceAccountID, status, type);
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector executing the transfer
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the initiation was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Human-readable description carried with the transfer
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the transfer initiation
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Amount the initiation was created with, before any adjustment
+     */
     @JsonIgnore
     public BigInteger initialAmount() {
         return initialAmount;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the initiation
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public Optional<String> provider() {
         return provider;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Successive status changes recorded against the initiation
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<TransferInitiationAdjustments>> relatedAdjustments() {
         return (Optional<List<TransferInitiationAdjustments>>) relatedAdjustments;
     }
 
+    /**
+     * Payments produced by this initiation
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<TransferInitiationPayments>> relatedPayments() {
         return (JsonNullable<List<TransferInitiationPayments>>) relatedPayments;
     }
 
+    /**
+     * When the transfer is scheduled to execute
+     */
     @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     @JsonIgnore
     public TransferInitiationStatus status() {
         return status;
     }
 
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     @JsonIgnore
     public TransferInitiationType type() {
         return type;
@@ -276,88 +370,133 @@ public class TransferInitiation {
     }
 
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public TransferInitiation withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public TransferInitiation withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     public TransferInitiation withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector executing the transfer
+     */
     public TransferInitiation withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the initiation was created
+     */
     public TransferInitiation withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Human-readable description carried with the transfer
+     */
     public TransferInitiation withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public TransferInitiation withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     public TransferInitiation withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     public TransferInitiation withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the transfer initiation
+     */
     public TransferInitiation withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Amount the initiation was created with, before any adjustment
+     */
     public TransferInitiation withInitialAmount(long initialAmount) {
         this.initialAmount = BigInteger.valueOf(initialAmount);
         return this;
     }
 
+    /**
+     * Amount the initiation was created with, before any adjustment
+     */
     public TransferInitiation withInitialAmount(BigInteger initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
         this.initialAmount = initialAmount;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the initiation
+     */
     public TransferInitiation withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the initiation
+     */
     public TransferInitiation withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public TransferInitiation withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -365,18 +504,27 @@ public class TransferInitiation {
     }
 
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public TransferInitiation withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     public TransferInitiation withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Successive status changes recorded against the initiation
+     */
     public TransferInitiation withRelatedAdjustments(List<TransferInitiationAdjustments> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
@@ -384,42 +532,63 @@ public class TransferInitiation {
     }
 
 
+    /**
+     * Successive status changes recorded against the initiation
+     */
     public TransferInitiation withRelatedAdjustments(Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments) {
         Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
         this.relatedAdjustments = relatedAdjustments;
         return this;
     }
 
+    /**
+     * Payments produced by this initiation
+     */
     public TransferInitiation withRelatedPayments(List<TransferInitiationPayments> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         this.relatedPayments = JsonNullable.of(relatedPayments);
         return this;
     }
 
+    /**
+     * Payments produced by this initiation
+     */
     public TransferInitiation withRelatedPayments(JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments) {
         Utils.checkNotNull(relatedPayments, "relatedPayments");
         this.relatedPayments = relatedPayments;
         return this;
     }
 
+    /**
+     * When the transfer is scheduled to execute
+     */
     public TransferInitiation withScheduledAt(OffsetDateTime scheduledAt) {
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         this.scheduledAt = scheduledAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public TransferInitiation withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     public TransferInitiation withStatus(TransferInitiationStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     public TransferInitiation withType(TransferInitiationType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -534,11 +703,17 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -546,6 +721,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Asset the transfer is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -553,6 +731,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Identifier of the connector executing the transfer
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -560,6 +741,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * When the initiation was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -567,6 +751,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Human-readable description carried with the transfer
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -574,6 +761,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -581,12 +771,18 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Why the initiation failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the initiation failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -594,6 +790,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Unique identifier of the transfer initiation
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -601,11 +800,17 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Amount the initiation was created with, before any adjustment
+         */
         public Builder initialAmount(long initialAmount) {
             this.initialAmount = BigInteger.valueOf(initialAmount);
             return this;
         }
 
+        /**
+         * Amount the initiation was created with, before any adjustment
+         */
         public Builder initialAmount(BigInteger initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
             this.initialAmount = initialAmount;
@@ -613,12 +818,18 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the initiation
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the initiation
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -626,12 +837,18 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -639,6 +856,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Caller-supplied identifier for the initiation
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -646,12 +866,18 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Successive status changes recorded against the initiation
+         */
         public Builder relatedAdjustments(List<TransferInitiationAdjustments> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = Optional.ofNullable(relatedAdjustments);
             return this;
         }
 
+        /**
+         * Successive status changes recorded against the initiation
+         */
         public Builder relatedAdjustments(Optional<? extends List<TransferInitiationAdjustments>> relatedAdjustments) {
             Utils.checkNotNull(relatedAdjustments, "relatedAdjustments");
             this.relatedAdjustments = relatedAdjustments;
@@ -659,12 +885,18 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Payments produced by this initiation
+         */
         public Builder relatedPayments(List<TransferInitiationPayments> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
             this.relatedPayments = JsonNullable.of(relatedPayments);
             return this;
         }
 
+        /**
+         * Payments produced by this initiation
+         */
         public Builder relatedPayments(JsonNullable<? extends List<TransferInitiationPayments>> relatedPayments) {
             Utils.checkNotNull(relatedPayments, "relatedPayments");
             this.relatedPayments = relatedPayments;
@@ -672,6 +904,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * When the transfer is scheduled to execute
+         */
         public Builder scheduledAt(OffsetDateTime scheduledAt) {
             Utils.checkNotNull(scheduledAt, "scheduledAt");
             this.scheduledAt = scheduledAt;
@@ -679,6 +914,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -686,6 +924,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Where a transfer initiation stands in its lifecycle
+         */
         public Builder status(TransferInitiationStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -693,6 +934,9 @@ public class TransferInitiation {
         }
 
 
+        /**
+         * Whether the funds move between your accounts or out to a third party
+         */
         public Builder type(TransferInitiationType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

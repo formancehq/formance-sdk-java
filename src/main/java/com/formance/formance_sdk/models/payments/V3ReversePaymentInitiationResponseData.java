@@ -13,7 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V3ReversePaymentInitiationResponseData
+ * 
+ * <p>The task tracking the reversal, which completes asynchronously
+ */
 public class V3ReversePaymentInitiationResponseData {
     /**
      * Related payment initiation reversal object ID created.

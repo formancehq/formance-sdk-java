@@ -17,7 +17,9 @@ import java.util.List;
  * <p>OK
  */
 public class ConnectorsResponse {
-
+    /**
+     * The connectors installed on this stack
+     */
     @JsonProperty("data")
     private List<ConnectorsResponseData> data;
 
@@ -28,6 +30,9 @@ public class ConnectorsResponse {
         this.data = data;
     }
 
+    /**
+     * The connectors installed on this stack
+     */
     @JsonIgnore
     public List<ConnectorsResponseData> data() {
         return data;
@@ -38,6 +43,9 @@ public class ConnectorsResponse {
     }
 
 
+    /**
+     * The connectors installed on this stack
+     */
     public ConnectorsResponse withData(List<ConnectorsResponseData> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -79,6 +87,9 @@ public class ConnectorsResponse {
         }
 
 
+        /**
+         * The connectors installed on this stack
+         */
         public Builder data(List<ConnectorsResponseData> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

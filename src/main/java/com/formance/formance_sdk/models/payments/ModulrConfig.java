@@ -17,20 +17,28 @@ import java.util.Optional;
 
 
 public class ModulrConfig implements ConnectorConfig {
-
+    /**
+     * API key issued by Modulr, used to authenticate the connector's requests
+     */
     @JsonProperty("apiKey")
     private String apiKey;
 
-
+    /**
+     * API secret issued by Modulr, paired with the API key to sign requests
+     */
     @JsonProperty("apiSecret")
     private String apiSecret;
 
-
+    /**
+     * Base URL of the Modulr API the connector calls
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("endpoint")
     private Optional<String> endpoint;
 
-
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonProperty("name")
     private String name;
 
@@ -42,7 +50,9 @@ public class ModulrConfig implements ConnectorConfig {
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
-
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
     private Optional<String> provider;
@@ -77,21 +87,33 @@ public class ModulrConfig implements ConnectorConfig {
             name, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * API key issued by Modulr, used to authenticate the connector's requests
+     */
     @JsonIgnore
     public String apiKey() {
         return apiKey;
     }
 
+    /**
+     * API secret issued by Modulr, paired with the API key to sign requests
+     */
     @JsonIgnore
     public String apiSecret() {
         return apiSecret;
     }
 
+    /**
+     * Base URL of the Modulr API the connector calls
+     */
     @JsonIgnore
     public Optional<String> endpoint() {
         return endpoint;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -106,6 +128,9 @@ public class ModulrConfig implements ConnectorConfig {
         return pollingPeriod;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     @JsonIgnore
     @Override
     public String provider() {
@@ -117,18 +142,27 @@ public class ModulrConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * API key issued by Modulr, used to authenticate the connector's requests
+     */
     public ModulrConfig withApiKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
         return this;
     }
 
+    /**
+     * API secret issued by Modulr, paired with the API key to sign requests
+     */
     public ModulrConfig withApiSecret(String apiSecret) {
         Utils.checkNotNull(apiSecret, "apiSecret");
         this.apiSecret = apiSecret;
         return this;
     }
 
+    /**
+     * Base URL of the Modulr API the connector calls
+     */
     public ModulrConfig withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = Optional.ofNullable(endpoint);
@@ -136,12 +170,18 @@ public class ModulrConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Base URL of the Modulr API the connector calls
+     */
     public ModulrConfig withEndpoint(Optional<String> endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Human-readable name identifying this connector instance
+     */
     public ModulrConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -169,6 +209,9 @@ public class ModulrConfig implements ConnectorConfig {
         return this;
     }
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public ModulrConfig withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = Optional.ofNullable(provider);
@@ -176,6 +219,9 @@ public class ModulrConfig implements ConnectorConfig {
     }
 
 
+    /**
+     * Identifies the payment provider this configuration targets
+     */
     public ModulrConfig withProvider(Optional<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
@@ -238,6 +284,9 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API key issued by Modulr, used to authenticate the connector's requests
+         */
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
@@ -245,6 +294,9 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * API secret issued by Modulr, paired with the API key to sign requests
+         */
         public Builder apiSecret(String apiSecret) {
             Utils.checkNotNull(apiSecret, "apiSecret");
             this.apiSecret = apiSecret;
@@ -252,12 +304,18 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Base URL of the Modulr API the connector calls
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = Optional.ofNullable(endpoint);
             return this;
         }
 
+        /**
+         * Base URL of the Modulr API the connector calls
+         */
         public Builder endpoint(Optional<String> endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -265,6 +323,9 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Human-readable name identifying this connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -293,12 +354,18 @@ public class ModulrConfig implements ConnectorConfig {
         }
 
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = Optional.ofNullable(provider);
             return this;
         }
 
+        /**
+         * Identifies the payment provider this configuration targets
+         */
         public Builder provider(Optional<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;

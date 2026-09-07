@@ -16,20 +16,28 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TransferInitiationPayments {
-
+    /**
+     * When the payment was produced
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Why the payment failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Identifier of the payment produced by the initiation
+     */
     @JsonProperty("paymentID")
     private String paymentID;
 
-
+    /**
+     * Status of a payment as reported by the legacy payments API
+     */
     @JsonProperty("status")
     private LegacyPaymentStatus status;
 
@@ -57,21 +65,33 @@ public class TransferInitiationPayments {
             status);
     }
 
+    /**
+     * When the payment was produced
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Why the payment failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Identifier of the payment produced by the initiation
+     */
     @JsonIgnore
     public String paymentID() {
         return paymentID;
     }
 
+    /**
+     * Status of a payment as reported by the legacy payments API
+     */
     @JsonIgnore
     public LegacyPaymentStatus status() {
         return status;
@@ -82,30 +102,45 @@ public class TransferInitiationPayments {
     }
 
 
+    /**
+     * When the payment was produced
+     */
     public TransferInitiationPayments withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Why the payment failed, absent when it succeeded
+     */
     public TransferInitiationPayments withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the payment failed, absent when it succeeded
+     */
     public TransferInitiationPayments withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Identifier of the payment produced by the initiation
+     */
     public TransferInitiationPayments withPaymentID(String paymentID) {
         Utils.checkNotNull(paymentID, "paymentID");
         this.paymentID = paymentID;
         return this;
     }
 
+    /**
+     * Status of a payment as reported by the legacy payments API
+     */
     public TransferInitiationPayments withStatus(LegacyPaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -160,6 +195,9 @@ public class TransferInitiationPayments {
         }
 
 
+        /**
+         * When the payment was produced
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -167,12 +205,18 @@ public class TransferInitiationPayments {
         }
 
 
+        /**
+         * Why the payment failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the payment failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -180,6 +224,9 @@ public class TransferInitiationPayments {
         }
 
 
+        /**
+         * Identifier of the payment produced by the initiation
+         */
         public Builder paymentID(String paymentID) {
             Utils.checkNotNull(paymentID, "paymentID");
             this.paymentID = paymentID;
@@ -187,6 +234,9 @@ public class TransferInitiationPayments {
         }
 
 
+        /**
+         * Status of a payment as reported by the legacy payments API
+         */
         public Builder status(LegacyPaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

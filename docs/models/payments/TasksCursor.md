@@ -7,4 +7,4 @@ OK
 
 | Field                                                         | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `cursor`                                                      | [TasksCursorCursor](../../models/shared/TasksCursorCursor.md) | :heavy_check_mark:                                            | N/A                                                           |
+| `cursor`                                                      | [TasksCursorCursor](../../models/shared/TasksCursorCursor.md) | :heavy_check_mark:                                            | Paginated cursor wrapping the list of tasks                   |

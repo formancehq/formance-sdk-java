@@ -27,35 +27,51 @@ public class V3Connector {
     @JsonProperty("capabilities")
     private Optional<? extends List<V3Capability>> capabilities;
 
-
+    /**
+     * The connector's configuration, whose shape depends on the provider
+     */
     @JsonProperty("config")
     private Config config;
 
-
+    /**
+     * When the connector was installed
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the connector
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Human-readable name of the connector instance
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonProperty("provider")
     private String provider;
 
-
+    /**
+     * Stable reference identifying the connector
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Whether the connector is being uninstalled
+     */
     @JsonProperty("scheduledForDeletion")
     private boolean scheduledForDeletion;
 
-
+    /**
+     * When the connector's configuration was last changed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
     private JsonNullable<OffsetDateTime> updatedAt;
@@ -113,41 +129,65 @@ public class V3Connector {
         return (Optional<List<V3Capability>>) capabilities;
     }
 
+    /**
+     * The connector's configuration, whose shape depends on the provider
+     */
     @JsonIgnore
     public Config config() {
         return config;
     }
 
+    /**
+     * When the connector was installed
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the connector
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Human-readable name of the connector instance
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public String provider() {
         return provider;
     }
 
+    /**
+     * Stable reference identifying the connector
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Whether the connector is being uninstalled
+     */
     @JsonIgnore
     public boolean scheduledForDeletion() {
         return scheduledForDeletion;
     }
 
+    /**
+     * When the connector's configuration was last changed
+     */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
         return updatedAt;
@@ -177,54 +217,81 @@ public class V3Connector {
         return this;
     }
 
+    /**
+     * The connector's configuration, whose shape depends on the provider
+     */
     public V3Connector withConfig(Config config) {
         Utils.checkNotNull(config, "config");
         this.config = config;
         return this;
     }
 
+    /**
+     * When the connector was installed
+     */
     public V3Connector withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the connector
+     */
     public V3Connector withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Human-readable name of the connector instance
+     */
     public V3Connector withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public V3Connector withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Stable reference identifying the connector
+     */
     public V3Connector withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Whether the connector is being uninstalled
+     */
     public V3Connector withScheduledForDeletion(boolean scheduledForDeletion) {
         Utils.checkNotNull(scheduledForDeletion, "scheduledForDeletion");
         this.scheduledForDeletion = scheduledForDeletion;
         return this;
     }
 
+    /**
+     * When the connector's configuration was last changed
+     */
     public V3Connector withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
+    /**
+     * When the connector's configuration was last changed
+     */
     public V3Connector withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -319,6 +386,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * The connector's configuration, whose shape depends on the provider
+         */
         public Builder config(Config config) {
             Utils.checkNotNull(config, "config");
             this.config = config;
@@ -326,6 +396,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * When the connector was installed
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -333,6 +406,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * Unique identifier of the connector
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -340,6 +416,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * Human-readable name of the connector instance
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -347,6 +426,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -354,6 +436,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * Stable reference identifying the connector
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -361,6 +446,9 @@ public class V3Connector {
         }
 
 
+        /**
+         * Whether the connector is being uninstalled
+         */
         public Builder scheduledForDeletion(boolean scheduledForDeletion) {
             Utils.checkNotNull(scheduledForDeletion, "scheduledForDeletion");
             this.scheduledForDeletion = scheduledForDeletion;
@@ -368,12 +456,18 @@ public class V3Connector {
         }
 
 
+        /**
+         * When the connector's configuration was last changed
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
+        /**
+         * When the connector's configuration was last changed
+         */
         public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

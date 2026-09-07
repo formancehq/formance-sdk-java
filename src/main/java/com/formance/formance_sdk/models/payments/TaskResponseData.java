@@ -15,6 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 
+/**
+ * TaskResponseData
+ * 
+ * <p>The requested task
+ */
 @JsonDeserialize(using = TaskResponseData._Deserializer.class)
 public class TaskResponseData {
 

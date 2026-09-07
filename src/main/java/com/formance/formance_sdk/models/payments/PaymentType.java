@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PaymentType
+ * 
+ * <p>Direction of a payment
+ */
 public enum PaymentType {
     PAY_IN("PAY-IN"),
     PAYOUT("PAYOUT"),

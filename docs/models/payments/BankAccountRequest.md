@@ -3,12 +3,12 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            | Example                |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `accountNumber`        | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |                        |
-| `connectorID`          | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |                        |
-| `country`              | *String*               | :heavy_check_mark:     | N/A                    | GB                     |
-| `iban`                 | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |                        |
-| `metadata`             | Map\<String, *String*> | :heavy_minus_sign:     | N/A                    |                        |
-| `name`                 | *String*               | :heavy_check_mark:     | N/A                    | My account             |
-| `swiftBicCode`         | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |                        |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `accountNumber`                                                     | *Optional\<String>*                                                 | :heavy_minus_sign:                                                  | Domestic account number. Supply this or an IBAN                     |                                                                     |
+| `connectorID`                                                       | *Optional\<String>*                                                 | :heavy_minus_sign:                                                  | Connector to forward the bank account to on creation                |                                                                     |
+| `country`                                                           | *String*                                                            | :heavy_check_mark:                                                  | Country the account is held in, as an ISO 3166-1 alpha-2 code       | GB                                                                  |
+| `iban`                                                              | *Optional\<String>*                                                 | :heavy_minus_sign:                                                  | International bank account number. Supply this or an account number |                                                                     |
+| `metadata`                                                          | Map\<String, *String*>                                              | :heavy_minus_sign:                                                  | Arbitrary key/value pairs attached to the bank account              |                                                                     |
+| `name`                                                              | *String*                                                            | :heavy_check_mark:                                                  | Human-readable name for the bank account                            | My account                                                          |
+| `swiftBicCode`                                                      | *Optional\<String>*                                                 | :heavy_minus_sign:                                                  | SWIFT/BIC code identifying the bank                                 |                                                                     |

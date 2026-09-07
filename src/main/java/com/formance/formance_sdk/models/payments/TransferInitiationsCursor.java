@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class TransferInitiationsCursor {
-
+    /**
+     * Paginated cursor wrapping the list of transfer initiations
+     */
     @JsonProperty("cursor")
     private TransferInitiationsCursorCursor cursor;
 
@@ -27,6 +29,9 @@ public class TransferInitiationsCursor {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of transfer initiations
+     */
     @JsonIgnore
     public TransferInitiationsCursorCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class TransferInitiationsCursor {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of transfer initiations
+     */
     public TransferInitiationsCursor withCursor(TransferInitiationsCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class TransferInitiationsCursor {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of transfer initiations
+         */
         public Builder cursor(TransferInitiationsCursorCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

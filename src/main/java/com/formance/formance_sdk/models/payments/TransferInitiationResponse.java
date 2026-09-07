@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class TransferInitiationResponse {
-
+    /**
+     * A transfer Formance asked a connector to execute
+     */
     @JsonProperty("data")
     private TransferInitiation data;
 
@@ -27,6 +29,9 @@ public class TransferInitiationResponse {
         this.data = data;
     }
 
+    /**
+     * A transfer Formance asked a connector to execute
+     */
     @JsonIgnore
     public TransferInitiation data() {
         return data;
@@ -37,6 +42,9 @@ public class TransferInitiationResponse {
     }
 
 
+    /**
+     * A transfer Formance asked a connector to execute
+     */
     public TransferInitiationResponse withData(TransferInitiation data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class TransferInitiationResponse {
         }
 
 
+        /**
+         * A transfer Formance asked a connector to execute
+         */
         public Builder data(TransferInitiation data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

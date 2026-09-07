@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3ConnectionStatusEnum
+ * 
+ * <p>Whether an open banking connection is still usable or needs the user to reconnect
+ */
 public enum V3ConnectionStatusEnum {
     ACTIVE("ACTIVE"),
     ERROR("ERROR");

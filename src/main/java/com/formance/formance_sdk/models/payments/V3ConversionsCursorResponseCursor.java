@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3ConversionsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of conversions
+ */
 public class V3ConversionsCursorResponseCursor {
 
     @JsonProperty("data")

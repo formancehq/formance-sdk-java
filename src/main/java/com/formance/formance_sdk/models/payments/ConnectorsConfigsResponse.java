@@ -17,7 +17,9 @@ import java.util.Map;
  * <p>OK
  */
 public class ConnectorsConfigsResponse {
-
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     @JsonProperty("data")
     private Map<String, Map<String, ConnectorsConfigsResponseData>> data;
 
@@ -29,6 +31,9 @@ public class ConnectorsConfigsResponse {
         this.data = data;
     }
 
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     @JsonIgnore
     public Map<String, Map<String, ConnectorsConfigsResponseData>> data() {
         return data;
@@ -39,6 +44,9 @@ public class ConnectorsConfigsResponse {
     }
 
 
+    /**
+     * Configuration schema of every available connector, keyed by provider
+     */
     public ConnectorsConfigsResponse withData(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -80,6 +88,9 @@ public class ConnectorsConfigsResponse {
         }
 
 
+        /**
+         * Configuration schema of every available connector, keyed by provider
+         */
         public Builder data(Map<String, Map<String, ConnectorsConfigsResponseData>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

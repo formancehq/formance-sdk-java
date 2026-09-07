@@ -10,7 +10,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V3RetryPaymentInitiationResponseData
+ * 
+ * <p>The task tracking the retry, which completes asynchronously
+ */
 public class V3RetryPaymentInitiationResponseData {
     /**
      * Since this call is asynchronous, the response will contain the ID of the task that was created to

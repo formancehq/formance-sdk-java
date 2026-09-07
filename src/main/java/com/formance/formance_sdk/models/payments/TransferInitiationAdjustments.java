@@ -18,25 +18,35 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TransferInitiationAdjustments {
-
+    /**
+     * Unique identifier of the adjustment
+     */
     @JsonProperty("adjustmentID")
     private String adjustmentID;
 
-
+    /**
+     * When the adjustment was recorded
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Why this step failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the adjustment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     @JsonProperty("status")
     private TransferInitiationStatus status;
 
@@ -67,27 +77,42 @@ public class TransferInitiationAdjustments {
             JsonNullable.undefined(), status);
     }
 
+    /**
+     * Unique identifier of the adjustment
+     */
     @JsonIgnore
     public String adjustmentID() {
         return adjustmentID;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Why this step failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the adjustment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     @JsonIgnore
     public TransferInitiationStatus status() {
         return status;
@@ -98,42 +123,63 @@ public class TransferInitiationAdjustments {
     }
 
 
+    /**
+     * Unique identifier of the adjustment
+     */
     public TransferInitiationAdjustments withAdjustmentID(String adjustmentID) {
         Utils.checkNotNull(adjustmentID, "adjustmentID");
         this.adjustmentID = adjustmentID;
         return this;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     public TransferInitiationAdjustments withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Why this step failed, absent when it succeeded
+     */
     public TransferInitiationAdjustments withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why this step failed, absent when it succeeded
+     */
     public TransferInitiationAdjustments withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the adjustment
+     */
     public TransferInitiationAdjustments withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the adjustment
+     */
     public TransferInitiationAdjustments withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Where a transfer initiation stands in its lifecycle
+     */
     public TransferInitiationAdjustments withStatus(TransferInitiationStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -192,6 +238,9 @@ public class TransferInitiationAdjustments {
         }
 
 
+        /**
+         * Unique identifier of the adjustment
+         */
         public Builder adjustmentID(String adjustmentID) {
             Utils.checkNotNull(adjustmentID, "adjustmentID");
             this.adjustmentID = adjustmentID;
@@ -199,6 +248,9 @@ public class TransferInitiationAdjustments {
         }
 
 
+        /**
+         * When the adjustment was recorded
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -206,12 +258,18 @@ public class TransferInitiationAdjustments {
         }
 
 
+        /**
+         * Why this step failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why this step failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -219,12 +277,18 @@ public class TransferInitiationAdjustments {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the adjustment
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the adjustment
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -232,6 +296,9 @@ public class TransferInitiationAdjustments {
         }
 
 
+        /**
+         * Where a transfer initiation stands in its lifecycle
+         */
         public Builder status(TransferInitiationStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

@@ -16,32 +16,47 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3PaymentServiceUserLinkAttempt {
-
+    /**
+     * URL the user is sent back to once the provider's flow finishes
+     */
     @JsonProperty("clientRedirectURL")
     private String clientRedirectURL;
 
-
+    /**
+     * Identifier of the connector the user is linking to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the attempt was started
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Why the attempt exited, absent when it completed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the link attempt
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Identifier of the payment service user the attempt belongs to
+     */
     @JsonProperty("psuID")
     private String psuID;
 
-
+    /**
+     * Where a link attempt stands, from pending through to completed on success or exited when the user
+     * abandoned the flow or the provider reported an error
+     */
     @JsonProperty("status")
     private V3OpenBankingConnectionAttemptStatusEnum status;
 
@@ -82,36 +97,58 @@ public class V3PaymentServiceUserLinkAttempt {
             status);
     }
 
+    /**
+     * URL the user is sent back to once the provider's flow finishes
+     */
     @JsonIgnore
     public String clientRedirectURL() {
         return clientRedirectURL;
     }
 
+    /**
+     * Identifier of the connector the user is linking to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the attempt was started
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Why the attempt exited, absent when it completed
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the link attempt
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Identifier of the payment service user the attempt belongs to
+     */
     @JsonIgnore
     public String psuID() {
         return psuID;
     }
 
+    /**
+     * Where a link attempt stands, from pending through to completed on success or exited when the user
+     * abandoned the flow or the provider reported an error
+     */
     @JsonIgnore
     public V3OpenBankingConnectionAttemptStatusEnum status() {
         return status;
@@ -122,48 +159,73 @@ public class V3PaymentServiceUserLinkAttempt {
     }
 
 
+    /**
+     * URL the user is sent back to once the provider's flow finishes
+     */
     public V3PaymentServiceUserLinkAttempt withClientRedirectURL(String clientRedirectURL) {
         Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
         this.clientRedirectURL = clientRedirectURL;
         return this;
     }
 
+    /**
+     * Identifier of the connector the user is linking to
+     */
     public V3PaymentServiceUserLinkAttempt withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the attempt was started
+     */
     public V3PaymentServiceUserLinkAttempt withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Why the attempt exited, absent when it completed
+     */
     public V3PaymentServiceUserLinkAttempt withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the attempt exited, absent when it completed
+     */
     public V3PaymentServiceUserLinkAttempt withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the link attempt
+     */
     public V3PaymentServiceUserLinkAttempt withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Identifier of the payment service user the attempt belongs to
+     */
     public V3PaymentServiceUserLinkAttempt withPsuID(String psuID) {
         Utils.checkNotNull(psuID, "psuID");
         this.psuID = psuID;
         return this;
     }
 
+    /**
+     * Where a link attempt stands, from pending through to completed on success or exited when the user
+     * abandoned the flow or the provider reported an error
+     */
     public V3PaymentServiceUserLinkAttempt withStatus(V3OpenBankingConnectionAttemptStatusEnum status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -231,6 +293,9 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * URL the user is sent back to once the provider's flow finishes
+         */
         public Builder clientRedirectURL(String clientRedirectURL) {
             Utils.checkNotNull(clientRedirectURL, "clientRedirectURL");
             this.clientRedirectURL = clientRedirectURL;
@@ -238,6 +303,9 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * Identifier of the connector the user is linking to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -245,6 +313,9 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * When the attempt was started
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -252,12 +323,18 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * Why the attempt exited, absent when it completed
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the attempt exited, absent when it completed
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -265,6 +342,9 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * Unique identifier of the link attempt
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -272,6 +352,9 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * Identifier of the payment service user the attempt belongs to
+         */
         public Builder psuID(String psuID) {
             Utils.checkNotNull(psuID, "psuID");
             this.psuID = psuID;
@@ -279,6 +362,10 @@ public class V3PaymentServiceUserLinkAttempt {
         }
 
 
+        /**
+         * Where a link attempt stands, from pending through to completed on success or exited when the user
+         * abandoned the flow or the provider reported an error
+         */
         public Builder status(V3OpenBankingConnectionAttemptStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3InitiatePaymentResponse {
-
+    /**
+     * The task tracking the initiation, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3InitiatePaymentResponseData data;
 
@@ -23,6 +25,9 @@ public class V3InitiatePaymentResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the initiation, which completes asynchronously
+     */
     @JsonIgnore
     public V3InitiatePaymentResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3InitiatePaymentResponse {
     }
 
 
+    /**
+     * The task tracking the initiation, which completes asynchronously
+     */
     public V3InitiatePaymentResponse withData(V3InitiatePaymentResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3InitiatePaymentResponse {
         }
 
 
+        /**
+         * The task tracking the initiation, which completes asynchronously
+         */
         public Builder data(V3InitiatePaymentResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

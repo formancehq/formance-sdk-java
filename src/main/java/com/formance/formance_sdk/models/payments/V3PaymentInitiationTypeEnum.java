@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3PaymentInitiationTypeEnum
+ * 
+ * <p>Kind of movement a payment initiation performs, such as a transfer or a payout
+ */
 public enum V3PaymentInitiationTypeEnum {
     UNKNOWN("UNKNOWN"),
     TRANSFER("TRANSFER"),

@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3RetryPaymentInitiationResponse {
-
+    /**
+     * The task tracking the retry, which completes asynchronously
+     */
     @JsonProperty("data")
     private V3RetryPaymentInitiationResponseData data;
 
@@ -23,6 +25,9 @@ public class V3RetryPaymentInitiationResponse {
         this.data = data;
     }
 
+    /**
+     * The task tracking the retry, which completes asynchronously
+     */
     @JsonIgnore
     public V3RetryPaymentInitiationResponseData data() {
         return data;
@@ -33,6 +38,9 @@ public class V3RetryPaymentInitiationResponse {
     }
 
 
+    /**
+     * The task tracking the retry, which completes asynchronously
+     */
     public V3RetryPaymentInitiationResponse withData(V3RetryPaymentInitiationResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3RetryPaymentInitiationResponse {
         }
 
 
+        /**
+         * The task tracking the retry, which completes asynchronously
+         */
         public Builder data(V3RetryPaymentInitiationResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

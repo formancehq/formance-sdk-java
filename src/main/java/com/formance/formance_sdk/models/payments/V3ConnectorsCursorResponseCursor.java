@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3ConnectorsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of connectors
+ */
 public class V3ConnectorsCursorResponseCursor {
 
     @JsonProperty("data")

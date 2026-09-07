@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class PoolsCursor {
-
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     @JsonProperty("cursor")
     private PoolsCursorCursor cursor;
 
@@ -27,6 +29,9 @@ public class PoolsCursor {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     @JsonIgnore
     public PoolsCursorCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class PoolsCursor {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of pools
+     */
     public PoolsCursor withCursor(PoolsCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class PoolsCursor {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of pools
+         */
         public Builder cursor(PoolsCursorCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

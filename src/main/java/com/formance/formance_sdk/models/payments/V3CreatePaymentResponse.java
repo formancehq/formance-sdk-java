@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3CreatePaymentResponse {
-
+    /**
+     * A payment observed at a provider and surfaced through a connector
+     */
     @JsonProperty("data")
     private V3Payment data;
 
@@ -23,6 +25,9 @@ public class V3CreatePaymentResponse {
         this.data = data;
     }
 
+    /**
+     * A payment observed at a provider and surfaced through a connector
+     */
     @JsonIgnore
     public V3Payment data() {
         return data;
@@ -33,6 +38,9 @@ public class V3CreatePaymentResponse {
     }
 
 
+    /**
+     * A payment observed at a provider and surfaced through a connector
+     */
     public V3CreatePaymentResponse withData(V3Payment data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3CreatePaymentResponse {
         }
 
 
+        /**
+         * A payment observed at a provider and surfaced through a connector
+         */
         public Builder data(V3Payment data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

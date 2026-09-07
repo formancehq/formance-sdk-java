@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class AccountResponse {
-
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     @JsonProperty("data")
     private Account data;
 
@@ -27,6 +29,9 @@ public class AccountResponse {
         this.data = data;
     }
 
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     @JsonIgnore
     public Account data() {
         return data;
@@ -37,6 +42,9 @@ public class AccountResponse {
     }
 
 
+    /**
+     * An account held at a payment provider, surfaced through a connector
+     */
     public AccountResponse withData(Account data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class AccountResponse {
         }
 
 
+        /**
+         * An account held at a payment provider, surfaced through a connector
+         */
         public Builder data(Account data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

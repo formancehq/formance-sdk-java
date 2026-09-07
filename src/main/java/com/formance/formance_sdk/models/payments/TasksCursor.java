@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class TasksCursor {
-
+    /**
+     * Paginated cursor wrapping the list of tasks
+     */
     @JsonProperty("cursor")
     private TasksCursorCursor cursor;
 
@@ -27,6 +29,9 @@ public class TasksCursor {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of tasks
+     */
     @JsonIgnore
     public TasksCursorCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class TasksCursor {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of tasks
+     */
     public TasksCursor withCursor(TasksCursorCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class TasksCursor {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of tasks
+         */
         public Builder cursor(TasksCursorCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * TaskStripeState
+ * 
+ * <p>Internal progress state the task resumes from
+ */
 public class TaskStripeState {
     @JsonCreator
     public TaskStripeState() {

@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3BankAccountsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     @JsonProperty("cursor")
     private V3BankAccountsCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V3BankAccountsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     @JsonIgnore
     public V3BankAccountsCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V3BankAccountsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of bank accounts
+     */
     public V3BankAccountsCursorResponse withCursor(V3BankAccountsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V3BankAccountsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of bank accounts
+         */
         public Builder cursor(V3BankAccountsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

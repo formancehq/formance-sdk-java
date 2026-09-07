@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * AccountType
+ * 
+ * <p>Whether an account is internal to the provider or belongs to an external party
+ */
 public enum AccountType {
     UNKNOWN("UNKNOWN"),
     INTERNAL("INTERNAL"),

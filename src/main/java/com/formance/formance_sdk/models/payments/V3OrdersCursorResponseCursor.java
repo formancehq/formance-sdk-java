@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V3OrdersCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of orders
+ */
 public class V3OrdersCursorResponseCursor {
 
     @JsonProperty("data")

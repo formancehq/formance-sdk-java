@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V3PoolTypeEnum
+ * 
+ * <p>Whether a pool holds a fixed account list or is driven by a query
+ */
 public enum V3PoolTypeEnum {
     STATIC("STATIC"),
     DYNAMIC("DYNAMIC");

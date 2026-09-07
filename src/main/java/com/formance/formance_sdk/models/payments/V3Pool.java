@@ -18,30 +18,46 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V3Pool
+ * 
+ * <p>A named group of accounts whose balances are aggregated together
+ */
 public class V3Pool {
-
+    /**
+     * When the pool was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the pool
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Human-readable name of the pool
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Accounts currently in the pool
+     */
     @JsonProperty("poolAccounts")
     private List<String> poolAccounts;
 
-
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("query")
     private Optional<? extends Map<String, Object>> query;
 
-
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends V3PoolTypeEnum> type;
@@ -77,32 +93,50 @@ public class V3Pool {
             poolAccounts, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * When the pool was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the pool
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Human-readable name of the pool
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Accounts currently in the pool
+     */
     @JsonIgnore
     public List<String> poolAccounts() {
         return poolAccounts;
     }
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> query() {
         return (Optional<Map<String, Object>>) query;
     }
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V3PoolTypeEnum> type() {
@@ -114,30 +148,45 @@ public class V3Pool {
     }
 
 
+    /**
+     * When the pool was created
+     */
     public V3Pool withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the pool
+     */
     public V3Pool withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Human-readable name of the pool
+     */
     public V3Pool withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Accounts currently in the pool
+     */
     public V3Pool withPoolAccounts(List<String> poolAccounts) {
         Utils.checkNotNull(poolAccounts, "poolAccounts");
         this.poolAccounts = poolAccounts;
         return this;
     }
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     public V3Pool withQuery(Map<String, Object> query) {
         Utils.checkNotNull(query, "query");
         this.query = Optional.ofNullable(query);
@@ -145,12 +194,18 @@ public class V3Pool {
     }
 
 
+    /**
+     * Filter selecting the accounts a dynamic pool contains
+     */
     public V3Pool withQuery(Optional<? extends Map<String, Object>> query) {
         Utils.checkNotNull(query, "query");
         this.query = query;
         return this;
     }
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     public V3Pool withType(V3PoolTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
@@ -158,6 +213,9 @@ public class V3Pool {
     }
 
 
+    /**
+     * Whether a pool holds a fixed account list or is driven by a query
+     */
     public V3Pool withType(Optional<? extends V3PoolTypeEnum> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -220,6 +278,9 @@ public class V3Pool {
         }
 
 
+        /**
+         * When the pool was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -227,6 +288,9 @@ public class V3Pool {
         }
 
 
+        /**
+         * Unique identifier of the pool
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -234,6 +298,9 @@ public class V3Pool {
         }
 
 
+        /**
+         * Human-readable name of the pool
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -241,6 +308,9 @@ public class V3Pool {
         }
 
 
+        /**
+         * Accounts currently in the pool
+         */
         public Builder poolAccounts(List<String> poolAccounts) {
             Utils.checkNotNull(poolAccounts, "poolAccounts");
             this.poolAccounts = poolAccounts;
@@ -248,12 +318,18 @@ public class V3Pool {
         }
 
 
+        /**
+         * Filter selecting the accounts a dynamic pool contains
+         */
         public Builder query(Map<String, Object> query) {
             Utils.checkNotNull(query, "query");
             this.query = Optional.ofNullable(query);
             return this;
         }
 
+        /**
+         * Filter selecting the accounts a dynamic pool contains
+         */
         public Builder query(Optional<? extends Map<String, Object>> query) {
             Utils.checkNotNull(query, "query");
             this.query = query;
@@ -261,12 +337,18 @@ public class V3Pool {
         }
 
 
+        /**
+         * Whether a pool holds a fixed account list or is driven by a query
+         */
         public Builder type(V3PoolTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * Whether a pool holds a fixed account list or is driven by a query
+         */
         public Builder type(Optional<? extends V3PoolTypeEnum> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

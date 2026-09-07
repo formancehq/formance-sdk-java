@@ -21,49 +21,71 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TransferInitiationRequest {
-
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector to execute the transfer through
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorID")
     private Optional<String> connectorID;
 
-
+    /**
+     * Human-readable description carried with the transfer
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonProperty("destinationAccountID")
     private String destinationAccountID;
 
-
+    /**
+     * Arbitrary key/value pairs to attach to the initiation
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Caller-supplied identifier for the initiation, used to deduplicate retries
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * When the transfer should be executed
+     */
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
 
-
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonProperty("sourceAccountID")
     private String sourceAccountID;
 
-
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     @JsonProperty("type")
     private TransferInitiationRequestType type;
 
-
+    /**
+     * When true, the transfer executes immediately instead of waiting for approval
+     */
     @JsonProperty("validated")
     private boolean validated;
 
@@ -120,57 +142,90 @@ public class TransferInitiationRequest {
             type, validated);
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector to execute the transfer through
+     */
     @JsonIgnore
     public Optional<String> connectorID() {
         return connectorID;
     }
 
+    /**
+     * Human-readable description carried with the transfer
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonIgnore
     public String destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the initiation
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation, used to deduplicate retries
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * When the transfer should be executed
+     */
     @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonIgnore
     public String sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     @JsonIgnore
     public TransferInitiationRequestType type() {
         return type;
     }
 
+    /**
+     * When true, the transfer executes immediately instead of waiting for approval
+     */
     @JsonIgnore
     public boolean validated() {
         return validated;
@@ -181,23 +236,35 @@ public class TransferInitiationRequest {
     }
 
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public TransferInitiationRequest withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public TransferInitiationRequest withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the transfer is denominated in
+     */
     public TransferInitiationRequest withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector to execute the transfer through
+     */
     public TransferInitiationRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = Optional.ofNullable(connectorID);
@@ -205,60 +272,90 @@ public class TransferInitiationRequest {
     }
 
 
+    /**
+     * Identifier of the connector to execute the transfer through
+     */
     public TransferInitiationRequest withConnectorID(Optional<String> connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * Human-readable description carried with the transfer
+     */
     public TransferInitiationRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public TransferInitiationRequest withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the initiation
+     */
     public TransferInitiationRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the initiation
+     */
     public TransferInitiationRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation, used to deduplicate retries
+     */
     public TransferInitiationRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * When the transfer should be executed
+     */
     public TransferInitiationRequest withScheduledAt(OffsetDateTime scheduledAt) {
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         this.scheduledAt = scheduledAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public TransferInitiationRequest withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Whether the funds move between your accounts or out to a third party
+     */
     public TransferInitiationRequest withType(TransferInitiationRequestType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
+    /**
+     * When true, the transfer executes immediately instead of waiting for approval
+     */
     public TransferInitiationRequest withValidated(boolean validated) {
         Utils.checkNotNull(validated, "validated");
         this.validated = validated;
@@ -343,11 +440,17 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -355,6 +458,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Asset the transfer is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -362,12 +468,18 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Identifier of the connector to execute the transfer through
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = Optional.ofNullable(connectorID);
             return this;
         }
 
+        /**
+         * Identifier of the connector to execute the transfer through
+         */
         public Builder connectorID(Optional<String> connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -375,6 +487,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Human-readable description carried with the transfer
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -382,6 +497,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -389,12 +507,18 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs to attach to the initiation
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs to attach to the initiation
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -402,6 +526,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Caller-supplied identifier for the initiation, used to deduplicate retries
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -409,6 +536,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * When the transfer should be executed
+         */
         public Builder scheduledAt(OffsetDateTime scheduledAt) {
             Utils.checkNotNull(scheduledAt, "scheduledAt");
             this.scheduledAt = scheduledAt;
@@ -416,6 +546,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -423,6 +556,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * Whether the funds move between your accounts or out to a third party
+         */
         public Builder type(TransferInitiationRequestType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
@@ -430,6 +566,9 @@ public class TransferInitiationRequest {
         }
 
 
+        /**
+         * When true, the transfer executes immediately instead of waiting for approval
+         */
         public Builder validated(boolean validated) {
             Utils.checkNotNull(validated, "validated");
             this.validated = validated;

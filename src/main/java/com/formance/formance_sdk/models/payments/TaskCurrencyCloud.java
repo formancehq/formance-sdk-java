@@ -17,11 +17,15 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class TaskCurrencyCloud {
-
+    /**
+     * Identifier of the connector the task runs against
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the task was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -29,25 +33,35 @@ public class TaskCurrencyCloud {
     @JsonProperty("descriptor")
     private TaskCurrencyCloudDescriptor descriptor;
 
-
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the task
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Internal progress state the task resumes from
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
     private JsonNullable<? extends TaskCurrencyCloudState> state;
 
-
+    /**
+     * Where a task stands, from pending or active through to stopped, terminated or failed
+     */
     @JsonProperty("status")
     private TaskStatus status;
 
-
+    /**
+     * When the task was last updated
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -91,11 +105,17 @@ public class TaskCurrencyCloud {
             status, updatedAt);
     }
 
+    /**
+     * Identifier of the connector the task runs against
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the task was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
@@ -106,27 +126,42 @@ public class TaskCurrencyCloud {
         return descriptor;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the task
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Internal progress state the task resumes from
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<TaskCurrencyCloudState> state() {
         return (JsonNullable<TaskCurrencyCloudState>) state;
     }
 
+    /**
+     * Where a task stands, from pending or active through to stopped, terminated or failed
+     */
     @JsonIgnore
     public TaskStatus status() {
         return status;
     }
 
+    /**
+     * When the task was last updated
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -137,12 +172,18 @@ public class TaskCurrencyCloud {
     }
 
 
+    /**
+     * Identifier of the connector the task runs against
+     */
     public TaskCurrencyCloud withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the task was created
+     */
     public TaskCurrencyCloud withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -155,42 +196,63 @@ public class TaskCurrencyCloud {
         return this;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     public TaskCurrencyCloud withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the task failed, absent when it succeeded
+     */
     public TaskCurrencyCloud withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the task
+     */
     public TaskCurrencyCloud withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Internal progress state the task resumes from
+     */
     public TaskCurrencyCloud withState(TaskCurrencyCloudState state) {
         Utils.checkNotNull(state, "state");
         this.state = JsonNullable.of(state);
         return this;
     }
 
+    /**
+     * Internal progress state the task resumes from
+     */
     public TaskCurrencyCloud withState(JsonNullable<? extends TaskCurrencyCloudState> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
     }
 
+    /**
+     * Where a task stands, from pending or active through to stopped, terminated or failed
+     */
     public TaskCurrencyCloud withStatus(TaskStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * When the task was last updated
+     */
     public TaskCurrencyCloud withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -262,6 +324,9 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * Identifier of the connector the task runs against
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -269,6 +334,9 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * When the task was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -283,12 +351,18 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * Why the task failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the task failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -296,6 +370,9 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * Unique identifier of the task
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -303,12 +380,18 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * Internal progress state the task resumes from
+         */
         public Builder state(TaskCurrencyCloudState state) {
             Utils.checkNotNull(state, "state");
             this.state = JsonNullable.of(state);
             return this;
         }
 
+        /**
+         * Internal progress state the task resumes from
+         */
         public Builder state(JsonNullable<? extends TaskCurrencyCloudState> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
@@ -316,6 +399,9 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * Where a task stands, from pending or active through to stopped, terminated or failed
+         */
         public Builder status(TaskStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -323,6 +409,9 @@ public class TaskCurrencyCloud {
         }
 
 
+        /**
+         * When the task was last updated
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

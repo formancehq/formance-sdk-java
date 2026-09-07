@@ -12,11 +12,15 @@ import java.lang.String;
 
 
 public class V3PaymentServiceUserUpdateLinkResponse {
-
+    /**
+     * Identifier of the link attempt this URL belongs to
+     */
     @JsonProperty("attemptID")
     private String attemptID;
 
-
+    /**
+     * URL to send the user to so they can renew the connection
+     */
     @JsonProperty("link")
     private String link;
 
@@ -30,11 +34,17 @@ public class V3PaymentServiceUserUpdateLinkResponse {
         this.link = link;
     }
 
+    /**
+     * Identifier of the link attempt this URL belongs to
+     */
     @JsonIgnore
     public String attemptID() {
         return attemptID;
     }
 
+    /**
+     * URL to send the user to so they can renew the connection
+     */
     @JsonIgnore
     public String link() {
         return link;
@@ -45,12 +55,18 @@ public class V3PaymentServiceUserUpdateLinkResponse {
     }
 
 
+    /**
+     * Identifier of the link attempt this URL belongs to
+     */
     public V3PaymentServiceUserUpdateLinkResponse withAttemptID(String attemptID) {
         Utils.checkNotNull(attemptID, "attemptID");
         this.attemptID = attemptID;
         return this;
     }
 
+    /**
+     * URL to send the user to so they can renew the connection
+     */
     public V3PaymentServiceUserUpdateLinkResponse withLink(String link) {
         Utils.checkNotNull(link, "link");
         this.link = link;
@@ -96,6 +112,9 @@ public class V3PaymentServiceUserUpdateLinkResponse {
         }
 
 
+        /**
+         * Identifier of the link attempt this URL belongs to
+         */
         public Builder attemptID(String attemptID) {
             Utils.checkNotNull(attemptID, "attemptID");
             this.attemptID = attemptID;
@@ -103,6 +122,9 @@ public class V3PaymentServiceUserUpdateLinkResponse {
         }
 
 
+        /**
+         * URL to send the user to so they can renew the connection
+         */
         public Builder link(String link) {
             Utils.checkNotNull(link, "link");
             this.link = link;

@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * TransferInitiationType
+ * 
+ * <p>Whether the funds move between your accounts or out to a third party
+ */
 public enum TransferInitiationType {
     TRANSFER("TRANSFER"),
     PAYOUT("PAYOUT");

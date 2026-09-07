@@ -14,26 +14,40 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3Schedule
+ * 
+ * <p>A recurring job a connector runs to fetch data from its provider
+ */
 public class V3Schedule {
-
+    /**
+     * Identifier of the connector this schedule belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the schedule was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the schedule
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * When the schedule was paused, absent while it is running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pausedAt")
     private JsonNullable<OffsetDateTime> pausedAt;
 
-
+    /**
+     * Why the schedule was paused
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pausedReason")
     private JsonNullable<String> pausedReason;
@@ -65,26 +79,41 @@ public class V3Schedule {
             JsonNullable.undefined(), JsonNullable.undefined());
     }
 
+    /**
+     * Identifier of the connector this schedule belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the schedule was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the schedule
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * When the schedule was paused, absent while it is running
+     */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> pausedAt() {
         return pausedAt;
     }
 
+    /**
+     * Why the schedule was paused
+     */
     @JsonIgnore
     public JsonNullable<String> pausedReason() {
         return pausedReason;
@@ -95,42 +124,63 @@ public class V3Schedule {
     }
 
 
+    /**
+     * Identifier of the connector this schedule belongs to
+     */
     public V3Schedule withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the schedule was created
+     */
     public V3Schedule withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the schedule
+     */
     public V3Schedule withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * When the schedule was paused, absent while it is running
+     */
     public V3Schedule withPausedAt(OffsetDateTime pausedAt) {
         Utils.checkNotNull(pausedAt, "pausedAt");
         this.pausedAt = JsonNullable.of(pausedAt);
         return this;
     }
 
+    /**
+     * When the schedule was paused, absent while it is running
+     */
     public V3Schedule withPausedAt(JsonNullable<OffsetDateTime> pausedAt) {
         Utils.checkNotNull(pausedAt, "pausedAt");
         this.pausedAt = pausedAt;
         return this;
     }
 
+    /**
+     * Why the schedule was paused
+     */
     public V3Schedule withPausedReason(String pausedReason) {
         Utils.checkNotNull(pausedReason, "pausedReason");
         this.pausedReason = JsonNullable.of(pausedReason);
         return this;
     }
 
+    /**
+     * Why the schedule was paused
+     */
     public V3Schedule withPausedReason(JsonNullable<String> pausedReason) {
         Utils.checkNotNull(pausedReason, "pausedReason");
         this.pausedReason = pausedReason;
@@ -189,6 +239,9 @@ public class V3Schedule {
         }
 
 
+        /**
+         * Identifier of the connector this schedule belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -196,6 +249,9 @@ public class V3Schedule {
         }
 
 
+        /**
+         * When the schedule was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -203,6 +259,9 @@ public class V3Schedule {
         }
 
 
+        /**
+         * Unique identifier of the schedule
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -210,12 +269,18 @@ public class V3Schedule {
         }
 
 
+        /**
+         * When the schedule was paused, absent while it is running
+         */
         public Builder pausedAt(OffsetDateTime pausedAt) {
             Utils.checkNotNull(pausedAt, "pausedAt");
             this.pausedAt = JsonNullable.of(pausedAt);
             return this;
         }
 
+        /**
+         * When the schedule was paused, absent while it is running
+         */
         public Builder pausedAt(JsonNullable<OffsetDateTime> pausedAt) {
             Utils.checkNotNull(pausedAt, "pausedAt");
             this.pausedAt = pausedAt;
@@ -223,12 +288,18 @@ public class V3Schedule {
         }
 
 
+        /**
+         * Why the schedule was paused
+         */
         public Builder pausedReason(String pausedReason) {
             Utils.checkNotNull(pausedReason, "pausedReason");
             this.pausedReason = JsonNullable.of(pausedReason);
             return this;
         }
 
+        /**
+         * Why the schedule was paused
+         */
         public Builder pausedReason(JsonNullable<String> pausedReason) {
             Utils.checkNotNull(pausedReason, "pausedReason");
             this.pausedReason = pausedReason;

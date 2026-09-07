@@ -18,69 +18,103 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V3PaymentInitiation
+ * 
+ * <p>A payment Formance asked a connector to execute
+ */
 public class V3PaymentInitiation {
-
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Identifier of the connector executing the payment
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the initiation was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Human-readable description carried with the payment
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationAccountID")
     private Optional<String> destinationAccountID;
 
-
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private JsonNullable<String> error;
 
-
+    /**
+     * Unique identifier of the payment initiation
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonProperty("provider")
     private String provider;
 
-
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * When the payment is scheduled to execute
+     */
     @JsonProperty("scheduledAt")
     private OffsetDateTime scheduledAt;
 
-
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceAccountID")
     private Optional<String> sourceAccountID;
 
-
+    /**
+     * Where a payment initiation stands in its lifecycle
+     */
     @JsonProperty("status")
     private V3PaymentInitiationStatusEnum status;
 
-
+    /**
+     * Kind of movement a payment initiation performs, such as a transfer or a payout
+     */
     @JsonProperty("type")
     private V3PaymentInitiationTypeEnum type;
 
@@ -152,77 +186,122 @@ public class V3PaymentInitiation {
             Optional.empty(), status, type);
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Identifier of the connector executing the payment
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the initiation was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Human-readable description carried with the payment
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     @JsonIgnore
     public Optional<String> destinationAccountID() {
         return destinationAccountID;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     @JsonIgnore
     public JsonNullable<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the payment initiation
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     @JsonIgnore
     public String provider() {
         return provider;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * When the payment is scheduled to execute
+     */
     @JsonIgnore
     public OffsetDateTime scheduledAt() {
         return scheduledAt;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     @JsonIgnore
     public Optional<String> sourceAccountID() {
         return sourceAccountID;
     }
 
+    /**
+     * Where a payment initiation stands in its lifecycle
+     */
     @JsonIgnore
     public V3PaymentInitiationStatusEnum status() {
         return status;
     }
 
+    /**
+     * Kind of movement a payment initiation performs, such as a transfer or a payout
+     */
     @JsonIgnore
     public V3PaymentInitiationTypeEnum type() {
         return type;
@@ -233,41 +312,62 @@ public class V3PaymentInitiation {
     }
 
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public V3PaymentInitiation withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to move, in the asset's smallest unit
+     */
     public V3PaymentInitiation withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the payment is denominated in
+     */
     public V3PaymentInitiation withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Identifier of the connector executing the payment
+     */
     public V3PaymentInitiation withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the initiation was created
+     */
     public V3PaymentInitiation withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Human-readable description carried with the payment
+     */
     public V3PaymentInitiation withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public V3PaymentInitiation withDestinationAccountID(String destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = Optional.ofNullable(destinationAccountID);
@@ -275,60 +375,90 @@ public class V3PaymentInitiation {
     }
 
 
+    /**
+     * Identifier of the account the funds reach
+     */
     public V3PaymentInitiation withDestinationAccountID(Optional<String> destinationAccountID) {
         Utils.checkNotNull(destinationAccountID, "destinationAccountID");
         this.destinationAccountID = destinationAccountID;
         return this;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     public V3PaymentInitiation withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = JsonNullable.of(error);
         return this;
     }
 
+    /**
+     * Why the initiation failed, absent when it succeeded
+     */
     public V3PaymentInitiation withError(JsonNullable<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the payment initiation
+     */
     public V3PaymentInitiation withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentInitiation withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V3PaymentInitiation withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Name of the payment provider behind the connector
+     */
     public V3PaymentInitiation withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
     }
 
+    /**
+     * Caller-supplied identifier for the initiation
+     */
     public V3PaymentInitiation withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * When the payment is scheduled to execute
+     */
     public V3PaymentInitiation withScheduledAt(OffsetDateTime scheduledAt) {
         Utils.checkNotNull(scheduledAt, "scheduledAt");
         this.scheduledAt = scheduledAt;
         return this;
     }
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public V3PaymentInitiation withSourceAccountID(String sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = Optional.ofNullable(sourceAccountID);
@@ -336,18 +466,27 @@ public class V3PaymentInitiation {
     }
 
 
+    /**
+     * Identifier of the account the funds leave
+     */
     public V3PaymentInitiation withSourceAccountID(Optional<String> sourceAccountID) {
         Utils.checkNotNull(sourceAccountID, "sourceAccountID");
         this.sourceAccountID = sourceAccountID;
         return this;
     }
 
+    /**
+     * Where a payment initiation stands in its lifecycle
+     */
     public V3PaymentInitiation withStatus(V3PaymentInitiationStatusEnum status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * Kind of movement a payment initiation performs, such as a transfer or a payout
+     */
     public V3PaymentInitiation withType(V3PaymentInitiationTypeEnum type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -449,11 +588,17 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to move, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -461,6 +606,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Asset the payment is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -468,6 +616,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Identifier of the connector executing the payment
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -475,6 +626,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * When the initiation was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -482,6 +636,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Human-readable description carried with the payment
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -489,12 +646,18 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(String destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = Optional.ofNullable(destinationAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds reach
+         */
         public Builder destinationAccountID(Optional<String> destinationAccountID) {
             Utils.checkNotNull(destinationAccountID, "destinationAccountID");
             this.destinationAccountID = destinationAccountID;
@@ -502,12 +665,18 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Why the initiation failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = JsonNullable.of(error);
             return this;
         }
 
+        /**
+         * Why the initiation failed, absent when it succeeded
+         */
         public Builder error(JsonNullable<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -515,6 +684,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Unique identifier of the payment initiation
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -522,12 +694,18 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -535,6 +713,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Name of the payment provider behind the connector
+         */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
@@ -542,6 +723,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Caller-supplied identifier for the initiation
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -549,6 +733,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * When the payment is scheduled to execute
+         */
         public Builder scheduledAt(OffsetDateTime scheduledAt) {
             Utils.checkNotNull(scheduledAt, "scheduledAt");
             this.scheduledAt = scheduledAt;
@@ -556,12 +743,18 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(String sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = Optional.ofNullable(sourceAccountID);
             return this;
         }
 
+        /**
+         * Identifier of the account the funds leave
+         */
         public Builder sourceAccountID(Optional<String> sourceAccountID) {
             Utils.checkNotNull(sourceAccountID, "sourceAccountID");
             this.sourceAccountID = sourceAccountID;
@@ -569,6 +762,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Where a payment initiation stands in its lifecycle
+         */
         public Builder status(V3PaymentInitiationStatusEnum status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -576,6 +772,9 @@ public class V3PaymentInitiation {
         }
 
 
+        /**
+         * Kind of movement a payment initiation performs, such as a transfer or a payout
+         */
         public Builder type(V3PaymentInitiationTypeEnum type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

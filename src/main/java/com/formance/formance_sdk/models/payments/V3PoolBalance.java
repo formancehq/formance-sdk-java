@@ -18,15 +18,21 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class V3PoolBalance {
-
+    /**
+     * Total held across the pool for this asset, in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * Asset the balance is denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Accounts contributing to this balance
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedAccounts")
     private JsonNullable<? extends List<String>> relatedAccounts;
@@ -50,16 +56,25 @@ public class V3PoolBalance {
         this(amount, asset, JsonNullable.undefined());
     }
 
+    /**
+     * Total held across the pool for this asset, in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * Asset the balance is denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Accounts contributing to this balance
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<String>> relatedAccounts() {
@@ -71,29 +86,44 @@ public class V3PoolBalance {
     }
 
 
+    /**
+     * Total held across the pool for this asset, in the asset's smallest unit
+     */
     public V3PoolBalance withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Total held across the pool for this asset, in the asset's smallest unit
+     */
     public V3PoolBalance withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Asset the balance is denominated in
+     */
     public V3PoolBalance withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Accounts contributing to this balance
+     */
     public V3PoolBalance withRelatedAccounts(List<String> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = JsonNullable.of(relatedAccounts);
         return this;
     }
 
+    /**
+     * Accounts contributing to this balance
+     */
     public V3PoolBalance withRelatedAccounts(JsonNullable<? extends List<String>> relatedAccounts) {
         Utils.checkNotNull(relatedAccounts, "relatedAccounts");
         this.relatedAccounts = relatedAccounts;
@@ -143,11 +173,17 @@ public class V3PoolBalance {
         }
 
 
+        /**
+         * Total held across the pool for this asset, in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Total held across the pool for this asset, in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -155,6 +191,9 @@ public class V3PoolBalance {
         }
 
 
+        /**
+         * Asset the balance is denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -162,12 +201,18 @@ public class V3PoolBalance {
         }
 
 
+        /**
+         * Accounts contributing to this balance
+         */
         public Builder relatedAccounts(List<String> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = JsonNullable.of(relatedAccounts);
             return this;
         }
 
+        /**
+         * Accounts contributing to this balance
+         */
         public Builder relatedAccounts(JsonNullable<? extends List<String>> relatedAccounts) {
             Utils.checkNotNull(relatedAccounts, "relatedAccounts");
             this.relatedAccounts = relatedAccounts;

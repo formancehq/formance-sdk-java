@@ -13,34 +13,50 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V3Address
+ * 
+ * <p>A postal address
+ */
 public class V3Address {
-
+    /**
+     * City of the address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
     private Optional<String> city;
 
-
+    /**
+     * Country of the address, as an ISO 3166-1 alpha-2 code
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private Optional<String> country;
 
-
+    /**
+     * Postal or ZIP code of the address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
     private Optional<String> postalCode;
 
-
+    /**
+     * Region, state or province of the address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("region")
     private Optional<String> region;
 
-
+    /**
+     * Street name of the address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetName")
     private Optional<String> streetName;
 
-
+    /**
+     * Street number of the address
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetNumber")
     private Optional<String> streetNumber;
@@ -72,31 +88,49 @@ public class V3Address {
             Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * City of the address
+     */
     @JsonIgnore
     public Optional<String> city() {
         return city;
     }
 
+    /**
+     * Country of the address, as an ISO 3166-1 alpha-2 code
+     */
     @JsonIgnore
     public Optional<String> country() {
         return country;
     }
 
+    /**
+     * Postal or ZIP code of the address
+     */
     @JsonIgnore
     public Optional<String> postalCode() {
         return postalCode;
     }
 
+    /**
+     * Region, state or province of the address
+     */
     @JsonIgnore
     public Optional<String> region() {
         return region;
     }
 
+    /**
+     * Street name of the address
+     */
     @JsonIgnore
     public Optional<String> streetName() {
         return streetName;
     }
 
+    /**
+     * Street number of the address
+     */
     @JsonIgnore
     public Optional<String> streetNumber() {
         return streetNumber;
@@ -107,6 +141,9 @@ public class V3Address {
     }
 
 
+    /**
+     * City of the address
+     */
     public V3Address withCity(String city) {
         Utils.checkNotNull(city, "city");
         this.city = Optional.ofNullable(city);
@@ -114,12 +151,18 @@ public class V3Address {
     }
 
 
+    /**
+     * City of the address
+     */
     public V3Address withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
     }
 
+    /**
+     * Country of the address, as an ISO 3166-1 alpha-2 code
+     */
     public V3Address withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = Optional.ofNullable(country);
@@ -127,12 +170,18 @@ public class V3Address {
     }
 
 
+    /**
+     * Country of the address, as an ISO 3166-1 alpha-2 code
+     */
     public V3Address withCountry(Optional<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
     }
 
+    /**
+     * Postal or ZIP code of the address
+     */
     public V3Address withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = Optional.ofNullable(postalCode);
@@ -140,12 +189,18 @@ public class V3Address {
     }
 
 
+    /**
+     * Postal or ZIP code of the address
+     */
     public V3Address withPostalCode(Optional<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
     }
 
+    /**
+     * Region, state or province of the address
+     */
     public V3Address withRegion(String region) {
         Utils.checkNotNull(region, "region");
         this.region = Optional.ofNullable(region);
@@ -153,12 +208,18 @@ public class V3Address {
     }
 
 
+    /**
+     * Region, state or province of the address
+     */
     public V3Address withRegion(Optional<String> region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
 
+    /**
+     * Street name of the address
+     */
     public V3Address withStreetName(String streetName) {
         Utils.checkNotNull(streetName, "streetName");
         this.streetName = Optional.ofNullable(streetName);
@@ -166,12 +227,18 @@ public class V3Address {
     }
 
 
+    /**
+     * Street name of the address
+     */
     public V3Address withStreetName(Optional<String> streetName) {
         Utils.checkNotNull(streetName, "streetName");
         this.streetName = streetName;
         return this;
     }
 
+    /**
+     * Street number of the address
+     */
     public V3Address withStreetNumber(String streetNumber) {
         Utils.checkNotNull(streetNumber, "streetNumber");
         this.streetNumber = Optional.ofNullable(streetNumber);
@@ -179,6 +246,9 @@ public class V3Address {
     }
 
 
+    /**
+     * Street number of the address
+     */
     public V3Address withStreetNumber(Optional<String> streetNumber) {
         Utils.checkNotNull(streetNumber, "streetNumber");
         this.streetNumber = streetNumber;
@@ -241,12 +311,18 @@ public class V3Address {
         }
 
 
+        /**
+         * City of the address
+         */
         public Builder city(String city) {
             Utils.checkNotNull(city, "city");
             this.city = Optional.ofNullable(city);
             return this;
         }
 
+        /**
+         * City of the address
+         */
         public Builder city(Optional<String> city) {
             Utils.checkNotNull(city, "city");
             this.city = city;
@@ -254,12 +330,18 @@ public class V3Address {
         }
 
 
+        /**
+         * Country of the address, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
             this.country = Optional.ofNullable(country);
             return this;
         }
 
+        /**
+         * Country of the address, as an ISO 3166-1 alpha-2 code
+         */
         public Builder country(Optional<String> country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
@@ -267,12 +349,18 @@ public class V3Address {
         }
 
 
+        /**
+         * Postal or ZIP code of the address
+         */
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
             this.postalCode = Optional.ofNullable(postalCode);
             return this;
         }
 
+        /**
+         * Postal or ZIP code of the address
+         */
         public Builder postalCode(Optional<String> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
             this.postalCode = postalCode;
@@ -280,12 +368,18 @@ public class V3Address {
         }
 
 
+        /**
+         * Region, state or province of the address
+         */
         public Builder region(String region) {
             Utils.checkNotNull(region, "region");
             this.region = Optional.ofNullable(region);
             return this;
         }
 
+        /**
+         * Region, state or province of the address
+         */
         public Builder region(Optional<String> region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
@@ -293,12 +387,18 @@ public class V3Address {
         }
 
 
+        /**
+         * Street name of the address
+         */
         public Builder streetName(String streetName) {
             Utils.checkNotNull(streetName, "streetName");
             this.streetName = Optional.ofNullable(streetName);
             return this;
         }
 
+        /**
+         * Street name of the address
+         */
         public Builder streetName(Optional<String> streetName) {
             Utils.checkNotNull(streetName, "streetName");
             this.streetName = streetName;
@@ -306,12 +406,18 @@ public class V3Address {
         }
 
 
+        /**
+         * Street number of the address
+         */
         public Builder streetNumber(String streetNumber) {
             Utils.checkNotNull(streetNumber, "streetNumber");
             this.streetNumber = Optional.ofNullable(streetNumber);
             return this;
         }
 
+        /**
+         * Street number of the address
+         */
         public Builder streetNumber(Optional<String> streetNumber) {
             Utils.checkNotNull(streetNumber, "streetNumber");
             this.streetNumber = streetNumber;

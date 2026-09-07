@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V3ConnectorScheduleResponse {
-
+    /**
+     * A recurring job a connector runs to fetch data from its provider
+     */
     @JsonProperty("data")
     private V3Schedule data;
 
@@ -23,6 +25,9 @@ public class V3ConnectorScheduleResponse {
         this.data = data;
     }
 
+    /**
+     * A recurring job a connector runs to fetch data from its provider
+     */
     @JsonIgnore
     public V3Schedule data() {
         return data;
@@ -33,6 +38,9 @@ public class V3ConnectorScheduleResponse {
     }
 
 
+    /**
+     * A recurring job a connector runs to fetch data from its provider
+     */
     public V3ConnectorScheduleResponse withData(V3Schedule data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V3ConnectorScheduleResponse {
         }
 
 
+        /**
+         * A recurring job a connector runs to fetch data from its provider
+         */
         public Builder data(V3Schedule data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

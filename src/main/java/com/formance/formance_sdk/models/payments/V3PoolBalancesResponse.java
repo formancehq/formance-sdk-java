@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class V3PoolBalancesResponse {
-
+    /**
+     * Aggregated balances across a pool's accounts
+     */
     @JsonProperty("data")
     private List<V3PoolBalance> data;
 
@@ -24,6 +26,9 @@ public class V3PoolBalancesResponse {
         this.data = data;
     }
 
+    /**
+     * Aggregated balances across a pool's accounts
+     */
     @JsonIgnore
     public List<V3PoolBalance> data() {
         return data;
@@ -34,6 +39,9 @@ public class V3PoolBalancesResponse {
     }
 
 
+    /**
+     * Aggregated balances across a pool's accounts
+     */
     public V3PoolBalancesResponse withData(List<V3PoolBalance> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class V3PoolBalancesResponse {
         }
 
 
+        /**
+         * Aggregated balances across a pool's accounts
+         */
         public Builder data(List<V3PoolBalance> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

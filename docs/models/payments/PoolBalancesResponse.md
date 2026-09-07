@@ -7,4 +7,4 @@ OK
 
 | Field                                               | Type                                                | Required                                            | Description                                         |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `data`                                              | [PoolBalances](../../models/shared/PoolBalances.md) | :heavy_check_mark:                                  | N/A                                                 |
+| `data`                                              | [PoolBalances](../../models/shared/PoolBalances.md) | :heavy_check_mark:                                  | Aggregated balances across a pool's accounts        |

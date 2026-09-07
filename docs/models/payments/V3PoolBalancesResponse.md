@@ -5,4 +5,4 @@
 
 | Field                                                        | Type                                                         | Required                                                     | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `data`                                                       | List\<[V3PoolBalance](../../models/shared/V3PoolBalance.md)> | :heavy_check_mark:                                           | N/A                                                          |
+| `data`                                                       | List\<[V3PoolBalance](../../models/shared/V3PoolBalance.md)> | :heavy_check_mark:                                           | Aggregated balances across a pool's accounts                 |

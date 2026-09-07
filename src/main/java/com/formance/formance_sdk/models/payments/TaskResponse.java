@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class TaskResponse {
-
+    /**
+     * The requested task
+     */
     @JsonProperty("data")
     private TaskResponseData data;
 
@@ -27,6 +29,9 @@ public class TaskResponse {
         this.data = data;
     }
 
+    /**
+     * The requested task
+     */
     @JsonIgnore
     public TaskResponseData data() {
         return data;
@@ -37,6 +42,9 @@ public class TaskResponse {
     }
 
 
+    /**
+     * The requested task
+     */
     public TaskResponse withData(TaskResponseData data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class TaskResponse {
         }
 
 
+        /**
+         * The requested task
+         */
         public Builder data(TaskResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -19,34 +19,48 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AccountRequest {
-
+    /**
+     * Human-readable name of the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accountName")
     private Optional<String> accountName;
 
-
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonProperty("connectorID")
     private String connectorID;
 
-
+    /**
+     * When the account was created at the provider
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultAsset")
     private Optional<String> defaultAsset;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonProperty("reference")
     private String reference;
 
-
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonProperty("type")
     private AccountType type;
 
@@ -85,37 +99,58 @@ public class AccountRequest {
             type);
     }
 
+    /**
+     * Human-readable name of the account
+     */
     @JsonIgnore
     public Optional<String> accountName() {
         return accountName;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     @JsonIgnore
     public String connectorID() {
         return connectorID;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     @JsonIgnore
     public Optional<String> defaultAsset() {
         return defaultAsset;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     @JsonIgnore
     public String reference() {
         return reference;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     @JsonIgnore
     public AccountType type() {
         return type;
@@ -126,6 +161,9 @@ public class AccountRequest {
     }
 
 
+    /**
+     * Human-readable name of the account
+     */
     public AccountRequest withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = Optional.ofNullable(accountName);
@@ -133,24 +171,36 @@ public class AccountRequest {
     }
 
 
+    /**
+     * Human-readable name of the account
+     */
     public AccountRequest withAccountName(Optional<String> accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = accountName;
         return this;
     }
 
+    /**
+     * Identifier of the connector the account belongs to
+     */
     public AccountRequest withConnectorID(String connectorID) {
         Utils.checkNotNull(connectorID, "connectorID");
         this.connectorID = connectorID;
         return this;
     }
 
+    /**
+     * When the account was created at the provider
+     */
     public AccountRequest withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public AccountRequest withDefaultAsset(String defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = Optional.ofNullable(defaultAsset);
@@ -158,30 +208,45 @@ public class AccountRequest {
     }
 
 
+    /**
+     * Asset the account is denominated in by default
+     */
     public AccountRequest withDefaultAsset(Optional<String> defaultAsset) {
         Utils.checkNotNull(defaultAsset, "defaultAsset");
         this.defaultAsset = defaultAsset;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public AccountRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public AccountRequest withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Identifier the account carries at the provider
+     */
     public AccountRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Whether an account is internal to the provider or belongs to an external party
+     */
     public AccountRequest withType(AccountType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -249,12 +314,18 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
             this.accountName = Optional.ofNullable(accountName);
             return this;
         }
 
+        /**
+         * Human-readable name of the account
+         */
         public Builder accountName(Optional<String> accountName) {
             Utils.checkNotNull(accountName, "accountName");
             this.accountName = accountName;
@@ -262,6 +333,9 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Identifier of the connector the account belongs to
+         */
         public Builder connectorID(String connectorID) {
             Utils.checkNotNull(connectorID, "connectorID");
             this.connectorID = connectorID;
@@ -269,6 +343,9 @@ public class AccountRequest {
         }
 
 
+        /**
+         * When the account was created at the provider
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -276,12 +353,18 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(String defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = Optional.ofNullable(defaultAsset);
             return this;
         }
 
+        /**
+         * Asset the account is denominated in by default
+         */
         public Builder defaultAsset(Optional<String> defaultAsset) {
             Utils.checkNotNull(defaultAsset, "defaultAsset");
             this.defaultAsset = defaultAsset;
@@ -289,12 +372,18 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -302,6 +391,9 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Identifier the account carries at the provider
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -309,6 +401,9 @@ public class AccountRequest {
         }
 
 
+        /**
+         * Whether an account is internal to the provider or belongs to an external party
+         */
         public Builder type(AccountType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
