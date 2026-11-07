@@ -1,9 +1,12 @@
 # WorkflowConfig
 
+The stages a workflow runs, in order
+
 
 ## Fields
 
-| Field                          | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `name`                         | *Optional\<String>*            | :heavy_minus_sign:             | N/A                            |
-| `stages`                       | List\<Map\\<String, *Object*>> | :heavy_check_mark:             | N/A                            |
+| Field                                                                                                                       | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `activityMaxAttempts`                                                                                                       | *Optional\<Integer>*                                                                                                        | :heavy_minus_sign:                                                                                                          | Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted. |
+| `name`                                                                                                                      | *Optional\<String>*                                                                                                         | :heavy_minus_sign:                                                                                                          | Human-readable name for the workflow                                                                                        |
+| `stages`                                                                                                                    | List\<Map\\<String, *Object*>>                                                                                              | :heavy_check_mark:                                                                                                          | The stages executed in order when the workflow runs                                                                         |

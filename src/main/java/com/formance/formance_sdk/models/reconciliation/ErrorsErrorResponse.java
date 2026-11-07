@@ -54,16 +54,25 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
     }
 
+    /**
+     * Optional link carrying additional context about the error
+     */
     @Deprecated
     public Optional<String> details() {
         return data().flatMap(Data::details);
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @Deprecated
     public Optional<String> errorCode() {
         return data().map(Data::errorCode);
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @Deprecated
     public Optional<String> errorMessage() {
         return data().map(Data::errorMessage);
@@ -85,16 +94,22 @@ public class ErrorsErrorResponse extends SDKBaseError {
      * <p>Error response
      */
     public static class Data {
-
+        /**
+         * Optional link carrying additional context about the error
+         */
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("details")
         private Optional<String> details;
 
-
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonProperty("errorCode")
         private String errorCode;
 
-
+        /**
+         * Human-readable description of the error
+         */
         @JsonProperty("errorMessage")
         private String errorMessage;
 
@@ -117,16 +132,25 @@ public class ErrorsErrorResponse extends SDKBaseError {
             this(Optional.empty(), errorCode, errorMessage);
         }
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         @JsonIgnore
         public Optional<String> details() {
             return details;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonIgnore
         public String errorCode() {
             return errorCode;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         @JsonIgnore
         public String errorMessage() {
             return errorMessage;
@@ -137,6 +161,9 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -144,18 +171,27 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error
+         */
         public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Data withErrorCode(String errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -205,12 +241,18 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Optional link carrying additional context about the error
+             */
             public Builder details(String details) {
                 Utils.checkNotNull(details, "details");
                 this.details = Optional.ofNullable(details);
                 return this;
             }
 
+            /**
+             * Optional link carrying additional context about the error
+             */
             public Builder details(Optional<String> details) {
                 Utils.checkNotNull(details, "details");
                 this.details = details;
@@ -218,6 +260,9 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Machine-readable error code identifying the failure
+             */
             public Builder errorCode(String errorCode) {
                 Utils.checkNotNull(errorCode, "errorCode");
                 this.errorCode = errorCode;
@@ -225,6 +270,9 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Human-readable description of the error
+             */
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;

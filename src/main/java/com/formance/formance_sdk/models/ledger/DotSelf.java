@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * DotSelf
+ * 
+ * <p>Rules and metadata applied to the segment's own account, as opposed to its children
+ */
 public class DotSelf {
     @JsonCreator
     public DotSelf() {

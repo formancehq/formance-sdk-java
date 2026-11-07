@@ -16,6 +16,12 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 
+/**
+ * V2LogDataDeleteMetadataTargetId
+ * 
+ * <p>Identifier of the entity the metadata was deleted from, either an account address or a transaction
+ * ID
+ */
 @JsonDeserialize(using = V2LogDataDeleteMetadataTargetId._Deserializer.class)
 public class V2LogDataDeleteMetadataTargetId {
 

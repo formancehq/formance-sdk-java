@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class Update {
-
+    /**
+     * Metadata to set on a ledger account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private Optional<? extends UpdateAccount> account;
@@ -32,6 +34,9 @@ public class Update {
         this(Optional.empty());
     }
 
+    /**
+     * Metadata to set on a ledger account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<UpdateAccount> account() {
@@ -43,6 +48,9 @@ public class Update {
     }
 
 
+    /**
+     * Metadata to set on a ledger account
+     */
     public Update withAccount(UpdateAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = Optional.ofNullable(account);
@@ -50,6 +58,9 @@ public class Update {
     }
 
 
+    /**
+     * Metadata to set on a ledger account
+     */
     public Update withAccount(Optional<? extends UpdateAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
@@ -91,12 +102,18 @@ public class Update {
         }
 
 
+        /**
+         * Metadata to set on a ledger account
+         */
         public Builder account(UpdateAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = Optional.ofNullable(account);
             return this;
         }
 
+        /**
+         * Metadata to set on a ledger account
+         */
         public Builder account(Optional<? extends UpdateAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;

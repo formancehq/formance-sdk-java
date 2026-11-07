@@ -33,7 +33,9 @@ public class V2BulkElementRevertTransactionData {
     @JsonProperty("id")
     private BigInteger id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
@@ -75,6 +77,9 @@ public class V2BulkElementRevertTransactionData {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
@@ -123,6 +128,9 @@ public class V2BulkElementRevertTransactionData {
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2BulkElementRevertTransactionData withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -130,6 +138,9 @@ public class V2BulkElementRevertTransactionData {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2BulkElementRevertTransactionData withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -222,12 +233,18 @@ public class V2BulkElementRevertTransactionData {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;

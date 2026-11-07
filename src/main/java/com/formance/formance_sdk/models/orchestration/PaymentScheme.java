@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PaymentScheme
+ * 
+ * <p>Payment scheme or rail the payment travelled over
+ */
 public enum PaymentScheme {
     VISA("visa"),
     MASTERCARD("mastercard"),

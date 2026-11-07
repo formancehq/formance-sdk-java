@@ -5,6 +5,8 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -16,6 +18,14 @@ import java.util.Optional;
 
 
 public class V2RevertTransactionRequest {
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Formance-Bigint-As-String")
+    private Optional<Boolean> formanceBigintAsString;
+
     /**
      * Use an idempotency key
      */
@@ -65,6 +75,7 @@ public class V2RevertTransactionRequest {
 
     @JsonCreator
     public V2RevertTransactionRequest(
+            Optional<Boolean> formanceBigintAsString,
             Optional<String> idempotencyKey,
             Optional<? extends com.formance.formance_sdk.models.ledger.V2RevertTransactionRequest> v2RevertTransactionRequest,
             Optional<Boolean> atEffectiveDate,
@@ -73,6 +84,7 @@ public class V2RevertTransactionRequest {
             BigInteger id,
             String ledger,
             Optional<String> schemaVersion) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(v2RevertTransactionRequest, "v2RevertTransactionRequest");
         Utils.checkNotNull(atEffectiveDate, "atEffectiveDate");
@@ -81,6 +93,7 @@ public class V2RevertTransactionRequest {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(schemaVersion, "schemaVersion");
+        this.formanceBigintAsString = formanceBigintAsString;
         this.idempotencyKey = idempotencyKey;
         this.v2RevertTransactionRequest = v2RevertTransactionRequest;
         this.atEffectiveDate = atEffectiveDate;
@@ -95,8 +108,18 @@ public class V2RevertTransactionRequest {
             BigInteger id,
             String ledger) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), id,
-            ledger, Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            id, ledger, Optional.empty());
+    }
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @JsonIgnore
+    public Optional<Boolean> formanceBigintAsString() {
+        return formanceBigintAsString;
     }
 
     /**
@@ -166,6 +189,29 @@ public class V2RevertTransactionRequest {
         return new Builder();
     }
 
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2RevertTransactionRequest withFormanceBigintAsString(boolean formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+        return this;
+    }
+
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2RevertTransactionRequest withFormanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = formanceBigintAsString;
+        return this;
+    }
 
     /**
      * Use an idempotency key
@@ -313,6 +359,7 @@ public class V2RevertTransactionRequest {
         }
         V2RevertTransactionRequest other = (V2RevertTransactionRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.formanceBigintAsString, other.formanceBigintAsString) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.v2RevertTransactionRequest, other.v2RevertTransactionRequest) &&
             Utils.enhancedDeepEquals(this.atEffectiveDate, other.atEffectiveDate) &&
@@ -326,14 +373,15 @@ public class V2RevertTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idempotencyKey, v2RevertTransactionRequest, atEffectiveDate,
-            dryRun, force, id,
-            ledger, schemaVersion);
+            formanceBigintAsString, idempotencyKey, v2RevertTransactionRequest,
+            atEffectiveDate, dryRun, force,
+            id, ledger, schemaVersion);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RevertTransactionRequest.class,
+                "formanceBigintAsString", formanceBigintAsString,
                 "idempotencyKey", idempotencyKey,
                 "v2RevertTransactionRequest", v2RevertTransactionRequest,
                 "atEffectiveDate", atEffectiveDate,
@@ -346,6 +394,8 @@ public class V2RevertTransactionRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<Boolean> formanceBigintAsString;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -365,6 +415,29 @@ public class V2RevertTransactionRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(boolean formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+            return this;
+        }
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = formanceBigintAsString;
+            return this;
         }
 
 
@@ -506,12 +579,21 @@ public class V2RevertTransactionRequest {
         }
 
         public V2RevertTransactionRequest build() {
+            if (formanceBigintAsString == null) {
+                formanceBigintAsString = _SINGLETON_VALUE_FormanceBigintAsString.value();
+            }
 
             return new V2RevertTransactionRequest(
-                idempotencyKey, v2RevertTransactionRequest, atEffectiveDate,
-                dryRun, force, id,
-                ledger, schemaVersion);
+                formanceBigintAsString, idempotencyKey, v2RevertTransactionRequest,
+                atEffectiveDate, dryRun, force,
+                id, ledger, schemaVersion);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FormanceBigintAsString =
+                new LazySingletonValue<>(
+                        "Formance-Bigint-As-String",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

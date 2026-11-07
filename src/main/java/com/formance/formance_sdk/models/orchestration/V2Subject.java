@@ -9,6 +9,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
+/**
+ * V2Subject
+ * 
+ * <p>The counterparty of a wallet movement, either a ledger account or another wallet
+ */
 @JsonTypeInfo(
         use = Id.CUSTOM,
         property = "type",

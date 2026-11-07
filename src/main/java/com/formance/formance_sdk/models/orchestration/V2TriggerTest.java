@@ -15,14 +15,22 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2TriggerTest
+ * 
+ * <p>Result of evaluating a trigger against a sample event, without running the workflow
+ */
 public class V2TriggerTest {
-
+    /**
+     * How the trigger's filter evaluated against the sample event
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<? extends Filter> filter;
 
-
+    /**
+     * The variables the trigger would build from the sample event
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variables")
     private Optional<? extends Map<String, Variables>> variables;
@@ -41,12 +49,18 @@ public class V2TriggerTest {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * How the trigger's filter evaluated against the sample event
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Filter> filter() {
         return (Optional<Filter>) filter;
     }
 
+    /**
+     * The variables the trigger would build from the sample event
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Variables>> variables() {
@@ -58,6 +72,9 @@ public class V2TriggerTest {
     }
 
 
+    /**
+     * How the trigger's filter evaluated against the sample event
+     */
     public V2TriggerTest withFilter(Filter filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
@@ -65,12 +82,18 @@ public class V2TriggerTest {
     }
 
 
+    /**
+     * How the trigger's filter evaluated against the sample event
+     */
     public V2TriggerTest withFilter(Optional<? extends Filter> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
     }
 
+    /**
+     * The variables the trigger would build from the sample event
+     */
     public V2TriggerTest withVariables(Map<String, Variables> variables) {
         Utils.checkNotNull(variables, "variables");
         this.variables = Optional.ofNullable(variables);
@@ -78,6 +101,9 @@ public class V2TriggerTest {
     }
 
 
+    /**
+     * The variables the trigger would build from the sample event
+     */
     public V2TriggerTest withVariables(Optional<? extends Map<String, Variables>> variables) {
         Utils.checkNotNull(variables, "variables");
         this.variables = variables;
@@ -123,12 +149,18 @@ public class V2TriggerTest {
         }
 
 
+        /**
+         * How the trigger's filter evaluated against the sample event
+         */
         public Builder filter(Filter filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
         }
 
+        /**
+         * How the trigger's filter evaluated against the sample event
+         */
         public Builder filter(Optional<? extends Filter> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
@@ -136,12 +168,18 @@ public class V2TriggerTest {
         }
 
 
+        /**
+         * The variables the trigger would build from the sample event
+         */
         public Builder variables(Map<String, Variables> variables) {
             Utils.checkNotNull(variables, "variables");
             this.variables = Optional.ofNullable(variables);
             return this;
         }
 
+        /**
+         * The variables the trigger would build from the sample event
+         */
         public Builder variables(Optional<? extends Map<String, Variables>> variables) {
             Utils.checkNotNull(variables, "variables");
             this.variables = variables;

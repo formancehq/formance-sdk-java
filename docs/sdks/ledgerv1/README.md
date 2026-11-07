@@ -671,7 +671,7 @@ Show server information
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="getInfo" method="get" path="/api/ledger/_info" -->
+<!-- UsageSnippet language="java" operationID="getInfo" method="get" path="/api/ledger/_info#ledger" -->
 ```java
 package hello.world;
 

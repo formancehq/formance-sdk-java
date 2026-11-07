@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.formance.formance_sdk.models.ledger.V2QueryParams;
+import com.formance.formance_sdk.models.ledger.V2RunQueryParams;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,10 +23,13 @@ public class V2RunQueryRequestBody {
     @JsonProperty("cursor")
     private Optional<String> cursor;
 
-
+    /**
+     * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+     * to volume queries.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("params")
-    private Optional<? extends V2QueryParams> params;
+    private Optional<? extends V2RunQueryParams> params;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,7 +39,7 @@ public class V2RunQueryRequestBody {
     @JsonCreator
     public V2RunQueryRequestBody(
             @JsonProperty("cursor") Optional<String> cursor,
-            @JsonProperty("params") Optional<? extends V2QueryParams> params,
+            @JsonProperty("params") Optional<? extends V2RunQueryParams> params,
             @JsonProperty("vars") Optional<? extends Map<String, String>> vars) {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(params, "params");
@@ -55,10 +58,14 @@ public class V2RunQueryRequestBody {
         return cursor;
     }
 
+    /**
+     * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+     * to volume queries.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<V2QueryParams> params() {
-        return (Optional<V2QueryParams>) params;
+    public Optional<V2RunQueryParams> params() {
+        return (Optional<V2RunQueryParams>) params;
     }
 
     @SuppressWarnings("unchecked")
@@ -85,14 +92,22 @@ public class V2RunQueryRequestBody {
         return this;
     }
 
-    public V2RunQueryRequestBody withParams(V2QueryParams params) {
+    /**
+     * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+     * to volume queries.
+     */
+    public V2RunQueryRequestBody withParams(V2RunQueryParams params) {
         Utils.checkNotNull(params, "params");
         this.params = Optional.ofNullable(params);
         return this;
     }
 
 
-    public V2RunQueryRequestBody withParams(Optional<? extends V2QueryParams> params) {
+    /**
+     * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+     * to volume queries.
+     */
+    public V2RunQueryRequestBody withParams(Optional<? extends V2RunQueryParams> params) {
         Utils.checkNotNull(params, "params");
         this.params = params;
         return this;
@@ -145,7 +160,7 @@ public class V2RunQueryRequestBody {
 
         private Optional<String> cursor = Optional.empty();
 
-        private Optional<? extends V2QueryParams> params = Optional.empty();
+        private Optional<? extends V2RunQueryParams> params = Optional.empty();
 
         private Optional<? extends Map<String, String>> vars = Optional.empty();
 
@@ -167,13 +182,21 @@ public class V2RunQueryRequestBody {
         }
 
 
-        public Builder params(V2QueryParams params) {
+        /**
+         * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+         * to volume queries.
+         */
+        public Builder params(V2RunQueryParams params) {
             Utils.checkNotNull(params, "params");
             this.params = Optional.ofNullable(params);
             return this;
         }
 
-        public Builder params(Optional<? extends V2QueryParams> params) {
+        /**
+         * Parameter overrides applied when running a query template. `insertionDate` and `groupBy` only apply
+         * to volume queries.
+         */
+        public Builder params(Optional<? extends V2RunQueryParams> params) {
             Utils.checkNotNull(params, "params");
             this.params = params;
             return this;

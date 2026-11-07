@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class AlertEventsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the alert's event log
+     */
     @JsonProperty("cursor")
     private AlertEventsCursorResponseCursor cursor;
 
@@ -27,6 +29,9 @@ public class AlertEventsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the alert's event log
+     */
     @JsonIgnore
     public AlertEventsCursorResponseCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class AlertEventsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the alert's event log
+     */
     public AlertEventsCursorResponse withCursor(AlertEventsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class AlertEventsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the alert's event log
+         */
         public Builder cursor(AlertEventsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

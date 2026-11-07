@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class RuleResponse {
-
+    /**
+     * A monitoring rule evaluated on a schedule, raising alerts when it fails
+     */
     @JsonProperty("data")
     private Rule data;
 
@@ -27,6 +29,9 @@ public class RuleResponse {
         this.data = data;
     }
 
+    /**
+     * A monitoring rule evaluated on a schedule, raising alerts when it fails
+     */
     @JsonIgnore
     public Rule data() {
         return data;
@@ -37,6 +42,9 @@ public class RuleResponse {
     }
 
 
+    /**
+     * A monitoring rule evaluated on a schedule, raising alerts when it fails
+     */
     public RuleResponse withData(Rule data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class RuleResponse {
         }
 
 
+        /**
+         * A monitoring rule evaluated on a schedule, raising alerts when it fails
+         */
         public Builder data(Rule data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

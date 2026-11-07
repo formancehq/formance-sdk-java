@@ -15,7 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * Secret
+ * 
+ * <p>A client secret. The full value is returned only at creation and cannot be retrieved again
+ */
 public class Secret {
 
     @JsonProperty("clear")
@@ -29,12 +33,16 @@ public class Secret {
     @JsonProperty("lastDigits")
     private String lastDigits;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name identifying the secret
+     */
     @JsonProperty("name")
     private String name;
 
@@ -81,12 +89,18 @@ public class Secret {
         return lastDigits;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name identifying the secret
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -115,18 +129,27 @@ public class Secret {
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Secret withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Secret withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name identifying the secret
+     */
     public Secret withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -206,12 +229,18 @@ public class Secret {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -219,6 +248,9 @@ public class Secret {
         }
 
 
+        /**
+         * Human-readable name identifying the secret
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

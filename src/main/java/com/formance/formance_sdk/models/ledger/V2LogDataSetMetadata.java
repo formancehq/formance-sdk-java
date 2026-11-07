@@ -17,11 +17,15 @@ import java.util.Map;
  * <p>Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.
  */
 public class V2LogDataSetMetadata {
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+     */
     @JsonProperty("targetId")
     private V2LogDataSetMetadataTargetId targetId;
 
@@ -45,11 +49,17 @@ public class V2LogDataSetMetadata {
         this.targetType = targetType;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+     */
     @JsonIgnore
     public V2LogDataSetMetadataTargetId targetId() {
         return targetId;
@@ -68,12 +78,18 @@ public class V2LogDataSetMetadata {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2LogDataSetMetadata withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+     */
     public V2LogDataSetMetadata withTargetId(V2LogDataSetMetadataTargetId targetId) {
         Utils.checkNotNull(targetId, "targetId");
         this.targetId = targetId;
@@ -132,6 +148,9 @@ public class V2LogDataSetMetadata {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -139,6 +158,9 @@ public class V2LogDataSetMetadata {
         }
 
 
+        /**
+         * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+         */
         public Builder targetId(V2LogDataSetMetadataTargetId targetId) {
             Utils.checkNotNull(targetId, "targetId");
             this.targetId = targetId;

@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * Config
+ * 
+ * <p>Configuration the ledger server is running with
+ */
 public class Config {
-
+    /**
+     * Storage backend the ledgers are held in
+     */
     @JsonProperty("storage")
     private LedgerStorage storage;
 
@@ -23,6 +29,9 @@ public class Config {
         this.storage = storage;
     }
 
+    /**
+     * Storage backend the ledgers are held in
+     */
     @JsonIgnore
     public LedgerStorage storage() {
         return storage;
@@ -33,6 +42,9 @@ public class Config {
     }
 
 
+    /**
+     * Storage backend the ledgers are held in
+     */
     public Config withStorage(LedgerStorage storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = storage;
@@ -74,6 +86,9 @@ public class Config {
         }
 
 
+        /**
+         * Storage backend the ledgers are held in
+         */
         public Builder storage(LedgerStorage storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = storage;

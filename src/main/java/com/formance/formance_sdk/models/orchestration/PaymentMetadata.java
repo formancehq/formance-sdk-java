@@ -13,9 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * PaymentMetadata
+ * 
+ * <p>Arbitrary key/value pairs attached to a payment
+ */
 public class PaymentMetadata {
-
+    /**
+     * Metadata value carried by the payment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
     private Optional<String> key;
@@ -31,6 +37,9 @@ public class PaymentMetadata {
         this(Optional.empty());
     }
 
+    /**
+     * Metadata value carried by the payment
+     */
     @JsonIgnore
     public Optional<String> key() {
         return key;
@@ -41,6 +50,9 @@ public class PaymentMetadata {
     }
 
 
+    /**
+     * Metadata value carried by the payment
+     */
     public PaymentMetadata withKey(String key) {
         Utils.checkNotNull(key, "key");
         this.key = Optional.ofNullable(key);
@@ -48,6 +60,9 @@ public class PaymentMetadata {
     }
 
 
+    /**
+     * Metadata value carried by the payment
+     */
     public PaymentMetadata withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
@@ -89,12 +104,18 @@ public class PaymentMetadata {
         }
 
 
+        /**
+         * Metadata value carried by the payment
+         */
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
             this.key = Optional.ofNullable(key);
             return this;
         }
 
+        /**
+         * Metadata value carried by the payment
+         */
         public Builder key(Optional<String> key) {
             Utils.checkNotNull(key, "key");
             this.key = key;

@@ -13,15 +13,21 @@ import java.util.List;
 
 
 public class GetVersionsResponse {
-
+    /**
+     * Environment the stack is deployed in
+     */
     @JsonProperty("env")
     private String env;
 
-
+    /**
+     * Region the stack is deployed in
+     */
     @JsonProperty("region")
     private String region;
 
-
+    /**
+     * Version and health of each component in the stack
+     */
     @JsonProperty("versions")
     private List<Version> versions;
 
@@ -38,16 +44,25 @@ public class GetVersionsResponse {
         this.versions = versions;
     }
 
+    /**
+     * Environment the stack is deployed in
+     */
     @JsonIgnore
     public String env() {
         return env;
     }
 
+    /**
+     * Region the stack is deployed in
+     */
     @JsonIgnore
     public String region() {
         return region;
     }
 
+    /**
+     * Version and health of each component in the stack
+     */
     @JsonIgnore
     public List<Version> versions() {
         return versions;
@@ -58,18 +73,27 @@ public class GetVersionsResponse {
     }
 
 
+    /**
+     * Environment the stack is deployed in
+     */
     public GetVersionsResponse withEnv(String env) {
         Utils.checkNotNull(env, "env");
         this.env = env;
         return this;
     }
 
+    /**
+     * Region the stack is deployed in
+     */
     public GetVersionsResponse withRegion(String region) {
         Utils.checkNotNull(region, "region");
         this.region = region;
         return this;
     }
 
+    /**
+     * Version and health of each component in the stack
+     */
     public GetVersionsResponse withVersions(List<Version> versions) {
         Utils.checkNotNull(versions, "versions");
         this.versions = versions;
@@ -119,6 +143,9 @@ public class GetVersionsResponse {
         }
 
 
+        /**
+         * Environment the stack is deployed in
+         */
         public Builder env(String env) {
             Utils.checkNotNull(env, "env");
             this.env = env;
@@ -126,6 +153,9 @@ public class GetVersionsResponse {
         }
 
 
+        /**
+         * Region the stack is deployed in
+         */
         public Builder region(String region) {
             Utils.checkNotNull(region, "region");
             this.region = region;
@@ -133,6 +163,9 @@ public class GetVersionsResponse {
         }
 
 
+        /**
+         * Version and health of each component in the stack
+         */
         public Builder versions(List<Version> versions) {
             Utils.checkNotNull(versions, "versions");
             this.versions = versions;

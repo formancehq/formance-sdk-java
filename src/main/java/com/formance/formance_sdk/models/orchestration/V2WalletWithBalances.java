@@ -12,13 +12,21 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-
+/**
+ * V2WalletWithBalances
+ * 
+ * <p>A wallet together with the funds it currently holds
+ */
 public class V2WalletWithBalances {
-
+    /**
+     * Aggregated funds held by the wallet, keyed by asset
+     */
     @JsonProperty("balances")
     private V2WalletWithBalancesBalances balances;
 
-
+    /**
+     * When the wallet was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -28,7 +36,9 @@ public class V2WalletWithBalances {
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -38,7 +48,9 @@ public class V2WalletWithBalances {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonProperty("name")
     private String name;
 
@@ -65,11 +77,17 @@ public class V2WalletWithBalances {
         this.name = name;
     }
 
+    /**
+     * Aggregated funds held by the wallet, keyed by asset
+     */
     @JsonIgnore
     public V2WalletWithBalancesBalances balances() {
         return balances;
     }
 
+    /**
+     * When the wallet was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
@@ -83,6 +101,9 @@ public class V2WalletWithBalances {
         return id;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -96,6 +117,9 @@ public class V2WalletWithBalances {
         return metadata;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -106,12 +130,18 @@ public class V2WalletWithBalances {
     }
 
 
+    /**
+     * Aggregated funds held by the wallet, keyed by asset
+     */
     public V2WalletWithBalances withBalances(V2WalletWithBalancesBalances balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
     }
 
+    /**
+     * When the wallet was created
+     */
     public V2WalletWithBalances withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -127,6 +157,9 @@ public class V2WalletWithBalances {
         return this;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     public V2WalletWithBalances withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -142,6 +175,9 @@ public class V2WalletWithBalances {
         return this;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     public V2WalletWithBalances withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -204,6 +240,9 @@ public class V2WalletWithBalances {
         }
 
 
+        /**
+         * Aggregated funds held by the wallet, keyed by asset
+         */
         public Builder balances(V2WalletWithBalancesBalances balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
@@ -211,6 +250,9 @@ public class V2WalletWithBalances {
         }
 
 
+        /**
+         * When the wallet was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -228,6 +270,9 @@ public class V2WalletWithBalances {
         }
 
 
+        /**
+         * Name of the ledger backing this wallet
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
@@ -245,6 +290,9 @@ public class V2WalletWithBalances {
         }
 
 
+        /**
+         * Human-readable name of the wallet
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

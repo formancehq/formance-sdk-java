@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ConfigsResponse {
-
+    /**
+     * Paginated cursor wrapping the list of configurations
+     */
     @JsonProperty("cursor")
     private ConfigsResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class ConfigsResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of configurations
+     */
     @JsonIgnore
     public ConfigsResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class ConfigsResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of configurations
+     */
     public ConfigsResponse withCursor(ConfigsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class ConfigsResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of configurations
+         */
         public Builder cursor(ConfigsResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

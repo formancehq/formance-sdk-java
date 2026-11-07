@@ -13,14 +13,22 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V2StageSendSourceWallet
+ * 
+ * <p>Take the funds from a wallet
+ */
 public class V2StageSendSourceWallet {
-
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
     private Optional<String> balance;
 
-
+    /**
+     * Identifier of the wallet to take funds from
+     */
     @JsonProperty("id")
     private String id;
 
@@ -39,11 +47,17 @@ public class V2StageSendSourceWallet {
         this(Optional.empty(), id);
     }
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     @JsonIgnore
     public Optional<String> balance() {
         return balance;
     }
 
+    /**
+     * Identifier of the wallet to take funds from
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -54,6 +68,9 @@ public class V2StageSendSourceWallet {
     }
 
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     public V2StageSendSourceWallet withBalance(String balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = Optional.ofNullable(balance);
@@ -61,12 +78,18 @@ public class V2StageSendSourceWallet {
     }
 
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     public V2StageSendSourceWallet withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
     }
 
+    /**
+     * Identifier of the wallet to take funds from
+     */
     public V2StageSendSourceWallet withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -112,12 +135,18 @@ public class V2StageSendSourceWallet {
         }
 
 
+        /**
+         * Name of the balance within the wallet. Defaults to the main balance when omitted
+         */
         public Builder balance(String balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = Optional.ofNullable(balance);
             return this;
         }
 
+        /**
+         * Name of the balance within the wallet. Defaults to the main balance when omitted
+         */
         public Builder balance(Optional<String> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
@@ -125,6 +154,9 @@ public class V2StageSendSourceWallet {
         }
 
 
+        /**
+         * Identifier of the wallet to take funds from
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

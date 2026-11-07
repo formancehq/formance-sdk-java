@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2TransactionsCursorResponseResource
+ * 
+ * <p>The resource type carried by this cursor
+ */
 public enum V2TransactionsCursorResponseResource {
     TRANSACTIONS("transactions");
 

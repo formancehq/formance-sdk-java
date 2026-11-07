@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2ListTriggersOccurrencesResponse {
-
+    /**
+     * Paginated cursor wrapping the trigger's occurrences
+     */
     @JsonProperty("cursor")
     private V2ListTriggersOccurrencesResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V2ListTriggersOccurrencesResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the trigger's occurrences
+     */
     @JsonIgnore
     public V2ListTriggersOccurrencesResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V2ListTriggersOccurrencesResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the trigger's occurrences
+     */
     public V2ListTriggersOccurrencesResponse withCursor(V2ListTriggersOccurrencesResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V2ListTriggersOccurrencesResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the trigger's occurrences
+         */
         public Builder cursor(V2ListTriggersOccurrencesResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

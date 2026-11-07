@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Severity
+ * 
+ * <p>How serious an alert is, used to route and prioritise notifications
+ */
 public enum Severity {
     INFO("info"),
     LOW("low"),

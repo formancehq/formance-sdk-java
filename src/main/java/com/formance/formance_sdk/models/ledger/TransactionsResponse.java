@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class TransactionsResponse {
-
+    /**
+     * The transactions that were created
+     */
     @JsonProperty("data")
     private List<Transaction> data;
 
@@ -24,6 +26,9 @@ public class TransactionsResponse {
         this.data = data;
     }
 
+    /**
+     * The transactions that were created
+     */
     @JsonIgnore
     public List<Transaction> data() {
         return data;
@@ -34,6 +39,9 @@ public class TransactionsResponse {
     }
 
 
+    /**
+     * The transactions that were created
+     */
     public TransactionsResponse withData(List<Transaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class TransactionsResponse {
         }
 
 
+        /**
+         * The transactions that were created
+         */
         public Builder data(List<Transaction> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

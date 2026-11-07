@@ -1,10 +1,12 @@
 # StageSendDestination
 
+Where a send stage puts the funds
+
 
 ## Fields
 
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `account`                                                                                    | [Optional\<StageSendSourceAccount>](../../models/shared/StageSendSourceAccount.md)           | :heavy_minus_sign:                                                                           | N/A                                                                                          |
-| `payment`                                                                                    | [Optional\<StageSendDestinationPayment>](../../models/shared/StageSendDestinationPayment.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |
-| `wallet`                                                                                     | [Optional\<StageSendSourceWallet>](../../models/shared/StageSendSourceWallet.md)             | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `account`                                                                                    | [Optional\<StageSendDestinationAccount>](../../models/shared/StageSendDestinationAccount.md) | :heavy_minus_sign:                                                                           | Send the funds to a ledger account                                                           |
+| `payment`                                                                                    | [Optional\<StageSendDestinationPayment>](../../models/shared/StageSendDestinationPayment.md) | :heavy_minus_sign:                                                                           | Send the funds to a payment                                                                  |
+| `wallet`                                                                                     | [Optional\<StageSendDestinationWallet>](../../models/shared/StageSendDestinationWallet.md)   | :heavy_minus_sign:                                                                           | Send the funds to a wallet                                                                   |

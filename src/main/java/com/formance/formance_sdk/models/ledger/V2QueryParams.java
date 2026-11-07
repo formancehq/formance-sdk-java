@@ -3,72 +3,234 @@
  */
 package com.formance.formance_sdk.models.ledger;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.formance.formance_sdk.utils.OneOfDeserializer;
-import com.formance.formance_sdk.utils.TypedObject;
-import com.formance.formance_sdk.utils.Utils.JsonShape;
-import com.formance.formance_sdk.utils.Utils.TypeReferenceWithShape;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Optional;
 
-@JsonDeserialize(using = V2QueryParams._Deserializer.class)
+/**
+ * V2QueryParams
+ * 
+ * <p>Parameters applied when running a query template
+ */
 public class V2QueryParams {
-
-    @JsonValue
-    private final TypedObject value;
-    
-    private V2QueryParams(TypedObject value) {
-        this.value = value;
-    }
-
-    public static V2QueryParams of(QueryTemplateAccountParams value) {
-        Utils.checkNotNull(value, "value");
-        return new V2QueryParams(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2QueryParams of(QueryTemplateTransactionParams value) {
-        Utils.checkNotNull(value, "value");
-        return new V2QueryParams(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2QueryParams of(QueryTemplateLogParams value) {
-        Utils.checkNotNull(value, "value");
-        return new V2QueryParams(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static V2QueryParams of(QueryTemplateVolumeParams value) {
-        Utils.checkNotNull(value, "value");
-        return new V2QueryParams(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-    
     /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.formance.formance_sdk.models.ledger.QueryTemplateAccountParams}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.QueryTemplateTransactionParams}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.QueryTemplateLogParams}</li>
-     * <li>{@code com.formance.formance_sdk.models.ledger.QueryTemplateVolumeParams}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
+     * Upper bound of the time window the query covers
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("endTime")
+    private Optional<OffsetDateTime> endTime;
+
+    /**
+     * Additional data to include in the response, such as volumes
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expand")
+    private Optional<? extends List<String>> expand;
+
+    /**
+     * The maximum number of results to return per page.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pageSize")
+    private Optional<Long> pageSize;
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sort")
+    private Optional<String> sort;
+
+    /**
+     * Lower bound of the time window the query covers
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("startTime")
+    private Optional<OffsetDateTime> startTime;
+
+    @JsonCreator
+    public V2QueryParams(
+            @JsonProperty("endTime") Optional<OffsetDateTime> endTime,
+            @JsonProperty("expand") Optional<? extends List<String>> expand,
+            @JsonProperty("pageSize") Optional<Long> pageSize,
+            @JsonProperty("sort") Optional<String> sort,
+            @JsonProperty("startTime") Optional<OffsetDateTime> startTime) {
+        Utils.checkNotNull(endTime, "endTime");
+        Utils.checkNotNull(expand, "expand");
+        Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(sort, "sort");
+        Utils.checkNotNull(startTime, "startTime");
+        this.endTime = endTime;
+        this.expand = expand;
+        this.pageSize = pageSize;
+        this.sort = sort;
+        this.startTime = startTime;
     }
     
+    public V2QueryParams() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Upper bound of the time window the query covers
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> endTime() {
+        return endTime;
+    }
+
+    /**
+     * Additional data to include in the response, such as volumes
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> expand() {
+        return (Optional<List<String>>) expand;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     */
+    @JsonIgnore
+    public Optional<Long> pageSize() {
+        return pageSize;
+    }
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    @JsonIgnore
+    public Optional<String> sort() {
+        return sort;
+    }
+
+    /**
+     * Lower bound of the time window the query covers
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> startTime() {
+        return startTime;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    /**
+     * Upper bound of the time window the query covers
+     */
+    public V2QueryParams withEndTime(OffsetDateTime endTime) {
+        Utils.checkNotNull(endTime, "endTime");
+        this.endTime = Optional.ofNullable(endTime);
+        return this;
+    }
+
+
+    /**
+     * Upper bound of the time window the query covers
+     */
+    public V2QueryParams withEndTime(Optional<OffsetDateTime> endTime) {
+        Utils.checkNotNull(endTime, "endTime");
+        this.endTime = endTime;
+        return this;
+    }
+
+    /**
+     * Additional data to include in the response, such as volumes
+     */
+    public V2QueryParams withExpand(List<String> expand) {
+        Utils.checkNotNull(expand, "expand");
+        this.expand = Optional.ofNullable(expand);
+        return this;
+    }
+
+
+    /**
+     * Additional data to include in the response, such as volumes
+     */
+    public V2QueryParams withExpand(Optional<? extends List<String>> expand) {
+        Utils.checkNotNull(expand, "expand");
+        this.expand = expand;
+        return this;
+    }
+
+    /**
+     * The maximum number of results to return per page.
+     */
+    public V2QueryParams withPageSize(long pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = Optional.ofNullable(pageSize);
+        return this;
+    }
+
+
+    /**
+     * The maximum number of results to return per page.
+     */
+    public V2QueryParams withPageSize(Optional<Long> pageSize) {
+        Utils.checkNotNull(pageSize, "pageSize");
+        this.pageSize = pageSize;
+        return this;
+    }
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2QueryParams withSort(String sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = Optional.ofNullable(sort);
+        return this;
+    }
+
+
+    /**
+     * Sort results using a field name and order (ascending or descending).
+     * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+     * is either `asc` or `desc`.
+     */
+    public V2QueryParams withSort(Optional<String> sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = sort;
+        return this;
+    }
+
+    /**
+     * Lower bound of the time window the query covers
+     */
+    public V2QueryParams withStartTime(OffsetDateTime startTime) {
+        Utils.checkNotNull(startTime, "startTime");
+        this.startTime = Optional.ofNullable(startTime);
+        return this;
+    }
+
+
+    /**
+     * Lower bound of the time window the query covers
+     */
+    public V2QueryParams withStartTime(Optional<OffsetDateTime> startTime) {
+        Utils.checkNotNull(startTime, "startTime");
+        this.startTime = startTime;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,31 +240,153 @@ public class V2QueryParams {
             return false;
         }
         V2QueryParams other = (V2QueryParams) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
+        return 
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.expand, other.expand) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.startTime, other.startTime);
     }
     
     @Override
     public int hashCode() {
-        return Utils.enhancedHash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<V2QueryParams> {
-
-        public _Deserializer() {
-            super(V2QueryParams.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<QueryTemplateAccountParams>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<QueryTemplateTransactionParams>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<QueryTemplateLogParams>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<QueryTemplateVolumeParams>() {}, JsonShape.DEFAULT));
-        }
+        return Utils.enhancedHash(
+            endTime, expand, pageSize,
+            sort, startTime);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2QueryParams.class,
-                "value", value);
+                "endTime", endTime,
+                "expand", expand,
+                "pageSize", pageSize,
+                "sort", sort,
+                "startTime", startTime);
     }
 
-}
+    @SuppressWarnings("UnusedReturnValue")
+    public final static class Builder {
 
+        private Optional<OffsetDateTime> endTime = Optional.empty();
+
+        private Optional<? extends List<String>> expand = Optional.empty();
+
+        private Optional<Long> pageSize = Optional.empty();
+
+        private Optional<String> sort = Optional.empty();
+
+        private Optional<OffsetDateTime> startTime = Optional.empty();
+
+        private Builder() {
+          // force use of static builder() method
+        }
+
+
+        /**
+         * Upper bound of the time window the query covers
+         */
+        public Builder endTime(OffsetDateTime endTime) {
+            Utils.checkNotNull(endTime, "endTime");
+            this.endTime = Optional.ofNullable(endTime);
+            return this;
+        }
+
+        /**
+         * Upper bound of the time window the query covers
+         */
+        public Builder endTime(Optional<OffsetDateTime> endTime) {
+            Utils.checkNotNull(endTime, "endTime");
+            this.endTime = endTime;
+            return this;
+        }
+
+
+        /**
+         * Additional data to include in the response, such as volumes
+         */
+        public Builder expand(List<String> expand) {
+            Utils.checkNotNull(expand, "expand");
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        /**
+         * Additional data to include in the response, such as volumes
+         */
+        public Builder expand(Optional<? extends List<String>> expand) {
+            Utils.checkNotNull(expand, "expand");
+            this.expand = expand;
+            return this;
+        }
+
+
+        /**
+         * The maximum number of results to return per page.
+         */
+        public Builder pageSize(long pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = Optional.ofNullable(pageSize);
+            return this;
+        }
+
+        /**
+         * The maximum number of results to return per page.
+         */
+        public Builder pageSize(Optional<Long> pageSize) {
+            Utils.checkNotNull(pageSize, "pageSize");
+            this.pageSize = pageSize;
+            return this;
+        }
+
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(String sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = Optional.ofNullable(sort);
+            return this;
+        }
+
+        /**
+         * Sort results using a field name and order (ascending or descending).
+         * Format: `&lt;field&gt;:&lt;order&gt;`, where `&lt;field&gt;` is the field name and `&lt;order&gt;`
+         * is either `asc` or `desc`.
+         */
+        public Builder sort(Optional<String> sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = sort;
+            return this;
+        }
+
+
+        /**
+         * Lower bound of the time window the query covers
+         */
+        public Builder startTime(OffsetDateTime startTime) {
+            Utils.checkNotNull(startTime, "startTime");
+            this.startTime = Optional.ofNullable(startTime);
+            return this;
+        }
+
+        /**
+         * Lower bound of the time window the query covers
+         */
+        public Builder startTime(Optional<OffsetDateTime> startTime) {
+            Utils.checkNotNull(startTime, "startTime");
+            this.startTime = startTime;
+            return this;
+        }
+
+        public V2QueryParams build() {
+
+            return new V2QueryParams(
+                endTime, expand, pageSize,
+                sort, startTime);
+        }
+
+    }
+}

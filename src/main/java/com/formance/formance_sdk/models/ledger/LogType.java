@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * LogType
+ * 
+ * <p>The type of operation this log represents
+ */
 public enum LogType {
     NEW_TRANSACTION("NEW_TRANSACTION"),
     SET_METADATA("SET_METADATA");

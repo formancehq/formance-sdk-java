@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class PolicyResponse {
-
+    /**
+     * A reconciliation policy pairing a ledger query with a payments pool
+     */
     @JsonProperty("data")
     private Policy data;
 
@@ -27,6 +29,9 @@ public class PolicyResponse {
         this.data = data;
     }
 
+    /**
+     * A reconciliation policy pairing a ledger query with a payments pool
+     */
     @JsonIgnore
     public Policy data() {
         return data;
@@ -37,6 +42,9 @@ public class PolicyResponse {
     }
 
 
+    /**
+     * A reconciliation policy pairing a ledger query with a payments pool
+     */
     public PolicyResponse withData(Policy data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class PolicyResponse {
         }
 
 
+        /**
+         * A reconciliation policy pairing a ledger query with a payments pool
+         */
         public Builder data(Policy data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

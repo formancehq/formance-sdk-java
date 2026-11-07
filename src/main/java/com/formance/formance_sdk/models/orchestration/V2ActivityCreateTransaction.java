@@ -14,14 +14,22 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * V2ActivityCreateTransaction
+ * 
+ * <p>Arguments for the activity that writes a transaction to a ledger
+ */
 public class V2ActivityCreateTransaction {
-
+    /**
+     * A transaction to write to a ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends V2PostTransaction> data;
 
-
+    /**
+     * Name of the ledger to write the transaction to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
     private Optional<String> ledger;
@@ -40,12 +48,18 @@ public class V2ActivityCreateTransaction {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * A transaction to write to a ledger
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2PostTransaction> data() {
         return (Optional<V2PostTransaction>) data;
     }
 
+    /**
+     * Name of the ledger to write the transaction to
+     */
     @JsonIgnore
     public Optional<String> ledger() {
         return ledger;
@@ -56,6 +70,9 @@ public class V2ActivityCreateTransaction {
     }
 
 
+    /**
+     * A transaction to write to a ledger
+     */
     public V2ActivityCreateTransaction withData(V2PostTransaction data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -63,12 +80,18 @@ public class V2ActivityCreateTransaction {
     }
 
 
+    /**
+     * A transaction to write to a ledger
+     */
     public V2ActivityCreateTransaction withData(Optional<? extends V2PostTransaction> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
+    /**
+     * Name of the ledger to write the transaction to
+     */
     public V2ActivityCreateTransaction withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = Optional.ofNullable(ledger);
@@ -76,6 +99,9 @@ public class V2ActivityCreateTransaction {
     }
 
 
+    /**
+     * Name of the ledger to write the transaction to
+     */
     public V2ActivityCreateTransaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -121,12 +147,18 @@ public class V2ActivityCreateTransaction {
         }
 
 
+        /**
+         * A transaction to write to a ledger
+         */
         public Builder data(V2PostTransaction data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * A transaction to write to a ledger
+         */
         public Builder data(Optional<? extends V2PostTransaction> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
@@ -134,12 +166,18 @@ public class V2ActivityCreateTransaction {
         }
 
 
+        /**
+         * Name of the ledger to write the transaction to
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = Optional.ofNullable(ledger);
             return this;
         }
 
+        /**
+         * Name of the ledger to write the transaction to
+         */
         public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;

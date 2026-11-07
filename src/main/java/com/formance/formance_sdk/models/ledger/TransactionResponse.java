@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class TransactionResponse {
-
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     @JsonProperty("data")
     private Transaction data;
 
@@ -23,6 +25,9 @@ public class TransactionResponse {
         this.data = data;
     }
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     @JsonIgnore
     public Transaction data() {
         return data;
@@ -33,6 +38,9 @@ public class TransactionResponse {
     }
 
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     public TransactionResponse withData(Transaction data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class TransactionResponse {
         }
 
 
+        /**
+         * A transaction recorded in the ledger, carrying its postings and metadata
+         */
         public Builder data(Transaction data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

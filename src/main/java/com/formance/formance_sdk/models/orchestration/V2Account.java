@@ -15,22 +15,34 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2Account
+ * 
+ * <p>An account in the ledger, identified by its address
+ */
 public class V2Account {
-
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonProperty("address")
     private String address;
 
-
+    /**
+     * Volumes per asset for a single account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("effectiveVolumes")
     private Optional<? extends Map<String, V2Volume>> effectiveVolumes;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Volumes per asset for a single account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("volumes")
     private Optional<? extends Map<String, V2Volume>> volumes;
@@ -59,22 +71,34 @@ public class V2Account {
             Optional.empty());
     }
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonIgnore
     public String address() {
         return address;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, V2Volume>> effectiveVolumes() {
         return (Optional<Map<String, V2Volume>>) effectiveVolumes;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, V2Volume>> volumes() {
@@ -86,12 +110,18 @@ public class V2Account {
     }
 
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     public V2Account withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withEffectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
         Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
         this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
@@ -99,18 +129,27 @@ public class V2Account {
     }
 
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withEffectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
         Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
         this.effectiveVolumes = effectiveVolumes;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public V2Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withVolumes(Map<String, V2Volume> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = Optional.ofNullable(volumes);
@@ -118,6 +157,9 @@ public class V2Account {
     }
 
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withVolumes(Optional<? extends Map<String, V2Volume>> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = volumes;
@@ -172,6 +214,9 @@ public class V2Account {
         }
 
 
+        /**
+         * The account address, a colon-separated segmented path such as users:001
+         */
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
@@ -179,12 +224,18 @@ public class V2Account {
         }
 
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder effectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
             Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
             this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder effectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
             Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
             this.effectiveVolumes = effectiveVolumes;
@@ -192,6 +243,9 @@ public class V2Account {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -199,12 +253,18 @@ public class V2Account {
         }
 
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Map<String, V2Volume> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = Optional.ofNullable(volumes);
             return this;
         }
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Optional<? extends Map<String, V2Volume>> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = volumes;

@@ -10,13 +10,21 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2ActivityGetAccount
+ * 
+ * <p>Arguments for the activity that reads a ledger account
+ */
 public class V2ActivityGetAccount {
-
+    /**
+     * Address of the ledger account to read
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -30,11 +38,17 @@ public class V2ActivityGetAccount {
         this.ledger = ledger;
     }
 
+    /**
+     * Address of the ledger account to read
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -45,12 +59,18 @@ public class V2ActivityGetAccount {
     }
 
 
+    /**
+     * Address of the ledger account to read
+     */
     public V2ActivityGetAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     public V2ActivityGetAccount withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -96,6 +116,9 @@ public class V2ActivityGetAccount {
         }
 
 
+        /**
+         * Address of the ledger account to read
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -103,6 +126,9 @@ public class V2ActivityGetAccount {
         }
 
 
+        /**
+         * Name of the ledger holding the account
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;

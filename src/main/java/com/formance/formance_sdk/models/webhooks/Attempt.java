@@ -15,46 +15,70 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
+/**
+ * Attempt
+ * 
+ * <p>A single delivery attempt made against a webhook endpoint
+ */
 public class Attempt {
-
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     @JsonProperty("config")
     private WebhooksConfig config;
 
-
+    /**
+     * When the attempt was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the attempt
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * When the next retry is scheduled, absent once the attempt is settled
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextRetryAfter")
     private Optional<OffsetDateTime> nextRetryAfter;
 
-
+    /**
+     * The event body sent to the endpoint
+     */
     @JsonProperty("payload")
     private String payload;
 
-
+    /**
+     * Position of this attempt in the retry sequence
+     */
     @JsonProperty("retryAttempt")
     private long retryAttempt;
 
-
+    /**
+     * Current status of the attempt
+     */
     @JsonProperty("status")
     private String status;
 
-
+    /**
+     * HTTP status code returned by the endpoint
+     */
     @JsonProperty("statusCode")
     private long statusCode;
 
-
+    /**
+     * When the attempt was last modified
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
-
+    /**
+     * Identifier of the webhook this attempt belongs to
+     */
     @JsonProperty("webhookID")
     private String webhookID;
 
@@ -108,51 +132,81 @@ public class Attempt {
             webhookID);
     }
 
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     @JsonIgnore
     public WebhooksConfig config() {
         return config;
     }
 
+    /**
+     * When the attempt was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the attempt
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * When the next retry is scheduled, absent once the attempt is settled
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> nextRetryAfter() {
         return nextRetryAfter;
     }
 
+    /**
+     * The event body sent to the endpoint
+     */
     @JsonIgnore
     public String payload() {
         return payload;
     }
 
+    /**
+     * Position of this attempt in the retry sequence
+     */
     @JsonIgnore
     public long retryAttempt() {
         return retryAttempt;
     }
 
+    /**
+     * Current status of the attempt
+     */
     @JsonIgnore
     public String status() {
         return status;
     }
 
+    /**
+     * HTTP status code returned by the endpoint
+     */
     @JsonIgnore
     public long statusCode() {
         return statusCode;
     }
 
+    /**
+     * When the attempt was last modified
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
+    /**
+     * Identifier of the webhook this attempt belongs to
+     */
     @JsonIgnore
     public String webhookID() {
         return webhookID;
@@ -163,24 +217,36 @@ public class Attempt {
     }
 
 
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     public Attempt withConfig(WebhooksConfig config) {
         Utils.checkNotNull(config, "config");
         this.config = config;
         return this;
     }
 
+    /**
+     * When the attempt was created
+     */
     public Attempt withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the attempt
+     */
     public Attempt withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * When the next retry is scheduled, absent once the attempt is settled
+     */
     public Attempt withNextRetryAfter(OffsetDateTime nextRetryAfter) {
         Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
         this.nextRetryAfter = Optional.ofNullable(nextRetryAfter);
@@ -188,42 +254,63 @@ public class Attempt {
     }
 
 
+    /**
+     * When the next retry is scheduled, absent once the attempt is settled
+     */
     public Attempt withNextRetryAfter(Optional<OffsetDateTime> nextRetryAfter) {
         Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
         this.nextRetryAfter = nextRetryAfter;
         return this;
     }
 
+    /**
+     * The event body sent to the endpoint
+     */
     public Attempt withPayload(String payload) {
         Utils.checkNotNull(payload, "payload");
         this.payload = payload;
         return this;
     }
 
+    /**
+     * Position of this attempt in the retry sequence
+     */
     public Attempt withRetryAttempt(long retryAttempt) {
         Utils.checkNotNull(retryAttempt, "retryAttempt");
         this.retryAttempt = retryAttempt;
         return this;
     }
 
+    /**
+     * Current status of the attempt
+     */
     public Attempt withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * HTTP status code returned by the endpoint
+     */
     public Attempt withStatusCode(long statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+    /**
+     * When the attempt was last modified
+     */
     public Attempt withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
     }
 
+    /**
+     * Identifier of the webhook this attempt belongs to
+     */
     public Attempt withWebhookID(String webhookID) {
         Utils.checkNotNull(webhookID, "webhookID");
         this.webhookID = webhookID;
@@ -304,6 +391,9 @@ public class Attempt {
         }
 
 
+        /**
+         * A webhook endpoint together with the event types it subscribes to
+         */
         public Builder config(WebhooksConfig config) {
             Utils.checkNotNull(config, "config");
             this.config = config;
@@ -311,6 +401,9 @@ public class Attempt {
         }
 
 
+        /**
+         * When the attempt was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -318,6 +411,9 @@ public class Attempt {
         }
 
 
+        /**
+         * Unique identifier of the attempt
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -325,12 +421,18 @@ public class Attempt {
         }
 
 
+        /**
+         * When the next retry is scheduled, absent once the attempt is settled
+         */
         public Builder nextRetryAfter(OffsetDateTime nextRetryAfter) {
             Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
             this.nextRetryAfter = Optional.ofNullable(nextRetryAfter);
             return this;
         }
 
+        /**
+         * When the next retry is scheduled, absent once the attempt is settled
+         */
         public Builder nextRetryAfter(Optional<OffsetDateTime> nextRetryAfter) {
             Utils.checkNotNull(nextRetryAfter, "nextRetryAfter");
             this.nextRetryAfter = nextRetryAfter;
@@ -338,6 +440,9 @@ public class Attempt {
         }
 
 
+        /**
+         * The event body sent to the endpoint
+         */
         public Builder payload(String payload) {
             Utils.checkNotNull(payload, "payload");
             this.payload = payload;
@@ -345,6 +450,9 @@ public class Attempt {
         }
 
 
+        /**
+         * Position of this attempt in the retry sequence
+         */
         public Builder retryAttempt(long retryAttempt) {
             Utils.checkNotNull(retryAttempt, "retryAttempt");
             this.retryAttempt = retryAttempt;
@@ -352,6 +460,9 @@ public class Attempt {
         }
 
 
+        /**
+         * Current status of the attempt
+         */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -359,6 +470,9 @@ public class Attempt {
         }
 
 
+        /**
+         * HTTP status code returned by the endpoint
+         */
         public Builder statusCode(long statusCode) {
             Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
@@ -366,6 +480,9 @@ public class Attempt {
         }
 
 
+        /**
+         * When the attempt was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
@@ -373,6 +490,9 @@ public class Attempt {
         }
 
 
+        /**
+         * Identifier of the webhook this attempt belongs to
+         */
         public Builder webhookID(String webhookID) {
             Utils.checkNotNull(webhookID, "webhookID");
             this.webhookID = webhookID;

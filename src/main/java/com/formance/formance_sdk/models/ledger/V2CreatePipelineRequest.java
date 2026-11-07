@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2CreatePipelineRequest {
-
+    /**
+     * Identifier of the exporter this pipeline feeds
+     */
     @JsonProperty("exporterID")
     private String exporterID;
 
@@ -23,6 +25,9 @@ public class V2CreatePipelineRequest {
         this.exporterID = exporterID;
     }
 
+    /**
+     * Identifier of the exporter this pipeline feeds
+     */
     @JsonIgnore
     public String exporterID() {
         return exporterID;
@@ -33,6 +38,9 @@ public class V2CreatePipelineRequest {
     }
 
 
+    /**
+     * Identifier of the exporter this pipeline feeds
+     */
     public V2CreatePipelineRequest withExporterID(String exporterID) {
         Utils.checkNotNull(exporterID, "exporterID");
         this.exporterID = exporterID;
@@ -74,6 +82,9 @@ public class V2CreatePipelineRequest {
         }
 
 
+        /**
+         * Identifier of the exporter this pipeline feeds
+         */
         public Builder exporterID(String exporterID) {
             Utils.checkNotNull(exporterID, "exporterID");
             this.exporterID = exporterID;

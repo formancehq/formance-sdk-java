@@ -15,63 +15,94 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
+/**
+ * Delivery
+ * 
+ * <p>An event queued for delivery to a webhook endpoint, tracking its retry state
+ */
 public class Delivery {
-
+    /**
+     * Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed
+     */
     @JsonProperty("attemptCount")
     private long attemptCount;
 
-
+    /**
+     * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+     * replayed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("claimedAt")
     private Optional<OffsetDateTime> claimedAt;
 
-
+    /**
+     * Identifier of the webhook configuration this delivery targets
+     */
     @JsonProperty("configID")
     private String configID;
 
-
+    /**
+     * When the delivery was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * When the current retry cycle began. Cleared when a failed delivery is replayed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cycleStartedAt")
     private Optional<OffsetDateTime> cycleStartedAt;
 
-
+    /**
+     * Identifier of the event being delivered
+     */
     @JsonProperty("eventID")
     private String eventID;
 
-
+    /**
+     * Type of the event being delivered
+     */
     @JsonProperty("eventType")
     private String eventType;
 
-
+    /**
+     * Unique identifier of the delivery
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Key sent with the request so the receiver can deduplicate retries of the same delivery
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("idempotencyKey")
     private Optional<String> idempotencyKey;
 
-
+    /**
+     * When the most recent attempt was made
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastAttemptAt")
     private Optional<OffsetDateTime> lastAttemptAt;
 
-
+    /**
+     * Error reported by the most recent attempt
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastError")
     private Optional<String> lastError;
 
-
+    /**
+     * HTTP status code returned by the most recent attempt
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastStatusCode")
     private Optional<Long> lastStatusCode;
 
-
+    /**
+     * When the next delivery attempt is scheduled
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextAttemptAt")
     private Optional<OffsetDateTime> nextAttemptAt;
@@ -83,15 +114,22 @@ public class Delivery {
     @JsonProperty("payload")
     private Optional<String> payload;
 
-
+    /**
+     * Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying
+     * a pending delivery leaves it unchanged
+     */
     @JsonProperty("replayGeneration")
     private long replayGeneration;
 
-
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     @JsonProperty("status")
     private DeliveryStatus status;
 
-
+    /**
+     * When the delivery was last modified
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -168,66 +206,106 @@ public class Delivery {
             status, updatedAt);
     }
 
+    /**
+     * Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed
+     */
     @JsonIgnore
     public long attemptCount() {
         return attemptCount;
     }
 
+    /**
+     * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+     * replayed
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> claimedAt() {
         return claimedAt;
     }
 
+    /**
+     * Identifier of the webhook configuration this delivery targets
+     */
     @JsonIgnore
     public String configID() {
         return configID;
     }
 
+    /**
+     * When the delivery was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * When the current retry cycle began. Cleared when a failed delivery is replayed
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> cycleStartedAt() {
         return cycleStartedAt;
     }
 
+    /**
+     * Identifier of the event being delivered
+     */
     @JsonIgnore
     public String eventID() {
         return eventID;
     }
 
+    /**
+     * Type of the event being delivered
+     */
     @JsonIgnore
     public String eventType() {
         return eventType;
     }
 
+    /**
+     * Unique identifier of the delivery
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Key sent with the request so the receiver can deduplicate retries of the same delivery
+     */
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
     }
 
+    /**
+     * When the most recent attempt was made
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> lastAttemptAt() {
         return lastAttemptAt;
     }
 
+    /**
+     * Error reported by the most recent attempt
+     */
     @JsonIgnore
     public Optional<String> lastError() {
         return lastError;
     }
 
+    /**
+     * HTTP status code returned by the most recent attempt
+     */
     @JsonIgnore
     public Optional<Long> lastStatusCode() {
         return lastStatusCode;
     }
 
+    /**
+     * When the next delivery attempt is scheduled
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> nextAttemptAt() {
         return nextAttemptAt;
@@ -241,16 +319,26 @@ public class Delivery {
         return payload;
     }
 
+    /**
+     * Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying
+     * a pending delivery leaves it unchanged
+     */
     @JsonIgnore
     public long replayGeneration() {
         return replayGeneration;
     }
 
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     @JsonIgnore
     public DeliveryStatus status() {
         return status;
     }
 
+    /**
+     * When the delivery was last modified
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -261,12 +349,19 @@ public class Delivery {
     }
 
 
+    /**
+     * Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed
+     */
     public Delivery withAttemptCount(long attemptCount) {
         Utils.checkNotNull(attemptCount, "attemptCount");
         this.attemptCount = attemptCount;
         return this;
     }
 
+    /**
+     * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+     * replayed
+     */
     public Delivery withClaimedAt(OffsetDateTime claimedAt) {
         Utils.checkNotNull(claimedAt, "claimedAt");
         this.claimedAt = Optional.ofNullable(claimedAt);
@@ -274,24 +369,37 @@ public class Delivery {
     }
 
 
+    /**
+     * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+     * replayed
+     */
     public Delivery withClaimedAt(Optional<OffsetDateTime> claimedAt) {
         Utils.checkNotNull(claimedAt, "claimedAt");
         this.claimedAt = claimedAt;
         return this;
     }
 
+    /**
+     * Identifier of the webhook configuration this delivery targets
+     */
     public Delivery withConfigID(String configID) {
         Utils.checkNotNull(configID, "configID");
         this.configID = configID;
         return this;
     }
 
+    /**
+     * When the delivery was created
+     */
     public Delivery withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * When the current retry cycle began. Cleared when a failed delivery is replayed
+     */
     public Delivery withCycleStartedAt(OffsetDateTime cycleStartedAt) {
         Utils.checkNotNull(cycleStartedAt, "cycleStartedAt");
         this.cycleStartedAt = Optional.ofNullable(cycleStartedAt);
@@ -299,30 +407,45 @@ public class Delivery {
     }
 
 
+    /**
+     * When the current retry cycle began. Cleared when a failed delivery is replayed
+     */
     public Delivery withCycleStartedAt(Optional<OffsetDateTime> cycleStartedAt) {
         Utils.checkNotNull(cycleStartedAt, "cycleStartedAt");
         this.cycleStartedAt = cycleStartedAt;
         return this;
     }
 
+    /**
+     * Identifier of the event being delivered
+     */
     public Delivery withEventID(String eventID) {
         Utils.checkNotNull(eventID, "eventID");
         this.eventID = eventID;
         return this;
     }
 
+    /**
+     * Type of the event being delivered
+     */
     public Delivery withEventType(String eventType) {
         Utils.checkNotNull(eventType, "eventType");
         this.eventType = eventType;
         return this;
     }
 
+    /**
+     * Unique identifier of the delivery
+     */
     public Delivery withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Key sent with the request so the receiver can deduplicate retries of the same delivery
+     */
     public Delivery withIdempotencyKey(String idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
@@ -330,12 +453,18 @@ public class Delivery {
     }
 
 
+    /**
+     * Key sent with the request so the receiver can deduplicate retries of the same delivery
+     */
     public Delivery withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
         return this;
     }
 
+    /**
+     * When the most recent attempt was made
+     */
     public Delivery withLastAttemptAt(OffsetDateTime lastAttemptAt) {
         Utils.checkNotNull(lastAttemptAt, "lastAttemptAt");
         this.lastAttemptAt = Optional.ofNullable(lastAttemptAt);
@@ -343,12 +472,18 @@ public class Delivery {
     }
 
 
+    /**
+     * When the most recent attempt was made
+     */
     public Delivery withLastAttemptAt(Optional<OffsetDateTime> lastAttemptAt) {
         Utils.checkNotNull(lastAttemptAt, "lastAttemptAt");
         this.lastAttemptAt = lastAttemptAt;
         return this;
     }
 
+    /**
+     * Error reported by the most recent attempt
+     */
     public Delivery withLastError(String lastError) {
         Utils.checkNotNull(lastError, "lastError");
         this.lastError = Optional.ofNullable(lastError);
@@ -356,12 +491,18 @@ public class Delivery {
     }
 
 
+    /**
+     * Error reported by the most recent attempt
+     */
     public Delivery withLastError(Optional<String> lastError) {
         Utils.checkNotNull(lastError, "lastError");
         this.lastError = lastError;
         return this;
     }
 
+    /**
+     * HTTP status code returned by the most recent attempt
+     */
     public Delivery withLastStatusCode(long lastStatusCode) {
         Utils.checkNotNull(lastStatusCode, "lastStatusCode");
         this.lastStatusCode = Optional.ofNullable(lastStatusCode);
@@ -369,12 +510,18 @@ public class Delivery {
     }
 
 
+    /**
+     * HTTP status code returned by the most recent attempt
+     */
     public Delivery withLastStatusCode(Optional<Long> lastStatusCode) {
         Utils.checkNotNull(lastStatusCode, "lastStatusCode");
         this.lastStatusCode = lastStatusCode;
         return this;
     }
 
+    /**
+     * When the next delivery attempt is scheduled
+     */
     public Delivery withNextAttemptAt(OffsetDateTime nextAttemptAt) {
         Utils.checkNotNull(nextAttemptAt, "nextAttemptAt");
         this.nextAttemptAt = Optional.ofNullable(nextAttemptAt);
@@ -382,6 +529,9 @@ public class Delivery {
     }
 
 
+    /**
+     * When the next delivery attempt is scheduled
+     */
     public Delivery withNextAttemptAt(Optional<OffsetDateTime> nextAttemptAt) {
         Utils.checkNotNull(nextAttemptAt, "nextAttemptAt");
         this.nextAttemptAt = nextAttemptAt;
@@ -407,18 +557,28 @@ public class Delivery {
         return this;
     }
 
+    /**
+     * Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying
+     * a pending delivery leaves it unchanged
+     */
     public Delivery withReplayGeneration(long replayGeneration) {
         Utils.checkNotNull(replayGeneration, "replayGeneration");
         this.replayGeneration = replayGeneration;
         return this;
     }
 
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     public Delivery withStatus(DeliveryStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * When the delivery was last modified
+     */
     public Delivery withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -529,6 +689,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed
+         */
         public Builder attemptCount(long attemptCount) {
             Utils.checkNotNull(attemptCount, "attemptCount");
             this.attemptCount = attemptCount;
@@ -536,12 +699,20 @@ public class Delivery {
         }
 
 
+        /**
+         * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+         * replayed
+         */
         public Builder claimedAt(OffsetDateTime claimedAt) {
             Utils.checkNotNull(claimedAt, "claimedAt");
             this.claimedAt = Optional.ofNullable(claimedAt);
             return this;
         }
 
+        /**
+         * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is
+         * replayed
+         */
         public Builder claimedAt(Optional<OffsetDateTime> claimedAt) {
             Utils.checkNotNull(claimedAt, "claimedAt");
             this.claimedAt = claimedAt;
@@ -549,6 +720,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Identifier of the webhook configuration this delivery targets
+         */
         public Builder configID(String configID) {
             Utils.checkNotNull(configID, "configID");
             this.configID = configID;
@@ -556,6 +730,9 @@ public class Delivery {
         }
 
 
+        /**
+         * When the delivery was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -563,12 +740,18 @@ public class Delivery {
         }
 
 
+        /**
+         * When the current retry cycle began. Cleared when a failed delivery is replayed
+         */
         public Builder cycleStartedAt(OffsetDateTime cycleStartedAt) {
             Utils.checkNotNull(cycleStartedAt, "cycleStartedAt");
             this.cycleStartedAt = Optional.ofNullable(cycleStartedAt);
             return this;
         }
 
+        /**
+         * When the current retry cycle began. Cleared when a failed delivery is replayed
+         */
         public Builder cycleStartedAt(Optional<OffsetDateTime> cycleStartedAt) {
             Utils.checkNotNull(cycleStartedAt, "cycleStartedAt");
             this.cycleStartedAt = cycleStartedAt;
@@ -576,6 +759,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Identifier of the event being delivered
+         */
         public Builder eventID(String eventID) {
             Utils.checkNotNull(eventID, "eventID");
             this.eventID = eventID;
@@ -583,6 +769,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Type of the event being delivered
+         */
         public Builder eventType(String eventType) {
             Utils.checkNotNull(eventType, "eventType");
             this.eventType = eventType;
@@ -590,6 +779,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Unique identifier of the delivery
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -597,12 +789,18 @@ public class Delivery {
         }
 
 
+        /**
+         * Key sent with the request so the receiver can deduplicate retries of the same delivery
+         */
         public Builder idempotencyKey(String idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
             this.idempotencyKey = Optional.ofNullable(idempotencyKey);
             return this;
         }
 
+        /**
+         * Key sent with the request so the receiver can deduplicate retries of the same delivery
+         */
         public Builder idempotencyKey(Optional<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
             this.idempotencyKey = idempotencyKey;
@@ -610,12 +808,18 @@ public class Delivery {
         }
 
 
+        /**
+         * When the most recent attempt was made
+         */
         public Builder lastAttemptAt(OffsetDateTime lastAttemptAt) {
             Utils.checkNotNull(lastAttemptAt, "lastAttemptAt");
             this.lastAttemptAt = Optional.ofNullable(lastAttemptAt);
             return this;
         }
 
+        /**
+         * When the most recent attempt was made
+         */
         public Builder lastAttemptAt(Optional<OffsetDateTime> lastAttemptAt) {
             Utils.checkNotNull(lastAttemptAt, "lastAttemptAt");
             this.lastAttemptAt = lastAttemptAt;
@@ -623,12 +827,18 @@ public class Delivery {
         }
 
 
+        /**
+         * Error reported by the most recent attempt
+         */
         public Builder lastError(String lastError) {
             Utils.checkNotNull(lastError, "lastError");
             this.lastError = Optional.ofNullable(lastError);
             return this;
         }
 
+        /**
+         * Error reported by the most recent attempt
+         */
         public Builder lastError(Optional<String> lastError) {
             Utils.checkNotNull(lastError, "lastError");
             this.lastError = lastError;
@@ -636,12 +846,18 @@ public class Delivery {
         }
 
 
+        /**
+         * HTTP status code returned by the most recent attempt
+         */
         public Builder lastStatusCode(long lastStatusCode) {
             Utils.checkNotNull(lastStatusCode, "lastStatusCode");
             this.lastStatusCode = Optional.ofNullable(lastStatusCode);
             return this;
         }
 
+        /**
+         * HTTP status code returned by the most recent attempt
+         */
         public Builder lastStatusCode(Optional<Long> lastStatusCode) {
             Utils.checkNotNull(lastStatusCode, "lastStatusCode");
             this.lastStatusCode = lastStatusCode;
@@ -649,12 +865,18 @@ public class Delivery {
         }
 
 
+        /**
+         * When the next delivery attempt is scheduled
+         */
         public Builder nextAttemptAt(OffsetDateTime nextAttemptAt) {
             Utils.checkNotNull(nextAttemptAt, "nextAttemptAt");
             this.nextAttemptAt = Optional.ofNullable(nextAttemptAt);
             return this;
         }
 
+        /**
+         * When the next delivery attempt is scheduled
+         */
         public Builder nextAttemptAt(Optional<OffsetDateTime> nextAttemptAt) {
             Utils.checkNotNull(nextAttemptAt, "nextAttemptAt");
             this.nextAttemptAt = nextAttemptAt;
@@ -681,6 +903,10 @@ public class Delivery {
         }
 
 
+        /**
+         * Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying
+         * a pending delivery leaves it unchanged
+         */
         public Builder replayGeneration(long replayGeneration) {
             Utils.checkNotNull(replayGeneration, "replayGeneration");
             this.replayGeneration = replayGeneration;
@@ -688,6 +914,9 @@ public class Delivery {
         }
 
 
+        /**
+         * Current state of a delivery in its retry lifecycle
+         */
         public Builder status(DeliveryStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -695,6 +924,9 @@ public class Delivery {
         }
 
 
+        /**
+         * When the delivery was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

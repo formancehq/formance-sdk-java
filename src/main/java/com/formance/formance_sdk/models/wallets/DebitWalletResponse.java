@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class DebitWalletResponse {
-
+    /**
+     * Funds locked by a pending debit, later either confirmed or voided
+     */
     @JsonProperty("data")
     private Hold data;
 
@@ -23,6 +25,9 @@ public class DebitWalletResponse {
         this.data = data;
     }
 
+    /**
+     * Funds locked by a pending debit, later either confirmed or voided
+     */
     @JsonIgnore
     public Hold data() {
         return data;
@@ -33,6 +38,9 @@ public class DebitWalletResponse {
     }
 
 
+    /**
+     * Funds locked by a pending debit, later either confirmed or voided
+     */
     public DebitWalletResponse withData(Hold data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class DebitWalletResponse {
         }
 
 
+        /**
+         * Funds locked by a pending debit, later either confirmed or voided
+         */
         public Builder data(Hold data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

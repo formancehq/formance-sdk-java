@@ -19,24 +19,35 @@ import java.util.Optional;
 
 
 public class V2Transaction {
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonProperty("postings")
     private List<V2Posting> postings;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
-
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonProperty("txid")
     private BigInteger txid;
 
@@ -69,26 +80,42 @@ public class V2Transaction {
             timestamp, txid);
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonIgnore
     public List<V2Posting> postings() {
         return postings;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonIgnore
     public BigInteger txid() {
         return txid;
@@ -99,18 +126,27 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2Transaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     public V2Transaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2Transaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -118,23 +154,36 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2Transaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2Transaction withTxid(long txid) {
         this.txid = BigInteger.valueOf(txid);
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2Transaction withTxid(BigInteger txid) {
         Utils.checkNotNull(txid, "txid");
         this.txid = txid;
@@ -193,6 +242,9 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -200,6 +252,9 @@ public class V2Transaction {
         }
 
 
+        /**
+         * The fund movements making up the transaction
+         */
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -207,12 +262,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -220,6 +281,10 @@ public class V2Transaction {
         }
 
 
+        /**
+         * The transaction time: when the transaction is considered to have occurred. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
@@ -227,11 +292,17 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder txid(long txid) {
             this.txid = BigInteger.valueOf(txid);
             return this;
         }
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder txid(BigInteger txid) {
             Utils.checkNotNull(txid, "txid");
             this.txid = txid;

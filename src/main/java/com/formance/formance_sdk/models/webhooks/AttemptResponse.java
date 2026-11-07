@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class AttemptResponse {
-
+    /**
+     * A single delivery attempt made against a webhook endpoint
+     */
     @JsonProperty("data")
     private Attempt data;
 
@@ -23,6 +25,9 @@ public class AttemptResponse {
         this.data = data;
     }
 
+    /**
+     * A single delivery attempt made against a webhook endpoint
+     */
     @JsonIgnore
     public Attempt data() {
         return data;
@@ -33,6 +38,9 @@ public class AttemptResponse {
     }
 
 
+    /**
+     * A single delivery attempt made against a webhook endpoint
+     */
     public AttemptResponse withData(Attempt data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class AttemptResponse {
         }
 
 
+        /**
+         * A single delivery attempt made against a webhook endpoint
+         */
         public Builder data(Attempt data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

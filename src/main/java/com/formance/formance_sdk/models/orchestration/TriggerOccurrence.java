@@ -19,29 +19,41 @@ import java.util.Optional;
 
 
 public class TriggerOccurrence {
-
+    /**
+     * When the trigger fired
+     */
     @JsonProperty("date")
     private OffsetDateTime date;
 
-
+    /**
+     * Why the trigger failed to start a run, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * The event that fired the trigger
+     */
     @JsonProperty("event")
     private Map<String, Object> event;
 
-
+    /**
+     * Identifier of the trigger that fired
+     */
     @JsonProperty("triggerID")
     private String triggerID;
 
-
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstance")
     private Optional<? extends WorkflowInstance> workflowInstance;
 
-
+    /**
+     * Identifier of the run the trigger started, absent when it started none
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowInstanceID")
     private Optional<String> workflowInstanceID;
@@ -77,32 +89,50 @@ public class TriggerOccurrence {
             triggerID, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * When the trigger fired
+     */
     @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    /**
+     * Why the trigger failed to start a run, absent when it succeeded
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * The event that fired the trigger
+     */
     @JsonIgnore
     public Map<String, Object> event() {
         return event;
     }
 
+    /**
+     * Identifier of the trigger that fired
+     */
     @JsonIgnore
     public String triggerID() {
         return triggerID;
     }
 
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<WorkflowInstance> workflowInstance() {
         return (Optional<WorkflowInstance>) workflowInstance;
     }
 
+    /**
+     * Identifier of the run the trigger started, absent when it started none
+     */
     @JsonIgnore
     public Optional<String> workflowInstanceID() {
         return workflowInstanceID;
@@ -113,12 +143,18 @@ public class TriggerOccurrence {
     }
 
 
+    /**
+     * When the trigger fired
+     */
     public TriggerOccurrence withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
     }
 
+    /**
+     * Why the trigger failed to start a run, absent when it succeeded
+     */
     public TriggerOccurrence withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -126,24 +162,36 @@ public class TriggerOccurrence {
     }
 
 
+    /**
+     * Why the trigger failed to start a run, absent when it succeeded
+     */
     public TriggerOccurrence withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * The event that fired the trigger
+     */
     public TriggerOccurrence withEvent(Map<String, Object> event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
         return this;
     }
 
+    /**
+     * Identifier of the trigger that fired
+     */
     public TriggerOccurrence withTriggerID(String triggerID) {
         Utils.checkNotNull(triggerID, "triggerID");
         this.triggerID = triggerID;
         return this;
     }
 
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     public TriggerOccurrence withWorkflowInstance(WorkflowInstance workflowInstance) {
         Utils.checkNotNull(workflowInstance, "workflowInstance");
         this.workflowInstance = Optional.ofNullable(workflowInstance);
@@ -151,12 +199,18 @@ public class TriggerOccurrence {
     }
 
 
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     public TriggerOccurrence withWorkflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
         Utils.checkNotNull(workflowInstance, "workflowInstance");
         this.workflowInstance = workflowInstance;
         return this;
     }
 
+    /**
+     * Identifier of the run the trigger started, absent when it started none
+     */
     public TriggerOccurrence withWorkflowInstanceID(String workflowInstanceID) {
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
         this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
@@ -164,6 +218,9 @@ public class TriggerOccurrence {
     }
 
 
+    /**
+     * Identifier of the run the trigger started, absent when it started none
+     */
     public TriggerOccurrence withWorkflowInstanceID(Optional<String> workflowInstanceID) {
         Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
         this.workflowInstanceID = workflowInstanceID;
@@ -226,6 +283,9 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * When the trigger fired
+         */
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
@@ -233,12 +293,18 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * Why the trigger failed to start a run, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the trigger failed to start a run, absent when it succeeded
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -246,6 +312,9 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * The event that fired the trigger
+         */
         public Builder event(Map<String, Object> event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
@@ -253,6 +322,9 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * Identifier of the trigger that fired
+         */
         public Builder triggerID(String triggerID) {
             Utils.checkNotNull(triggerID, "triggerID");
             this.triggerID = triggerID;
@@ -260,12 +332,18 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * One run of a workflow, tracking its per-stage progress
+         */
         public Builder workflowInstance(WorkflowInstance workflowInstance) {
             Utils.checkNotNull(workflowInstance, "workflowInstance");
             this.workflowInstance = Optional.ofNullable(workflowInstance);
             return this;
         }
 
+        /**
+         * One run of a workflow, tracking its per-stage progress
+         */
         public Builder workflowInstance(Optional<? extends WorkflowInstance> workflowInstance) {
             Utils.checkNotNull(workflowInstance, "workflowInstance");
             this.workflowInstance = workflowInstance;
@@ -273,12 +351,18 @@ public class TriggerOccurrence {
         }
 
 
+        /**
+         * Identifier of the run the trigger started, absent when it started none
+         */
         public Builder workflowInstanceID(String workflowInstanceID) {
             Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
             this.workflowInstanceID = Optional.ofNullable(workflowInstanceID);
             return this;
         }
 
+        /**
+         * Identifier of the run the trigger started, absent when it started none
+         */
         public Builder workflowInstanceID(Optional<String> workflowInstanceID) {
             Utils.checkNotNull(workflowInstanceID, "workflowInstanceID");
             this.workflowInstanceID = workflowInstanceID;

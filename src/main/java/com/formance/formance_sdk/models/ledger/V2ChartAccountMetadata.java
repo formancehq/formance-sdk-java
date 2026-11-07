@@ -15,7 +15,9 @@ import java.util.Optional;
 
 
 public class V2ChartAccountMetadata {
-
+    /**
+     * Value applied to this metadata key when an account matching the segment is created
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default")
     private Optional<String> default_;
@@ -31,6 +33,9 @@ public class V2ChartAccountMetadata {
         this(Optional.empty());
     }
 
+    /**
+     * Value applied to this metadata key when an account matching the segment is created
+     */
     @JsonIgnore
     public Optional<String> default_() {
         return default_;
@@ -41,6 +46,9 @@ public class V2ChartAccountMetadata {
     }
 
 
+    /**
+     * Value applied to this metadata key when an account matching the segment is created
+     */
     public V2ChartAccountMetadata withDefault(String default_) {
         Utils.checkNotNull(default_, "default_");
         this.default_ = Optional.ofNullable(default_);
@@ -48,6 +56,9 @@ public class V2ChartAccountMetadata {
     }
 
 
+    /**
+     * Value applied to this metadata key when an account matching the segment is created
+     */
     public V2ChartAccountMetadata withDefault(Optional<String> default_) {
         Utils.checkNotNull(default_, "default_");
         this.default_ = default_;
@@ -89,12 +100,18 @@ public class V2ChartAccountMetadata {
         }
 
 
+        /**
+         * Value applied to this metadata key when an account matching the segment is created
+         */
         public Builder default_(String default_) {
             Utils.checkNotNull(default_, "default_");
             this.default_ = Optional.ofNullable(default_);
             return this;
         }
 
+        /**
+         * Value applied to this metadata key when an account matching the segment is created
+         */
         public Builder default_(Optional<String> default_) {
             Utils.checkNotNull(default_, "default_");
             this.default_ = default_;

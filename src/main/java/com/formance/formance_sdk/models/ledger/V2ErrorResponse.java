@@ -15,16 +15,23 @@ import java.util.Optional;
 
 
 public class V2ErrorResponse {
-
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
     private Optional<String> details;
 
-
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @JsonProperty("errorCode")
     private V2ErrorsEnum errorCode;
 
-
+    /**
+     * Human-readable description of the error
+     */
     @JsonProperty("errorMessage")
     private String errorMessage;
 
@@ -47,16 +54,26 @@ public class V2ErrorResponse {
         this(Optional.empty(), errorCode, errorMessage);
     }
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     @JsonIgnore
     public Optional<String> details() {
         return details;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @JsonIgnore
     public V2ErrorsEnum errorCode() {
         return errorCode;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @JsonIgnore
     public String errorMessage() {
         return errorMessage;
@@ -67,6 +84,10 @@ public class V2ErrorResponse {
     }
 
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     public V2ErrorResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
@@ -74,18 +95,28 @@ public class V2ErrorResponse {
     }
 
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     public V2ErrorResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     public V2ErrorResponse withErrorCode(V2ErrorsEnum errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     public V2ErrorResponse withErrorMessage(String errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
@@ -135,12 +166,20 @@ public class V2ErrorResponse {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Builder details(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
         }
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Builder details(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
@@ -148,6 +187,9 @@ public class V2ErrorResponse {
         }
 
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Builder errorCode(V2ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
@@ -155,6 +197,9 @@ public class V2ErrorResponse {
         }
 
 
+        /**
+         * Human-readable description of the error
+         */
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;

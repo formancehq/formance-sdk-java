@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * AccountsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of accounts
+ */
 public class AccountsCursorResponseCursor {
 
     @JsonProperty("data")

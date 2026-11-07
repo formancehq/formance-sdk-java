@@ -13,33 +13,51 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-
+/**
+ * WebhooksConfig
+ * 
+ * <p>A webhook endpoint together with the event types it subscribes to
+ */
 public class WebhooksConfig {
-
+    /**
+     * Whether the configuration is active. Deactivated configurations receive no deliveries
+     */
     @JsonProperty("active")
     private boolean active;
 
-
+    /**
+     * When the configuration was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * URL events are delivered to
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     @JsonProperty("eventTypes")
     private List<String> eventTypes;
 
-
+    /**
+     * Unique identifier of the configuration
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Secret used to sign delivery payloads, letting the receiver verify their authenticity
+     */
     @JsonProperty("secret")
     private String secret;
 
-
+    /**
+     * When the configuration was last modified
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -68,36 +86,57 @@ public class WebhooksConfig {
         this.updatedAt = updatedAt;
     }
 
+    /**
+     * Whether the configuration is active. Deactivated configurations receive no deliveries
+     */
     @JsonIgnore
     public boolean active() {
         return active;
     }
 
+    /**
+     * When the configuration was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * URL events are delivered to
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     @JsonIgnore
     public List<String> eventTypes() {
         return eventTypes;
     }
 
+    /**
+     * Unique identifier of the configuration
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Secret used to sign delivery payloads, letting the receiver verify their authenticity
+     */
     @JsonIgnore
     public String secret() {
         return secret;
     }
 
+    /**
+     * When the configuration was last modified
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -108,42 +147,63 @@ public class WebhooksConfig {
     }
 
 
+    /**
+     * Whether the configuration is active. Deactivated configurations receive no deliveries
+     */
     public WebhooksConfig withActive(boolean active) {
         Utils.checkNotNull(active, "active");
         this.active = active;
         return this;
     }
 
+    /**
+     * When the configuration was created
+     */
     public WebhooksConfig withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * URL events are delivered to
+     */
     public WebhooksConfig withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     public WebhooksConfig withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
     }
 
+    /**
+     * Unique identifier of the configuration
+     */
     public WebhooksConfig withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Secret used to sign delivery payloads, letting the receiver verify their authenticity
+     */
     public WebhooksConfig withSecret(String secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
         return this;
     }
 
+    /**
+     * When the configuration was last modified
+     */
     public WebhooksConfig withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -211,6 +271,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * Whether the configuration is active. Deactivated configurations receive no deliveries
+         */
         public Builder active(boolean active) {
             Utils.checkNotNull(active, "active");
             this.active = active;
@@ -218,6 +281,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * When the configuration was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -225,6 +291,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * URL events are delivered to
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -232,6 +301,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * Types of event that trigger a delivery to this endpoint
+         */
         public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
@@ -239,6 +311,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * Unique identifier of the configuration
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -246,6 +321,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * Secret used to sign delivery payloads, letting the receiver verify their authenticity
+         */
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;
@@ -253,6 +331,9 @@ public class WebhooksConfig {
         }
 
 
+        /**
+         * When the configuration was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

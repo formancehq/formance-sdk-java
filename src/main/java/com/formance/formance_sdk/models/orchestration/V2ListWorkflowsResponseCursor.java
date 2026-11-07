@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2ListWorkflowsResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of workflows
+ */
 public class V2ListWorkflowsResponseCursor {
 
     @JsonProperty("data")

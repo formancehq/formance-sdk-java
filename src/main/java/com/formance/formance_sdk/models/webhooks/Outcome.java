@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Outcome
+ * 
+ * <p>How the attempt ended. A retryable failure is retried, a permanent failure is not
+ */
 public enum Outcome {
     SUCCEEDED("succeeded"),
     RETRYABLE_FAILURE("retryable_failure"),
