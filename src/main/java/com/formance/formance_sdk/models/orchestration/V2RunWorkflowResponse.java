@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2RunWorkflowResponse {
-
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     @JsonProperty("data")
     private V2WorkflowInstance data;
 
@@ -23,6 +25,9 @@ public class V2RunWorkflowResponse {
         this.data = data;
     }
 
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     @JsonIgnore
     public V2WorkflowInstance data() {
         return data;
@@ -33,6 +38,9 @@ public class V2RunWorkflowResponse {
     }
 
 
+    /**
+     * One run of a workflow, tracking its per-stage progress
+     */
     public V2RunWorkflowResponse withData(V2WorkflowInstance data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2RunWorkflowResponse {
         }
 
 
+        /**
+         * One run of a workflow, tracking its per-stage progress
+         */
         public Builder data(V2WorkflowInstance data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

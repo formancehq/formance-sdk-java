@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2MigrationInfoState
+ * 
+ * <p>Current state of the migration
+ */
 public enum V2MigrationInfoState {
     TO_DO("TO DO"),
     DONE("DONE"),

@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class CreateWalletResponse {
-
+    /**
+     * A wallet backed by a set of ledger accounts
+     */
     @JsonProperty("data")
     private Wallet data;
 
@@ -23,6 +25,9 @@ public class CreateWalletResponse {
         this.data = data;
     }
 
+    /**
+     * A wallet backed by a set of ledger accounts
+     */
     @JsonIgnore
     public Wallet data() {
         return data;
@@ -33,6 +38,9 @@ public class CreateWalletResponse {
     }
 
 
+    /**
+     * A wallet backed by a set of ledger accounts
+     */
     public CreateWalletResponse withData(Wallet data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class CreateWalletResponse {
         }
 
 
+        /**
+         * A wallet backed by a set of ledger accounts
+         */
         public Builder data(Wallet data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

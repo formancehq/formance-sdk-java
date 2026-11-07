@@ -1,0 +1,12 @@
+# V2LogQueryTemplate
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `body`                                                                          | Map\<String, *Object*>                                                          | :heavy_minus_sign:                                                              | The filter expression the query evaluates                                       |
+| `description`                                                                   | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | Human-readable description of what the query returns                            |
+| `params`                                                                        | [Optional\<V2QueryParams>](../../models/shared/V2QueryParams.md)                | :heavy_minus_sign:                                                              | Parameters applied when running a query template                                |
+| `resource`                                                                      | [V2LogQueryTemplateResource](../../models/shared/V2LogQueryTemplateResource.md) | :heavy_check_mark:                                                              | N/A                                                                             |
+| `vars`                                                                          | Map\<String, [V2QueryTemplateVar](../../models/shared/V2QueryTemplateVar.md)>   | :heavy_minus_sign:                                                              | Variables the query accepts, keyed by variable name                             |

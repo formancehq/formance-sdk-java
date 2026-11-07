@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>Pipelines list
  */
 public class V2PipelinesCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of pipelines
+     */
     @JsonProperty("cursor")
     private V2PipelinesCursorResponseCursor cursor;
 
@@ -27,6 +29,9 @@ public class V2PipelinesCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of pipelines
+     */
     @JsonIgnore
     public V2PipelinesCursorResponseCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class V2PipelinesCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of pipelines
+     */
     public V2PipelinesCursorResponse withCursor(V2PipelinesCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class V2PipelinesCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of pipelines
+         */
         public Builder cursor(V2PipelinesCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

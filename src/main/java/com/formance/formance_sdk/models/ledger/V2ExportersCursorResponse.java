@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>Exporters list
  */
 public class V2ExportersCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of exporters
+     */
     @JsonProperty("cursor")
     private V2ExportersCursorResponseCursor cursor;
 
@@ -27,6 +29,9 @@ public class V2ExportersCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of exporters
+     */
     @JsonIgnore
     public V2ExportersCursorResponseCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class V2ExportersCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of exporters
+     */
     public V2ExportersCursorResponse withCursor(V2ExportersCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class V2ExportersCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of exporters
+         */
         public Builder cursor(V2ExportersCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

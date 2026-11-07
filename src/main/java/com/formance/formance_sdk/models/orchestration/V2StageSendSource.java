@@ -14,19 +14,29 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * V2StageSendSource
+ * 
+ * <p>Where a send stage takes the funds from
+ */
 public class V2StageSendSource {
-
+    /**
+     * Take the funds from a ledger account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private Optional<? extends V2StageSendSourceAccount> account;
 
-
+    /**
+     * Take the funds from a payment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
     private Optional<? extends V2StageSendSourcePayment> payment;
 
-
+    /**
+     * Take the funds from a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("wallet")
     private Optional<? extends V2StageSendSourceWallet> wallet;
@@ -48,18 +58,27 @@ public class V2StageSendSource {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Take the funds from a ledger account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2StageSendSourceAccount> account() {
         return (Optional<V2StageSendSourceAccount>) account;
     }
 
+    /**
+     * Take the funds from a payment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2StageSendSourcePayment> payment() {
         return (Optional<V2StageSendSourcePayment>) payment;
     }
 
+    /**
+     * Take the funds from a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2StageSendSourceWallet> wallet() {
@@ -71,6 +90,9 @@ public class V2StageSendSource {
     }
 
 
+    /**
+     * Take the funds from a ledger account
+     */
     public V2StageSendSource withAccount(V2StageSendSourceAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = Optional.ofNullable(account);
@@ -78,12 +100,18 @@ public class V2StageSendSource {
     }
 
 
+    /**
+     * Take the funds from a ledger account
+     */
     public V2StageSendSource withAccount(Optional<? extends V2StageSendSourceAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
     }
 
+    /**
+     * Take the funds from a payment
+     */
     public V2StageSendSource withPayment(V2StageSendSourcePayment payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = Optional.ofNullable(payment);
@@ -91,12 +119,18 @@ public class V2StageSendSource {
     }
 
 
+    /**
+     * Take the funds from a payment
+     */
     public V2StageSendSource withPayment(Optional<? extends V2StageSendSourcePayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
     }
 
+    /**
+     * Take the funds from a wallet
+     */
     public V2StageSendSource withWallet(V2StageSendSourceWallet wallet) {
         Utils.checkNotNull(wallet, "wallet");
         this.wallet = Optional.ofNullable(wallet);
@@ -104,6 +138,9 @@ public class V2StageSendSource {
     }
 
 
+    /**
+     * Take the funds from a wallet
+     */
     public V2StageSendSource withWallet(Optional<? extends V2StageSendSourceWallet> wallet) {
         Utils.checkNotNull(wallet, "wallet");
         this.wallet = wallet;
@@ -153,12 +190,18 @@ public class V2StageSendSource {
         }
 
 
+        /**
+         * Take the funds from a ledger account
+         */
         public Builder account(V2StageSendSourceAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = Optional.ofNullable(account);
             return this;
         }
 
+        /**
+         * Take the funds from a ledger account
+         */
         public Builder account(Optional<? extends V2StageSendSourceAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
@@ -166,12 +209,18 @@ public class V2StageSendSource {
         }
 
 
+        /**
+         * Take the funds from a payment
+         */
         public Builder payment(V2StageSendSourcePayment payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = Optional.ofNullable(payment);
             return this;
         }
 
+        /**
+         * Take the funds from a payment
+         */
         public Builder payment(Optional<? extends V2StageSendSourcePayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
@@ -179,12 +228,18 @@ public class V2StageSendSource {
         }
 
 
+        /**
+         * Take the funds from a wallet
+         */
         public Builder wallet(V2StageSendSourceWallet wallet) {
             Utils.checkNotNull(wallet, "wallet");
             this.wallet = Optional.ofNullable(wallet);
             return this;
         }
 
+        /**
+         * Take the funds from a wallet
+         */
         public Builder wallet(Optional<? extends V2StageSendSourceWallet> wallet) {
             Utils.checkNotNull(wallet, "wallet");
             this.wallet = wallet;

@@ -17,17 +17,25 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2Trigger
+ * 
+ * <p>A rule that starts a workflow when a matching event arrives
+ */
 public class V2Trigger {
 
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Type of event that fires this trigger
+     */
     @JsonProperty("event")
     private String event;
 
-
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<String> filter;
@@ -36,22 +44,30 @@ public class V2Trigger {
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Human-readable name for the trigger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends Map<String, Object>> vars;
 
-
+    /**
+     * Version of the trigger definition
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
     private Optional<String> version;
 
-
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     @JsonProperty("workflowID")
     private String workflowID;
 
@@ -98,11 +114,17 @@ public class V2Trigger {
         return createdAt;
     }
 
+    /**
+     * Type of event that fires this trigger
+     */
     @JsonIgnore
     public String event() {
         return event;
     }
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     @JsonIgnore
     public Optional<String> filter() {
         return filter;
@@ -113,22 +135,34 @@ public class V2Trigger {
         return id;
     }
 
+    /**
+     * Human-readable name for the trigger
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> vars() {
         return (Optional<Map<String, Object>>) vars;
     }
 
+    /**
+     * Version of the trigger definition
+     */
     @JsonIgnore
     public Optional<String> version() {
         return version;
     }
 
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     @JsonIgnore
     public String workflowID() {
         return workflowID;
@@ -145,12 +179,18 @@ public class V2Trigger {
         return this;
     }
 
+    /**
+     * Type of event that fires this trigger
+     */
     public V2Trigger withEvent(String event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
         return this;
     }
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     public V2Trigger withFilter(String filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
@@ -158,6 +198,9 @@ public class V2Trigger {
     }
 
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     public V2Trigger withFilter(Optional<String> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
@@ -170,6 +213,9 @@ public class V2Trigger {
         return this;
     }
 
+    /**
+     * Human-readable name for the trigger
+     */
     public V2Trigger withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -177,12 +223,18 @@ public class V2Trigger {
     }
 
 
+    /**
+     * Human-readable name for the trigger
+     */
     public V2Trigger withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     public V2Trigger withVars(Map<String, Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
@@ -190,12 +242,18 @@ public class V2Trigger {
     }
 
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     public V2Trigger withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
     }
 
+    /**
+     * Version of the trigger definition
+     */
     public V2Trigger withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = Optional.ofNullable(version);
@@ -203,12 +261,18 @@ public class V2Trigger {
     }
 
 
+    /**
+     * Version of the trigger definition
+     */
     public V2Trigger withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
     }
 
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     public V2Trigger withWorkflowID(String workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
@@ -287,6 +351,9 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Type of event that fires this trigger
+         */
         public Builder event(String event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
@@ -294,12 +361,18 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Expression evaluated against the event. The workflow runs only when it matches
+         */
         public Builder filter(String filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
         }
 
+        /**
+         * Expression evaluated against the event. The workflow runs only when it matches
+         */
         public Builder filter(Optional<String> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
@@ -314,12 +387,18 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Human-readable name for the trigger
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Human-readable name for the trigger
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -327,12 +406,18 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Expressions evaluated against the event to build the workflow's input variables
+         */
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
+        /**
+         * Expressions evaluated against the event to build the workflow's input variables
+         */
         public Builder vars(Optional<? extends Map<String, Object>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;
@@ -340,12 +425,18 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Version of the trigger definition
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
             return this;
         }
 
+        /**
+         * Version of the trigger definition
+         */
         public Builder version(Optional<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
@@ -353,6 +444,9 @@ public class V2Trigger {
         }
 
 
+        /**
+         * Identifier of the workflow to run when the trigger fires
+         */
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;

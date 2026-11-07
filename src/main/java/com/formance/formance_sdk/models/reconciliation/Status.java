@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Status
+ * 
+ * <p>Where the alert stands in its open, acknowledged, resolved lifecycle
+ */
 public enum Status {
     OPEN("OPEN"),
     ACKNOWLEDGED("ACKNOWLEDGED"),

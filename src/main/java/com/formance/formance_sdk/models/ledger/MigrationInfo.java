@@ -17,22 +17,30 @@ import java.util.Optional;
 
 
 public class MigrationInfo {
-
+    /**
+     * When the migration was applied
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("date")
     private Optional<OffsetDateTime> date;
 
-
+    /**
+     * Name of the migration
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * Current state of the migration
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
     private Optional<? extends MigrationInfoState> state;
 
-
+    /**
+     * Sequence number of the migration
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
     private Optional<String> version;
@@ -58,22 +66,34 @@ public class MigrationInfo {
             Optional.empty());
     }
 
+    /**
+     * When the migration was applied
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> date() {
         return date;
     }
 
+    /**
+     * Name of the migration
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * Current state of the migration
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<MigrationInfoState> state() {
         return (Optional<MigrationInfoState>) state;
     }
 
+    /**
+     * Sequence number of the migration
+     */
     @JsonIgnore
     public Optional<String> version() {
         return version;
@@ -84,6 +104,9 @@ public class MigrationInfo {
     }
 
 
+    /**
+     * When the migration was applied
+     */
     public MigrationInfo withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = Optional.ofNullable(date);
@@ -91,12 +114,18 @@ public class MigrationInfo {
     }
 
 
+    /**
+     * When the migration was applied
+     */
     public MigrationInfo withDate(Optional<OffsetDateTime> date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
     }
 
+    /**
+     * Name of the migration
+     */
     public MigrationInfo withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -104,12 +133,18 @@ public class MigrationInfo {
     }
 
 
+    /**
+     * Name of the migration
+     */
     public MigrationInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Current state of the migration
+     */
     public MigrationInfo withState(MigrationInfoState state) {
         Utils.checkNotNull(state, "state");
         this.state = Optional.ofNullable(state);
@@ -117,12 +152,18 @@ public class MigrationInfo {
     }
 
 
+    /**
+     * Current state of the migration
+     */
     public MigrationInfo withState(Optional<? extends MigrationInfoState> state) {
         Utils.checkNotNull(state, "state");
         this.state = state;
         return this;
     }
 
+    /**
+     * Sequence number of the migration
+     */
     public MigrationInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = Optional.ofNullable(version);
@@ -130,6 +171,9 @@ public class MigrationInfo {
     }
 
 
+    /**
+     * Sequence number of the migration
+     */
     public MigrationInfo withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -184,12 +228,18 @@ public class MigrationInfo {
         }
 
 
+        /**
+         * When the migration was applied
+         */
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = Optional.ofNullable(date);
             return this;
         }
 
+        /**
+         * When the migration was applied
+         */
         public Builder date(Optional<OffsetDateTime> date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
@@ -197,12 +247,18 @@ public class MigrationInfo {
         }
 
 
+        /**
+         * Name of the migration
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Name of the migration
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -210,12 +266,18 @@ public class MigrationInfo {
         }
 
 
+        /**
+         * Current state of the migration
+         */
         public Builder state(MigrationInfoState state) {
             Utils.checkNotNull(state, "state");
             this.state = Optional.ofNullable(state);
             return this;
         }
 
+        /**
+         * Current state of the migration
+         */
         public Builder state(Optional<? extends MigrationInfoState> state) {
             Utils.checkNotNull(state, "state");
             this.state = state;
@@ -223,12 +285,18 @@ public class MigrationInfo {
         }
 
 
+        /**
+         * Sequence number of the migration
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
             return this;
         }
 
+        /**
+         * Sequence number of the migration
+         */
         public Builder version(Optional<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

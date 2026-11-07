@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * RulesCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of rules
+ */
 public class RulesCursorResponseCursor {
 
     @JsonProperty("data")

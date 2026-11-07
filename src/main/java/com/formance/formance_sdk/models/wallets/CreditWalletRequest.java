@@ -20,7 +20,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CreditWalletRequest {
-
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonProperty("amount")
     private Monetary amount;
 
@@ -38,17 +40,24 @@ public class CreditWalletRequest {
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * Where the funds come from. Defaults to the world account when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sources")
     private JsonNullable<? extends List<Subject>> sources;
 
-
+    /**
+     * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
@@ -81,6 +90,9 @@ public class CreditWalletRequest {
             Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonIgnore
     public Monetary amount() {
         return amount;
@@ -103,17 +115,27 @@ public class CreditWalletRequest {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * Where the funds come from. Defaults to the world account when omitted
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<Subject>> sources() {
         return (JsonNullable<List<Subject>>) sources;
     }
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
         return timestamp;
@@ -124,6 +146,9 @@ public class CreditWalletRequest {
     }
 
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     public CreditWalletRequest withAmount(Monetary amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
@@ -167,6 +192,9 @@ public class CreditWalletRequest {
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     public CreditWalletRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -174,24 +202,37 @@ public class CreditWalletRequest {
     }
 
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     public CreditWalletRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Where the funds come from. Defaults to the world account when omitted
+     */
     public CreditWalletRequest withSources(List<Subject> sources) {
         Utils.checkNotNull(sources, "sources");
         this.sources = JsonNullable.of(sources);
         return this;
     }
 
+    /**
+     * Where the funds come from. Defaults to the world account when omitted
+     */
     public CreditWalletRequest withSources(JsonNullable<? extends List<Subject>> sources) {
         Utils.checkNotNull(sources, "sources");
         this.sources = sources;
         return this;
     }
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public CreditWalletRequest withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = Optional.ofNullable(timestamp);
@@ -199,6 +240,10 @@ public class CreditWalletRequest {
     }
 
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public CreditWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -261,6 +306,9 @@ public class CreditWalletRequest {
         }
 
 
+        /**
+         * An amount together with the asset it is denominated in
+         */
         public Builder amount(Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -306,12 +354,18 @@ public class CreditWalletRequest {
         }
 
 
+        /**
+         * Optional caller-supplied identifier used to deduplicate the credit
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier used to deduplicate the credit
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -319,12 +373,18 @@ public class CreditWalletRequest {
         }
 
 
+        /**
+         * Where the funds come from. Defaults to the world account when omitted
+         */
         public Builder sources(List<Subject> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = JsonNullable.of(sources);
             return this;
         }
 
+        /**
+         * Where the funds come from. Defaults to the world account when omitted
+         */
         public Builder sources(JsonNullable<? extends List<Subject>> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = sources;
@@ -332,12 +392,20 @@ public class CreditWalletRequest {
         }
 
 
+        /**
+         * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+         * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
             return this;
         }
 
+        /**
+         * The transaction time to record, letting you backdate or postdate the credit. See [bi-
+         * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

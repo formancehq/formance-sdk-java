@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * Expr
+ * 
+ * <p>Expression the account's balances must satisfy
+ */
 public class Expr {
     @JsonCreator
     public Expr() {

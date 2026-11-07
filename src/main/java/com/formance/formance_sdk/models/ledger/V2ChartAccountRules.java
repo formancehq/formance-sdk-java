@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2ChartAccountRules
+ * 
+ * <p>Rules applied to accounts matching a chart-of-accounts segment
+ */
 public class V2ChartAccountRules {
     @JsonCreator
     public V2ChartAccountRules() {

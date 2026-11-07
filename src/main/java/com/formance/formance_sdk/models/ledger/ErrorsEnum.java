@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * ErrorsEnum
+ * 
+ * <p>Machine-readable error code identifying the failure
+ */
 public enum ErrorsEnum {
     INTERNAL("INTERNAL"),
     INSUFFICIENT_FUND("INSUFFICIENT_FUND"),

@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class V2BulkElementRevertTransaction implements V2BulkElement {
-
+    /**
+     * The bulk action this element performs
+     */
     @JsonProperty("action")
     private String action;
 
@@ -25,7 +27,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
     @JsonProperty("data")
     private Optional<? extends V2BulkElementRevertTransactionData> data;
 
-
+    /**
+     * Idempotency key scoped to this element, making it safe to retry the bulk request
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ik")
     private Optional<String> ik;
@@ -48,6 +52,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         this(action, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * The bulk action this element performs
+     */
     @JsonIgnore
     @Override
     public String action() {
@@ -60,6 +67,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         return (Optional<V2BulkElementRevertTransactionData>) data;
     }
 
+    /**
+     * Idempotency key scoped to this element, making it safe to retry the bulk request
+     */
     @JsonIgnore
     public Optional<String> ik() {
         return ik;
@@ -70,6 +80,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
     }
 
 
+    /**
+     * The bulk action this element performs
+     */
     public V2BulkElementRevertTransaction withAction(String action) {
         Utils.checkNotNull(action, "action");
         this.action = action;
@@ -89,6 +102,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         return this;
     }
 
+    /**
+     * Idempotency key scoped to this element, making it safe to retry the bulk request
+     */
     public V2BulkElementRevertTransaction withIk(String ik) {
         Utils.checkNotNull(ik, "ik");
         this.ik = Optional.ofNullable(ik);
@@ -96,6 +112,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
     }
 
 
+    /**
+     * Idempotency key scoped to this element, making it safe to retry the bulk request
+     */
     public V2BulkElementRevertTransaction withIk(Optional<String> ik) {
         Utils.checkNotNull(ik, "ik");
         this.ik = ik;
@@ -145,6 +164,9 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         }
 
 
+        /**
+         * The bulk action this element performs
+         */
         public Builder action(String action) {
             Utils.checkNotNull(action, "action");
             this.action = action;
@@ -165,12 +187,18 @@ public class V2BulkElementRevertTransaction implements V2BulkElement {
         }
 
 
+        /**
+         * Idempotency key scoped to this element, making it safe to retry the bulk request
+         */
         public Builder ik(String ik) {
             Utils.checkNotNull(ik, "ik");
             this.ik = Optional.ofNullable(ik);
             return this;
         }
 
+        /**
+         * Idempotency key scoped to this element, making it safe to retry the bulk request
+         */
         public Builder ik(Optional<String> ik) {
             Utils.checkNotNull(ik, "ik");
             this.ik = ik;

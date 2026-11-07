@@ -13,29 +13,45 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-
+/**
+ * Policy
+ * 
+ * <p>A reconciliation policy pairing a ledger query with a payments pool
+ */
 public class Policy {
-
+    /**
+     * When the policy was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the policy
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     @JsonProperty("ledgerName")
     private String ledgerName;
 
-
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     @JsonProperty("ledgerQuery")
     private Map<String, Object> ledgerQuery;
 
-
+    /**
+     * Human-readable name of the policy
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     @JsonProperty("paymentsPoolID")
     private String paymentsPoolID;
 
@@ -62,31 +78,49 @@ public class Policy {
         this.paymentsPoolID = paymentsPoolID;
     }
 
+    /**
+     * When the policy was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the policy
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     @JsonIgnore
     public String ledgerName() {
         return ledgerName;
     }
 
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     @JsonIgnore
     public Map<String, Object> ledgerQuery() {
         return ledgerQuery;
     }
 
+    /**
+     * Human-readable name of the policy
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     @JsonIgnore
     public String paymentsPoolID() {
         return paymentsPoolID;
@@ -97,36 +131,54 @@ public class Policy {
     }
 
 
+    /**
+     * When the policy was created
+     */
     public Policy withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the policy
+     */
     public Policy withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     public Policy withLedgerName(String ledgerName) {
         Utils.checkNotNull(ledgerName, "ledgerName");
         this.ledgerName = ledgerName;
         return this;
     }
 
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     public Policy withLedgerQuery(Map<String, Object> ledgerQuery) {
         Utils.checkNotNull(ledgerQuery, "ledgerQuery");
         this.ledgerQuery = ledgerQuery;
         return this;
     }
 
+    /**
+     * Human-readable name of the policy
+     */
     public Policy withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     public Policy withPaymentsPoolID(String paymentsPoolID) {
         Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
         this.paymentsPoolID = paymentsPoolID;
@@ -189,6 +241,9 @@ public class Policy {
         }
 
 
+        /**
+         * When the policy was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -196,6 +251,9 @@ public class Policy {
         }
 
 
+        /**
+         * Unique identifier of the policy
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -203,6 +261,9 @@ public class Policy {
         }
 
 
+        /**
+         * Name of the ledger the policy reconciles against
+         */
         public Builder ledgerName(String ledgerName) {
             Utils.checkNotNull(ledgerName, "ledgerName");
             this.ledgerName = ledgerName;
@@ -210,6 +271,9 @@ public class Policy {
         }
 
 
+        /**
+         * Filter selecting the ledger accounts whose balances are reconciled
+         */
         public Builder ledgerQuery(Map<String, Object> ledgerQuery) {
             Utils.checkNotNull(ledgerQuery, "ledgerQuery");
             this.ledgerQuery = ledgerQuery;
@@ -217,6 +281,9 @@ public class Policy {
         }
 
 
+        /**
+         * Human-readable name of the policy
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -224,6 +291,9 @@ public class Policy {
         }
 
 
+        /**
+         * Identifier of the payments pool the ledger side is compared against
+         */
         public Builder paymentsPoolID(String paymentsPoolID) {
             Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
             this.paymentsPoolID = paymentsPoolID;

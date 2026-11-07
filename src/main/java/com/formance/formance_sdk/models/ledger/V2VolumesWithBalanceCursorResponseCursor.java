@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2VolumesWithBalanceCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of volumes
+ */
 public class V2VolumesWithBalanceCursorResponseCursor {
 
     @JsonProperty("data")

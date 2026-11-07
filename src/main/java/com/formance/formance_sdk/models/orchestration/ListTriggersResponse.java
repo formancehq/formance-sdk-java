@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class ListTriggersResponse {
-
+    /**
+     * The triggers defined on this stack
+     */
     @JsonProperty("data")
     private List<Trigger> data;
 
@@ -24,6 +26,9 @@ public class ListTriggersResponse {
         this.data = data;
     }
 
+    /**
+     * The triggers defined on this stack
+     */
     @JsonIgnore
     public List<Trigger> data() {
         return data;
@@ -34,6 +39,9 @@ public class ListTriggersResponse {
     }
 
 
+    /**
+     * The triggers defined on this stack
+     */
     public ListTriggersResponse withData(List<Trigger> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class ListTriggersResponse {
         }
 
 
+        /**
+         * The triggers defined on this stack
+         */
         public Builder data(List<Trigger> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

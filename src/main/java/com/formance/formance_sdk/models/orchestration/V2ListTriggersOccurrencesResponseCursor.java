@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2ListTriggersOccurrencesResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the trigger's occurrences
+ */
 public class V2ListTriggersOccurrencesResponseCursor {
 
     @JsonProperty("data")

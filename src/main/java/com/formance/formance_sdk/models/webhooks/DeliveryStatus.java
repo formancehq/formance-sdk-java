@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * DeliveryStatus
+ * 
+ * <p>Current state of a delivery in its retry lifecycle
+ */
 public enum DeliveryStatus {
     PENDING("pending"),
     DELIVERING("delivering"),

@@ -15,6 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 
+/**
+ * Stage
+ * 
+ * <p>One step of a workflow, whose shape depends on the stage type
+ */
 @JsonDeserialize(using = Stage._Deserializer.class)
 public class Stage {
 

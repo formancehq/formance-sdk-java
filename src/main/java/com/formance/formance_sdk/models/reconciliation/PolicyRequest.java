@@ -14,19 +14,27 @@ import java.util.Map;
 
 
 public class PolicyRequest {
-
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     @JsonProperty("ledgerName")
     private String ledgerName;
 
-
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     @JsonProperty("ledgerQuery")
     private Map<String, Object> ledgerQuery;
 
-
+    /**
+     * Human-readable name for the policy
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     @JsonProperty("paymentsPoolID")
     private String paymentsPoolID;
 
@@ -47,21 +55,33 @@ public class PolicyRequest {
         this.paymentsPoolID = paymentsPoolID;
     }
 
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     @JsonIgnore
     public String ledgerName() {
         return ledgerName;
     }
 
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     @JsonIgnore
     public Map<String, Object> ledgerQuery() {
         return ledgerQuery;
     }
 
+    /**
+     * Human-readable name for the policy
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     @JsonIgnore
     public String paymentsPoolID() {
         return paymentsPoolID;
@@ -72,24 +92,36 @@ public class PolicyRequest {
     }
 
 
+    /**
+     * Name of the ledger the policy reconciles against
+     */
     public PolicyRequest withLedgerName(String ledgerName) {
         Utils.checkNotNull(ledgerName, "ledgerName");
         this.ledgerName = ledgerName;
         return this;
     }
 
+    /**
+     * Filter selecting the ledger accounts whose balances are reconciled
+     */
     public PolicyRequest withLedgerQuery(Map<String, Object> ledgerQuery) {
         Utils.checkNotNull(ledgerQuery, "ledgerQuery");
         this.ledgerQuery = ledgerQuery;
         return this;
     }
 
+    /**
+     * Human-readable name for the policy
+     */
     public PolicyRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Identifier of the payments pool the ledger side is compared against
+     */
     public PolicyRequest withPaymentsPoolID(String paymentsPoolID) {
         Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
         this.paymentsPoolID = paymentsPoolID;
@@ -144,6 +176,9 @@ public class PolicyRequest {
         }
 
 
+        /**
+         * Name of the ledger the policy reconciles against
+         */
         public Builder ledgerName(String ledgerName) {
             Utils.checkNotNull(ledgerName, "ledgerName");
             this.ledgerName = ledgerName;
@@ -151,6 +186,9 @@ public class PolicyRequest {
         }
 
 
+        /**
+         * Filter selecting the ledger accounts whose balances are reconciled
+         */
         public Builder ledgerQuery(Map<String, Object> ledgerQuery) {
             Utils.checkNotNull(ledgerQuery, "ledgerQuery");
             this.ledgerQuery = ledgerQuery;
@@ -158,6 +196,9 @@ public class PolicyRequest {
         }
 
 
+        /**
+         * Human-readable name for the policy
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -165,6 +206,9 @@ public class PolicyRequest {
         }
 
 
+        /**
+         * Identifier of the payments pool the ledger side is compared against
+         */
         public Builder paymentsPoolID(String paymentsPoolID) {
             Utils.checkNotNull(paymentsPoolID, "paymentsPoolID");
             this.paymentsPoolID = paymentsPoolID;

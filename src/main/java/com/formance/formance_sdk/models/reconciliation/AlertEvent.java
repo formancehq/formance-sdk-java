@@ -32,28 +32,40 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * identical fail, or a fail muted by an active snooze).
  */
 public class AlertEvent {
-
+    /**
+     * Identifier of the alert this event belongs to
+     */
     @JsonProperty("alertID")
     private String alertID;
 
-
+    /**
+     * When the event occurred
+     */
     @JsonProperty("at")
     private OffsetDateTime at;
 
-
+    /**
+     * Identifier of the evaluation that produced this event, absent for manual transitions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evaluationID")
     private JsonNullable<String> evaluationID;
 
-
+    /**
+     * Unique identifier of the event
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * True when a failure landed on an already-resolved alert, reopening it
+     */
     @JsonProperty("isReopen")
     private boolean isReopen;
 
-
+    /**
+     * Status after this event
+     */
     @JsonProperty("newStatus")
     private NewStatus newStatus;
 
@@ -71,12 +83,16 @@ public class AlertEvent {
     @JsonProperty("payload")
     private Optional<? extends Map<String, Object>> payload;
 
-
+    /**
+     * Status before this event. Null only for the alert's inaugural event
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prevStatus")
     private JsonNullable<? extends PrevStatus> prevStatus;
 
-
+    /**
+     * What happened, whether an evaluation outcome or a manual transition
+     */
     @JsonProperty("type")
     private Type type;
 
@@ -128,31 +144,49 @@ public class AlertEvent {
             type);
     }
 
+    /**
+     * Identifier of the alert this event belongs to
+     */
     @JsonIgnore
     public String alertID() {
         return alertID;
     }
 
+    /**
+     * When the event occurred
+     */
     @JsonIgnore
     public OffsetDateTime at() {
         return at;
     }
 
+    /**
+     * Identifier of the evaluation that produced this event, absent for manual transitions
+     */
     @JsonIgnore
     public JsonNullable<String> evaluationID() {
         return evaluationID;
     }
 
+    /**
+     * Unique identifier of the event
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * True when a failure landed on an already-resolved alert, reopening it
+     */
     @JsonIgnore
     public boolean isReopen() {
         return isReopen;
     }
 
+    /**
+     * Status after this event
+     */
     @JsonIgnore
     public NewStatus newStatus() {
         return newStatus;
@@ -176,12 +210,18 @@ public class AlertEvent {
         return (Optional<Map<String, Object>>) payload;
     }
 
+    /**
+     * Status before this event. Null only for the alert's inaugural event
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<PrevStatus> prevStatus() {
         return (JsonNullable<PrevStatus>) prevStatus;
     }
 
+    /**
+     * What happened, whether an evaluation outcome or a manual transition
+     */
     @JsonIgnore
     public Type type() {
         return type;
@@ -192,42 +232,63 @@ public class AlertEvent {
     }
 
 
+    /**
+     * Identifier of the alert this event belongs to
+     */
     public AlertEvent withAlertID(String alertID) {
         Utils.checkNotNull(alertID, "alertID");
         this.alertID = alertID;
         return this;
     }
 
+    /**
+     * When the event occurred
+     */
     public AlertEvent withAt(OffsetDateTime at) {
         Utils.checkNotNull(at, "at");
         this.at = at;
         return this;
     }
 
+    /**
+     * Identifier of the evaluation that produced this event, absent for manual transitions
+     */
     public AlertEvent withEvaluationID(String evaluationID) {
         Utils.checkNotNull(evaluationID, "evaluationID");
         this.evaluationID = JsonNullable.of(evaluationID);
         return this;
     }
 
+    /**
+     * Identifier of the evaluation that produced this event, absent for manual transitions
+     */
     public AlertEvent withEvaluationID(JsonNullable<String> evaluationID) {
         Utils.checkNotNull(evaluationID, "evaluationID");
         this.evaluationID = evaluationID;
         return this;
     }
 
+    /**
+     * Unique identifier of the event
+     */
     public AlertEvent withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * True when a failure landed on an already-resolved alert, reopening it
+     */
     public AlertEvent withIsReopen(boolean isReopen) {
         Utils.checkNotNull(isReopen, "isReopen");
         this.isReopen = isReopen;
         return this;
     }
 
+    /**
+     * Status after this event
+     */
     public AlertEvent withNewStatus(NewStatus newStatus) {
         Utils.checkNotNull(newStatus, "newStatus");
         this.newStatus = newStatus;
@@ -264,18 +325,27 @@ public class AlertEvent {
         return this;
     }
 
+    /**
+     * Status before this event. Null only for the alert's inaugural event
+     */
     public AlertEvent withPrevStatus(PrevStatus prevStatus) {
         Utils.checkNotNull(prevStatus, "prevStatus");
         this.prevStatus = JsonNullable.of(prevStatus);
         return this;
     }
 
+    /**
+     * Status before this event. Null only for the alert's inaugural event
+     */
     public AlertEvent withPrevStatus(JsonNullable<? extends PrevStatus> prevStatus) {
         Utils.checkNotNull(prevStatus, "prevStatus");
         this.prevStatus = prevStatus;
         return this;
     }
 
+    /**
+     * What happened, whether an evaluation outcome or a manual transition
+     */
     public AlertEvent withType(Type type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -356,6 +426,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * Identifier of the alert this event belongs to
+         */
         public Builder alertID(String alertID) {
             Utils.checkNotNull(alertID, "alertID");
             this.alertID = alertID;
@@ -363,6 +436,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * When the event occurred
+         */
         public Builder at(OffsetDateTime at) {
             Utils.checkNotNull(at, "at");
             this.at = at;
@@ -370,12 +446,18 @@ public class AlertEvent {
         }
 
 
+        /**
+         * Identifier of the evaluation that produced this event, absent for manual transitions
+         */
         public Builder evaluationID(String evaluationID) {
             Utils.checkNotNull(evaluationID, "evaluationID");
             this.evaluationID = JsonNullable.of(evaluationID);
             return this;
         }
 
+        /**
+         * Identifier of the evaluation that produced this event, absent for manual transitions
+         */
         public Builder evaluationID(JsonNullable<String> evaluationID) {
             Utils.checkNotNull(evaluationID, "evaluationID");
             this.evaluationID = evaluationID;
@@ -383,6 +465,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * Unique identifier of the event
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -390,6 +475,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * True when a failure landed on an already-resolved alert, reopening it
+         */
         public Builder isReopen(boolean isReopen) {
             Utils.checkNotNull(isReopen, "isReopen");
             this.isReopen = isReopen;
@@ -397,6 +485,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * Status after this event
+         */
         public Builder newStatus(NewStatus newStatus) {
             Utils.checkNotNull(newStatus, "newStatus");
             this.newStatus = newStatus;
@@ -435,12 +526,18 @@ public class AlertEvent {
         }
 
 
+        /**
+         * Status before this event. Null only for the alert's inaugural event
+         */
         public Builder prevStatus(PrevStatus prevStatus) {
             Utils.checkNotNull(prevStatus, "prevStatus");
             this.prevStatus = JsonNullable.of(prevStatus);
             return this;
         }
 
+        /**
+         * Status before this event. Null only for the alert's inaugural event
+         */
         public Builder prevStatus(JsonNullable<? extends PrevStatus> prevStatus) {
             Utils.checkNotNull(prevStatus, "prevStatus");
             this.prevStatus = prevStatus;
@@ -448,6 +545,9 @@ public class AlertEvent {
         }
 
 
+        /**
+         * What happened, whether an evaluation outcome or a manual transition
+         */
         public Builder type(Type type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

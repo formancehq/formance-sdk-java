@@ -15,12 +15,16 @@ import java.util.Optional;
 
 
 public class Contract {
-
+    /**
+     * Account address, or pattern, the contract applies to
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private Optional<String> account;
 
-
+    /**
+     * Expression the account's balances must satisfy
+     */
     @JsonProperty("expr")
     private Expr expr;
 
@@ -39,11 +43,17 @@ public class Contract {
         this(Optional.empty(), expr);
     }
 
+    /**
+     * Account address, or pattern, the contract applies to
+     */
     @JsonIgnore
     public Optional<String> account() {
         return account;
     }
 
+    /**
+     * Expression the account's balances must satisfy
+     */
     @JsonIgnore
     public Expr expr() {
         return expr;
@@ -54,6 +64,9 @@ public class Contract {
     }
 
 
+    /**
+     * Account address, or pattern, the contract applies to
+     */
     public Contract withAccount(String account) {
         Utils.checkNotNull(account, "account");
         this.account = Optional.ofNullable(account);
@@ -61,12 +74,18 @@ public class Contract {
     }
 
 
+    /**
+     * Account address, or pattern, the contract applies to
+     */
     public Contract withAccount(Optional<String> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
     }
 
+    /**
+     * Expression the account's balances must satisfy
+     */
     public Contract withExpr(Expr expr) {
         Utils.checkNotNull(expr, "expr");
         this.expr = expr;
@@ -112,12 +131,18 @@ public class Contract {
         }
 
 
+        /**
+         * Account address, or pattern, the contract applies to
+         */
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
             this.account = Optional.ofNullable(account);
             return this;
         }
 
+        /**
+         * Account address, or pattern, the contract applies to
+         */
         public Builder account(Optional<String> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
@@ -125,6 +150,9 @@ public class Contract {
         }
 
 
+        /**
+         * Expression the account's balances must satisfy
+         */
         public Builder expr(Expr expr) {
             Utils.checkNotNull(expr, "expr");
             this.expr = expr;

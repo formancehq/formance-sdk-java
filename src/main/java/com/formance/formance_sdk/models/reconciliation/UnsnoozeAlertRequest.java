@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class UnsnoozeAlertRequest {
-
+    /**
+     * Who is lifting the snooze
+     */
     @JsonProperty("by")
     private String by;
 
@@ -23,6 +25,9 @@ public class UnsnoozeAlertRequest {
         this.by = by;
     }
 
+    /**
+     * Who is lifting the snooze
+     */
     @JsonIgnore
     public String by() {
         return by;
@@ -33,6 +38,9 @@ public class UnsnoozeAlertRequest {
     }
 
 
+    /**
+     * Who is lifting the snooze
+     */
     public UnsnoozeAlertRequest withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
@@ -74,6 +82,9 @@ public class UnsnoozeAlertRequest {
         }
 
 
+        /**
+         * Who is lifting the snooze
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;

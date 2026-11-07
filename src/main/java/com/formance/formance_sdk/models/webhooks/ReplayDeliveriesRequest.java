@@ -21,31 +21,43 @@ import java.util.Optional;
 
 
 public class ReplayDeliveriesRequest {
-
+    /**
+     * Restrict the replay to deliveries targeting these webhook configurations
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configIds")
     private Optional<? extends List<String>> configIds;
 
-
+    /**
+     * Replay deliveries created at or after this time
+     */
     @JsonProperty("createdAtFrom")
     private OffsetDateTime createdAtFrom;
 
-
+    /**
+     * Replay deliveries created at or before this time. Defaults to now when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAtTo")
     private Optional<OffsetDateTime> createdAtTo;
 
-
+    /**
+     * Pagination cursor from a previous replay response, used to continue a large replay
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
     private Optional<String> cursor;
 
-
+    /**
+     * Maximum number of deliveries to process in this call
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
     private Optional<Long> pageSize;
 
-
+    /**
+     * Restrict the replay to deliveries in these statuses
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statuses")
     private Optional<? extends List<Status>> statuses;
@@ -78,32 +90,50 @@ public class ReplayDeliveriesRequest {
             Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Restrict the replay to deliveries targeting these webhook configurations
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> configIds() {
         return (Optional<List<String>>) configIds;
     }
 
+    /**
+     * Replay deliveries created at or after this time
+     */
     @JsonIgnore
     public OffsetDateTime createdAtFrom() {
         return createdAtFrom;
     }
 
+    /**
+     * Replay deliveries created at or before this time. Defaults to now when omitted
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> createdAtTo() {
         return createdAtTo;
     }
 
+    /**
+     * Pagination cursor from a previous replay response, used to continue a large replay
+     */
     @JsonIgnore
     public Optional<String> cursor() {
         return cursor;
     }
 
+    /**
+     * Maximum number of deliveries to process in this call
+     */
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
     }
 
+    /**
+     * Restrict the replay to deliveries in these statuses
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<Status>> statuses() {
@@ -115,6 +145,9 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Restrict the replay to deliveries targeting these webhook configurations
+     */
     public ReplayDeliveriesRequest withConfigIds(List<String> configIds) {
         Utils.checkNotNull(configIds, "configIds");
         this.configIds = Optional.ofNullable(configIds);
@@ -122,18 +155,27 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Restrict the replay to deliveries targeting these webhook configurations
+     */
     public ReplayDeliveriesRequest withConfigIds(Optional<? extends List<String>> configIds) {
         Utils.checkNotNull(configIds, "configIds");
         this.configIds = configIds;
         return this;
     }
 
+    /**
+     * Replay deliveries created at or after this time
+     */
     public ReplayDeliveriesRequest withCreatedAtFrom(OffsetDateTime createdAtFrom) {
         Utils.checkNotNull(createdAtFrom, "createdAtFrom");
         this.createdAtFrom = createdAtFrom;
         return this;
     }
 
+    /**
+     * Replay deliveries created at or before this time. Defaults to now when omitted
+     */
     public ReplayDeliveriesRequest withCreatedAtTo(OffsetDateTime createdAtTo) {
         Utils.checkNotNull(createdAtTo, "createdAtTo");
         this.createdAtTo = Optional.ofNullable(createdAtTo);
@@ -141,12 +183,18 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Replay deliveries created at or before this time. Defaults to now when omitted
+     */
     public ReplayDeliveriesRequest withCreatedAtTo(Optional<OffsetDateTime> createdAtTo) {
         Utils.checkNotNull(createdAtTo, "createdAtTo");
         this.createdAtTo = createdAtTo;
         return this;
     }
 
+    /**
+     * Pagination cursor from a previous replay response, used to continue a large replay
+     */
     public ReplayDeliveriesRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = Optional.ofNullable(cursor);
@@ -154,12 +202,18 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Pagination cursor from a previous replay response, used to continue a large replay
+     */
     public ReplayDeliveriesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
+    /**
+     * Maximum number of deliveries to process in this call
+     */
     public ReplayDeliveriesRequest withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = Optional.ofNullable(pageSize);
@@ -167,12 +221,18 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Maximum number of deliveries to process in this call
+     */
     public ReplayDeliveriesRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
     }
 
+    /**
+     * Restrict the replay to deliveries in these statuses
+     */
     public ReplayDeliveriesRequest withStatuses(List<Status> statuses) {
         Utils.checkNotNull(statuses, "statuses");
         this.statuses = Optional.ofNullable(statuses);
@@ -180,6 +240,9 @@ public class ReplayDeliveriesRequest {
     }
 
 
+    /**
+     * Restrict the replay to deliveries in these statuses
+     */
     public ReplayDeliveriesRequest withStatuses(Optional<? extends List<Status>> statuses) {
         Utils.checkNotNull(statuses, "statuses");
         this.statuses = statuses;
@@ -242,12 +305,18 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Restrict the replay to deliveries targeting these webhook configurations
+         */
         public Builder configIds(List<String> configIds) {
             Utils.checkNotNull(configIds, "configIds");
             this.configIds = Optional.ofNullable(configIds);
             return this;
         }
 
+        /**
+         * Restrict the replay to deliveries targeting these webhook configurations
+         */
         public Builder configIds(Optional<? extends List<String>> configIds) {
             Utils.checkNotNull(configIds, "configIds");
             this.configIds = configIds;
@@ -255,6 +324,9 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Replay deliveries created at or after this time
+         */
         public Builder createdAtFrom(OffsetDateTime createdAtFrom) {
             Utils.checkNotNull(createdAtFrom, "createdAtFrom");
             this.createdAtFrom = createdAtFrom;
@@ -262,12 +334,18 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Replay deliveries created at or before this time. Defaults to now when omitted
+         */
         public Builder createdAtTo(OffsetDateTime createdAtTo) {
             Utils.checkNotNull(createdAtTo, "createdAtTo");
             this.createdAtTo = Optional.ofNullable(createdAtTo);
             return this;
         }
 
+        /**
+         * Replay deliveries created at or before this time. Defaults to now when omitted
+         */
         public Builder createdAtTo(Optional<OffsetDateTime> createdAtTo) {
             Utils.checkNotNull(createdAtTo, "createdAtTo");
             this.createdAtTo = createdAtTo;
@@ -275,12 +353,18 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Pagination cursor from a previous replay response, used to continue a large replay
+         */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
+        /**
+         * Pagination cursor from a previous replay response, used to continue a large replay
+         */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
@@ -288,12 +372,18 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Maximum number of deliveries to process in this call
+         */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
+        /**
+         * Maximum number of deliveries to process in this call
+         */
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
@@ -301,12 +391,18 @@ public class ReplayDeliveriesRequest {
         }
 
 
+        /**
+         * Restrict the replay to deliveries in these statuses
+         */
         public Builder statuses(List<Status> statuses) {
             Utils.checkNotNull(statuses, "statuses");
             this.statuses = Optional.ofNullable(statuses);
             return this;
         }
 
+        /**
+         * Restrict the replay to deliveries in these statuses
+         */
         public Builder statuses(Optional<? extends List<Status>> statuses) {
             Utils.checkNotNull(statuses, "statuses");
             this.statuses = statuses;

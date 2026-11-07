@@ -5,8 +5,11 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
@@ -15,6 +18,14 @@ import java.util.Optional;
 
 
 public class V2GetTransactionRequest {
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Formance-Bigint-As-String")
+    private Optional<Boolean> formanceBigintAsString;
+
 
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=expand")
     private Optional<String> expand;
@@ -37,14 +48,17 @@ public class V2GetTransactionRequest {
 
     @JsonCreator
     public V2GetTransactionRequest(
+            Optional<Boolean> formanceBigintAsString,
             Optional<String> expand,
             BigInteger id,
             String ledger,
             Optional<OffsetDateTime> pit) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
         Utils.checkNotNull(expand, "expand");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(ledger, "ledger");
         Utils.checkNotNull(pit, "pit");
+        this.formanceBigintAsString = formanceBigintAsString;
         this.expand = expand;
         this.id = id;
         this.ledger = ledger;
@@ -54,8 +68,18 @@ public class V2GetTransactionRequest {
     public V2GetTransactionRequest(
             BigInteger id,
             String ledger) {
-        this(Optional.empty(), id, ledger,
-            Optional.empty());
+        this(Optional.empty(), Optional.empty(), id,
+            ledger, Optional.empty());
+    }
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @JsonIgnore
+    public Optional<Boolean> formanceBigintAsString() {
+        return formanceBigintAsString;
     }
 
     @JsonIgnore
@@ -88,6 +112,29 @@ public class V2GetTransactionRequest {
         return new Builder();
     }
 
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2GetTransactionRequest withFormanceBigintAsString(boolean formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+        return this;
+    }
+
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2GetTransactionRequest withFormanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = formanceBigintAsString;
+        return this;
+    }
 
     public V2GetTransactionRequest withExpand(String expand) {
         Utils.checkNotNull(expand, "expand");
@@ -151,6 +198,7 @@ public class V2GetTransactionRequest {
         }
         V2GetTransactionRequest other = (V2GetTransactionRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.formanceBigintAsString, other.formanceBigintAsString) &&
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.ledger, other.ledger) &&
@@ -160,13 +208,14 @@ public class V2GetTransactionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expand, id, ledger,
-            pit);
+            formanceBigintAsString, expand, id,
+            ledger, pit);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2GetTransactionRequest.class,
+                "formanceBigintAsString", formanceBigintAsString,
                 "expand", expand,
                 "id", id,
                 "ledger", ledger,
@@ -175,6 +224,8 @@ public class V2GetTransactionRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<Boolean> formanceBigintAsString;
 
         private Optional<String> expand = Optional.empty();
 
@@ -186,6 +237,29 @@ public class V2GetTransactionRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(boolean formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+            return this;
+        }
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = formanceBigintAsString;
+            return this;
         }
 
 
@@ -243,11 +317,20 @@ public class V2GetTransactionRequest {
         }
 
         public V2GetTransactionRequest build() {
+            if (formanceBigintAsString == null) {
+                formanceBigintAsString = _SINGLETON_VALUE_FormanceBigintAsString.value();
+            }
 
             return new V2GetTransactionRequest(
-                expand, id, ledger,
-                pit);
+                formanceBigintAsString, expand, id,
+                ledger, pit);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FormanceBigintAsString =
+                new LazySingletonValue<>(
+                        "Formance-Bigint-As-String",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

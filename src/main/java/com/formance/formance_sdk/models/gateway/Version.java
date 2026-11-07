@@ -13,15 +13,21 @@ import java.lang.String;
 
 
 public class Version {
-
+    /**
+     * Whether the component is reporting itself healthy
+     */
     @JsonProperty("health")
     private boolean health;
 
-
+    /**
+     * Name of the component
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Version of the component currently deployed
+     */
     @JsonProperty("version")
     private String version;
 
@@ -38,16 +44,25 @@ public class Version {
         this.version = version;
     }
 
+    /**
+     * Whether the component is reporting itself healthy
+     */
     @JsonIgnore
     public boolean health() {
         return health;
     }
 
+    /**
+     * Name of the component
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Version of the component currently deployed
+     */
     @JsonIgnore
     public String version() {
         return version;
@@ -58,18 +73,27 @@ public class Version {
     }
 
 
+    /**
+     * Whether the component is reporting itself healthy
+     */
     public Version withHealth(boolean health) {
         Utils.checkNotNull(health, "health");
         this.health = health;
         return this;
     }
 
+    /**
+     * Name of the component
+     */
     public Version withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Version of the component currently deployed
+     */
     public Version withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -119,6 +143,9 @@ public class Version {
         }
 
 
+        /**
+         * Whether the component is reporting itself healthy
+         */
         public Builder health(boolean health) {
             Utils.checkNotNull(health, "health");
             this.health = health;
@@ -126,6 +153,9 @@ public class Version {
         }
 
 
+        /**
+         * Name of the component
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -133,6 +163,9 @@ public class Version {
         }
 
 
+        /**
+         * Version of the component currently deployed
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

@@ -17,7 +17,9 @@ import java.util.Optional;
 
 
 public class ListClientsResponse {
-
+    /**
+     * The clients registered on this stack
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends List<Client>> data;
@@ -33,6 +35,9 @@ public class ListClientsResponse {
         this(Optional.empty());
     }
 
+    /**
+     * The clients registered on this stack
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<Client>> data() {
@@ -44,6 +49,9 @@ public class ListClientsResponse {
     }
 
 
+    /**
+     * The clients registered on this stack
+     */
     public ListClientsResponse withData(List<Client> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -51,6 +59,9 @@ public class ListClientsResponse {
     }
 
 
+    /**
+     * The clients registered on this stack
+     */
     public ListClientsResponse withData(Optional<? extends List<Client>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -92,12 +103,18 @@ public class ListClientsResponse {
         }
 
 
+        /**
+         * The clients registered on this stack
+         */
         public Builder data(List<Client> data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * The clients registered on this stack
+         */
         public Builder data(Optional<? extends List<Client>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

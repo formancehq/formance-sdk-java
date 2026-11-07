@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class ReconciliationResponse {
-
+    /**
+     * One run of a policy, comparing both sides and reporting the drift between them
+     */
     @JsonProperty("data")
     private Reconciliation data;
 
@@ -27,6 +29,9 @@ public class ReconciliationResponse {
         this.data = data;
     }
 
+    /**
+     * One run of a policy, comparing both sides and reporting the drift between them
+     */
     @JsonIgnore
     public Reconciliation data() {
         return data;
@@ -37,6 +42,9 @@ public class ReconciliationResponse {
     }
 
 
+    /**
+     * One run of a policy, comparing both sides and reporting the drift between them
+     */
     public ReconciliationResponse withData(Reconciliation data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class ReconciliationResponse {
         }
 
 
+        /**
+         * One run of a policy, comparing both sides and reporting the drift between them
+         */
         public Builder data(Reconciliation data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

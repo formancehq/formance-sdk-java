@@ -16,7 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V2StageSendSourceAccount
+ * 
+ * <p>Take the funds from a ledger account
+ */
 public class V2StageSendSourceAccount {
     /**
      * Enables unbounded overdraft on the throughAccount when set to true.
@@ -28,11 +32,15 @@ public class V2StageSendSourceAccount {
     @JsonProperty("allowOverdraft")
     private Optional<Boolean> allowOverdraft;
 
-
+    /**
+     * Address of the ledger account to take funds from
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
     private Optional<String> ledger;
@@ -80,11 +88,17 @@ public class V2StageSendSourceAccount {
         return allowOverdraft;
     }
 
+    /**
+     * Address of the ledger account to take funds from
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonIgnore
     public Optional<String> ledger() {
         return ledger;
@@ -131,12 +145,18 @@ public class V2StageSendSourceAccount {
         return this;
     }
 
+    /**
+     * Address of the ledger account to take funds from
+     */
     public V2StageSendSourceAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     public V2StageSendSourceAccount withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = Optional.ofNullable(ledger);
@@ -144,6 +164,9 @@ public class V2StageSendSourceAccount {
     }
 
 
+    /**
+     * Name of the ledger holding the account
+     */
     public V2StageSendSourceAccount withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -248,6 +271,9 @@ public class V2StageSendSourceAccount {
         }
 
 
+        /**
+         * Address of the ledger account to take funds from
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -255,12 +281,18 @@ public class V2StageSendSourceAccount {
         }
 
 
+        /**
+         * Name of the ledger holding the account
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = Optional.ofNullable(ledger);
             return this;
         }
 
+        /**
+         * Name of the ledger holding the account
+         */
         public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;

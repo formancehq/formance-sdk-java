@@ -11,13 +11,21 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-
+/**
+ * LedgerStorage
+ * 
+ * <p>Storage backend the ledgers are held in
+ */
 public class LedgerStorage {
-
+    /**
+     * Name of the storage driver backing the ledgers
+     */
     @JsonProperty("driver")
     private String driver;
 
-
+    /**
+     * Names of the ledgers held in this storage backend
+     */
     @JsonProperty("ledgers")
     private List<String> ledgers;
 
@@ -31,11 +39,17 @@ public class LedgerStorage {
         this.ledgers = ledgers;
     }
 
+    /**
+     * Name of the storage driver backing the ledgers
+     */
     @JsonIgnore
     public String driver() {
         return driver;
     }
 
+    /**
+     * Names of the ledgers held in this storage backend
+     */
     @JsonIgnore
     public List<String> ledgers() {
         return ledgers;
@@ -46,12 +60,18 @@ public class LedgerStorage {
     }
 
 
+    /**
+     * Name of the storage driver backing the ledgers
+     */
     public LedgerStorage withDriver(String driver) {
         Utils.checkNotNull(driver, "driver");
         this.driver = driver;
         return this;
     }
 
+    /**
+     * Names of the ledgers held in this storage backend
+     */
     public LedgerStorage withLedgers(List<String> ledgers) {
         Utils.checkNotNull(ledgers, "ledgers");
         this.ledgers = ledgers;
@@ -97,6 +117,9 @@ public class LedgerStorage {
         }
 
 
+        /**
+         * Name of the storage driver backing the ledgers
+         */
         public Builder driver(String driver) {
             Utils.checkNotNull(driver, "driver");
             this.driver = driver;
@@ -104,6 +127,9 @@ public class LedgerStorage {
         }
 
 
+        /**
+         * Names of the ledgers held in this storage backend
+         */
         public Builder ledgers(List<String> ledgers) {
             Utils.checkNotNull(ledgers, "ledgers");
             this.ledgers = ledgers;

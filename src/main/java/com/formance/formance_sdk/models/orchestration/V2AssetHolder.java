@@ -14,7 +14,9 @@ import java.util.Map;
 
 
 public class V2AssetHolder {
-
+    /**
+     * Amounts held, keyed by asset
+     */
     @JsonProperty("assets")
     private Map<String, BigInteger> assets;
 
@@ -26,6 +28,9 @@ public class V2AssetHolder {
         this.assets = assets;
     }
 
+    /**
+     * Amounts held, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> assets() {
         return assets;
@@ -36,6 +41,9 @@ public class V2AssetHolder {
     }
 
 
+    /**
+     * Amounts held, keyed by asset
+     */
     public V2AssetHolder withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
         this.assets = assets;
@@ -77,6 +85,9 @@ public class V2AssetHolder {
         }
 
 
+        /**
+         * Amounts held, keyed by asset
+         */
         public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;

@@ -16,46 +16,70 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Reconciliation
+ * 
+ * <p>One run of a policy, comparing both sides and reporting the drift between them
+ */
 public class Reconciliation {
-
+    /**
+     * When the reconciliation was run
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Difference between the two sides, keyed by asset. All-zero means the sides agree
+     */
     @JsonProperty("driftBalances")
     private Map<String, BigInteger> driftBalances;
 
-
+    /**
+     * Why the run failed, when its status reports an error
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * Unique identifier of the reconciliation run
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Balances observed on the ledger side, keyed by asset
+     */
     @JsonProperty("ledgerBalances")
     private Map<String, BigInteger> ledgerBalances;
 
-
+    /**
+     * Balances observed on the payments side, keyed by asset
+     */
     @JsonProperty("paymentsBalances")
     private Map<String, BigInteger> paymentsBalances;
 
-
+    /**
+     * Identifier of the policy this run applied
+     */
     @JsonProperty("policyID")
     private String policyID;
 
-
+    /**
+     * Point in time at which the ledger side was evaluated
+     */
     @JsonProperty("reconciledAtLedger")
     private OffsetDateTime reconciledAtLedger;
 
-
+    /**
+     * Point in time at which the payments side was evaluated
+     */
     @JsonProperty("reconciledAtPayments")
     private OffsetDateTime reconciledAtPayments;
 
-
+    /**
+     * Outcome of the reconciliation run
+     */
     @JsonProperty("status")
     private String status;
 
@@ -112,51 +136,81 @@ public class Reconciliation {
             status);
     }
 
+    /**
+     * When the reconciliation was run
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Difference between the two sides, keyed by asset. All-zero means the sides agree
+     */
     @JsonIgnore
     public Map<String, BigInteger> driftBalances() {
         return driftBalances;
     }
 
+    /**
+     * Why the run failed, when its status reports an error
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the reconciliation run
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Balances observed on the ledger side, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> ledgerBalances() {
         return ledgerBalances;
     }
 
+    /**
+     * Balances observed on the payments side, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> paymentsBalances() {
         return paymentsBalances;
     }
 
+    /**
+     * Identifier of the policy this run applied
+     */
     @JsonIgnore
     public String policyID() {
         return policyID;
     }
 
+    /**
+     * Point in time at which the ledger side was evaluated
+     */
     @JsonIgnore
     public OffsetDateTime reconciledAtLedger() {
         return reconciledAtLedger;
     }
 
+    /**
+     * Point in time at which the payments side was evaluated
+     */
     @JsonIgnore
     public OffsetDateTime reconciledAtPayments() {
         return reconciledAtPayments;
     }
 
+    /**
+     * Outcome of the reconciliation run
+     */
     @JsonIgnore
     public String status() {
         return status;
@@ -167,18 +221,27 @@ public class Reconciliation {
     }
 
 
+    /**
+     * When the reconciliation was run
+     */
     public Reconciliation withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Difference between the two sides, keyed by asset. All-zero means the sides agree
+     */
     public Reconciliation withDriftBalances(Map<String, BigInteger> driftBalances) {
         Utils.checkNotNull(driftBalances, "driftBalances");
         this.driftBalances = driftBalances;
         return this;
     }
 
+    /**
+     * Why the run failed, when its status reports an error
+     */
     public Reconciliation withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -186,48 +249,72 @@ public class Reconciliation {
     }
 
 
+    /**
+     * Why the run failed, when its status reports an error
+     */
     public Reconciliation withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the reconciliation run
+     */
     public Reconciliation withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Balances observed on the ledger side, keyed by asset
+     */
     public Reconciliation withLedgerBalances(Map<String, BigInteger> ledgerBalances) {
         Utils.checkNotNull(ledgerBalances, "ledgerBalances");
         this.ledgerBalances = ledgerBalances;
         return this;
     }
 
+    /**
+     * Balances observed on the payments side, keyed by asset
+     */
     public Reconciliation withPaymentsBalances(Map<String, BigInteger> paymentsBalances) {
         Utils.checkNotNull(paymentsBalances, "paymentsBalances");
         this.paymentsBalances = paymentsBalances;
         return this;
     }
 
+    /**
+     * Identifier of the policy this run applied
+     */
     public Reconciliation withPolicyID(String policyID) {
         Utils.checkNotNull(policyID, "policyID");
         this.policyID = policyID;
         return this;
     }
 
+    /**
+     * Point in time at which the ledger side was evaluated
+     */
     public Reconciliation withReconciledAtLedger(OffsetDateTime reconciledAtLedger) {
         Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
         this.reconciledAtLedger = reconciledAtLedger;
         return this;
     }
 
+    /**
+     * Point in time at which the payments side was evaluated
+     */
     public Reconciliation withReconciledAtPayments(OffsetDateTime reconciledAtPayments) {
         Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
         this.reconciledAtPayments = reconciledAtPayments;
         return this;
     }
 
+    /**
+     * Outcome of the reconciliation run
+     */
     public Reconciliation withStatus(String status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -308,6 +395,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * When the reconciliation was run
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -315,6 +405,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Difference between the two sides, keyed by asset. All-zero means the sides agree
+         */
         public Builder driftBalances(Map<String, BigInteger> driftBalances) {
             Utils.checkNotNull(driftBalances, "driftBalances");
             this.driftBalances = driftBalances;
@@ -322,12 +415,18 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Why the run failed, when its status reports an error
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the run failed, when its status reports an error
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -335,6 +434,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Unique identifier of the reconciliation run
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -342,6 +444,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Balances observed on the ledger side, keyed by asset
+         */
         public Builder ledgerBalances(Map<String, BigInteger> ledgerBalances) {
             Utils.checkNotNull(ledgerBalances, "ledgerBalances");
             this.ledgerBalances = ledgerBalances;
@@ -349,6 +454,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Balances observed on the payments side, keyed by asset
+         */
         public Builder paymentsBalances(Map<String, BigInteger> paymentsBalances) {
             Utils.checkNotNull(paymentsBalances, "paymentsBalances");
             this.paymentsBalances = paymentsBalances;
@@ -356,6 +464,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Identifier of the policy this run applied
+         */
         public Builder policyID(String policyID) {
             Utils.checkNotNull(policyID, "policyID");
             this.policyID = policyID;
@@ -363,6 +474,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Point in time at which the ledger side was evaluated
+         */
         public Builder reconciledAtLedger(OffsetDateTime reconciledAtLedger) {
             Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
             this.reconciledAtLedger = reconciledAtLedger;
@@ -370,6 +484,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Point in time at which the payments side was evaluated
+         */
         public Builder reconciledAtPayments(OffsetDateTime reconciledAtPayments) {
             Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
             this.reconciledAtPayments = reconciledAtPayments;
@@ -377,6 +494,9 @@ public class Reconciliation {
         }
 
 
+        /**
+         * Outcome of the reconciliation run
+         */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

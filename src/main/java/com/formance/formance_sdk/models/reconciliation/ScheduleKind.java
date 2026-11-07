@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * ScheduleKind
+ * 
+ * <p>Whether the rule runs only when triggered or on a recurring cron schedule
+ */
 public enum ScheduleKind {
     ON_DEMAND("on_demand"),
     CRON("cron");

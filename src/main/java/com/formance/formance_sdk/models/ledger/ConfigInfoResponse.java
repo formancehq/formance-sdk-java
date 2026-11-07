@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ConfigInfoResponse {
-
+    /**
+     * Configuration and version information for the ledger server
+     */
     @JsonProperty("data")
     private ConfigInfo data;
 
@@ -23,6 +25,9 @@ public class ConfigInfoResponse {
         this.data = data;
     }
 
+    /**
+     * Configuration and version information for the ledger server
+     */
     @JsonIgnore
     public ConfigInfo data() {
         return data;
@@ -33,6 +38,9 @@ public class ConfigInfoResponse {
     }
 
 
+    /**
+     * Configuration and version information for the ledger server
+     */
     public ConfigInfoResponse withData(ConfigInfo data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class ConfigInfoResponse {
         }
 
 
+        /**
+         * Configuration and version information for the ledger server
+         */
         public Builder data(ConfigInfo data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

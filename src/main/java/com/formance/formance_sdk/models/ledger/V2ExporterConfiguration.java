@@ -14,11 +14,15 @@ import java.util.Map;
 
 
 public class V2ExporterConfiguration {
-
+    /**
+     * Driver-specific configuration for the exporter
+     */
     @JsonProperty("config")
     private Map<String, Object> config;
 
-
+    /**
+     * Name of the exporter driver to use
+     */
     @JsonProperty("driver")
     private String driver;
 
@@ -33,11 +37,17 @@ public class V2ExporterConfiguration {
         this.driver = driver;
     }
 
+    /**
+     * Driver-specific configuration for the exporter
+     */
     @JsonIgnore
     public Map<String, Object> config() {
         return config;
     }
 
+    /**
+     * Name of the exporter driver to use
+     */
     @JsonIgnore
     public String driver() {
         return driver;
@@ -48,12 +58,18 @@ public class V2ExporterConfiguration {
     }
 
 
+    /**
+     * Driver-specific configuration for the exporter
+     */
     public V2ExporterConfiguration withConfig(Map<String, Object> config) {
         Utils.checkNotNull(config, "config");
         this.config = config;
         return this;
     }
 
+    /**
+     * Name of the exporter driver to use
+     */
     public V2ExporterConfiguration withDriver(String driver) {
         Utils.checkNotNull(driver, "driver");
         this.driver = driver;
@@ -99,6 +115,9 @@ public class V2ExporterConfiguration {
         }
 
 
+        /**
+         * Driver-specific configuration for the exporter
+         */
         public Builder config(Map<String, Object> config) {
             Utils.checkNotNull(config, "config");
             this.config = config;
@@ -106,6 +125,9 @@ public class V2ExporterConfiguration {
         }
 
 
+        /**
+         * Name of the exporter driver to use
+         */
         public Builder driver(String driver) {
             Utils.checkNotNull(driver, "driver");
             this.driver = driver;

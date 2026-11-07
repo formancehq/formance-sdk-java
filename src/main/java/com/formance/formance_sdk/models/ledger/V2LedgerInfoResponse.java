@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class V2LedgerInfoResponse {
-
+    /**
+     * Runtime information about a ledger, including the state of its storage migrations
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends V2LedgerInfo> data;
@@ -32,6 +34,9 @@ public class V2LedgerInfoResponse {
         this(Optional.empty());
     }
 
+    /**
+     * Runtime information about a ledger, including the state of its storage migrations
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2LedgerInfo> data() {
@@ -43,6 +48,9 @@ public class V2LedgerInfoResponse {
     }
 
 
+    /**
+     * Runtime information about a ledger, including the state of its storage migrations
+     */
     public V2LedgerInfoResponse withData(V2LedgerInfo data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -50,6 +58,9 @@ public class V2LedgerInfoResponse {
     }
 
 
+    /**
+     * Runtime information about a ledger, including the state of its storage migrations
+     */
     public V2LedgerInfoResponse withData(Optional<? extends V2LedgerInfo> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -91,12 +102,18 @@ public class V2LedgerInfoResponse {
         }
 
 
+        /**
+         * Runtime information about a ledger, including the state of its storage migrations
+         */
         public Builder data(V2LedgerInfo data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * Runtime information about a ledger, including the state of its storage migrations
+         */
         public Builder data(Optional<? extends V2LedgerInfo> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

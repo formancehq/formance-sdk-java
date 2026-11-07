@@ -3,11 +3,11 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `event`                | *String*               | :heavy_check_mark:     | N/A                    |
-| `filter`               | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |
-| `name`                 | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |
-| `vars`                 | Map\<String, *Object*> | :heavy_minus_sign:     | N/A                    |
-| `version`              | *Optional\<String>*    | :heavy_minus_sign:     | N/A                    |
-| `workflowID`           | *String*               | :heavy_check_mark:     | N/A                    |
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `event`                                                                         | *String*                                                                        | :heavy_check_mark:                                                              | Type of event that fires this trigger                                           |
+| `filter`                                                                        | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | Expression evaluated against the event. The workflow runs only when it matches  |
+| `name`                                                                          | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | Human-readable name for the trigger                                             |
+| `vars`                                                                          | Map\<String, *Object*>                                                          | :heavy_minus_sign:                                                              | Expressions evaluated against the event to build the workflow's input variables |
+| `version`                                                                       | *Optional\<String>*                                                             | :heavy_minus_sign:                                                              | Version of the trigger definition                                               |
+| `workflowID`                                                                    | *String*                                                                        | :heavy_check_mark:                                                              | Identifier of the workflow to run when the trigger fires                        |

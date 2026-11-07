@@ -14,52 +14,70 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * WorkflowInstanceHistoryStageOutput
+ * 
+ * <p>Result an activity returned, keyed by activity name
+ */
 public class WorkflowInstanceHistoryStageOutput {
-
+    /**
+     * Result of the activity that writes a transaction to a ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
-    private Optional<? extends CreateTransactionResponse> createTransaction;
+    private Optional<? extends ActivityCreateTransactionOutput> createTransaction;
 
-
+    /**
+     * Result of the activity that debits a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
-    private Optional<? extends DebitWalletResponse> debitWallet;
+    private Optional<? extends ActivityDebitWalletOutput> debitWallet;
 
-
+    /**
+     * Result of the activity that reads a ledger account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetAccount")
-    private Optional<? extends AccountResponse> getAccount;
+    private Optional<? extends ActivityGetAccountOutput> getAccount;
 
-
+    /**
+     * Result of the activity that reads a payment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
-    private Optional<? extends PaymentResponse> getPayment;
+    private Optional<? extends ActivityGetPaymentOutput> getPayment;
 
-
+    /**
+     * Result of the activity that reads a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetWallet")
-    private Optional<? extends GetWalletResponse> getWallet;
+    private Optional<? extends ActivityGetWalletOutput> getWallet;
 
-
+    /**
+     * A page of wallets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ListWallets")
     private Optional<? extends ListWalletsResponse> listWallets;
 
-
+    /**
+     * Result of the activity that reverts a ledger transaction
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("RevertTransaction")
-    private Optional<? extends CreateTransactionResponse> revertTransaction;
+    private Optional<? extends ActivityRevertTransactionOutput> revertTransaction;
 
     @JsonCreator
     public WorkflowInstanceHistoryStageOutput(
-            @JsonProperty("CreateTransaction") Optional<? extends CreateTransactionResponse> createTransaction,
-            @JsonProperty("DebitWallet") Optional<? extends DebitWalletResponse> debitWallet,
-            @JsonProperty("GetAccount") Optional<? extends AccountResponse> getAccount,
-            @JsonProperty("GetPayment") Optional<? extends PaymentResponse> getPayment,
-            @JsonProperty("GetWallet") Optional<? extends GetWalletResponse> getWallet,
+            @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransactionOutput> createTransaction,
+            @JsonProperty("DebitWallet") Optional<? extends ActivityDebitWalletOutput> debitWallet,
+            @JsonProperty("GetAccount") Optional<? extends ActivityGetAccountOutput> getAccount,
+            @JsonProperty("GetPayment") Optional<? extends ActivityGetPaymentOutput> getPayment,
+            @JsonProperty("GetWallet") Optional<? extends ActivityGetWalletOutput> getWallet,
             @JsonProperty("ListWallets") Optional<? extends ListWalletsResponse> listWallets,
-            @JsonProperty("RevertTransaction") Optional<? extends CreateTransactionResponse> revertTransaction) {
+            @JsonProperty("RevertTransaction") Optional<? extends ActivityRevertTransactionOutput> revertTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         Utils.checkNotNull(debitWallet, "debitWallet");
         Utils.checkNotNull(getAccount, "getAccount");
@@ -82,46 +100,67 @@ public class WorkflowInstanceHistoryStageOutput {
             Optional.empty());
     }
 
+    /**
+     * Result of the activity that writes a transaction to a ledger
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateTransactionResponse> createTransaction() {
-        return (Optional<CreateTransactionResponse>) createTransaction;
+    public Optional<ActivityCreateTransactionOutput> createTransaction() {
+        return (Optional<ActivityCreateTransactionOutput>) createTransaction;
     }
 
+    /**
+     * Result of the activity that debits a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DebitWalletResponse> debitWallet() {
-        return (Optional<DebitWalletResponse>) debitWallet;
+    public Optional<ActivityDebitWalletOutput> debitWallet() {
+        return (Optional<ActivityDebitWalletOutput>) debitWallet;
     }
 
+    /**
+     * Result of the activity that reads a ledger account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AccountResponse> getAccount() {
-        return (Optional<AccountResponse>) getAccount;
+    public Optional<ActivityGetAccountOutput> getAccount() {
+        return (Optional<ActivityGetAccountOutput>) getAccount;
     }
 
+    /**
+     * Result of the activity that reads a payment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentResponse> getPayment() {
-        return (Optional<PaymentResponse>) getPayment;
+    public Optional<ActivityGetPaymentOutput> getPayment() {
+        return (Optional<ActivityGetPaymentOutput>) getPayment;
     }
 
+    /**
+     * Result of the activity that reads a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWalletResponse> getWallet() {
-        return (Optional<GetWalletResponse>) getWallet;
+    public Optional<ActivityGetWalletOutput> getWallet() {
+        return (Optional<ActivityGetWalletOutput>) getWallet;
     }
 
+    /**
+     * A page of wallets
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ListWalletsResponse> listWallets() {
         return (Optional<ListWalletsResponse>) listWallets;
     }
 
+    /**
+     * Result of the activity that reverts a ledger transaction
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateTransactionResponse> revertTransaction() {
-        return (Optional<CreateTransactionResponse>) revertTransaction;
+    public Optional<ActivityRevertTransactionOutput> revertTransaction() {
+        return (Optional<ActivityRevertTransactionOutput>) revertTransaction;
     }
 
     public static Builder builder() {
@@ -129,71 +168,104 @@ public class WorkflowInstanceHistoryStageOutput {
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransaction(CreateTransactionResponse createTransaction) {
+    /**
+     * Result of the activity that writes a transaction to a ledger
+     */
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(ActivityCreateTransactionOutput createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = Optional.ofNullable(createTransaction);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends CreateTransactionResponse> createTransaction) {
+    /**
+     * Result of the activity that writes a transaction to a ledger
+     */
+    public WorkflowInstanceHistoryStageOutput withCreateTransaction(Optional<? extends ActivityCreateTransactionOutput> createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = createTransaction;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withDebitWallet(DebitWalletResponse debitWallet) {
+    /**
+     * Result of the activity that debits a wallet
+     */
+    public WorkflowInstanceHistoryStageOutput withDebitWallet(ActivityDebitWalletOutput debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
         this.debitWallet = Optional.ofNullable(debitWallet);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withDebitWallet(Optional<? extends DebitWalletResponse> debitWallet) {
+    /**
+     * Result of the activity that debits a wallet
+     */
+    public WorkflowInstanceHistoryStageOutput withDebitWallet(Optional<? extends ActivityDebitWalletOutput> debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
         this.debitWallet = debitWallet;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withGetAccount(AccountResponse getAccount) {
+    /**
+     * Result of the activity that reads a ledger account
+     */
+    public WorkflowInstanceHistoryStageOutput withGetAccount(ActivityGetAccountOutput getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = Optional.ofNullable(getAccount);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends AccountResponse> getAccount) {
+    /**
+     * Result of the activity that reads a ledger account
+     */
+    public WorkflowInstanceHistoryStageOutput withGetAccount(Optional<? extends ActivityGetAccountOutput> getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = getAccount;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withGetPayment(PaymentResponse getPayment) {
+    /**
+     * Result of the activity that reads a payment
+     */
+    public WorkflowInstanceHistoryStageOutput withGetPayment(ActivityGetPaymentOutput getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
         this.getPayment = Optional.ofNullable(getPayment);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withGetPayment(Optional<? extends PaymentResponse> getPayment) {
+    /**
+     * Result of the activity that reads a payment
+     */
+    public WorkflowInstanceHistoryStageOutput withGetPayment(Optional<? extends ActivityGetPaymentOutput> getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
         this.getPayment = getPayment;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withGetWallet(GetWalletResponse getWallet) {
+    /**
+     * Result of the activity that reads a wallet
+     */
+    public WorkflowInstanceHistoryStageOutput withGetWallet(ActivityGetWalletOutput getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
         this.getWallet = Optional.ofNullable(getWallet);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withGetWallet(Optional<? extends GetWalletResponse> getWallet) {
+    /**
+     * Result of the activity that reads a wallet
+     */
+    public WorkflowInstanceHistoryStageOutput withGetWallet(Optional<? extends ActivityGetWalletOutput> getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
         this.getWallet = getWallet;
         return this;
     }
 
+    /**
+     * A page of wallets
+     */
     public WorkflowInstanceHistoryStageOutput withListWallets(ListWalletsResponse listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
         this.listWallets = Optional.ofNullable(listWallets);
@@ -201,20 +273,29 @@ public class WorkflowInstanceHistoryStageOutput {
     }
 
 
+    /**
+     * A page of wallets
+     */
     public WorkflowInstanceHistoryStageOutput withListWallets(Optional<? extends ListWalletsResponse> listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
         this.listWallets = listWallets;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageOutput withRevertTransaction(CreateTransactionResponse revertTransaction) {
+    /**
+     * Result of the activity that reverts a ledger transaction
+     */
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(ActivityRevertTransactionOutput revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = Optional.ofNullable(revertTransaction);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageOutput withRevertTransaction(Optional<? extends CreateTransactionResponse> revertTransaction) {
+    /**
+     * Result of the activity that reverts a ledger transaction
+     */
+    public WorkflowInstanceHistoryStageOutput withRevertTransaction(Optional<? extends ActivityRevertTransactionOutput> revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = revertTransaction;
         return this;
@@ -262,96 +343,132 @@ public class WorkflowInstanceHistoryStageOutput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CreateTransactionResponse> createTransaction = Optional.empty();
+        private Optional<? extends ActivityCreateTransactionOutput> createTransaction = Optional.empty();
 
-        private Optional<? extends DebitWalletResponse> debitWallet = Optional.empty();
+        private Optional<? extends ActivityDebitWalletOutput> debitWallet = Optional.empty();
 
-        private Optional<? extends AccountResponse> getAccount = Optional.empty();
+        private Optional<? extends ActivityGetAccountOutput> getAccount = Optional.empty();
 
-        private Optional<? extends PaymentResponse> getPayment = Optional.empty();
+        private Optional<? extends ActivityGetPaymentOutput> getPayment = Optional.empty();
 
-        private Optional<? extends GetWalletResponse> getWallet = Optional.empty();
+        private Optional<? extends ActivityGetWalletOutput> getWallet = Optional.empty();
 
         private Optional<? extends ListWalletsResponse> listWallets = Optional.empty();
 
-        private Optional<? extends CreateTransactionResponse> revertTransaction = Optional.empty();
+        private Optional<? extends ActivityRevertTransactionOutput> revertTransaction = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder createTransaction(CreateTransactionResponse createTransaction) {
+        /**
+         * Result of the activity that writes a transaction to a ledger
+         */
+        public Builder createTransaction(ActivityCreateTransactionOutput createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = Optional.ofNullable(createTransaction);
             return this;
         }
 
-        public Builder createTransaction(Optional<? extends CreateTransactionResponse> createTransaction) {
+        /**
+         * Result of the activity that writes a transaction to a ledger
+         */
+        public Builder createTransaction(Optional<? extends ActivityCreateTransactionOutput> createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = createTransaction;
             return this;
         }
 
 
-        public Builder debitWallet(DebitWalletResponse debitWallet) {
+        /**
+         * Result of the activity that debits a wallet
+         */
+        public Builder debitWallet(ActivityDebitWalletOutput debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
             this.debitWallet = Optional.ofNullable(debitWallet);
             return this;
         }
 
-        public Builder debitWallet(Optional<? extends DebitWalletResponse> debitWallet) {
+        /**
+         * Result of the activity that debits a wallet
+         */
+        public Builder debitWallet(Optional<? extends ActivityDebitWalletOutput> debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
             this.debitWallet = debitWallet;
             return this;
         }
 
 
-        public Builder getAccount(AccountResponse getAccount) {
+        /**
+         * Result of the activity that reads a ledger account
+         */
+        public Builder getAccount(ActivityGetAccountOutput getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = Optional.ofNullable(getAccount);
             return this;
         }
 
-        public Builder getAccount(Optional<? extends AccountResponse> getAccount) {
+        /**
+         * Result of the activity that reads a ledger account
+         */
+        public Builder getAccount(Optional<? extends ActivityGetAccountOutput> getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = getAccount;
             return this;
         }
 
 
-        public Builder getPayment(PaymentResponse getPayment) {
+        /**
+         * Result of the activity that reads a payment
+         */
+        public Builder getPayment(ActivityGetPaymentOutput getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
             this.getPayment = Optional.ofNullable(getPayment);
             return this;
         }
 
-        public Builder getPayment(Optional<? extends PaymentResponse> getPayment) {
+        /**
+         * Result of the activity that reads a payment
+         */
+        public Builder getPayment(Optional<? extends ActivityGetPaymentOutput> getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
             this.getPayment = getPayment;
             return this;
         }
 
 
-        public Builder getWallet(GetWalletResponse getWallet) {
+        /**
+         * Result of the activity that reads a wallet
+         */
+        public Builder getWallet(ActivityGetWalletOutput getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
             this.getWallet = Optional.ofNullable(getWallet);
             return this;
         }
 
-        public Builder getWallet(Optional<? extends GetWalletResponse> getWallet) {
+        /**
+         * Result of the activity that reads a wallet
+         */
+        public Builder getWallet(Optional<? extends ActivityGetWalletOutput> getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
             this.getWallet = getWallet;
             return this;
         }
 
 
+        /**
+         * A page of wallets
+         */
         public Builder listWallets(ListWalletsResponse listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
             this.listWallets = Optional.ofNullable(listWallets);
             return this;
         }
 
+        /**
+         * A page of wallets
+         */
         public Builder listWallets(Optional<? extends ListWalletsResponse> listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
             this.listWallets = listWallets;
@@ -359,13 +476,19 @@ public class WorkflowInstanceHistoryStageOutput {
         }
 
 
-        public Builder revertTransaction(CreateTransactionResponse revertTransaction) {
+        /**
+         * Result of the activity that reverts a ledger transaction
+         */
+        public Builder revertTransaction(ActivityRevertTransactionOutput revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = Optional.ofNullable(revertTransaction);
             return this;
         }
 
-        public Builder revertTransaction(Optional<? extends CreateTransactionResponse> revertTransaction) {
+        /**
+         * Result of the activity that reverts a ledger transaction
+         */
+        public Builder revertTransaction(Optional<? extends ActivityRevertTransactionOutput> revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = revertTransaction;
             return this;
