@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2ActivityConfirmHold
+ * 
+ * <p>Arguments for the activity that confirms a wallet hold
+ */
 public class V2ActivityConfirmHold {
-
+    /**
+     * Identifier of the hold to confirm
+     */
     @JsonProperty("id")
     private String id;
 
@@ -23,6 +29,9 @@ public class V2ActivityConfirmHold {
         this.id = id;
     }
 
+    /**
+     * Identifier of the hold to confirm
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -33,6 +42,9 @@ public class V2ActivityConfirmHold {
     }
 
 
+    /**
+     * Identifier of the hold to confirm
+     */
     public V2ActivityConfirmHold withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -74,6 +86,9 @@ public class V2ActivityConfirmHold {
         }
 
 
+        /**
+         * Identifier of the hold to confirm
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

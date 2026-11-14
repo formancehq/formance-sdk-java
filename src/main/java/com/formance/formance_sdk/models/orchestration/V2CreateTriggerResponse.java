@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2CreateTriggerResponse {
-
+    /**
+     * A rule that starts a workflow when a matching event arrives
+     */
     @JsonProperty("data")
     private V2Trigger data;
 
@@ -23,6 +25,9 @@ public class V2CreateTriggerResponse {
         this.data = data;
     }
 
+    /**
+     * A rule that starts a workflow when a matching event arrives
+     */
     @JsonIgnore
     public V2Trigger data() {
         return data;
@@ -33,6 +38,9 @@ public class V2CreateTriggerResponse {
     }
 
 
+    /**
+     * A rule that starts a workflow when a matching event arrives
+     */
     public V2CreateTriggerResponse withData(V2Trigger data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2CreateTriggerResponse {
         }
 
 
+        /**
+         * A rule that starts a workflow when a matching event arrives
+         */
         public Builder data(V2Trigger data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

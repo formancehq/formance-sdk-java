@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2TestTriggerResponse {
-
+    /**
+     * Result of evaluating a trigger against a sample event, without running the workflow
+     */
     @JsonProperty("data")
     private V2TriggerTest data;
 
@@ -23,6 +25,9 @@ public class V2TestTriggerResponse {
         this.data = data;
     }
 
+    /**
+     * Result of evaluating a trigger against a sample event, without running the workflow
+     */
     @JsonIgnore
     public V2TriggerTest data() {
         return data;
@@ -33,6 +38,9 @@ public class V2TestTriggerResponse {
     }
 
 
+    /**
+     * Result of evaluating a trigger against a sample event, without running the workflow
+     */
     public V2TestTriggerResponse withData(V2TriggerTest data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2TestTriggerResponse {
         }
 
 
+        /**
+         * Result of evaluating a trigger against a sample event, without running the workflow
+         */
         public Builder data(V2TriggerTest data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

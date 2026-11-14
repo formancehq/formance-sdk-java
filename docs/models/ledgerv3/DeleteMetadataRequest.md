@@ -1,0 +1,10 @@
+# DeleteMetadataRequest
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `key`                                                                                     | *String*                                                                                  | :heavy_check_mark:                                                                        | Metadata key to delete                                                                    |
+| `targetId`                                                                                | [DeleteMetadataRequestTargetId](../../models/shared/DeleteMetadataRequestTargetId.md)     | :heavy_check_mark:                                                                        | ID of the target (account address or transaction ID). Required.<br/>                      |
+| `targetType`                                                                              | [DeleteMetadataRequestTargetType](../../models/shared/DeleteMetadataRequestTargetType.md) | :heavy_check_mark:                                                                        | Type of target (account or transaction)                                                   |

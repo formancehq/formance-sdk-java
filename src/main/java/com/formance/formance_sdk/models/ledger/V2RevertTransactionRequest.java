@@ -17,7 +17,9 @@ import java.util.Optional;
 
 
 public class V2RevertTransactionRequest {
-
+    /**
+     * Metadata to attach to the compensating transaction created by the revert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
@@ -33,6 +35,9 @@ public class V2RevertTransactionRequest {
         this(Optional.empty());
     }
 
+    /**
+     * Metadata to attach to the compensating transaction created by the revert
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
@@ -44,6 +49,9 @@ public class V2RevertTransactionRequest {
     }
 
 
+    /**
+     * Metadata to attach to the compensating transaction created by the revert
+     */
     public V2RevertTransactionRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -51,6 +59,9 @@ public class V2RevertTransactionRequest {
     }
 
 
+    /**
+     * Metadata to attach to the compensating transaction created by the revert
+     */
     public V2RevertTransactionRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -92,12 +103,18 @@ public class V2RevertTransactionRequest {
         }
 
 
+        /**
+         * Metadata to attach to the compensating transaction created by the revert
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Metadata to attach to the compensating transaction created by the revert
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;

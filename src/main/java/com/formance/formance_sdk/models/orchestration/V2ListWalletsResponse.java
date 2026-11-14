@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2ListWalletsResponse
+ * 
+ * <p>A page of wallets
+ */
 public class V2ListWalletsResponse {
-
+    /**
+     * Paginated cursor wrapping the list of wallets
+     */
     @JsonProperty("cursor")
     private V2ListWalletsResponseCursor cursor;
 
@@ -23,6 +29,9 @@ public class V2ListWalletsResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of wallets
+     */
     @JsonIgnore
     public V2ListWalletsResponseCursor cursor() {
         return cursor;
@@ -33,6 +42,9 @@ public class V2ListWalletsResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of wallets
+     */
     public V2ListWalletsResponse withCursor(V2ListWalletsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +86,9 @@ public class V2ListWalletsResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of wallets
+         */
         public Builder cursor(V2ListWalletsResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

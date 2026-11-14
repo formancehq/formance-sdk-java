@@ -997,6 +997,7 @@ Export logs
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ExportLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ExportLogsResponse;
 import com.formance.formance_sdk.models.shared.Security;
@@ -1004,7 +1005,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1021,7 +1022,9 @@ public class Application {
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.bytes().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -1038,9 +1041,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| models/errors/ErrorsV2ErrorResponse | default                             | application/json                    |
+| models/errors/SDKError              | 4XX, 5XX                            | \*/\*                               |
 
 ## getAccount
 
@@ -1781,12 +1785,8 @@ public class Application {
                                     .build())))
                             .build())))
                     .queries(Map.ofEntries(
-                        Map.entry("key", V2QueryTemplate.builder()
-                            .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
-                                .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
-                                .pageSize(100L)
-                                .sort("id:desc")
-                                .build()))
+                        Map.entry("key", V2VolumeQueryTemplate.builder()
+                            .resource(V2VolumeQueryTemplateResource.VOLUMES)
                             .build())))
                     .build())
                 .ledger("ledger001")
@@ -2511,11 +2511,10 @@ public class Application {
 
         V2RunQueryRequest req = V2RunQueryRequest.builder()
                 .requestBody(V2RunQueryRequestBody.builder()
-                    .params(V2QueryParams.of(QueryTemplateAccountParams.builder()
-                        .cursor("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==")
+                    .params(V2RunQueryParams.builder()
                         .pageSize(100L)
                         .sort("id:desc")
-                        .build()))
+                        .build())
                     .build())
                 .id("CUSTOMER_DEPOSIT")
                 .ledger("ledger001")

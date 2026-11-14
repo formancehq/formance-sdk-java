@@ -16,17 +16,27 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * ExpandedDebitHold
+ * 
+ * <p>A hold together with the amounts it currently locks and has already released
+ */
 public class ExpandedDebitHold {
-
+    /**
+     * Asset the held funds are denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Human-readable reason the funds were held
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     private Optional<? extends Subject> destination;
@@ -103,16 +113,25 @@ public class ExpandedDebitHold {
             remaining, walletID);
     }
 
+    /**
+     * Asset the held funds are denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Human-readable reason the funds were held
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Subject> destination() {
@@ -164,18 +183,27 @@ public class ExpandedDebitHold {
     }
 
 
+    /**
+     * Asset the held funds are denominated in
+     */
     public ExpandedDebitHold withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Human-readable reason the funds were held
+     */
     public ExpandedDebitHold withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public ExpandedDebitHold withDestination(Subject destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = Optional.ofNullable(destination);
@@ -183,6 +211,9 @@ public class ExpandedDebitHold {
     }
 
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public ExpandedDebitHold withDestination(Optional<? extends Subject> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
@@ -315,6 +346,9 @@ public class ExpandedDebitHold {
         }
 
 
+        /**
+         * Asset the held funds are denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -322,6 +356,9 @@ public class ExpandedDebitHold {
         }
 
 
+        /**
+         * Human-readable reason the funds were held
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -329,12 +366,18 @@ public class ExpandedDebitHold {
         }
 
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(Subject destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
             return this;
         }
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(Optional<? extends Subject> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;

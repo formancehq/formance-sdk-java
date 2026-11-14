@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2SchemasCursorResponse {
-
+    /**
+     * Paginated cursor over the ledger's schemas
+     */
     @JsonProperty("cursor")
     private V2SchemasCursor cursor;
 
@@ -23,6 +25,9 @@ public class V2SchemasCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor over the ledger's schemas
+     */
     @JsonIgnore
     public V2SchemasCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V2SchemasCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor over the ledger's schemas
+     */
     public V2SchemasCursorResponse withCursor(V2SchemasCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V2SchemasCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor over the ledger's schemas
+         */
         public Builder cursor(V2SchemasCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

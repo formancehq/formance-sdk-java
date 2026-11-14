@@ -9,32 +9,61 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Optional;
 
 
 public class V2StageStatus {
-
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * Identifier of the workflow instance this stage belongs to
+     */
     @JsonProperty("instanceID")
     private String instanceID;
 
+    /**
+     * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+     * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pauseStateUnavailable")
+    private Optional<Boolean> pauseStateUnavailable;
 
+    /**
+     * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+     * Temporal execution is unavailable
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pendingActivities")
+    private Optional<? extends List<V2ActivityPause>> pendingActivities;
+
+    /**
+     * Zero-based position of the stage within the workflow
+     */
     @JsonProperty("stage")
     private double stage;
 
-
+    /**
+     * When the stage started
+     */
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
-
+    /**
+     * When the stage finished, absent while it is still running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
@@ -43,16 +72,22 @@ public class V2StageStatus {
     public V2StageStatus(
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("instanceID") String instanceID,
+            @JsonProperty("pauseStateUnavailable") Optional<Boolean> pauseStateUnavailable,
+            @JsonProperty("pendingActivities") Optional<? extends List<V2ActivityPause>> pendingActivities,
             @JsonProperty("stage") double stage,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(instanceID, "instanceID");
+        Utils.checkNotNull(pauseStateUnavailable, "pauseStateUnavailable");
+        Utils.checkNotNull(pendingActivities, "pendingActivities");
         Utils.checkNotNull(stage, "stage");
         Utils.checkNotNull(startedAt, "startedAt");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.error = error;
         this.instanceID = instanceID;
+        this.pauseStateUnavailable = pauseStateUnavailable;
+        this.pendingActivities = pendingActivities;
         this.stage = stage;
         this.startedAt = startedAt;
         this.terminatedAt = terminatedAt;
@@ -62,30 +97,65 @@ public class V2StageStatus {
             String instanceID,
             double stage,
             OffsetDateTime startedAt) {
-        this(Optional.empty(), instanceID, stage,
-            startedAt, Optional.empty());
+        this(Optional.empty(), instanceID, Optional.empty(),
+            Optional.empty(), stage, startedAt,
+            Optional.empty());
     }
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * Identifier of the workflow instance this stage belongs to
+     */
     @JsonIgnore
     public String instanceID() {
         return instanceID;
     }
 
+    /**
+     * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+     * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+     */
+    @JsonIgnore
+    public Optional<Boolean> pauseStateUnavailable() {
+        return pauseStateUnavailable;
+    }
+
+    /**
+     * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+     * Temporal execution is unavailable
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<V2ActivityPause>> pendingActivities() {
+        return (Optional<List<V2ActivityPause>>) pendingActivities;
+    }
+
+    /**
+     * Zero-based position of the stage within the workflow
+     */
     @JsonIgnore
     public double stage() {
         return stage;
     }
 
+    /**
+     * When the stage started
+     */
     @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
         return terminatedAt;
@@ -96,6 +166,9 @@ public class V2StageStatus {
     }
 
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     public V2StageStatus withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -103,30 +176,87 @@ public class V2StageStatus {
     }
 
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     public V2StageStatus withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Identifier of the workflow instance this stage belongs to
+     */
     public V2StageStatus withInstanceID(String instanceID) {
         Utils.checkNotNull(instanceID, "instanceID");
         this.instanceID = instanceID;
         return this;
     }
 
+    /**
+     * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+     * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+     */
+    public V2StageStatus withPauseStateUnavailable(boolean pauseStateUnavailable) {
+        Utils.checkNotNull(pauseStateUnavailable, "pauseStateUnavailable");
+        this.pauseStateUnavailable = Optional.ofNullable(pauseStateUnavailable);
+        return this;
+    }
+
+
+    /**
+     * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+     * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+     */
+    public V2StageStatus withPauseStateUnavailable(Optional<Boolean> pauseStateUnavailable) {
+        Utils.checkNotNull(pauseStateUnavailable, "pauseStateUnavailable");
+        this.pauseStateUnavailable = pauseStateUnavailable;
+        return this;
+    }
+
+    /**
+     * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+     * Temporal execution is unavailable
+     */
+    public V2StageStatus withPendingActivities(List<V2ActivityPause> pendingActivities) {
+        Utils.checkNotNull(pendingActivities, "pendingActivities");
+        this.pendingActivities = Optional.ofNullable(pendingActivities);
+        return this;
+    }
+
+
+    /**
+     * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+     * Temporal execution is unavailable
+     */
+    public V2StageStatus withPendingActivities(Optional<? extends List<V2ActivityPause>> pendingActivities) {
+        Utils.checkNotNull(pendingActivities, "pendingActivities");
+        this.pendingActivities = pendingActivities;
+        return this;
+    }
+
+    /**
+     * Zero-based position of the stage within the workflow
+     */
     public V2StageStatus withStage(double stage) {
         Utils.checkNotNull(stage, "stage");
         this.stage = stage;
         return this;
     }
 
+    /**
+     * When the stage started
+     */
     public V2StageStatus withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
     }
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     public V2StageStatus withTerminatedAt(OffsetDateTime terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = Optional.ofNullable(terminatedAt);
@@ -134,6 +264,9 @@ public class V2StageStatus {
     }
 
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     public V2StageStatus withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
@@ -152,6 +285,8 @@ public class V2StageStatus {
         return 
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.instanceID, other.instanceID) &&
+            Utils.enhancedDeepEquals(this.pauseStateUnavailable, other.pauseStateUnavailable) &&
+            Utils.enhancedDeepEquals(this.pendingActivities, other.pendingActivities) &&
             Utils.enhancedDeepEquals(this.stage, other.stage) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
             Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
@@ -160,8 +295,9 @@ public class V2StageStatus {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            error, instanceID, stage,
-            startedAt, terminatedAt);
+            error, instanceID, pauseStateUnavailable,
+            pendingActivities, stage, startedAt,
+            terminatedAt);
     }
     
     @Override
@@ -169,6 +305,8 @@ public class V2StageStatus {
         return Utils.toString(V2StageStatus.class,
                 "error", error,
                 "instanceID", instanceID,
+                "pauseStateUnavailable", pauseStateUnavailable,
+                "pendingActivities", pendingActivities,
                 "stage", stage,
                 "startedAt", startedAt,
                 "terminatedAt", terminatedAt);
@@ -181,6 +319,10 @@ public class V2StageStatus {
 
         private String instanceID;
 
+        private Optional<Boolean> pauseStateUnavailable = Optional.empty();
+
+        private Optional<? extends List<V2ActivityPause>> pendingActivities = Optional.empty();
+
         private Double stage;
 
         private OffsetDateTime startedAt;
@@ -192,12 +334,18 @@ public class V2StageStatus {
         }
 
 
+        /**
+         * Why the stage failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the stage failed, absent when it succeeded
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -205,6 +353,9 @@ public class V2StageStatus {
         }
 
 
+        /**
+         * Identifier of the workflow instance this stage belongs to
+         */
         public Builder instanceID(String instanceID) {
             Utils.checkNotNull(instanceID, "instanceID");
             this.instanceID = instanceID;
@@ -212,6 +363,51 @@ public class V2StageStatus {
         }
 
 
+        /**
+         * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+         * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+         */
+        public Builder pauseStateUnavailable(boolean pauseStateUnavailable) {
+            Utils.checkNotNull(pauseStateUnavailable, "pauseStateUnavailable");
+            this.pauseStateUnavailable = Optional.ofNullable(pauseStateUnavailable);
+            return this;
+        }
+
+        /**
+         * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from
+         * absent pendingActivities. Omitted on successful reads and missing legacy executions.
+         */
+        public Builder pauseStateUnavailable(Optional<Boolean> pauseStateUnavailable) {
+            Utils.checkNotNull(pauseStateUnavailable, "pauseStateUnavailable");
+            this.pauseStateUnavailable = pauseStateUnavailable;
+            return this;
+        }
+
+
+        /**
+         * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+         * Temporal execution is unavailable
+         */
+        public Builder pendingActivities(List<V2ActivityPause> pendingActivities) {
+            Utils.checkNotNull(pendingActivities, "pendingActivities");
+            this.pendingActivities = Optional.ofNullable(pendingActivities);
+            return this;
+        }
+
+        /**
+         * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy
+         * Temporal execution is unavailable
+         */
+        public Builder pendingActivities(Optional<? extends List<V2ActivityPause>> pendingActivities) {
+            Utils.checkNotNull(pendingActivities, "pendingActivities");
+            this.pendingActivities = pendingActivities;
+            return this;
+        }
+
+
+        /**
+         * Zero-based position of the stage within the workflow
+         */
         public Builder stage(double stage) {
             Utils.checkNotNull(stage, "stage");
             this.stage = stage;
@@ -219,6 +415,9 @@ public class V2StageStatus {
         }
 
 
+        /**
+         * When the stage started
+         */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
@@ -226,12 +425,18 @@ public class V2StageStatus {
         }
 
 
+        /**
+         * When the stage finished, absent while it is still running
+         */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = Optional.ofNullable(terminatedAt);
             return this;
         }
 
+        /**
+         * When the stage finished, absent while it is still running
+         */
         public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
@@ -241,8 +446,9 @@ public class V2StageStatus {
         public V2StageStatus build() {
 
             return new V2StageStatus(
-                error, instanceID, stage,
-                startedAt, terminatedAt);
+                error, instanceID, pauseStateUnavailable,
+                pendingActivities, stage, startedAt,
+                terminatedAt);
         }
 
     }

@@ -8,10 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -23,48 +22,113 @@ import java.util.Optional;
 
 public class RuleRequest {
     /**
-     * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-     * March break and an April break are distinct, independently-closable cases.
-     * `continuous` (default) is a single unbounded period (live monitoring).
+     * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+     * removed at the next API major.
+     * 
+     * <p>Kept as its own component so regenerated SDKs keep emitting the
+     * `Cadence` type and its constants — dropping it would delete
+     * `CadenceMonthly` and friends from generated clients and break code that
+     * compiles today, even though the wire contract stays compatible.
+     * 
+     * <p>On requests either key is accepted. If both carry a value and the values
+     * differ the request is rejected with 400 rather than one being chosen
+     * silently; an empty `cadence` counts as unset rather than as a
+     * conflicting value.
+     * 
+     * <p>On responses the server always emits both keys, mirroring, but neither
+     * is listed in the `Rule` required set. That understates the guarantee on
+     * purpose. A required property with no schema default generates a value
+     * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+     * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+     * optional-without-default reproduces the published pointer signatures.
+     * The default cannot come back, because generators materialize it into
+     * request bodies and that collides with this alias. Both become required
+     * again at the next API major, when `cadence` goes.
+     * 
+     * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+     * back to `continuous`. Normally that cannot bite you: `periodType`
+     * reaches clients via an SDK regenerated from this spec, which only exists
+     * once 2.5.0 is released. If you need determinism while a fleet is
+     * mid-upgrade, send both keys with equal values — accepted on every
+     * version.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cadence")
+    @Deprecated
     private Optional<? extends Cadence> cadence;
 
-
+    /**
+     * Whether the rule should be evaluated. Defaults to enabled
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
     private Optional<Boolean> enabled;
 
-
+    /**
+     * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("labels")
     private Optional<? extends Map<String, String>> labels;
 
-
+    /**
+     * Human-readable name for the rule
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Channels to notify when this rule raises an alert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notifications")
     private Optional<? extends List<String>> notifications;
 
+    /**
+     * How long a reconciliation period lasts. Scopes each failing fingerprint
+     * into a period so a March break and an April break are distinct,
+     * independently-closable cases.
+     * 
+     * <p>Omit the key to get `continuous`, a single unbounded period (live
+     * monitoring). There is deliberately no schema-level `default`: SDK
+     * generators materialize defaults into the serialized body, which would
+     * make an omitted key indistinguishable from an explicit one and collide
+     * with the deprecated `cadence` alias. The server owns the default.
+     * 
+     * <p>This is not how often the rule runs — that is `schedule`, and the two are
+     * independent: an hourly schedule with a `monthly` period type is normal.
+     * The period type determines the `periodID` an alert is filed under:
+     * `monthly` yields `2026-07`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("periodType")
+    private Optional<? extends PeriodType> periodType;
 
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schedule")
     private Optional<? extends Schedule> schedule;
 
-
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("severity")
     private Optional<? extends Severity> severity;
 
-
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     @JsonProperty("templateKind")
     private TemplateKind templateKind;
 
-
+    /**
+     * Parameters for the chosen template, whose shape depends on templateKind
+     */
     @JsonProperty("templateSpec")
     private Map<String, Object> templateSpec;
 
@@ -75,6 +139,7 @@ public class RuleRequest {
             @JsonProperty("labels") Optional<? extends Map<String, String>> labels,
             @JsonProperty("name") String name,
             @JsonProperty("notifications") Optional<? extends List<String>> notifications,
+            @JsonProperty("periodType") Optional<? extends PeriodType> periodType,
             @JsonProperty("schedule") Optional<? extends Schedule> schedule,
             @JsonProperty("severity") Optional<? extends Severity> severity,
             @JsonProperty("templateKind") TemplateKind templateKind,
@@ -84,6 +149,7 @@ public class RuleRequest {
         Utils.checkNotNull(labels, "labels");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(notifications, "notifications");
+        Utils.checkNotNull(periodType, "periodType");
         Utils.checkNotNull(schedule, "schedule");
         Utils.checkNotNull(severity, "severity");
         Utils.checkNotNull(templateKind, "templateKind");
@@ -94,6 +160,7 @@ public class RuleRequest {
         this.labels = labels;
         this.name = name;
         this.notifications = notifications;
+        this.periodType = periodType;
         this.schedule = schedule;
         this.severity = severity;
         this.templateKind = templateKind;
@@ -106,59 +173,135 @@ public class RuleRequest {
             Map<String, Object> templateSpec) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             name, Optional.empty(), Optional.empty(),
-            Optional.empty(), templateKind, templateSpec);
+            Optional.empty(), Optional.empty(), templateKind,
+            templateSpec);
     }
 
     /**
-     * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-     * March break and an April break are distinct, independently-closable cases.
-     * `continuous` (default) is a single unbounded period (live monitoring).
+     * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+     * removed at the next API major.
+     * 
+     * <p>Kept as its own component so regenerated SDKs keep emitting the
+     * `Cadence` type and its constants — dropping it would delete
+     * `CadenceMonthly` and friends from generated clients and break code that
+     * compiles today, even though the wire contract stays compatible.
+     * 
+     * <p>On requests either key is accepted. If both carry a value and the values
+     * differ the request is rejected with 400 rather than one being chosen
+     * silently; an empty `cadence` counts as unset rather than as a
+     * conflicting value.
+     * 
+     * <p>On responses the server always emits both keys, mirroring, but neither
+     * is listed in the `Rule` required set. That understates the guarantee on
+     * purpose. A required property with no schema default generates a value
+     * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+     * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+     * optional-without-default reproduces the published pointer signatures.
+     * The default cannot come back, because generators materialize it into
+     * request bodies and that collides with this alias. Both become required
+     * again at the next API major, when `cadence` goes.
+     * 
+     * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+     * back to `continuous`. Normally that cannot bite you: `periodType`
+     * reaches clients via an SDK regenerated from this spec, which only exists
+     * once 2.5.0 is released. If you need determinism while a fleet is
+     * mid-upgrade, send both keys with equal values — accepted on every
+     * version.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Cadence> cadence() {
         return (Optional<Cadence>) cadence;
     }
 
+    /**
+     * Whether the rule should be evaluated. Defaults to enabled
+     */
     @JsonIgnore
     public Optional<Boolean> enabled() {
         return enabled;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> labels() {
         return (Optional<Map<String, String>>) labels;
     }
 
+    /**
+     * Human-readable name for the rule
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Channels to notify when this rule raises an alert
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> notifications() {
         return (Optional<List<String>>) notifications;
     }
 
+    /**
+     * How long a reconciliation period lasts. Scopes each failing fingerprint
+     * into a period so a March break and an April break are distinct,
+     * independently-closable cases.
+     * 
+     * <p>Omit the key to get `continuous`, a single unbounded period (live
+     * monitoring). There is deliberately no schema-level `default`: SDK
+     * generators materialize defaults into the serialized body, which would
+     * make an omitted key indistinguishable from an explicit one and collide
+     * with the deprecated `cadence` alias. The server owns the default.
+     * 
+     * <p>This is not how often the rule runs — that is `schedule`, and the two are
+     * independent: an hourly schedule with a `monthly` period type is normal.
+     * The period type determines the `periodID` an alert is filed under:
+     * `monthly` yields `2026-07`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PeriodType> periodType() {
+        return (Optional<PeriodType>) periodType;
+    }
+
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Schedule> schedule() {
         return (Optional<Schedule>) schedule;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Severity> severity() {
         return (Optional<Severity>) severity;
     }
 
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     @JsonIgnore
     public TemplateKind templateKind() {
         return templateKind;
     }
 
+    /**
+     * Parameters for the chosen template, whose shape depends on templateKind
+     */
     @JsonIgnore
     public Map<String, Object> templateSpec() {
         return templateSpec;
@@ -170,10 +313,39 @@ public class RuleRequest {
 
 
     /**
-     * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-     * March break and an April break are distinct, independently-closable cases.
-     * `continuous` (default) is a single unbounded period (live monitoring).
+     * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+     * removed at the next API major.
+     * 
+     * <p>Kept as its own component so regenerated SDKs keep emitting the
+     * `Cadence` type and its constants — dropping it would delete
+     * `CadenceMonthly` and friends from generated clients and break code that
+     * compiles today, even though the wire contract stays compatible.
+     * 
+     * <p>On requests either key is accepted. If both carry a value and the values
+     * differ the request is rejected with 400 rather than one being chosen
+     * silently; an empty `cadence` counts as unset rather than as a
+     * conflicting value.
+     * 
+     * <p>On responses the server always emits both keys, mirroring, but neither
+     * is listed in the `Rule` required set. That understates the guarantee on
+     * purpose. A required property with no schema default generates a value
+     * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+     * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+     * optional-without-default reproduces the published pointer signatures.
+     * The default cannot come back, because generators materialize it into
+     * request bodies and that collides with this alias. Both become required
+     * again at the next API major, when `cadence` goes.
+     * 
+     * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+     * back to `continuous`. Normally that cannot bite you: `periodType`
+     * reaches clients via an SDK regenerated from this spec, which only exists
+     * once 2.5.0 is released. If you need determinism while a fleet is
+     * mid-upgrade, send both keys with equal values — accepted on every
+     * version.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public RuleRequest withCadence(Cadence cadence) {
         Utils.checkNotNull(cadence, "cadence");
         this.cadence = Optional.ofNullable(cadence);
@@ -182,16 +354,48 @@ public class RuleRequest {
 
 
     /**
-     * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-     * March break and an April break are distinct, independently-closable cases.
-     * `continuous` (default) is a single unbounded period (live monitoring).
+     * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+     * removed at the next API major.
+     * 
+     * <p>Kept as its own component so regenerated SDKs keep emitting the
+     * `Cadence` type and its constants — dropping it would delete
+     * `CadenceMonthly` and friends from generated clients and break code that
+     * compiles today, even though the wire contract stays compatible.
+     * 
+     * <p>On requests either key is accepted. If both carry a value and the values
+     * differ the request is rejected with 400 rather than one being chosen
+     * silently; an empty `cadence` counts as unset rather than as a
+     * conflicting value.
+     * 
+     * <p>On responses the server always emits both keys, mirroring, but neither
+     * is listed in the `Rule` required set. That understates the guarantee on
+     * purpose. A required property with no schema default generates a value
+     * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+     * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+     * optional-without-default reproduces the published pointer signatures.
+     * The default cannot come back, because generators materialize it into
+     * request bodies and that collides with this alias. Both become required
+     * again at the next API major, when `cadence` goes.
+     * 
+     * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+     * back to `continuous`. Normally that cannot bite you: `periodType`
+     * reaches clients via an SDK regenerated from this spec, which only exists
+     * once 2.5.0 is released. If you need determinism while a fleet is
+     * mid-upgrade, send both keys with equal values — accepted on every
+     * version.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public RuleRequest withCadence(Optional<? extends Cadence> cadence) {
         Utils.checkNotNull(cadence, "cadence");
         this.cadence = cadence;
         return this;
     }
 
+    /**
+     * Whether the rule should be evaluated. Defaults to enabled
+     */
     public RuleRequest withEnabled(boolean enabled) {
         Utils.checkNotNull(enabled, "enabled");
         this.enabled = Optional.ofNullable(enabled);
@@ -199,12 +403,18 @@ public class RuleRequest {
     }
 
 
+    /**
+     * Whether the rule should be evaluated. Defaults to enabled
+     */
     public RuleRequest withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
         this.enabled = enabled;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+     */
     public RuleRequest withLabels(Map<String, String> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = Optional.ofNullable(labels);
@@ -212,18 +422,27 @@ public class RuleRequest {
     }
 
 
+    /**
+     * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+     */
     public RuleRequest withLabels(Optional<? extends Map<String, String>> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = labels;
         return this;
     }
 
+    /**
+     * Human-readable name for the rule
+     */
     public RuleRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Channels to notify when this rule raises an alert
+     */
     public RuleRequest withNotifications(List<String> notifications) {
         Utils.checkNotNull(notifications, "notifications");
         this.notifications = Optional.ofNullable(notifications);
@@ -231,12 +450,63 @@ public class RuleRequest {
     }
 
 
+    /**
+     * Channels to notify when this rule raises an alert
+     */
     public RuleRequest withNotifications(Optional<? extends List<String>> notifications) {
         Utils.checkNotNull(notifications, "notifications");
         this.notifications = notifications;
         return this;
     }
 
+    /**
+     * How long a reconciliation period lasts. Scopes each failing fingerprint
+     * into a period so a March break and an April break are distinct,
+     * independently-closable cases.
+     * 
+     * <p>Omit the key to get `continuous`, a single unbounded period (live
+     * monitoring). There is deliberately no schema-level `default`: SDK
+     * generators materialize defaults into the serialized body, which would
+     * make an omitted key indistinguishable from an explicit one and collide
+     * with the deprecated `cadence` alias. The server owns the default.
+     * 
+     * <p>This is not how often the rule runs — that is `schedule`, and the two are
+     * independent: an hourly schedule with a `monthly` period type is normal.
+     * The period type determines the `periodID` an alert is filed under:
+     * `monthly` yields `2026-07`.
+     */
+    public RuleRequest withPeriodType(PeriodType periodType) {
+        Utils.checkNotNull(periodType, "periodType");
+        this.periodType = Optional.ofNullable(periodType);
+        return this;
+    }
+
+
+    /**
+     * How long a reconciliation period lasts. Scopes each failing fingerprint
+     * into a period so a March break and an April break are distinct,
+     * independently-closable cases.
+     * 
+     * <p>Omit the key to get `continuous`, a single unbounded period (live
+     * monitoring). There is deliberately no schema-level `default`: SDK
+     * generators materialize defaults into the serialized body, which would
+     * make an omitted key indistinguishable from an explicit one and collide
+     * with the deprecated `cadence` alias. The server owns the default.
+     * 
+     * <p>This is not how often the rule runs — that is `schedule`, and the two are
+     * independent: an hourly schedule with a `monthly` period type is normal.
+     * The period type determines the `periodID` an alert is filed under:
+     * `monthly` yields `2026-07`.
+     */
+    public RuleRequest withPeriodType(Optional<? extends PeriodType> periodType) {
+        Utils.checkNotNull(periodType, "periodType");
+        this.periodType = periodType;
+        return this;
+    }
+
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     public RuleRequest withSchedule(Schedule schedule) {
         Utils.checkNotNull(schedule, "schedule");
         this.schedule = Optional.ofNullable(schedule);
@@ -244,12 +514,18 @@ public class RuleRequest {
     }
 
 
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     public RuleRequest withSchedule(Optional<? extends Schedule> schedule) {
         Utils.checkNotNull(schedule, "schedule");
         this.schedule = schedule;
         return this;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     public RuleRequest withSeverity(Severity severity) {
         Utils.checkNotNull(severity, "severity");
         this.severity = Optional.ofNullable(severity);
@@ -257,18 +533,27 @@ public class RuleRequest {
     }
 
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     public RuleRequest withSeverity(Optional<? extends Severity> severity) {
         Utils.checkNotNull(severity, "severity");
         this.severity = severity;
         return this;
     }
 
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     public RuleRequest withTemplateKind(TemplateKind templateKind) {
         Utils.checkNotNull(templateKind, "templateKind");
         this.templateKind = templateKind;
         return this;
     }
 
+    /**
+     * Parameters for the chosen template, whose shape depends on templateKind
+     */
     public RuleRequest withTemplateSpec(Map<String, Object> templateSpec) {
         Utils.checkNotNull(templateSpec, "templateSpec");
         this.templateSpec = templateSpec;
@@ -290,6 +575,7 @@ public class RuleRequest {
             Utils.enhancedDeepEquals(this.labels, other.labels) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.notifications, other.notifications) &&
+            Utils.enhancedDeepEquals(this.periodType, other.periodType) &&
             Utils.enhancedDeepEquals(this.schedule, other.schedule) &&
             Utils.enhancedDeepEquals(this.severity, other.severity) &&
             Utils.enhancedDeepEquals(this.templateKind, other.templateKind) &&
@@ -300,8 +586,9 @@ public class RuleRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             cadence, enabled, labels,
-            name, notifications, schedule,
-            severity, templateKind, templateSpec);
+            name, notifications, periodType,
+            schedule, severity, templateKind,
+            templateSpec);
     }
     
     @Override
@@ -312,6 +599,7 @@ public class RuleRequest {
                 "labels", labels,
                 "name", name,
                 "notifications", notifications,
+                "periodType", periodType,
                 "schedule", schedule,
                 "severity", severity,
                 "templateKind", templateKind,
@@ -321,7 +609,8 @@ public class RuleRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Cadence> cadence;
+        @Deprecated
+        private Optional<? extends Cadence> cadence = Optional.empty();
 
         private Optional<Boolean> enabled = Optional.empty();
 
@@ -330,6 +619,8 @@ public class RuleRequest {
         private String name;
 
         private Optional<? extends List<String>> notifications = Optional.empty();
+
+        private Optional<? extends PeriodType> periodType = Optional.empty();
 
         private Optional<? extends Schedule> schedule = Optional.empty();
 
@@ -345,10 +636,39 @@ public class RuleRequest {
 
 
         /**
-         * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-         * March break and an April break are distinct, independently-closable cases.
-         * `continuous` (default) is a single unbounded period (live monitoring).
+         * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+         * removed at the next API major.
+         * 
+         * <p>Kept as its own component so regenerated SDKs keep emitting the
+         * `Cadence` type and its constants — dropping it would delete
+         * `CadenceMonthly` and friends from generated clients and break code that
+         * compiles today, even though the wire contract stays compatible.
+         * 
+         * <p>On requests either key is accepted. If both carry a value and the values
+         * differ the request is rejected with 400 rather than one being chosen
+         * silently; an empty `cadence` counts as unset rather than as a
+         * conflicting value.
+         * 
+         * <p>On responses the server always emits both keys, mirroring, but neither
+         * is listed in the `Rule` required set. That understates the guarantee on
+         * purpose. A required property with no schema default generates a value
+         * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+         * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+         * optional-without-default reproduces the published pointer signatures.
+         * The default cannot come back, because generators materialize it into
+         * request bodies and that collides with this alias. Both become required
+         * again at the next API major, when `cadence` goes.
+         * 
+         * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+         * back to `continuous`. Normally that cannot bite you: `periodType`
+         * reaches clients via an SDK regenerated from this spec, which only exists
+         * once 2.5.0 is released. If you need determinism while a fleet is
+         * mid-upgrade, send both keys with equal values — accepted on every
+         * version.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder cadence(Cadence cadence) {
             Utils.checkNotNull(cadence, "cadence");
             this.cadence = Optional.ofNullable(cadence);
@@ -356,10 +676,39 @@ public class RuleRequest {
         }
 
         /**
-         * Reconciliation rhythm. Scopes each failing fingerprint into a period so a
-         * March break and an April break are distinct, independently-closable cases.
-         * `continuous` (default) is a single unbounded period (live monitoring).
+         * Deprecated alias of `periodType`. Same members. Use `periodType`; this is
+         * removed at the next API major.
+         * 
+         * <p>Kept as its own component so regenerated SDKs keep emitting the
+         * `Cadence` type and its constants — dropping it would delete
+         * `CadenceMonthly` and friends from generated clients and break code that
+         * compiles today, even though the wire contract stays compatible.
+         * 
+         * <p>On requests either key is accepted. If both carry a value and the values
+         * differ the request is rejected with 400 rather than one being chosen
+         * silently; an empty `cadence` counts as unset rather than as a
+         * conflicting value.
+         * 
+         * <p>On responses the server always emits both keys, mirroring, but neither
+         * is listed in the `Rule` required set. That understates the guarantee on
+         * purpose. A required property with no schema default generates a value
+         * type in Go, which would turn the published `Rule.Cadence *Cadence` and
+         * `GetCadence() *Cadence` into non-pointers and break existing consumers;
+         * optional-without-default reproduces the published pointer signatures.
+         * The default cannot come back, because generators materialize it into
+         * request bodies and that collides with this alias. Both become required
+         * again at the next API major, when `cadence` goes.
+         * 
+         * <p>Servers before 2.5.0 do not know `periodType` and ignore it, falling
+         * back to `continuous`. Normally that cannot bite you: `periodType`
+         * reaches clients via an SDK regenerated from this spec, which only exists
+         * once 2.5.0 is released. If you need determinism while a fleet is
+         * mid-upgrade, send both keys with equal values — accepted on every
+         * version.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder cadence(Optional<? extends Cadence> cadence) {
             Utils.checkNotNull(cadence, "cadence");
             this.cadence = cadence;
@@ -367,12 +716,18 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Whether the rule should be evaluated. Defaults to enabled
+         */
         public Builder enabled(boolean enabled) {
             Utils.checkNotNull(enabled, "enabled");
             this.enabled = Optional.ofNullable(enabled);
             return this;
         }
 
+        /**
+         * Whether the rule should be evaluated. Defaults to enabled
+         */
         public Builder enabled(Optional<Boolean> enabled) {
             Utils.checkNotNull(enabled, "enabled");
             this.enabled = enabled;
@@ -380,12 +735,18 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+         */
         public Builder labels(Map<String, String> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = Optional.ofNullable(labels);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs to attach to the rule and copy onto the alerts it raises
+         */
         public Builder labels(Optional<? extends Map<String, String>> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = labels;
@@ -393,6 +754,9 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Human-readable name for the rule
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -400,12 +764,18 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Channels to notify when this rule raises an alert
+         */
         public Builder notifications(List<String> notifications) {
             Utils.checkNotNull(notifications, "notifications");
             this.notifications = Optional.ofNullable(notifications);
             return this;
         }
 
+        /**
+         * Channels to notify when this rule raises an alert
+         */
         public Builder notifications(Optional<? extends List<String>> notifications) {
             Utils.checkNotNull(notifications, "notifications");
             this.notifications = notifications;
@@ -413,12 +783,63 @@ public class RuleRequest {
         }
 
 
+        /**
+         * How long a reconciliation period lasts. Scopes each failing fingerprint
+         * into a period so a March break and an April break are distinct,
+         * independently-closable cases.
+         * 
+         * <p>Omit the key to get `continuous`, a single unbounded period (live
+         * monitoring). There is deliberately no schema-level `default`: SDK
+         * generators materialize defaults into the serialized body, which would
+         * make an omitted key indistinguishable from an explicit one and collide
+         * with the deprecated `cadence` alias. The server owns the default.
+         * 
+         * <p>This is not how often the rule runs — that is `schedule`, and the two are
+         * independent: an hourly schedule with a `monthly` period type is normal.
+         * The period type determines the `periodID` an alert is filed under:
+         * `monthly` yields `2026-07`.
+         */
+        public Builder periodType(PeriodType periodType) {
+            Utils.checkNotNull(periodType, "periodType");
+            this.periodType = Optional.ofNullable(periodType);
+            return this;
+        }
+
+        /**
+         * How long a reconciliation period lasts. Scopes each failing fingerprint
+         * into a period so a March break and an April break are distinct,
+         * independently-closable cases.
+         * 
+         * <p>Omit the key to get `continuous`, a single unbounded period (live
+         * monitoring). There is deliberately no schema-level `default`: SDK
+         * generators materialize defaults into the serialized body, which would
+         * make an omitted key indistinguishable from an explicit one and collide
+         * with the deprecated `cadence` alias. The server owns the default.
+         * 
+         * <p>This is not how often the rule runs — that is `schedule`, and the two are
+         * independent: an hourly schedule with a `monthly` period type is normal.
+         * The period type determines the `periodID` an alert is filed under:
+         * `monthly` yields `2026-07`.
+         */
+        public Builder periodType(Optional<? extends PeriodType> periodType) {
+            Utils.checkNotNull(periodType, "periodType");
+            this.periodType = periodType;
+            return this;
+        }
+
+
+        /**
+         * When a rule runs, either on demand or on a cron expression
+         */
         public Builder schedule(Schedule schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = Optional.ofNullable(schedule);
             return this;
         }
 
+        /**
+         * When a rule runs, either on demand or on a cron expression
+         */
         public Builder schedule(Optional<? extends Schedule> schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = schedule;
@@ -426,12 +847,18 @@ public class RuleRequest {
         }
 
 
+        /**
+         * How serious an alert is, used to route and prioritise notifications
+         */
         public Builder severity(Severity severity) {
             Utils.checkNotNull(severity, "severity");
             this.severity = Optional.ofNullable(severity);
             return this;
         }
 
+        /**
+         * How serious an alert is, used to route and prioritise notifications
+         */
         public Builder severity(Optional<? extends Severity> severity) {
             Utils.checkNotNull(severity, "severity");
             this.severity = severity;
@@ -439,6 +866,9 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Which built-in check a rule applies, determining the shape of its templateSpec
+         */
         public Builder templateKind(TemplateKind templateKind) {
             Utils.checkNotNull(templateKind, "templateKind");
             this.templateKind = templateKind;
@@ -446,6 +876,9 @@ public class RuleRequest {
         }
 
 
+        /**
+         * Parameters for the chosen template, whose shape depends on templateKind
+         */
         public Builder templateSpec(Map<String, Object> templateSpec) {
             Utils.checkNotNull(templateSpec, "templateSpec");
             this.templateSpec = templateSpec;
@@ -453,21 +886,13 @@ public class RuleRequest {
         }
 
         public RuleRequest build() {
-            if (cadence == null) {
-                cadence = _SINGLETON_VALUE_Cadence.value();
-            }
 
             return new RuleRequest(
                 cadence, enabled, labels,
-                name, notifications, schedule,
-                severity, templateKind, templateSpec);
+                name, notifications, periodType,
+                schedule, severity, templateKind,
+                templateSpec);
         }
 
-
-        private static final LazySingletonValue<Optional<? extends Cadence>> _SINGLETON_VALUE_Cadence =
-                new LazySingletonValue<>(
-                        "cadence",
-                        "\"continuous\"",
-                        new TypeReference<Optional<? extends Cadence>>() {});
     }
 }

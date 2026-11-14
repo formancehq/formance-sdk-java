@@ -14,7 +14,9 @@ import java.util.Map;
 
 
 public class Wallet {
-
+    /**
+     * When the wallet was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -24,7 +26,9 @@ public class Wallet {
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -34,7 +38,9 @@ public class Wallet {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonProperty("name")
     private String name;
 
@@ -58,6 +64,9 @@ public class Wallet {
         this.name = name;
     }
 
+    /**
+     * When the wallet was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
@@ -71,6 +80,9 @@ public class Wallet {
         return id;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -84,6 +96,9 @@ public class Wallet {
         return metadata;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -94,6 +109,9 @@ public class Wallet {
     }
 
 
+    /**
+     * When the wallet was created
+     */
     public Wallet withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -109,6 +127,9 @@ public class Wallet {
         return this;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     public Wallet withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -124,6 +145,9 @@ public class Wallet {
         return this;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     public Wallet withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -182,6 +206,9 @@ public class Wallet {
         }
 
 
+        /**
+         * When the wallet was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -199,6 +226,9 @@ public class Wallet {
         }
 
 
+        /**
+         * Name of the ledger backing this wallet
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
@@ -216,6 +246,9 @@ public class Wallet {
         }
 
 
+        /**
+         * Human-readable name of the wallet
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

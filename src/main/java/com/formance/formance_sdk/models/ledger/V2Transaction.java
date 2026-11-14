@@ -19,69 +19,111 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2Transaction
+ * 
+ * <p>A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal
+ * timestamps
+ */
 public class V2Transaction {
-
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonProperty("id")
     private BigInteger id;
 
-
+    /**
+     * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+     * the caller. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("insertedAt")
     private Optional<OffsetDateTime> insertedAt;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a
+     * point-in-time query returns it as it stood at that time
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes;
 
-
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonProperty("postings")
     private List<V2Posting> postings;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * Indicates if the transaction has been reverted
+     */
     @JsonProperty("reverted")
     private boolean reverted;
 
-
+    /**
+     * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+     * reverted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("revertedAt")
     private Optional<OffsetDateTime> revertedAt;
 
-
+    /**
+     * Name of the transaction template this transaction was created from, if any
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("template")
     private Optional<String> template;
 
-
+    /**
+     * The transaction time: when the transaction is considered to have occurred, also called the effective
+     * or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time
+     * queries. Settable at creation, defaulting to current machine time if omitted, and immutable once
+     * written.
+     * 
+     * <p>See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
-
+    /**
+     * When the transaction row was last modified, for example by a metadata change or a revert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
     private Optional<OffsetDateTime> updatedAt;
@@ -146,75 +188,126 @@ public class V2Transaction {
             timestamp, Optional.empty());
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonIgnore
     public BigInteger id() {
         return id;
     }
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+     * the caller. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> insertedAt() {
         return insertedAt;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a
+     * point-in-time query returns it as it stood at that time
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) postCommitEffectiveVolumes;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> postCommitVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) postCommitVolumes;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonIgnore
     public List<V2Posting> postings() {
         return postings;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) preCommitEffectiveVolumes;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> preCommitVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) preCommitVolumes;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * Indicates if the transaction has been reverted
+     */
     @JsonIgnore
     public boolean reverted() {
         return reverted;
     }
 
+    /**
+     * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+     * reverted
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> revertedAt() {
         return revertedAt;
     }
 
+    /**
+     * Name of the transaction template this transaction was created from, if any
+     */
     @JsonIgnore
     public Optional<String> template() {
         return template;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred, also called the effective
+     * or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time
+     * queries. Settable at creation, defaulting to current machine time if omitted, and immutable once
+     * written.
+     * 
+     * <p>See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }
 
+    /**
+     * When the transaction row was last modified, for example by a metadata change or a revert
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> updatedAt() {
         return updatedAt;
@@ -225,17 +318,28 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2Transaction withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2Transaction withId(BigInteger id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+     * the caller. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2Transaction withInsertedAt(OffsetDateTime insertedAt) {
         Utils.checkNotNull(insertedAt, "insertedAt");
         this.insertedAt = Optional.ofNullable(insertedAt);
@@ -243,18 +347,30 @@ public class V2Transaction {
     }
 
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+     * the caller. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2Transaction withInsertedAt(Optional<OffsetDateTime> insertedAt) {
         Utils.checkNotNull(insertedAt, "insertedAt");
         this.insertedAt = insertedAt;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a
+     * point-in-time query returns it as it stood at that time
+     */
     public V2Transaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPostCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> postCommitEffectiveVolumes) {
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         this.postCommitEffectiveVolumes = Optional.ofNullable(postCommitEffectiveVolumes);
@@ -262,12 +378,18 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPostCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes) {
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         this.postCommitEffectiveVolumes = postCommitEffectiveVolumes;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPostCommitVolumes(Map<String, Map<String, V2Volume>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
@@ -275,18 +397,27 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
         return this;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     public V2Transaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPreCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> preCommitEffectiveVolumes) {
         Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
         this.preCommitEffectiveVolumes = Optional.ofNullable(preCommitEffectiveVolumes);
@@ -294,12 +425,18 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPreCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes) {
         Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
         this.preCommitEffectiveVolumes = preCommitEffectiveVolumes;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPreCommitVolumes(Map<String, Map<String, V2Volume>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
@@ -307,12 +444,18 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2Transaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -320,18 +463,28 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Indicates if the transaction has been reverted
+     */
     public V2Transaction withReverted(boolean reverted) {
         Utils.checkNotNull(reverted, "reverted");
         this.reverted = reverted;
         return this;
     }
 
+    /**
+     * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+     * reverted
+     */
     public V2Transaction withRevertedAt(OffsetDateTime revertedAt) {
         Utils.checkNotNull(revertedAt, "revertedAt");
         this.revertedAt = Optional.ofNullable(revertedAt);
@@ -339,12 +492,19 @@ public class V2Transaction {
     }
 
 
+    /**
+     * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+     * reverted
+     */
     public V2Transaction withRevertedAt(Optional<OffsetDateTime> revertedAt) {
         Utils.checkNotNull(revertedAt, "revertedAt");
         this.revertedAt = revertedAt;
         return this;
     }
 
+    /**
+     * Name of the transaction template this transaction was created from, if any
+     */
     public V2Transaction withTemplate(String template) {
         Utils.checkNotNull(template, "template");
         this.template = Optional.ofNullable(template);
@@ -352,18 +512,32 @@ public class V2Transaction {
     }
 
 
+    /**
+     * Name of the transaction template this transaction was created from, if any
+     */
     public V2Transaction withTemplate(Optional<String> template) {
         Utils.checkNotNull(template, "template");
         this.template = template;
         return this;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred, also called the effective
+     * or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time
+     * queries. Settable at creation, defaulting to current machine time if omitted, and immutable once
+     * written.
+     * 
+     * <p>See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2Transaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
+    /**
+     * When the transaction row was last modified, for example by a metadata change or a revert
+     */
     public V2Transaction withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = Optional.ofNullable(updatedAt);
@@ -371,6 +545,9 @@ public class V2Transaction {
     }
 
 
+    /**
+     * When the transaction row was last modified, for example by a metadata change or a revert
+     */
     public V2Transaction withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -468,11 +645,17 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
             return this;
         }
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(BigInteger id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -480,12 +663,22 @@ public class V2Transaction {
         }
 
 
+        /**
+         * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+         * the caller. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder insertedAt(OffsetDateTime insertedAt) {
             Utils.checkNotNull(insertedAt, "insertedAt");
             this.insertedAt = Optional.ofNullable(insertedAt);
             return this;
         }
 
+        /**
+         * The request time: when the transaction was actually written to the ledger. Set by the ledger, not
+         * the caller. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder insertedAt(Optional<OffsetDateTime> insertedAt) {
             Utils.checkNotNull(insertedAt, "insertedAt");
             this.insertedAt = insertedAt;
@@ -493,6 +686,10 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a
+         * point-in-time query returns it as it stood at that time
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -500,12 +697,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> postCommitEffectiveVolumes) {
             Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
             this.postCommitEffectiveVolumes = Optional.ofNullable(postCommitEffectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes) {
             Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
             this.postCommitEffectiveVolumes = postCommitEffectiveVolumes;
@@ -513,12 +716,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Map<String, Map<String, V2Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = postCommitVolumes;
@@ -526,6 +735,9 @@ public class V2Transaction {
         }
 
 
+        /**
+         * The fund movements making up the transaction
+         */
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -533,12 +745,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> preCommitEffectiveVolumes) {
             Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
             this.preCommitEffectiveVolumes = Optional.ofNullable(preCommitEffectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes) {
             Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
             this.preCommitEffectiveVolumes = preCommitEffectiveVolumes;
@@ -546,12 +764,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Map<String, Map<String, V2Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = preCommitVolumes;
@@ -559,12 +783,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -572,6 +802,9 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Indicates if the transaction has been reverted
+         */
         public Builder reverted(boolean reverted) {
             Utils.checkNotNull(reverted, "reverted");
             this.reverted = reverted;
@@ -579,12 +812,20 @@ public class V2Transaction {
         }
 
 
+        /**
+         * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+         * reverted
+         */
         public Builder revertedAt(OffsetDateTime revertedAt) {
             Utils.checkNotNull(revertedAt, "revertedAt");
             this.revertedAt = Optional.ofNullable(revertedAt);
             return this;
         }
 
+        /**
+         * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been
+         * reverted
+         */
         public Builder revertedAt(Optional<OffsetDateTime> revertedAt) {
             Utils.checkNotNull(revertedAt, "revertedAt");
             this.revertedAt = revertedAt;
@@ -592,12 +833,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * Name of the transaction template this transaction was created from, if any
+         */
         public Builder template(String template) {
             Utils.checkNotNull(template, "template");
             this.template = Optional.ofNullable(template);
             return this;
         }
 
+        /**
+         * Name of the transaction template this transaction was created from, if any
+         */
         public Builder template(Optional<String> template) {
             Utils.checkNotNull(template, "template");
             this.template = template;
@@ -605,6 +852,14 @@ public class V2Transaction {
         }
 
 
+        /**
+         * The transaction time: when the transaction is considered to have occurred, also called the effective
+         * or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time
+         * queries. Settable at creation, defaulting to current machine time if omitted, and immutable once
+         * written.
+         * 
+         * <p>See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
@@ -612,12 +867,18 @@ public class V2Transaction {
         }
 
 
+        /**
+         * When the transaction row was last modified, for example by a metadata change or a revert
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = Optional.ofNullable(updatedAt);
             return this;
         }
 
+        /**
+         * When the transaction row was last modified, for example by a metadata change or a revert
+         */
         public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

@@ -11,21 +11,33 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 
-
+/**
+ * Workflow
+ * 
+ * <p>A workflow definition and the stages it runs
+ */
 public class Workflow {
-
+    /**
+     * The stages a workflow runs, in order
+     */
     @JsonProperty("config")
     private WorkflowConfig config;
 
-
+    /**
+     * When the workflow was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Unique identifier of the workflow
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * When the workflow was last modified
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -45,21 +57,33 @@ public class Workflow {
         this.updatedAt = updatedAt;
     }
 
+    /**
+     * The stages a workflow runs, in order
+     */
     @JsonIgnore
     public WorkflowConfig config() {
         return config;
     }
 
+    /**
+     * When the workflow was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Unique identifier of the workflow
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * When the workflow was last modified
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -70,24 +94,36 @@ public class Workflow {
     }
 
 
+    /**
+     * The stages a workflow runs, in order
+     */
     public Workflow withConfig(WorkflowConfig config) {
         Utils.checkNotNull(config, "config");
         this.config = config;
         return this;
     }
 
+    /**
+     * When the workflow was created
+     */
     public Workflow withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the workflow
+     */
     public Workflow withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * When the workflow was last modified
+     */
     public Workflow withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -142,6 +178,9 @@ public class Workflow {
         }
 
 
+        /**
+         * The stages a workflow runs, in order
+         */
         public Builder config(WorkflowConfig config) {
             Utils.checkNotNull(config, "config");
             this.config = config;
@@ -149,6 +188,9 @@ public class Workflow {
         }
 
 
+        /**
+         * When the workflow was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -156,6 +198,9 @@ public class Workflow {
         }
 
 
+        /**
+         * Unique identifier of the workflow
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -163,6 +208,9 @@ public class Workflow {
         }
 
 
+        /**
+         * When the workflow was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

@@ -16,23 +16,33 @@ import java.util.Map;
 
 
 public class Log {
-
+    /**
+     * The payload of the log entry, whose shape depends on the log type
+     */
     @JsonProperty("data")
     private Map<String, Object> data;
 
-
+    /**
+     * Timestamp when the operation was recorded
+     */
     @JsonProperty("date")
     private OffsetDateTime date;
 
-
+    /**
+     * SHA256 hash of the log entry, chained from the previous log for integrity verification
+     */
     @JsonProperty("hash")
     private String hash;
 
-
+    /**
+     * Unique sequential identifier for this log entry within the ledger
+     */
     @JsonProperty("id")
     private long id;
 
-
+    /**
+     * The type of operation this log represents
+     */
     @JsonProperty("type")
     private LogType type;
 
@@ -56,26 +66,41 @@ public class Log {
         this.type = type;
     }
 
+    /**
+     * The payload of the log entry, whose shape depends on the log type
+     */
     @JsonIgnore
     public Map<String, Object> data() {
         return data;
     }
 
+    /**
+     * Timestamp when the operation was recorded
+     */
     @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    /**
+     * SHA256 hash of the log entry, chained from the previous log for integrity verification
+     */
     @JsonIgnore
     public String hash() {
         return hash;
     }
 
+    /**
+     * Unique sequential identifier for this log entry within the ledger
+     */
     @JsonIgnore
     public long id() {
         return id;
     }
 
+    /**
+     * The type of operation this log represents
+     */
     @JsonIgnore
     public LogType type() {
         return type;
@@ -86,30 +111,45 @@ public class Log {
     }
 
 
+    /**
+     * The payload of the log entry, whose shape depends on the log type
+     */
     public Log withData(Map<String, Object> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
+    /**
+     * Timestamp when the operation was recorded
+     */
     public Log withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
     }
 
+    /**
+     * SHA256 hash of the log entry, chained from the previous log for integrity verification
+     */
     public Log withHash(String hash) {
         Utils.checkNotNull(hash, "hash");
         this.hash = hash;
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this log entry within the ledger
+     */
     public Log withId(long id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * The type of operation this log represents
+     */
     public Log withType(LogType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -168,6 +208,9 @@ public class Log {
         }
 
 
+        /**
+         * The payload of the log entry, whose shape depends on the log type
+         */
         public Builder data(Map<String, Object> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
@@ -175,6 +218,9 @@ public class Log {
         }
 
 
+        /**
+         * Timestamp when the operation was recorded
+         */
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
@@ -182,6 +228,9 @@ public class Log {
         }
 
 
+        /**
+         * SHA256 hash of the log entry, chained from the previous log for integrity verification
+         */
         public Builder hash(String hash) {
             Utils.checkNotNull(hash, "hash");
             this.hash = hash;
@@ -189,6 +238,9 @@ public class Log {
         }
 
 
+        /**
+         * Unique sequential identifier for this log entry within the ledger
+         */
         public Builder id(long id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -196,6 +248,9 @@ public class Log {
         }
 
 
+        /**
+         * The type of operation this log represents
+         */
         public Builder type(LogType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

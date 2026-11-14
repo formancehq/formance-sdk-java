@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * PrevStatus
+ * 
+ * <p>Status before this event. Null only for the alert's inaugural event
+ */
 public enum PrevStatus {
     OPEN("OPEN"),
     ACKNOWLEDGED("ACKNOWLEDGED"),

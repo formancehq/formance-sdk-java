@@ -11,17 +11,27 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
 
-
+/**
+ * V2ActivityAddAccountMetadata
+ * 
+ * <p>Arguments for the activity that sets metadata on a ledger account
+ */
 public class V2ActivityAddAccountMetadata {
-
+    /**
+     * Address of the ledger account to update
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonProperty("ledger")
     private String ledger;
 
-
+    /**
+     * Metadata to set on the account
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
@@ -39,16 +49,25 @@ public class V2ActivityAddAccountMetadata {
         this.metadata = metadata;
     }
 
+    /**
+     * Address of the ledger account to update
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
     }
 
+    /**
+     * Metadata to set on the account
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
@@ -59,18 +78,27 @@ public class V2ActivityAddAccountMetadata {
     }
 
 
+    /**
+     * Address of the ledger account to update
+     */
     public V2ActivityAddAccountMetadata withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger holding the account
+     */
     public V2ActivityAddAccountMetadata withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
         return this;
     }
 
+    /**
+     * Metadata to set on the account
+     */
     public V2ActivityAddAccountMetadata withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -120,6 +148,9 @@ public class V2ActivityAddAccountMetadata {
         }
 
 
+        /**
+         * Address of the ledger account to update
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -127,6 +158,9 @@ public class V2ActivityAddAccountMetadata {
         }
 
 
+        /**
+         * Name of the ledger holding the account
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
@@ -134,6 +168,9 @@ public class V2ActivityAddAccountMetadata {
         }
 
 
+        /**
+         * Metadata to set on the account
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;

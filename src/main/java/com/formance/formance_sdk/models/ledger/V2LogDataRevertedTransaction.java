@@ -18,21 +18,21 @@ import java.lang.String;
  */
 public class V2LogDataRevertedTransaction {
     /**
-     * Transaction structure as it appears in log payloads
+     * The original transaction that was reverted
      */
     @JsonProperty("revertedTransaction")
-    private V2LogTransaction revertedTransaction;
+    private RevertedTransaction revertedTransaction;
 
     /**
-     * Transaction structure as it appears in log payloads
+     * The new reverting transaction created to cancel the original
      */
     @JsonProperty("transaction")
-    private V2LogTransaction transaction;
+    private V2LogDataRevertedTransactionTransaction transaction;
 
     @JsonCreator
     public V2LogDataRevertedTransaction(
-            @JsonProperty("revertedTransaction") V2LogTransaction revertedTransaction,
-            @JsonProperty("transaction") V2LogTransaction transaction) {
+            @JsonProperty("revertedTransaction") RevertedTransaction revertedTransaction,
+            @JsonProperty("transaction") V2LogDataRevertedTransactionTransaction transaction) {
         Utils.checkNotNull(revertedTransaction, "revertedTransaction");
         Utils.checkNotNull(transaction, "transaction");
         this.revertedTransaction = revertedTransaction;
@@ -40,18 +40,18 @@ public class V2LogDataRevertedTransaction {
     }
 
     /**
-     * Transaction structure as it appears in log payloads
+     * The original transaction that was reverted
      */
     @JsonIgnore
-    public V2LogTransaction revertedTransaction() {
+    public RevertedTransaction revertedTransaction() {
         return revertedTransaction;
     }
 
     /**
-     * Transaction structure as it appears in log payloads
+     * The new reverting transaction created to cancel the original
      */
     @JsonIgnore
-    public V2LogTransaction transaction() {
+    public V2LogDataRevertedTransactionTransaction transaction() {
         return transaction;
     }
 
@@ -61,18 +61,18 @@ public class V2LogDataRevertedTransaction {
 
 
     /**
-     * Transaction structure as it appears in log payloads
+     * The original transaction that was reverted
      */
-    public V2LogDataRevertedTransaction withRevertedTransaction(V2LogTransaction revertedTransaction) {
+    public V2LogDataRevertedTransaction withRevertedTransaction(RevertedTransaction revertedTransaction) {
         Utils.checkNotNull(revertedTransaction, "revertedTransaction");
         this.revertedTransaction = revertedTransaction;
         return this;
     }
 
     /**
-     * Transaction structure as it appears in log payloads
+     * The new reverting transaction created to cancel the original
      */
-    public V2LogDataRevertedTransaction withTransaction(V2LogTransaction transaction) {
+    public V2LogDataRevertedTransaction withTransaction(V2LogDataRevertedTransactionTransaction transaction) {
         Utils.checkNotNull(transaction, "transaction");
         this.transaction = transaction;
         return this;
@@ -108,9 +108,9 @@ public class V2LogDataRevertedTransaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private V2LogTransaction revertedTransaction;
+        private RevertedTransaction revertedTransaction;
 
-        private V2LogTransaction transaction;
+        private V2LogDataRevertedTransactionTransaction transaction;
 
         private Builder() {
           // force use of static builder() method
@@ -118,9 +118,9 @@ public class V2LogDataRevertedTransaction {
 
 
         /**
-         * Transaction structure as it appears in log payloads
+         * The original transaction that was reverted
          */
-        public Builder revertedTransaction(V2LogTransaction revertedTransaction) {
+        public Builder revertedTransaction(RevertedTransaction revertedTransaction) {
             Utils.checkNotNull(revertedTransaction, "revertedTransaction");
             this.revertedTransaction = revertedTransaction;
             return this;
@@ -128,9 +128,9 @@ public class V2LogDataRevertedTransaction {
 
 
         /**
-         * Transaction structure as it appears in log payloads
+         * The new reverting transaction created to cancel the original
          */
-        public Builder transaction(V2LogTransaction transaction) {
+        public Builder transaction(V2LogDataRevertedTransactionTransaction transaction) {
             Utils.checkNotNull(transaction, "transaction");
             this.transaction = transaction;
             return this;

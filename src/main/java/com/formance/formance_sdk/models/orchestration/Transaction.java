@@ -18,30 +18,47 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Transaction
+ * 
+ * <p>A transaction recorded in the ledger, carrying its postings and metadata
+ */
 public class Transaction {
-
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonProperty("id")
     private BigInteger id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonProperty("postings")
     private List<Posting> postings;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * Indicates if the transaction has been reverted
+     */
     @JsonProperty("reverted")
     private boolean reverted;
 
-
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
@@ -78,31 +95,50 @@ public class Transaction {
             Optional.empty(), reverted, timestamp);
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonIgnore
     public BigInteger id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonIgnore
     public List<Posting> postings() {
         return postings;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * Indicates if the transaction has been reverted
+     */
     @JsonIgnore
     public boolean reverted() {
         return reverted;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
@@ -113,29 +149,44 @@ public class Transaction {
     }
 
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public Transaction withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public Transaction withId(BigInteger id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Transaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     public Transaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public Transaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -143,18 +194,28 @@ public class Transaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Indicates if the transaction has been reverted
+     */
     public Transaction withReverted(boolean reverted) {
         Utils.checkNotNull(reverted, "reverted");
         this.reverted = reverted;
         return this;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public Transaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -217,11 +278,17 @@ public class Transaction {
         }
 
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
             return this;
         }
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(BigInteger id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -229,6 +296,9 @@ public class Transaction {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -236,6 +306,9 @@ public class Transaction {
         }
 
 
+        /**
+         * The fund movements making up the transaction
+         */
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -243,12 +316,18 @@ public class Transaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -256,6 +335,9 @@ public class Transaction {
         }
 
 
+        /**
+         * Indicates if the transaction has been reverted
+         */
         public Builder reverted(boolean reverted) {
             Utils.checkNotNull(reverted, "reverted");
             this.reverted = reverted;
@@ -263,6 +345,10 @@ public class Transaction {
         }
 
 
+        /**
+         * The transaction time: when the transaction is considered to have occurred. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

@@ -16,9 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2CreditWalletRequest
+ * 
+ * <p>A credit to apply to a wallet
+ */
 public class V2CreditWalletRequest {
-
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonProperty("amount")
     private V2Monetary amount;
 
@@ -35,16 +41,23 @@ public class V2CreditWalletRequest {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * Where the funds come from
+     */
     @JsonProperty("sources")
     private List<V2Subject> sources;
 
-
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
@@ -80,6 +93,9 @@ public class V2CreditWalletRequest {
             Optional.empty(), sources, Optional.empty());
     }
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonIgnore
     public V2Monetary amount() {
         return amount;
@@ -101,16 +117,26 @@ public class V2CreditWalletRequest {
         return metadata;
     }
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * Where the funds come from
+     */
     @JsonIgnore
     public List<V2Subject> sources() {
         return sources;
     }
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
         return timestamp;
@@ -121,6 +147,9 @@ public class V2CreditWalletRequest {
     }
 
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     public V2CreditWalletRequest withAmount(V2Monetary amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
@@ -155,6 +184,9 @@ public class V2CreditWalletRequest {
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     public V2CreditWalletRequest withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -162,18 +194,28 @@ public class V2CreditWalletRequest {
     }
 
 
+    /**
+     * Optional caller-supplied identifier used to deduplicate the credit
+     */
     public V2CreditWalletRequest withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * Where the funds come from
+     */
     public V2CreditWalletRequest withSources(List<V2Subject> sources) {
         Utils.checkNotNull(sources, "sources");
         this.sources = sources;
         return this;
     }
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2CreditWalletRequest withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = Optional.ofNullable(timestamp);
@@ -181,6 +223,10 @@ public class V2CreditWalletRequest {
     }
 
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2CreditWalletRequest withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -243,6 +289,9 @@ public class V2CreditWalletRequest {
         }
 
 
+        /**
+         * An amount together with the asset it is denominated in
+         */
         public Builder amount(V2Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -279,12 +328,18 @@ public class V2CreditWalletRequest {
         }
 
 
+        /**
+         * Optional caller-supplied identifier used to deduplicate the credit
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier used to deduplicate the credit
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -292,6 +347,9 @@ public class V2CreditWalletRequest {
         }
 
 
+        /**
+         * Where the funds come from
+         */
         public Builder sources(List<V2Subject> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = sources;
@@ -299,12 +357,20 @@ public class V2CreditWalletRequest {
         }
 
 
+        /**
+         * The transaction time to record on the resulting transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
             return this;
         }
 
+        /**
+         * The transaction time to record on the resulting transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

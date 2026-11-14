@@ -18,31 +18,48 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Resolution
+ * 
+ * <p>Record of how an alert was resolved and by whom
+ */
 public class Resolution {
-
+    /**
+     * When the alert was resolved
+     */
     @JsonProperty("at")
     private OffsetDateTime at;
 
-
+    /**
+     * Who resolved the alert
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * The alert's evidence captured at resolution time, kept for audit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evidenceSnapshot")
     private Optional<? extends Map<String, Object>> evidenceSnapshot;
 
-
+    /**
+     * How the alert was resolved, whether automatically, by booking a correcting transaction, or by
+     * business acceptance
+     */
     @JsonProperty("kind")
     private ResolutionKind kind;
 
-
+    /**
+     * Free-text note left by whoever resolved the alert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private Optional<String> note;
 
-
+    /**
+     * References of the transactions booked to correct the break
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionRefs")
     private Optional<? extends List<String>> transactionRefs;
@@ -77,32 +94,51 @@ public class Resolution {
             kind, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * When the alert was resolved
+     */
     @JsonIgnore
     public OffsetDateTime at() {
         return at;
     }
 
+    /**
+     * Who resolved the alert
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * The alert's evidence captured at resolution time, kept for audit
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> evidenceSnapshot() {
         return (Optional<Map<String, Object>>) evidenceSnapshot;
     }
 
+    /**
+     * How the alert was resolved, whether automatically, by booking a correcting transaction, or by
+     * business acceptance
+     */
     @JsonIgnore
     public ResolutionKind kind() {
         return kind;
     }
 
+    /**
+     * Free-text note left by whoever resolved the alert
+     */
     @JsonIgnore
     public Optional<String> note() {
         return note;
     }
 
+    /**
+     * References of the transactions booked to correct the break
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> transactionRefs() {
@@ -114,18 +150,27 @@ public class Resolution {
     }
 
 
+    /**
+     * When the alert was resolved
+     */
     public Resolution withAt(OffsetDateTime at) {
         Utils.checkNotNull(at, "at");
         this.at = at;
         return this;
     }
 
+    /**
+     * Who resolved the alert
+     */
     public Resolution withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * The alert's evidence captured at resolution time, kept for audit
+     */
     public Resolution withEvidenceSnapshot(Map<String, Object> evidenceSnapshot) {
         Utils.checkNotNull(evidenceSnapshot, "evidenceSnapshot");
         this.evidenceSnapshot = Optional.ofNullable(evidenceSnapshot);
@@ -133,18 +178,28 @@ public class Resolution {
     }
 
 
+    /**
+     * The alert's evidence captured at resolution time, kept for audit
+     */
     public Resolution withEvidenceSnapshot(Optional<? extends Map<String, Object>> evidenceSnapshot) {
         Utils.checkNotNull(evidenceSnapshot, "evidenceSnapshot");
         this.evidenceSnapshot = evidenceSnapshot;
         return this;
     }
 
+    /**
+     * How the alert was resolved, whether automatically, by booking a correcting transaction, or by
+     * business acceptance
+     */
     public Resolution withKind(ResolutionKind kind) {
         Utils.checkNotNull(kind, "kind");
         this.kind = kind;
         return this;
     }
 
+    /**
+     * Free-text note left by whoever resolved the alert
+     */
     public Resolution withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = Optional.ofNullable(note);
@@ -152,12 +207,18 @@ public class Resolution {
     }
 
 
+    /**
+     * Free-text note left by whoever resolved the alert
+     */
     public Resolution withNote(Optional<String> note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
         return this;
     }
 
+    /**
+     * References of the transactions booked to correct the break
+     */
     public Resolution withTransactionRefs(List<String> transactionRefs) {
         Utils.checkNotNull(transactionRefs, "transactionRefs");
         this.transactionRefs = Optional.ofNullable(transactionRefs);
@@ -165,6 +226,9 @@ public class Resolution {
     }
 
 
+    /**
+     * References of the transactions booked to correct the break
+     */
     public Resolution withTransactionRefs(Optional<? extends List<String>> transactionRefs) {
         Utils.checkNotNull(transactionRefs, "transactionRefs");
         this.transactionRefs = transactionRefs;
@@ -227,6 +291,9 @@ public class Resolution {
         }
 
 
+        /**
+         * When the alert was resolved
+         */
         public Builder at(OffsetDateTime at) {
             Utils.checkNotNull(at, "at");
             this.at = at;
@@ -234,6 +301,9 @@ public class Resolution {
         }
 
 
+        /**
+         * Who resolved the alert
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -241,12 +311,18 @@ public class Resolution {
         }
 
 
+        /**
+         * The alert's evidence captured at resolution time, kept for audit
+         */
         public Builder evidenceSnapshot(Map<String, Object> evidenceSnapshot) {
             Utils.checkNotNull(evidenceSnapshot, "evidenceSnapshot");
             this.evidenceSnapshot = Optional.ofNullable(evidenceSnapshot);
             return this;
         }
 
+        /**
+         * The alert's evidence captured at resolution time, kept for audit
+         */
         public Builder evidenceSnapshot(Optional<? extends Map<String, Object>> evidenceSnapshot) {
             Utils.checkNotNull(evidenceSnapshot, "evidenceSnapshot");
             this.evidenceSnapshot = evidenceSnapshot;
@@ -254,6 +330,10 @@ public class Resolution {
         }
 
 
+        /**
+         * How the alert was resolved, whether automatically, by booking a correcting transaction, or by
+         * business acceptance
+         */
         public Builder kind(ResolutionKind kind) {
             Utils.checkNotNull(kind, "kind");
             this.kind = kind;
@@ -261,12 +341,18 @@ public class Resolution {
         }
 
 
+        /**
+         * Free-text note left by whoever resolved the alert
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = Optional.ofNullable(note);
             return this;
         }
 
+        /**
+         * Free-text note left by whoever resolved the alert
+         */
         public Builder note(Optional<String> note) {
             Utils.checkNotNull(note, "note");
             this.note = note;
@@ -274,12 +360,18 @@ public class Resolution {
         }
 
 
+        /**
+         * References of the transactions booked to correct the break
+         */
         public Builder transactionRefs(List<String> transactionRefs) {
             Utils.checkNotNull(transactionRefs, "transactionRefs");
             this.transactionRefs = Optional.ofNullable(transactionRefs);
             return this;
         }
 
+        /**
+         * References of the transactions booked to correct the break
+         */
         public Builder transactionRefs(Optional<? extends List<String>> transactionRefs) {
             Utils.checkNotNull(transactionRefs, "transactionRefs");
             this.transactionRefs = transactionRefs;

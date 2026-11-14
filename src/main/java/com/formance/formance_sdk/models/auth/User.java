@@ -13,19 +13,29 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * User
+ * 
+ * <p>A user known to the stack's identity provider
+ */
 public class User {
-
+    /**
+     * Email address of the user
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
     private Optional<String> email;
 
-
+    /**
+     * Unique identifier of the user
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
-
+    /**
+     * Subject claim identifying the user with the identity provider
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subject")
     private Optional<String> subject;
@@ -47,16 +57,25 @@ public class User {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Email address of the user
+     */
     @JsonIgnore
     public Optional<String> email() {
         return email;
     }
 
+    /**
+     * Unique identifier of the user
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
     }
 
+    /**
+     * Subject claim identifying the user with the identity provider
+     */
     @JsonIgnore
     public Optional<String> subject() {
         return subject;
@@ -67,6 +86,9 @@ public class User {
     }
 
 
+    /**
+     * Email address of the user
+     */
     public User withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
@@ -74,12 +96,18 @@ public class User {
     }
 
 
+    /**
+     * Email address of the user
+     */
     public User withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
     }
 
+    /**
+     * Unique identifier of the user
+     */
     public User withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -87,12 +115,18 @@ public class User {
     }
 
 
+    /**
+     * Unique identifier of the user
+     */
     public User withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Subject claim identifying the user with the identity provider
+     */
     public User withSubject(String subject) {
         Utils.checkNotNull(subject, "subject");
         this.subject = Optional.ofNullable(subject);
@@ -100,6 +134,9 @@ public class User {
     }
 
 
+    /**
+     * Subject claim identifying the user with the identity provider
+     */
     public User withSubject(Optional<String> subject) {
         Utils.checkNotNull(subject, "subject");
         this.subject = subject;
@@ -149,12 +186,18 @@ public class User {
         }
 
 
+        /**
+         * Email address of the user
+         */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
             this.email = Optional.ofNullable(email);
             return this;
         }
 
+        /**
+         * Email address of the user
+         */
         public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
@@ -162,12 +205,18 @@ public class User {
         }
 
 
+        /**
+         * Unique identifier of the user
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Unique identifier of the user
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -175,12 +224,18 @@ public class User {
         }
 
 
+        /**
+         * Subject claim identifying the user with the identity provider
+         */
         public Builder subject(String subject) {
             Utils.checkNotNull(subject, "subject");
             this.subject = Optional.ofNullable(subject);
             return this;
         }
 
+        /**
+         * Subject claim identifying the user with the identity provider
+         */
         public Builder subject(Optional<String> subject) {
             Utils.checkNotNull(subject, "subject");
             this.subject = subject;

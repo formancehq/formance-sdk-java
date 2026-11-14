@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2GetLedgerResponse {
-
+    /**
+     * A ledger and its configuration
+     */
     @JsonProperty("data")
     private V2Ledger data;
 
@@ -23,6 +25,9 @@ public class V2GetLedgerResponse {
         this.data = data;
     }
 
+    /**
+     * A ledger and its configuration
+     */
     @JsonIgnore
     public V2Ledger data() {
         return data;
@@ -33,6 +38,9 @@ public class V2GetLedgerResponse {
     }
 
 
+    /**
+     * A ledger and its configuration
+     */
     public V2GetLedgerResponse withData(V2Ledger data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2GetLedgerResponse {
         }
 
 
+        /**
+         * A ledger and its configuration
+         */
         public Builder data(V2Ledger data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

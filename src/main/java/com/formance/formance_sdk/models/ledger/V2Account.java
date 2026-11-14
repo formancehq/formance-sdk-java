@@ -16,37 +16,57 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2Account
+ * 
+ * <p>An account in the ledger, identified by its address and carrying its metadata and volumes
+ */
 public class V2Account {
-
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonProperty("address")
     private String address;
 
-
+    /**
+     * Volumes per asset for a single account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("effectiveVolumes")
     private Optional<? extends Map<String, V2Volume>> effectiveVolumes;
 
-
+    /**
+     * Transaction time of the earliest transaction touching this account. Inserting a backdated
+     * transaction can move it earlier
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("firstUsage")
     private Optional<OffsetDateTime> firstUsage;
 
-
+    /**
+     * When the account was first written to the ledger, on the request-time axis
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("insertionDate")
     private Optional<OffsetDateTime> insertionDate;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query
+     * returns the metadata as it stood at that time
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * When the account was last modified, for example by a metadata change
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
     private Optional<OffsetDateTime> updatedAt;
 
-
+    /**
+     * Volumes per asset for a single account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("volumes")
     private Optional<? extends Map<String, V2Volume>> volumes;
@@ -85,37 +105,60 @@ public class V2Account {
             Optional.empty());
     }
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonIgnore
     public String address() {
         return address;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, V2Volume>> effectiveVolumes() {
         return (Optional<Map<String, V2Volume>>) effectiveVolumes;
     }
 
+    /**
+     * Transaction time of the earliest transaction touching this account. Inserting a backdated
+     * transaction can move it earlier
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> firstUsage() {
         return firstUsage;
     }
 
+    /**
+     * When the account was first written to the ledger, on the request-time axis
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> insertionDate() {
         return insertionDate;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query
+     * returns the metadata as it stood at that time
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * When the account was last modified, for example by a metadata change
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> updatedAt() {
         return updatedAt;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, V2Volume>> volumes() {
@@ -127,12 +170,18 @@ public class V2Account {
     }
 
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     public V2Account withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withEffectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
         Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
         this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
@@ -140,12 +189,19 @@ public class V2Account {
     }
 
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withEffectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
         Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
         this.effectiveVolumes = effectiveVolumes;
         return this;
     }
 
+    /**
+     * Transaction time of the earliest transaction touching this account. Inserting a backdated
+     * transaction can move it earlier
+     */
     public V2Account withFirstUsage(OffsetDateTime firstUsage) {
         Utils.checkNotNull(firstUsage, "firstUsage");
         this.firstUsage = Optional.ofNullable(firstUsage);
@@ -153,12 +209,19 @@ public class V2Account {
     }
 
 
+    /**
+     * Transaction time of the earliest transaction touching this account. Inserting a backdated
+     * transaction can move it earlier
+     */
     public V2Account withFirstUsage(Optional<OffsetDateTime> firstUsage) {
         Utils.checkNotNull(firstUsage, "firstUsage");
         this.firstUsage = firstUsage;
         return this;
     }
 
+    /**
+     * When the account was first written to the ledger, on the request-time axis
+     */
     public V2Account withInsertionDate(OffsetDateTime insertionDate) {
         Utils.checkNotNull(insertionDate, "insertionDate");
         this.insertionDate = Optional.ofNullable(insertionDate);
@@ -166,18 +229,28 @@ public class V2Account {
     }
 
 
+    /**
+     * When the account was first written to the ledger, on the request-time axis
+     */
     public V2Account withInsertionDate(Optional<OffsetDateTime> insertionDate) {
         Utils.checkNotNull(insertionDate, "insertionDate");
         this.insertionDate = insertionDate;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query
+     * returns the metadata as it stood at that time
+     */
     public V2Account withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * When the account was last modified, for example by a metadata change
+     */
     public V2Account withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = Optional.ofNullable(updatedAt);
@@ -185,12 +258,18 @@ public class V2Account {
     }
 
 
+    /**
+     * When the account was last modified, for example by a metadata change
+     */
     public V2Account withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withVolumes(Map<String, V2Volume> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = Optional.ofNullable(volumes);
@@ -198,6 +277,9 @@ public class V2Account {
     }
 
 
+    /**
+     * Volumes per asset for a single account
+     */
     public V2Account withVolumes(Optional<? extends Map<String, V2Volume>> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = volumes;
@@ -265,6 +347,9 @@ public class V2Account {
         }
 
 
+        /**
+         * The account address, a colon-separated segmented path such as users:001
+         */
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
@@ -272,12 +357,18 @@ public class V2Account {
         }
 
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder effectiveVolumes(Map<String, V2Volume> effectiveVolumes) {
             Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
             this.effectiveVolumes = Optional.ofNullable(effectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder effectiveVolumes(Optional<? extends Map<String, V2Volume>> effectiveVolumes) {
             Utils.checkNotNull(effectiveVolumes, "effectiveVolumes");
             this.effectiveVolumes = effectiveVolumes;
@@ -285,12 +376,20 @@ public class V2Account {
         }
 
 
+        /**
+         * Transaction time of the earliest transaction touching this account. Inserting a backdated
+         * transaction can move it earlier
+         */
         public Builder firstUsage(OffsetDateTime firstUsage) {
             Utils.checkNotNull(firstUsage, "firstUsage");
             this.firstUsage = Optional.ofNullable(firstUsage);
             return this;
         }
 
+        /**
+         * Transaction time of the earliest transaction touching this account. Inserting a backdated
+         * transaction can move it earlier
+         */
         public Builder firstUsage(Optional<OffsetDateTime> firstUsage) {
             Utils.checkNotNull(firstUsage, "firstUsage");
             this.firstUsage = firstUsage;
@@ -298,12 +397,18 @@ public class V2Account {
         }
 
 
+        /**
+         * When the account was first written to the ledger, on the request-time axis
+         */
         public Builder insertionDate(OffsetDateTime insertionDate) {
             Utils.checkNotNull(insertionDate, "insertionDate");
             this.insertionDate = Optional.ofNullable(insertionDate);
             return this;
         }
 
+        /**
+         * When the account was first written to the ledger, on the request-time axis
+         */
         public Builder insertionDate(Optional<OffsetDateTime> insertionDate) {
             Utils.checkNotNull(insertionDate, "insertionDate");
             this.insertionDate = insertionDate;
@@ -311,6 +416,10 @@ public class V2Account {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query
+         * returns the metadata as it stood at that time
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -318,12 +427,18 @@ public class V2Account {
         }
 
 
+        /**
+         * When the account was last modified, for example by a metadata change
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = Optional.ofNullable(updatedAt);
             return this;
         }
 
+        /**
+         * When the account was last modified, for example by a metadata change
+         */
         public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
@@ -331,12 +446,18 @@ public class V2Account {
         }
 
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Map<String, V2Volume> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = Optional.ofNullable(volumes);
             return this;
         }
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Optional<? extends Map<String, V2Volume>> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = volumes;

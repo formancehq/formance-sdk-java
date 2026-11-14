@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class GetBalanceResponse {
-
+    /**
+     * A named balance within a wallet together with the amounts it holds per asset
+     */
     @JsonProperty("data")
     private BalanceWithAssets data;
 
@@ -23,6 +25,9 @@ public class GetBalanceResponse {
         this.data = data;
     }
 
+    /**
+     * A named balance within a wallet together with the amounts it holds per asset
+     */
     @JsonIgnore
     public BalanceWithAssets data() {
         return data;
@@ -33,6 +38,9 @@ public class GetBalanceResponse {
     }
 
 
+    /**
+     * A named balance within a wallet together with the amounts it holds per asset
+     */
     public GetBalanceResponse withData(BalanceWithAssets data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class GetBalanceResponse {
         }
 
 
+        /**
+         * A named balance within a wallet together with the amounts it holds per asset
+         */
         public Builder data(BalanceWithAssets data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

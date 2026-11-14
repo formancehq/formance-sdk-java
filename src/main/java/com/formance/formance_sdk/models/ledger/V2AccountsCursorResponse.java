@@ -16,11 +16,15 @@ import java.util.Optional;
 
 
 public class V2AccountsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of accounts
+     */
     @JsonProperty("cursor")
     private V2AccountsCursorResponseCursor cursor;
 
-
+    /**
+     * The resource type carried by this cursor
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<? extends V2AccountsCursorResponseResource> resource;
@@ -40,11 +44,17 @@ public class V2AccountsCursorResponse {
         this(cursor, Optional.empty());
     }
 
+    /**
+     * Paginated cursor wrapping the list of accounts
+     */
     @JsonIgnore
     public V2AccountsCursorResponseCursor cursor() {
         return cursor;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2AccountsCursorResponseResource> resource() {
@@ -56,12 +66,18 @@ public class V2AccountsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of accounts
+     */
     public V2AccountsCursorResponse withCursor(V2AccountsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2AccountsCursorResponse withResource(V2AccountsCursorResponseResource resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
@@ -69,6 +85,9 @@ public class V2AccountsCursorResponse {
     }
 
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2AccountsCursorResponse withResource(Optional<? extends V2AccountsCursorResponseResource> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
@@ -114,6 +133,9 @@ public class V2AccountsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of accounts
+         */
         public Builder cursor(V2AccountsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
@@ -121,12 +143,18 @@ public class V2AccountsCursorResponse {
         }
 
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(V2AccountsCursorResponseResource resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
         }
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(Optional<? extends V2AccountsCursorResponseResource> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;

@@ -16,27 +16,39 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * GetHoldsResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of holds
+ */
 public class GetHoldsResponseCursor {
 
     @JsonProperty("data")
     private List<Hold> data;
 
-
+    /**
+     * Whether further pages are available
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasMore")
     private Optional<Boolean> hasMore;
 
-
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("next")
     private Optional<String> next;
 
-
+    /**
+     * Number of items requested per page
+     */
     @JsonProperty("pageSize")
     private long pageSize;
 
-
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("previous")
     private Optional<String> previous;
@@ -72,21 +84,33 @@ public class GetHoldsResponseCursor {
         return data;
     }
 
+    /**
+     * Whether further pages are available
+     */
     @JsonIgnore
     public Optional<Boolean> hasMore() {
         return hasMore;
     }
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     @JsonIgnore
     public Optional<String> next() {
         return next;
     }
 
+    /**
+     * Number of items requested per page
+     */
     @JsonIgnore
     public long pageSize() {
         return pageSize;
     }
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     @JsonIgnore
     public Optional<String> previous() {
         return previous;
@@ -103,6 +127,9 @@ public class GetHoldsResponseCursor {
         return this;
     }
 
+    /**
+     * Whether further pages are available
+     */
     public GetHoldsResponseCursor withHasMore(boolean hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = Optional.ofNullable(hasMore);
@@ -110,12 +137,18 @@ public class GetHoldsResponseCursor {
     }
 
 
+    /**
+     * Whether further pages are available
+     */
     public GetHoldsResponseCursor withHasMore(Optional<Boolean> hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
         return this;
     }
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     public GetHoldsResponseCursor withNext(String next) {
         Utils.checkNotNull(next, "next");
         this.next = Optional.ofNullable(next);
@@ -123,18 +156,27 @@ public class GetHoldsResponseCursor {
     }
 
 
+    /**
+     * Cursor for the next page, absent on the last page
+     */
     public GetHoldsResponseCursor withNext(Optional<String> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
     }
 
+    /**
+     * Number of items requested per page
+     */
     public GetHoldsResponseCursor withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
         this.pageSize = pageSize;
         return this;
     }
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     public GetHoldsResponseCursor withPrevious(String previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = Optional.ofNullable(previous);
@@ -142,6 +184,9 @@ public class GetHoldsResponseCursor {
     }
 
 
+    /**
+     * Cursor for the previous page, absent on the first page
+     */
     public GetHoldsResponseCursor withPrevious(Optional<String> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
@@ -207,12 +252,18 @@ public class GetHoldsResponseCursor {
         }
 
 
+        /**
+         * Whether further pages are available
+         */
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = Optional.ofNullable(hasMore);
             return this;
         }
 
+        /**
+         * Whether further pages are available
+         */
         public Builder hasMore(Optional<Boolean> hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;
@@ -220,12 +271,18 @@ public class GetHoldsResponseCursor {
         }
 
 
+        /**
+         * Cursor for the next page, absent on the last page
+         */
         public Builder next(String next) {
             Utils.checkNotNull(next, "next");
             this.next = Optional.ofNullable(next);
             return this;
         }
 
+        /**
+         * Cursor for the next page, absent on the last page
+         */
         public Builder next(Optional<String> next) {
             Utils.checkNotNull(next, "next");
             this.next = next;
@@ -233,6 +290,9 @@ public class GetHoldsResponseCursor {
         }
 
 
+        /**
+         * Number of items requested per page
+         */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
@@ -240,12 +300,18 @@ public class GetHoldsResponseCursor {
         }
 
 
+        /**
+         * Cursor for the previous page, absent on the first page
+         */
         public Builder previous(String previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = Optional.ofNullable(previous);
             return this;
         }
 
+        /**
+         * Cursor for the previous page, absent on the first page
+         */
         public Builder previous(Optional<String> previous) {
             Utils.checkNotNull(previous, "previous");
             this.previous = previous;

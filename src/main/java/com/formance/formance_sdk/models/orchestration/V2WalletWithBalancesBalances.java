@@ -10,7 +10,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2WalletWithBalancesBalances
+ * 
+ * <p>Aggregated funds held by the wallet, keyed by asset
+ */
 public class V2WalletWithBalancesBalances {
 
     @JsonProperty("main")

@@ -5,4 +5,4 @@
 
 | Field                                              | Type                                               | Required                                           | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `data`                                             | List\<[Workflow](../../models/shared/Workflow.md)> | :heavy_check_mark:                                 | N/A                                                |
+| `data`                                             | List\<[Workflow](../../models/shared/Workflow.md)> | :heavy_check_mark:                                 | The workflows defined on this stack                |

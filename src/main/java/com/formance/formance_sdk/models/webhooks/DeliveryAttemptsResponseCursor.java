@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * DeliveryAttemptsResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of delivery attempts
+ */
 public class DeliveryAttemptsResponseCursor {
 
     @JsonProperty("data")

@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Connector
+ * 
+ * <p>The payment provider behind a connector
+ */
 public enum Connector {
     STRIPE("STRIPE"),
     DUMMY_PAY("DUMMY-PAY"),
