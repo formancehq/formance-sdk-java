@@ -54,16 +54,26 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
     }
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     @Deprecated
     public Optional<String> details() {
         return data().flatMap(Data::details);
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @Deprecated
     public Optional<ErrorsEnum> errorCode() {
         return data().map(Data::errorCode);
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @Deprecated
     public Optional<String> errorMessage() {
         return data().map(Data::errorMessage);
@@ -81,16 +91,23 @@ public class ErrorsErrorResponse extends SDKBaseError {
     }
 
     public static class Data {
-
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         @JsonInclude(Include.NON_ABSENT)
         @JsonProperty("details")
         private Optional<String> details;
 
-
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonProperty("errorCode")
         private ErrorsEnum errorCode;
 
-
+        /**
+         * Human-readable description of the error
+         */
         @JsonProperty("errorMessage")
         private String errorMessage;
 
@@ -113,16 +130,26 @@ public class ErrorsErrorResponse extends SDKBaseError {
             this(Optional.empty(), errorCode, errorMessage);
         }
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         @JsonIgnore
         public Optional<String> details() {
             return details;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         @JsonIgnore
         public ErrorsEnum errorCode() {
             return errorCode;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         @JsonIgnore
         public String errorMessage() {
             return errorMessage;
@@ -133,6 +160,10 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Data withDetails(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
@@ -140,18 +171,28 @@ public class ErrorsErrorResponse extends SDKBaseError {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Data withDetails(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Data withErrorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Data withErrorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -201,12 +242,20 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Optional link carrying additional context about the error, such as a Numscript playground URL
+             * reproducing it
+             */
             public Builder details(String details) {
                 Utils.checkNotNull(details, "details");
                 this.details = Optional.ofNullable(details);
                 return this;
             }
 
+            /**
+             * Optional link carrying additional context about the error, such as a Numscript playground URL
+             * reproducing it
+             */
             public Builder details(Optional<String> details) {
                 Utils.checkNotNull(details, "details");
                 this.details = details;
@@ -214,6 +263,9 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Machine-readable error code identifying the failure
+             */
             public Builder errorCode(ErrorsEnum errorCode) {
                 Utils.checkNotNull(errorCode, "errorCode");
                 this.errorCode = errorCode;
@@ -221,6 +273,9 @@ public class ErrorsErrorResponse extends SDKBaseError {
             }
 
 
+            /**
+             * Human-readable description of the error
+             */
             public Builder errorMessage(String errorMessage) {
                 Utils.checkNotNull(errorMessage, "errorMessage");
                 this.errorMessage = errorMessage;

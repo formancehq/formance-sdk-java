@@ -15,23 +15,33 @@ import java.time.OffsetDateTime;
 
 
 public class V2PaymentAdjustment {
-
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     @JsonProperty("absolute")
     private boolean absolute;
 
-
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * When the adjustment was recorded
+     */
     @JsonProperty("date")
     private OffsetDateTime date;
 
-
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonProperty("raw")
     private V2PaymentAdjustmentRaw raw;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private V2PaymentStatus status;
 
@@ -54,26 +64,41 @@ public class V2PaymentAdjustment {
         this.status = status;
     }
 
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     @JsonIgnore
     public boolean absolute() {
         return absolute;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonIgnore
     public V2PaymentAdjustmentRaw raw() {
         return raw;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public V2PaymentStatus status() {
         return status;
@@ -84,35 +109,53 @@ public class V2PaymentAdjustment {
     }
 
 
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     public V2PaymentAdjustment withAbsolute(boolean absolute) {
         Utils.checkNotNull(absolute, "absolute");
         this.absolute = absolute;
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public V2PaymentAdjustment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public V2PaymentAdjustment withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     public V2PaymentAdjustment withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     public V2PaymentAdjustment withRaw(V2PaymentAdjustmentRaw raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public V2PaymentAdjustment withStatus(V2PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -171,6 +214,9 @@ public class V2PaymentAdjustment {
         }
 
 
+        /**
+         * Whether amount replaces the payment's amount rather than adding to it
+         */
         public Builder absolute(boolean absolute) {
             Utils.checkNotNull(absolute, "absolute");
             this.absolute = absolute;
@@ -178,11 +224,17 @@ public class V2PaymentAdjustment {
         }
 
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -190,6 +242,9 @@ public class V2PaymentAdjustment {
         }
 
 
+        /**
+         * When the adjustment was recorded
+         */
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
@@ -197,6 +252,9 @@ public class V2PaymentAdjustment {
         }
 
 
+        /**
+         * The provider's original payload for this adjustment
+         */
         public Builder raw(V2PaymentAdjustmentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -204,6 +262,9 @@ public class V2PaymentAdjustment {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(V2PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

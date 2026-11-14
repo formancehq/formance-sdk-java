@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>Server information
  */
 public class ServerInfo {
-
+    /**
+     * Version of the reconciliation service
+     */
     @JsonProperty("version")
     private String version;
 
@@ -27,6 +29,9 @@ public class ServerInfo {
         this.version = version;
     }
 
+    /**
+     * Version of the reconciliation service
+     */
     @JsonIgnore
     public String version() {
         return version;
@@ -37,6 +42,9 @@ public class ServerInfo {
     }
 
 
+    /**
+     * Version of the reconciliation service
+     */
     public ServerInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -78,6 +86,9 @@ public class ServerInfo {
         }
 
 
+        /**
+         * Version of the reconciliation service
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

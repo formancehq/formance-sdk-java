@@ -16,6 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.math.BigInteger;
 
+/**
+ * V2LogDataSetMetadataTargetId
+ * 
+ * <p>Identifier of the entity the metadata was set on, either an account address or a transaction ID
+ */
 @JsonDeserialize(using = V2LogDataSetMetadataTargetId._Deserializer.class)
 public class V2LogDataSetMetadataTargetId {
 

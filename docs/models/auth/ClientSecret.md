@@ -3,9 +3,9 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `id`                   | *String*               | :heavy_check_mark:     | N/A                    |
-| `lastDigits`           | *String*               | :heavy_check_mark:     | N/A                    |
-| `metadata`             | Map\<String, *String*> | :heavy_minus_sign:     | N/A                    |
-| `name`                 | *String*               | :heavy_check_mark:     | N/A                    |
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                                                                                           | *String*                                                                                       | :heavy_check_mark:                                                                             | Unique identifier of the secret                                                                |
+| `lastDigits`                                                                                   | *String*                                                                                       | :heavy_check_mark:                                                                             | Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed. |
+| `metadata`                                                                                     | Map\<String, *String*>                                                                         | :heavy_minus_sign:                                                                             | Arbitrary key/value pairs attached to the resource                                             |
+| `name`                                                                                         | *String*                                                                                       | :heavy_check_mark:                                                                             | Human-readable name identifying the secret                                                     |

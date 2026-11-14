@@ -20,11 +20,15 @@ import java.util.Optional;
 
 
 public class Transaction {
-
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonProperty("id")
     private long id;
 
-
+    /**
+     * Name of the ledger the transaction was recorded in
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger")
     private Optional<String> ledger;
@@ -35,26 +39,37 @@ public class Transaction {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes;
 
-
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonProperty("postings")
     private List<Posting> postings;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
@@ -97,11 +112,17 @@ public class Transaction {
             Optional.empty(), timestamp);
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonIgnore
     public long id() {
         return id;
     }
 
+    /**
+     * Name of the ledger the transaction was recorded in
+     */
     @JsonIgnore
     public Optional<String> ledger() {
         return ledger;
@@ -115,28 +136,44 @@ public class Transaction {
         return metadata;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, Volume>>> postCommitVolumes() {
         return (Optional<Map<String, Map<String, Volume>>>) postCommitVolumes;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonIgnore
     public List<Posting> postings() {
         return postings;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, Volume>>> preCommitVolumes() {
         return (Optional<Map<String, Map<String, Volume>>>) preCommitVolumes;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
@@ -147,12 +184,18 @@ public class Transaction {
     }
 
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public Transaction withId(long id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger the transaction was recorded in
+     */
     public Transaction withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = Optional.ofNullable(ledger);
@@ -160,6 +203,9 @@ public class Transaction {
     }
 
 
+    /**
+     * Name of the ledger the transaction was recorded in
+     */
     public Transaction withLedger(Optional<String> ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -175,6 +221,9 @@ public class Transaction {
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public Transaction withPostCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
@@ -182,18 +231,27 @@ public class Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public Transaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
         return this;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     public Transaction withPostings(List<Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public Transaction withPreCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
@@ -201,12 +259,18 @@ public class Transaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public Transaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public Transaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -214,12 +278,19 @@ public class Transaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public Transaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See [bi-
+     * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public Transaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -291,6 +362,9 @@ public class Transaction {
         }
 
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(long id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -298,12 +372,18 @@ public class Transaction {
         }
 
 
+        /**
+         * Name of the ledger the transaction was recorded in
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = Optional.ofNullable(ledger);
             return this;
         }
 
+        /**
+         * Name of the ledger the transaction was recorded in
+         */
         public Builder ledger(Optional<String> ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
@@ -321,12 +401,18 @@ public class Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Map<String, Map<String, Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = postCommitVolumes;
@@ -334,6 +420,9 @@ public class Transaction {
         }
 
 
+        /**
+         * The fund movements making up the transaction
+         */
         public Builder postings(List<Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -341,12 +430,18 @@ public class Transaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Map<String, Map<String, Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, Volume>>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = preCommitVolumes;
@@ -354,12 +449,18 @@ public class Transaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -367,6 +468,10 @@ public class Transaction {
         }
 
 
+        /**
+         * The transaction time: when the transaction is considered to have occurred. See [bi-
+         * temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

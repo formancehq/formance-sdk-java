@@ -17,12 +17,16 @@ import java.util.Optional;
 
 
 public class V2QueryTemplateVar {
-
+    /**
+     * Value used when the variable is not supplied at query time
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default")
     private Optional<? extends Object> default_;
 
-
+    /**
+     * Type of the variable
+     */
     @JsonProperty("type")
     private String type;
 
@@ -41,12 +45,18 @@ public class V2QueryTemplateVar {
         this(Optional.empty(), type);
     }
 
+    /**
+     * Value used when the variable is not supplied at query time
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Object> default_() {
         return (Optional<Object>) default_;
     }
 
+    /**
+     * Type of the variable
+     */
     @JsonIgnore
     public String type() {
         return type;
@@ -57,6 +67,9 @@ public class V2QueryTemplateVar {
     }
 
 
+    /**
+     * Value used when the variable is not supplied at query time
+     */
     public V2QueryTemplateVar withDefault(Object default_) {
         Utils.checkNotNull(default_, "default_");
         this.default_ = Optional.ofNullable(default_);
@@ -64,12 +77,18 @@ public class V2QueryTemplateVar {
     }
 
 
+    /**
+     * Value used when the variable is not supplied at query time
+     */
     public V2QueryTemplateVar withDefault(Optional<? extends Object> default_) {
         Utils.checkNotNull(default_, "default_");
         this.default_ = default_;
         return this;
     }
 
+    /**
+     * Type of the variable
+     */
     public V2QueryTemplateVar withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -115,12 +134,18 @@ public class V2QueryTemplateVar {
         }
 
 
+        /**
+         * Value used when the variable is not supplied at query time
+         */
         public Builder default_(Object default_) {
             Utils.checkNotNull(default_, "default_");
             this.default_ = Optional.ofNullable(default_);
             return this;
         }
 
+        /**
+         * Value used when the variable is not supplied at query time
+         */
         public Builder default_(Optional<? extends Object> default_) {
             Utils.checkNotNull(default_, "default_");
             this.default_ = default_;
@@ -128,6 +153,9 @@ public class V2QueryTemplateVar {
         }
 
 
+        /**
+         * Type of the variable
+         */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

@@ -1,0 +1,14 @@
+# PatternSegment
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `examples`                                                                 | List\<*String*>                                                            | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `fixedValue`                                                               | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `inferredPattern`                                                          | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `position`                                                                 | *Optional\<Integer>*                                                       | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `type`                                                                     | [Optional\<PatternSegmentType>](../../models/shared/PatternSegmentType.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `uniqueValues`                                                             | *Optional\<Long>*                                                          | :heavy_minus_sign:                                                         | Number of distinct values observed at this segment position.               |
+| `variableName`                                                             | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | N/A                                                                        |

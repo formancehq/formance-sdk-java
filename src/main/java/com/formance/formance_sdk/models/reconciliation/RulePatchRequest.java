@@ -24,42 +24,58 @@ import java.util.Optional;
  * <p>Partial update — only fields supplied are applied.
  */
 public class RulePatchRequest {
-
+    /**
+     * Whether the rule should be evaluated
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
     private Optional<Boolean> enabled;
 
-
+    /**
+     * New set of key/value pairs attached to the rule
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("labels")
     private Optional<? extends Map<String, String>> labels;
 
-
+    /**
+     * New human-readable name for the rule
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * New set of channels to notify when this rule raises an alert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notifications")
     private Optional<? extends List<String>> notifications;
 
-
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schedule")
     private Optional<? extends Schedule> schedule;
 
-
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("severity")
     private Optional<? extends Severity> severity;
 
-
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("templateKind")
     private Optional<? extends TemplateKind> templateKind;
 
-
+    /**
+     * New parameters for the template, whose shape depends on templateKind
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("templateSpec")
     private Optional<? extends Map<String, Object>> templateSpec;
@@ -98,46 +114,70 @@ public class RulePatchRequest {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Whether the rule should be evaluated
+     */
     @JsonIgnore
     public Optional<Boolean> enabled() {
         return enabled;
     }
 
+    /**
+     * New set of key/value pairs attached to the rule
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> labels() {
         return (Optional<Map<String, String>>) labels;
     }
 
+    /**
+     * New human-readable name for the rule
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * New set of channels to notify when this rule raises an alert
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> notifications() {
         return (Optional<List<String>>) notifications;
     }
 
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Schedule> schedule() {
         return (Optional<Schedule>) schedule;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Severity> severity() {
         return (Optional<Severity>) severity;
     }
 
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<TemplateKind> templateKind() {
         return (Optional<TemplateKind>) templateKind;
     }
 
+    /**
+     * New parameters for the template, whose shape depends on templateKind
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> templateSpec() {
@@ -149,6 +189,9 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * Whether the rule should be evaluated
+     */
     public RulePatchRequest withEnabled(boolean enabled) {
         Utils.checkNotNull(enabled, "enabled");
         this.enabled = Optional.ofNullable(enabled);
@@ -156,12 +199,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * Whether the rule should be evaluated
+     */
     public RulePatchRequest withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
         this.enabled = enabled;
         return this;
     }
 
+    /**
+     * New set of key/value pairs attached to the rule
+     */
     public RulePatchRequest withLabels(Map<String, String> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = Optional.ofNullable(labels);
@@ -169,12 +218,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * New set of key/value pairs attached to the rule
+     */
     public RulePatchRequest withLabels(Optional<? extends Map<String, String>> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = labels;
         return this;
     }
 
+    /**
+     * New human-readable name for the rule
+     */
     public RulePatchRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -182,12 +237,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * New human-readable name for the rule
+     */
     public RulePatchRequest withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * New set of channels to notify when this rule raises an alert
+     */
     public RulePatchRequest withNotifications(List<String> notifications) {
         Utils.checkNotNull(notifications, "notifications");
         this.notifications = Optional.ofNullable(notifications);
@@ -195,12 +256,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * New set of channels to notify when this rule raises an alert
+     */
     public RulePatchRequest withNotifications(Optional<? extends List<String>> notifications) {
         Utils.checkNotNull(notifications, "notifications");
         this.notifications = notifications;
         return this;
     }
 
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     public RulePatchRequest withSchedule(Schedule schedule) {
         Utils.checkNotNull(schedule, "schedule");
         this.schedule = Optional.ofNullable(schedule);
@@ -208,12 +275,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * When a rule runs, either on demand or on a cron expression
+     */
     public RulePatchRequest withSchedule(Optional<? extends Schedule> schedule) {
         Utils.checkNotNull(schedule, "schedule");
         this.schedule = schedule;
         return this;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     public RulePatchRequest withSeverity(Severity severity) {
         Utils.checkNotNull(severity, "severity");
         this.severity = Optional.ofNullable(severity);
@@ -221,12 +294,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     public RulePatchRequest withSeverity(Optional<? extends Severity> severity) {
         Utils.checkNotNull(severity, "severity");
         this.severity = severity;
         return this;
     }
 
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     public RulePatchRequest withTemplateKind(TemplateKind templateKind) {
         Utils.checkNotNull(templateKind, "templateKind");
         this.templateKind = Optional.ofNullable(templateKind);
@@ -234,12 +313,18 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * Which built-in check a rule applies, determining the shape of its templateSpec
+     */
     public RulePatchRequest withTemplateKind(Optional<? extends TemplateKind> templateKind) {
         Utils.checkNotNull(templateKind, "templateKind");
         this.templateKind = templateKind;
         return this;
     }
 
+    /**
+     * New parameters for the template, whose shape depends on templateKind
+     */
     public RulePatchRequest withTemplateSpec(Map<String, Object> templateSpec) {
         Utils.checkNotNull(templateSpec, "templateSpec");
         this.templateSpec = Optional.ofNullable(templateSpec);
@@ -247,6 +332,9 @@ public class RulePatchRequest {
     }
 
 
+    /**
+     * New parameters for the template, whose shape depends on templateKind
+     */
     public RulePatchRequest withTemplateSpec(Optional<? extends Map<String, Object>> templateSpec) {
         Utils.checkNotNull(templateSpec, "templateSpec");
         this.templateSpec = templateSpec;
@@ -318,12 +406,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * Whether the rule should be evaluated
+         */
         public Builder enabled(boolean enabled) {
             Utils.checkNotNull(enabled, "enabled");
             this.enabled = Optional.ofNullable(enabled);
             return this;
         }
 
+        /**
+         * Whether the rule should be evaluated
+         */
         public Builder enabled(Optional<Boolean> enabled) {
             Utils.checkNotNull(enabled, "enabled");
             this.enabled = enabled;
@@ -331,12 +425,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * New set of key/value pairs attached to the rule
+         */
         public Builder labels(Map<String, String> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = Optional.ofNullable(labels);
             return this;
         }
 
+        /**
+         * New set of key/value pairs attached to the rule
+         */
         public Builder labels(Optional<? extends Map<String, String>> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = labels;
@@ -344,12 +444,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * New human-readable name for the rule
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * New human-readable name for the rule
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -357,12 +463,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * New set of channels to notify when this rule raises an alert
+         */
         public Builder notifications(List<String> notifications) {
             Utils.checkNotNull(notifications, "notifications");
             this.notifications = Optional.ofNullable(notifications);
             return this;
         }
 
+        /**
+         * New set of channels to notify when this rule raises an alert
+         */
         public Builder notifications(Optional<? extends List<String>> notifications) {
             Utils.checkNotNull(notifications, "notifications");
             this.notifications = notifications;
@@ -370,12 +482,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * When a rule runs, either on demand or on a cron expression
+         */
         public Builder schedule(Schedule schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = Optional.ofNullable(schedule);
             return this;
         }
 
+        /**
+         * When a rule runs, either on demand or on a cron expression
+         */
         public Builder schedule(Optional<? extends Schedule> schedule) {
             Utils.checkNotNull(schedule, "schedule");
             this.schedule = schedule;
@@ -383,12 +501,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * How serious an alert is, used to route and prioritise notifications
+         */
         public Builder severity(Severity severity) {
             Utils.checkNotNull(severity, "severity");
             this.severity = Optional.ofNullable(severity);
             return this;
         }
 
+        /**
+         * How serious an alert is, used to route and prioritise notifications
+         */
         public Builder severity(Optional<? extends Severity> severity) {
             Utils.checkNotNull(severity, "severity");
             this.severity = severity;
@@ -396,12 +520,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * Which built-in check a rule applies, determining the shape of its templateSpec
+         */
         public Builder templateKind(TemplateKind templateKind) {
             Utils.checkNotNull(templateKind, "templateKind");
             this.templateKind = Optional.ofNullable(templateKind);
             return this;
         }
 
+        /**
+         * Which built-in check a rule applies, determining the shape of its templateSpec
+         */
         public Builder templateKind(Optional<? extends TemplateKind> templateKind) {
             Utils.checkNotNull(templateKind, "templateKind");
             this.templateKind = templateKind;
@@ -409,12 +539,18 @@ public class RulePatchRequest {
         }
 
 
+        /**
+         * New parameters for the template, whose shape depends on templateKind
+         */
         public Builder templateSpec(Map<String, Object> templateSpec) {
             Utils.checkNotNull(templateSpec, "templateSpec");
             this.templateSpec = Optional.ofNullable(templateSpec);
             return this;
         }
 
+        /**
+         * New parameters for the template, whose shape depends on templateKind
+         */
         public Builder templateSpec(Optional<? extends Map<String, Object>> templateSpec) {
             Utils.checkNotNull(templateSpec, "templateSpec");
             this.templateSpec = templateSpec;

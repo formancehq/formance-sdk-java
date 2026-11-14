@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * EvaluationsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of evaluations
+ */
 public class EvaluationsCursorResponseCursor {
 
     @JsonProperty("data")

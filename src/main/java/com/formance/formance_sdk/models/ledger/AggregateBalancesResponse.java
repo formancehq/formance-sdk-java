@@ -14,7 +14,9 @@ import java.util.Map;
 
 
 public class AggregateBalancesResponse {
-
+    /**
+     * Balances keyed by asset
+     */
     @JsonProperty("data")
     private Map<String, Long> data;
 
@@ -26,6 +28,9 @@ public class AggregateBalancesResponse {
         this.data = data;
     }
 
+    /**
+     * Balances keyed by asset
+     */
     @JsonIgnore
     public Map<String, Long> data() {
         return data;
@@ -36,6 +41,9 @@ public class AggregateBalancesResponse {
     }
 
 
+    /**
+     * Balances keyed by asset
+     */
     public AggregateBalancesResponse withData(Map<String, Long> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -77,6 +85,9 @@ public class AggregateBalancesResponse {
         }
 
 
+        /**
+         * Balances keyed by asset
+         */
         public Builder data(Map<String, Long> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

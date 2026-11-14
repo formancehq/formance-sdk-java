@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class ListWorkflowsResponse {
-
+    /**
+     * The workflows defined on this stack
+     */
     @JsonProperty("data")
     private List<Workflow> data;
 
@@ -24,6 +26,9 @@ public class ListWorkflowsResponse {
         this.data = data;
     }
 
+    /**
+     * The workflows defined on this stack
+     */
     @JsonIgnore
     public List<Workflow> data() {
         return data;
@@ -34,6 +39,9 @@ public class ListWorkflowsResponse {
     }
 
 
+    /**
+     * The workflows defined on this stack
+     */
     public ListWorkflowsResponse withData(List<Workflow> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class ListWorkflowsResponse {
         }
 
 
+        /**
+         * The workflows defined on this stack
+         */
         public Builder data(List<Workflow> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

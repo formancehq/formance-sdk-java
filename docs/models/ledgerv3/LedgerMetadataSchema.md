@@ -1,0 +1,10 @@
+# LedgerMetadataSchema
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `accountFields`                                                                             | Map\<String, [LedgerMetadataFieldSchema](../../models/shared/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `ledgerFields`                                                                              | Map\<String, [LedgerMetadataFieldSchema](../../models/shared/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `transactionFields`                                                                         | Map\<String, [LedgerMetadataFieldSchema](../../models/shared/LedgerMetadataFieldSchema.md)> | :heavy_minus_sign:                                                                          | N/A                                                                                         |

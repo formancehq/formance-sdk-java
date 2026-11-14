@@ -16,12 +16,16 @@ import java.util.Optional;
 
 
 public class StageDelay {
-
+    /**
+     * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duration")
     private Optional<String> duration;
 
-
+    /**
+     * Wait until this absolute point in time. Mutually exclusive with duration
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("until")
     private Optional<OffsetDateTime> until;
@@ -40,11 +44,17 @@ public class StageDelay {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+     */
     @JsonIgnore
     public Optional<String> duration() {
         return duration;
     }
 
+    /**
+     * Wait until this absolute point in time. Mutually exclusive with duration
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> until() {
         return until;
@@ -55,6 +65,9 @@ public class StageDelay {
     }
 
 
+    /**
+     * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+     */
     public StageDelay withDuration(String duration) {
         Utils.checkNotNull(duration, "duration");
         this.duration = Optional.ofNullable(duration);
@@ -62,12 +75,18 @@ public class StageDelay {
     }
 
 
+    /**
+     * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+     */
     public StageDelay withDuration(Optional<String> duration) {
         Utils.checkNotNull(duration, "duration");
         this.duration = duration;
         return this;
     }
 
+    /**
+     * Wait until this absolute point in time. Mutually exclusive with duration
+     */
     public StageDelay withUntil(OffsetDateTime until) {
         Utils.checkNotNull(until, "until");
         this.until = Optional.ofNullable(until);
@@ -75,6 +94,9 @@ public class StageDelay {
     }
 
 
+    /**
+     * Wait until this absolute point in time. Mutually exclusive with duration
+     */
     public StageDelay withUntil(Optional<OffsetDateTime> until) {
         Utils.checkNotNull(until, "until");
         this.until = until;
@@ -120,12 +142,18 @@ public class StageDelay {
         }
 
 
+        /**
+         * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+         */
         public Builder duration(String duration) {
             Utils.checkNotNull(duration, "duration");
             this.duration = Optional.ofNullable(duration);
             return this;
         }
 
+        /**
+         * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+         */
         public Builder duration(Optional<String> duration) {
             Utils.checkNotNull(duration, "duration");
             this.duration = duration;
@@ -133,12 +161,18 @@ public class StageDelay {
         }
 
 
+        /**
+         * Wait until this absolute point in time. Mutually exclusive with duration
+         */
         public Builder until(OffsetDateTime until) {
             Utils.checkNotNull(until, "until");
             this.until = Optional.ofNullable(until);
             return this;
         }
 
+        /**
+         * Wait until this absolute point in time. Mutually exclusive with duration
+         */
         public Builder until(Optional<OffsetDateTime> until) {
             Utils.checkNotNull(until, "until");
             this.until = until;

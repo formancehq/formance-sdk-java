@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class TransactionsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     @JsonProperty("cursor")
     private TransactionsCursorResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class TransactionsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     @JsonIgnore
     public TransactionsCursorResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class TransactionsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     public TransactionsCursorResponse withCursor(TransactionsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class TransactionsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of transactions
+         */
         public Builder cursor(TransactionsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

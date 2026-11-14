@@ -11,9 +11,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-
+/**
+ * Mapping
+ * 
+ * <p>Contracts constraining the balances a ledger's accounts may hold
+ */
 public class Mapping {
-
+    /**
+     * Constraints enforced on the ledger's accounts
+     */
     @JsonProperty("contracts")
     private List<Contract> contracts;
 
@@ -24,6 +30,9 @@ public class Mapping {
         this.contracts = contracts;
     }
 
+    /**
+     * Constraints enforced on the ledger's accounts
+     */
     @JsonIgnore
     public List<Contract> contracts() {
         return contracts;
@@ -34,6 +43,9 @@ public class Mapping {
     }
 
 
+    /**
+     * Constraints enforced on the ledger's accounts
+     */
     public Mapping withContracts(List<Contract> contracts) {
         Utils.checkNotNull(contracts, "contracts");
         this.contracts = contracts;
@@ -75,6 +87,9 @@ public class Mapping {
         }
 
 
+        /**
+         * Constraints enforced on the ledger's accounts
+         */
         public Builder contracts(List<Contract> contracts) {
             Utils.checkNotNull(contracts, "contracts");
             this.contracts = contracts;

@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * ActivityGetPayment
+ * 
+ * <p>Arguments for the activity that reads a payment
+ */
 public class ActivityGetPayment {
-
+    /**
+     * Identifier of the payment to read
+     */
     @JsonProperty("id")
     private String id;
 
@@ -23,6 +29,9 @@ public class ActivityGetPayment {
         this.id = id;
     }
 
+    /**
+     * Identifier of the payment to read
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -33,6 +42,9 @@ public class ActivityGetPayment {
     }
 
 
+    /**
+     * Identifier of the payment to read
+     */
     public ActivityGetPayment withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -74,6 +86,9 @@ public class ActivityGetPayment {
         }
 
 
+        /**
+         * Identifier of the payment to read
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

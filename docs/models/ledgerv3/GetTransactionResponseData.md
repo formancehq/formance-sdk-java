@@ -1,0 +1,8 @@
+# GetTransactionResponseData
+
+
+## Fields
+
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `transaction`                                                     | [TransactionResponse](../../models/shared/TransactionResponse.md) | :heavy_check_mark:                                                | N/A                                                               |

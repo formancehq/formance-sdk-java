@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class ReadClientResponse {
-
+    /**
+     * An OAuth2 client registered on the stack
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends Client> data;
@@ -32,6 +34,9 @@ public class ReadClientResponse {
         this(Optional.empty());
     }
 
+    /**
+     * An OAuth2 client registered on the stack
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Client> data() {
@@ -43,6 +48,9 @@ public class ReadClientResponse {
     }
 
 
+    /**
+     * An OAuth2 client registered on the stack
+     */
     public ReadClientResponse withData(Client data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -50,6 +58,9 @@ public class ReadClientResponse {
     }
 
 
+    /**
+     * An OAuth2 client registered on the stack
+     */
     public ReadClientResponse withData(Optional<? extends Client> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -91,12 +102,18 @@ public class ReadClientResponse {
         }
 
 
+        /**
+         * An OAuth2 client registered on the stack
+         */
         public Builder data(Client data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * An OAuth2 client registered on the stack
+         */
         public Builder data(Optional<? extends Client> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class ReadUserResponse {
-
+    /**
+     * A user known to the stack's identity provider
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends User> data;
@@ -32,6 +34,9 @@ public class ReadUserResponse {
         this(Optional.empty());
     }
 
+    /**
+     * A user known to the stack's identity provider
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<User> data() {
@@ -43,6 +48,9 @@ public class ReadUserResponse {
     }
 
 
+    /**
+     * A user known to the stack's identity provider
+     */
     public ReadUserResponse withData(User data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -50,6 +58,9 @@ public class ReadUserResponse {
     }
 
 
+    /**
+     * A user known to the stack's identity provider
+     */
     public ReadUserResponse withData(Optional<? extends User> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -91,12 +102,18 @@ public class ReadUserResponse {
         }
 
 
+        /**
+         * A user known to the stack's identity provider
+         */
         public Builder data(User data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * A user known to the stack's identity provider
+         */
         public Builder data(Optional<? extends User> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

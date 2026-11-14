@@ -17,16 +17,22 @@ import java.util.Optional;
 
 
 public class V2ConfigInfo {
-
+    /**
+     * Experimental feature flags enabled on this deployment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("experimentalFeatures")
     private Optional<? extends List<String>> experimentalFeatures;
 
-
+    /**
+     * Name of the server serving the API
+     */
     @JsonProperty("server")
     private String server;
 
-
+    /**
+     * Version of the ledger service
+     */
     @JsonProperty("version")
     private String version;
 
@@ -49,17 +55,26 @@ public class V2ConfigInfo {
         this(Optional.empty(), server, version);
     }
 
+    /**
+     * Experimental feature flags enabled on this deployment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> experimentalFeatures() {
         return (Optional<List<String>>) experimentalFeatures;
     }
 
+    /**
+     * Name of the server serving the API
+     */
     @JsonIgnore
     public String server() {
         return server;
     }
 
+    /**
+     * Version of the ledger service
+     */
     @JsonIgnore
     public String version() {
         return version;
@@ -70,6 +85,9 @@ public class V2ConfigInfo {
     }
 
 
+    /**
+     * Experimental feature flags enabled on this deployment
+     */
     public V2ConfigInfo withExperimentalFeatures(List<String> experimentalFeatures) {
         Utils.checkNotNull(experimentalFeatures, "experimentalFeatures");
         this.experimentalFeatures = Optional.ofNullable(experimentalFeatures);
@@ -77,18 +95,27 @@ public class V2ConfigInfo {
     }
 
 
+    /**
+     * Experimental feature flags enabled on this deployment
+     */
     public V2ConfigInfo withExperimentalFeatures(Optional<? extends List<String>> experimentalFeatures) {
         Utils.checkNotNull(experimentalFeatures, "experimentalFeatures");
         this.experimentalFeatures = experimentalFeatures;
         return this;
     }
 
+    /**
+     * Name of the server serving the API
+     */
     public V2ConfigInfo withServer(String server) {
         Utils.checkNotNull(server, "server");
         this.server = server;
         return this;
     }
 
+    /**
+     * Version of the ledger service
+     */
     public V2ConfigInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -138,12 +165,18 @@ public class V2ConfigInfo {
         }
 
 
+        /**
+         * Experimental feature flags enabled on this deployment
+         */
         public Builder experimentalFeatures(List<String> experimentalFeatures) {
             Utils.checkNotNull(experimentalFeatures, "experimentalFeatures");
             this.experimentalFeatures = Optional.ofNullable(experimentalFeatures);
             return this;
         }
 
+        /**
+         * Experimental feature flags enabled on this deployment
+         */
         public Builder experimentalFeatures(Optional<? extends List<String>> experimentalFeatures) {
             Utils.checkNotNull(experimentalFeatures, "experimentalFeatures");
             this.experimentalFeatures = experimentalFeatures;
@@ -151,6 +184,9 @@ public class V2ConfigInfo {
         }
 
 
+        /**
+         * Name of the server serving the API
+         */
         public Builder server(String server) {
             Utils.checkNotNull(server, "server");
             this.server = server;
@@ -158,6 +194,9 @@ public class V2ConfigInfo {
         }
 
 
+        /**
+         * Version of the ledger service
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

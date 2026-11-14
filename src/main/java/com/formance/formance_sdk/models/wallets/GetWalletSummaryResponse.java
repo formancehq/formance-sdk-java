@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class GetWalletSummaryResponse {
-
+    /**
+     * Aggregated funds held by a wallet, broken down by availability
+     */
     @JsonProperty("data")
     private WalletSummary data;
 
@@ -23,6 +25,9 @@ public class GetWalletSummaryResponse {
         this.data = data;
     }
 
+    /**
+     * Aggregated funds held by a wallet, broken down by availability
+     */
     @JsonIgnore
     public WalletSummary data() {
         return data;
@@ -33,6 +38,9 @@ public class GetWalletSummaryResponse {
     }
 
 
+    /**
+     * Aggregated funds held by a wallet, broken down by availability
+     */
     public GetWalletSummaryResponse withData(WalletSummary data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class GetWalletSummaryResponse {
         }
 
 
+        /**
+         * Aggregated funds held by a wallet, broken down by availability
+         */
         public Builder data(WalletSummary data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

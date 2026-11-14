@@ -12,13 +12,19 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-
+/**
+ * ConfigsResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of configurations
+ */
 public class ConfigsResponseCursor {
 
     @JsonProperty("data")
     private List<WebhooksConfig> data;
 
-
+    /**
+     * Whether further pages are available
+     */
     @JsonProperty("hasMore")
     private boolean hasMore;
 
@@ -37,6 +43,9 @@ public class ConfigsResponseCursor {
         return data;
     }
 
+    /**
+     * Whether further pages are available
+     */
     @JsonIgnore
     public boolean hasMore() {
         return hasMore;
@@ -53,6 +62,9 @@ public class ConfigsResponseCursor {
         return this;
     }
 
+    /**
+     * Whether further pages are available
+     */
     public ConfigsResponseCursor withHasMore(boolean hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
@@ -105,6 +117,9 @@ public class ConfigsResponseCursor {
         }
 
 
+        /**
+         * Whether further pages are available
+         */
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;

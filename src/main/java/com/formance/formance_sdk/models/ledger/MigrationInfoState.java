@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * MigrationInfoState
+ * 
+ * <p>Current state of the migration
+ */
 public enum MigrationInfoState {
     TO_DO("TO DO"),
     DONE("DONE");

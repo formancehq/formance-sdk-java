@@ -17,28 +17,40 @@ import java.util.Optional;
 
 
 public class V2WorkflowInstanceHistory {
-
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * One step of a workflow, whose shape depends on the stage type
+     */
     @JsonProperty("input")
     private V2Stage input;
 
-
+    /**
+     * Name of the stage this history entry records
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * When the stage started
+     */
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
-
+    /**
+     * Whether the stage has finished
+     */
     @JsonProperty("terminated")
     private boolean terminated;
 
-
+    /**
+     * When the stage finished, absent while it is still running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
@@ -74,31 +86,49 @@ public class V2WorkflowInstanceHistory {
             startedAt, terminated, Optional.empty());
     }
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * One step of a workflow, whose shape depends on the stage type
+     */
     @JsonIgnore
     public V2Stage input() {
         return input;
     }
 
+    /**
+     * Name of the stage this history entry records
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * When the stage started
+     */
     @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    /**
+     * Whether the stage has finished
+     */
     @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
         return terminatedAt;
@@ -109,6 +139,9 @@ public class V2WorkflowInstanceHistory {
     }
 
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     public V2WorkflowInstanceHistory withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -116,36 +149,54 @@ public class V2WorkflowInstanceHistory {
     }
 
 
+    /**
+     * Why the stage failed, absent when it succeeded
+     */
     public V2WorkflowInstanceHistory withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * One step of a workflow, whose shape depends on the stage type
+     */
     public V2WorkflowInstanceHistory withInput(V2Stage input) {
         Utils.checkNotNull(input, "input");
         this.input = input;
         return this;
     }
 
+    /**
+     * Name of the stage this history entry records
+     */
     public V2WorkflowInstanceHistory withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * When the stage started
+     */
     public V2WorkflowInstanceHistory withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
     }
 
+    /**
+     * Whether the stage has finished
+     */
     public V2WorkflowInstanceHistory withTerminated(boolean terminated) {
         Utils.checkNotNull(terminated, "terminated");
         this.terminated = terminated;
         return this;
     }
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     public V2WorkflowInstanceHistory withTerminatedAt(OffsetDateTime terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = Optional.ofNullable(terminatedAt);
@@ -153,6 +204,9 @@ public class V2WorkflowInstanceHistory {
     }
 
 
+    /**
+     * When the stage finished, absent while it is still running
+     */
     public V2WorkflowInstanceHistory withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
@@ -215,12 +269,18 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * Why the stage failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the stage failed, absent when it succeeded
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -228,6 +288,9 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * One step of a workflow, whose shape depends on the stage type
+         */
         public Builder input(V2Stage input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
@@ -235,6 +298,9 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * Name of the stage this history entry records
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -242,6 +308,9 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * When the stage started
+         */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
@@ -249,6 +318,9 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * Whether the stage has finished
+         */
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
@@ -256,12 +328,18 @@ public class V2WorkflowInstanceHistory {
         }
 
 
+        /**
+         * When the stage finished, absent while it is still running
+         */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = Optional.ofNullable(terminatedAt);
             return this;
         }
 
+        /**
+         * When the stage finished, absent while it is still running
+         */
         public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;

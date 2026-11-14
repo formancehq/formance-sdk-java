@@ -13,11 +13,15 @@ import java.time.OffsetDateTime;
 
 
 public class ReconciliationRequest {
-
+    /**
+     * Point in time at which the ledger side is evaluated
+     */
     @JsonProperty("reconciledAtLedger")
     private OffsetDateTime reconciledAtLedger;
 
-
+    /**
+     * Point in time at which the payments side is evaluated
+     */
     @JsonProperty("reconciledAtPayments")
     private OffsetDateTime reconciledAtPayments;
 
@@ -31,11 +35,17 @@ public class ReconciliationRequest {
         this.reconciledAtPayments = reconciledAtPayments;
     }
 
+    /**
+     * Point in time at which the ledger side is evaluated
+     */
     @JsonIgnore
     public OffsetDateTime reconciledAtLedger() {
         return reconciledAtLedger;
     }
 
+    /**
+     * Point in time at which the payments side is evaluated
+     */
     @JsonIgnore
     public OffsetDateTime reconciledAtPayments() {
         return reconciledAtPayments;
@@ -46,12 +56,18 @@ public class ReconciliationRequest {
     }
 
 
+    /**
+     * Point in time at which the ledger side is evaluated
+     */
     public ReconciliationRequest withReconciledAtLedger(OffsetDateTime reconciledAtLedger) {
         Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
         this.reconciledAtLedger = reconciledAtLedger;
         return this;
     }
 
+    /**
+     * Point in time at which the payments side is evaluated
+     */
     public ReconciliationRequest withReconciledAtPayments(OffsetDateTime reconciledAtPayments) {
         Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
         this.reconciledAtPayments = reconciledAtPayments;
@@ -97,6 +113,9 @@ public class ReconciliationRequest {
         }
 
 
+        /**
+         * Point in time at which the ledger side is evaluated
+         */
         public Builder reconciledAtLedger(OffsetDateTime reconciledAtLedger) {
             Utils.checkNotNull(reconciledAtLedger, "reconciledAtLedger");
             this.reconciledAtLedger = reconciledAtLedger;
@@ -104,6 +123,9 @@ public class ReconciliationRequest {
         }
 
 
+        /**
+         * Point in time at which the payments side is evaluated
+         */
         public Builder reconciledAtPayments(OffsetDateTime reconciledAtPayments) {
             Utils.checkNotNull(reconciledAtPayments, "reconciledAtPayments");
             this.reconciledAtPayments = reconciledAtPayments;

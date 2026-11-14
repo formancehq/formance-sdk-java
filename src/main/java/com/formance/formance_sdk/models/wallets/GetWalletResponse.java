@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class GetWalletResponse {
-
+    /**
+     * A wallet together with the funds it currently holds
+     */
     @JsonProperty("data")
     private WalletWithBalances data;
 
@@ -23,6 +25,9 @@ public class GetWalletResponse {
         this.data = data;
     }
 
+    /**
+     * A wallet together with the funds it currently holds
+     */
     @JsonIgnore
     public WalletWithBalances data() {
         return data;
@@ -33,6 +38,9 @@ public class GetWalletResponse {
     }
 
 
+    /**
+     * A wallet together with the funds it currently holds
+     */
     public GetWalletResponse withData(WalletWithBalances data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class GetWalletResponse {
         }
 
 
+        /**
+         * A wallet together with the funds it currently holds
+         */
         public Builder data(WalletWithBalances data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
