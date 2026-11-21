@@ -18,9 +18,15 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * Client
+ * 
+ * <p>An OAuth2 client registered on the stack
+ */
 public class Client {
-
+    /**
+     * Human-readable description of the client
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
@@ -29,31 +35,43 @@ public class Client {
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Display name of the client
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * URIs the authorization server may redirect to after logout
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postLogoutRedirectUris")
     private Optional<? extends List<String>> postLogoutRedirectUris;
 
-
+    /**
+     * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("public")
     private Optional<Boolean> public_;
 
-
+    /**
+     * URIs the authorization server may redirect to after a successful authorization
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUris")
     private Optional<? extends List<String>> redirectUris;
 
-
+    /**
+     * Scopes the client is allowed to request
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
     private Optional<? extends List<String>> scopes;
@@ -63,7 +81,9 @@ public class Client {
     @JsonProperty("secrets")
     private Optional<? extends List<ClientSecret>> secrets;
 
-
+    /**
+     * Whether the client is trusted, skipping the user consent screen
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trusted")
     private Optional<Boolean> trusted;
@@ -111,6 +131,9 @@ public class Client {
             Optional.empty());
     }
 
+    /**
+     * Human-readable description of the client
+     */
     @JsonIgnore
     public Optional<String> description() {
         return description;
@@ -121,34 +144,52 @@ public class Client {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Display name of the client
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * URIs the authorization server may redirect to after logout
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> postLogoutRedirectUris() {
         return (Optional<List<String>>) postLogoutRedirectUris;
     }
 
+    /**
+     * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+     */
     @JsonIgnore
     public Optional<Boolean> public_() {
         return public_;
     }
 
+    /**
+     * URIs the authorization server may redirect to after a successful authorization
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> redirectUris() {
         return (Optional<List<String>>) redirectUris;
     }
 
+    /**
+     * Scopes the client is allowed to request
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> scopes() {
@@ -161,6 +202,9 @@ public class Client {
         return (Optional<List<ClientSecret>>) secrets;
     }
 
+    /**
+     * Whether the client is trusted, skipping the user consent screen
+     */
     @JsonIgnore
     public Optional<Boolean> trusted() {
         return trusted;
@@ -171,6 +215,9 @@ public class Client {
     }
 
 
+    /**
+     * Human-readable description of the client
+     */
     public Client withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
@@ -178,6 +225,9 @@ public class Client {
     }
 
 
+    /**
+     * Human-readable description of the client
+     */
     public Client withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
@@ -190,24 +240,36 @@ public class Client {
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Client withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Client withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Display name of the client
+     */
     public Client withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * URIs the authorization server may redirect to after logout
+     */
     public Client withPostLogoutRedirectUris(List<String> postLogoutRedirectUris) {
         Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
         this.postLogoutRedirectUris = Optional.ofNullable(postLogoutRedirectUris);
@@ -215,12 +277,18 @@ public class Client {
     }
 
 
+    /**
+     * URIs the authorization server may redirect to after logout
+     */
     public Client withPostLogoutRedirectUris(Optional<? extends List<String>> postLogoutRedirectUris) {
         Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
         this.postLogoutRedirectUris = postLogoutRedirectUris;
         return this;
     }
 
+    /**
+     * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+     */
     public Client withPublic(boolean public_) {
         Utils.checkNotNull(public_, "public_");
         this.public_ = Optional.ofNullable(public_);
@@ -228,12 +296,18 @@ public class Client {
     }
 
 
+    /**
+     * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+     */
     public Client withPublic(Optional<Boolean> public_) {
         Utils.checkNotNull(public_, "public_");
         this.public_ = public_;
         return this;
     }
 
+    /**
+     * URIs the authorization server may redirect to after a successful authorization
+     */
     public Client withRedirectUris(List<String> redirectUris) {
         Utils.checkNotNull(redirectUris, "redirectUris");
         this.redirectUris = Optional.ofNullable(redirectUris);
@@ -241,12 +315,18 @@ public class Client {
     }
 
 
+    /**
+     * URIs the authorization server may redirect to after a successful authorization
+     */
     public Client withRedirectUris(Optional<? extends List<String>> redirectUris) {
         Utils.checkNotNull(redirectUris, "redirectUris");
         this.redirectUris = redirectUris;
         return this;
     }
 
+    /**
+     * Scopes the client is allowed to request
+     */
     public Client withScopes(List<String> scopes) {
         Utils.checkNotNull(scopes, "scopes");
         this.scopes = Optional.ofNullable(scopes);
@@ -254,6 +334,9 @@ public class Client {
     }
 
 
+    /**
+     * Scopes the client is allowed to request
+     */
     public Client withScopes(Optional<? extends List<String>> scopes) {
         Utils.checkNotNull(scopes, "scopes");
         this.scopes = scopes;
@@ -273,6 +356,9 @@ public class Client {
         return this;
     }
 
+    /**
+     * Whether the client is trusted, skipping the user consent screen
+     */
     public Client withTrusted(boolean trusted) {
         Utils.checkNotNull(trusted, "trusted");
         this.trusted = Optional.ofNullable(trusted);
@@ -280,6 +366,9 @@ public class Client {
     }
 
 
+    /**
+     * Whether the client is trusted, skipping the user consent screen
+     */
     public Client withTrusted(Optional<Boolean> trusted) {
         Utils.checkNotNull(trusted, "trusted");
         this.trusted = trusted;
@@ -360,12 +449,18 @@ public class Client {
         }
 
 
+        /**
+         * Human-readable description of the client
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = Optional.ofNullable(description);
             return this;
         }
 
+        /**
+         * Human-readable description of the client
+         */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -380,12 +475,18 @@ public class Client {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -393,6 +494,9 @@ public class Client {
         }
 
 
+        /**
+         * Display name of the client
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -400,12 +504,18 @@ public class Client {
         }
 
 
+        /**
+         * URIs the authorization server may redirect to after logout
+         */
         public Builder postLogoutRedirectUris(List<String> postLogoutRedirectUris) {
             Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
             this.postLogoutRedirectUris = Optional.ofNullable(postLogoutRedirectUris);
             return this;
         }
 
+        /**
+         * URIs the authorization server may redirect to after logout
+         */
         public Builder postLogoutRedirectUris(Optional<? extends List<String>> postLogoutRedirectUris) {
             Utils.checkNotNull(postLogoutRedirectUris, "postLogoutRedirectUris");
             this.postLogoutRedirectUris = postLogoutRedirectUris;
@@ -413,12 +523,18 @@ public class Client {
         }
 
 
+        /**
+         * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+         */
         public Builder public_(boolean public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = Optional.ofNullable(public_);
             return this;
         }
 
+        /**
+         * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+         */
         public Builder public_(Optional<Boolean> public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = public_;
@@ -426,12 +542,18 @@ public class Client {
         }
 
 
+        /**
+         * URIs the authorization server may redirect to after a successful authorization
+         */
         public Builder redirectUris(List<String> redirectUris) {
             Utils.checkNotNull(redirectUris, "redirectUris");
             this.redirectUris = Optional.ofNullable(redirectUris);
             return this;
         }
 
+        /**
+         * URIs the authorization server may redirect to after a successful authorization
+         */
         public Builder redirectUris(Optional<? extends List<String>> redirectUris) {
             Utils.checkNotNull(redirectUris, "redirectUris");
             this.redirectUris = redirectUris;
@@ -439,12 +561,18 @@ public class Client {
         }
 
 
+        /**
+         * Scopes the client is allowed to request
+         */
         public Builder scopes(List<String> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = Optional.ofNullable(scopes);
             return this;
         }
 
+        /**
+         * Scopes the client is allowed to request
+         */
         public Builder scopes(Optional<? extends List<String>> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = scopes;
@@ -465,12 +593,18 @@ public class Client {
         }
 
 
+        /**
+         * Whether the client is trusted, skipping the user consent screen
+         */
         public Builder trusted(boolean trusted) {
             Utils.checkNotNull(trusted, "trusted");
             this.trusted = Optional.ofNullable(trusted);
             return this;
         }
 
+        /**
+         * Whether the client is trusted, skipping the user consent screen
+         */
         public Builder trusted(Optional<Boolean> trusted) {
             Utils.checkNotNull(trusted, "trusted");
             this.trusted = trusted;

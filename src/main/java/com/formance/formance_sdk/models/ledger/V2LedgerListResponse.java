@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2LedgerListResponse {
-
+    /**
+     * Paginated cursor wrapping the list of ledgers
+     */
     @JsonProperty("cursor")
     private V2LedgerListResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class V2LedgerListResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of ledgers
+     */
     @JsonIgnore
     public V2LedgerListResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class V2LedgerListResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of ledgers
+     */
     public V2LedgerListResponse withCursor(V2LedgerListResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class V2LedgerListResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of ledgers
+         */
         public Builder cursor(V2LedgerListResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

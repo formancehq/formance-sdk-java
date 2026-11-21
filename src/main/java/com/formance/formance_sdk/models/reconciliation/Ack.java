@@ -14,17 +14,27 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
+/**
+ * Ack
+ * 
+ * <p>Record of who acknowledged an alert and when
+ */
 public class Ack {
-
+    /**
+     * When the alert was acknowledged
+     */
     @JsonProperty("at")
     private OffsetDateTime at;
 
-
+    /**
+     * Who acknowledged the alert
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * Free-text note left by whoever acknowledged the alert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private Optional<String> note;
@@ -48,16 +58,25 @@ public class Ack {
         this(at, by, Optional.empty());
     }
 
+    /**
+     * When the alert was acknowledged
+     */
     @JsonIgnore
     public OffsetDateTime at() {
         return at;
     }
 
+    /**
+     * Who acknowledged the alert
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * Free-text note left by whoever acknowledged the alert
+     */
     @JsonIgnore
     public Optional<String> note() {
         return note;
@@ -68,18 +87,27 @@ public class Ack {
     }
 
 
+    /**
+     * When the alert was acknowledged
+     */
     public Ack withAt(OffsetDateTime at) {
         Utils.checkNotNull(at, "at");
         this.at = at;
         return this;
     }
 
+    /**
+     * Who acknowledged the alert
+     */
     public Ack withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * Free-text note left by whoever acknowledged the alert
+     */
     public Ack withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = Optional.ofNullable(note);
@@ -87,6 +115,9 @@ public class Ack {
     }
 
 
+    /**
+     * Free-text note left by whoever acknowledged the alert
+     */
     public Ack withNote(Optional<String> note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
@@ -136,6 +167,9 @@ public class Ack {
         }
 
 
+        /**
+         * When the alert was acknowledged
+         */
         public Builder at(OffsetDateTime at) {
             Utils.checkNotNull(at, "at");
             this.at = at;
@@ -143,6 +177,9 @@ public class Ack {
         }
 
 
+        /**
+         * Who acknowledged the alert
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -150,12 +187,18 @@ public class Ack {
         }
 
 
+        /**
+         * Free-text note left by whoever acknowledged the alert
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = Optional.ofNullable(note);
             return this;
         }
 
+        /**
+         * Free-text note left by whoever acknowledged the alert
+         */
         public Builder note(Optional<String> note) {
             Utils.checkNotNull(note, "note");
             this.note = note;

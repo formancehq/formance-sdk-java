@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2CreateWorkflowResponse {
-
+    /**
+     * A workflow definition and the stages it runs
+     */
     @JsonProperty("data")
     private V2Workflow data;
 
@@ -23,6 +25,9 @@ public class V2CreateWorkflowResponse {
         this.data = data;
     }
 
+    /**
+     * A workflow definition and the stages it runs
+     */
     @JsonIgnore
     public V2Workflow data() {
         return data;
@@ -33,6 +38,9 @@ public class V2CreateWorkflowResponse {
     }
 
 
+    /**
+     * A workflow definition and the stages it runs
+     */
     public V2CreateWorkflowResponse withData(V2Workflow data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2CreateWorkflowResponse {
         }
 
 
+        /**
+         * A workflow definition and the stages it runs
+         */
         public Builder data(V2Workflow data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

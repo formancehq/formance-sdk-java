@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class StageWaitEvent {
-
+    /**
+     * Type of event the workflow waits for before continuing
+     */
     @JsonProperty("event")
     private String event;
 
@@ -23,6 +25,9 @@ public class StageWaitEvent {
         this.event = event;
     }
 
+    /**
+     * Type of event the workflow waits for before continuing
+     */
     @JsonIgnore
     public String event() {
         return event;
@@ -33,6 +38,9 @@ public class StageWaitEvent {
     }
 
 
+    /**
+     * Type of event the workflow waits for before continuing
+     */
     public StageWaitEvent withEvent(String event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
@@ -74,6 +82,9 @@ public class StageWaitEvent {
         }
 
 
+        /**
+         * Type of event the workflow waits for before continuing
+         */
         public Builder event(String event) {
             Utils.checkNotNull(event, "event");
             this.event = event;

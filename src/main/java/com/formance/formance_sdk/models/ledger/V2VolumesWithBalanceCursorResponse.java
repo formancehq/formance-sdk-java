@@ -16,11 +16,15 @@ import java.util.Optional;
 
 
 public class V2VolumesWithBalanceCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of volumes
+     */
     @JsonProperty("cursor")
     private V2VolumesWithBalanceCursorResponseCursor cursor;
 
-
+    /**
+     * The resource type carried by this cursor
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource;
@@ -40,11 +44,17 @@ public class V2VolumesWithBalanceCursorResponse {
         this(cursor, Optional.empty());
     }
 
+    /**
+     * Paginated cursor wrapping the list of volumes
+     */
     @JsonIgnore
     public V2VolumesWithBalanceCursorResponseCursor cursor() {
         return cursor;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2VolumesWithBalanceCursorResponseResource> resource() {
@@ -56,12 +66,18 @@ public class V2VolumesWithBalanceCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of volumes
+     */
     public V2VolumesWithBalanceCursorResponse withCursor(V2VolumesWithBalanceCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2VolumesWithBalanceCursorResponse withResource(V2VolumesWithBalanceCursorResponseResource resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
@@ -69,6 +85,9 @@ public class V2VolumesWithBalanceCursorResponse {
     }
 
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2VolumesWithBalanceCursorResponse withResource(Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
@@ -114,6 +133,9 @@ public class V2VolumesWithBalanceCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of volumes
+         */
         public Builder cursor(V2VolumesWithBalanceCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
@@ -121,12 +143,18 @@ public class V2VolumesWithBalanceCursorResponse {
         }
 
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(V2VolumesWithBalanceCursorResponseResource resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
         }
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(Optional<? extends V2VolumesWithBalanceCursorResponseResource> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;

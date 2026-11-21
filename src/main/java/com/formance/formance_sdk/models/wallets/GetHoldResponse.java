@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class GetHoldResponse {
-
+    /**
+     * A hold together with the amounts it currently locks and has already released
+     */
     @JsonProperty("data")
     private ExpandedDebitHold data;
 
@@ -23,6 +25,9 @@ public class GetHoldResponse {
         this.data = data;
     }
 
+    /**
+     * A hold together with the amounts it currently locks and has already released
+     */
     @JsonIgnore
     public ExpandedDebitHold data() {
         return data;
@@ -33,6 +38,9 @@ public class GetHoldResponse {
     }
 
 
+    /**
+     * A hold together with the amounts it currently locks and has already released
+     */
     public GetHoldResponse withData(ExpandedDebitHold data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class GetHoldResponse {
         }
 
 
+        /**
+         * A hold together with the amounts it currently locks and has already released
+         */
         public Builder data(ExpandedDebitHold data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -5,4 +5,4 @@
 
 | Field                                                     | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `cursor`                                                  | [V2SchemasCursor](../../models/shared/V2SchemasCursor.md) | :heavy_check_mark:                                        | N/A                                                       |
+| `cursor`                                                  | [V2SchemasCursor](../../models/shared/V2SchemasCursor.md) | :heavy_check_mark:                                        | Paginated cursor over the ledger's schemas                |

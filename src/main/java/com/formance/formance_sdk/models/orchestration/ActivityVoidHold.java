@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * ActivityVoidHold
+ * 
+ * <p>Arguments for the activity that releases a wallet hold
+ */
 public class ActivityVoidHold {
-
+    /**
+     * Identifier of the hold to release
+     */
     @JsonProperty("id")
     private String id;
 
@@ -23,6 +29,9 @@ public class ActivityVoidHold {
         this.id = id;
     }
 
+    /**
+     * Identifier of the hold to release
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -33,6 +42,9 @@ public class ActivityVoidHold {
     }
 
 
+    /**
+     * Identifier of the hold to release
+     */
     public ActivityVoidHold withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -74,6 +86,9 @@ public class ActivityVoidHold {
         }
 
 
+        /**
+         * Identifier of the hold to release
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

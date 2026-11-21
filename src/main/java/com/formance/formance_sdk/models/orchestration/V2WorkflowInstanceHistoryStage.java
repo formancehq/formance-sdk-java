@@ -19,81 +19,151 @@ import java.util.Optional;
 
 
 public class V2WorkflowInstanceHistoryStage {
+    /**
+     * Stable identifier of the activity within its workflow execution
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("activityID")
+    private Optional<String> activityID;
 
+    /**
+     * How many times the activity has been attempted
+     */
     @JsonProperty("attempt")
     private long attempt;
 
-
+    /**
+     * Why the activity failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * Arguments an activity was called with, keyed by activity name
+     */
     @JsonProperty("input")
     private V2WorkflowInstanceHistoryStageInput input;
 
-
+    /**
+     * Error reported by the most recent failed attempt
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastFailure")
     private Optional<String> lastFailure;
 
+    /**
+     * Application failure type of the most recent failed attempt, when available
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastFailureType")
+    private Optional<String> lastFailureType;
 
+    /**
+     * Name of the activity this history entry records
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextExecution")
     private Optional<OffsetDateTime> nextExecution;
 
-
+    /**
+     * Result an activity returned, keyed by activity name
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("output")
     private Optional<? extends V2WorkflowInstanceHistoryStageOutput> output;
 
+    /**
+     * Reason recorded by Temporal for the activity pause, when available
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pauseReason")
+    private Optional<String> pauseReason;
 
+    /**
+     * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("paused")
+    private Optional<Boolean> paused;
+
+    /**
+     * When the activity started
+     */
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
+    /**
+     * Run identifier of the described stage workflow execution
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("temporalRunID")
+    private Optional<String> temporalRunID;
 
+    /**
+     * Whether the activity has finished
+     */
     @JsonProperty("terminated")
     private boolean terminated;
 
-
+    /**
+     * When the activity finished, absent while it is still running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
 
     @JsonCreator
     public V2WorkflowInstanceHistoryStage(
+            @JsonProperty("activityID") Optional<String> activityID,
             @JsonProperty("attempt") long attempt,
             @JsonProperty("error") Optional<String> error,
             @JsonProperty("input") V2WorkflowInstanceHistoryStageInput input,
             @JsonProperty("lastFailure") Optional<String> lastFailure,
+            @JsonProperty("lastFailureType") Optional<String> lastFailureType,
             @JsonProperty("name") String name,
             @JsonProperty("nextExecution") Optional<OffsetDateTime> nextExecution,
             @JsonProperty("output") Optional<? extends V2WorkflowInstanceHistoryStageOutput> output,
+            @JsonProperty("pauseReason") Optional<String> pauseReason,
+            @JsonProperty("paused") Optional<Boolean> paused,
             @JsonProperty("startedAt") OffsetDateTime startedAt,
+            @JsonProperty("temporalRunID") Optional<String> temporalRunID,
             @JsonProperty("terminated") boolean terminated,
             @JsonProperty("terminatedAt") Optional<OffsetDateTime> terminatedAt) {
+        Utils.checkNotNull(activityID, "activityID");
         Utils.checkNotNull(attempt, "attempt");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(lastFailure, "lastFailure");
+        Utils.checkNotNull(lastFailureType, "lastFailureType");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nextExecution, "nextExecution");
         Utils.checkNotNull(output, "output");
+        Utils.checkNotNull(pauseReason, "pauseReason");
+        Utils.checkNotNull(paused, "paused");
         Utils.checkNotNull(startedAt, "startedAt");
+        Utils.checkNotNull(temporalRunID, "temporalRunID");
         Utils.checkNotNull(terminated, "terminated");
         Utils.checkNotNull(terminatedAt, "terminatedAt");
+        this.activityID = activityID;
         this.attempt = attempt;
         this.error = error;
         this.input = input;
         this.lastFailure = lastFailure;
+        this.lastFailureType = lastFailureType;
         this.name = name;
         this.nextExecution = nextExecution;
         this.output = output;
+        this.pauseReason = pauseReason;
+        this.paused = paused;
         this.startedAt = startedAt;
+        this.temporalRunID = temporalRunID;
         this.terminated = terminated;
         this.terminatedAt = terminatedAt;
     }
@@ -104,58 +174,129 @@ public class V2WorkflowInstanceHistoryStage {
             String name,
             OffsetDateTime startedAt,
             boolean terminated) {
-        this(attempt, Optional.empty(), input,
-            Optional.empty(), name, Optional.empty(),
-            Optional.empty(), startedAt, terminated,
-            Optional.empty());
+        this(Optional.empty(), attempt, Optional.empty(),
+            input, Optional.empty(), Optional.empty(),
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), startedAt,
+            Optional.empty(), terminated, Optional.empty());
     }
 
+    /**
+     * Stable identifier of the activity within its workflow execution
+     */
+    @JsonIgnore
+    public Optional<String> activityID() {
+        return activityID;
+    }
+
+    /**
+     * How many times the activity has been attempted
+     */
     @JsonIgnore
     public long attempt() {
         return attempt;
     }
 
+    /**
+     * Why the activity failed, absent when it succeeded
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * Arguments an activity was called with, keyed by activity name
+     */
     @JsonIgnore
     public V2WorkflowInstanceHistoryStageInput input() {
         return input;
     }
 
+    /**
+     * Error reported by the most recent failed attempt
+     */
     @JsonIgnore
     public Optional<String> lastFailure() {
         return lastFailure;
     }
 
+    /**
+     * Application failure type of the most recent failed attempt, when available
+     */
+    @JsonIgnore
+    public Optional<String> lastFailureType() {
+        return lastFailureType;
+    }
+
+    /**
+     * Name of the activity this history entry records
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> nextExecution() {
         return nextExecution;
     }
 
+    /**
+     * Result an activity returned, keyed by activity name
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2WorkflowInstanceHistoryStageOutput> output() {
         return (Optional<V2WorkflowInstanceHistoryStageOutput>) output;
     }
 
+    /**
+     * Reason recorded by Temporal for the activity pause, when available
+     */
+    @JsonIgnore
+    public Optional<String> pauseReason() {
+        return pauseReason;
+    }
+
+    /**
+     * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+     */
+    @JsonIgnore
+    public Optional<Boolean> paused() {
+        return paused;
+    }
+
+    /**
+     * When the activity started
+     */
     @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
     }
 
+    /**
+     * Run identifier of the described stage workflow execution
+     */
+    @JsonIgnore
+    public Optional<String> temporalRunID() {
+        return temporalRunID;
+    }
+
+    /**
+     * Whether the activity has finished
+     */
     @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    /**
+     * When the activity finished, absent while it is still running
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
         return terminatedAt;
@@ -166,12 +307,37 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * Stable identifier of the activity within its workflow execution
+     */
+    public V2WorkflowInstanceHistoryStage withActivityID(String activityID) {
+        Utils.checkNotNull(activityID, "activityID");
+        this.activityID = Optional.ofNullable(activityID);
+        return this;
+    }
+
+
+    /**
+     * Stable identifier of the activity within its workflow execution
+     */
+    public V2WorkflowInstanceHistoryStage withActivityID(Optional<String> activityID) {
+        Utils.checkNotNull(activityID, "activityID");
+        this.activityID = activityID;
+        return this;
+    }
+
+    /**
+     * How many times the activity has been attempted
+     */
     public V2WorkflowInstanceHistoryStage withAttempt(long attempt) {
         Utils.checkNotNull(attempt, "attempt");
         this.attempt = attempt;
         return this;
     }
 
+    /**
+     * Why the activity failed, absent when it succeeded
+     */
     public V2WorkflowInstanceHistoryStage withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -179,18 +345,27 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * Why the activity failed, absent when it succeeded
+     */
     public V2WorkflowInstanceHistoryStage withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Arguments an activity was called with, keyed by activity name
+     */
     public V2WorkflowInstanceHistoryStage withInput(V2WorkflowInstanceHistoryStageInput input) {
         Utils.checkNotNull(input, "input");
         this.input = input;
         return this;
     }
 
+    /**
+     * Error reported by the most recent failed attempt
+     */
     public V2WorkflowInstanceHistoryStage withLastFailure(String lastFailure) {
         Utils.checkNotNull(lastFailure, "lastFailure");
         this.lastFailure = Optional.ofNullable(lastFailure);
@@ -198,18 +373,46 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * Error reported by the most recent failed attempt
+     */
     public V2WorkflowInstanceHistoryStage withLastFailure(Optional<String> lastFailure) {
         Utils.checkNotNull(lastFailure, "lastFailure");
         this.lastFailure = lastFailure;
         return this;
     }
 
+    /**
+     * Application failure type of the most recent failed attempt, when available
+     */
+    public V2WorkflowInstanceHistoryStage withLastFailureType(String lastFailureType) {
+        Utils.checkNotNull(lastFailureType, "lastFailureType");
+        this.lastFailureType = Optional.ofNullable(lastFailureType);
+        return this;
+    }
+
+
+    /**
+     * Application failure type of the most recent failed attempt, when available
+     */
+    public V2WorkflowInstanceHistoryStage withLastFailureType(Optional<String> lastFailureType) {
+        Utils.checkNotNull(lastFailureType, "lastFailureType");
+        this.lastFailureType = lastFailureType;
+        return this;
+    }
+
+    /**
+     * Name of the activity this history entry records
+     */
     public V2WorkflowInstanceHistoryStage withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+     */
     public V2WorkflowInstanceHistoryStage withNextExecution(OffsetDateTime nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = Optional.ofNullable(nextExecution);
@@ -217,12 +420,18 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+     */
     public V2WorkflowInstanceHistoryStage withNextExecution(Optional<OffsetDateTime> nextExecution) {
         Utils.checkNotNull(nextExecution, "nextExecution");
         this.nextExecution = nextExecution;
         return this;
     }
 
+    /**
+     * Result an activity returned, keyed by activity name
+     */
     public V2WorkflowInstanceHistoryStage withOutput(V2WorkflowInstanceHistoryStageOutput output) {
         Utils.checkNotNull(output, "output");
         this.output = Optional.ofNullable(output);
@@ -230,24 +439,93 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * Result an activity returned, keyed by activity name
+     */
     public V2WorkflowInstanceHistoryStage withOutput(Optional<? extends V2WorkflowInstanceHistoryStageOutput> output) {
         Utils.checkNotNull(output, "output");
         this.output = output;
         return this;
     }
 
+    /**
+     * Reason recorded by Temporal for the activity pause, when available
+     */
+    public V2WorkflowInstanceHistoryStage withPauseReason(String pauseReason) {
+        Utils.checkNotNull(pauseReason, "pauseReason");
+        this.pauseReason = Optional.ofNullable(pauseReason);
+        return this;
+    }
+
+
+    /**
+     * Reason recorded by Temporal for the activity pause, when available
+     */
+    public V2WorkflowInstanceHistoryStage withPauseReason(Optional<String> pauseReason) {
+        Utils.checkNotNull(pauseReason, "pauseReason");
+        this.pauseReason = pauseReason;
+        return this;
+    }
+
+    /**
+     * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+     */
+    public V2WorkflowInstanceHistoryStage withPaused(boolean paused) {
+        Utils.checkNotNull(paused, "paused");
+        this.paused = Optional.ofNullable(paused);
+        return this;
+    }
+
+
+    /**
+     * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+     */
+    public V2WorkflowInstanceHistoryStage withPaused(Optional<Boolean> paused) {
+        Utils.checkNotNull(paused, "paused");
+        this.paused = paused;
+        return this;
+    }
+
+    /**
+     * When the activity started
+     */
     public V2WorkflowInstanceHistoryStage withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
         return this;
     }
 
+    /**
+     * Run identifier of the described stage workflow execution
+     */
+    public V2WorkflowInstanceHistoryStage withTemporalRunID(String temporalRunID) {
+        Utils.checkNotNull(temporalRunID, "temporalRunID");
+        this.temporalRunID = Optional.ofNullable(temporalRunID);
+        return this;
+    }
+
+
+    /**
+     * Run identifier of the described stage workflow execution
+     */
+    public V2WorkflowInstanceHistoryStage withTemporalRunID(Optional<String> temporalRunID) {
+        Utils.checkNotNull(temporalRunID, "temporalRunID");
+        this.temporalRunID = temporalRunID;
+        return this;
+    }
+
+    /**
+     * Whether the activity has finished
+     */
     public V2WorkflowInstanceHistoryStage withTerminated(boolean terminated) {
         Utils.checkNotNull(terminated, "terminated");
         this.terminated = terminated;
         return this;
     }
 
+    /**
+     * When the activity finished, absent while it is still running
+     */
     public V2WorkflowInstanceHistoryStage withTerminatedAt(OffsetDateTime terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = Optional.ofNullable(terminatedAt);
@@ -255,6 +533,9 @@ public class V2WorkflowInstanceHistoryStage {
     }
 
 
+    /**
+     * When the activity finished, absent while it is still running
+     */
     public V2WorkflowInstanceHistoryStage withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
@@ -271,14 +552,19 @@ public class V2WorkflowInstanceHistoryStage {
         }
         V2WorkflowInstanceHistoryStage other = (V2WorkflowInstanceHistoryStage) o;
         return 
+            Utils.enhancedDeepEquals(this.activityID, other.activityID) &&
             Utils.enhancedDeepEquals(this.attempt, other.attempt) &&
             Utils.enhancedDeepEquals(this.error, other.error) &&
             Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.lastFailure, other.lastFailure) &&
+            Utils.enhancedDeepEquals(this.lastFailureType, other.lastFailureType) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nextExecution, other.nextExecution) &&
             Utils.enhancedDeepEquals(this.output, other.output) &&
+            Utils.enhancedDeepEquals(this.pauseReason, other.pauseReason) &&
+            Utils.enhancedDeepEquals(this.paused, other.paused) &&
             Utils.enhancedDeepEquals(this.startedAt, other.startedAt) &&
+            Utils.enhancedDeepEquals(this.temporalRunID, other.temporalRunID) &&
             Utils.enhancedDeepEquals(this.terminated, other.terminated) &&
             Utils.enhancedDeepEquals(this.terminatedAt, other.terminatedAt);
     }
@@ -286,29 +572,37 @@ public class V2WorkflowInstanceHistoryStage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            attempt, error, input,
-            lastFailure, name, nextExecution,
-            output, startedAt, terminated,
-            terminatedAt);
+            activityID, attempt, error,
+            input, lastFailure, lastFailureType,
+            name, nextExecution, output,
+            pauseReason, paused, startedAt,
+            temporalRunID, terminated, terminatedAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2WorkflowInstanceHistoryStage.class,
+                "activityID", activityID,
                 "attempt", attempt,
                 "error", error,
                 "input", input,
                 "lastFailure", lastFailure,
+                "lastFailureType", lastFailureType,
                 "name", name,
                 "nextExecution", nextExecution,
                 "output", output,
+                "pauseReason", pauseReason,
+                "paused", paused,
                 "startedAt", startedAt,
+                "temporalRunID", temporalRunID,
                 "terminated", terminated,
                 "terminatedAt", terminatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> activityID = Optional.empty();
 
         private Long attempt;
 
@@ -318,13 +612,21 @@ public class V2WorkflowInstanceHistoryStage {
 
         private Optional<String> lastFailure = Optional.empty();
 
+        private Optional<String> lastFailureType = Optional.empty();
+
         private String name;
 
         private Optional<OffsetDateTime> nextExecution = Optional.empty();
 
         private Optional<? extends V2WorkflowInstanceHistoryStageOutput> output = Optional.empty();
 
+        private Optional<String> pauseReason = Optional.empty();
+
+        private Optional<Boolean> paused = Optional.empty();
+
         private OffsetDateTime startedAt;
+
+        private Optional<String> temporalRunID = Optional.empty();
 
         private Boolean terminated;
 
@@ -335,6 +637,28 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Stable identifier of the activity within its workflow execution
+         */
+        public Builder activityID(String activityID) {
+            Utils.checkNotNull(activityID, "activityID");
+            this.activityID = Optional.ofNullable(activityID);
+            return this;
+        }
+
+        /**
+         * Stable identifier of the activity within its workflow execution
+         */
+        public Builder activityID(Optional<String> activityID) {
+            Utils.checkNotNull(activityID, "activityID");
+            this.activityID = activityID;
+            return this;
+        }
+
+
+        /**
+         * How many times the activity has been attempted
+         */
         public Builder attempt(long attempt) {
             Utils.checkNotNull(attempt, "attempt");
             this.attempt = attempt;
@@ -342,12 +666,18 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Why the activity failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the activity failed, absent when it succeeded
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -355,6 +685,9 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Arguments an activity was called with, keyed by activity name
+         */
         public Builder input(V2WorkflowInstanceHistoryStageInput input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
@@ -362,12 +695,18 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Error reported by the most recent failed attempt
+         */
         public Builder lastFailure(String lastFailure) {
             Utils.checkNotNull(lastFailure, "lastFailure");
             this.lastFailure = Optional.ofNullable(lastFailure);
             return this;
         }
 
+        /**
+         * Error reported by the most recent failed attempt
+         */
         public Builder lastFailure(Optional<String> lastFailure) {
             Utils.checkNotNull(lastFailure, "lastFailure");
             this.lastFailure = lastFailure;
@@ -375,6 +714,28 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Application failure type of the most recent failed attempt, when available
+         */
+        public Builder lastFailureType(String lastFailureType) {
+            Utils.checkNotNull(lastFailureType, "lastFailureType");
+            this.lastFailureType = Optional.ofNullable(lastFailureType);
+            return this;
+        }
+
+        /**
+         * Application failure type of the most recent failed attempt, when available
+         */
+        public Builder lastFailureType(Optional<String> lastFailureType) {
+            Utils.checkNotNull(lastFailureType, "lastFailureType");
+            this.lastFailureType = lastFailureType;
+            return this;
+        }
+
+
+        /**
+         * Name of the activity this history entry records
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -382,12 +743,18 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+         */
         public Builder nextExecution(OffsetDateTime nextExecution) {
             Utils.checkNotNull(nextExecution, "nextExecution");
             this.nextExecution = Optional.ofNullable(nextExecution);
             return this;
         }
 
+        /**
+         * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+         */
         public Builder nextExecution(Optional<OffsetDateTime> nextExecution) {
             Utils.checkNotNull(nextExecution, "nextExecution");
             this.nextExecution = nextExecution;
@@ -395,12 +762,18 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Result an activity returned, keyed by activity name
+         */
         public Builder output(V2WorkflowInstanceHistoryStageOutput output) {
             Utils.checkNotNull(output, "output");
             this.output = Optional.ofNullable(output);
             return this;
         }
 
+        /**
+         * Result an activity returned, keyed by activity name
+         */
         public Builder output(Optional<? extends V2WorkflowInstanceHistoryStageOutput> output) {
             Utils.checkNotNull(output, "output");
             this.output = output;
@@ -408,6 +781,47 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Reason recorded by Temporal for the activity pause, when available
+         */
+        public Builder pauseReason(String pauseReason) {
+            Utils.checkNotNull(pauseReason, "pauseReason");
+            this.pauseReason = Optional.ofNullable(pauseReason);
+            return this;
+        }
+
+        /**
+         * Reason recorded by Temporal for the activity pause, when available
+         */
+        public Builder pauseReason(Optional<String> pauseReason) {
+            Utils.checkNotNull(pauseReason, "pauseReason");
+            this.pauseReason = pauseReason;
+            return this;
+        }
+
+
+        /**
+         * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+         */
+        public Builder paused(boolean paused) {
+            Utils.checkNotNull(paused, "paused");
+            this.paused = Optional.ofNullable(paused);
+            return this;
+        }
+
+        /**
+         * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+         */
+        public Builder paused(Optional<Boolean> paused) {
+            Utils.checkNotNull(paused, "paused");
+            this.paused = paused;
+            return this;
+        }
+
+
+        /**
+         * When the activity started
+         */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;
@@ -415,6 +829,28 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * Run identifier of the described stage workflow execution
+         */
+        public Builder temporalRunID(String temporalRunID) {
+            Utils.checkNotNull(temporalRunID, "temporalRunID");
+            this.temporalRunID = Optional.ofNullable(temporalRunID);
+            return this;
+        }
+
+        /**
+         * Run identifier of the described stage workflow execution
+         */
+        public Builder temporalRunID(Optional<String> temporalRunID) {
+            Utils.checkNotNull(temporalRunID, "temporalRunID");
+            this.temporalRunID = temporalRunID;
+            return this;
+        }
+
+
+        /**
+         * Whether the activity has finished
+         */
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
@@ -422,12 +858,18 @@ public class V2WorkflowInstanceHistoryStage {
         }
 
 
+        /**
+         * When the activity finished, absent while it is still running
+         */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = Optional.ofNullable(terminatedAt);
             return this;
         }
 
+        /**
+         * When the activity finished, absent while it is still running
+         */
         public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
@@ -437,10 +879,11 @@ public class V2WorkflowInstanceHistoryStage {
         public V2WorkflowInstanceHistoryStage build() {
 
             return new V2WorkflowInstanceHistoryStage(
-                attempt, error, input,
-                lastFailure, name, nextExecution,
-                output, startedAt, terminated,
-                terminatedAt);
+                activityID, attempt, error,
+                input, lastFailure, lastFailureType,
+                name, nextExecution, output,
+                pauseReason, paused, startedAt,
+                temporalRunID, terminated, terminatedAt);
         }
 
     }

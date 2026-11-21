@@ -17,28 +17,43 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2PostTransaction
+ * 
+ * <p>A transaction to write to a ledger
+ */
 public class V2PostTransaction {
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Fund movements to apply. Mutually exclusive with script
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postings")
     private Optional<? extends List<V2Posting>> postings;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * A Numscript program executed to produce the postings. Mutually exclusive with postings
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("script")
     private Optional<? extends V2PostTransactionScript> script;
 
-
+    /**
+     * The transaction time to record, letting you backdate or postdate the transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
@@ -69,28 +84,44 @@ public class V2PostTransaction {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * Fund movements to apply. Mutually exclusive with script
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V2Posting>> postings() {
         return (Optional<List<V2Posting>>) postings;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
     }
 
+    /**
+     * A Numscript program executed to produce the postings. Mutually exclusive with postings
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2PostTransactionScript> script() {
         return (Optional<V2PostTransactionScript>) script;
     }
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
         return timestamp;
@@ -101,12 +132,18 @@ public class V2PostTransaction {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2PostTransaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Fund movements to apply. Mutually exclusive with script
+     */
     public V2PostTransaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = Optional.ofNullable(postings);
@@ -114,12 +151,18 @@ public class V2PostTransaction {
     }
 
 
+    /**
+     * Fund movements to apply. Mutually exclusive with script
+     */
     public V2PostTransaction withPostings(Optional<? extends List<V2Posting>> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2PostTransaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -127,12 +170,18 @@ public class V2PostTransaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+     */
     public V2PostTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
 
+    /**
+     * A Numscript program executed to produce the postings. Mutually exclusive with postings
+     */
     public V2PostTransaction withScript(V2PostTransactionScript script) {
         Utils.checkNotNull(script, "script");
         this.script = Optional.ofNullable(script);
@@ -140,12 +189,19 @@ public class V2PostTransaction {
     }
 
 
+    /**
+     * A Numscript program executed to produce the postings. Mutually exclusive with postings
+     */
     public V2PostTransaction withScript(Optional<? extends V2PostTransactionScript> script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
         return this;
     }
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2PostTransaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = Optional.ofNullable(timestamp);
@@ -153,6 +209,10 @@ public class V2PostTransaction {
     }
 
 
+    /**
+     * The transaction time to record, letting you backdate or postdate the transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2PostTransaction withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -211,6 +271,9 @@ public class V2PostTransaction {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -218,12 +281,18 @@ public class V2PostTransaction {
         }
 
 
+        /**
+         * Fund movements to apply. Mutually exclusive with script
+         */
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = Optional.ofNullable(postings);
             return this;
         }
 
+        /**
+         * Fund movements to apply. Mutually exclusive with script
+         */
         public Builder postings(Optional<? extends List<V2Posting>> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -231,12 +300,18 @@ public class V2PostTransaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -244,12 +319,18 @@ public class V2PostTransaction {
         }
 
 
+        /**
+         * A Numscript program executed to produce the postings. Mutually exclusive with postings
+         */
         public Builder script(V2PostTransactionScript script) {
             Utils.checkNotNull(script, "script");
             this.script = Optional.ofNullable(script);
             return this;
         }
 
+        /**
+         * A Numscript program executed to produce the postings. Mutually exclusive with postings
+         */
         public Builder script(Optional<? extends V2PostTransactionScript> script) {
             Utils.checkNotNull(script, "script");
             this.script = script;
@@ -257,12 +338,20 @@ public class V2PostTransaction {
         }
 
 
+        /**
+         * The transaction time to record, letting you backdate or postdate the transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
             return this;
         }
 
+        /**
+         * The transaction time to record, letting you backdate or postdate the transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

@@ -10,7 +10,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * WalletBalances
+ * 
+ * <p>The wallet's main balance, keyed by asset
+ */
 public class WalletBalances {
 
     @JsonProperty("main")

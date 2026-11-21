@@ -5,4 +5,4 @@
 
 | Field                                       | Type                                        | Required                                    | Description                                 |
 | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| `data`                                      | [V2Ledger](../../models/shared/V2Ledger.md) | :heavy_check_mark:                          | N/A                                         |
+| `data`                                      | [V2Ledger](../../models/shared/V2Ledger.md) | :heavy_check_mark:                          | A ledger and its configuration              |

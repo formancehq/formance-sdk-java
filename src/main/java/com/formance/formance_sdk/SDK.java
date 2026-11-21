@@ -57,6 +57,9 @@ public class SDK {
     private final Auth auth;
 
 
+    private final Connectivity connectivity;
+
+
     private final Ledger ledger;
 
 
@@ -69,9 +72,6 @@ public class SDK {
     private final Reconciliation reconciliation;
 
 
-    private final Search search;
-
-
     private final Wallets wallets;
 
 
@@ -80,6 +80,11 @@ public class SDK {
 
     public Auth auth() {
         return auth;
+    }
+
+
+    public Connectivity connectivity() {
+        return connectivity;
     }
 
 
@@ -100,11 +105,6 @@ public class SDK {
 
     public Reconciliation reconciliation() {
         return reconciliation;
-    }
-
-
-    public Search search() {
-        return search;
     }
 
 
@@ -327,11 +327,11 @@ public class SDK {
     public SDK(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.auth = new Auth(sdkConfiguration);
+        this.connectivity = new Connectivity(sdkConfiguration);
         this.ledger = new Ledger(sdkConfiguration);
         this.orchestration = new Orchestration(sdkConfiguration);
         this.payments = new Payments(sdkConfiguration);
         this.reconciliation = new Reconciliation(sdkConfiguration);
-        this.search = new Search(sdkConfiguration);
         this.wallets = new Wallets(sdkConfiguration);
         this.webhooks = new Webhooks(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

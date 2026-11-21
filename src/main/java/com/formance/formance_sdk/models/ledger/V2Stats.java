@@ -12,13 +12,21 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 
-
+/**
+ * V2Stats
+ * 
+ * <p>Aggregate counts for a ledger
+ */
 public class V2Stats {
-
+    /**
+     * Total number of accounts in the ledger
+     */
     @JsonProperty("accounts")
     private long accounts;
 
-
+    /**
+     * Total number of transactions in the ledger
+     */
     @JsonProperty("transactions")
     private BigInteger transactions;
 
@@ -32,11 +40,17 @@ public class V2Stats {
         this.transactions = transactions;
     }
 
+    /**
+     * Total number of accounts in the ledger
+     */
     @JsonIgnore
     public long accounts() {
         return accounts;
     }
 
+    /**
+     * Total number of transactions in the ledger
+     */
     @JsonIgnore
     public BigInteger transactions() {
         return transactions;
@@ -47,17 +61,26 @@ public class V2Stats {
     }
 
 
+    /**
+     * Total number of accounts in the ledger
+     */
     public V2Stats withAccounts(long accounts) {
         Utils.checkNotNull(accounts, "accounts");
         this.accounts = accounts;
         return this;
     }
 
+    /**
+     * Total number of transactions in the ledger
+     */
     public V2Stats withTransactions(long transactions) {
         this.transactions = BigInteger.valueOf(transactions);
         return this;
     }
 
+    /**
+     * Total number of transactions in the ledger
+     */
     public V2Stats withTransactions(BigInteger transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
@@ -103,6 +126,9 @@ public class V2Stats {
         }
 
 
+        /**
+         * Total number of accounts in the ledger
+         */
         public Builder accounts(long accounts) {
             Utils.checkNotNull(accounts, "accounts");
             this.accounts = accounts;
@@ -110,11 +136,17 @@ public class V2Stats {
         }
 
 
+        /**
+         * Total number of transactions in the ledger
+         */
         public Builder transactions(long transactions) {
             this.transactions = BigInteger.valueOf(transactions);
             return this;
         }
 
+        /**
+         * Total number of transactions in the ledger
+         */
         public Builder transactions(BigInteger transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;

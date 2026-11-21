@@ -22,16 +22,23 @@ import java.util.Optional;
  * resolution kind is recorded as `fixed_by_booking`.
  */
 public class ResolveAlertRequest {
-
+    /**
+     * Who is resolving the alert
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * Free-text note to record with the resolution
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private Optional<String> note;
 
-
+    /**
+     * References of the transactions booked to correct the break. Supplying any records the resolution as
+     * fixed_by_booking
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionRefs")
     private Optional<? extends List<String>> transactionRefs;
@@ -54,16 +61,26 @@ public class ResolveAlertRequest {
         this(by, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Who is resolving the alert
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * Free-text note to record with the resolution
+     */
     @JsonIgnore
     public Optional<String> note() {
         return note;
     }
 
+    /**
+     * References of the transactions booked to correct the break. Supplying any records the resolution as
+     * fixed_by_booking
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> transactionRefs() {
@@ -75,12 +92,18 @@ public class ResolveAlertRequest {
     }
 
 
+    /**
+     * Who is resolving the alert
+     */
     public ResolveAlertRequest withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * Free-text note to record with the resolution
+     */
     public ResolveAlertRequest withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = Optional.ofNullable(note);
@@ -88,12 +111,19 @@ public class ResolveAlertRequest {
     }
 
 
+    /**
+     * Free-text note to record with the resolution
+     */
     public ResolveAlertRequest withNote(Optional<String> note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
         return this;
     }
 
+    /**
+     * References of the transactions booked to correct the break. Supplying any records the resolution as
+     * fixed_by_booking
+     */
     public ResolveAlertRequest withTransactionRefs(List<String> transactionRefs) {
         Utils.checkNotNull(transactionRefs, "transactionRefs");
         this.transactionRefs = Optional.ofNullable(transactionRefs);
@@ -101,6 +131,10 @@ public class ResolveAlertRequest {
     }
 
 
+    /**
+     * References of the transactions booked to correct the break. Supplying any records the resolution as
+     * fixed_by_booking
+     */
     public ResolveAlertRequest withTransactionRefs(Optional<? extends List<String>> transactionRefs) {
         Utils.checkNotNull(transactionRefs, "transactionRefs");
         this.transactionRefs = transactionRefs;
@@ -150,6 +184,9 @@ public class ResolveAlertRequest {
         }
 
 
+        /**
+         * Who is resolving the alert
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -157,12 +194,18 @@ public class ResolveAlertRequest {
         }
 
 
+        /**
+         * Free-text note to record with the resolution
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = Optional.ofNullable(note);
             return this;
         }
 
+        /**
+         * Free-text note to record with the resolution
+         */
         public Builder note(Optional<String> note) {
             Utils.checkNotNull(note, "note");
             this.note = note;
@@ -170,12 +213,20 @@ public class ResolveAlertRequest {
         }
 
 
+        /**
+         * References of the transactions booked to correct the break. Supplying any records the resolution as
+         * fixed_by_booking
+         */
         public Builder transactionRefs(List<String> transactionRefs) {
             Utils.checkNotNull(transactionRefs, "transactionRefs");
             this.transactionRefs = Optional.ofNullable(transactionRefs);
             return this;
         }
 
+        /**
+         * References of the transactions booked to correct the break. Supplying any records the resolution as
+         * fixed_by_booking
+         */
         public Builder transactionRefs(Optional<? extends List<String>> transactionRefs) {
             Utils.checkNotNull(transactionRefs, "transactionRefs");
             this.transactionRefs = transactionRefs;

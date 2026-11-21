@@ -11,11 +11,13 @@ public class Ledger {
     private final SDKConfiguration sdkConfiguration;
     private final LedgerV2 v2;
     private final LedgerV1 v1;
+    private final LedgerV3 v3;
 
     Ledger(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.v2 = new LedgerV2(this.sdkConfiguration);
         this.v1 = new LedgerV1(this.sdkConfiguration);
+        this.v3 = new LedgerV3(this.sdkConfiguration);
     }
 
     public final LedgerV2 v2() {
@@ -24,6 +26,10 @@ public class Ledger {
 
     public final LedgerV1 v1() {
         return v1;
+    }
+
+    public final LedgerV3 v3() {
+        return v3;
     }
 
 }

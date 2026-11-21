@@ -13,14 +13,22 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * Schedule
+ * 
+ * <p>When a rule runs, either on demand or on a cron expression
+ */
 public class Schedule {
-
+    /**
+     * Cron expression driving the schedule, required when kind is cron
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expr")
     private Optional<String> expr;
 
-
+    /**
+     * Whether the rule runs only when triggered or on a recurring cron schedule
+     */
     @JsonProperty("kind")
     private ScheduleKind kind;
 
@@ -31,7 +39,9 @@ public class Schedule {
     @JsonProperty("safetyMargin")
     private Optional<String> safetyMargin;
 
-
+    /**
+     * Timezone the cron expression is interpreted in
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tz")
     private Optional<String> tz;
@@ -58,11 +68,17 @@ public class Schedule {
             Optional.empty());
     }
 
+    /**
+     * Cron expression driving the schedule, required when kind is cron
+     */
     @JsonIgnore
     public Optional<String> expr() {
         return expr;
     }
 
+    /**
+     * Whether the rule runs only when triggered or on a recurring cron schedule
+     */
     @JsonIgnore
     public ScheduleKind kind() {
         return kind;
@@ -76,6 +92,9 @@ public class Schedule {
         return safetyMargin;
     }
 
+    /**
+     * Timezone the cron expression is interpreted in
+     */
     @JsonIgnore
     public Optional<String> tz() {
         return tz;
@@ -86,6 +105,9 @@ public class Schedule {
     }
 
 
+    /**
+     * Cron expression driving the schedule, required when kind is cron
+     */
     public Schedule withExpr(String expr) {
         Utils.checkNotNull(expr, "expr");
         this.expr = Optional.ofNullable(expr);
@@ -93,12 +115,18 @@ public class Schedule {
     }
 
 
+    /**
+     * Cron expression driving the schedule, required when kind is cron
+     */
     public Schedule withExpr(Optional<String> expr) {
         Utils.checkNotNull(expr, "expr");
         this.expr = expr;
         return this;
     }
 
+    /**
+     * Whether the rule runs only when triggered or on a recurring cron schedule
+     */
     public Schedule withKind(ScheduleKind kind) {
         Utils.checkNotNull(kind, "kind");
         this.kind = kind;
@@ -124,6 +152,9 @@ public class Schedule {
         return this;
     }
 
+    /**
+     * Timezone the cron expression is interpreted in
+     */
     public Schedule withTz(String tz) {
         Utils.checkNotNull(tz, "tz");
         this.tz = Optional.ofNullable(tz);
@@ -131,6 +162,9 @@ public class Schedule {
     }
 
 
+    /**
+     * Timezone the cron expression is interpreted in
+     */
     public Schedule withTz(Optional<String> tz) {
         Utils.checkNotNull(tz, "tz");
         this.tz = tz;
@@ -185,12 +219,18 @@ public class Schedule {
         }
 
 
+        /**
+         * Cron expression driving the schedule, required when kind is cron
+         */
         public Builder expr(String expr) {
             Utils.checkNotNull(expr, "expr");
             this.expr = Optional.ofNullable(expr);
             return this;
         }
 
+        /**
+         * Cron expression driving the schedule, required when kind is cron
+         */
         public Builder expr(Optional<String> expr) {
             Utils.checkNotNull(expr, "expr");
             this.expr = expr;
@@ -198,6 +238,9 @@ public class Schedule {
         }
 
 
+        /**
+         * Whether the rule runs only when triggered or on a recurring cron schedule
+         */
         public Builder kind(ScheduleKind kind) {
             Utils.checkNotNull(kind, "kind");
             this.kind = kind;
@@ -224,12 +267,18 @@ public class Schedule {
         }
 
 
+        /**
+         * Timezone the cron expression is interpreted in
+         */
         public Builder tz(String tz) {
             Utils.checkNotNull(tz, "tz");
             this.tz = Optional.ofNullable(tz);
             return this;
         }
 
+        /**
+         * Timezone the cron expression is interpreted in
+         */
         public Builder tz(Optional<String> tz) {
             Utils.checkNotNull(tz, "tz");
             this.tz = tz;

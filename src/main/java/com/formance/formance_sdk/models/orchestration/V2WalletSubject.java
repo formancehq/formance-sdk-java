@@ -15,16 +15,22 @@ import java.util.Optional;
 
 
 public class V2WalletSubject implements V2Subject {
-
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
     private Optional<String> balance;
 
-
+    /**
+     * Identifier of the wallet
+     */
     @JsonProperty("identifier")
     private String identifier;
 
-
+    /**
+     * Discriminator identifying this subject as a wallet
+     */
     @JsonProperty("type")
     private String type;
 
@@ -47,16 +53,25 @@ public class V2WalletSubject implements V2Subject {
         this(Optional.empty(), identifier, type);
     }
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     @JsonIgnore
     public Optional<String> balance() {
         return balance;
     }
 
+    /**
+     * Identifier of the wallet
+     */
     @JsonIgnore
     public String identifier() {
         return identifier;
     }
 
+    /**
+     * Discriminator identifying this subject as a wallet
+     */
     @JsonIgnore
     @Override
     public String type() {
@@ -68,6 +83,9 @@ public class V2WalletSubject implements V2Subject {
     }
 
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     public V2WalletSubject withBalance(String balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = Optional.ofNullable(balance);
@@ -75,18 +93,27 @@ public class V2WalletSubject implements V2Subject {
     }
 
 
+    /**
+     * Name of the balance within the wallet. Defaults to the main balance when omitted
+     */
     public V2WalletSubject withBalance(Optional<String> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
     }
 
+    /**
+     * Identifier of the wallet
+     */
     public V2WalletSubject withIdentifier(String identifier) {
         Utils.checkNotNull(identifier, "identifier");
         this.identifier = identifier;
         return this;
     }
 
+    /**
+     * Discriminator identifying this subject as a wallet
+     */
     public V2WalletSubject withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -136,12 +163,18 @@ public class V2WalletSubject implements V2Subject {
         }
 
 
+        /**
+         * Name of the balance within the wallet. Defaults to the main balance when omitted
+         */
         public Builder balance(String balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = Optional.ofNullable(balance);
             return this;
         }
 
+        /**
+         * Name of the balance within the wallet. Defaults to the main balance when omitted
+         */
         public Builder balance(Optional<String> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
@@ -149,6 +182,9 @@ public class V2WalletSubject implements V2Subject {
         }
 
 
+        /**
+         * Identifier of the wallet
+         */
         public Builder identifier(String identifier) {
             Utils.checkNotNull(identifier, "identifier");
             this.identifier = identifier;
@@ -156,6 +192,9 @@ public class V2WalletSubject implements V2Subject {
         }
 
 
+        /**
+         * Discriminator identifying this subject as a wallet
+         */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

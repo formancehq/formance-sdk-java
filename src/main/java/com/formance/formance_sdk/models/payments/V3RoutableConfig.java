@@ -48,6 +48,11 @@ public class V3RoutableConfig implements V3ConnectorConfig {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payoutsPerMinute")
+    private Optional<Long> payoutsPerMinute;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pollingPeriod")
     private Optional<String> pollingPeriod;
 
@@ -63,6 +68,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
             @JsonProperty("endpoint") Optional<String> endpoint,
             @JsonProperty("name") String name,
             @JsonProperty("pageSize") Optional<Long> pageSize,
+            @JsonProperty("payoutsPerMinute") Optional<Long> payoutsPerMinute,
             @JsonProperty("pollingPeriod") Optional<String> pollingPeriod,
             @JsonProperty("provider") Optional<String> provider) {
         Utils.checkNotNull(actingTeamMember, "actingTeamMember");
@@ -70,6 +76,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
         Utils.checkNotNull(endpoint, "endpoint");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(pageSize, "pageSize");
+        Utils.checkNotNull(payoutsPerMinute, "payoutsPerMinute");
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         Utils.checkNotNull(provider, "provider");
         this.actingTeamMember = actingTeamMember;
@@ -77,6 +84,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
         this.endpoint = endpoint;
         this.name = name;
         this.pageSize = pageSize;
+        this.payoutsPerMinute = payoutsPerMinute;
         this.pollingPeriod = pollingPeriod;
         this.provider = provider;
     }
@@ -86,7 +94,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
             String name) {
         this(Optional.empty(), apiKey, Optional.empty(),
             name, Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -117,6 +125,11 @@ public class V3RoutableConfig implements V3ConnectorConfig {
     @JsonIgnore
     public Optional<Long> pageSize() {
         return pageSize;
+    }
+
+    @JsonIgnore
+    public Optional<Long> payoutsPerMinute() {
+        return payoutsPerMinute;
     }
 
     @JsonIgnore
@@ -196,6 +209,19 @@ public class V3RoutableConfig implements V3ConnectorConfig {
         return this;
     }
 
+    public V3RoutableConfig withPayoutsPerMinute(long payoutsPerMinute) {
+        Utils.checkNotNull(payoutsPerMinute, "payoutsPerMinute");
+        this.payoutsPerMinute = Optional.ofNullable(payoutsPerMinute);
+        return this;
+    }
+
+
+    public V3RoutableConfig withPayoutsPerMinute(Optional<Long> payoutsPerMinute) {
+        Utils.checkNotNull(payoutsPerMinute, "payoutsPerMinute");
+        this.payoutsPerMinute = payoutsPerMinute;
+        return this;
+    }
+
     public V3RoutableConfig withPollingPeriod(String pollingPeriod) {
         Utils.checkNotNull(pollingPeriod, "pollingPeriod");
         this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -237,6 +263,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
             Utils.enhancedDeepEquals(this.endpoint, other.endpoint) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.payoutsPerMinute, other.payoutsPerMinute) &&
             Utils.enhancedDeepEquals(this.pollingPeriod, other.pollingPeriod) &&
             Utils.enhancedDeepEquals(this.provider, other.provider);
     }
@@ -245,8 +272,8 @@ public class V3RoutableConfig implements V3ConnectorConfig {
     public int hashCode() {
         return Utils.enhancedHash(
             actingTeamMember, apiKey, endpoint,
-            name, pageSize, pollingPeriod,
-            provider);
+            name, pageSize, payoutsPerMinute,
+            pollingPeriod, provider);
     }
     
     @Override
@@ -257,6 +284,7 @@ public class V3RoutableConfig implements V3ConnectorConfig {
                 "endpoint", endpoint,
                 "name", name,
                 "pageSize", pageSize,
+                "payoutsPerMinute", payoutsPerMinute,
                 "pollingPeriod", pollingPeriod,
                 "provider", provider);
     }
@@ -274,6 +302,8 @@ public class V3RoutableConfig implements V3ConnectorConfig {
 
         @Deprecated
         private Optional<Long> pageSize;
+
+        private Optional<Long> payoutsPerMinute = Optional.empty();
 
         private Optional<String> pollingPeriod;
 
@@ -347,6 +377,19 @@ public class V3RoutableConfig implements V3ConnectorConfig {
         }
 
 
+        public Builder payoutsPerMinute(long payoutsPerMinute) {
+            Utils.checkNotNull(payoutsPerMinute, "payoutsPerMinute");
+            this.payoutsPerMinute = Optional.ofNullable(payoutsPerMinute);
+            return this;
+        }
+
+        public Builder payoutsPerMinute(Optional<Long> payoutsPerMinute) {
+            Utils.checkNotNull(payoutsPerMinute, "payoutsPerMinute");
+            this.payoutsPerMinute = payoutsPerMinute;
+            return this;
+        }
+
+
         public Builder pollingPeriod(String pollingPeriod) {
             Utils.checkNotNull(pollingPeriod, "pollingPeriod");
             this.pollingPeriod = Optional.ofNullable(pollingPeriod);
@@ -385,8 +428,8 @@ public class V3RoutableConfig implements V3ConnectorConfig {
 
             return new V3RoutableConfig(
                 actingTeamMember, apiKey, endpoint,
-                name, pageSize, pollingPeriod,
-                provider);
+                name, pageSize, payoutsPerMinute,
+                pollingPeriod, provider);
         }
 
 

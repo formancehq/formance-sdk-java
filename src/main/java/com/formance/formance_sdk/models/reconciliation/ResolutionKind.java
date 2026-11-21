@@ -8,6 +8,12 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * ResolutionKind
+ * 
+ * <p>How the alert was resolved, whether automatically, by booking a correcting transaction, or by
+ * business acceptance
+ */
 public enum ResolutionKind {
     AUTO("auto"),
     FIXED_BY_BOOKING("fixed_by_booking"),

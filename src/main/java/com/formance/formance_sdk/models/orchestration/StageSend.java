@@ -18,27 +18,38 @@ import java.util.Optional;
 
 
 public class StageSend {
-
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
     private Optional<? extends Monetary> amount;
 
-
+    /**
+     * Where a send stage puts the funds
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     private Optional<? extends StageSendDestination> destination;
 
-
+    /**
+     * Metadata to attach to the resulting transaction
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Where a send stage takes the funds from
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private Optional<? extends StageSendSource> source;
 
-
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
@@ -67,30 +78,46 @@ public class StageSend {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Monetary> amount() {
         return (Optional<Monetary>) amount;
     }
 
+    /**
+     * Where a send stage puts the funds
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<StageSendDestination> destination() {
         return (Optional<StageSendDestination>) destination;
     }
 
+    /**
+     * Metadata to attach to the resulting transaction
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
     }
 
+    /**
+     * Where a send stage takes the funds from
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<StageSendSource> source() {
         return (Optional<StageSendSource>) source;
     }
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> timestamp() {
         return timestamp;
@@ -101,6 +128,9 @@ public class StageSend {
     }
 
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     public StageSend withAmount(Monetary amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
@@ -108,12 +138,18 @@ public class StageSend {
     }
 
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     public StageSend withAmount(Optional<? extends Monetary> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Where a send stage puts the funds
+     */
     public StageSend withDestination(StageSendDestination destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = Optional.ofNullable(destination);
@@ -121,12 +157,18 @@ public class StageSend {
     }
 
 
+    /**
+     * Where a send stage puts the funds
+     */
     public StageSend withDestination(Optional<? extends StageSendDestination> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
     }
 
+    /**
+     * Metadata to attach to the resulting transaction
+     */
     public StageSend withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -134,12 +176,18 @@ public class StageSend {
     }
 
 
+    /**
+     * Metadata to attach to the resulting transaction
+     */
     public StageSend withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Where a send stage takes the funds from
+     */
     public StageSend withSource(StageSendSource source) {
         Utils.checkNotNull(source, "source");
         this.source = Optional.ofNullable(source);
@@ -147,12 +195,19 @@ public class StageSend {
     }
 
 
+    /**
+     * Where a send stage takes the funds from
+     */
     public StageSend withSource(Optional<? extends StageSendSource> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
     }
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public StageSend withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = Optional.ofNullable(timestamp);
@@ -160,6 +215,10 @@ public class StageSend {
     }
 
 
+    /**
+     * The transaction time to record on the resulting transaction. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public StageSend withTimestamp(Optional<OffsetDateTime> timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
@@ -218,12 +277,18 @@ public class StageSend {
         }
 
 
+        /**
+         * An amount together with the asset it is denominated in
+         */
         public Builder amount(Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
         }
 
+        /**
+         * An amount together with the asset it is denominated in
+         */
         public Builder amount(Optional<? extends Monetary> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -231,12 +296,18 @@ public class StageSend {
         }
 
 
+        /**
+         * Where a send stage puts the funds
+         */
         public Builder destination(StageSendDestination destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
             return this;
         }
 
+        /**
+         * Where a send stage puts the funds
+         */
         public Builder destination(Optional<? extends StageSendDestination> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
@@ -244,12 +315,18 @@ public class StageSend {
         }
 
 
+        /**
+         * Metadata to attach to the resulting transaction
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Metadata to attach to the resulting transaction
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -257,12 +334,18 @@ public class StageSend {
         }
 
 
+        /**
+         * Where a send stage takes the funds from
+         */
         public Builder source(StageSendSource source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
             return this;
         }
 
+        /**
+         * Where a send stage takes the funds from
+         */
         public Builder source(Optional<? extends StageSendSource> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
@@ -270,12 +353,20 @@ public class StageSend {
         }
 
 
+        /**
+         * The transaction time to record on the resulting transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = Optional.ofNullable(timestamp);
             return this;
         }
 
+        /**
+         * The transaction time to record on the resulting transaction. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(Optional<OffsetDateTime> timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;

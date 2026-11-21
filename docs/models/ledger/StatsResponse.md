@@ -5,4 +5,4 @@
 
 | Field                                 | Type                                  | Required                              | Description                           |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `data`                                | [Stats](../../models/shared/Stats.md) | :heavy_check_mark:                    | N/A                                   |
+| `data`                                | [Stats](../../models/shared/Stats.md) | :heavy_check_mark:                    | Aggregate counts for a ledger         |

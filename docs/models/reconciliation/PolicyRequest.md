@@ -3,9 +3,9 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            | Example                |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `ledgerName`           | *String*               | :heavy_check_mark:     | N/A                    | default                |
-| `ledgerQuery`          | Map\<String, *Object*> | :heavy_check_mark:     | N/A                    |                        |
-| `name`                 | *String*               | :heavy_check_mark:     | N/A                    | XXX                    |
-| `paymentsPoolID`       | *String*               | :heavy_check_mark:     | N/A                    | XXX                    |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `ledgerName`                                                        | *String*                                                            | :heavy_check_mark:                                                  | Name of the ledger the policy reconciles against                    | default                                                             |
+| `ledgerQuery`                                                       | Map\<String, *Object*>                                              | :heavy_check_mark:                                                  | Filter selecting the ledger accounts whose balances are reconciled  |                                                                     |
+| `name`                                                              | *String*                                                            | :heavy_check_mark:                                                  | Human-readable name for the policy                                  | XXX                                                                 |
+| `paymentsPoolID`                                                    | *String*                                                            | :heavy_check_mark:                                                  | Identifier of the payments pool the ledger side is compared against | XXX                                                                 |

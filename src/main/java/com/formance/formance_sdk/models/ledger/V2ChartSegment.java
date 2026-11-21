@@ -24,22 +24,30 @@ import java.util.Optional;
  * <p>Segment within a chart of accounts
  */
 public class V2ChartSegment {
-
+    /**
+     * Metadata applied to accounts matching this segment, keyed by metadata key
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty(".metadata")
     private Optional<? extends Map<String, V2ChartAccountMetadata>> dotMetadata;
 
-
+    /**
+     * Regular expression every child segment name must match
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty(".pattern")
     private Optional<String> dotPattern;
 
-
+    /**
+     * Rules applied to accounts matching a chart-of-accounts segment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty(".rules")
     private Optional<? extends V2ChartAccountRules> dotRules;
 
-
+    /**
+     * Rules and metadata applied to the segment's own account, as opposed to its children
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty(".self")
     private Optional<? extends DotSelf> dotSelf;
@@ -70,23 +78,35 @@ public class V2ChartSegment {
             Optional.empty());
     }
 
+    /**
+     * Metadata applied to accounts matching this segment, keyed by metadata key
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, V2ChartAccountMetadata>> dotMetadata() {
         return (Optional<Map<String, V2ChartAccountMetadata>>) dotMetadata;
     }
 
+    /**
+     * Regular expression every child segment name must match
+     */
     @JsonIgnore
     public Optional<String> dotPattern() {
         return dotPattern;
     }
 
+    /**
+     * Rules applied to accounts matching a chart-of-accounts segment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2ChartAccountRules> dotRules() {
         return (Optional<V2ChartAccountRules>) dotRules;
     }
 
+    /**
+     * Rules and metadata applied to the segment's own account, as opposed to its children
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DotSelf> dotSelf() {
@@ -103,6 +123,9 @@ public class V2ChartSegment {
     }
 
 
+    /**
+     * Metadata applied to accounts matching this segment, keyed by metadata key
+     */
     public V2ChartSegment withDotMetadata(Map<String, V2ChartAccountMetadata> dotMetadata) {
         Utils.checkNotNull(dotMetadata, "dotMetadata");
         this.dotMetadata = Optional.ofNullable(dotMetadata);
@@ -110,12 +133,18 @@ public class V2ChartSegment {
     }
 
 
+    /**
+     * Metadata applied to accounts matching this segment, keyed by metadata key
+     */
     public V2ChartSegment withDotMetadata(Optional<? extends Map<String, V2ChartAccountMetadata>> dotMetadata) {
         Utils.checkNotNull(dotMetadata, "dotMetadata");
         this.dotMetadata = dotMetadata;
         return this;
     }
 
+    /**
+     * Regular expression every child segment name must match
+     */
     public V2ChartSegment withDotPattern(String dotPattern) {
         Utils.checkNotNull(dotPattern, "dotPattern");
         this.dotPattern = Optional.ofNullable(dotPattern);
@@ -123,12 +152,18 @@ public class V2ChartSegment {
     }
 
 
+    /**
+     * Regular expression every child segment name must match
+     */
     public V2ChartSegment withDotPattern(Optional<String> dotPattern) {
         Utils.checkNotNull(dotPattern, "dotPattern");
         this.dotPattern = dotPattern;
         return this;
     }
 
+    /**
+     * Rules applied to accounts matching a chart-of-accounts segment
+     */
     public V2ChartSegment withDotRules(V2ChartAccountRules dotRules) {
         Utils.checkNotNull(dotRules, "dotRules");
         this.dotRules = Optional.ofNullable(dotRules);
@@ -136,12 +171,18 @@ public class V2ChartSegment {
     }
 
 
+    /**
+     * Rules applied to accounts matching a chart-of-accounts segment
+     */
     public V2ChartSegment withDotRules(Optional<? extends V2ChartAccountRules> dotRules) {
         Utils.checkNotNull(dotRules, "dotRules");
         this.dotRules = dotRules;
         return this;
     }
 
+    /**
+     * Rules and metadata applied to the segment's own account, as opposed to its children
+     */
     public V2ChartSegment withDotSelf(DotSelf dotSelf) {
         Utils.checkNotNull(dotSelf, "dotSelf");
         this.dotSelf = Optional.ofNullable(dotSelf);
@@ -149,6 +190,9 @@ public class V2ChartSegment {
     }
 
 
+    /**
+     * Rules and metadata applied to the segment's own account, as opposed to its children
+     */
     public V2ChartSegment withDotSelf(Optional<? extends DotSelf> dotSelf) {
         Utils.checkNotNull(dotSelf, "dotSelf");
         this.dotSelf = dotSelf;
@@ -220,12 +264,18 @@ public class V2ChartSegment {
         }
 
 
+        /**
+         * Metadata applied to accounts matching this segment, keyed by metadata key
+         */
         public Builder dotMetadata(Map<String, V2ChartAccountMetadata> dotMetadata) {
             Utils.checkNotNull(dotMetadata, "dotMetadata");
             this.dotMetadata = Optional.ofNullable(dotMetadata);
             return this;
         }
 
+        /**
+         * Metadata applied to accounts matching this segment, keyed by metadata key
+         */
         public Builder dotMetadata(Optional<? extends Map<String, V2ChartAccountMetadata>> dotMetadata) {
             Utils.checkNotNull(dotMetadata, "dotMetadata");
             this.dotMetadata = dotMetadata;
@@ -233,12 +283,18 @@ public class V2ChartSegment {
         }
 
 
+        /**
+         * Regular expression every child segment name must match
+         */
         public Builder dotPattern(String dotPattern) {
             Utils.checkNotNull(dotPattern, "dotPattern");
             this.dotPattern = Optional.ofNullable(dotPattern);
             return this;
         }
 
+        /**
+         * Regular expression every child segment name must match
+         */
         public Builder dotPattern(Optional<String> dotPattern) {
             Utils.checkNotNull(dotPattern, "dotPattern");
             this.dotPattern = dotPattern;
@@ -246,12 +302,18 @@ public class V2ChartSegment {
         }
 
 
+        /**
+         * Rules applied to accounts matching a chart-of-accounts segment
+         */
         public Builder dotRules(V2ChartAccountRules dotRules) {
             Utils.checkNotNull(dotRules, "dotRules");
             this.dotRules = Optional.ofNullable(dotRules);
             return this;
         }
 
+        /**
+         * Rules applied to accounts matching a chart-of-accounts segment
+         */
         public Builder dotRules(Optional<? extends V2ChartAccountRules> dotRules) {
             Utils.checkNotNull(dotRules, "dotRules");
             this.dotRules = dotRules;
@@ -259,12 +321,18 @@ public class V2ChartSegment {
         }
 
 
+        /**
+         * Rules and metadata applied to the segment's own account, as opposed to its children
+         */
         public Builder dotSelf(DotSelf dotSelf) {
             Utils.checkNotNull(dotSelf, "dotSelf");
             this.dotSelf = Optional.ofNullable(dotSelf);
             return this;
         }
 
+        /**
+         * Rules and metadata applied to the segment's own account, as opposed to its children
+         */
         public Builder dotSelf(Optional<? extends DotSelf> dotSelf) {
             Utils.checkNotNull(dotSelf, "dotSelf");
             this.dotSelf = dotSelf;

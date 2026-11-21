@@ -18,16 +18,22 @@ import java.util.Optional;
 
 
 public class Account {
-
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonProperty("address")
     private String address;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, Object>> metadata;
 
-
+    /**
+     * Free-form classification of the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
@@ -50,17 +56,26 @@ public class Account {
         this(address, Optional.empty(), Optional.empty());
     }
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonIgnore
     public String address() {
         return address;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> metadata() {
         return (Optional<Map<String, Object>>) metadata;
     }
 
+    /**
+     * Free-form classification of the account
+     */
     @JsonIgnore
     public Optional<String> type() {
         return type;
@@ -71,12 +86,18 @@ public class Account {
     }
 
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     public Account withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public Account withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -84,12 +105,18 @@ public class Account {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public Account withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Free-form classification of the account
+     */
     public Account withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
@@ -97,6 +124,9 @@ public class Account {
     }
 
 
+    /**
+     * Free-form classification of the account
+     */
     public Account withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -146,6 +176,9 @@ public class Account {
         }
 
 
+        /**
+         * The account address, a colon-separated segmented path such as users:001
+         */
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
@@ -153,12 +186,18 @@ public class Account {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -166,12 +205,18 @@ public class Account {
         }
 
 
+        /**
+         * Free-form classification of the account
+         */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * Free-form classification of the account
+         */
         public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

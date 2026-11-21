@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2PipelinesCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of pipelines
+ */
 public class V2PipelinesCursorResponseCursor {
 
     @JsonProperty("data")

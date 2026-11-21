@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class StatsResponse {
-
+    /**
+     * Aggregate counts for a ledger
+     */
     @JsonProperty("data")
     private Stats data;
 
@@ -23,6 +25,9 @@ public class StatsResponse {
         this.data = data;
     }
 
+    /**
+     * Aggregate counts for a ledger
+     */
     @JsonIgnore
     public Stats data() {
         return data;
@@ -33,6 +38,9 @@ public class StatsResponse {
     }
 
 
+    /**
+     * Aggregate counts for a ledger
+     */
     public StatsResponse withData(Stats data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class StatsResponse {
         }
 
 
+        /**
+         * Aggregate counts for a ledger
+         */
         public Builder data(Stats data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

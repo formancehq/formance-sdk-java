@@ -16,11 +16,15 @@ import java.util.Optional;
 
 
 public class V2LogsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of logs
+     */
     @JsonProperty("cursor")
     private V2LogsCursorResponseCursor cursor;
 
-
+    /**
+     * The resource type carried by this cursor
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<? extends V2LogsCursorResponseResource> resource;
@@ -40,11 +44,17 @@ public class V2LogsCursorResponse {
         this(cursor, Optional.empty());
     }
 
+    /**
+     * Paginated cursor wrapping the list of logs
+     */
     @JsonIgnore
     public V2LogsCursorResponseCursor cursor() {
         return cursor;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2LogsCursorResponseResource> resource() {
@@ -56,12 +66,18 @@ public class V2LogsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of logs
+     */
     public V2LogsCursorResponse withCursor(V2LogsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2LogsCursorResponse withResource(V2LogsCursorResponseResource resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
@@ -69,6 +85,9 @@ public class V2LogsCursorResponse {
     }
 
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2LogsCursorResponse withResource(Optional<? extends V2LogsCursorResponseResource> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
@@ -114,6 +133,9 @@ public class V2LogsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of logs
+         */
         public Builder cursor(V2LogsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
@@ -121,12 +143,18 @@ public class V2LogsCursorResponse {
         }
 
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(V2LogsCursorResponseResource resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
         }
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(Optional<? extends V2LogsCursorResponseResource> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;

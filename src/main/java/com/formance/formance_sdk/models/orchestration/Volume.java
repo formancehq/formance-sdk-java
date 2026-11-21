@@ -17,16 +17,22 @@ import java.util.Optional;
 
 
 public class Volume {
-
+    /**
+     * Net balance, equal to input minus output
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance")
     private Optional<? extends BigInteger> balance;
 
-
+    /**
+     * Total amount credited for this asset
+     */
     @JsonProperty("input")
     private BigInteger input;
 
-
+    /**
+     * Total amount debited for this asset
+     */
     @JsonProperty("output")
     private BigInteger output;
 
@@ -49,17 +55,26 @@ public class Volume {
         this(Optional.empty(), input, output);
     }
 
+    /**
+     * Net balance, equal to input minus output
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<BigInteger> balance() {
         return (Optional<BigInteger>) balance;
     }
 
+    /**
+     * Total amount credited for this asset
+     */
     @JsonIgnore
     public BigInteger input() {
         return input;
     }
 
+    /**
+     * Total amount debited for this asset
+     */
     @JsonIgnore
     public BigInteger output() {
         return output;
@@ -70,40 +85,61 @@ public class Volume {
     }
 
 
+    /**
+     * Net balance, equal to input minus output
+     */
     public Volume withBalance(BigInteger balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = Optional.ofNullable(balance);
         return this;
     }
 
+    /**
+     * Net balance, equal to input minus output
+     */
     public Volume withBalance(long balance) {
         this.balance = Optional.of(BigInteger.valueOf(balance));
         return this;
     }
 
 
+    /**
+     * Net balance, equal to input minus output
+     */
     public Volume withBalance(Optional<? extends BigInteger> balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
     }
 
+    /**
+     * Total amount credited for this asset
+     */
     public Volume withInput(long input) {
         this.input = BigInteger.valueOf(input);
         return this;
     }
 
+    /**
+     * Total amount credited for this asset
+     */
     public Volume withInput(BigInteger input) {
         Utils.checkNotNull(input, "input");
         this.input = input;
         return this;
     }
 
+    /**
+     * Total amount debited for this asset
+     */
     public Volume withOutput(long output) {
         this.output = BigInteger.valueOf(output);
         return this;
     }
 
+    /**
+     * Total amount debited for this asset
+     */
     public Volume withOutput(BigInteger output) {
         Utils.checkNotNull(output, "output");
         this.output = output;
@@ -153,17 +189,26 @@ public class Volume {
         }
 
 
+        /**
+         * Net balance, equal to input minus output
+         */
         public Builder balance(BigInteger balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = Optional.ofNullable(balance);
             return this;
         }
 
+        /**
+         * Net balance, equal to input minus output
+         */
         public Builder balance(long balance) {
             this.balance = Optional.of(BigInteger.valueOf(balance));
             return this;
         }
 
+        /**
+         * Net balance, equal to input minus output
+         */
         public Builder balance(Optional<? extends BigInteger> balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
@@ -171,11 +216,17 @@ public class Volume {
         }
 
 
+        /**
+         * Total amount credited for this asset
+         */
         public Builder input(long input) {
             this.input = BigInteger.valueOf(input);
             return this;
         }
 
+        /**
+         * Total amount credited for this asset
+         */
         public Builder input(BigInteger input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
@@ -183,11 +234,17 @@ public class Volume {
         }
 
 
+        /**
+         * Total amount debited for this asset
+         */
         public Builder output(long output) {
             this.output = BigInteger.valueOf(output);
             return this;
         }
 
+        /**
+         * Total amount debited for this asset
+         */
         public Builder output(BigInteger output) {
             Utils.checkNotNull(output, "output");
             this.output = output;
