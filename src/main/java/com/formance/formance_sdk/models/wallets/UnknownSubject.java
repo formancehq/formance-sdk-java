@@ -11,6 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 
 
+/**
+ * UnknownSubject
+ * 
+ * <p>The counterparty of a wallet movement, either a ledger account or another wallet
+ */
 public class UnknownSubject extends UnknownType implements Subject {
 
     @JsonCreator

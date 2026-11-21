@@ -13,25 +13,39 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * WalletSummary
+ * 
+ * <p>Aggregated funds held by a wallet, broken down by availability
+ */
 public class WalletSummary {
-
+    /**
+     * Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired
+     */
     @JsonProperty("availableFunds")
     private Map<String, BigInteger> availableFunds;
 
-
+    /**
+     * Each balance of the wallet with its per-asset amounts
+     */
     @JsonProperty("balances")
     private List<BalanceWithAssets> balances;
 
-
+    /**
+     * Funds held in balances carrying an expiry date that has not yet passed, keyed by asset
+     */
     @JsonProperty("expirableFunds")
     private Map<String, BigInteger> expirableFunds;
 
-
+    /**
+     * Funds held in balances whose expiry date has passed, keyed by asset
+     */
     @JsonProperty("expiredFunds")
     private Map<String, BigInteger> expiredFunds;
 
-
+    /**
+     * Funds currently locked by pending holds, keyed by asset
+     */
     @JsonProperty("holdFunds")
     private Map<String, BigInteger> holdFunds;
 
@@ -58,26 +72,41 @@ public class WalletSummary {
         this.holdFunds = holdFunds;
     }
 
+    /**
+     * Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired
+     */
     @JsonIgnore
     public Map<String, BigInteger> availableFunds() {
         return availableFunds;
     }
 
+    /**
+     * Each balance of the wallet with its per-asset amounts
+     */
     @JsonIgnore
     public List<BalanceWithAssets> balances() {
         return balances;
     }
 
+    /**
+     * Funds held in balances carrying an expiry date that has not yet passed, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> expirableFunds() {
         return expirableFunds;
     }
 
+    /**
+     * Funds held in balances whose expiry date has passed, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> expiredFunds() {
         return expiredFunds;
     }
 
+    /**
+     * Funds currently locked by pending holds, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> holdFunds() {
         return holdFunds;
@@ -88,30 +117,45 @@ public class WalletSummary {
     }
 
 
+    /**
+     * Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired
+     */
     public WalletSummary withAvailableFunds(Map<String, BigInteger> availableFunds) {
         Utils.checkNotNull(availableFunds, "availableFunds");
         this.availableFunds = availableFunds;
         return this;
     }
 
+    /**
+     * Each balance of the wallet with its per-asset amounts
+     */
     public WalletSummary withBalances(List<BalanceWithAssets> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
     }
 
+    /**
+     * Funds held in balances carrying an expiry date that has not yet passed, keyed by asset
+     */
     public WalletSummary withExpirableFunds(Map<String, BigInteger> expirableFunds) {
         Utils.checkNotNull(expirableFunds, "expirableFunds");
         this.expirableFunds = expirableFunds;
         return this;
     }
 
+    /**
+     * Funds held in balances whose expiry date has passed, keyed by asset
+     */
     public WalletSummary withExpiredFunds(Map<String, BigInteger> expiredFunds) {
         Utils.checkNotNull(expiredFunds, "expiredFunds");
         this.expiredFunds = expiredFunds;
         return this;
     }
 
+    /**
+     * Funds currently locked by pending holds, keyed by asset
+     */
     public WalletSummary withHoldFunds(Map<String, BigInteger> holdFunds) {
         Utils.checkNotNull(holdFunds, "holdFunds");
         this.holdFunds = holdFunds;
@@ -170,6 +214,9 @@ public class WalletSummary {
         }
 
 
+        /**
+         * Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired
+         */
         public Builder availableFunds(Map<String, BigInteger> availableFunds) {
             Utils.checkNotNull(availableFunds, "availableFunds");
             this.availableFunds = availableFunds;
@@ -177,6 +224,9 @@ public class WalletSummary {
         }
 
 
+        /**
+         * Each balance of the wallet with its per-asset amounts
+         */
         public Builder balances(List<BalanceWithAssets> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
@@ -184,6 +234,9 @@ public class WalletSummary {
         }
 
 
+        /**
+         * Funds held in balances carrying an expiry date that has not yet passed, keyed by asset
+         */
         public Builder expirableFunds(Map<String, BigInteger> expirableFunds) {
             Utils.checkNotNull(expirableFunds, "expirableFunds");
             this.expirableFunds = expirableFunds;
@@ -191,6 +244,9 @@ public class WalletSummary {
         }
 
 
+        /**
+         * Funds held in balances whose expiry date has passed, keyed by asset
+         */
         public Builder expiredFunds(Map<String, BigInteger> expiredFunds) {
             Utils.checkNotNull(expiredFunds, "expiredFunds");
             this.expiredFunds = expiredFunds;
@@ -198,6 +254,9 @@ public class WalletSummary {
         }
 
 
+        /**
+         * Funds currently locked by pending holds, keyed by asset
+         */
         public Builder holdFunds(Map<String, BigInteger> holdFunds) {
             Utils.checkNotNull(holdFunds, "holdFunds");
             this.holdFunds = holdFunds;

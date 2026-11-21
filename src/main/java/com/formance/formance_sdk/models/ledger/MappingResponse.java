@@ -16,7 +16,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class MappingResponse {
-
+    /**
+     * Contracts constraining the balances a ledger's accounts may hold
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private JsonNullable<? extends Mapping> data;
@@ -32,6 +34,9 @@ public class MappingResponse {
         this(JsonNullable.undefined());
     }
 
+    /**
+     * Contracts constraining the balances a ledger's accounts may hold
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Mapping> data() {
@@ -43,12 +48,18 @@ public class MappingResponse {
     }
 
 
+    /**
+     * Contracts constraining the balances a ledger's accounts may hold
+     */
     public MappingResponse withData(Mapping data) {
         Utils.checkNotNull(data, "data");
         this.data = JsonNullable.of(data);
         return this;
     }
 
+    /**
+     * Contracts constraining the balances a ledger's accounts may hold
+     */
     public MappingResponse withData(JsonNullable<? extends Mapping> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -90,12 +101,18 @@ public class MappingResponse {
         }
 
 
+        /**
+         * Contracts constraining the balances a ledger's accounts may hold
+         */
         public Builder data(Mapping data) {
             Utils.checkNotNull(data, "data");
             this.data = JsonNullable.of(data);
             return this;
         }
 
+        /**
+         * Contracts constraining the balances a ledger's accounts may hold
+         */
         public Builder data(JsonNullable<? extends Mapping> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

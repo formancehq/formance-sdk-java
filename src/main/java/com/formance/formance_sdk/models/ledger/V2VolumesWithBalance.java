@@ -13,23 +13,33 @@ import java.math.BigInteger;
 
 
 public class V2VolumesWithBalance {
-
+    /**
+     * The account address these volumes belong to
+     */
     @JsonProperty("account")
     private String account;
 
-
+    /**
+     * The asset these volumes are denominated in
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Net balance for this asset, equal to input minus output
+     */
     @JsonProperty("balance")
     private BigInteger balance;
 
-
+    /**
+     * Total amount credited to the account for this asset
+     */
     @JsonProperty("input")
     private BigInteger input;
 
-
+    /**
+     * Total amount debited from the account for this asset
+     */
     @JsonProperty("output")
     private BigInteger output;
 
@@ -52,26 +62,41 @@ public class V2VolumesWithBalance {
         this.output = output;
     }
 
+    /**
+     * The account address these volumes belong to
+     */
     @JsonIgnore
     public String account() {
         return account;
     }
 
+    /**
+     * The asset these volumes are denominated in
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Net balance for this asset, equal to input minus output
+     */
     @JsonIgnore
     public BigInteger balance() {
         return balance;
     }
 
+    /**
+     * Total amount credited to the account for this asset
+     */
     @JsonIgnore
     public BigInteger input() {
         return input;
     }
 
+    /**
+     * Total amount debited from the account for this asset
+     */
     @JsonIgnore
     public BigInteger output() {
         return output;
@@ -82,45 +107,69 @@ public class V2VolumesWithBalance {
     }
 
 
+    /**
+     * The account address these volumes belong to
+     */
     public V2VolumesWithBalance withAccount(String account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
     }
 
+    /**
+     * The asset these volumes are denominated in
+     */
     public V2VolumesWithBalance withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Net balance for this asset, equal to input minus output
+     */
     public V2VolumesWithBalance withBalance(long balance) {
         this.balance = BigInteger.valueOf(balance);
         return this;
     }
 
+    /**
+     * Net balance for this asset, equal to input minus output
+     */
     public V2VolumesWithBalance withBalance(BigInteger balance) {
         Utils.checkNotNull(balance, "balance");
         this.balance = balance;
         return this;
     }
 
+    /**
+     * Total amount credited to the account for this asset
+     */
     public V2VolumesWithBalance withInput(long input) {
         this.input = BigInteger.valueOf(input);
         return this;
     }
 
+    /**
+     * Total amount credited to the account for this asset
+     */
     public V2VolumesWithBalance withInput(BigInteger input) {
         Utils.checkNotNull(input, "input");
         this.input = input;
         return this;
     }
 
+    /**
+     * Total amount debited from the account for this asset
+     */
     public V2VolumesWithBalance withOutput(long output) {
         this.output = BigInteger.valueOf(output);
         return this;
     }
 
+    /**
+     * Total amount debited from the account for this asset
+     */
     public V2VolumesWithBalance withOutput(BigInteger output) {
         Utils.checkNotNull(output, "output");
         this.output = output;
@@ -179,6 +228,9 @@ public class V2VolumesWithBalance {
         }
 
 
+        /**
+         * The account address these volumes belong to
+         */
         public Builder account(String account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
@@ -186,6 +238,9 @@ public class V2VolumesWithBalance {
         }
 
 
+        /**
+         * The asset these volumes are denominated in
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -193,11 +248,17 @@ public class V2VolumesWithBalance {
         }
 
 
+        /**
+         * Net balance for this asset, equal to input minus output
+         */
         public Builder balance(long balance) {
             this.balance = BigInteger.valueOf(balance);
             return this;
         }
 
+        /**
+         * Net balance for this asset, equal to input minus output
+         */
         public Builder balance(BigInteger balance) {
             Utils.checkNotNull(balance, "balance");
             this.balance = balance;
@@ -205,11 +266,17 @@ public class V2VolumesWithBalance {
         }
 
 
+        /**
+         * Total amount credited to the account for this asset
+         */
         public Builder input(long input) {
             this.input = BigInteger.valueOf(input);
             return this;
         }
 
+        /**
+         * Total amount credited to the account for this asset
+         */
         public Builder input(BigInteger input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
@@ -217,11 +284,17 @@ public class V2VolumesWithBalance {
         }
 
 
+        /**
+         * Total amount debited from the account for this asset
+         */
         public Builder output(long output) {
             this.output = BigInteger.valueOf(output);
             return this;
         }
 
+        /**
+         * Total amount debited from the account for this asset
+         */
         public Builder output(BigInteger output) {
             Utils.checkNotNull(output, "output");
             this.output = output;

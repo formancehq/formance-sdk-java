@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2PaymentStatus
+ * 
+ * <p>Where a payment stands in its lifecycle
+ */
 public enum V2PaymentStatus {
     PENDING("PENDING"),
     ACTIVE("ACTIVE"),

@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * TemplateKind
+ * 
+ * <p>Which built-in check a rule applies, determining the shape of its templateSpec
+ */
 public enum TemplateKind {
     LEDGER_VS_POOL_DRIFT("ledger_vs_pool_drift"),
     LEDGER_INVARIANT("ledger_invariant"),

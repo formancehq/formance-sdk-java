@@ -109,6 +109,7 @@ public class V2RunQuery {
                     klass,
                     request,
                     null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
 
             return req.build();

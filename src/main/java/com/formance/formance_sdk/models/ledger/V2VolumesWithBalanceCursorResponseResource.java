@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2VolumesWithBalanceCursorResponseResource
+ * 
+ * <p>The resource type carried by this cursor
+ */
 public enum V2VolumesWithBalanceCursorResponseResource {
     VOLUMES("volumes");
 

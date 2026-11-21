@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class CreateBalanceResponse {
-
+    /**
+     * A named balance within a wallet, optionally carrying an expiry date
+     */
     @JsonProperty("data")
     private Balance data;
 
@@ -23,6 +25,9 @@ public class CreateBalanceResponse {
         this.data = data;
     }
 
+    /**
+     * A named balance within a wallet, optionally carrying an expiry date
+     */
     @JsonIgnore
     public Balance data() {
         return data;
@@ -33,6 +38,9 @@ public class CreateBalanceResponse {
     }
 
 
+    /**
+     * A named balance within a wallet, optionally carrying an expiry date
+     */
     public CreateBalanceResponse withData(Balance data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class CreateBalanceResponse {
         }
 
 
+        /**
+         * A named balance within a wallet, optionally carrying an expiry date
+         */
         public Builder data(Balance data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

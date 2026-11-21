@@ -23,7 +23,10 @@ public class V2LogDataDeleteMetadata {
     @JsonProperty("key")
     private String key;
 
-
+    /**
+     * Identifier of the entity the metadata was deleted from, either an account address or a transaction
+     * ID
+     */
     @JsonProperty("targetId")
     private V2LogDataDeleteMetadataTargetId targetId;
 
@@ -54,6 +57,10 @@ public class V2LogDataDeleteMetadata {
         return key;
     }
 
+    /**
+     * Identifier of the entity the metadata was deleted from, either an account address or a transaction
+     * ID
+     */
     @JsonIgnore
     public V2LogDataDeleteMetadataTargetId targetId() {
         return targetId;
@@ -81,6 +88,10 @@ public class V2LogDataDeleteMetadata {
         return this;
     }
 
+    /**
+     * Identifier of the entity the metadata was deleted from, either an account address or a transaction
+     * ID
+     */
     public V2LogDataDeleteMetadata withTargetId(V2LogDataDeleteMetadataTargetId targetId) {
         Utils.checkNotNull(targetId, "targetId");
         this.targetId = targetId;
@@ -149,6 +160,10 @@ public class V2LogDataDeleteMetadata {
         }
 
 
+        /**
+         * Identifier of the entity the metadata was deleted from, either an account address or a transaction
+         * ID
+         */
         public Builder targetId(V2LogDataDeleteMetadataTargetId targetId) {
             Utils.checkNotNull(targetId, "targetId");
             this.targetId = targetId;

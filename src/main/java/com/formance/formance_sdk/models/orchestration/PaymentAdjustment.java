@@ -15,23 +15,33 @@ import java.time.OffsetDateTime;
 
 
 public class PaymentAdjustment {
-
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     @JsonProperty("absolute")
     private boolean absolute;
 
-
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * When the adjustment was recorded
+     */
     @JsonProperty("date")
     private OffsetDateTime date;
 
-
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonProperty("raw")
     private PaymentAdjustmentRaw raw;
 
-
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonProperty("status")
     private PaymentStatus status;
 
@@ -54,26 +64,41 @@ public class PaymentAdjustment {
         this.status = status;
     }
 
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     @JsonIgnore
     public boolean absolute() {
         return absolute;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     @JsonIgnore
     public OffsetDateTime date() {
         return date;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     @JsonIgnore
     public PaymentAdjustmentRaw raw() {
         return raw;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     @JsonIgnore
     public PaymentStatus status() {
         return status;
@@ -84,35 +109,53 @@ public class PaymentAdjustment {
     }
 
 
+    /**
+     * Whether amount replaces the payment's amount rather than adding to it
+     */
     public PaymentAdjustment withAbsolute(boolean absolute) {
         Utils.checkNotNull(absolute, "absolute");
         this.absolute = absolute;
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public PaymentAdjustment withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount carried by this adjustment
+     */
     public PaymentAdjustment withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * When the adjustment was recorded
+     */
     public PaymentAdjustment withDate(OffsetDateTime date) {
         Utils.checkNotNull(date, "date");
         this.date = date;
         return this;
     }
 
+    /**
+     * The provider's original payload for this adjustment
+     */
     public PaymentAdjustment withRaw(PaymentAdjustmentRaw raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
     }
 
+    /**
+     * Where a payment stands in its lifecycle
+     */
     public PaymentAdjustment withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -171,6 +214,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Whether amount replaces the payment's amount rather than adding to it
+         */
         public Builder absolute(boolean absolute) {
             Utils.checkNotNull(absolute, "absolute");
             this.absolute = absolute;
@@ -178,11 +224,17 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount carried by this adjustment
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -190,6 +242,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * When the adjustment was recorded
+         */
         public Builder date(OffsetDateTime date) {
             Utils.checkNotNull(date, "date");
             this.date = date;
@@ -197,6 +252,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * The provider's original payload for this adjustment
+         */
         public Builder raw(PaymentAdjustmentRaw raw) {
             Utils.checkNotNull(raw, "raw");
             this.raw = raw;
@@ -204,6 +262,9 @@ public class PaymentAdjustment {
         }
 
 
+        /**
+         * Where a payment stands in its lifecycle
+         */
         public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

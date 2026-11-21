@@ -18,23 +18,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2DebitWalletRequest
+ * 
+ * <p>A debit to apply to a wallet
+ */
 public class V2DebitWalletRequest {
-
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonProperty("amount")
     private V2Monetary amount;
 
-
+    /**
+     * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends List<String>> balances;
 
-
+    /**
+     * Human-readable reason for the debit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
 
-
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     private Optional<? extends V2Subject> destination;
@@ -93,22 +105,34 @@ public class V2DebitWalletRequest {
             Optional.empty());
     }
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     @JsonIgnore
     public V2Monetary amount() {
         return amount;
     }
 
+    /**
+     * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> balances() {
         return (Optional<List<String>>) balances;
     }
 
+    /**
+     * Human-readable reason for the debit
+     */
     @JsonIgnore
     public Optional<String> description() {
         return description;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2Subject> destination() {
@@ -144,12 +168,18 @@ public class V2DebitWalletRequest {
     }
 
 
+    /**
+     * An amount together with the asset it is denominated in
+     */
     public V2DebitWalletRequest withAmount(V2Monetary amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+     */
     public V2DebitWalletRequest withBalances(List<String> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
@@ -157,12 +187,18 @@ public class V2DebitWalletRequest {
     }
 
 
+    /**
+     * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+     */
     public V2DebitWalletRequest withBalances(Optional<? extends List<String>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
     }
 
+    /**
+     * Human-readable reason for the debit
+     */
     public V2DebitWalletRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
@@ -170,12 +206,18 @@ public class V2DebitWalletRequest {
     }
 
 
+    /**
+     * Human-readable reason for the debit
+     */
     public V2DebitWalletRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public V2DebitWalletRequest withDestination(V2Subject destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = Optional.ofNullable(destination);
@@ -183,6 +225,9 @@ public class V2DebitWalletRequest {
     }
 
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public V2DebitWalletRequest withDestination(Optional<? extends V2Subject> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
@@ -297,6 +342,9 @@ public class V2DebitWalletRequest {
         }
 
 
+        /**
+         * An amount together with the asset it is denominated in
+         */
         public Builder amount(V2Monetary amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -304,12 +352,18 @@ public class V2DebitWalletRequest {
         }
 
 
+        /**
+         * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+         */
         public Builder balances(List<String> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = Optional.ofNullable(balances);
             return this;
         }
 
+        /**
+         * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+         */
         public Builder balances(Optional<? extends List<String>> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
@@ -317,12 +371,18 @@ public class V2DebitWalletRequest {
         }
 
 
+        /**
+         * Human-readable reason for the debit
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = Optional.ofNullable(description);
             return this;
         }
 
+        /**
+         * Human-readable reason for the debit
+         */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -330,12 +390,18 @@ public class V2DebitWalletRequest {
         }
 
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(V2Subject destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
             return this;
         }
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(Optional<? extends V2Subject> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;

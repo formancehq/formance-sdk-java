@@ -16,11 +16,15 @@ import java.lang.String;
  * <p>Business acceptance. `note` is required and the evidence is snapshotted onto the resolution.
  */
 public class AcceptAlertRequest {
-
+    /**
+     * Who is accepting the break
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * Why the break is being accepted rather than corrected
+     */
     @JsonProperty("note")
     private String note;
 
@@ -34,11 +38,17 @@ public class AcceptAlertRequest {
         this.note = note;
     }
 
+    /**
+     * Who is accepting the break
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * Why the break is being accepted rather than corrected
+     */
     @JsonIgnore
     public String note() {
         return note;
@@ -49,12 +59,18 @@ public class AcceptAlertRequest {
     }
 
 
+    /**
+     * Who is accepting the break
+     */
     public AcceptAlertRequest withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * Why the break is being accepted rather than corrected
+     */
     public AcceptAlertRequest withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
@@ -100,6 +116,9 @@ public class AcceptAlertRequest {
         }
 
 
+        /**
+         * Who is accepting the break
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -107,6 +126,9 @@ public class AcceptAlertRequest {
         }
 
 
+        /**
+         * Why the break is being accepted rather than corrected
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = note;

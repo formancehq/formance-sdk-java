@@ -18,22 +18,35 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * BalanceWithAssets
+ * 
+ * <p>A named balance within a wallet together with the amounts it holds per asset
+ */
 public class BalanceWithAssets {
-
+    /**
+     * Amounts held, keyed by asset
+     */
     @JsonProperty("assets")
     private Map<String, BigInteger> assets;
 
-
+    /**
+     * When the funds in this balance expire. Expired funds stop counting towards available funds
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiresAt")
     private JsonNullable<OffsetDateTime> expiresAt;
 
-
+    /**
+     * Name of the balance within the wallet
+     */
     @JsonProperty("name")
     private String name;
 
-
+    /**
+     * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+     * only breaks ties between balances that carry no expiry date
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("priority")
     private Optional<? extends BigInteger> priority;
@@ -62,21 +75,34 @@ public class BalanceWithAssets {
             Optional.empty());
     }
 
+    /**
+     * Amounts held, keyed by asset
+     */
     @JsonIgnore
     public Map<String, BigInteger> assets() {
         return assets;
     }
 
+    /**
+     * When the funds in this balance expire. Expired funds stop counting towards available funds
+     */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> expiresAt() {
         return expiresAt;
     }
 
+    /**
+     * Name of the balance within the wallet
+     */
     @JsonIgnore
     public String name() {
         return name;
     }
 
+    /**
+     * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+     * only breaks ties between balances that carry no expiry date
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<BigInteger> priority() {
@@ -88,42 +114,66 @@ public class BalanceWithAssets {
     }
 
 
+    /**
+     * Amounts held, keyed by asset
+     */
     public BalanceWithAssets withAssets(Map<String, BigInteger> assets) {
         Utils.checkNotNull(assets, "assets");
         this.assets = assets;
         return this;
     }
 
+    /**
+     * When the funds in this balance expire. Expired funds stop counting towards available funds
+     */
     public BalanceWithAssets withExpiresAt(OffsetDateTime expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
         this.expiresAt = JsonNullable.of(expiresAt);
         return this;
     }
 
+    /**
+     * When the funds in this balance expire. Expired funds stop counting towards available funds
+     */
     public BalanceWithAssets withExpiresAt(JsonNullable<OffsetDateTime> expiresAt) {
         Utils.checkNotNull(expiresAt, "expiresAt");
         this.expiresAt = expiresAt;
         return this;
     }
 
+    /**
+     * Name of the balance within the wallet
+     */
     public BalanceWithAssets withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+     * only breaks ties between balances that carry no expiry date
+     */
     public BalanceWithAssets withPriority(BigInteger priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = Optional.ofNullable(priority);
         return this;
     }
 
+    /**
+     * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+     * only breaks ties between balances that carry no expiry date
+     */
     public BalanceWithAssets withPriority(long priority) {
         this.priority = Optional.of(BigInteger.valueOf(priority));
         return this;
     }
 
 
+    /**
+     * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+     * only breaks ties between balances that carry no expiry date
+     */
     public BalanceWithAssets withPriority(Optional<? extends BigInteger> priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = priority;
@@ -178,6 +228,9 @@ public class BalanceWithAssets {
         }
 
 
+        /**
+         * Amounts held, keyed by asset
+         */
         public Builder assets(Map<String, BigInteger> assets) {
             Utils.checkNotNull(assets, "assets");
             this.assets = assets;
@@ -185,12 +238,18 @@ public class BalanceWithAssets {
         }
 
 
+        /**
+         * When the funds in this balance expire. Expired funds stop counting towards available funds
+         */
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = JsonNullable.of(expiresAt);
             return this;
         }
 
+        /**
+         * When the funds in this balance expire. Expired funds stop counting towards available funds
+         */
         public Builder expiresAt(JsonNullable<OffsetDateTime> expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = expiresAt;
@@ -198,6 +257,9 @@ public class BalanceWithAssets {
         }
 
 
+        /**
+         * Name of the balance within the wallet
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -205,17 +267,29 @@ public class BalanceWithAssets {
         }
 
 
+        /**
+         * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+         * only breaks ties between balances that carry no expiry date
+         */
         public Builder priority(BigInteger priority) {
             Utils.checkNotNull(priority, "priority");
             this.priority = Optional.ofNullable(priority);
             return this;
         }
 
+        /**
+         * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+         * only breaks ties between balances that carry no expiry date
+         */
         public Builder priority(long priority) {
             this.priority = Optional.of(BigInteger.valueOf(priority));
             return this;
         }
 
+        /**
+         * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it
+         * only breaks ties between balances that carry no expiry date
+         */
         public Builder priority(Optional<? extends BigInteger> priority) {
             Utils.checkNotNull(priority, "priority");
             this.priority = priority;

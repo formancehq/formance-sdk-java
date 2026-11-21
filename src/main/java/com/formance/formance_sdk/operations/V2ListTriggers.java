@@ -12,7 +12,7 @@ import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
 import com.formance.formance_sdk.utils.Headers;
@@ -160,7 +160,7 @@ public class V2ListTriggers {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw V2Error.from(response);
+                    throw ErrorsV2Error.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

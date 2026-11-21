@@ -10,13 +10,21 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * ActivityRevertTransaction
+ * 
+ * <p>Arguments for the activity that reverts a ledger transaction
+ */
 public class ActivityRevertTransaction {
-
+    /**
+     * Identifier of the transaction to revert
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger holding the transaction
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -30,11 +38,17 @@ public class ActivityRevertTransaction {
         this.ledger = ledger;
     }
 
+    /**
+     * Identifier of the transaction to revert
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Name of the ledger holding the transaction
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -45,12 +59,18 @@ public class ActivityRevertTransaction {
     }
 
 
+    /**
+     * Identifier of the transaction to revert
+     */
     public ActivityRevertTransaction withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Name of the ledger holding the transaction
+     */
     public ActivityRevertTransaction withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -96,6 +116,9 @@ public class ActivityRevertTransaction {
         }
 
 
+        /**
+         * Identifier of the transaction to revert
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -103,6 +126,9 @@ public class ActivityRevertTransaction {
         }
 
 
+        /**
+         * Name of the ledger holding the transaction
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;

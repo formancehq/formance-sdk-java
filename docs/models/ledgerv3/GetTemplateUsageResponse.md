@@ -1,0 +1,8 @@
+# GetTemplateUsageResponse
+
+
+## Fields
+
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `data`                                                | [TemplateUsage](../../models/shared/TemplateUsage.md) | :heavy_check_mark:                                    | N/A                                                   |

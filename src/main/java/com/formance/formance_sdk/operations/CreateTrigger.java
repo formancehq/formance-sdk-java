@@ -11,7 +11,7 @@ import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.CreateTriggerResponse;
-import com.formance.formance_sdk.models.orchestration.Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsError;
 import com.formance.formance_sdk.models.orchestration.TriggerData;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
@@ -168,7 +168,7 @@ public class CreateTrigger {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw Error.from(response);
+                    throw ErrorsError.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

@@ -11,13 +11,21 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * Stats
+ * 
+ * <p>Aggregate counts for a ledger
+ */
 public class Stats {
-
+    /**
+     * Total number of accounts in the ledger
+     */
     @JsonProperty("accounts")
     private long accounts;
 
-
+    /**
+     * Total number of transactions in the ledger
+     */
     @JsonProperty("transactions")
     private long transactions;
 
@@ -31,11 +39,17 @@ public class Stats {
         this.transactions = transactions;
     }
 
+    /**
+     * Total number of accounts in the ledger
+     */
     @JsonIgnore
     public long accounts() {
         return accounts;
     }
 
+    /**
+     * Total number of transactions in the ledger
+     */
     @JsonIgnore
     public long transactions() {
         return transactions;
@@ -46,12 +60,18 @@ public class Stats {
     }
 
 
+    /**
+     * Total number of accounts in the ledger
+     */
     public Stats withAccounts(long accounts) {
         Utils.checkNotNull(accounts, "accounts");
         this.accounts = accounts;
         return this;
     }
 
+    /**
+     * Total number of transactions in the ledger
+     */
     public Stats withTransactions(long transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
@@ -97,6 +117,9 @@ public class Stats {
         }
 
 
+        /**
+         * Total number of accounts in the ledger
+         */
         public Builder accounts(long accounts) {
             Utils.checkNotNull(accounts, "accounts");
             this.accounts = accounts;
@@ -104,6 +127,9 @@ public class Stats {
         }
 
 
+        /**
+         * Total number of transactions in the ledger
+         */
         public Builder transactions(long transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;

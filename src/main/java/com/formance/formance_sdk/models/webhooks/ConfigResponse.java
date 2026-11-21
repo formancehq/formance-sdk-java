@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ConfigResponse {
-
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     @JsonProperty("data")
     private WebhooksConfig data;
 
@@ -23,6 +25,9 @@ public class ConfigResponse {
         this.data = data;
     }
 
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     @JsonIgnore
     public WebhooksConfig data() {
         return data;
@@ -33,6 +38,9 @@ public class ConfigResponse {
     }
 
 
+    /**
+     * A webhook endpoint together with the event types it subscribes to
+     */
     public ConfigResponse withData(WebhooksConfig data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class ConfigResponse {
         }
 
 
+        /**
+         * A webhook endpoint together with the event types it subscribes to
+         */
         public Builder data(WebhooksConfig data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

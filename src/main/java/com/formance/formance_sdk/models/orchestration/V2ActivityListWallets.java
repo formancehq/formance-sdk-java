@@ -13,9 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * V2ActivityListWallets
+ * 
+ * <p>Arguments for the activity that lists wallets
+ */
 public class V2ActivityListWallets {
-
+    /**
+     * Restrict the listing to wallets with this name
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
@@ -31,6 +37,9 @@ public class V2ActivityListWallets {
         this(Optional.empty());
     }
 
+    /**
+     * Restrict the listing to wallets with this name
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
@@ -41,6 +50,9 @@ public class V2ActivityListWallets {
     }
 
 
+    /**
+     * Restrict the listing to wallets with this name
+     */
     public V2ActivityListWallets withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -48,6 +60,9 @@ public class V2ActivityListWallets {
     }
 
 
+    /**
+     * Restrict the listing to wallets with this name
+     */
     public V2ActivityListWallets withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -89,12 +104,18 @@ public class V2ActivityListWallets {
         }
 
 
+        /**
+         * Restrict the listing to wallets with this name
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Restrict the listing to wallets with this name
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

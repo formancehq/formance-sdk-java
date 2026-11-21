@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class GetHoldsResponse {
-
+    /**
+     * Paginated cursor wrapping the list of holds
+     */
     @JsonProperty("cursor")
     private GetHoldsResponseCursor cursor;
 
@@ -23,6 +25,9 @@ public class GetHoldsResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of holds
+     */
     @JsonIgnore
     public GetHoldsResponseCursor cursor() {
         return cursor;
@@ -33,6 +38,9 @@ public class GetHoldsResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of holds
+     */
     public GetHoldsResponse withCursor(GetHoldsResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -74,6 +82,9 @@ public class GetHoldsResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of holds
+         */
         public Builder cursor(GetHoldsResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

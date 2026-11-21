@@ -1,0 +1,11 @@
+# TemporalStats
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `firstSeen`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `lastSeen`                                                                                | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `peakHours`                                                                               | List\<[HourBucket](../../models/shared/HourBucket.md)>                                    | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `transactionsPerDay`                                                                      | *Optional\<Double>*                                                                       | :heavy_minus_sign:                                                                        | N/A                                                                                       |

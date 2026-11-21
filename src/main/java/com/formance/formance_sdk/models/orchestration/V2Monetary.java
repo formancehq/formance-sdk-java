@@ -11,7 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.math.BigInteger;
 
-
+/**
+ * V2Monetary
+ * 
+ * <p>An amount together with the asset it is denominated in
+ */
 public class V2Monetary {
     /**
      * The amount of the monetary value.

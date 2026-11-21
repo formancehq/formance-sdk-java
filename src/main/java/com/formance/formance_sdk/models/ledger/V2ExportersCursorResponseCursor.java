@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2ExportersCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of exporters
+ */
 public class V2ExportersCursorResponseCursor {
 
     @JsonProperty("data")

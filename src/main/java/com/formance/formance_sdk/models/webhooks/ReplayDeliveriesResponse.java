@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ReplayDeliveriesResponse {
-
+    /**
+     * Outcome of a bulk replay, counting the deliveries it moved
+     */
     @JsonProperty("data")
     private ReplayDeliveriesResult data;
 
@@ -23,6 +25,9 @@ public class ReplayDeliveriesResponse {
         this.data = data;
     }
 
+    /**
+     * Outcome of a bulk replay, counting the deliveries it moved
+     */
     @JsonIgnore
     public ReplayDeliveriesResult data() {
         return data;
@@ -33,6 +38,9 @@ public class ReplayDeliveriesResponse {
     }
 
 
+    /**
+     * Outcome of a bulk replay, counting the deliveries it moved
+     */
     public ReplayDeliveriesResponse withData(ReplayDeliveriesResult data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class ReplayDeliveriesResponse {
         }
 
 
+        /**
+         * Outcome of a bulk replay, counting the deliveries it moved
+         */
         public Builder data(ReplayDeliveriesResult data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

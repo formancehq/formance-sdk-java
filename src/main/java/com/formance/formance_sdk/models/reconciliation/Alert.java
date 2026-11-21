@@ -25,54 +25,72 @@ import java.util.Optional;
  * reconciliation period. There is exactly one Alert per
  * (ruleID, fingerprint, periodID) — within a period, re-opens after resolve
  * flip the status back to OPEN in place; the same fingerprint failing in a
- * new period is a separate Alert. For a `continuous`-cadence rule there is
+ * new period is a separate Alert. For a `continuous` period type there is
  * one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).
  * The full history of transitions lives in alert_event
  * (see /alerts/{alertID}/events).
  */
 public class Alert {
-
+    /**
+     * Record of who acknowledged an alert and when
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ack")
     private Optional<? extends Ack> ack;
 
-
+    /**
+     * When the alert was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Data captured from the failing evaluation, explaining what broke
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("evidence")
     private Optional<? extends Map<String, Object>> evidence;
 
-
+    /**
+     * Identifies what is failing within the rule, so the same break dedupes to one alert
+     */
     @JsonProperty("fingerprint")
     private String fingerprint;
 
-
+    /**
+     * When the fingerprint first failed within this period
+     */
     @JsonProperty("firstSeenAt")
     private OffsetDateTime firstSeenAt;
 
-
+    /**
+     * Unique identifier of the alert
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Key/value pairs copied from the rule that raised the alert
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("labels")
     private Optional<? extends Map<String, String>> labels;
 
-
+    /**
+     * Identifier of the evaluation that last touched the alert
+     */
     @JsonProperty("lastEvaluationID")
     private String lastEvaluationID;
 
-
+    /**
+     * When the fingerprint most recently failed
+     */
     @JsonProperty("lastSeenAt")
     private OffsetDateTime lastSeenAt;
 
     /**
      * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a
-     * continuous-cadence rule).
+     * `continuous` period type).
      */
     @JsonProperty("occurrenceCount")
     private long occurrenceCount;
@@ -83,16 +101,22 @@ public class Alert {
     @JsonProperty("periodID")
     private String periodID;
 
-
+    /**
+     * Record of how an alert was resolved and by whom
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resolution")
     private Optional<? extends Resolution> resolution;
 
-
+    /**
+     * Identifier of the rule that raised the alert
+     */
     @JsonProperty("ruleID")
     private String ruleID;
 
-
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @JsonProperty("severity")
     private Severity severity;
 
@@ -105,11 +129,15 @@ public class Alert {
     @JsonProperty("snooze")
     private Optional<? extends Snooze> snooze;
 
-
+    /**
+     * Where the alert stands in its open, acknowledged, resolved lifecycle
+     */
     @JsonProperty("status")
     private Status status;
 
-
+    /**
+     * When the alert was last modified
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
@@ -189,49 +217,76 @@ public class Alert {
             status, updatedAt);
     }
 
+    /**
+     * Record of who acknowledged an alert and when
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Ack> ack() {
         return (Optional<Ack>) ack;
     }
 
+    /**
+     * When the alert was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Data captured from the failing evaluation, explaining what broke
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> evidence() {
         return (Optional<Map<String, Object>>) evidence;
     }
 
+    /**
+     * Identifies what is failing within the rule, so the same break dedupes to one alert
+     */
     @JsonIgnore
     public String fingerprint() {
         return fingerprint;
     }
 
+    /**
+     * When the fingerprint first failed within this period
+     */
     @JsonIgnore
     public OffsetDateTime firstSeenAt() {
         return firstSeenAt;
     }
 
+    /**
+     * Unique identifier of the alert
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Key/value pairs copied from the rule that raised the alert
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> labels() {
         return (Optional<Map<String, String>>) labels;
     }
 
+    /**
+     * Identifier of the evaluation that last touched the alert
+     */
     @JsonIgnore
     public String lastEvaluationID() {
         return lastEvaluationID;
     }
 
+    /**
+     * When the fingerprint most recently failed
+     */
     @JsonIgnore
     public OffsetDateTime lastSeenAt() {
         return lastSeenAt;
@@ -239,7 +294,7 @@ public class Alert {
 
     /**
      * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a
-     * continuous-cadence rule).
+     * `continuous` period type).
      */
     @JsonIgnore
     public long occurrenceCount() {
@@ -254,17 +309,26 @@ public class Alert {
         return periodID;
     }
 
+    /**
+     * Record of how an alert was resolved and by whom
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Resolution> resolution() {
         return (Optional<Resolution>) resolution;
     }
 
+    /**
+     * Identifier of the rule that raised the alert
+     */
     @JsonIgnore
     public String ruleID() {
         return ruleID;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     @JsonIgnore
     public Severity severity() {
         return severity;
@@ -281,11 +345,17 @@ public class Alert {
         return (Optional<Snooze>) snooze;
     }
 
+    /**
+     * Where the alert stands in its open, acknowledged, resolved lifecycle
+     */
     @JsonIgnore
     public Status status() {
         return status;
     }
 
+    /**
+     * When the alert was last modified
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
@@ -296,6 +366,9 @@ public class Alert {
     }
 
 
+    /**
+     * Record of who acknowledged an alert and when
+     */
     public Alert withAck(Ack ack) {
         Utils.checkNotNull(ack, "ack");
         this.ack = Optional.ofNullable(ack);
@@ -303,18 +376,27 @@ public class Alert {
     }
 
 
+    /**
+     * Record of who acknowledged an alert and when
+     */
     public Alert withAck(Optional<? extends Ack> ack) {
         Utils.checkNotNull(ack, "ack");
         this.ack = ack;
         return this;
     }
 
+    /**
+     * When the alert was created
+     */
     public Alert withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Data captured from the failing evaluation, explaining what broke
+     */
     public Alert withEvidence(Map<String, Object> evidence) {
         Utils.checkNotNull(evidence, "evidence");
         this.evidence = Optional.ofNullable(evidence);
@@ -322,30 +404,45 @@ public class Alert {
     }
 
 
+    /**
+     * Data captured from the failing evaluation, explaining what broke
+     */
     public Alert withEvidence(Optional<? extends Map<String, Object>> evidence) {
         Utils.checkNotNull(evidence, "evidence");
         this.evidence = evidence;
         return this;
     }
 
+    /**
+     * Identifies what is failing within the rule, so the same break dedupes to one alert
+     */
     public Alert withFingerprint(String fingerprint) {
         Utils.checkNotNull(fingerprint, "fingerprint");
         this.fingerprint = fingerprint;
         return this;
     }
 
+    /**
+     * When the fingerprint first failed within this period
+     */
     public Alert withFirstSeenAt(OffsetDateTime firstSeenAt) {
         Utils.checkNotNull(firstSeenAt, "firstSeenAt");
         this.firstSeenAt = firstSeenAt;
         return this;
     }
 
+    /**
+     * Unique identifier of the alert
+     */
     public Alert withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Key/value pairs copied from the rule that raised the alert
+     */
     public Alert withLabels(Map<String, String> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = Optional.ofNullable(labels);
@@ -353,18 +450,27 @@ public class Alert {
     }
 
 
+    /**
+     * Key/value pairs copied from the rule that raised the alert
+     */
     public Alert withLabels(Optional<? extends Map<String, String>> labels) {
         Utils.checkNotNull(labels, "labels");
         this.labels = labels;
         return this;
     }
 
+    /**
+     * Identifier of the evaluation that last touched the alert
+     */
     public Alert withLastEvaluationID(String lastEvaluationID) {
         Utils.checkNotNull(lastEvaluationID, "lastEvaluationID");
         this.lastEvaluationID = lastEvaluationID;
         return this;
     }
 
+    /**
+     * When the fingerprint most recently failed
+     */
     public Alert withLastSeenAt(OffsetDateTime lastSeenAt) {
         Utils.checkNotNull(lastSeenAt, "lastSeenAt");
         this.lastSeenAt = lastSeenAt;
@@ -373,7 +479,7 @@ public class Alert {
 
     /**
      * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a
-     * continuous-cadence rule).
+     * `continuous` period type).
      */
     public Alert withOccurrenceCount(long occurrenceCount) {
         Utils.checkNotNull(occurrenceCount, "occurrenceCount");
@@ -390,6 +496,9 @@ public class Alert {
         return this;
     }
 
+    /**
+     * Record of how an alert was resolved and by whom
+     */
     public Alert withResolution(Resolution resolution) {
         Utils.checkNotNull(resolution, "resolution");
         this.resolution = Optional.ofNullable(resolution);
@@ -397,18 +506,27 @@ public class Alert {
     }
 
 
+    /**
+     * Record of how an alert was resolved and by whom
+     */
     public Alert withResolution(Optional<? extends Resolution> resolution) {
         Utils.checkNotNull(resolution, "resolution");
         this.resolution = resolution;
         return this;
     }
 
+    /**
+     * Identifier of the rule that raised the alert
+     */
     public Alert withRuleID(String ruleID) {
         Utils.checkNotNull(ruleID, "ruleID");
         this.ruleID = ruleID;
         return this;
     }
 
+    /**
+     * How serious an alert is, used to route and prioritise notifications
+     */
     public Alert withSeverity(Severity severity) {
         Utils.checkNotNull(severity, "severity");
         this.severity = severity;
@@ -438,12 +556,18 @@ public class Alert {
         return this;
     }
 
+    /**
+     * Where the alert stands in its open, acknowledged, resolved lifecycle
+     */
     public Alert withStatus(Status status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * When the alert was last modified
+     */
     public Alert withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -554,12 +678,18 @@ public class Alert {
         }
 
 
+        /**
+         * Record of who acknowledged an alert and when
+         */
         public Builder ack(Ack ack) {
             Utils.checkNotNull(ack, "ack");
             this.ack = Optional.ofNullable(ack);
             return this;
         }
 
+        /**
+         * Record of who acknowledged an alert and when
+         */
         public Builder ack(Optional<? extends Ack> ack) {
             Utils.checkNotNull(ack, "ack");
             this.ack = ack;
@@ -567,6 +697,9 @@ public class Alert {
         }
 
 
+        /**
+         * When the alert was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -574,12 +707,18 @@ public class Alert {
         }
 
 
+        /**
+         * Data captured from the failing evaluation, explaining what broke
+         */
         public Builder evidence(Map<String, Object> evidence) {
             Utils.checkNotNull(evidence, "evidence");
             this.evidence = Optional.ofNullable(evidence);
             return this;
         }
 
+        /**
+         * Data captured from the failing evaluation, explaining what broke
+         */
         public Builder evidence(Optional<? extends Map<String, Object>> evidence) {
             Utils.checkNotNull(evidence, "evidence");
             this.evidence = evidence;
@@ -587,6 +726,9 @@ public class Alert {
         }
 
 
+        /**
+         * Identifies what is failing within the rule, so the same break dedupes to one alert
+         */
         public Builder fingerprint(String fingerprint) {
             Utils.checkNotNull(fingerprint, "fingerprint");
             this.fingerprint = fingerprint;
@@ -594,6 +736,9 @@ public class Alert {
         }
 
 
+        /**
+         * When the fingerprint first failed within this period
+         */
         public Builder firstSeenAt(OffsetDateTime firstSeenAt) {
             Utils.checkNotNull(firstSeenAt, "firstSeenAt");
             this.firstSeenAt = firstSeenAt;
@@ -601,6 +746,9 @@ public class Alert {
         }
 
 
+        /**
+         * Unique identifier of the alert
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -608,12 +756,18 @@ public class Alert {
         }
 
 
+        /**
+         * Key/value pairs copied from the rule that raised the alert
+         */
         public Builder labels(Map<String, String> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = Optional.ofNullable(labels);
             return this;
         }
 
+        /**
+         * Key/value pairs copied from the rule that raised the alert
+         */
         public Builder labels(Optional<? extends Map<String, String>> labels) {
             Utils.checkNotNull(labels, "labels");
             this.labels = labels;
@@ -621,6 +775,9 @@ public class Alert {
         }
 
 
+        /**
+         * Identifier of the evaluation that last touched the alert
+         */
         public Builder lastEvaluationID(String lastEvaluationID) {
             Utils.checkNotNull(lastEvaluationID, "lastEvaluationID");
             this.lastEvaluationID = lastEvaluationID;
@@ -628,6 +785,9 @@ public class Alert {
         }
 
 
+        /**
+         * When the fingerprint most recently failed
+         */
         public Builder lastSeenAt(OffsetDateTime lastSeenAt) {
             Utils.checkNotNull(lastSeenAt, "lastSeenAt");
             this.lastSeenAt = lastSeenAt;
@@ -637,7 +797,7 @@ public class Alert {
 
         /**
          * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a
-         * continuous-cadence rule).
+         * `continuous` period type).
          */
         public Builder occurrenceCount(long occurrenceCount) {
             Utils.checkNotNull(occurrenceCount, "occurrenceCount");
@@ -656,12 +816,18 @@ public class Alert {
         }
 
 
+        /**
+         * Record of how an alert was resolved and by whom
+         */
         public Builder resolution(Resolution resolution) {
             Utils.checkNotNull(resolution, "resolution");
             this.resolution = Optional.ofNullable(resolution);
             return this;
         }
 
+        /**
+         * Record of how an alert was resolved and by whom
+         */
         public Builder resolution(Optional<? extends Resolution> resolution) {
             Utils.checkNotNull(resolution, "resolution");
             this.resolution = resolution;
@@ -669,6 +835,9 @@ public class Alert {
         }
 
 
+        /**
+         * Identifier of the rule that raised the alert
+         */
         public Builder ruleID(String ruleID) {
             Utils.checkNotNull(ruleID, "ruleID");
             this.ruleID = ruleID;
@@ -676,6 +845,9 @@ public class Alert {
         }
 
 
+        /**
+         * How serious an alert is, used to route and prioritise notifications
+         */
         public Builder severity(Severity severity) {
             Utils.checkNotNull(severity, "severity");
             this.severity = severity;
@@ -706,6 +878,9 @@ public class Alert {
         }
 
 
+        /**
+         * Where the alert stands in its open, acknowledged, resolved lifecycle
+         */
         public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -713,6 +888,9 @@ public class Alert {
         }
 
 
+        /**
+         * When the alert was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

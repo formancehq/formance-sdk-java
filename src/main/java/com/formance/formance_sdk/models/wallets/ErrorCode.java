@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * ErrorCode
+ * 
+ * <p>Machine-readable error code identifying the failure
+ */
 public enum ErrorCode {
     VALIDATION("VALIDATION"),
     INTERNAL_ERROR("INTERNAL_ERROR"),

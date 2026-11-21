@@ -20,16 +20,22 @@ import java.util.Optional;
  * <p>Mute an alert's notifications until `until` (which must be in the future).
  */
 public class SnoozeAlertRequest {
-
+    /**
+     * Who is snoozing the alert
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * Free-text note to record with the snooze
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private Optional<String> note;
 
-
+    /**
+     * When the mute expires and notifications resume. Must be in the future
+     */
     @JsonProperty("until")
     private OffsetDateTime until;
 
@@ -52,16 +58,25 @@ public class SnoozeAlertRequest {
         this(by, Optional.empty(), until);
     }
 
+    /**
+     * Who is snoozing the alert
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * Free-text note to record with the snooze
+     */
     @JsonIgnore
     public Optional<String> note() {
         return note;
     }
 
+    /**
+     * When the mute expires and notifications resume. Must be in the future
+     */
     @JsonIgnore
     public OffsetDateTime until() {
         return until;
@@ -72,12 +87,18 @@ public class SnoozeAlertRequest {
     }
 
 
+    /**
+     * Who is snoozing the alert
+     */
     public SnoozeAlertRequest withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * Free-text note to record with the snooze
+     */
     public SnoozeAlertRequest withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = Optional.ofNullable(note);
@@ -85,12 +106,18 @@ public class SnoozeAlertRequest {
     }
 
 
+    /**
+     * Free-text note to record with the snooze
+     */
     public SnoozeAlertRequest withNote(Optional<String> note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
         return this;
     }
 
+    /**
+     * When the mute expires and notifications resume. Must be in the future
+     */
     public SnoozeAlertRequest withUntil(OffsetDateTime until) {
         Utils.checkNotNull(until, "until");
         this.until = until;
@@ -140,6 +167,9 @@ public class SnoozeAlertRequest {
         }
 
 
+        /**
+         * Who is snoozing the alert
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -147,12 +177,18 @@ public class SnoozeAlertRequest {
         }
 
 
+        /**
+         * Free-text note to record with the snooze
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = Optional.ofNullable(note);
             return this;
         }
 
+        /**
+         * Free-text note to record with the snooze
+         */
         public Builder note(Optional<String> note) {
             Utils.checkNotNull(note, "note");
             this.note = note;
@@ -160,6 +196,9 @@ public class SnoozeAlertRequest {
         }
 
 
+        /**
+         * When the mute expires and notifications resume. Must be in the future
+         */
         public Builder until(OffsetDateTime until) {
             Utils.checkNotNull(until, "until");
             this.until = until;

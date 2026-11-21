@@ -25,44 +25,63 @@ import java.util.Optional;
  * <p>Transaction structure as it appears in log payloads
  */
 public class V2LogTransaction {
-
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonProperty("id")
     private BigInteger id;
 
-
+    /**
+     * The request time: when the transaction was actually written to the ledger. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("insertedAt")
     private Optional<OffsetDateTime> insertedAt;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes;
 
-
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonProperty("postings")
     private List<V2Posting> postings;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitEffectiveVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes;
 
-
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("preCommitVolumes")
     private Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes;
 
-
+    /**
+     * Optional caller-supplied identifier, unique within the ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private Optional<String> reference;
@@ -73,7 +92,9 @@ public class V2LogTransaction {
     @JsonProperty("reverted")
     private boolean reverted;
 
-
+    /**
+     * When the transaction was reverted, on the request-time axis
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("revertedAt")
     private Optional<OffsetDateTime> revertedAt;
@@ -85,11 +106,16 @@ public class V2LogTransaction {
     @JsonProperty("template")
     private Optional<String> template;
 
-
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonProperty("timestamp")
     private OffsetDateTime timestamp;
 
-
+    /**
+     * When the transaction row was last modified
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedAt")
     private Optional<OffsetDateTime> updatedAt;
@@ -154,50 +180,78 @@ public class V2LogTransaction {
             timestamp, Optional.empty());
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     @JsonIgnore
     public BigInteger id() {
         return id;
     }
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> insertedAt() {
         return insertedAt;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonIgnore
     public Map<String, String> metadata() {
         return metadata;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) postCommitEffectiveVolumes;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> postCommitVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) postCommitVolumes;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     @JsonIgnore
     public List<V2Posting> postings() {
         return postings;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) preCommitEffectiveVolumes;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Map<String, V2Volume>>> preCommitVolumes() {
         return (Optional<Map<String, Map<String, V2Volume>>>) preCommitVolumes;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger
+     */
     @JsonIgnore
     public Optional<String> reference() {
         return reference;
@@ -211,6 +265,9 @@ public class V2LogTransaction {
         return reverted;
     }
 
+    /**
+     * When the transaction was reverted, on the request-time axis
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> revertedAt() {
         return revertedAt;
@@ -224,11 +281,18 @@ public class V2LogTransaction {
         return template;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     @JsonIgnore
     public OffsetDateTime timestamp() {
         return timestamp;
     }
 
+    /**
+     * When the transaction row was last modified
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> updatedAt() {
         return updatedAt;
@@ -239,17 +303,27 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2LogTransaction withId(long id) {
         this.id = BigInteger.valueOf(id);
         return this;
     }
 
+    /**
+     * Unique sequential identifier for this transaction within the ledger
+     */
     public V2LogTransaction withId(BigInteger id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2LogTransaction withInsertedAt(OffsetDateTime insertedAt) {
         Utils.checkNotNull(insertedAt, "insertedAt");
         this.insertedAt = Optional.ofNullable(insertedAt);
@@ -257,18 +331,28 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * The request time: when the transaction was actually written to the ledger. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2LogTransaction withInsertedAt(Optional<OffsetDateTime> insertedAt) {
         Utils.checkNotNull(insertedAt, "insertedAt");
         this.insertedAt = insertedAt;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2LogTransaction withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPostCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> postCommitEffectiveVolumes) {
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         this.postCommitEffectiveVolumes = Optional.ofNullable(postCommitEffectiveVolumes);
@@ -276,12 +360,18 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPostCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes) {
         Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
         this.postCommitEffectiveVolumes = postCommitEffectiveVolumes;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPostCommitVolumes(Map<String, Map<String, V2Volume>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
@@ -289,18 +379,27 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPostCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes) {
         Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
         this.postCommitVolumes = postCommitVolumes;
         return this;
     }
 
+    /**
+     * The fund movements making up the transaction
+     */
     public V2LogTransaction withPostings(List<V2Posting> postings) {
         Utils.checkNotNull(postings, "postings");
         this.postings = postings;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPreCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> preCommitEffectiveVolumes) {
         Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
         this.preCommitEffectiveVolumes = Optional.ofNullable(preCommitEffectiveVolumes);
@@ -308,12 +407,18 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPreCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes) {
         Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
         this.preCommitEffectiveVolumes = preCommitEffectiveVolumes;
         return this;
     }
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPreCommitVolumes(Map<String, Map<String, V2Volume>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
@@ -321,12 +426,18 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Volumes aggregated per account and per asset
+     */
     public V2LogTransaction withPreCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes) {
         Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
         this.preCommitVolumes = preCommitVolumes;
         return this;
     }
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger
+     */
     public V2LogTransaction withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = Optional.ofNullable(reference);
@@ -334,6 +445,9 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * Optional caller-supplied identifier, unique within the ledger
+     */
     public V2LogTransaction withReference(Optional<String> reference) {
         Utils.checkNotNull(reference, "reference");
         this.reference = reference;
@@ -349,6 +463,9 @@ public class V2LogTransaction {
         return this;
     }
 
+    /**
+     * When the transaction was reverted, on the request-time axis
+     */
     public V2LogTransaction withRevertedAt(OffsetDateTime revertedAt) {
         Utils.checkNotNull(revertedAt, "revertedAt");
         this.revertedAt = Optional.ofNullable(revertedAt);
@@ -356,6 +473,9 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * When the transaction was reverted, on the request-time axis
+     */
     public V2LogTransaction withRevertedAt(Optional<OffsetDateTime> revertedAt) {
         Utils.checkNotNull(revertedAt, "revertedAt");
         this.revertedAt = revertedAt;
@@ -381,12 +501,19 @@ public class V2LogTransaction {
         return this;
     }
 
+    /**
+     * The transaction time: when the transaction is considered to have occurred. See
+     * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+     */
     public V2LogTransaction withTimestamp(OffsetDateTime timestamp) {
         Utils.checkNotNull(timestamp, "timestamp");
         this.timestamp = timestamp;
         return this;
     }
 
+    /**
+     * When the transaction row was last modified
+     */
     public V2LogTransaction withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = Optional.ofNullable(updatedAt);
@@ -394,6 +521,9 @@ public class V2LogTransaction {
     }
 
 
+    /**
+     * When the transaction row was last modified
+     */
     public V2LogTransaction withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -491,11 +621,17 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(long id) {
             this.id = BigInteger.valueOf(id);
             return this;
         }
 
+        /**
+         * Unique sequential identifier for this transaction within the ledger
+         */
         public Builder id(BigInteger id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -503,12 +639,20 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * The request time: when the transaction was actually written to the ledger. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder insertedAt(OffsetDateTime insertedAt) {
             Utils.checkNotNull(insertedAt, "insertedAt");
             this.insertedAt = Optional.ofNullable(insertedAt);
             return this;
         }
 
+        /**
+         * The request time: when the transaction was actually written to the ledger. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder insertedAt(Optional<OffsetDateTime> insertedAt) {
             Utils.checkNotNull(insertedAt, "insertedAt");
             this.insertedAt = insertedAt;
@@ -516,6 +660,9 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -523,12 +670,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> postCommitEffectiveVolumes) {
             Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
             this.postCommitEffectiveVolumes = Optional.ofNullable(postCommitEffectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitEffectiveVolumes) {
             Utils.checkNotNull(postCommitEffectiveVolumes, "postCommitEffectiveVolumes");
             this.postCommitEffectiveVolumes = postCommitEffectiveVolumes;
@@ -536,12 +689,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Map<String, Map<String, V2Volume>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = Optional.ofNullable(postCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder postCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> postCommitVolumes) {
             Utils.checkNotNull(postCommitVolumes, "postCommitVolumes");
             this.postCommitVolumes = postCommitVolumes;
@@ -549,6 +708,9 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * The fund movements making up the transaction
+         */
         public Builder postings(List<V2Posting> postings) {
             Utils.checkNotNull(postings, "postings");
             this.postings = postings;
@@ -556,12 +718,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitEffectiveVolumes(Map<String, Map<String, V2Volume>> preCommitEffectiveVolumes) {
             Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
             this.preCommitEffectiveVolumes = Optional.ofNullable(preCommitEffectiveVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitEffectiveVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitEffectiveVolumes) {
             Utils.checkNotNull(preCommitEffectiveVolumes, "preCommitEffectiveVolumes");
             this.preCommitEffectiveVolumes = preCommitEffectiveVolumes;
@@ -569,12 +737,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Map<String, Map<String, V2Volume>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = Optional.ofNullable(preCommitVolumes);
             return this;
         }
 
+        /**
+         * Volumes aggregated per account and per asset
+         */
         public Builder preCommitVolumes(Optional<? extends Map<String, Map<String, V2Volume>>> preCommitVolumes) {
             Utils.checkNotNull(preCommitVolumes, "preCommitVolumes");
             this.preCommitVolumes = preCommitVolumes;
@@ -582,12 +756,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger
+         */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
             return this;
         }
 
+        /**
+         * Optional caller-supplied identifier, unique within the ledger
+         */
         public Builder reference(Optional<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
@@ -605,12 +785,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * When the transaction was reverted, on the request-time axis
+         */
         public Builder revertedAt(OffsetDateTime revertedAt) {
             Utils.checkNotNull(revertedAt, "revertedAt");
             this.revertedAt = Optional.ofNullable(revertedAt);
             return this;
         }
 
+        /**
+         * When the transaction was reverted, on the request-time axis
+         */
         public Builder revertedAt(Optional<OffsetDateTime> revertedAt) {
             Utils.checkNotNull(revertedAt, "revertedAt");
             this.revertedAt = revertedAt;
@@ -637,6 +823,10 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * The transaction time: when the transaction is considered to have occurred. See
+         * [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+         */
         public Builder timestamp(OffsetDateTime timestamp) {
             Utils.checkNotNull(timestamp, "timestamp");
             this.timestamp = timestamp;
@@ -644,12 +834,18 @@ public class V2LogTransaction {
         }
 
 
+        /**
+         * When the transaction row was last modified
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = Optional.ofNullable(updatedAt);
             return this;
         }
 
+        /**
+         * When the transaction row was last modified
+         */
         public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;

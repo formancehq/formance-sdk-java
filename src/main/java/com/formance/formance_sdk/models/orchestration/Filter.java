@@ -14,7 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * Filter
+ * 
+ * <p>How the trigger's filter evaluated against the sample event
+ */
 public class Filter {
 
     @JsonInclude(Include.NON_ABSENT)

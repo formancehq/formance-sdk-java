@@ -10,19 +10,19 @@ public class Payments {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PaymentsV1 v1;
-    private final V3 v3;
+    private final PaymentsV3 v3;
 
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.v1 = new PaymentsV1(this.sdkConfiguration);
-        this.v3 = new V3(this.sdkConfiguration);
+        this.v3 = new PaymentsV3(this.sdkConfiguration);
     }
 
     public final PaymentsV1 v1() {
         return v1;
     }
 
-    public final V3 v3() {
+    public final PaymentsV3 v3() {
         return v3;
     }
 

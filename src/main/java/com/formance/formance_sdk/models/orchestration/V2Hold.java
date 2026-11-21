@@ -15,13 +15,21 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2Hold
+ * 
+ * <p>Funds locked by a pending wallet debit, later either confirmed or voided
+ */
 public class V2Hold {
-
+    /**
+     * Human-readable reason the funds were held
+     */
     @JsonProperty("description")
     private String description;
 
-
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
     private Optional<? extends V2Subject> destination;
@@ -73,11 +81,17 @@ public class V2Hold {
             metadata, walletID);
     }
 
+    /**
+     * Human-readable reason the funds were held
+     */
     @JsonIgnore
     public String description() {
         return description;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2Subject> destination() {
@@ -113,12 +127,18 @@ public class V2Hold {
     }
 
 
+    /**
+     * Human-readable reason the funds were held
+     */
     public V2Hold withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public V2Hold withDestination(V2Subject destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = Optional.ofNullable(destination);
@@ -126,6 +146,9 @@ public class V2Hold {
     }
 
 
+    /**
+     * The counterparty of a wallet movement, either a ledger account or another wallet
+     */
     public V2Hold withDestination(Optional<? extends V2Subject> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
@@ -211,6 +234,9 @@ public class V2Hold {
         }
 
 
+        /**
+         * Human-readable reason the funds were held
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -218,12 +244,18 @@ public class V2Hold {
         }
 
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(V2Subject destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
             return this;
         }
 
+        /**
+         * The counterparty of a wallet movement, either a ledger account or another wallet
+         */
         public Builder destination(Optional<? extends V2Subject> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;

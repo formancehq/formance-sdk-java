@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class ReconciliationsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of reconciliations
+     */
     @JsonProperty("cursor")
     private ReconciliationsCursorResponseCursor cursor;
 
@@ -27,6 +29,9 @@ public class ReconciliationsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of reconciliations
+     */
     @JsonIgnore
     public ReconciliationsCursorResponseCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class ReconciliationsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of reconciliations
+     */
     public ReconciliationsCursorResponse withCursor(ReconciliationsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class ReconciliationsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of reconciliations
+         */
         public Builder cursor(ReconciliationsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

@@ -1,0 +1,9 @@
+# NumscriptVersionEntry
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_minus_sign:                                                                        | When this version was stored (ISO 8601 format)                                            |                                                                                           |
+| `version`                                                                                 | *String*                                                                                  | :heavy_check_mark:                                                                        | Stored semver version string (e.g. "1.0.0")                                               | 1.0.0                                                                                     |

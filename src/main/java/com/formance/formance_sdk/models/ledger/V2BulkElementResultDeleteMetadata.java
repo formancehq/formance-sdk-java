@@ -13,11 +13,15 @@ import java.lang.String;
 
 
 public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
-
+    /**
+     * Identifier of the log entry produced by this element
+     */
     @JsonProperty("logID")
     private long logID;
 
-
+    /**
+     * The action this result corresponds to
+     */
     @JsonProperty("responseType")
     private String responseType;
 
@@ -31,11 +35,17 @@ public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
         this.responseType = responseType;
     }
 
+    /**
+     * Identifier of the log entry produced by this element
+     */
     @JsonIgnore
     public long logID() {
         return logID;
     }
 
+    /**
+     * The action this result corresponds to
+     */
     @JsonIgnore
     @Override
     public String responseType() {
@@ -47,12 +57,18 @@ public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
     }
 
 
+    /**
+     * Identifier of the log entry produced by this element
+     */
     public V2BulkElementResultDeleteMetadata withLogID(long logID) {
         Utils.checkNotNull(logID, "logID");
         this.logID = logID;
         return this;
     }
 
+    /**
+     * The action this result corresponds to
+     */
     public V2BulkElementResultDeleteMetadata withResponseType(String responseType) {
         Utils.checkNotNull(responseType, "responseType");
         this.responseType = responseType;
@@ -98,6 +114,9 @@ public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
         }
 
 
+        /**
+         * Identifier of the log entry produced by this element
+         */
         public Builder logID(long logID) {
             Utils.checkNotNull(logID, "logID");
             this.logID = logID;
@@ -105,6 +124,9 @@ public class V2BulkElementResultDeleteMetadata implements V2BulkElementResult {
         }
 
 
+        /**
+         * The action this result corresponds to
+         */
         public Builder responseType(String responseType) {
             Utils.checkNotNull(responseType, "responseType");
             this.responseType = responseType;
