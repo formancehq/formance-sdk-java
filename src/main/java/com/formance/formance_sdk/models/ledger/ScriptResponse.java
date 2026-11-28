@@ -16,22 +16,31 @@ import java.util.Optional;
 
 
 public class ScriptResponse {
-
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
     private Optional<String> details;
 
-
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
     private Optional<? extends ErrorsEnum> errorCode;
 
-
+    /**
+     * Human-readable description of the error
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
     private Optional<String> errorMessage;
 
-
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction")
     private Optional<? extends Transaction> transaction;
@@ -57,22 +66,35 @@ public class ScriptResponse {
             Optional.empty());
     }
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     @JsonIgnore
     public Optional<String> details() {
         return details;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ErrorsEnum> errorCode() {
         return (Optional<ErrorsEnum>) errorCode;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @JsonIgnore
     public Optional<String> errorMessage() {
         return errorMessage;
     }
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Transaction> transaction() {
@@ -84,6 +106,10 @@ public class ScriptResponse {
     }
 
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     public ScriptResponse withDetails(String details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
@@ -91,12 +117,19 @@ public class ScriptResponse {
     }
 
 
+    /**
+     * Optional link carrying additional context about the error, such as a Numscript playground URL
+     * reproducing it
+     */
     public ScriptResponse withDetails(Optional<String> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     public ScriptResponse withErrorCode(ErrorsEnum errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = Optional.ofNullable(errorCode);
@@ -104,12 +137,18 @@ public class ScriptResponse {
     }
 
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     public ScriptResponse withErrorCode(Optional<? extends ErrorsEnum> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     public ScriptResponse withErrorMessage(String errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = Optional.ofNullable(errorMessage);
@@ -117,12 +156,18 @@ public class ScriptResponse {
     }
 
 
+    /**
+     * Human-readable description of the error
+     */
     public ScriptResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
         return this;
     }
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     public ScriptResponse withTransaction(Transaction transaction) {
         Utils.checkNotNull(transaction, "transaction");
         this.transaction = Optional.ofNullable(transaction);
@@ -130,6 +175,9 @@ public class ScriptResponse {
     }
 
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings and metadata
+     */
     public ScriptResponse withTransaction(Optional<? extends Transaction> transaction) {
         Utils.checkNotNull(transaction, "transaction");
         this.transaction = transaction;
@@ -184,12 +232,20 @@ public class ScriptResponse {
         }
 
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Builder details(String details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
         }
 
+        /**
+         * Optional link carrying additional context about the error, such as a Numscript playground URL
+         * reproducing it
+         */
         public Builder details(Optional<String> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
@@ -197,12 +253,18 @@ public class ScriptResponse {
         }
 
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Builder errorCode(ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = Optional.ofNullable(errorCode);
             return this;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Builder errorCode(Optional<? extends ErrorsEnum> errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
@@ -210,12 +272,18 @@ public class ScriptResponse {
         }
 
 
+        /**
+         * Human-readable description of the error
+         */
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = Optional.ofNullable(errorMessage);
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Builder errorMessage(Optional<String> errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;
@@ -223,12 +291,18 @@ public class ScriptResponse {
         }
 
 
+        /**
+         * A transaction recorded in the ledger, carrying its postings and metadata
+         */
         public Builder transaction(Transaction transaction) {
             Utils.checkNotNull(transaction, "transaction");
             this.transaction = Optional.ofNullable(transaction);
             return this;
         }
 
+        /**
+         * A transaction recorded in the ledger, carrying its postings and metadata
+         */
         public Builder transaction(Optional<? extends Transaction> transaction) {
             Utils.checkNotNull(transaction, "transaction");
             this.transaction = transaction;

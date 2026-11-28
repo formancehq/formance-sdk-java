@@ -39,7 +39,9 @@ public class GetDeliveriesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=pageSize")
     private Optional<Long> pageSize;
 
-
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=status")
     private Optional<? extends DeliveryStatus> status;
 
@@ -95,6 +97,9 @@ public class GetDeliveriesRequest {
         return pageSize;
     }
 
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DeliveryStatus> status() {
@@ -171,6 +176,9 @@ public class GetDeliveriesRequest {
         return this;
     }
 
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     public GetDeliveriesRequest withStatus(DeliveryStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
@@ -178,6 +186,9 @@ public class GetDeliveriesRequest {
     }
 
 
+    /**
+     * Current state of a delivery in its retry lifecycle
+     */
     public GetDeliveriesRequest withStatus(Optional<? extends DeliveryStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -305,12 +316,18 @@ public class GetDeliveriesRequest {
         }
 
 
+        /**
+         * Current state of a delivery in its retry lifecycle
+         */
         public Builder status(DeliveryStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * Current state of a delivery in its retry lifecycle
+         */
         public Builder status(Optional<? extends DeliveryStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;

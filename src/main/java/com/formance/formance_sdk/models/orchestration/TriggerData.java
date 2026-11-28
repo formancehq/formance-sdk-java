@@ -18,31 +18,43 @@ import java.util.Optional;
 
 
 public class TriggerData {
-
+    /**
+     * Type of event that fires this trigger
+     */
     @JsonProperty("event")
     private String event;
 
-
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<String> filter;
 
-
+    /**
+     * Human-readable name for the trigger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends Map<String, Object>> vars;
 
-
+    /**
+     * Version of the trigger definition
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
     private Optional<String> version;
 
-
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     @JsonProperty("workflowID")
     private String workflowID;
 
@@ -75,32 +87,50 @@ public class TriggerData {
             Optional.empty(), Optional.empty(), workflowID);
     }
 
+    /**
+     * Type of event that fires this trigger
+     */
     @JsonIgnore
     public String event() {
         return event;
     }
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     @JsonIgnore
     public Optional<String> filter() {
         return filter;
     }
 
+    /**
+     * Human-readable name for the trigger
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> vars() {
         return (Optional<Map<String, Object>>) vars;
     }
 
+    /**
+     * Version of the trigger definition
+     */
     @JsonIgnore
     public Optional<String> version() {
         return version;
     }
 
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     @JsonIgnore
     public String workflowID() {
         return workflowID;
@@ -111,12 +141,18 @@ public class TriggerData {
     }
 
 
+    /**
+     * Type of event that fires this trigger
+     */
     public TriggerData withEvent(String event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
         return this;
     }
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     public TriggerData withFilter(String filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
@@ -124,12 +160,18 @@ public class TriggerData {
     }
 
 
+    /**
+     * Expression evaluated against the event. The workflow runs only when it matches
+     */
     public TriggerData withFilter(Optional<String> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
     }
 
+    /**
+     * Human-readable name for the trigger
+     */
     public TriggerData withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -137,12 +179,18 @@ public class TriggerData {
     }
 
 
+    /**
+     * Human-readable name for the trigger
+     */
     public TriggerData withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     public TriggerData withVars(Map<String, Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
@@ -150,12 +198,18 @@ public class TriggerData {
     }
 
 
+    /**
+     * Expressions evaluated against the event to build the workflow's input variables
+     */
     public TriggerData withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
         return this;
     }
 
+    /**
+     * Version of the trigger definition
+     */
     public TriggerData withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = Optional.ofNullable(version);
@@ -163,12 +217,18 @@ public class TriggerData {
     }
 
 
+    /**
+     * Version of the trigger definition
+     */
     public TriggerData withVersion(Optional<String> version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
         return this;
     }
 
+    /**
+     * Identifier of the workflow to run when the trigger fires
+     */
     public TriggerData withWorkflowID(String workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
@@ -231,6 +291,9 @@ public class TriggerData {
         }
 
 
+        /**
+         * Type of event that fires this trigger
+         */
         public Builder event(String event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
@@ -238,12 +301,18 @@ public class TriggerData {
         }
 
 
+        /**
+         * Expression evaluated against the event. The workflow runs only when it matches
+         */
         public Builder filter(String filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
         }
 
+        /**
+         * Expression evaluated against the event. The workflow runs only when it matches
+         */
         public Builder filter(Optional<String> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
@@ -251,12 +320,18 @@ public class TriggerData {
         }
 
 
+        /**
+         * Human-readable name for the trigger
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Human-readable name for the trigger
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -264,12 +339,18 @@ public class TriggerData {
         }
 
 
+        /**
+         * Expressions evaluated against the event to build the workflow's input variables
+         */
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
+        /**
+         * Expressions evaluated against the event to build the workflow's input variables
+         */
         public Builder vars(Optional<? extends Map<String, Object>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;
@@ -277,12 +358,18 @@ public class TriggerData {
         }
 
 
+        /**
+         * Version of the trigger definition
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = Optional.ofNullable(version);
             return this;
         }
 
+        /**
+         * Version of the trigger definition
+         */
         public Builder version(Optional<String> version) {
             Utils.checkNotNull(version, "version");
             this.version = version;
@@ -290,6 +377,9 @@ public class TriggerData {
         }
 
 
+        /**
+         * Identifier of the workflow to run when the trigger fires
+         */
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;

@@ -5,6 +5,8 @@ package com.formance.formance_sdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.SpeakeasyMetadata;
 import com.formance.formance_sdk.utils.Utils;
 import java.lang.Boolean;
@@ -18,6 +20,14 @@ import java.util.Optional;
 
 
 public class V2RunQueryRequest {
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=Formance-Bigint-As-String")
+    private Optional<Boolean> formanceBigintAsString;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private V2RunQueryRequestBody requestBody;
@@ -86,6 +96,7 @@ public class V2RunQueryRequest {
 
     @JsonCreator
     public V2RunQueryRequest(
+            Optional<Boolean> formanceBigintAsString,
             V2RunQueryRequestBody requestBody,
             Optional<String> cursor,
             Optional<String> expand,
@@ -97,6 +108,7 @@ public class V2RunQueryRequest {
             Optional<Boolean> reverse,
             String schemaVersion,
             Optional<String> sort) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
         Utils.checkNotNull(requestBody, "requestBody");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(expand, "expand");
@@ -108,6 +120,7 @@ public class V2RunQueryRequest {
         Utils.checkNotNull(reverse, "reverse");
         Utils.checkNotNull(schemaVersion, "schemaVersion");
         Utils.checkNotNull(sort, "sort");
+        this.formanceBigintAsString = formanceBigintAsString;
         this.requestBody = requestBody;
         this.cursor = cursor;
         this.expand = expand;
@@ -126,10 +139,20 @@ public class V2RunQueryRequest {
             String id,
             String ledger,
             String schemaVersion) {
-        this(requestBody, Optional.empty(), Optional.empty(),
-            id, ledger, Optional.empty(),
+        this(Optional.empty(), requestBody, Optional.empty(),
+            Optional.empty(), id, ledger,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            schemaVersion, Optional.empty());
+            Optional.empty(), schemaVersion, Optional.empty());
+    }
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    @JsonIgnore
+    public Optional<Boolean> formanceBigintAsString() {
+        return formanceBigintAsString;
     }
 
     @JsonIgnore
@@ -221,6 +244,29 @@ public class V2RunQueryRequest {
         return new Builder();
     }
 
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2RunQueryRequest withFormanceBigintAsString(boolean formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+        return this;
+    }
+
+
+    /**
+     * When set to `true`, all bigint values in the response will be serialized
+     * as strings instead of JSON numbers.
+     * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+     */
+    public V2RunQueryRequest withFormanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+        Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+        this.formanceBigintAsString = formanceBigintAsString;
+        return this;
+    }
 
     public V2RunQueryRequest withRequestBody(V2RunQueryRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
@@ -396,6 +442,7 @@ public class V2RunQueryRequest {
         }
         V2RunQueryRequest other = (V2RunQueryRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.formanceBigintAsString, other.formanceBigintAsString) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.expand, other.expand) &&
@@ -412,15 +459,16 @@ public class V2RunQueryRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestBody, cursor, expand,
-            id, ledger, order,
-            pageSize, pit, reverse,
-            schemaVersion, sort);
+            formanceBigintAsString, requestBody, cursor,
+            expand, id, ledger,
+            order, pageSize, pit,
+            reverse, schemaVersion, sort);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2RunQueryRequest.class,
+                "formanceBigintAsString", formanceBigintAsString,
                 "requestBody", requestBody,
                 "cursor", cursor,
                 "expand", expand,
@@ -436,6 +484,8 @@ public class V2RunQueryRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<Boolean> formanceBigintAsString;
 
         private V2RunQueryRequestBody requestBody;
 
@@ -462,6 +512,29 @@ public class V2RunQueryRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(boolean formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = Optional.ofNullable(formanceBigintAsString);
+            return this;
+        }
+
+        /**
+         * When set to `true`, all bigint values in the response will be serialized
+         * as strings instead of JSON numbers.
+         * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+         */
+        public Builder formanceBigintAsString(Optional<Boolean> formanceBigintAsString) {
+            Utils.checkNotNull(formanceBigintAsString, "formanceBigintAsString");
+            this.formanceBigintAsString = formanceBigintAsString;
+            return this;
         }
 
 
@@ -633,13 +706,22 @@ public class V2RunQueryRequest {
         }
 
         public V2RunQueryRequest build() {
+            if (formanceBigintAsString == null) {
+                formanceBigintAsString = _SINGLETON_VALUE_FormanceBigintAsString.value();
+            }
 
             return new V2RunQueryRequest(
-                requestBody, cursor, expand,
-                id, ledger, order,
-                pageSize, pit, reverse,
-                schemaVersion, sort);
+                formanceBigintAsString, requestBody, cursor,
+                expand, id, ledger,
+                order, pageSize, pit,
+                reverse, schemaVersion, sort);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FormanceBigintAsString =
+                new LazySingletonValue<>(
+                        "Formance-Bigint-As-String",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

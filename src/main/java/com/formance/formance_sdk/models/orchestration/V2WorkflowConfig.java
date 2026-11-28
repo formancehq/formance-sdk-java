@@ -8,7 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.formance.formance_sdk.utils.LazySingletonValue;
 import com.formance.formance_sdk.utils.Utils;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -16,37 +19,71 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2WorkflowConfig
+ * 
+ * <p>The stages a workflow runs, in order
+ */
 public class V2WorkflowConfig {
+    /**
+     * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+     * defaults to 15 when omitted.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("activityMaxAttempts")
+    private Optional<Integer> activityMaxAttempts;
 
+    /**
+     * Human-readable name for the workflow
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * The stages executed in order when the workflow runs
+     */
     @JsonProperty("stages")
     private List<Map<String, Object>> stages;
 
     @JsonCreator
     public V2WorkflowConfig(
+            @JsonProperty("activityMaxAttempts") Optional<Integer> activityMaxAttempts,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("stages") List<Map<String, Object>> stages) {
+        Utils.checkNotNull(activityMaxAttempts, "activityMaxAttempts");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(stages, "stages");
+        this.activityMaxAttempts = activityMaxAttempts;
         this.name = name;
         this.stages = stages;
     }
     
     public V2WorkflowConfig(
             List<Map<String, Object>> stages) {
-        this(Optional.empty(), stages);
+        this(Optional.empty(), Optional.empty(), stages);
     }
 
+    /**
+     * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+     * defaults to 15 when omitted.
+     */
+    @JsonIgnore
+    public Optional<Integer> activityMaxAttempts() {
+        return activityMaxAttempts;
+    }
+
+    /**
+     * Human-readable name for the workflow
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * The stages executed in order when the workflow runs
+     */
     @JsonIgnore
     public List<Map<String, Object>> stages() {
         return stages;
@@ -57,6 +94,30 @@ public class V2WorkflowConfig {
     }
 
 
+    /**
+     * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+     * defaults to 15 when omitted.
+     */
+    public V2WorkflowConfig withActivityMaxAttempts(int activityMaxAttempts) {
+        Utils.checkNotNull(activityMaxAttempts, "activityMaxAttempts");
+        this.activityMaxAttempts = Optional.ofNullable(activityMaxAttempts);
+        return this;
+    }
+
+
+    /**
+     * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+     * defaults to 15 when omitted.
+     */
+    public V2WorkflowConfig withActivityMaxAttempts(Optional<Integer> activityMaxAttempts) {
+        Utils.checkNotNull(activityMaxAttempts, "activityMaxAttempts");
+        this.activityMaxAttempts = activityMaxAttempts;
+        return this;
+    }
+
+    /**
+     * Human-readable name for the workflow
+     */
     public V2WorkflowConfig withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -64,12 +125,18 @@ public class V2WorkflowConfig {
     }
 
 
+    /**
+     * Human-readable name for the workflow
+     */
     public V2WorkflowConfig withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * The stages executed in order when the workflow runs
+     */
     public V2WorkflowConfig withStages(List<Map<String, Object>> stages) {
         Utils.checkNotNull(stages, "stages");
         this.stages = stages;
@@ -86,6 +153,7 @@ public class V2WorkflowConfig {
         }
         V2WorkflowConfig other = (V2WorkflowConfig) o;
         return 
+            Utils.enhancedDeepEquals(this.activityMaxAttempts, other.activityMaxAttempts) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.stages, other.stages);
     }
@@ -93,18 +161,21 @@ public class V2WorkflowConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, stages);
+            activityMaxAttempts, name, stages);
     }
     
     @Override
     public String toString() {
         return Utils.toString(V2WorkflowConfig.class,
+                "activityMaxAttempts", activityMaxAttempts,
                 "name", name,
                 "stages", stages);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<Integer> activityMaxAttempts;
 
         private Optional<String> name = Optional.empty();
 
@@ -115,12 +186,39 @@ public class V2WorkflowConfig {
         }
 
 
+        /**
+         * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+         * defaults to 15 when omitted.
+         */
+        public Builder activityMaxAttempts(int activityMaxAttempts) {
+            Utils.checkNotNull(activityMaxAttempts, "activityMaxAttempts");
+            this.activityMaxAttempts = Optional.ofNullable(activityMaxAttempts);
+            return this;
+        }
+
+        /**
+         * Total attempts per stage activity, including the initial attempt. Stored at workflow creation;
+         * defaults to 15 when omitted.
+         */
+        public Builder activityMaxAttempts(Optional<Integer> activityMaxAttempts) {
+            Utils.checkNotNull(activityMaxAttempts, "activityMaxAttempts");
+            this.activityMaxAttempts = activityMaxAttempts;
+            return this;
+        }
+
+
+        /**
+         * Human-readable name for the workflow
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Human-readable name for the workflow
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -128,6 +226,9 @@ public class V2WorkflowConfig {
         }
 
 
+        /**
+         * The stages executed in order when the workflow runs
+         */
         public Builder stages(List<Map<String, Object>> stages) {
             Utils.checkNotNull(stages, "stages");
             this.stages = stages;
@@ -135,10 +236,19 @@ public class V2WorkflowConfig {
         }
 
         public V2WorkflowConfig build() {
+            if (activityMaxAttempts == null) {
+                activityMaxAttempts = _SINGLETON_VALUE_ActivityMaxAttempts.value();
+            }
 
             return new V2WorkflowConfig(
-                name, stages);
+                activityMaxAttempts, name, stages);
         }
 
+
+        private static final LazySingletonValue<Optional<Integer>> _SINGLETON_VALUE_ActivityMaxAttempts =
+                new LazySingletonValue<>(
+                        "activityMaxAttempts",
+                        "15",
+                        new TypeReference<Optional<Integer>>() {});
     }
 }

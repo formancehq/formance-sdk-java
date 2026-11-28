@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class GetWorkflowInstanceHistoryResponse {
-
+    /**
+     * Per-stage history of a workflow run
+     */
     @JsonProperty("data")
     private List<WorkflowInstanceHistory> data;
 
@@ -24,6 +26,9 @@ public class GetWorkflowInstanceHistoryResponse {
         this.data = data;
     }
 
+    /**
+     * Per-stage history of a workflow run
+     */
     @JsonIgnore
     public List<WorkflowInstanceHistory> data() {
         return data;
@@ -34,6 +39,9 @@ public class GetWorkflowInstanceHistoryResponse {
     }
 
 
+    /**
+     * Per-stage history of a workflow run
+     */
     public GetWorkflowInstanceHistoryResponse withData(List<WorkflowInstanceHistory> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class GetWorkflowInstanceHistoryResponse {
         }
 
 
+        /**
+         * Per-stage history of a workflow run
+         */
         public Builder data(List<WorkflowInstanceHistory> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

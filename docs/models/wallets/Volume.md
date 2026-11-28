@@ -3,8 +3,8 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `balance`          | *BigInteger*       | :heavy_check_mark: | N/A                |
-| `input`            | *BigInteger*       | :heavy_check_mark: | N/A                |
-| `output`           | *BigInteger*       | :heavy_check_mark: | N/A                |
+| Field                                    | Type                                     | Required                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `balance`                                | *BigInteger*                             | :heavy_check_mark:                       | Net balance, equal to input minus output |
+| `input`                                  | *BigInteger*                             | :heavy_check_mark:                       | Total amount credited for this asset     |
+| `output`                                 | *BigInteger*                             | :heavy_check_mark:                       | Total amount debited for this asset      |

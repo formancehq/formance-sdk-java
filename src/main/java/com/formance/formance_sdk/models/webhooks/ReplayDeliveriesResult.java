@@ -16,30 +16,46 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
+/**
+ * ReplayDeliveriesResult
+ * 
+ * <p>Outcome of a bulk replay, counting the deliveries it moved
+ */
 public class ReplayDeliveriesResult {
-
+    /**
+     * Upper time bound actually applied, echoed so a paginated replay stays on a fixed window
+     */
     @JsonProperty("createdAtTo")
     private OffsetDateTime createdAtTo;
 
-
+    /**
+     * Number of already-pending deliveries whose next attempt was brought forward to now
+     */
     @JsonProperty("expedited")
     private long expedited;
 
-
+    /**
+     * Whether further deliveries match and can be processed with the returned cursor
+     */
     @JsonProperty("hasMore")
     private boolean hasMore;
 
-
+    /**
+     * Cursor to pass to the next replay call to continue where this one stopped
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nextCursor")
     private Optional<String> nextCursor;
 
-
+    /**
+     * Number of failed deliveries moved back to pending and scheduled for a new retry cycle
+     */
     @JsonProperty("replayed")
     private long replayed;
 
-
+    /**
+     * Number of candidates left untouched, because their status changed before the replay applied
+     */
     @JsonProperty("skipped")
     private long skipped;
 
@@ -75,31 +91,49 @@ public class ReplayDeliveriesResult {
             Optional.empty(), replayed, skipped);
     }
 
+    /**
+     * Upper time bound actually applied, echoed so a paginated replay stays on a fixed window
+     */
     @JsonIgnore
     public OffsetDateTime createdAtTo() {
         return createdAtTo;
     }
 
+    /**
+     * Number of already-pending deliveries whose next attempt was brought forward to now
+     */
     @JsonIgnore
     public long expedited() {
         return expedited;
     }
 
+    /**
+     * Whether further deliveries match and can be processed with the returned cursor
+     */
     @JsonIgnore
     public boolean hasMore() {
         return hasMore;
     }
 
+    /**
+     * Cursor to pass to the next replay call to continue where this one stopped
+     */
     @JsonIgnore
     public Optional<String> nextCursor() {
         return nextCursor;
     }
 
+    /**
+     * Number of failed deliveries moved back to pending and scheduled for a new retry cycle
+     */
     @JsonIgnore
     public long replayed() {
         return replayed;
     }
 
+    /**
+     * Number of candidates left untouched, because their status changed before the replay applied
+     */
     @JsonIgnore
     public long skipped() {
         return skipped;
@@ -110,24 +144,36 @@ public class ReplayDeliveriesResult {
     }
 
 
+    /**
+     * Upper time bound actually applied, echoed so a paginated replay stays on a fixed window
+     */
     public ReplayDeliveriesResult withCreatedAtTo(OffsetDateTime createdAtTo) {
         Utils.checkNotNull(createdAtTo, "createdAtTo");
         this.createdAtTo = createdAtTo;
         return this;
     }
 
+    /**
+     * Number of already-pending deliveries whose next attempt was brought forward to now
+     */
     public ReplayDeliveriesResult withExpedited(long expedited) {
         Utils.checkNotNull(expedited, "expedited");
         this.expedited = expedited;
         return this;
     }
 
+    /**
+     * Whether further deliveries match and can be processed with the returned cursor
+     */
     public ReplayDeliveriesResult withHasMore(boolean hasMore) {
         Utils.checkNotNull(hasMore, "hasMore");
         this.hasMore = hasMore;
         return this;
     }
 
+    /**
+     * Cursor to pass to the next replay call to continue where this one stopped
+     */
     public ReplayDeliveriesResult withNextCursor(String nextCursor) {
         Utils.checkNotNull(nextCursor, "nextCursor");
         this.nextCursor = Optional.ofNullable(nextCursor);
@@ -135,18 +181,27 @@ public class ReplayDeliveriesResult {
     }
 
 
+    /**
+     * Cursor to pass to the next replay call to continue where this one stopped
+     */
     public ReplayDeliveriesResult withNextCursor(Optional<String> nextCursor) {
         Utils.checkNotNull(nextCursor, "nextCursor");
         this.nextCursor = nextCursor;
         return this;
     }
 
+    /**
+     * Number of failed deliveries moved back to pending and scheduled for a new retry cycle
+     */
     public ReplayDeliveriesResult withReplayed(long replayed) {
         Utils.checkNotNull(replayed, "replayed");
         this.replayed = replayed;
         return this;
     }
 
+    /**
+     * Number of candidates left untouched, because their status changed before the replay applied
+     */
     public ReplayDeliveriesResult withSkipped(long skipped) {
         Utils.checkNotNull(skipped, "skipped");
         this.skipped = skipped;
@@ -209,6 +264,9 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Upper time bound actually applied, echoed so a paginated replay stays on a fixed window
+         */
         public Builder createdAtTo(OffsetDateTime createdAtTo) {
             Utils.checkNotNull(createdAtTo, "createdAtTo");
             this.createdAtTo = createdAtTo;
@@ -216,6 +274,9 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Number of already-pending deliveries whose next attempt was brought forward to now
+         */
         public Builder expedited(long expedited) {
             Utils.checkNotNull(expedited, "expedited");
             this.expedited = expedited;
@@ -223,6 +284,9 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Whether further deliveries match and can be processed with the returned cursor
+         */
         public Builder hasMore(boolean hasMore) {
             Utils.checkNotNull(hasMore, "hasMore");
             this.hasMore = hasMore;
@@ -230,12 +294,18 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Cursor to pass to the next replay call to continue where this one stopped
+         */
         public Builder nextCursor(String nextCursor) {
             Utils.checkNotNull(nextCursor, "nextCursor");
             this.nextCursor = Optional.ofNullable(nextCursor);
             return this;
         }
 
+        /**
+         * Cursor to pass to the next replay call to continue where this one stopped
+         */
         public Builder nextCursor(Optional<String> nextCursor) {
             Utils.checkNotNull(nextCursor, "nextCursor");
             this.nextCursor = nextCursor;
@@ -243,6 +313,9 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Number of failed deliveries moved back to pending and scheduled for a new retry cycle
+         */
         public Builder replayed(long replayed) {
             Utils.checkNotNull(replayed, "replayed");
             this.replayed = replayed;
@@ -250,6 +323,9 @@ public class ReplayDeliveriesResult {
         }
 
 
+        /**
+         * Number of candidates left untouched, because their status changed before the replay applied
+         */
         public Builder skipped(long skipped) {
             Utils.checkNotNull(skipped, "skipped");
             this.skipped = skipped;

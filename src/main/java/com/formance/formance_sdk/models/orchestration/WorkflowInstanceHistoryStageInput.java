@@ -14,69 +14,99 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * WorkflowInstanceHistoryStageInput
+ * 
+ * <p>Arguments an activity was called with, keyed by activity name
+ */
 public class WorkflowInstanceHistoryStageInput {
-
+    /**
+     * Arguments for the activity that sets metadata on a ledger account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("AddAccountMetadata")
     private Optional<? extends ActivityAddAccountMetadata> addAccountMetadata;
 
-
+    /**
+     * Arguments for the activity that confirms a wallet hold
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ConfirmHold")
     private Optional<? extends ActivityConfirmHold> confirmHold;
 
-
+    /**
+     * Arguments for the activity that writes a transaction to a ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransaction")
     private Optional<? extends ActivityCreateTransaction> createTransaction;
 
-
+    /**
+     * Arguments for the activity that initiates a transfer through a connector
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreateTransferInitiation")
-    private Optional<? extends CreateTransferInitiationRequest> createTransferInitiation;
+    private Optional<? extends ActivityCreateTransferInitiation> createTransferInitiation;
 
-
+    /**
+     * Arguments for the activity that credits a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("CreditWallet")
     private Optional<? extends ActivityCreditWallet> creditWallet;
 
-
+    /**
+     * Arguments for the activity that debits a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("DebitWallet")
     private Optional<? extends ActivityDebitWallet> debitWallet;
 
-
+    /**
+     * Arguments for the activity that reads a ledger account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetAccount")
     private Optional<? extends ActivityGetAccount> getAccount;
 
-
+    /**
+     * Arguments for the activity that reads a payment
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetPayment")
     private Optional<? extends ActivityGetPayment> getPayment;
 
-
+    /**
+     * Arguments for the activity that reads a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("GetWallet")
     private Optional<? extends ActivityGetWallet> getWallet;
 
-
+    /**
+     * Arguments for the activity that lists wallets
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ListWallets")
     private Optional<? extends ActivityListWallets> listWallets;
 
-
+    /**
+     * Arguments for the activity that reverts a ledger transaction
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("RevertTransaction")
     private Optional<? extends ActivityRevertTransaction> revertTransaction;
 
-
+    /**
+     * Arguments for the activity that transfers funds through Stripe
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("StripeTransfer")
-    private Optional<? extends StripeTransferRequest> stripeTransfer;
+    private Optional<? extends ActivityStripeTransfer> stripeTransfer;
 
-
+    /**
+     * Arguments for the activity that releases a wallet hold
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("VoidHold")
     private Optional<? extends ActivityVoidHold> voidHold;
@@ -86,7 +116,7 @@ public class WorkflowInstanceHistoryStageInput {
             @JsonProperty("AddAccountMetadata") Optional<? extends ActivityAddAccountMetadata> addAccountMetadata,
             @JsonProperty("ConfirmHold") Optional<? extends ActivityConfirmHold> confirmHold,
             @JsonProperty("CreateTransaction") Optional<? extends ActivityCreateTransaction> createTransaction,
-            @JsonProperty("CreateTransferInitiation") Optional<? extends CreateTransferInitiationRequest> createTransferInitiation,
+            @JsonProperty("CreateTransferInitiation") Optional<? extends ActivityCreateTransferInitiation> createTransferInitiation,
             @JsonProperty("CreditWallet") Optional<? extends ActivityCreditWallet> creditWallet,
             @JsonProperty("DebitWallet") Optional<? extends ActivityDebitWallet> debitWallet,
             @JsonProperty("GetAccount") Optional<? extends ActivityGetAccount> getAccount,
@@ -94,7 +124,7 @@ public class WorkflowInstanceHistoryStageInput {
             @JsonProperty("GetWallet") Optional<? extends ActivityGetWallet> getWallet,
             @JsonProperty("ListWallets") Optional<? extends ActivityListWallets> listWallets,
             @JsonProperty("RevertTransaction") Optional<? extends ActivityRevertTransaction> revertTransaction,
-            @JsonProperty("StripeTransfer") Optional<? extends StripeTransferRequest> stripeTransfer,
+            @JsonProperty("StripeTransfer") Optional<? extends ActivityStripeTransfer> stripeTransfer,
             @JsonProperty("VoidHold") Optional<? extends ActivityVoidHold> voidHold) {
         Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
         Utils.checkNotNull(confirmHold, "confirmHold");
@@ -132,78 +162,117 @@ public class WorkflowInstanceHistoryStageInput {
             Optional.empty());
     }
 
+    /**
+     * Arguments for the activity that sets metadata on a ledger account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityAddAccountMetadata> addAccountMetadata() {
         return (Optional<ActivityAddAccountMetadata>) addAccountMetadata;
     }
 
+    /**
+     * Arguments for the activity that confirms a wallet hold
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityConfirmHold> confirmHold() {
         return (Optional<ActivityConfirmHold>) confirmHold;
     }
 
+    /**
+     * Arguments for the activity that writes a transaction to a ledger
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityCreateTransaction> createTransaction() {
         return (Optional<ActivityCreateTransaction>) createTransaction;
     }
 
+    /**
+     * Arguments for the activity that initiates a transfer through a connector
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateTransferInitiationRequest> createTransferInitiation() {
-        return (Optional<CreateTransferInitiationRequest>) createTransferInitiation;
+    public Optional<ActivityCreateTransferInitiation> createTransferInitiation() {
+        return (Optional<ActivityCreateTransferInitiation>) createTransferInitiation;
     }
 
+    /**
+     * Arguments for the activity that credits a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityCreditWallet> creditWallet() {
         return (Optional<ActivityCreditWallet>) creditWallet;
     }
 
+    /**
+     * Arguments for the activity that debits a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityDebitWallet> debitWallet() {
         return (Optional<ActivityDebitWallet>) debitWallet;
     }
 
+    /**
+     * Arguments for the activity that reads a ledger account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityGetAccount> getAccount() {
         return (Optional<ActivityGetAccount>) getAccount;
     }
 
+    /**
+     * Arguments for the activity that reads a payment
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityGetPayment> getPayment() {
         return (Optional<ActivityGetPayment>) getPayment;
     }
 
+    /**
+     * Arguments for the activity that reads a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityGetWallet> getWallet() {
         return (Optional<ActivityGetWallet>) getWallet;
     }
 
+    /**
+     * Arguments for the activity that lists wallets
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityListWallets> listWallets() {
         return (Optional<ActivityListWallets>) listWallets;
     }
 
+    /**
+     * Arguments for the activity that reverts a ledger transaction
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityRevertTransaction> revertTransaction() {
         return (Optional<ActivityRevertTransaction>) revertTransaction;
     }
 
+    /**
+     * Arguments for the activity that transfers funds through Stripe
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<StripeTransferRequest> stripeTransfer() {
-        return (Optional<StripeTransferRequest>) stripeTransfer;
+    public Optional<ActivityStripeTransfer> stripeTransfer() {
+        return (Optional<ActivityStripeTransfer>) stripeTransfer;
     }
 
+    /**
+     * Arguments for the activity that releases a wallet hold
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ActivityVoidHold> voidHold() {
@@ -215,6 +284,9 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that sets metadata on a ledger account
+     */
     public WorkflowInstanceHistoryStageInput withAddAccountMetadata(ActivityAddAccountMetadata addAccountMetadata) {
         Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
         this.addAccountMetadata = Optional.ofNullable(addAccountMetadata);
@@ -222,12 +294,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that sets metadata on a ledger account
+     */
     public WorkflowInstanceHistoryStageInput withAddAccountMetadata(Optional<? extends ActivityAddAccountMetadata> addAccountMetadata) {
         Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
         this.addAccountMetadata = addAccountMetadata;
         return this;
     }
 
+    /**
+     * Arguments for the activity that confirms a wallet hold
+     */
     public WorkflowInstanceHistoryStageInput withConfirmHold(ActivityConfirmHold confirmHold) {
         Utils.checkNotNull(confirmHold, "confirmHold");
         this.confirmHold = Optional.ofNullable(confirmHold);
@@ -235,12 +313,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that confirms a wallet hold
+     */
     public WorkflowInstanceHistoryStageInput withConfirmHold(Optional<? extends ActivityConfirmHold> confirmHold) {
         Utils.checkNotNull(confirmHold, "confirmHold");
         this.confirmHold = confirmHold;
         return this;
     }
 
+    /**
+     * Arguments for the activity that writes a transaction to a ledger
+     */
     public WorkflowInstanceHistoryStageInput withCreateTransaction(ActivityCreateTransaction createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = Optional.ofNullable(createTransaction);
@@ -248,25 +332,37 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that writes a transaction to a ledger
+     */
     public WorkflowInstanceHistoryStageInput withCreateTransaction(Optional<? extends ActivityCreateTransaction> createTransaction) {
         Utils.checkNotNull(createTransaction, "createTransaction");
         this.createTransaction = createTransaction;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageInput withCreateTransferInitiation(CreateTransferInitiationRequest createTransferInitiation) {
+    /**
+     * Arguments for the activity that initiates a transfer through a connector
+     */
+    public WorkflowInstanceHistoryStageInput withCreateTransferInitiation(ActivityCreateTransferInitiation createTransferInitiation) {
         Utils.checkNotNull(createTransferInitiation, "createTransferInitiation");
         this.createTransferInitiation = Optional.ofNullable(createTransferInitiation);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageInput withCreateTransferInitiation(Optional<? extends CreateTransferInitiationRequest> createTransferInitiation) {
+    /**
+     * Arguments for the activity that initiates a transfer through a connector
+     */
+    public WorkflowInstanceHistoryStageInput withCreateTransferInitiation(Optional<? extends ActivityCreateTransferInitiation> createTransferInitiation) {
         Utils.checkNotNull(createTransferInitiation, "createTransferInitiation");
         this.createTransferInitiation = createTransferInitiation;
         return this;
     }
 
+    /**
+     * Arguments for the activity that credits a wallet
+     */
     public WorkflowInstanceHistoryStageInput withCreditWallet(ActivityCreditWallet creditWallet) {
         Utils.checkNotNull(creditWallet, "creditWallet");
         this.creditWallet = Optional.ofNullable(creditWallet);
@@ -274,12 +370,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that credits a wallet
+     */
     public WorkflowInstanceHistoryStageInput withCreditWallet(Optional<? extends ActivityCreditWallet> creditWallet) {
         Utils.checkNotNull(creditWallet, "creditWallet");
         this.creditWallet = creditWallet;
         return this;
     }
 
+    /**
+     * Arguments for the activity that debits a wallet
+     */
     public WorkflowInstanceHistoryStageInput withDebitWallet(ActivityDebitWallet debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
         this.debitWallet = Optional.ofNullable(debitWallet);
@@ -287,12 +389,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that debits a wallet
+     */
     public WorkflowInstanceHistoryStageInput withDebitWallet(Optional<? extends ActivityDebitWallet> debitWallet) {
         Utils.checkNotNull(debitWallet, "debitWallet");
         this.debitWallet = debitWallet;
         return this;
     }
 
+    /**
+     * Arguments for the activity that reads a ledger account
+     */
     public WorkflowInstanceHistoryStageInput withGetAccount(ActivityGetAccount getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = Optional.ofNullable(getAccount);
@@ -300,12 +408,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that reads a ledger account
+     */
     public WorkflowInstanceHistoryStageInput withGetAccount(Optional<? extends ActivityGetAccount> getAccount) {
         Utils.checkNotNull(getAccount, "getAccount");
         this.getAccount = getAccount;
         return this;
     }
 
+    /**
+     * Arguments for the activity that reads a payment
+     */
     public WorkflowInstanceHistoryStageInput withGetPayment(ActivityGetPayment getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
         this.getPayment = Optional.ofNullable(getPayment);
@@ -313,12 +427,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that reads a payment
+     */
     public WorkflowInstanceHistoryStageInput withGetPayment(Optional<? extends ActivityGetPayment> getPayment) {
         Utils.checkNotNull(getPayment, "getPayment");
         this.getPayment = getPayment;
         return this;
     }
 
+    /**
+     * Arguments for the activity that reads a wallet
+     */
     public WorkflowInstanceHistoryStageInput withGetWallet(ActivityGetWallet getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
         this.getWallet = Optional.ofNullable(getWallet);
@@ -326,12 +446,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that reads a wallet
+     */
     public WorkflowInstanceHistoryStageInput withGetWallet(Optional<? extends ActivityGetWallet> getWallet) {
         Utils.checkNotNull(getWallet, "getWallet");
         this.getWallet = getWallet;
         return this;
     }
 
+    /**
+     * Arguments for the activity that lists wallets
+     */
     public WorkflowInstanceHistoryStageInput withListWallets(ActivityListWallets listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
         this.listWallets = Optional.ofNullable(listWallets);
@@ -339,12 +465,18 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that lists wallets
+     */
     public WorkflowInstanceHistoryStageInput withListWallets(Optional<? extends ActivityListWallets> listWallets) {
         Utils.checkNotNull(listWallets, "listWallets");
         this.listWallets = listWallets;
         return this;
     }
 
+    /**
+     * Arguments for the activity that reverts a ledger transaction
+     */
     public WorkflowInstanceHistoryStageInput withRevertTransaction(ActivityRevertTransaction revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = Optional.ofNullable(revertTransaction);
@@ -352,25 +484,37 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that reverts a ledger transaction
+     */
     public WorkflowInstanceHistoryStageInput withRevertTransaction(Optional<? extends ActivityRevertTransaction> revertTransaction) {
         Utils.checkNotNull(revertTransaction, "revertTransaction");
         this.revertTransaction = revertTransaction;
         return this;
     }
 
-    public WorkflowInstanceHistoryStageInput withStripeTransfer(StripeTransferRequest stripeTransfer) {
+    /**
+     * Arguments for the activity that transfers funds through Stripe
+     */
+    public WorkflowInstanceHistoryStageInput withStripeTransfer(ActivityStripeTransfer stripeTransfer) {
         Utils.checkNotNull(stripeTransfer, "stripeTransfer");
         this.stripeTransfer = Optional.ofNullable(stripeTransfer);
         return this;
     }
 
 
-    public WorkflowInstanceHistoryStageInput withStripeTransfer(Optional<? extends StripeTransferRequest> stripeTransfer) {
+    /**
+     * Arguments for the activity that transfers funds through Stripe
+     */
+    public WorkflowInstanceHistoryStageInput withStripeTransfer(Optional<? extends ActivityStripeTransfer> stripeTransfer) {
         Utils.checkNotNull(stripeTransfer, "stripeTransfer");
         this.stripeTransfer = stripeTransfer;
         return this;
     }
 
+    /**
+     * Arguments for the activity that releases a wallet hold
+     */
     public WorkflowInstanceHistoryStageInput withVoidHold(ActivityVoidHold voidHold) {
         Utils.checkNotNull(voidHold, "voidHold");
         this.voidHold = Optional.ofNullable(voidHold);
@@ -378,6 +522,9 @@ public class WorkflowInstanceHistoryStageInput {
     }
 
 
+    /**
+     * Arguments for the activity that releases a wallet hold
+     */
     public WorkflowInstanceHistoryStageInput withVoidHold(Optional<? extends ActivityVoidHold> voidHold) {
         Utils.checkNotNull(voidHold, "voidHold");
         this.voidHold = voidHold;
@@ -446,7 +593,7 @@ public class WorkflowInstanceHistoryStageInput {
 
         private Optional<? extends ActivityCreateTransaction> createTransaction = Optional.empty();
 
-        private Optional<? extends CreateTransferInitiationRequest> createTransferInitiation = Optional.empty();
+        private Optional<? extends ActivityCreateTransferInitiation> createTransferInitiation = Optional.empty();
 
         private Optional<? extends ActivityCreditWallet> creditWallet = Optional.empty();
 
@@ -462,7 +609,7 @@ public class WorkflowInstanceHistoryStageInput {
 
         private Optional<? extends ActivityRevertTransaction> revertTransaction = Optional.empty();
 
-        private Optional<? extends StripeTransferRequest> stripeTransfer = Optional.empty();
+        private Optional<? extends ActivityStripeTransfer> stripeTransfer = Optional.empty();
 
         private Optional<? extends ActivityVoidHold> voidHold = Optional.empty();
 
@@ -471,12 +618,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that sets metadata on a ledger account
+         */
         public Builder addAccountMetadata(ActivityAddAccountMetadata addAccountMetadata) {
             Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
             this.addAccountMetadata = Optional.ofNullable(addAccountMetadata);
             return this;
         }
 
+        /**
+         * Arguments for the activity that sets metadata on a ledger account
+         */
         public Builder addAccountMetadata(Optional<? extends ActivityAddAccountMetadata> addAccountMetadata) {
             Utils.checkNotNull(addAccountMetadata, "addAccountMetadata");
             this.addAccountMetadata = addAccountMetadata;
@@ -484,12 +637,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that confirms a wallet hold
+         */
         public Builder confirmHold(ActivityConfirmHold confirmHold) {
             Utils.checkNotNull(confirmHold, "confirmHold");
             this.confirmHold = Optional.ofNullable(confirmHold);
             return this;
         }
 
+        /**
+         * Arguments for the activity that confirms a wallet hold
+         */
         public Builder confirmHold(Optional<? extends ActivityConfirmHold> confirmHold) {
             Utils.checkNotNull(confirmHold, "confirmHold");
             this.confirmHold = confirmHold;
@@ -497,12 +656,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that writes a transaction to a ledger
+         */
         public Builder createTransaction(ActivityCreateTransaction createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = Optional.ofNullable(createTransaction);
             return this;
         }
 
+        /**
+         * Arguments for the activity that writes a transaction to a ledger
+         */
         public Builder createTransaction(Optional<? extends ActivityCreateTransaction> createTransaction) {
             Utils.checkNotNull(createTransaction, "createTransaction");
             this.createTransaction = createTransaction;
@@ -510,25 +675,37 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
-        public Builder createTransferInitiation(CreateTransferInitiationRequest createTransferInitiation) {
+        /**
+         * Arguments for the activity that initiates a transfer through a connector
+         */
+        public Builder createTransferInitiation(ActivityCreateTransferInitiation createTransferInitiation) {
             Utils.checkNotNull(createTransferInitiation, "createTransferInitiation");
             this.createTransferInitiation = Optional.ofNullable(createTransferInitiation);
             return this;
         }
 
-        public Builder createTransferInitiation(Optional<? extends CreateTransferInitiationRequest> createTransferInitiation) {
+        /**
+         * Arguments for the activity that initiates a transfer through a connector
+         */
+        public Builder createTransferInitiation(Optional<? extends ActivityCreateTransferInitiation> createTransferInitiation) {
             Utils.checkNotNull(createTransferInitiation, "createTransferInitiation");
             this.createTransferInitiation = createTransferInitiation;
             return this;
         }
 
 
+        /**
+         * Arguments for the activity that credits a wallet
+         */
         public Builder creditWallet(ActivityCreditWallet creditWallet) {
             Utils.checkNotNull(creditWallet, "creditWallet");
             this.creditWallet = Optional.ofNullable(creditWallet);
             return this;
         }
 
+        /**
+         * Arguments for the activity that credits a wallet
+         */
         public Builder creditWallet(Optional<? extends ActivityCreditWallet> creditWallet) {
             Utils.checkNotNull(creditWallet, "creditWallet");
             this.creditWallet = creditWallet;
@@ -536,12 +713,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that debits a wallet
+         */
         public Builder debitWallet(ActivityDebitWallet debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
             this.debitWallet = Optional.ofNullable(debitWallet);
             return this;
         }
 
+        /**
+         * Arguments for the activity that debits a wallet
+         */
         public Builder debitWallet(Optional<? extends ActivityDebitWallet> debitWallet) {
             Utils.checkNotNull(debitWallet, "debitWallet");
             this.debitWallet = debitWallet;
@@ -549,12 +732,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that reads a ledger account
+         */
         public Builder getAccount(ActivityGetAccount getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = Optional.ofNullable(getAccount);
             return this;
         }
 
+        /**
+         * Arguments for the activity that reads a ledger account
+         */
         public Builder getAccount(Optional<? extends ActivityGetAccount> getAccount) {
             Utils.checkNotNull(getAccount, "getAccount");
             this.getAccount = getAccount;
@@ -562,12 +751,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that reads a payment
+         */
         public Builder getPayment(ActivityGetPayment getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
             this.getPayment = Optional.ofNullable(getPayment);
             return this;
         }
 
+        /**
+         * Arguments for the activity that reads a payment
+         */
         public Builder getPayment(Optional<? extends ActivityGetPayment> getPayment) {
             Utils.checkNotNull(getPayment, "getPayment");
             this.getPayment = getPayment;
@@ -575,12 +770,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that reads a wallet
+         */
         public Builder getWallet(ActivityGetWallet getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
             this.getWallet = Optional.ofNullable(getWallet);
             return this;
         }
 
+        /**
+         * Arguments for the activity that reads a wallet
+         */
         public Builder getWallet(Optional<? extends ActivityGetWallet> getWallet) {
             Utils.checkNotNull(getWallet, "getWallet");
             this.getWallet = getWallet;
@@ -588,12 +789,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that lists wallets
+         */
         public Builder listWallets(ActivityListWallets listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
             this.listWallets = Optional.ofNullable(listWallets);
             return this;
         }
 
+        /**
+         * Arguments for the activity that lists wallets
+         */
         public Builder listWallets(Optional<? extends ActivityListWallets> listWallets) {
             Utils.checkNotNull(listWallets, "listWallets");
             this.listWallets = listWallets;
@@ -601,12 +808,18 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
+        /**
+         * Arguments for the activity that reverts a ledger transaction
+         */
         public Builder revertTransaction(ActivityRevertTransaction revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = Optional.ofNullable(revertTransaction);
             return this;
         }
 
+        /**
+         * Arguments for the activity that reverts a ledger transaction
+         */
         public Builder revertTransaction(Optional<? extends ActivityRevertTransaction> revertTransaction) {
             Utils.checkNotNull(revertTransaction, "revertTransaction");
             this.revertTransaction = revertTransaction;
@@ -614,25 +827,37 @@ public class WorkflowInstanceHistoryStageInput {
         }
 
 
-        public Builder stripeTransfer(StripeTransferRequest stripeTransfer) {
+        /**
+         * Arguments for the activity that transfers funds through Stripe
+         */
+        public Builder stripeTransfer(ActivityStripeTransfer stripeTransfer) {
             Utils.checkNotNull(stripeTransfer, "stripeTransfer");
             this.stripeTransfer = Optional.ofNullable(stripeTransfer);
             return this;
         }
 
-        public Builder stripeTransfer(Optional<? extends StripeTransferRequest> stripeTransfer) {
+        /**
+         * Arguments for the activity that transfers funds through Stripe
+         */
+        public Builder stripeTransfer(Optional<? extends ActivityStripeTransfer> stripeTransfer) {
             Utils.checkNotNull(stripeTransfer, "stripeTransfer");
             this.stripeTransfer = stripeTransfer;
             return this;
         }
 
 
+        /**
+         * Arguments for the activity that releases a wallet hold
+         */
         public Builder voidHold(ActivityVoidHold voidHold) {
             Utils.checkNotNull(voidHold, "voidHold");
             this.voidHold = Optional.ofNullable(voidHold);
             return this;
         }
 
+        /**
+         * Arguments for the activity that releases a wallet hold
+         */
         public Builder voidHold(Optional<? extends ActivityVoidHold> voidHold) {
             Utils.checkNotNull(voidHold, "voidHold");
             this.voidHold = voidHold;

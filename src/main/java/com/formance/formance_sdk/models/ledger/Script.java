@@ -19,12 +19,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Script {
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
 
-
+    /**
+     * The Numscript program to execute
+     */
     @JsonProperty("plain")
     private String plain;
 
@@ -35,7 +39,9 @@ public class Script {
     @JsonProperty("reference")
     private Optional<String> reference;
 
-
+    /**
+     * Values bound to the script's declared variables, keyed by variable name
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vars")
     private Optional<? extends Map<String, Object>> vars;
@@ -62,12 +68,18 @@ public class Script {
             Optional.empty());
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, Object>> metadata() {
         return (JsonNullable<Map<String, Object>>) metadata;
     }
 
+    /**
+     * The Numscript program to execute
+     */
     @JsonIgnore
     public String plain() {
         return plain;
@@ -81,6 +93,9 @@ public class Script {
         return reference;
     }
 
+    /**
+     * Values bound to the script's declared variables, keyed by variable name
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> vars() {
@@ -92,18 +107,27 @@ public class Script {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Script withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public Script withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * The Numscript program to execute
+     */
     public Script withPlain(String plain) {
         Utils.checkNotNull(plain, "plain");
         this.plain = plain;
@@ -129,6 +153,9 @@ public class Script {
         return this;
     }
 
+    /**
+     * Values bound to the script's declared variables, keyed by variable name
+     */
     public Script withVars(Map<String, Object> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = Optional.ofNullable(vars);
@@ -136,6 +163,9 @@ public class Script {
     }
 
 
+    /**
+     * Values bound to the script's declared variables, keyed by variable name
+     */
     public Script withVars(Optional<? extends Map<String, Object>> vars) {
         Utils.checkNotNull(vars, "vars");
         this.vars = vars;
@@ -190,12 +220,18 @@ public class Script {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -203,6 +239,9 @@ public class Script {
         }
 
 
+        /**
+         * The Numscript program to execute
+         */
         public Builder plain(String plain) {
             Utils.checkNotNull(plain, "plain");
             this.plain = plain;
@@ -229,12 +268,18 @@ public class Script {
         }
 
 
+        /**
+         * Values bound to the script's declared variables, keyed by variable name
+         */
         public Builder vars(Map<String, Object> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = Optional.ofNullable(vars);
             return this;
         }
 
+        /**
+         * Values bound to the script's declared variables, keyed by variable name
+         */
         public Builder vars(Optional<? extends Map<String, Object>> vars) {
             Utils.checkNotNull(vars, "vars");
             this.vars = vars;

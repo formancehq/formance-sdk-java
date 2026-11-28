@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class Transactions {
-
+    /**
+     * The transactions to create, applied in order
+     */
     @JsonProperty("transactions")
     private List<TransactionData> transactions;
 
@@ -24,6 +26,9 @@ public class Transactions {
         this.transactions = transactions;
     }
 
+    /**
+     * The transactions to create, applied in order
+     */
     @JsonIgnore
     public List<TransactionData> transactions() {
         return transactions;
@@ -34,6 +39,9 @@ public class Transactions {
     }
 
 
+    /**
+     * The transactions to create, applied in order
+     */
     public Transactions withTransactions(List<TransactionData> transactions) {
         Utils.checkNotNull(transactions, "transactions");
         this.transactions = transactions;
@@ -75,6 +83,9 @@ public class Transactions {
         }
 
 
+        /**
+         * The transactions to create, applied in order
+         */
         public Builder transactions(List<TransactionData> transactions) {
             Utils.checkNotNull(transactions, "transactions");
             this.transactions = transactions;

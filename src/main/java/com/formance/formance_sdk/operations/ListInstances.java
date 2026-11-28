@@ -12,7 +12,7 @@ import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
 import com.formance.formance_sdk.models.operations.ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.ListInstancesResponse;
-import com.formance.formance_sdk.models.orchestration.Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsError;
 import com.formance.formance_sdk.models.orchestration.ListRunsResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
 import com.formance.formance_sdk.utils.HTTPRequest;
@@ -161,7 +161,7 @@ public class ListInstances {
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    throw Error.from(response);
+                    throw ErrorsError.from(response);
                 } else {
                     throw SDKError.from("Unexpected content-type received: " + contentType, response);
                 }

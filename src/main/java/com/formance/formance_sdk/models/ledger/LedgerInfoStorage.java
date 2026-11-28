@@ -15,7 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * LedgerInfoStorage
+ * 
+ * <p>Storage backend information, including the applied migrations
+ */
 public class LedgerInfoStorage {
 
     @JsonInclude(Include.NON_ABSENT)

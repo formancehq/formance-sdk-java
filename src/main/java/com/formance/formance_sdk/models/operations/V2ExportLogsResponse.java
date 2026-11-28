@@ -11,7 +11,9 @@ import java.io.InputStream;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 
 
 public class V2ExportLogsResponse implements Response {
@@ -30,17 +32,33 @@ public class V2ExportLogsResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    /**
+     * Export OK
+     */
+    private Optional<? extends InputStream> bytes;
+
     @JsonCreator
     public V2ExportLogsResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Optional<? extends InputStream> bytes) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(bytes, "bytes");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+        this.bytes = bytes;
+    }
+    
+    public V2ExportLogsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -65,6 +83,15 @@ public class V2ExportLogsResponse implements Response {
     @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
+    }
+
+    /**
+     * Export OK
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InputStream> bytes() {
+        return (Optional<InputStream>) bytes;
     }
 
     public static Builder builder() {
@@ -99,6 +126,25 @@ public class V2ExportLogsResponse implements Response {
         return this;
     }
 
+    /**
+     * Export OK
+     */
+    public V2ExportLogsResponse withBytes(InputStream bytes) {
+        Utils.checkNotNull(bytes, "bytes");
+        this.bytes = Optional.ofNullable(bytes);
+        return this;
+    }
+
+
+    /**
+     * Export OK
+     */
+    public V2ExportLogsResponse withBytes(Optional<? extends InputStream> bytes) {
+        Utils.checkNotNull(bytes, "bytes");
+        this.bytes = bytes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,13 +157,15 @@ public class V2ExportLogsResponse implements Response {
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.bytes, other.bytes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse);
+            contentType, statusCode, rawResponse,
+            bytes);
     }
     
     @Override
@@ -125,7 +173,8 @@ public class V2ExportLogsResponse implements Response {
         return Utils.toString(V2ExportLogsResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse);
+                "rawResponse", rawResponse,
+                "bytes", bytes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -136,6 +185,8 @@ public class V2ExportLogsResponse implements Response {
         private Integer statusCode;
 
         private HttpResponse<InputStream> rawResponse;
+
+        private Optional<? extends InputStream> bytes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -171,10 +222,30 @@ public class V2ExportLogsResponse implements Response {
             return this;
         }
 
+
+        /**
+         * Export OK
+         */
+        public Builder bytes(InputStream bytes) {
+            Utils.checkNotNull(bytes, "bytes");
+            this.bytes = Optional.ofNullable(bytes);
+            return this;
+        }
+
+        /**
+         * Export OK
+         */
+        public Builder bytes(Optional<? extends InputStream> bytes) {
+            Utils.checkNotNull(bytes, "bytes");
+            this.bytes = bytes;
+            return this;
+        }
+
         public V2ExportLogsResponse build() {
 
             return new V2ExportLogsResponse(
-                contentType, statusCode, rawResponse);
+                contentType, statusCode, rawResponse,
+                bytes);
         }
 
     }

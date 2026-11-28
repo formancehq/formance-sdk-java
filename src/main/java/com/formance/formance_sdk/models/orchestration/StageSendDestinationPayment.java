@@ -16,7 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * StageSendDestinationPayment
+ * 
+ * <p>Send the funds to a payment
+ */
 public class StageSendDestinationPayment {
     /**
      * Payment service provider name (e.g., stripe, wise, mangopay).

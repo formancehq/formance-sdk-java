@@ -17,7 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * BalancesCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of balances
+ */
 public class BalancesCursorResponseCursor {
 
     @JsonProperty("data")

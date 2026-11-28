@@ -17,20 +17,28 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ClientSecret {
-
+    /**
+     * Unique identifier of the secret
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+     */
     @JsonProperty("lastDigits")
     private String lastDigits;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Human-readable name identifying the secret
+     */
     @JsonProperty("name")
     private String name;
 
@@ -58,22 +66,34 @@ public class ClientSecret {
             name);
     }
 
+    /**
+     * Unique identifier of the secret
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+     */
     @JsonIgnore
     public String lastDigits() {
         return lastDigits;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<Map<String, String>> metadata() {
         return (JsonNullable<Map<String, String>>) metadata;
     }
 
+    /**
+     * Human-readable name identifying the secret
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -84,30 +104,45 @@ public class ClientSecret {
     }
 
 
+    /**
+     * Unique identifier of the secret
+     */
     public ClientSecret withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+     */
     public ClientSecret withLastDigits(String lastDigits) {
         Utils.checkNotNull(lastDigits, "lastDigits");
         this.lastDigits = lastDigits;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public ClientSecret withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public ClientSecret withMetadata(JsonNullable<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Human-readable name identifying the secret
+     */
     public ClientSecret withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -162,6 +197,9 @@ public class ClientSecret {
         }
 
 
+        /**
+         * Unique identifier of the secret
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -169,6 +207,9 @@ public class ClientSecret {
         }
 
 
+        /**
+         * Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+         */
         public Builder lastDigits(String lastDigits) {
             Utils.checkNotNull(lastDigits, "lastDigits");
             this.lastDigits = lastDigits;
@@ -176,12 +217,18 @@ public class ClientSecret {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(JsonNullable<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -189,6 +236,9 @@ public class ClientSecret {
         }
 
 
+        /**
+         * Human-readable name identifying the secret
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

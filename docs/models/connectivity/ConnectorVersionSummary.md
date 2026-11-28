@@ -1,0 +1,10 @@
+# ConnectorVersionSummary
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `digest`                                                                                  | *Optional\<String>*                                                                       | :heavy_minus_sign:                                                                        | Image digest pinning this version immutably, when known                                   |
+| `releaseDate`                                                                             | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `version`                                                                                 | *String*                                                                                  | :heavy_check_mark:                                                                        | Version tag (e.g. `v1.4.2`)                                                               |

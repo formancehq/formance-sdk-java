@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ConfigChangeSecret {
-
+    /**
+     * The new signing secret, 24 random bytes encoded as base64
+     */
     @JsonProperty("secret")
     private String secret;
 
@@ -23,6 +25,9 @@ public class ConfigChangeSecret {
         this.secret = secret;
     }
 
+    /**
+     * The new signing secret, 24 random bytes encoded as base64
+     */
     @JsonIgnore
     public String secret() {
         return secret;
@@ -33,6 +38,9 @@ public class ConfigChangeSecret {
     }
 
 
+    /**
+     * The new signing secret, 24 random bytes encoded as base64
+     */
     public ConfigChangeSecret withSecret(String secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
@@ -74,6 +82,9 @@ public class ConfigChangeSecret {
         }
 
 
+        /**
+         * The new signing secret, 24 random bytes encoded as base64
+         */
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;

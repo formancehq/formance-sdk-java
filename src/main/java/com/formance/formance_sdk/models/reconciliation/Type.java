@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Type
+ * 
+ * <p>What happened, whether an evaluation outcome or a manual transition
+ */
 public enum Type {
     FAIL("fail"),
     PASS("pass"),

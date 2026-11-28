@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class EvaluationResponse {
-
+    /**
+     * One run of a rule, carrying its outcome and cost
+     */
     @JsonProperty("data")
     private Evaluation data;
 
@@ -27,6 +29,9 @@ public class EvaluationResponse {
         this.data = data;
     }
 
+    /**
+     * One run of a rule, carrying its outcome and cost
+     */
     @JsonIgnore
     public Evaluation data() {
         return data;
@@ -37,6 +42,9 @@ public class EvaluationResponse {
     }
 
 
+    /**
+     * One run of a rule, carrying its outcome and cost
+     */
     public EvaluationResponse withData(Evaluation data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -78,6 +86,9 @@ public class EvaluationResponse {
         }
 
 
+        /**
+         * One run of a rule, carrying its outcome and cost
+         */
         public Builder data(Evaluation data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

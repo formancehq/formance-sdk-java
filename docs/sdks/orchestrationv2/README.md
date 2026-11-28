@@ -19,6 +19,7 @@
 * [listTriggersOccurrences](#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](#listworkflows) - List registered workflows
 * [readTrigger](#readtrigger) - Read trigger
+* [resumeActivity](#resumeactivity) - Resume a paused activity
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
 * [testTrigger](#testtrigger) - Test trigger
@@ -36,13 +37,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2CancelEventRequest;
 import com.formance.formance_sdk.models.operations.V2CancelEventResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -76,10 +77,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## createTrigger
 
@@ -93,13 +94,13 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2CreateTriggerResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -130,10 +131,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## createWorkflow
 
@@ -147,13 +148,13 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2CreateWorkflowResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -184,10 +185,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## deleteTrigger
 
@@ -202,13 +203,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteTriggerResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -242,10 +243,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## deleteWorkflow
 
@@ -260,13 +261,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2DeleteWorkflowResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -300,10 +301,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getInstance
 
@@ -318,13 +319,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2GetInstanceRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -360,10 +361,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getInstanceHistory
 
@@ -378,13 +379,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceHistoryResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -420,10 +421,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getInstanceStageHistory
 
@@ -438,13 +439,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryRequest;
 import com.formance.formance_sdk.models.operations.V2GetInstanceStageHistoryResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -481,10 +482,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getServerInfo
 
@@ -498,13 +499,13 @@ package hello.world;
 
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2GetServerInfoResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -529,10 +530,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## getWorkflow
 
@@ -547,13 +548,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2GetWorkflowResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -589,10 +590,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listInstances
 
@@ -607,13 +608,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2ListInstancesRequest;
 import com.formance.formance_sdk.models.operations.V2ListInstancesResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -652,10 +653,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listTriggers
 
@@ -670,13 +671,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2ListTriggersRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -713,10 +714,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listTriggersOccurrences
 
@@ -731,13 +732,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesRequest;
 import com.formance.formance_sdk.models.operations.V2ListTriggersOccurrencesResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -775,10 +776,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## listWorkflows
 
@@ -793,13 +794,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsRequest;
 import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -836,10 +837,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## readTrigger
 
@@ -854,13 +855,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -896,9 +897,77 @@ public class Application {
 
 ### Errors
 
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
+
+## resumeActivity
+
+Resume a paused activity identified by temporalRunID and pausedAt.
+Use both values from the paused activity projection. A stale run id or
+pause timestamp returns a conflict, preventing a delayed resend from
+resuming an activity in a newer run or a subsequent pause generation.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="v2ResumeActivity" method="post" path="/api/orchestration/v2/instances/{instanceID}/stages/{number}/activities/{activityID}/resume" -->
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.operations.*;
+import com.formance.formance_sdk.models.shared.Security;
+import java.lang.Exception;
+import java.time.OffsetDateTime;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
+                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
+                    .build())
+            .build();
+
+        V2ResumeActivityRequest req = V2ResumeActivityRequest.builder()
+                .requestBody(V2ResumeActivityRequestBody.builder()
+                    .pausedAt(OffsetDateTime.parse("2025-02-08T07:52:47.097Z"))
+                    .temporalRunID("<id>")
+                    .build())
+                .activityID("<id>")
+                .instanceID("<id>")
+                .number(875674L)
+                .build();
+
+        V2ResumeActivityResponse res = sdk.orchestration().v2().resumeActivity()
+                .request(req)
+                .call();
+
+        if (res.v2Error().isPresent()) {
+            System.out.println(res.v2Error().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [V2ResumeActivityRequest](../../models/operations/V2ResumeActivityRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[V2ResumeActivityResponse](../../models/operations/V2ResumeActivityResponse.md)**
+
+### Errors
+
 | Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
 | models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## runWorkflow
@@ -914,13 +983,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -956,10 +1025,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## sendEvent
 
@@ -974,13 +1043,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.V2SendEventRequest;
 import com.formance.formance_sdk.models.operations.V2SendEventResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1014,10 +1083,10 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |
 
 ## testTrigger
 
@@ -1032,13 +1101,13 @@ package hello.world;
 import com.formance.formance_sdk.SDK;
 import com.formance.formance_sdk.models.operations.TestTriggerRequest;
 import com.formance.formance_sdk.models.operations.TestTriggerResponse;
-import com.formance.formance_sdk.models.orchestration.V2Error;
+import com.formance.formance_sdk.models.orchestration.ErrorsV2Error;
 import com.formance.formance_sdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws V2Error, Exception {
+    public static void main(String[] args) throws ErrorsV2Error, Exception {
 
         SDK sdk = SDK.builder()
                 .security(Security.builder()
@@ -1074,7 +1143,7 @@ public class Application {
 
 ### Errors
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/V2Error  | default                | application/json       |
-| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorsV2Error | default                     | application/json            |
+| models/errors/SDKError      | 4XX, 5XX                    | \*/\*                       |

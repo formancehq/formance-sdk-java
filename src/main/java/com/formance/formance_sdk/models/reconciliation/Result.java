@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Result
+ * 
+ * <p>Whether the rule passed, failed, or could not be evaluated
+ */
 public enum Result {
     PASS("PASS"),
     FAIL("FAIL"),

@@ -16,15 +16,21 @@ import java.util.Optional;
 
 
 public class ConfigUser {
-
+    /**
+     * URL events are delivered to
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     @JsonProperty("eventTypes")
     private List<String> eventTypes;
 
-
+    /**
+     * Secret used to sign delivery payloads. Generated automatically when omitted
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("secret")
     private Optional<String> secret;
@@ -48,16 +54,25 @@ public class ConfigUser {
         this(endpoint, eventTypes, Optional.empty());
     }
 
+    /**
+     * URL events are delivered to
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     @JsonIgnore
     public List<String> eventTypes() {
         return eventTypes;
     }
 
+    /**
+     * Secret used to sign delivery payloads. Generated automatically when omitted
+     */
     @JsonIgnore
     public Optional<String> secret() {
         return secret;
@@ -68,18 +83,27 @@ public class ConfigUser {
     }
 
 
+    /**
+     * URL events are delivered to
+     */
     public ConfigUser withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Types of event that trigger a delivery to this endpoint
+     */
     public ConfigUser withEventTypes(List<String> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
     }
 
+    /**
+     * Secret used to sign delivery payloads. Generated automatically when omitted
+     */
     public ConfigUser withSecret(String secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = Optional.ofNullable(secret);
@@ -87,6 +111,9 @@ public class ConfigUser {
     }
 
 
+    /**
+     * Secret used to sign delivery payloads. Generated automatically when omitted
+     */
     public ConfigUser withSecret(Optional<String> secret) {
         Utils.checkNotNull(secret, "secret");
         this.secret = secret;
@@ -136,6 +163,9 @@ public class ConfigUser {
         }
 
 
+        /**
+         * URL events are delivered to
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -143,6 +173,9 @@ public class ConfigUser {
         }
 
 
+        /**
+         * Types of event that trigger a delivery to this endpoint
+         */
         public Builder eventTypes(List<String> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
@@ -150,12 +183,18 @@ public class ConfigUser {
         }
 
 
+        /**
+         * Secret used to sign delivery payloads. Generated automatically when omitted
+         */
         public Builder secret(String secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = Optional.ofNullable(secret);
             return this;
         }
 
+        /**
+         * Secret used to sign delivery payloads. Generated automatically when omitted
+         */
         public Builder secret(Optional<String> secret) {
             Utils.checkNotNull(secret, "secret");
             this.secret = secret;

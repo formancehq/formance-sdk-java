@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * AlertEventsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the alert's event log
+ */
 public class AlertEventsCursorResponseCursor {
 
     @JsonProperty("data")

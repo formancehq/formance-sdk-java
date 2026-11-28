@@ -1,0 +1,11 @@
+# ConnectorVersionCursorCursor
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `data`                                                                           | List\<[ConnectorVersionSummary](../../models/shared/ConnectorVersionSummary.md)> | :heavy_check_mark:                                                               | Versions sorted ascending by semantic version                                    |
+| `hasMore`                                                                        | *boolean*                                                                        | :heavy_check_mark:                                                               | N/A                                                                              |
+| `next`                                                                           | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | Cursor of the next page; absent on the last page                                 |
+| `pageSize`                                                                       | *int*                                                                            | :heavy_check_mark:                                                               | N/A                                                                              |

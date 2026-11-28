@@ -11,6 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 
 
+/**
+ * V2SubjectTypeIdResolver
+ * 
+ * <p>The counterparty of a wallet movement, either a ledger account or another wallet
+ */
 public class V2SubjectTypeIdResolver extends GenericTypeIdResolver<V2Subject> {
 
     public V2SubjectTypeIdResolver() {

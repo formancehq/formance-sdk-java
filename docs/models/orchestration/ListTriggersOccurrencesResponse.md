@@ -5,4 +5,4 @@
 
 | Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `data`                                                               | List\<[TriggerOccurrence](../../models/shared/TriggerOccurrence.md)> | :heavy_check_mark:                                                   | N/A                                                                  |
+| `data`                                                               | List\<[TriggerOccurrence](../../models/shared/TriggerOccurrence.md)> | :heavy_check_mark:                                                   | The trigger's occurrences                                            |

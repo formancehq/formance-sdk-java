@@ -16,7 +16,9 @@ import java.lang.String;
  * <p>OK
  */
 public class EvaluationsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of evaluations
+     */
     @JsonProperty("cursor")
     private EvaluationsCursorResponseCursor cursor;
 
@@ -27,6 +29,9 @@ public class EvaluationsCursorResponse {
         this.cursor = cursor;
     }
 
+    /**
+     * Paginated cursor wrapping the list of evaluations
+     */
     @JsonIgnore
     public EvaluationsCursorResponseCursor cursor() {
         return cursor;
@@ -37,6 +42,9 @@ public class EvaluationsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of evaluations
+     */
     public EvaluationsCursorResponse withCursor(EvaluationsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
@@ -78,6 +86,9 @@ public class EvaluationsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of evaluations
+         */
         public Builder cursor(EvaluationsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;

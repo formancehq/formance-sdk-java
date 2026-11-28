@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2PaymentAdjustmentRaw
+ * 
+ * <p>The provider's original payload for this adjustment
+ */
 public class V2PaymentAdjustmentRaw {
     @JsonCreator
     public V2PaymentAdjustmentRaw() {

@@ -17,50 +17,72 @@ import java.util.Optional;
 
 
 public class DeliveryAttempt {
-
+    /**
+     * Position of this attempt within its retry cycle
+     */
     @JsonProperty("attemptNumber")
     private long attemptNumber;
 
-
+    /**
+     * When the attempt was made
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Identifier of the delivery this attempt belongs to
+     */
     @JsonProperty("deliveryID")
     private String deliveryID;
 
-
+    /**
+     * How long the attempt took, in milliseconds
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("durationMillis")
     private Optional<Long> durationMillis;
 
-
+    /**
+     * URL the attempt was sent to
+     */
     @JsonProperty("endpoint")
     private String endpoint;
 
-
+    /**
+     * Error reported by the attempt, when it did not succeed
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * Unique identifier of the attempt
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * How the attempt ended. A retryable failure is retried, a permanent failure is not
+     */
     @JsonProperty("outcome")
     private Outcome outcome;
 
-
+    /**
+     * Retry cycle this attempt belongs to
+     */
     @JsonProperty("replayGeneration")
     private long replayGeneration;
 
-
+    /**
+     * Truncated body returned by the endpoint, kept for troubleshooting
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("responseExcerpt")
     private Optional<String> responseExcerpt;
 
-
+    /**
+     * HTTP status code returned by the endpoint
+     */
     @JsonProperty("statusCode")
     private long statusCode;
 
@@ -116,56 +138,89 @@ public class DeliveryAttempt {
             Optional.empty(), statusCode);
     }
 
+    /**
+     * Position of this attempt within its retry cycle
+     */
     @JsonIgnore
     public long attemptNumber() {
         return attemptNumber;
     }
 
+    /**
+     * When the attempt was made
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Identifier of the delivery this attempt belongs to
+     */
     @JsonIgnore
     public String deliveryID() {
         return deliveryID;
     }
 
+    /**
+     * How long the attempt took, in milliseconds
+     */
     @JsonIgnore
     public Optional<Long> durationMillis() {
         return durationMillis;
     }
 
+    /**
+     * URL the attempt was sent to
+     */
     @JsonIgnore
     public String endpoint() {
         return endpoint;
     }
 
+    /**
+     * Error reported by the attempt, when it did not succeed
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the attempt
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * How the attempt ended. A retryable failure is retried, a permanent failure is not
+     */
     @JsonIgnore
     public Outcome outcome() {
         return outcome;
     }
 
+    /**
+     * Retry cycle this attempt belongs to
+     */
     @JsonIgnore
     public long replayGeneration() {
         return replayGeneration;
     }
 
+    /**
+     * Truncated body returned by the endpoint, kept for troubleshooting
+     */
     @JsonIgnore
     public Optional<String> responseExcerpt() {
         return responseExcerpt;
     }
 
+    /**
+     * HTTP status code returned by the endpoint
+     */
     @JsonIgnore
     public long statusCode() {
         return statusCode;
@@ -176,24 +231,36 @@ public class DeliveryAttempt {
     }
 
 
+    /**
+     * Position of this attempt within its retry cycle
+     */
     public DeliveryAttempt withAttemptNumber(long attemptNumber) {
         Utils.checkNotNull(attemptNumber, "attemptNumber");
         this.attemptNumber = attemptNumber;
         return this;
     }
 
+    /**
+     * When the attempt was made
+     */
     public DeliveryAttempt withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Identifier of the delivery this attempt belongs to
+     */
     public DeliveryAttempt withDeliveryID(String deliveryID) {
         Utils.checkNotNull(deliveryID, "deliveryID");
         this.deliveryID = deliveryID;
         return this;
     }
 
+    /**
+     * How long the attempt took, in milliseconds
+     */
     public DeliveryAttempt withDurationMillis(long durationMillis) {
         Utils.checkNotNull(durationMillis, "durationMillis");
         this.durationMillis = Optional.ofNullable(durationMillis);
@@ -201,18 +268,27 @@ public class DeliveryAttempt {
     }
 
 
+    /**
+     * How long the attempt took, in milliseconds
+     */
     public DeliveryAttempt withDurationMillis(Optional<Long> durationMillis) {
         Utils.checkNotNull(durationMillis, "durationMillis");
         this.durationMillis = durationMillis;
         return this;
     }
 
+    /**
+     * URL the attempt was sent to
+     */
     public DeliveryAttempt withEndpoint(String endpoint) {
         Utils.checkNotNull(endpoint, "endpoint");
         this.endpoint = endpoint;
         return this;
     }
 
+    /**
+     * Error reported by the attempt, when it did not succeed
+     */
     public DeliveryAttempt withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -220,30 +296,45 @@ public class DeliveryAttempt {
     }
 
 
+    /**
+     * Error reported by the attempt, when it did not succeed
+     */
     public DeliveryAttempt withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the attempt
+     */
     public DeliveryAttempt withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * How the attempt ended. A retryable failure is retried, a permanent failure is not
+     */
     public DeliveryAttempt withOutcome(Outcome outcome) {
         Utils.checkNotNull(outcome, "outcome");
         this.outcome = outcome;
         return this;
     }
 
+    /**
+     * Retry cycle this attempt belongs to
+     */
     public DeliveryAttempt withReplayGeneration(long replayGeneration) {
         Utils.checkNotNull(replayGeneration, "replayGeneration");
         this.replayGeneration = replayGeneration;
         return this;
     }
 
+    /**
+     * Truncated body returned by the endpoint, kept for troubleshooting
+     */
     public DeliveryAttempt withResponseExcerpt(String responseExcerpt) {
         Utils.checkNotNull(responseExcerpt, "responseExcerpt");
         this.responseExcerpt = Optional.ofNullable(responseExcerpt);
@@ -251,12 +342,18 @@ public class DeliveryAttempt {
     }
 
 
+    /**
+     * Truncated body returned by the endpoint, kept for troubleshooting
+     */
     public DeliveryAttempt withResponseExcerpt(Optional<String> responseExcerpt) {
         Utils.checkNotNull(responseExcerpt, "responseExcerpt");
         this.responseExcerpt = responseExcerpt;
         return this;
     }
 
+    /**
+     * HTTP status code returned by the endpoint
+     */
     public DeliveryAttempt withStatusCode(long statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
@@ -341,6 +438,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Position of this attempt within its retry cycle
+         */
         public Builder attemptNumber(long attemptNumber) {
             Utils.checkNotNull(attemptNumber, "attemptNumber");
             this.attemptNumber = attemptNumber;
@@ -348,6 +448,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * When the attempt was made
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -355,6 +458,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Identifier of the delivery this attempt belongs to
+         */
         public Builder deliveryID(String deliveryID) {
             Utils.checkNotNull(deliveryID, "deliveryID");
             this.deliveryID = deliveryID;
@@ -362,12 +468,18 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * How long the attempt took, in milliseconds
+         */
         public Builder durationMillis(long durationMillis) {
             Utils.checkNotNull(durationMillis, "durationMillis");
             this.durationMillis = Optional.ofNullable(durationMillis);
             return this;
         }
 
+        /**
+         * How long the attempt took, in milliseconds
+         */
         public Builder durationMillis(Optional<Long> durationMillis) {
             Utils.checkNotNull(durationMillis, "durationMillis");
             this.durationMillis = durationMillis;
@@ -375,6 +487,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * URL the attempt was sent to
+         */
         public Builder endpoint(String endpoint) {
             Utils.checkNotNull(endpoint, "endpoint");
             this.endpoint = endpoint;
@@ -382,12 +497,18 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Error reported by the attempt, when it did not succeed
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Error reported by the attempt, when it did not succeed
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -395,6 +516,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Unique identifier of the attempt
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -402,6 +526,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * How the attempt ended. A retryable failure is retried, a permanent failure is not
+         */
         public Builder outcome(Outcome outcome) {
             Utils.checkNotNull(outcome, "outcome");
             this.outcome = outcome;
@@ -409,6 +536,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Retry cycle this attempt belongs to
+         */
         public Builder replayGeneration(long replayGeneration) {
             Utils.checkNotNull(replayGeneration, "replayGeneration");
             this.replayGeneration = replayGeneration;
@@ -416,12 +546,18 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * Truncated body returned by the endpoint, kept for troubleshooting
+         */
         public Builder responseExcerpt(String responseExcerpt) {
             Utils.checkNotNull(responseExcerpt, "responseExcerpt");
             this.responseExcerpt = Optional.ofNullable(responseExcerpt);
             return this;
         }
 
+        /**
+         * Truncated body returned by the endpoint, kept for troubleshooting
+         */
         public Builder responseExcerpt(Optional<String> responseExcerpt) {
             Utils.checkNotNull(responseExcerpt, "responseExcerpt");
             this.responseExcerpt = responseExcerpt;
@@ -429,6 +565,9 @@ public class DeliveryAttempt {
         }
 
 
+        /**
+         * HTTP status code returned by the endpoint
+         */
         public Builder statusCode(long statusCode) {
             Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;

@@ -17,17 +17,23 @@ import java.util.Optional;
 
 
 public class V2BulkResponse {
-
+    /**
+     * Result of each element of the bulk request, in submission order
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends List<V2BulkElementResult>> data;
 
-
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorCode")
     private Optional<? extends V2ErrorsEnum> errorCode;
 
-
+    /**
+     * Human-readable description of the error
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
     private Optional<String> errorMessage;
@@ -49,18 +55,27 @@ public class V2BulkResponse {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Result of each element of the bulk request, in submission order
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V2BulkElementResult>> data() {
         return (Optional<List<V2BulkElementResult>>) data;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2ErrorsEnum> errorCode() {
         return (Optional<V2ErrorsEnum>) errorCode;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     @JsonIgnore
     public Optional<String> errorMessage() {
         return errorMessage;
@@ -71,6 +86,9 @@ public class V2BulkResponse {
     }
 
 
+    /**
+     * Result of each element of the bulk request, in submission order
+     */
     public V2BulkResponse withData(List<V2BulkElementResult> data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -78,12 +96,18 @@ public class V2BulkResponse {
     }
 
 
+    /**
+     * Result of each element of the bulk request, in submission order
+     */
     public V2BulkResponse withData(Optional<? extends List<V2BulkElementResult>> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     public V2BulkResponse withErrorCode(V2ErrorsEnum errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = Optional.ofNullable(errorCode);
@@ -91,12 +115,18 @@ public class V2BulkResponse {
     }
 
 
+    /**
+     * Machine-readable error code identifying the failure
+     */
     public V2BulkResponse withErrorCode(Optional<? extends V2ErrorsEnum> errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
         return this;
     }
 
+    /**
+     * Human-readable description of the error
+     */
     public V2BulkResponse withErrorMessage(String errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = Optional.ofNullable(errorMessage);
@@ -104,6 +134,9 @@ public class V2BulkResponse {
     }
 
 
+    /**
+     * Human-readable description of the error
+     */
     public V2BulkResponse withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
@@ -153,12 +186,18 @@ public class V2BulkResponse {
         }
 
 
+        /**
+         * Result of each element of the bulk request, in submission order
+         */
         public Builder data(List<V2BulkElementResult> data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * Result of each element of the bulk request, in submission order
+         */
         public Builder data(Optional<? extends List<V2BulkElementResult>> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
@@ -166,12 +205,18 @@ public class V2BulkResponse {
         }
 
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Builder errorCode(V2ErrorsEnum errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = Optional.ofNullable(errorCode);
             return this;
         }
 
+        /**
+         * Machine-readable error code identifying the failure
+         */
         public Builder errorCode(Optional<? extends V2ErrorsEnum> errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
@@ -179,12 +224,18 @@ public class V2BulkResponse {
         }
 
 
+        /**
+         * Human-readable description of the error
+         */
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = Optional.ofNullable(errorMessage);
             return this;
         }
 
+        /**
+         * Human-readable description of the error
+         */
         public Builder errorMessage(Optional<String> errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = errorMessage;

@@ -14,14 +14,22 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * V2LedgerInfo
+ * 
+ * <p>Runtime information about a ledger, including the state of its storage migrations
+ */
 public class V2LedgerInfo {
-
+    /**
+     * Name of the ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
-
+    /**
+     * Storage backend information, including the migrations applied to the ledger's bucket
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("storage")
     private Optional<? extends V2LedgerInfoStorage> storage;
@@ -40,11 +48,17 @@ public class V2LedgerInfo {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Name of the ledger
+     */
     @JsonIgnore
     public Optional<String> name() {
         return name;
     }
 
+    /**
+     * Storage backend information, including the migrations applied to the ledger's bucket
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2LedgerInfoStorage> storage() {
@@ -56,6 +70,9 @@ public class V2LedgerInfo {
     }
 
 
+    /**
+     * Name of the ledger
+     */
     public V2LedgerInfo withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
@@ -63,12 +80,18 @@ public class V2LedgerInfo {
     }
 
 
+    /**
+     * Name of the ledger
+     */
     public V2LedgerInfo withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
+    /**
+     * Storage backend information, including the migrations applied to the ledger's bucket
+     */
     public V2LedgerInfo withStorage(V2LedgerInfoStorage storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = Optional.ofNullable(storage);
@@ -76,6 +99,9 @@ public class V2LedgerInfo {
     }
 
 
+    /**
+     * Storage backend information, including the migrations applied to the ledger's bucket
+     */
     public V2LedgerInfo withStorage(Optional<? extends V2LedgerInfoStorage> storage) {
         Utils.checkNotNull(storage, "storage");
         this.storage = storage;
@@ -121,12 +147,18 @@ public class V2LedgerInfo {
         }
 
 
+        /**
+         * Name of the ledger
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
             return this;
         }
 
+        /**
+         * Name of the ledger
+         */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -134,12 +166,18 @@ public class V2LedgerInfo {
         }
 
 
+        /**
+         * Storage backend information, including the migrations applied to the ledger's bucket
+         */
         public Builder storage(V2LedgerInfoStorage storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = Optional.ofNullable(storage);
             return this;
         }
 
+        /**
+         * Storage backend information, including the migrations applied to the ledger's bucket
+         */
         public Builder storage(Optional<? extends V2LedgerInfoStorage> storage) {
             Utils.checkNotNull(storage, "storage");
             this.storage = storage;

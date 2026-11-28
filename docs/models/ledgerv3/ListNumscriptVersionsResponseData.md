@@ -1,0 +1,9 @@
+# ListNumscriptVersionsResponseData
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `latestVersion`                                                              | *Optional\<String>*                                                          | :heavy_minus_sign:                                                           | The current latest — the greatest stored semver                              | 2.0.0                                                                        |
+| `versions`                                                                   | List\<[NumscriptVersionEntry](../../models/shared/NumscriptVersionEntry.md)> | :heavy_minus_sign:                                                           | Every stored version, highest-first                                          |                                                                              |

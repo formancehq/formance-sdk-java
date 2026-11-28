@@ -27,7 +27,9 @@ public class V2Pipeline {
     @JsonProperty("enabled")
     private Optional<Boolean> enabled;
 
-
+    /**
+     * Identifier of the exporter the pipeline feeds
+     */
     @JsonProperty("exporterID")
     private String exporterID;
 
@@ -40,7 +42,9 @@ public class V2Pipeline {
     @JsonProperty("lastLogID")
     private Optional<Long> lastLogID;
 
-
+    /**
+     * Name of the ledger the pipeline reads from
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -85,6 +89,9 @@ public class V2Pipeline {
         return enabled;
     }
 
+    /**
+     * Identifier of the exporter the pipeline feeds
+     */
     @JsonIgnore
     public String exporterID() {
         return exporterID;
@@ -100,6 +107,9 @@ public class V2Pipeline {
         return lastLogID;
     }
 
+    /**
+     * Name of the ledger the pipeline reads from
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -129,6 +139,9 @@ public class V2Pipeline {
         return this;
     }
 
+    /**
+     * Identifier of the exporter the pipeline feeds
+     */
     public V2Pipeline withExporterID(String exporterID) {
         Utils.checkNotNull(exporterID, "exporterID");
         this.exporterID = exporterID;
@@ -154,6 +167,9 @@ public class V2Pipeline {
         return this;
     }
 
+    /**
+     * Name of the ledger the pipeline reads from
+     */
     public V2Pipeline withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -236,6 +252,9 @@ public class V2Pipeline {
         }
 
 
+        /**
+         * Identifier of the exporter the pipeline feeds
+         */
         public Builder exporterID(String exporterID) {
             Utils.checkNotNull(exporterID, "exporterID");
             this.exporterID = exporterID;
@@ -263,6 +282,9 @@ public class V2Pipeline {
         }
 
 
+        /**
+         * Name of the ledger the pipeline reads from
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;

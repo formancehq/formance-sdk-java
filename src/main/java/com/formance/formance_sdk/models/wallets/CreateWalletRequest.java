@@ -19,7 +19,9 @@ public class CreateWalletRequest {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Human-readable name for the wallet
+     */
     @JsonProperty("name")
     private String name;
 
@@ -42,6 +44,9 @@ public class CreateWalletRequest {
         return metadata;
     }
 
+    /**
+     * Human-readable name for the wallet
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -61,6 +66,9 @@ public class CreateWalletRequest {
         return this;
     }
 
+    /**
+     * Human-readable name for the wallet
+     */
     public CreateWalletRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -116,6 +124,9 @@ public class CreateWalletRequest {
         }
 
 
+        /**
+         * Human-readable name for the wallet
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

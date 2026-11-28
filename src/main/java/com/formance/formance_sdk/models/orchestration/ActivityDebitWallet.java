@@ -14,14 +14,22 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * ActivityDebitWallet
+ * 
+ * <p>Arguments for the activity that debits a wallet
+ */
 public class ActivityDebitWallet {
-
+    /**
+     * A debit to apply to a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends DebitWalletRequest> data;
 
-
+    /**
+     * Identifier of the wallet to debit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
@@ -40,12 +48,18 @@ public class ActivityDebitWallet {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * A debit to apply to a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DebitWalletRequest> data() {
         return (Optional<DebitWalletRequest>) data;
     }
 
+    /**
+     * Identifier of the wallet to debit
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
@@ -56,6 +70,9 @@ public class ActivityDebitWallet {
     }
 
 
+    /**
+     * A debit to apply to a wallet
+     */
     public ActivityDebitWallet withData(DebitWalletRequest data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -63,12 +80,18 @@ public class ActivityDebitWallet {
     }
 
 
+    /**
+     * A debit to apply to a wallet
+     */
     public ActivityDebitWallet withData(Optional<? extends DebitWalletRequest> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
+    /**
+     * Identifier of the wallet to debit
+     */
     public ActivityDebitWallet withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -76,6 +99,9 @@ public class ActivityDebitWallet {
     }
 
 
+    /**
+     * Identifier of the wallet to debit
+     */
     public ActivityDebitWallet withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -121,12 +147,18 @@ public class ActivityDebitWallet {
         }
 
 
+        /**
+         * A debit to apply to a wallet
+         */
         public Builder data(DebitWalletRequest data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * A debit to apply to a wallet
+         */
         public Builder data(Optional<? extends DebitWalletRequest> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
@@ -134,12 +166,18 @@ public class ActivityDebitWallet {
         }
 
 
+        /**
+         * Identifier of the wallet to debit
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Identifier of the wallet to debit
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

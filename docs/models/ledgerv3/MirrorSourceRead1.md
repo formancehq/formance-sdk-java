@@ -1,0 +1,12 @@
+# MirrorSourceRead1
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `batchSize`                                                                            | *Optional\<Long>*                                                                      | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `http`                                                                                 | [HttpMirrorSourceRead](../../models/shared/HttpMirrorSourceRead.md)                    | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `ledgerName`                                                                           | *String*                                                                               | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `postgres`                                                                             | [Optional\<PostgresMirrorSourceRead>](../../models/shared/PostgresMirrorSourceRead.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `rewriteRules`                                                                         | List\<[MirrorRewriteRuleRead](../../models/shared/MirrorRewriteRuleRead.md)>           | :heavy_minus_sign:                                                                     | N/A                                                                                    |

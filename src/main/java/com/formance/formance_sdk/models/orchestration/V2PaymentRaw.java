@@ -8,7 +8,11 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2PaymentRaw
+ * 
+ * <p>The provider's original payload, passed through untouched
+ */
 public class V2PaymentRaw {
     @JsonCreator
     public V2PaymentRaw() {

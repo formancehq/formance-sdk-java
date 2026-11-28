@@ -51,6 +51,9 @@ import com.formance.formance_sdk.models.operations.V2ListWorkflowsResponse;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequest;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2ReadTriggerResponse;
+import com.formance.formance_sdk.models.operations.V2ResumeActivityRequest;
+import com.formance.formance_sdk.models.operations.V2ResumeActivityRequestBuilder;
+import com.formance.formance_sdk.models.operations.V2ResumeActivityResponse;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequest;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowRequestBuilder;
 import com.formance.formance_sdk.models.operations.V2RunWorkflowResponse;
@@ -75,6 +78,7 @@ import com.formance.formance_sdk.operations.V2ListTriggers;
 import com.formance.formance_sdk.operations.V2ListTriggersOccurrences;
 import com.formance.formance_sdk.operations.V2ListWorkflows;
 import com.formance.formance_sdk.operations.V2ReadTrigger;
+import com.formance.formance_sdk.operations.V2ResumeActivity;
 import com.formance.formance_sdk.operations.V2RunWorkflow;
 import com.formance.formance_sdk.operations.V2SendEvent;
 import com.formance.formance_sdk.utils.Headers;
@@ -559,6 +563,42 @@ public class OrchestrationV2 {
     public V2ReadTriggerResponse readTrigger(V2ReadTriggerRequest request) {
         RequestOperation<V2ReadTriggerRequest, V2ReadTriggerResponse> operation
               = new V2ReadTrigger.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Resume a paused activity
+     * 
+     * <p>Resume a paused activity identified by temporalRunID and pausedAt.
+     * Use both values from the paused activity projection. A stale run id or
+     * pause timestamp returns a conflict, preventing a delayed resend from
+     * resuming an activity in a newer run or a subsequent pause generation.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @return The call builder
+     */
+    public V2ResumeActivityRequestBuilder resumeActivity() {
+        return new V2ResumeActivityRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Resume a paused activity
+     * 
+     * <p>Resume a paused activity identified by temporalRunID and pausedAt.
+     * Use both values from the paused activity projection. A stale run id or
+     * pause timestamp returns a conflict, preventing a delayed resend from
+     * resuming an activity in a newer run or a subsequent pause generation.
+     * 
+     * <p>If set, this operation will use Security#clientID from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public V2ResumeActivityResponse resumeActivity(V2ResumeActivityRequest request) {
+        RequestOperation<V2ResumeActivityRequest, V2ResumeActivityResponse> operation
+              = new V2ResumeActivity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

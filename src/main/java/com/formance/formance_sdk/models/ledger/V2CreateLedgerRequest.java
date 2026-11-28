@@ -17,17 +17,23 @@ import java.util.Optional;
 
 
 public class V2CreateLedgerRequest {
-
+    /**
+     * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bucket")
     private Optional<String> bucket;
 
-
+    /**
+     * Feature flags to enable on the ledger, keyed by feature name
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("features")
     private Optional<? extends Map<String, String>> features;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
@@ -49,17 +55,26 @@ public class V2CreateLedgerRequest {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    /**
+     * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+     */
     @JsonIgnore
     public Optional<String> bucket() {
         return bucket;
     }
 
+    /**
+     * Feature flags to enable on the ledger, keyed by feature name
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> features() {
         return (Optional<Map<String, String>>) features;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
@@ -71,6 +86,9 @@ public class V2CreateLedgerRequest {
     }
 
 
+    /**
+     * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+     */
     public V2CreateLedgerRequest withBucket(String bucket) {
         Utils.checkNotNull(bucket, "bucket");
         this.bucket = Optional.ofNullable(bucket);
@@ -78,12 +96,18 @@ public class V2CreateLedgerRequest {
     }
 
 
+    /**
+     * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+     */
     public V2CreateLedgerRequest withBucket(Optional<String> bucket) {
         Utils.checkNotNull(bucket, "bucket");
         this.bucket = bucket;
         return this;
     }
 
+    /**
+     * Feature flags to enable on the ledger, keyed by feature name
+     */
     public V2CreateLedgerRequest withFeatures(Map<String, String> features) {
         Utils.checkNotNull(features, "features");
         this.features = Optional.ofNullable(features);
@@ -91,12 +115,18 @@ public class V2CreateLedgerRequest {
     }
 
 
+    /**
+     * Feature flags to enable on the ledger, keyed by feature name
+     */
     public V2CreateLedgerRequest withFeatures(Optional<? extends Map<String, String>> features) {
         Utils.checkNotNull(features, "features");
         this.features = features;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2CreateLedgerRequest withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -104,6 +134,9 @@ public class V2CreateLedgerRequest {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2CreateLedgerRequest withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -153,12 +186,18 @@ public class V2CreateLedgerRequest {
         }
 
 
+        /**
+         * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+         */
         public Builder bucket(String bucket) {
             Utils.checkNotNull(bucket, "bucket");
             this.bucket = Optional.ofNullable(bucket);
             return this;
         }
 
+        /**
+         * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+         */
         public Builder bucket(Optional<String> bucket) {
             Utils.checkNotNull(bucket, "bucket");
             this.bucket = bucket;
@@ -166,12 +205,18 @@ public class V2CreateLedgerRequest {
         }
 
 
+        /**
+         * Feature flags to enable on the ledger, keyed by feature name
+         */
         public Builder features(Map<String, String> features) {
             Utils.checkNotNull(features, "features");
             this.features = Optional.ofNullable(features);
             return this;
         }
 
+        /**
+         * Feature flags to enable on the ledger, keyed by feature name
+         */
         public Builder features(Optional<? extends Map<String, String>> features) {
             Utils.checkNotNull(features, "features");
             this.features = features;
@@ -179,12 +224,18 @@ public class V2CreateLedgerRequest {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
