@@ -14,14 +14,22 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-
+/**
+ * ActivityCreditWallet
+ * 
+ * <p>Arguments for the activity that credits a wallet
+ */
 public class ActivityCreditWallet {
-
+    /**
+     * A credit to apply to a wallet
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends CreditWalletRequest> data;
 
-
+    /**
+     * Identifier of the wallet to credit
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
@@ -40,12 +48,18 @@ public class ActivityCreditWallet {
         this(Optional.empty(), Optional.empty());
     }
 
+    /**
+     * A credit to apply to a wallet
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<CreditWalletRequest> data() {
         return (Optional<CreditWalletRequest>) data;
     }
 
+    /**
+     * Identifier of the wallet to credit
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
@@ -56,6 +70,9 @@ public class ActivityCreditWallet {
     }
 
 
+    /**
+     * A credit to apply to a wallet
+     */
     public ActivityCreditWallet withData(CreditWalletRequest data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -63,12 +80,18 @@ public class ActivityCreditWallet {
     }
 
 
+    /**
+     * A credit to apply to a wallet
+     */
     public ActivityCreditWallet withData(Optional<? extends CreditWalletRequest> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
     }
 
+    /**
+     * Identifier of the wallet to credit
+     */
     public ActivityCreditWallet withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -76,6 +99,9 @@ public class ActivityCreditWallet {
     }
 
 
+    /**
+     * Identifier of the wallet to credit
+     */
     public ActivityCreditWallet withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -121,12 +147,18 @@ public class ActivityCreditWallet {
         }
 
 
+        /**
+         * A credit to apply to a wallet
+         */
         public Builder data(CreditWalletRequest data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * A credit to apply to a wallet
+         */
         public Builder data(Optional<? extends CreditWalletRequest> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
@@ -134,12 +166,18 @@ public class ActivityCreditWallet {
         }
 
 
+        /**
+         * Identifier of the wallet to credit
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Identifier of the wallet to credit
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

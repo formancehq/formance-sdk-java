@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2LedgerListResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of ledgers
+ */
 public class V2LedgerListResponseCursor {
 
     @JsonProperty("data")

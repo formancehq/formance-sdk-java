@@ -1,0 +1,11 @@
+# AccountTypeInfo
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `name`                                                                          | *String*                                                                        | :heavy_check_mark:                                                              | Account type name                                                               |
+| `pattern`                                                                       | *String*                                                                        | :heavy_check_mark:                                                              | Account address pattern                                                         |
+| `persistence`                                                                   | [AccountTypeInfoPersistence](../../models/shared/AccountTypeInfoPersistence.md) | :heavy_check_mark:                                                              | How account volumes are stored (NORMAL, EPHEMERAL, or TRANSIENT)                |
+| `segmentTypes`                                                                  | Map\<String, [SegmentType](../../models/shared/SegmentType.md)>                 | :heavy_minus_sign:                                                              | Maps a pattern variable name to a type constraint.                              |

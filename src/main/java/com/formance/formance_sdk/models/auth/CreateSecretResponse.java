@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class CreateSecretResponse {
-
+    /**
+     * A client secret. The full value is returned only at creation and cannot be retrieved again
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("data")
     private Optional<? extends Secret> data;
@@ -32,6 +34,9 @@ public class CreateSecretResponse {
         this(Optional.empty());
     }
 
+    /**
+     * A client secret. The full value is returned only at creation and cannot be retrieved again
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Secret> data() {
@@ -43,6 +48,9 @@ public class CreateSecretResponse {
     }
 
 
+    /**
+     * A client secret. The full value is returned only at creation and cannot be retrieved again
+     */
     public CreateSecretResponse withData(Secret data) {
         Utils.checkNotNull(data, "data");
         this.data = Optional.ofNullable(data);
@@ -50,6 +58,9 @@ public class CreateSecretResponse {
     }
 
 
+    /**
+     * A client secret. The full value is returned only at creation and cannot be retrieved again
+     */
     public CreateSecretResponse withData(Optional<? extends Secret> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -91,12 +102,18 @@ public class CreateSecretResponse {
         }
 
 
+        /**
+         * A client secret. The full value is returned only at creation and cannot be retrieved again
+         */
         public Builder data(Secret data) {
             Utils.checkNotNull(data, "data");
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * A client secret. The full value is returned only at creation and cannot be retrieved again
+         */
         public Builder data(Optional<? extends Secret> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

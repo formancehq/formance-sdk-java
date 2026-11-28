@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * V2PaymentType
+ * 
+ * <p>Direction of the payment
+ */
 public enum V2PaymentType {
     PAY_IN("PAY-IN"),
     PAYOUT("PAYOUT"),

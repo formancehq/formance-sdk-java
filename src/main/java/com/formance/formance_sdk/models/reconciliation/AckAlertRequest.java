@@ -15,11 +15,15 @@ import java.util.Optional;
 
 
 public class AckAlertRequest {
-
+    /**
+     * Who is acknowledging the alert
+     */
     @JsonProperty("by")
     private String by;
 
-
+    /**
+     * Free-text note to record with the acknowledgement
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private Optional<String> note;
@@ -39,11 +43,17 @@ public class AckAlertRequest {
         this(by, Optional.empty());
     }
 
+    /**
+     * Who is acknowledging the alert
+     */
     @JsonIgnore
     public String by() {
         return by;
     }
 
+    /**
+     * Free-text note to record with the acknowledgement
+     */
     @JsonIgnore
     public Optional<String> note() {
         return note;
@@ -54,12 +64,18 @@ public class AckAlertRequest {
     }
 
 
+    /**
+     * Who is acknowledging the alert
+     */
     public AckAlertRequest withBy(String by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
     }
 
+    /**
+     * Free-text note to record with the acknowledgement
+     */
     public AckAlertRequest withNote(String note) {
         Utils.checkNotNull(note, "note");
         this.note = Optional.ofNullable(note);
@@ -67,6 +83,9 @@ public class AckAlertRequest {
     }
 
 
+    /**
+     * Free-text note to record with the acknowledgement
+     */
     public AckAlertRequest withNote(Optional<String> note) {
         Utils.checkNotNull(note, "note");
         this.note = note;
@@ -112,6 +131,9 @@ public class AckAlertRequest {
         }
 
 
+        /**
+         * Who is acknowledging the alert
+         */
         public Builder by(String by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
@@ -119,12 +141,18 @@ public class AckAlertRequest {
         }
 
 
+        /**
+         * Free-text note to record with the acknowledgement
+         */
         public Builder note(String note) {
             Utils.checkNotNull(note, "note");
             this.note = Optional.ofNullable(note);
             return this;
         }
 
+        /**
+         * Free-text note to record with the acknowledgement
+         */
         public Builder note(Optional<String> note) {
             Utils.checkNotNull(note, "note");
             this.note = note;

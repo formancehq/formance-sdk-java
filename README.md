@@ -55,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.formance:formance-sdk:10.0.1'
+implementation 'com.formance:formance-sdk:10.1.0'
 ```
 
 Maven:
@@ -63,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.formance</groupId>
     <artifactId>formance-sdk</artifactId>
-    <version>10.0.1</version>
+    <version>10.1.0</version>
 </dependency>
 ```
 
@@ -145,6 +145,23 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [readUser](docs/sdks/authv1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/authv1/README.md#updateclient) - Update client
 
+### [Connectivity.V1](docs/sdks/connectivityv1/README.md)
+
+* [connectivityInfo](docs/sdks/connectivityv1/README.md#connectivityinfo) - Build information
+* [createConnection](docs/sdks/connectivityv1/README.md#createconnection) - Create a Connection
+* [deleteConnection](docs/sdks/connectivityv1/README.md#deleteconnection) - Delete a Connection
+* [getConnection](docs/sdks/connectivityv1/README.md#getconnection) - Get a Connection
+* [getConnector](docs/sdks/connectivityv1/README.md#getconnector) - Get a Connector (lean connector metadata)
+* [getConnectorFacets](docs/sdks/connectivityv1/README.md#getconnectorfacets) - Facet-value distribution over the published catalogue
+* [getConnectorVersion](docs/sdks/connectivityv1/README.md#getconnectorversion) - Get one Connector version (including its configSchema and additionalMetadata)
+* [getQueryCapabilities](docs/sdks/connectivityv1/README.md#getquerycapabilities) - The filterable keys, operators and value enums per resource
+* [healthcheck](docs/sdks/connectivityv1/README.md#healthcheck) - Health probe
+* [listConnections](docs/sdks/connectivityv1/README.md#listconnections) - List connector instances for this tenant
+* [listConnectorVersions](docs/sdks/connectivityv1/README.md#listconnectorversions) - List the installable versions of a Connector
+* [listConnectors](docs/sdks/connectivityv1/README.md#listconnectors) - List published Connectors with their catalogue identity
+* [patchConnection](docs/sdks/connectivityv1/README.md#patchconnection) - Merge-patch a connector instance configuration
+* [replaceConnection](docs/sdks/connectivityv1/README.md#replaceconnection) - Replace a connector instance configuration
+
 ### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [createTransactions](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
@@ -216,6 +233,72 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [updateExporter](docs/sdks/ledgerv2/README.md#updateexporter) - Update exporter
 * [updateLedgerMetadata](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 
+### [Ledger.V3](docs/sdks/ledgerv3/README.md)
+
+* [addAccountType](docs/sdks/ledgerv3/README.md#addaccounttype) - Add an account type
+* [aggregateVolumes](docs/sdks/ledgerv3/README.md#aggregatevolumes) - Aggregate volumes
+* [analyzeAccounts](docs/sdks/ledgerv3/README.md#analyzeaccounts) - Analyze accounts and suggest a Chart of Accounts
+* [analyzeNumscript](docs/sdks/ledgerv3/README.md#analyzenumscript) - Analyze Numscript source
+* [analyzeTransactions](docs/sdks/ledgerv3/README.md#analyzetransactions) - Analyze transaction flow patterns
+* [bulkOperations](docs/sdks/ledgerv3/README.md#bulkoperations) - Bulk operations
+* [clusterz](docs/sdks/ledgerv3/README.md#clusterz) - Cluster-availability probe
+* [createIndex](docs/sdks/ledgerv3/README.md#createindex) - Create an index on a ledger
+* [createLedger](docs/sdks/ledgerv3/README.md#createledger) - Create a new ledger
+* [createPreparedQuery](docs/sdks/ledgerv3/README.md#createpreparedquery) - Create a prepared query
+* [createTransaction](docs/sdks/ledgerv3/README.md#createtransaction) - Create a new transaction
+* [deleteAccountMetadata](docs/sdks/ledgerv3/README.md#deleteaccountmetadata) - Delete account metadata
+* [deleteLedger](docs/sdks/ledgerv3/README.md#deleteledger) - Delete a ledger
+* [deleteLedgerMetadata](docs/sdks/ledgerv3/README.md#deleteledgermetadata) - Delete ledger metadata
+* [deletePreparedQuery](docs/sdks/ledgerv3/README.md#deletepreparedquery) - Delete a prepared query
+* [deleteTransactionMetadata](docs/sdks/ledgerv3/README.md#deletetransactionmetadata) - Delete transaction metadata
+* [dropIndex](docs/sdks/ledgerv3/README.md#dropindex) - Drop an index from a ledger
+* [executePreparedQuery](docs/sdks/ledgerv3/README.md#executepreparedquery) - Execute a prepared query
+* [getAccount](docs/sdks/ledgerv3/README.md#getaccount) - Get an account
+* [getAccountType](docs/sdks/ledgerv3/README.md#getaccounttype) - Get an account type
+* [getAuditEntry](docs/sdks/ledgerv3/README.md#getauditentry) - Get an audit entry
+* [getBucketIndex](docs/sdks/ledgerv3/README.md#getbucketindex) - Get a single bucket-scoped index registry entry
+* [getBucketIndexEntryStatus](docs/sdks/ledgerv3/README.md#getbucketindexentrystatus) - Get the per-replica status of a single bucket-scoped index
+* [getEventsSinks](docs/sdks/ledgerv3/README.md#geteventssinks) - List configured event sinks
+* [getIndex](docs/sdks/ledgerv3/README.md#getindex) - Get a single index registry entry
+* [getIndexEntryStatus](docs/sdks/ledgerv3/README.md#getindexentrystatus) - Get the per-replica status of a single index
+* [getIndexStatus](docs/sdks/ledgerv3/README.md#getindexstatus) - Get aggregated index registry status
+* [getLedger](docs/sdks/ledgerv3/README.md#getledger) - Get a ledger
+* [getLedgerStats](docs/sdks/ledgerv3/README.md#getledgerstats) - Get ledger statistics
+* [getLog](docs/sdks/ledgerv3/README.md#getlog) - Get a single system log by bucket-wide sequence
+* [getMetadataSchemaStatus](docs/sdks/ledgerv3/README.md#getmetadataschemastatus) - Get metadata schema
+* [getNumscript](docs/sdks/ledgerv3/README.md#getnumscript) - Get a numscript
+* [getNumscriptUsage](docs/sdks/ledgerv3/README.md#getnumscriptusage) - Get template usage
+* [getTransaction](docs/sdks/ledgerv3/README.md#gettransaction) - Get a transaction
+* [health](docs/sdks/ledgerv3/README.md#health) - Health check
+* [info](docs/sdks/ledgerv3/README.md#info) - Get server build information
+* [inspectIndex](docs/sdks/ledgerv3/README.md#inspectindex) - Inspect a metadata index
+* [listAccountTypes](docs/sdks/ledgerv3/README.md#listaccounttypes) - List account types
+* [listAccounts](docs/sdks/ledgerv3/README.md#listaccounts) - List accounts
+* [listAllLedgers](docs/sdks/ledgerv3/README.md#listallledgers) - List all ledgers
+* [listAuditEntries](docs/sdks/ledgerv3/README.md#listauditentries) - List audit entries
+* [listBucketIndexes](docs/sdks/ledgerv3/README.md#listbucketindexes) - List bucket-wide indexes
+* [listLedgerIndexes](docs/sdks/ledgerv3/README.md#listledgerindexes) - List indexes for a ledger
+* [listLedgerLogs](docs/sdks/ledgerv3/README.md#listledgerlogs) - List logs for a ledger
+* [listLedgerTransactions](docs/sdks/ledgerv3/README.md#listledgertransactions) - List transactions for a ledger
+* [listNumscriptVersions](docs/sdks/ledgerv3/README.md#listnumscriptversions) - List numscript versions
+* [listNumscripts](docs/sdks/ledgerv3/README.md#listnumscripts) - List all numscripts
+* [listPreparedQueries](docs/sdks/ledgerv3/README.md#listpreparedqueries) - List prepared queries
+* [listSigningKeys](docs/sdks/ledgerv3/README.md#listsigningkeys) - List registered Ed25519 signing keys
+* [livez](docs/sdks/ledgerv3/README.md#livez) - Liveness probe
+* [promoteLedger](docs/sdks/ledgerv3/README.md#promoteledger) - Promote a mirror ledger
+* [readyz](docs/sdks/ledgerv3/README.md#readyz) - Readiness probe
+* [removeAccountType](docs/sdks/ledgerv3/README.md#removeaccounttype) - Remove an account type
+* [removeEventsSink](docs/sdks/ledgerv3/README.md#removeeventssink) - Remove an event sink
+* [removeMetadataFieldType](docs/sdks/ledgerv3/README.md#removemetadatafieldtype) - Remove metadata field type
+* [revertTransaction](docs/sdks/ledgerv3/README.md#reverttransaction) - Revert a transaction
+* [saveAccountMetadata](docs/sdks/ledgerv3/README.md#saveaccountmetadata) - Save account metadata
+* [saveLedgerMetadata](docs/sdks/ledgerv3/README.md#saveledgermetadata) - Save ledger metadata
+* [saveNumscript](docs/sdks/ledgerv3/README.md#savenumscript) - Save a numscript
+* [saveTransactionMetadata](docs/sdks/ledgerv3/README.md#savetransactionmetadata) - Save transaction metadata
+* [setDefaultEnforcementMode](docs/sdks/ledgerv3/README.md#setdefaultenforcementmode) - Set default enforcement mode
+* [setMetadataFieldType](docs/sdks/ledgerv3/README.md#setmetadatafieldtype) - Set metadata field type
+* [updatePreparedQuery](docs/sdks/ledgerv3/README.md#updatepreparedquery) - Update a prepared query
+
 ### [Orchestration.V1](docs/sdks/orchestrationv1/README.md)
 
 * [cancelEvent](docs/sdks/orchestrationv1/README.md#cancelevent) - Cancel a running workflow
@@ -233,6 +316,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [listTriggersOccurrences](docs/sdks/orchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](docs/sdks/orchestrationv1/README.md#listworkflows) - List registered workflows
 * [readTrigger](docs/sdks/orchestrationv1/README.md#readtrigger) - Read trigger
+* [resumeActivity](docs/sdks/orchestrationv1/README.md#resumeactivity) - Resume a paused activity
 * [runWorkflow](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
 
@@ -253,6 +337,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [listTriggersOccurrences](docs/sdks/orchestrationv2/README.md#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](docs/sdks/orchestrationv2/README.md#listworkflows) - List registered workflows
 * [readTrigger](docs/sdks/orchestrationv2/README.md#readtrigger) - Read trigger
+* [resumeActivity](docs/sdks/orchestrationv2/README.md#resumeactivity) - Resume a paused activity
 * [runWorkflow](docs/sdks/orchestrationv2/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv2/README.md#sendevent) - Send an event to a running workflow
 * [testTrigger](docs/sdks/orchestrationv2/README.md#testtrigger) - Test trigger
@@ -305,77 +390,77 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [updatePoolQuery](docs/sdks/paymentsv1/README.md#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](docs/sdks/paymentsv1/README.md#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
-### [Payments.V3](docs/sdks/v3/README.md)
+### [Payments.V3](docs/sdks/paymentsv3/README.md)
 
-* [addAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
-* [addBankAccountToPaymentServiceUser](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
-* [approvePaymentInitiation](docs/sdks/v3/README.md#approvepaymentinitiation) - Approve a payment initiation
-* [createAccount](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+* [addAccountToPool](docs/sdks/paymentsv3/README.md#addaccounttopool) - Add an account to a pool
+* [addBankAccountToPaymentServiceUser](docs/sdks/paymentsv3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
+* [approvePaymentInitiation](docs/sdks/paymentsv3/README.md#approvepaymentinitiation) - Approve a payment initiation
+* [createAccount](docs/sdks/paymentsv3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
-* [createBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+* [createBankAccount](docs/sdks/paymentsv3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
-* [createLinkForPaymentServiceUser](docs/sdks/v3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
-* [createPayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+* [createLinkForPaymentServiceUser](docs/sdks/paymentsv3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
+* [createPayment](docs/sdks/paymentsv3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
-* [createPaymentServiceUser](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
-* [createPool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
-* [deletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
-* [deletePaymentServiceUser](docs/sdks/v3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
-* [deletePaymentServiceUserConnectionFromConnectorID](docs/sdks/v3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
-* [deletePaymentServiceUserConnector](docs/sdks/v3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
-* [deletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
-* [forwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
-* [forwardPaymentServiceUserBankAccount](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
-* [forwardPaymentServiceUserToProvider](docs/sdks/v3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
-* [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
-* [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
-* [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
-* [getConnectorCapabilities](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
-* [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
-* [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
-* [getConversion](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
-* [getOrder](docs/sdks/v3/README.md#getorder) - Get a single order by its Formance ID
-* [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
-* [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
-* [getPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
-* [getPaymentServiceUserLinkAttemptFromConnectorID](docs/sdks/v3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
-* [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
-* [getPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
-* [getPoolBalancesLatest](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
-* [getTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
-* [initiatePayment](docs/sdks/v3/README.md#initiatepayment) - Initiate a payment
-* [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
-* [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
-* [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
-* [listConnectorCapabilities](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
-* [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
-* [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
-* [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
-* [listConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
-* [listConversions](docs/sdks/v3/README.md#listconversions) - List currency and asset conversions ingested from connectors
-* [listOrders](docs/sdks/v3/README.md#listorders) - List orders ingested from exchange-style connectors
-* [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
-* [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
-* [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
-* [listPaymentServiceUserConnections](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
-* [listPaymentServiceUserConnectionsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
-* [listPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+* [createPaymentServiceUser](docs/sdks/paymentsv3/README.md#createpaymentserviceuser) - Create a formance payment service user object
+* [createPool](docs/sdks/paymentsv3/README.md#createpool) - Create a formance pool object
+* [deletePaymentInitiation](docs/sdks/paymentsv3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePaymentServiceUser](docs/sdks/paymentsv3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
+* [deletePaymentServiceUserConnectionFromConnectorID](docs/sdks/paymentsv3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [deletePaymentServiceUserConnector](docs/sdks/paymentsv3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
+* [deletePool](docs/sdks/paymentsv3/README.md#deletepool) - Delete a pool by ID
+* [forwardBankAccount](docs/sdks/paymentsv3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [forwardPaymentServiceUserBankAccount](docs/sdks/paymentsv3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+* [forwardPaymentServiceUserToProvider](docs/sdks/paymentsv3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
+* [getAccount](docs/sdks/paymentsv3/README.md#getaccount) - Get an account by ID
+* [getAccountBalances](docs/sdks/paymentsv3/README.md#getaccountbalances) - Get account balances
+* [getBankAccount](docs/sdks/paymentsv3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](docs/sdks/paymentsv3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
+* [getConnectorConfig](docs/sdks/paymentsv3/README.md#getconnectorconfig) - Get a connector configuration by ID
+* [getConnectorSchedule](docs/sdks/paymentsv3/README.md#getconnectorschedule) - Get a connector schedule by ID
+* [getConversion](docs/sdks/paymentsv3/README.md#getconversion) - Get a single conversion by its Formance ID
+* [getOrder](docs/sdks/paymentsv3/README.md#getorder) - Get a single order by its Formance ID
+* [getPayment](docs/sdks/paymentsv3/README.md#getpayment) - Get a payment by ID
+* [getPaymentInitiation](docs/sdks/paymentsv3/README.md#getpaymentinitiation) - Get a payment initiation by ID
+* [getPaymentServiceUser](docs/sdks/paymentsv3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+* [getPaymentServiceUserLinkAttemptFromConnectorID](docs/sdks/paymentsv3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
+* [getPool](docs/sdks/paymentsv3/README.md#getpool) - Get a pool by ID
+* [getPoolBalances](docs/sdks/paymentsv3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
+* [getPoolBalancesLatest](docs/sdks/paymentsv3/README.md#getpoolbalanceslatest) - Get latest pool balances
+* [getTask](docs/sdks/paymentsv3/README.md#gettask) - Get a task and its result by ID
+* [initiatePayment](docs/sdks/paymentsv3/README.md#initiatepayment) - Initiate a payment
+* [installConnector](docs/sdks/paymentsv3/README.md#installconnector) - Install a connector
+* [listAccounts](docs/sdks/paymentsv3/README.md#listaccounts) - List all accounts
+* [listBankAccounts](docs/sdks/paymentsv3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](docs/sdks/paymentsv3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
+* [listConnectorConfigs](docs/sdks/paymentsv3/README.md#listconnectorconfigs) - List all connector configurations
+* [listConnectorScheduleInstances](docs/sdks/paymentsv3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
+* [listConnectorSchedules](docs/sdks/paymentsv3/README.md#listconnectorschedules) - List all connector schedules
+* [listConnectors](docs/sdks/paymentsv3/README.md#listconnectors) - List all connectors
+* [listConversions](docs/sdks/paymentsv3/README.md#listconversions) - List currency and asset conversions ingested from connectors
+* [listOrders](docs/sdks/paymentsv3/README.md#listorders) - List orders ingested from exchange-style connectors
+* [listPaymentInitiationAdjustments](docs/sdks/paymentsv3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
+* [listPaymentInitiationRelatedPayments](docs/sdks/paymentsv3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [listPaymentInitiations](docs/sdks/paymentsv3/README.md#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUserConnections](docs/sdks/paymentsv3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [listPaymentServiceUserConnectionsFromConnectorID](docs/sdks/paymentsv3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [listPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/paymentsv3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
 Allows to check if users used the link and completed the oauth flow.
 
-* [listPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
-* [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
-* [listPools](docs/sdks/v3/README.md#listpools) - List all pools
-* [rejectPaymentInitiation](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
-* [removeAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
-* [resetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
-* [retryPaymentInitiation](docs/sdks/v3/README.md#retrypaymentinitiation) - Retry a payment initiation
-* [reversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
-* [uninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
-* [updateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
-* [updateLinkForPaymentServiceUserOnConnector](docs/sdks/v3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
-* [updatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
-* [updatePoolQuery](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
-* [v3UpdateConnectorConfig](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
+* [listPaymentServiceUsers](docs/sdks/paymentsv3/README.md#listpaymentserviceusers) - List all payment service users
+* [listPayments](docs/sdks/paymentsv3/README.md#listpayments) - List all payments
+* [listPools](docs/sdks/paymentsv3/README.md#listpools) - List all pools
+* [rejectPaymentInitiation](docs/sdks/paymentsv3/README.md#rejectpaymentinitiation) - Reject a payment initiation
+* [removeAccountFromPool](docs/sdks/paymentsv3/README.md#removeaccountfrompool) - Remove an account from a pool
+* [resetConnector](docs/sdks/paymentsv3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+* [retryPaymentInitiation](docs/sdks/paymentsv3/README.md#retrypaymentinitiation) - Retry a payment initiation
+* [reversePaymentInitiation](docs/sdks/paymentsv3/README.md#reversepaymentinitiation) - Reverse a payment initiation
+* [uninstallConnector](docs/sdks/paymentsv3/README.md#uninstallconnector) - Uninstall a connector
+* [updateBankAccountMetadata](docs/sdks/paymentsv3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [updateLinkForPaymentServiceUserOnConnector](docs/sdks/paymentsv3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
+* [updatePaymentMetadata](docs/sdks/paymentsv3/README.md#updatepaymentmetadata) - Update a payment's metadata
+* [updatePoolQuery](docs/sdks/paymentsv3/README.md#updatepoolquery) - Update the query of a pool
+* [v3UpdateConnectorConfig](docs/sdks/paymentsv3/README.md#v3updateconnectorconfig) - Update the config of a connector
 
 ### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
@@ -403,11 +488,6 @@ Allows to check if users used the link and completed the oauth flow.
 * [resolveAlert](docs/sdks/reconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
 * [snoozeAlert](docs/sdks/reconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
 * [unsnoozeAlert](docs/sdks/reconciliationv1/README.md#unsnoozealert) - Lift a snooze early
-
-### [~~Search.V1~~](docs/sdks/searchv1/README.md)
-
-* [~~getServerInfoSearch~~](docs/sdks/searchv1/README.md#getserverinfosearch) - Get server info :warning: **Deprecated**
-* [~~search~~](docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
 
 ### [Wallets.V1](docs/sdks/walletsv1/README.md)
 
@@ -469,45 +549,28 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.connectivity.Error;
 import com.formance.formance_sdk.models.errors.SDKBaseError;
-import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
-import com.formance.formance_sdk.models.ledger.V2ErrorsEnum;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionRequest;
-import com.formance.formance_sdk.models.operations.V2AddMetadataOnTransactionResponse;
-import com.formance.formance_sdk.models.shared.Security;
+import com.formance.formance_sdk.models.operations.ConnectivityInfoResponse;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
-import java.math.BigInteger;
-import java.util.Map;
 import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorsV2ErrorResponse, Exception {
+    public static void main(String[] args) throws Error, Exception {
 
         SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .clientID(System.getenv().getOrDefault("CLIENT_ID", ""))
-                    .clientSecret(System.getenv().getOrDefault("CLIENT_SECRET", ""))
-                    .build())
             .build();
         try {
 
-            V2AddMetadataOnTransactionRequest req = V2AddMetadataOnTransactionRequest.builder()
-                    .requestBody(Map.ofEntries(
-                        Map.entry("admin", "true")))
-                    .id(new BigInteger("1234"))
-                    .ledger("ledger001")
-                    .dryRun(true)
-                    .schemaVersion("v1.0.0")
-                    .build();
-
-            V2AddMetadataOnTransactionResponse res = sdk.ledger().v2().addMetadataOnTransaction()
-                    .request(req)
+            ConnectivityInfoResponse res = sdk.connectivity().v1().connectivityInfo()
                     .call();
 
-            // handle response
+            if (res.info().isPresent()) {
+                System.out.println(res.info().get());
+            }
         } catch (SDKBaseError ex) { // all SDK exceptions inherit from SDKBaseError
 
             // ex.ToString() provides a detailed error message including
@@ -523,12 +586,12 @@ public class Application {
 
             // different error subclasses may be thrown 
             // depending on the service call
-            if (ex instanceof ErrorsV2ErrorResponse) {
-                var e = (ErrorsV2ErrorResponse) ex;
+            if (ex instanceof Error) {
+                var e = (Error) ex;
                 // Check error data fields
                 e.data().ifPresent(payload -> {
                       Optional<String> details = payload.details();
-                      V2ErrorsEnum errorCode = payload.errorCode();
+                      Optional<String> errorCode = payload.errorCode();
                       // ...
                 });
             }
@@ -549,7 +612,7 @@ public class Application {
 **Primary error:**
 * [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (13)</summary>
+<details><summary>Less common errors (15)</summary>
 
 <br />
 
@@ -559,13 +622,15 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`SDKBaseError`](./src/main/java/models/errors/SDKBaseError.java)**:
-* [`com.formance.formance_sdk.models.payments.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.V3ErrorResponse.java): Error. Applicable to 63 of 276 methods.*
-* [`com.formance.formance_sdk.models.payments.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.PaymentsErrorResponse.java): Error. Applicable to 46 of 276 methods.*
-* [`com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse.java): Applicable to 44 of 276 methods.*
-* [`com.formance.formance_sdk.models.ledger.ErrorsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsErrorResponse.java): Applicable to 43 of 276 methods.*
-* [`com.formance.formance_sdk.models.wallets.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.wallets.ErrorResponse.java): Applicable to 28 of 276 methods.*
-* [`com.formance.formance_sdk.models.orchestration.V2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.V2Error.java): General error. Applicable to 18 of 276 methods.*
-* [`com.formance.formance_sdk.models.orchestration.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.Error.java): General error. Applicable to 17 of 276 methods.*
+* [`com.formance.formance_sdk.models.payments.V3ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.V3ErrorResponse.java): Error. Applicable to 63 of 353 methods.*
+* [`com.formance.formance_sdk.models.payments.PaymentsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.payments.PaymentsErrorResponse.java): Error. Applicable to 46 of 353 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse.java): Applicable to 45 of 353 methods.*
+* [`com.formance.formance_sdk.models.ledger.ErrorsErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.ledger.ErrorsErrorResponse.java): Applicable to 43 of 353 methods.*
+* [`com.formance.formance_sdk.models.wallets.ErrorResponse`](./src/main/java/models/errors/com.formance.formance_sdk.models.wallets.ErrorResponse.java): Applicable to 28 of 353 methods.*
+* [`com.formance.formance_sdk.models.orchestration.ErrorsV2Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.ErrorsV2Error.java): General error. Applicable to 18 of 353 methods.*
+* [`com.formance.formance_sdk.models.orchestration.ErrorsError`](./src/main/java/models/errors/com.formance.formance_sdk.models.orchestration.ErrorsError.java): General error. Applicable to 17 of 353 methods.*
+* [`com.formance.formance_sdk.models.connectivity.Error`](./src/main/java/models/errors/com.formance.formance_sdk.models.connectivity.Error.java): Request or server error. The HTTP status and code identify the failure. Applicable to 14 of 353 methods.*
+* [`com.formance.formance_sdk.models.connectivity.HealthException`](./src/main/java/models/errors/com.formance.formance_sdk.models.connectivity.HealthException.java): Ready. Status code `500`. Applicable to 1 of 353 methods.*
 
 
 </details>
@@ -609,6 +674,53 @@ public class Application {
 
         if (res.getVersionsResponse().isPresent()) {
             System.out.println(res.getVersionsResponse().get());
+        }
+    }
+}
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```java
+package hello.world;
+
+import com.formance.formance_sdk.SDK;
+import com.formance.formance_sdk.models.connectivity.*;
+import com.formance.formance_sdk.models.connectivity.Error;
+import com.formance.formance_sdk.models.operations.CreateConnectionResponse;
+import com.formance.formance_sdk.models.operations.CreateConnectionSecurity;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+            .build();
+
+        ConnectionCreate req = ConnectionCreate.builder()
+                .configuration(ConnectionCreateConfiguration.builder()
+                    .connector("stripe")
+                    .ledger("main")
+                    .channel(ConnectionCreateChannel.STABLE)
+                    .env(Map.ofEntries(
+                        Map.entry("STRIPE_API_KEY", "<your-api-key>")))
+                    .pollInterval("30s")
+                    .build())
+                .name("stripe-main")
+                .build();
+
+        CreateConnectionResponse res = sdk.connectivity().v1().createConnection()
+                .request(req)
+                .security(CreateConnectionSecurity.builder()
+
+                    .build())
+                .call();
+
+        if (res.connection().isPresent()) {
+            System.out.println(res.connection().get());
         }
     }
 }

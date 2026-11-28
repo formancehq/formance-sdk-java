@@ -17,22 +17,34 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Evaluation
+ * 
+ * <p>One run of a rule, carrying its outcome and cost
+ */
 public class Evaluation {
-
+    /**
+     * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("costUnits")
     private Optional<Long> costUnits;
 
-
+    /**
+     * When the evaluation record was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * When the evaluation finished
+     */
     @JsonProperty("endedAt")
     private OffsetDateTime endedAt;
 
-
+    /**
+     * Why the evaluation could not complete, when its result reports an error
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
@@ -54,7 +66,9 @@ public class Evaluation {
     @JsonProperty("evidence")
     private Optional<? extends EvidenceUnion> evidence;
 
-
+    /**
+     * Unique identifier of the evaluation
+     */
     @JsonProperty("id")
     private String id;
 
@@ -67,15 +81,21 @@ public class Evaluation {
     @JsonProperty("pitPerSource")
     private Optional<? extends Map<String, OffsetDateTime>> pitPerSource;
 
-
+    /**
+     * Whether the rule passed, failed, or could not be evaluated
+     */
     @JsonProperty("result")
     private Result result;
 
-
+    /**
+     * Identifier of the rule that was evaluated
+     */
     @JsonProperty("ruleID")
     private String ruleID;
 
-
+    /**
+     * When the evaluation started
+     */
     @JsonProperty("startedAt")
     private OffsetDateTime startedAt;
 
@@ -126,21 +146,33 @@ public class Evaluation {
             startedAt);
     }
 
+    /**
+     * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+     */
     @JsonIgnore
     public Optional<Long> costUnits() {
         return costUnits;
     }
 
+    /**
+     * When the evaluation record was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * When the evaluation finished
+     */
     @JsonIgnore
     public OffsetDateTime endedAt() {
         return endedAt;
     }
 
+    /**
+     * Why the evaluation could not complete, when its result reports an error
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
@@ -165,6 +197,9 @@ public class Evaluation {
         return (Optional<EvidenceUnion>) evidence;
     }
 
+    /**
+     * Unique identifier of the evaluation
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -181,16 +216,25 @@ public class Evaluation {
         return (Optional<Map<String, OffsetDateTime>>) pitPerSource;
     }
 
+    /**
+     * Whether the rule passed, failed, or could not be evaluated
+     */
     @JsonIgnore
     public Result result() {
         return result;
     }
 
+    /**
+     * Identifier of the rule that was evaluated
+     */
     @JsonIgnore
     public String ruleID() {
         return ruleID;
     }
 
+    /**
+     * When the evaluation started
+     */
     @JsonIgnore
     public OffsetDateTime startedAt() {
         return startedAt;
@@ -201,6 +245,9 @@ public class Evaluation {
     }
 
 
+    /**
+     * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+     */
     public Evaluation withCostUnits(long costUnits) {
         Utils.checkNotNull(costUnits, "costUnits");
         this.costUnits = Optional.ofNullable(costUnits);
@@ -208,24 +255,36 @@ public class Evaluation {
     }
 
 
+    /**
+     * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+     */
     public Evaluation withCostUnits(Optional<Long> costUnits) {
         Utils.checkNotNull(costUnits, "costUnits");
         this.costUnits = costUnits;
         return this;
     }
 
+    /**
+     * When the evaluation record was created
+     */
     public Evaluation withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * When the evaluation finished
+     */
     public Evaluation withEndedAt(OffsetDateTime endedAt) {
         Utils.checkNotNull(endedAt, "endedAt");
         this.endedAt = endedAt;
         return this;
     }
 
+    /**
+     * Why the evaluation could not complete, when its result reports an error
+     */
     public Evaluation withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -233,6 +292,9 @@ public class Evaluation {
     }
 
 
+    /**
+     * Why the evaluation could not complete, when its result reports an error
+     */
     public Evaluation withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
@@ -278,6 +340,9 @@ public class Evaluation {
         return this;
     }
 
+    /**
+     * Unique identifier of the evaluation
+     */
     public Evaluation withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -307,18 +372,27 @@ public class Evaluation {
         return this;
     }
 
+    /**
+     * Whether the rule passed, failed, or could not be evaluated
+     */
     public Evaluation withResult(Result result) {
         Utils.checkNotNull(result, "result");
         this.result = result;
         return this;
     }
 
+    /**
+     * Identifier of the rule that was evaluated
+     */
     public Evaluation withRuleID(String ruleID) {
         Utils.checkNotNull(ruleID, "ruleID");
         this.ruleID = ruleID;
         return this;
     }
 
+    /**
+     * When the evaluation started
+     */
     public Evaluation withStartedAt(OffsetDateTime startedAt) {
         Utils.checkNotNull(startedAt, "startedAt");
         this.startedAt = startedAt;
@@ -399,12 +473,18 @@ public class Evaluation {
         }
 
 
+        /**
+         * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+         */
         public Builder costUnits(long costUnits) {
             Utils.checkNotNull(costUnits, "costUnits");
             this.costUnits = Optional.ofNullable(costUnits);
             return this;
         }
 
+        /**
+         * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+         */
         public Builder costUnits(Optional<Long> costUnits) {
             Utils.checkNotNull(costUnits, "costUnits");
             this.costUnits = costUnits;
@@ -412,6 +492,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * When the evaluation record was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -419,6 +502,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * When the evaluation finished
+         */
         public Builder endedAt(OffsetDateTime endedAt) {
             Utils.checkNotNull(endedAt, "endedAt");
             this.endedAt = endedAt;
@@ -426,12 +512,18 @@ public class Evaluation {
         }
 
 
+        /**
+         * Why the evaluation could not complete, when its result reports an error
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the evaluation could not complete, when its result reports an error
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -478,6 +570,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * Unique identifier of the evaluation
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -508,6 +603,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * Whether the rule passed, failed, or could not be evaluated
+         */
         public Builder result(Result result) {
             Utils.checkNotNull(result, "result");
             this.result = result;
@@ -515,6 +613,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * Identifier of the rule that was evaluated
+         */
         public Builder ruleID(String ruleID) {
             Utils.checkNotNull(ruleID, "ruleID");
             this.ruleID = ruleID;
@@ -522,6 +623,9 @@ public class Evaluation {
         }
 
 
+        /**
+         * When the evaluation started
+         */
         public Builder startedAt(OffsetDateTime startedAt) {
             Utils.checkNotNull(startedAt, "startedAt");
             this.startedAt = startedAt;

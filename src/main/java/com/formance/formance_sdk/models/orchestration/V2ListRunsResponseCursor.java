@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2ListRunsResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of runs
+ */
 public class V2ListRunsResponseCursor {
 
     @JsonProperty("data")

@@ -16,7 +16,11 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * V2PostTransactionScript
+ * 
+ * <p>A Numscript program executed to produce the postings. Mutually exclusive with postings
+ */
 public class V2PostTransactionScript {
 
     @JsonProperty("plain")

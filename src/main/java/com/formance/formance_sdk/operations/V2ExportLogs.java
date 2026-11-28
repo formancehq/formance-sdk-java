@@ -9,6 +9,7 @@ import static com.formance.formance_sdk.utils.Exceptions.unchecked;
 import com.formance.formance_sdk.SDKConfiguration;
 import com.formance.formance_sdk.SecuritySource;
 import com.formance.formance_sdk.models.errors.SDKError;
+import com.formance.formance_sdk.models.ledger.ErrorsV2ErrorResponse;
 import com.formance.formance_sdk.models.operations.V2ExportLogsRequest;
 import com.formance.formance_sdk.models.operations.V2ExportLogsResponse;
 import com.formance.formance_sdk.utils.HTTPClient;
@@ -81,7 +82,7 @@ public class V2ExportLogs {
                     "/api/ledger/v2/{ledger}/logs/export",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
-            req.addHeader("Accept", "*/*")
+            req.addHeader("Accept", "application/octet-stream")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "clientID");
@@ -143,16 +144,25 @@ public class V2ExportLogs {
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
+            if (Utils.statusCodeMatches(response.statusCode(), "200") && Utils.contentTypeMatches(contentType, "application/octet-stream")) {
+                resBuilder.bytes(response.body());
+            }
 
             V2ExportLogsResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                // no content
-                return res;
+                if (Utils.contentTypeMatches(contentType, "application/octet-stream")) {
+                    return res;
+                } else {
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
+                }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
-                // no content
-                throw SDKError.from("API error occurred", response);
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    throw ErrorsV2ErrorResponse.from(response);
+                } else {
+                    throw SDKError.from("Unexpected content-type received: " + contentType, response);
+                }
             }
             throw SDKError.from("Unexpected status code received: " + response.statusCode(), response);
         }

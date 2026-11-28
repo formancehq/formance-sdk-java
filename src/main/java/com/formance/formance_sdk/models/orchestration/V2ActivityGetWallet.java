@@ -10,9 +10,15 @@ import com.formance.formance_sdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * V2ActivityGetWallet
+ * 
+ * <p>Arguments for the activity that reads a wallet
+ */
 public class V2ActivityGetWallet {
-
+    /**
+     * Identifier of the wallet to read
+     */
     @JsonProperty("id")
     private String id;
 
@@ -23,6 +29,9 @@ public class V2ActivityGetWallet {
         this.id = id;
     }
 
+    /**
+     * Identifier of the wallet to read
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -33,6 +42,9 @@ public class V2ActivityGetWallet {
     }
 
 
+    /**
+     * Identifier of the wallet to read
+     */
     public V2ActivityGetWallet withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -74,6 +86,9 @@ public class V2ActivityGetWallet {
         }
 
 
+        /**
+         * Identifier of the wallet to read
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

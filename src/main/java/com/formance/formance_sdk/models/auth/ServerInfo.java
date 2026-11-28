@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class ServerInfo {
-
+    /**
+     * Version of the auth service
+     */
     @JsonProperty("version")
     private String version;
 
@@ -23,6 +25,9 @@ public class ServerInfo {
         this.version = version;
     }
 
+    /**
+     * Version of the auth service
+     */
     @JsonIgnore
     public String version() {
         return version;
@@ -33,6 +38,9 @@ public class ServerInfo {
     }
 
 
+    /**
+     * Version of the auth service
+     */
     public ServerInfo withVersion(String version) {
         Utils.checkNotNull(version, "version");
         this.version = version;
@@ -74,6 +82,9 @@ public class ServerInfo {
         }
 
 
+        /**
+         * Version of the auth service
+         */
         public Builder version(String version) {
             Utils.checkNotNull(version, "version");
             this.version = version;

@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2StatsResponse {
-
+    /**
+     * Aggregate counts for a ledger
+     */
     @JsonProperty("data")
     private V2Stats data;
 
@@ -23,6 +25,9 @@ public class V2StatsResponse {
         this.data = data;
     }
 
+    /**
+     * Aggregate counts for a ledger
+     */
     @JsonIgnore
     public V2Stats data() {
         return data;
@@ -33,6 +38,9 @@ public class V2StatsResponse {
     }
 
 
+    /**
+     * Aggregate counts for a ledger
+     */
     public V2StatsResponse withData(V2Stats data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2StatsResponse {
         }
 
 
+        /**
+         * Aggregate counts for a ledger
+         */
         public Builder data(V2Stats data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

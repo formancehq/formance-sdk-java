@@ -18,37 +18,55 @@ import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-
+/**
+ * V2Ledger
+ * 
+ * <p>A ledger and its configuration
+ */
 public class V2Ledger {
-
+    /**
+     * When the ledger was created
+     */
     @JsonProperty("addedAt")
     private OffsetDateTime addedAt;
 
-
+    /**
+     * Name of the storage bucket backing the ledger
+     */
     @JsonProperty("bucket")
     private String bucket;
 
-
+    /**
+     * When the ledger was deleted, absent for active ledgers
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deletedAt")
     private JsonNullable<OffsetDateTime> deletedAt;
 
-
+    /**
+     * Feature flags enabled on the ledger, keyed by feature name
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("features")
     private Optional<? extends Map<String, String>> features;
 
-
+    /**
+     * Unique sequential identifier for the ledger
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<Long> id;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, String>> metadata;
 
-
+    /**
+     * Name of the ledger
+     */
     @JsonProperty("name")
     private String name;
 
@@ -86,38 +104,59 @@ public class V2Ledger {
             name);
     }
 
+    /**
+     * When the ledger was created
+     */
     @JsonIgnore
     public OffsetDateTime addedAt() {
         return addedAt;
     }
 
+    /**
+     * Name of the storage bucket backing the ledger
+     */
     @JsonIgnore
     public String bucket() {
         return bucket;
     }
 
+    /**
+     * When the ledger was deleted, absent for active ledgers
+     */
     @JsonIgnore
     public JsonNullable<OffsetDateTime> deletedAt() {
         return deletedAt;
     }
 
+    /**
+     * Feature flags enabled on the ledger, keyed by feature name
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> features() {
         return (Optional<Map<String, String>>) features;
     }
 
+    /**
+     * Unique sequential identifier for the ledger
+     */
     @JsonIgnore
     public Optional<Long> id() {
         return id;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, String>> metadata() {
         return (Optional<Map<String, String>>) metadata;
     }
 
+    /**
+     * Name of the ledger
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -128,30 +167,45 @@ public class V2Ledger {
     }
 
 
+    /**
+     * When the ledger was created
+     */
     public V2Ledger withAddedAt(OffsetDateTime addedAt) {
         Utils.checkNotNull(addedAt, "addedAt");
         this.addedAt = addedAt;
         return this;
     }
 
+    /**
+     * Name of the storage bucket backing the ledger
+     */
     public V2Ledger withBucket(String bucket) {
         Utils.checkNotNull(bucket, "bucket");
         this.bucket = bucket;
         return this;
     }
 
+    /**
+     * When the ledger was deleted, absent for active ledgers
+     */
     public V2Ledger withDeletedAt(OffsetDateTime deletedAt) {
         Utils.checkNotNull(deletedAt, "deletedAt");
         this.deletedAt = JsonNullable.of(deletedAt);
         return this;
     }
 
+    /**
+     * When the ledger was deleted, absent for active ledgers
+     */
     public V2Ledger withDeletedAt(JsonNullable<OffsetDateTime> deletedAt) {
         Utils.checkNotNull(deletedAt, "deletedAt");
         this.deletedAt = deletedAt;
         return this;
     }
 
+    /**
+     * Feature flags enabled on the ledger, keyed by feature name
+     */
     public V2Ledger withFeatures(Map<String, String> features) {
         Utils.checkNotNull(features, "features");
         this.features = Optional.ofNullable(features);
@@ -159,12 +213,18 @@ public class V2Ledger {
     }
 
 
+    /**
+     * Feature flags enabled on the ledger, keyed by feature name
+     */
     public V2Ledger withFeatures(Optional<? extends Map<String, String>> features) {
         Utils.checkNotNull(features, "features");
         this.features = features;
         return this;
     }
 
+    /**
+     * Unique sequential identifier for the ledger
+     */
     public V2Ledger withId(long id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -172,12 +232,18 @@ public class V2Ledger {
     }
 
 
+    /**
+     * Unique sequential identifier for the ledger
+     */
     public V2Ledger withId(Optional<Long> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2Ledger withMetadata(Map<String, String> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -185,12 +251,18 @@ public class V2Ledger {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the resource
+     */
     public V2Ledger withMetadata(Optional<? extends Map<String, String>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Name of the ledger
+     */
     public V2Ledger withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -258,6 +330,9 @@ public class V2Ledger {
         }
 
 
+        /**
+         * When the ledger was created
+         */
         public Builder addedAt(OffsetDateTime addedAt) {
             Utils.checkNotNull(addedAt, "addedAt");
             this.addedAt = addedAt;
@@ -265,6 +340,9 @@ public class V2Ledger {
         }
 
 
+        /**
+         * Name of the storage bucket backing the ledger
+         */
         public Builder bucket(String bucket) {
             Utils.checkNotNull(bucket, "bucket");
             this.bucket = bucket;
@@ -272,12 +350,18 @@ public class V2Ledger {
         }
 
 
+        /**
+         * When the ledger was deleted, absent for active ledgers
+         */
         public Builder deletedAt(OffsetDateTime deletedAt) {
             Utils.checkNotNull(deletedAt, "deletedAt");
             this.deletedAt = JsonNullable.of(deletedAt);
             return this;
         }
 
+        /**
+         * When the ledger was deleted, absent for active ledgers
+         */
         public Builder deletedAt(JsonNullable<OffsetDateTime> deletedAt) {
             Utils.checkNotNull(deletedAt, "deletedAt");
             this.deletedAt = deletedAt;
@@ -285,12 +369,18 @@ public class V2Ledger {
         }
 
 
+        /**
+         * Feature flags enabled on the ledger, keyed by feature name
+         */
         public Builder features(Map<String, String> features) {
             Utils.checkNotNull(features, "features");
             this.features = Optional.ofNullable(features);
             return this;
         }
 
+        /**
+         * Feature flags enabled on the ledger, keyed by feature name
+         */
         public Builder features(Optional<? extends Map<String, String>> features) {
             Utils.checkNotNull(features, "features");
             this.features = features;
@@ -298,12 +388,18 @@ public class V2Ledger {
         }
 
 
+        /**
+         * Unique sequential identifier for the ledger
+         */
         public Builder id(long id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * Unique sequential identifier for the ledger
+         */
         public Builder id(Optional<Long> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -311,12 +407,18 @@ public class V2Ledger {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Map<String, String> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the resource
+         */
         public Builder metadata(Optional<? extends Map<String, String>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -324,6 +426,9 @@ public class V2Ledger {
         }
 
 
+        /**
+         * Name of the ledger
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

@@ -1,0 +1,4 @@
+# BulkElementData
+
+Operation-specific data
+

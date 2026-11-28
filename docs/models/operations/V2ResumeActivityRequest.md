@@ -1,0 +1,11 @@
+# V2ResumeActivityRequest
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `requestBody`                                                                         | [V2ResumeActivityRequestBody](../../models/operations/V2ResumeActivityRequestBody.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `activityID`                                                                          | *String*                                                                              | :heavy_check_mark:                                                                    | The paused activity id                                                                |
+| `instanceID`                                                                          | *String*                                                                              | :heavy_check_mark:                                                                    | The instance id                                                                       |
+| `number`                                                                              | *long*                                                                                | :heavy_check_mark:                                                                    | The nonnegative stage number                                                          |

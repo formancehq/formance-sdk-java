@@ -1,13 +1,15 @@
 # Hold
 
+Funds locked by a pending debit, later either confirmed or voided
+
 
 ## Fields
 
-| Field                                                | Type                                                 | Required                                             | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `asset`                                              | *String*                                             | :heavy_check_mark:                                   | N/A                                                  |
-| `description`                                        | *String*                                             | :heavy_check_mark:                                   | N/A                                                  |
-| `destination`                                        | [Optional\<Subject>](../../models/shared/Subject.md) | :heavy_minus_sign:                                   | N/A                                                  |
-| `id`                                                 | *String*                                             | :heavy_check_mark:                                   | The unique ID of the hold.                           |
-| `metadata`                                           | Map\<String, *String*>                               | :heavy_check_mark:                                   | Metadata associated with the hold.                   |
-| `walletID`                                           | *String*                                             | :heavy_check_mark:                                   | The ID of the wallet the hold is associated with.    |
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `asset`                                                                          | *String*                                                                         | :heavy_check_mark:                                                               | Asset the held funds are denominated in                                          |
+| `description`                                                                    | *String*                                                                         | :heavy_check_mark:                                                               | Human-readable reason the funds were held                                        |
+| `destination`                                                                    | [Optional\<Subject>](../../models/shared/Subject.md)                             | :heavy_minus_sign:                                                               | The counterparty of a wallet movement, either a ledger account or another wallet |
+| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | The unique ID of the hold.                                                       |
+| `metadata`                                                                       | Map\<String, *String*>                                                           | :heavy_check_mark:                                                               | Metadata associated with the hold.                                               |
+| `walletID`                                                                       | *String*                                                                         | :heavy_check_mark:                                                               | The ID of the wallet the hold is associated with.                                |

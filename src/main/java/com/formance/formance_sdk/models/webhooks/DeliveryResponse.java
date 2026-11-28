@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class DeliveryResponse {
-
+    /**
+     * An event queued for delivery to a webhook endpoint, tracking its retry state
+     */
     @JsonProperty("data")
     private Delivery data;
 
@@ -23,6 +25,9 @@ public class DeliveryResponse {
         this.data = data;
     }
 
+    /**
+     * An event queued for delivery to a webhook endpoint, tracking its retry state
+     */
     @JsonIgnore
     public Delivery data() {
         return data;
@@ -33,6 +38,9 @@ public class DeliveryResponse {
     }
 
 
+    /**
+     * An event queued for delivery to a webhook endpoint, tracking its retry state
+     */
     public DeliveryResponse withData(Delivery data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class DeliveryResponse {
         }
 
 
+        /**
+         * An event queued for delivery to a webhook endpoint, tracking its retry state
+         */
         public Builder data(Delivery data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

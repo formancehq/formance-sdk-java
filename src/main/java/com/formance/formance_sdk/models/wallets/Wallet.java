@@ -16,14 +16,22 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * Wallet
+ * 
+ * <p>A wallet backed by a set of ledger accounts
+ */
 public class Wallet {
-
+    /**
+     * The wallet's main balance, keyed by asset
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends WalletBalances> balances;
 
-
+    /**
+     * When the wallet was created
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -33,7 +41,9 @@ public class Wallet {
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonProperty("ledger")
     private String ledger;
 
@@ -43,7 +53,9 @@ public class Wallet {
     @JsonProperty("metadata")
     private Map<String, String> metadata;
 
-
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonProperty("name")
     private String name;
 
@@ -80,12 +92,18 @@ public class Wallet {
             ledger, metadata, name);
     }
 
+    /**
+     * The wallet's main balance, keyed by asset
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<WalletBalances> balances() {
         return (Optional<WalletBalances>) balances;
     }
 
+    /**
+     * When the wallet was created
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
@@ -99,6 +117,9 @@ public class Wallet {
         return id;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     @JsonIgnore
     public String ledger() {
         return ledger;
@@ -112,6 +133,9 @@ public class Wallet {
         return metadata;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     @JsonIgnore
     public String name() {
         return name;
@@ -122,6 +146,9 @@ public class Wallet {
     }
 
 
+    /**
+     * The wallet's main balance, keyed by asset
+     */
     public Wallet withBalances(WalletBalances balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
@@ -129,12 +156,18 @@ public class Wallet {
     }
 
 
+    /**
+     * The wallet's main balance, keyed by asset
+     */
     public Wallet withBalances(Optional<? extends WalletBalances> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
     }
 
+    /**
+     * When the wallet was created
+     */
     public Wallet withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -150,6 +183,9 @@ public class Wallet {
         return this;
     }
 
+    /**
+     * Name of the ledger backing this wallet
+     */
     public Wallet withLedger(String ledger) {
         Utils.checkNotNull(ledger, "ledger");
         this.ledger = ledger;
@@ -165,6 +201,9 @@ public class Wallet {
         return this;
     }
 
+    /**
+     * Human-readable name of the wallet
+     */
     public Wallet withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -227,12 +266,18 @@ public class Wallet {
         }
 
 
+        /**
+         * The wallet's main balance, keyed by asset
+         */
         public Builder balances(WalletBalances balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = Optional.ofNullable(balances);
             return this;
         }
 
+        /**
+         * The wallet's main balance, keyed by asset
+         */
         public Builder balances(Optional<? extends WalletBalances> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
@@ -240,6 +285,9 @@ public class Wallet {
         }
 
 
+        /**
+         * When the wallet was created
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -257,6 +305,9 @@ public class Wallet {
         }
 
 
+        /**
+         * Name of the ledger backing this wallet
+         */
         public Builder ledger(String ledger) {
             Utils.checkNotNull(ledger, "ledger");
             this.ledger = ledger;
@@ -274,6 +325,9 @@ public class Wallet {
         }
 
 
+        /**
+         * Human-readable name of the wallet
+         */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;

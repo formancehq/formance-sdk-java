@@ -17,45 +17,67 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2WorkflowInstance
+ * 
+ * <p>One run of a workflow, tracking its per-stage progress
+ */
 public class V2WorkflowInstance {
-
+    /**
+     * When the run was started
+     */
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
-
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<String> error;
 
-
+    /**
+     * Unique identifier of the run
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * Per-stage progress of the run
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends List<V2StageStatus>> status;
 
-
+    /**
+     * Whether the run has finished, successfully or not
+     */
     @JsonProperty("terminated")
     private boolean terminated;
 
-
+    /**
+     * When the run finished, absent while it is still running
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminatedAt")
     private Optional<OffsetDateTime> terminatedAt;
 
-
+    /**
+     * When the run was last updated
+     */
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
-
+    /**
+     * A workflow definition and the stages it runs
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflow")
     private Optional<? extends V2Workflow> workflow;
 
-
+    /**
+     * Identifier of the workflow this run belongs to
+     */
     @JsonProperty("workflowID")
     private String workflowID;
 
@@ -101,48 +123,75 @@ public class V2WorkflowInstance {
             updatedAt, Optional.empty(), workflowID);
     }
 
+    /**
+     * When the run was started
+     */
     @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     @JsonIgnore
     public Optional<String> error() {
         return error;
     }
 
+    /**
+     * Unique identifier of the run
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * Per-stage progress of the run
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<V2StageStatus>> status() {
         return (Optional<List<V2StageStatus>>) status;
     }
 
+    /**
+     * Whether the run has finished, successfully or not
+     */
     @JsonIgnore
     public boolean terminated() {
         return terminated;
     }
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     @JsonIgnore
     public Optional<OffsetDateTime> terminatedAt() {
         return terminatedAt;
     }
 
+    /**
+     * When the run was last updated
+     */
     @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
+    /**
+     * A workflow definition and the stages it runs
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2Workflow> workflow() {
         return (Optional<V2Workflow>) workflow;
     }
 
+    /**
+     * Identifier of the workflow this run belongs to
+     */
     @JsonIgnore
     public String workflowID() {
         return workflowID;
@@ -153,12 +202,18 @@ public class V2WorkflowInstance {
     }
 
 
+    /**
+     * When the run was started
+     */
     public V2WorkflowInstance withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     public V2WorkflowInstance withError(String error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -166,18 +221,27 @@ public class V2WorkflowInstance {
     }
 
 
+    /**
+     * Why the run failed, absent when it succeeded
+     */
     public V2WorkflowInstance withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
+    /**
+     * Unique identifier of the run
+     */
     public V2WorkflowInstance withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * Per-stage progress of the run
+     */
     public V2WorkflowInstance withStatus(List<V2StageStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
@@ -185,18 +249,27 @@ public class V2WorkflowInstance {
     }
 
 
+    /**
+     * Per-stage progress of the run
+     */
     public V2WorkflowInstance withStatus(Optional<? extends List<V2StageStatus>> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * Whether the run has finished, successfully or not
+     */
     public V2WorkflowInstance withTerminated(boolean terminated) {
         Utils.checkNotNull(terminated, "terminated");
         this.terminated = terminated;
         return this;
     }
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     public V2WorkflowInstance withTerminatedAt(OffsetDateTime terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = Optional.ofNullable(terminatedAt);
@@ -204,18 +277,27 @@ public class V2WorkflowInstance {
     }
 
 
+    /**
+     * When the run finished, absent while it is still running
+     */
     public V2WorkflowInstance withTerminatedAt(Optional<OffsetDateTime> terminatedAt) {
         Utils.checkNotNull(terminatedAt, "terminatedAt");
         this.terminatedAt = terminatedAt;
         return this;
     }
 
+    /**
+     * When the run was last updated
+     */
     public V2WorkflowInstance withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
     }
 
+    /**
+     * A workflow definition and the stages it runs
+     */
     public V2WorkflowInstance withWorkflow(V2Workflow workflow) {
         Utils.checkNotNull(workflow, "workflow");
         this.workflow = Optional.ofNullable(workflow);
@@ -223,12 +305,18 @@ public class V2WorkflowInstance {
     }
 
 
+    /**
+     * A workflow definition and the stages it runs
+     */
     public V2WorkflowInstance withWorkflow(Optional<? extends V2Workflow> workflow) {
         Utils.checkNotNull(workflow, "workflow");
         this.workflow = workflow;
         return this;
     }
 
+    /**
+     * Identifier of the workflow this run belongs to
+     */
     public V2WorkflowInstance withWorkflowID(String workflowID) {
         Utils.checkNotNull(workflowID, "workflowID");
         this.workflowID = workflowID;
@@ -304,6 +392,9 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * When the run was started
+         */
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
@@ -311,12 +402,18 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * Why the run failed, absent when it succeeded
+         */
         public Builder error(String error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Why the run failed, absent when it succeeded
+         */
         public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
@@ -324,6 +421,9 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * Unique identifier of the run
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -331,12 +431,18 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * Per-stage progress of the run
+         */
         public Builder status(List<V2StageStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * Per-stage progress of the run
+         */
         public Builder status(Optional<? extends List<V2StageStatus>> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -344,6 +450,9 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * Whether the run has finished, successfully or not
+         */
         public Builder terminated(boolean terminated) {
             Utils.checkNotNull(terminated, "terminated");
             this.terminated = terminated;
@@ -351,12 +460,18 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * When the run finished, absent while it is still running
+         */
         public Builder terminatedAt(OffsetDateTime terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = Optional.ofNullable(terminatedAt);
             return this;
         }
 
+        /**
+         * When the run finished, absent while it is still running
+         */
         public Builder terminatedAt(Optional<OffsetDateTime> terminatedAt) {
             Utils.checkNotNull(terminatedAt, "terminatedAt");
             this.terminatedAt = terminatedAt;
@@ -364,6 +479,9 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * When the run was last updated
+         */
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
@@ -371,12 +489,18 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * A workflow definition and the stages it runs
+         */
         public Builder workflow(V2Workflow workflow) {
             Utils.checkNotNull(workflow, "workflow");
             this.workflow = Optional.ofNullable(workflow);
             return this;
         }
 
+        /**
+         * A workflow definition and the stages it runs
+         */
         public Builder workflow(Optional<? extends V2Workflow> workflow) {
             Utils.checkNotNull(workflow, "workflow");
             this.workflow = workflow;
@@ -384,6 +508,9 @@ public class V2WorkflowInstance {
         }
 
 
+        /**
+         * Identifier of the workflow this run belongs to
+         */
         public Builder workflowID(String workflowID) {
             Utils.checkNotNull(workflowID, "workflowID");
             this.workflowID = workflowID;

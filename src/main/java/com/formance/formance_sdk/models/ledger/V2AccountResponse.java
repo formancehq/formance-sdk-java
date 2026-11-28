@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class V2AccountResponse {
-
+    /**
+     * An account in the ledger, identified by its address and carrying its metadata and volumes
+     */
     @JsonProperty("data")
     private V2Account data;
 
@@ -23,6 +25,9 @@ public class V2AccountResponse {
         this.data = data;
     }
 
+    /**
+     * An account in the ledger, identified by its address and carrying its metadata and volumes
+     */
     @JsonIgnore
     public V2Account data() {
         return data;
@@ -33,6 +38,9 @@ public class V2AccountResponse {
     }
 
 
+    /**
+     * An account in the ledger, identified by its address and carrying its metadata and volumes
+     */
     public V2AccountResponse withData(V2Account data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class V2AccountResponse {
         }
 
 
+        /**
+         * An account in the ledger, identified by its address and carrying its metadata and volumes
+         */
         public Builder data(V2Account data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -12,7 +12,10 @@ import java.lang.String;
 
 
 public class V2CreateTransactionResponse {
-
+    /**
+     * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal
+     * timestamps
+     */
     @JsonProperty("data")
     private V2Transaction data;
 
@@ -23,6 +26,10 @@ public class V2CreateTransactionResponse {
         this.data = data;
     }
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal
+     * timestamps
+     */
     @JsonIgnore
     public V2Transaction data() {
         return data;
@@ -33,6 +40,10 @@ public class V2CreateTransactionResponse {
     }
 
 
+    /**
+     * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal
+     * timestamps
+     */
     public V2CreateTransactionResponse withData(V2Transaction data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +85,10 @@ public class V2CreateTransactionResponse {
         }
 
 
+        /**
+         * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal
+         * timestamps
+         */
         public Builder data(V2Transaction data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2LogsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of logs
+ */
 public class V2LogsCursorResponseCursor {
 
     @JsonProperty("data")

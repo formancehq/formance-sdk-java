@@ -5,6 +5,6 @@ OK
 
 ## Fields
 
-| Field                                           | Type                                            | Required                                        | Description                                     |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `data`                                          | [Evaluation](../../models/shared/Evaluation.md) | :heavy_check_mark:                              | N/A                                             |
+| Field                                            | Type                                             | Required                                         | Description                                      |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `data`                                           | [Evaluation](../../models/shared/Evaluation.md)  | :heavy_check_mark:                               | One run of a rule, carrying its outcome and cost |

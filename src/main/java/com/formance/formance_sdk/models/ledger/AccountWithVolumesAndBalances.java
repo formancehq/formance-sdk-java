@@ -17,28 +17,42 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 
-
+/**
+ * AccountWithVolumesAndBalances
+ * 
+ * <p>An account together with its volumes and net balances per asset
+ */
 public class AccountWithVolumesAndBalances {
-
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonProperty("address")
     private String address;
 
-
+    /**
+     * Net balance per asset, equal to input minus output
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
     private Optional<? extends Map<String, BigInteger>> balances;
 
-
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends Map<String, Object>> metadata;
 
-
+    /**
+     * Free-form classification of the account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<String> type;
 
-
+    /**
+     * Volumes per asset for a single account
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("volumes")
     private Optional<? extends Map<String, Volume>> volumes;
@@ -68,28 +82,43 @@ public class AccountWithVolumesAndBalances {
             Optional.empty(), Optional.empty());
     }
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     @JsonIgnore
     public String address() {
         return address;
     }
 
+    /**
+     * Net balance per asset, equal to input minus output
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, BigInteger>> balances() {
         return (Optional<Map<String, BigInteger>>) balances;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Object>> metadata() {
         return (Optional<Map<String, Object>>) metadata;
     }
 
+    /**
+     * Free-form classification of the account
+     */
     @JsonIgnore
     public Optional<String> type() {
         return type;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Map<String, Volume>> volumes() {
@@ -101,12 +130,18 @@ public class AccountWithVolumesAndBalances {
     }
 
 
+    /**
+     * The account address, a colon-separated segmented path such as users:001
+     */
     public AccountWithVolumesAndBalances withAddress(String address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
+    /**
+     * Net balance per asset, equal to input minus output
+     */
     public AccountWithVolumesAndBalances withBalances(Map<String, BigInteger> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
@@ -114,12 +149,18 @@ public class AccountWithVolumesAndBalances {
     }
 
 
+    /**
+     * Net balance per asset, equal to input minus output
+     */
     public AccountWithVolumesAndBalances withBalances(Optional<? extends Map<String, BigInteger>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
     }
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public AccountWithVolumesAndBalances withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
@@ -127,12 +168,18 @@ public class AccountWithVolumesAndBalances {
     }
 
 
+    /**
+     * Arbitrary key/value pairs attached to the account
+     */
     public AccountWithVolumesAndBalances withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
+    /**
+     * Free-form classification of the account
+     */
     public AccountWithVolumesAndBalances withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
@@ -140,12 +187,18 @@ public class AccountWithVolumesAndBalances {
     }
 
 
+    /**
+     * Free-form classification of the account
+     */
     public AccountWithVolumesAndBalances withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
+    /**
+     * Volumes per asset for a single account
+     */
     public AccountWithVolumesAndBalances withVolumes(Map<String, Volume> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = Optional.ofNullable(volumes);
@@ -153,6 +206,9 @@ public class AccountWithVolumesAndBalances {
     }
 
 
+    /**
+     * Volumes per asset for a single account
+     */
     public AccountWithVolumesAndBalances withVolumes(Optional<? extends Map<String, Volume>> volumes) {
         Utils.checkNotNull(volumes, "volumes");
         this.volumes = volumes;
@@ -211,6 +267,9 @@ public class AccountWithVolumesAndBalances {
         }
 
 
+        /**
+         * The account address, a colon-separated segmented path such as users:001
+         */
         public Builder address(String address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
@@ -218,12 +277,18 @@ public class AccountWithVolumesAndBalances {
         }
 
 
+        /**
+         * Net balance per asset, equal to input minus output
+         */
         public Builder balances(Map<String, BigInteger> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = Optional.ofNullable(balances);
             return this;
         }
 
+        /**
+         * Net balance per asset, equal to input minus output
+         */
         public Builder balances(Optional<? extends Map<String, BigInteger>> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
@@ -231,12 +296,18 @@ public class AccountWithVolumesAndBalances {
         }
 
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
+        /**
+         * Arbitrary key/value pairs attached to the account
+         */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
@@ -244,12 +315,18 @@ public class AccountWithVolumesAndBalances {
         }
 
 
+        /**
+         * Free-form classification of the account
+         */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * Free-form classification of the account
+         */
         public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
@@ -257,12 +334,18 @@ public class AccountWithVolumesAndBalances {
         }
 
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Map<String, Volume> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = Optional.ofNullable(volumes);
             return this;
         }
 
+        /**
+         * Volumes per asset for a single account
+         */
         public Builder volumes(Optional<? extends Map<String, Volume>> volumes) {
             Utils.checkNotNull(volumes, "volumes");
             this.volumes = volumes;

@@ -16,11 +16,15 @@ import java.util.Optional;
 
 
 public class V2TransactionsCursorResponse {
-
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     @JsonProperty("cursor")
     private V2TransactionsCursorResponseCursor cursor;
 
-
+    /**
+     * The resource type carried by this cursor
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<? extends V2TransactionsCursorResponseResource> resource;
@@ -40,11 +44,17 @@ public class V2TransactionsCursorResponse {
         this(cursor, Optional.empty());
     }
 
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     @JsonIgnore
     public V2TransactionsCursorResponseCursor cursor() {
         return cursor;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<V2TransactionsCursorResponseResource> resource() {
@@ -56,12 +66,18 @@ public class V2TransactionsCursorResponse {
     }
 
 
+    /**
+     * Paginated cursor wrapping the list of transactions
+     */
     public V2TransactionsCursorResponse withCursor(V2TransactionsCursorResponseCursor cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
     }
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2TransactionsCursorResponse withResource(V2TransactionsCursorResponseResource resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
@@ -69,6 +85,9 @@ public class V2TransactionsCursorResponse {
     }
 
 
+    /**
+     * The resource type carried by this cursor
+     */
     public V2TransactionsCursorResponse withResource(Optional<? extends V2TransactionsCursorResponseResource> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
@@ -114,6 +133,9 @@ public class V2TransactionsCursorResponse {
         }
 
 
+        /**
+         * Paginated cursor wrapping the list of transactions
+         */
         public Builder cursor(V2TransactionsCursorResponseCursor cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
@@ -121,12 +143,18 @@ public class V2TransactionsCursorResponse {
         }
 
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(V2TransactionsCursorResponseResource resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
         }
 
+        /**
+         * The resource type carried by this cursor
+         */
         public Builder resource(Optional<? extends V2TransactionsCursorResponseResource> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;

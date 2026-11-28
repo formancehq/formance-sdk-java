@@ -16,7 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-
+/**
+ * StageSendSourcePayment
+ * 
+ * <p>Take the funds from a payment
+ */
 public class StageSendSourcePayment {
     /**
      * Enables unbounded overdraft on the throughAccount when set to true.
@@ -34,7 +38,9 @@ public class StageSendSourcePayment {
     @JsonProperty("holdingAccount")
     private Optional<String> holdingAccount;
 
-
+    /**
+     * Identifier of the payment to take funds from
+     */
     @JsonProperty("id")
     private String id;
 
@@ -97,6 +103,9 @@ public class StageSendSourcePayment {
         return holdingAccount;
     }
 
+    /**
+     * Identifier of the payment to take funds from
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -167,6 +176,9 @@ public class StageSendSourcePayment {
         return this;
     }
 
+    /**
+     * Identifier of the payment to take funds from
+     */
     public StageSendSourcePayment withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -309,6 +321,9 @@ public class StageSendSourcePayment {
         }
 
 
+        /**
+         * Identifier of the payment to take funds from
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

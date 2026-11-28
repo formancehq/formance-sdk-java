@@ -13,19 +13,27 @@ import java.math.BigInteger;
 
 
 public class V2Posting {
-
+    /**
+     * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+     */
     @JsonProperty("amount")
     private BigInteger amount;
 
-
+    /**
+     * The asset being moved, optionally carrying a scale suffix such as USD/2
+     */
     @JsonProperty("asset")
     private String asset;
 
-
+    /**
+     * Address of the account credited by this posting
+     */
     @JsonProperty("destination")
     private String destination;
 
-
+    /**
+     * Address of the account debited by this posting
+     */
     @JsonProperty("source")
     private String source;
 
@@ -45,21 +53,33 @@ public class V2Posting {
         this.source = source;
     }
 
+    /**
+     * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+     */
     @JsonIgnore
     public BigInteger amount() {
         return amount;
     }
 
+    /**
+     * The asset being moved, optionally carrying a scale suffix such as USD/2
+     */
     @JsonIgnore
     public String asset() {
         return asset;
     }
 
+    /**
+     * Address of the account credited by this posting
+     */
     @JsonIgnore
     public String destination() {
         return destination;
     }
 
+    /**
+     * Address of the account debited by this posting
+     */
     @JsonIgnore
     public String source() {
         return source;
@@ -70,29 +90,44 @@ public class V2Posting {
     }
 
 
+    /**
+     * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+     */
     public V2Posting withAmount(long amount) {
         this.amount = BigInteger.valueOf(amount);
         return this;
     }
 
+    /**
+     * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+     */
     public V2Posting withAmount(BigInteger amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * The asset being moved, optionally carrying a scale suffix such as USD/2
+     */
     public V2Posting withAsset(String asset) {
         Utils.checkNotNull(asset, "asset");
         this.asset = asset;
         return this;
     }
 
+    /**
+     * Address of the account credited by this posting
+     */
     public V2Posting withDestination(String destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
     }
 
+    /**
+     * Address of the account debited by this posting
+     */
     public V2Posting withSource(String source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
@@ -147,11 +182,17 @@ public class V2Posting {
         }
 
 
+        /**
+         * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+         */
         public Builder amount(long amount) {
             this.amount = BigInteger.valueOf(amount);
             return this;
         }
 
+        /**
+         * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+         */
         public Builder amount(BigInteger amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
@@ -159,6 +200,9 @@ public class V2Posting {
         }
 
 
+        /**
+         * The asset being moved, optionally carrying a scale suffix such as USD/2
+         */
         public Builder asset(String asset) {
             Utils.checkNotNull(asset, "asset");
             this.asset = asset;
@@ -166,6 +210,9 @@ public class V2Posting {
         }
 
 
+        /**
+         * Address of the account credited by this posting
+         */
         public Builder destination(String destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
@@ -173,6 +220,9 @@ public class V2Posting {
         }
 
 
+        /**
+         * Address of the account debited by this posting
+         */
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
             this.source = source;

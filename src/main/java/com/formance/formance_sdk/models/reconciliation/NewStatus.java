@@ -8,6 +8,11 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * NewStatus
+ * 
+ * <p>Status after this event
+ */
 public enum NewStatus {
     OPEN("OPEN"),
     ACKNOWLEDGED("ACKNOWLEDGED"),

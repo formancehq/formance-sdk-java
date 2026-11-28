@@ -13,7 +13,9 @@ import java.util.List;
 
 
 public class ListTriggersOccurrencesResponse {
-
+    /**
+     * The trigger's occurrences
+     */
     @JsonProperty("data")
     private List<TriggerOccurrence> data;
 
@@ -24,6 +26,9 @@ public class ListTriggersOccurrencesResponse {
         this.data = data;
     }
 
+    /**
+     * The trigger's occurrences
+     */
     @JsonIgnore
     public List<TriggerOccurrence> data() {
         return data;
@@ -34,6 +39,9 @@ public class ListTriggersOccurrencesResponse {
     }
 
 
+    /**
+     * The trigger's occurrences
+     */
     public ListTriggersOccurrencesResponse withData(List<TriggerOccurrence> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -75,6 +83,9 @@ public class ListTriggersOccurrencesResponse {
         }
 
 
+        /**
+         * The trigger's occurrences
+         */
         public Builder data(List<TriggerOccurrence> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

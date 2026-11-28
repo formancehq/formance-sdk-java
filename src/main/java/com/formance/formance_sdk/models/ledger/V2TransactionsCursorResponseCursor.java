@@ -16,7 +16,11 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * V2TransactionsCursorResponseCursor
+ * 
+ * <p>Paginated cursor wrapping the list of transactions
+ */
 public class V2TransactionsCursorResponseCursor {
 
     @JsonProperty("data")

@@ -16,7 +16,9 @@ import java.util.Optional;
 
 
 public class V2TransactionTemplate {
-
+    /**
+     * Human-readable description of what the template does
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
@@ -29,7 +31,9 @@ public class V2TransactionTemplate {
     @JsonProperty("runtime")
     private Optional<? extends Runtime> runtime;
 
-
+    /**
+     * The Numscript program the template executes
+     */
     @JsonProperty("script")
     private String script;
 
@@ -51,6 +55,9 @@ public class V2TransactionTemplate {
         this(Optional.empty(), Optional.empty(), script);
     }
 
+    /**
+     * Human-readable description of what the template does
+     */
     @JsonIgnore
     public Optional<String> description() {
         return description;
@@ -66,6 +73,9 @@ public class V2TransactionTemplate {
         return (Optional<Runtime>) runtime;
     }
 
+    /**
+     * The Numscript program the template executes
+     */
     @JsonIgnore
     public String script() {
         return script;
@@ -76,6 +86,9 @@ public class V2TransactionTemplate {
     }
 
 
+    /**
+     * Human-readable description of what the template does
+     */
     public V2TransactionTemplate withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
@@ -83,6 +96,9 @@ public class V2TransactionTemplate {
     }
 
 
+    /**
+     * Human-readable description of what the template does
+     */
     public V2TransactionTemplate withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
@@ -110,6 +126,9 @@ public class V2TransactionTemplate {
         return this;
     }
 
+    /**
+     * The Numscript program the template executes
+     */
     public V2TransactionTemplate withScript(String script) {
         Utils.checkNotNull(script, "script");
         this.script = script;
@@ -159,12 +178,18 @@ public class V2TransactionTemplate {
         }
 
 
+        /**
+         * Human-readable description of what the template does
+         */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = Optional.ofNullable(description);
             return this;
         }
 
+        /**
+         * Human-readable description of what the template does
+         */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
@@ -193,6 +218,9 @@ public class V2TransactionTemplate {
         }
 
 
+        /**
+         * The Numscript program the template executes
+         */
         public Builder script(String script) {
             Utils.checkNotNull(script, "script");
             this.script = script;

@@ -12,11 +12,15 @@ import java.lang.String;
 
 
 public class LedgerAccountSubject implements Subject {
-
+    /**
+     * Address of the ledger account
+     */
     @JsonProperty("identifier")
     private String identifier;
 
-
+    /**
+     * Discriminator identifying this subject as a ledger account
+     */
     @JsonProperty("type")
     private String type;
 
@@ -30,11 +34,17 @@ public class LedgerAccountSubject implements Subject {
         this.type = type;
     }
 
+    /**
+     * Address of the ledger account
+     */
     @JsonIgnore
     public String identifier() {
         return identifier;
     }
 
+    /**
+     * Discriminator identifying this subject as a ledger account
+     */
     @JsonIgnore
     @Override
     public String type() {
@@ -46,12 +56,18 @@ public class LedgerAccountSubject implements Subject {
     }
 
 
+    /**
+     * Address of the ledger account
+     */
     public LedgerAccountSubject withIdentifier(String identifier) {
         Utils.checkNotNull(identifier, "identifier");
         this.identifier = identifier;
         return this;
     }
 
+    /**
+     * Discriminator identifying this subject as a ledger account
+     */
     public LedgerAccountSubject withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -97,6 +113,9 @@ public class LedgerAccountSubject implements Subject {
         }
 
 
+        /**
+         * Address of the ledger account
+         */
         public Builder identifier(String identifier) {
             Utils.checkNotNull(identifier, "identifier");
             this.identifier = identifier;
@@ -104,6 +123,9 @@ public class LedgerAccountSubject implements Subject {
         }
 
 
+        /**
+         * Discriminator identifying this subject as a ledger account
+         */
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
             this.type = type;

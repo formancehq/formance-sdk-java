@@ -8,10 +8,16 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * ErrorErrorCode
+ * 
+ * <p>Machine-readable error code identifying the failure
+ */
 public enum ErrorErrorCode {
     VALIDATION("VALIDATION"),
     NOT_FOUND("NOT_FOUND"),
-    INTERNAL("INTERNAL");
+    INTERNAL("INTERNAL"),
+    CONFLICT("CONFLICT");
 
     @JsonValue
     private final String value;

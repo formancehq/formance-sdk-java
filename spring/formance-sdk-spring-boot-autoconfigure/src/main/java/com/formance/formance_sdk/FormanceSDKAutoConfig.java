@@ -215,6 +215,17 @@ public class FormanceSDKAutoConfig {
         return sdk.auth();
     }
     /**
+     * Creates a Connectivity sub-SDK bean if none exists.
+     *
+     * @param sdk the main SDK instance
+     * @return A configured Connectivity instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Connectivity connectivity(SDK sdk) {
+        return sdk.connectivity();
+    }
+    /**
      * Creates a Ledger sub-SDK bean if none exists.
      *
      * @param sdk the main SDK instance
@@ -257,17 +268,6 @@ public class FormanceSDKAutoConfig {
     @ConditionalOnMissingBean
     public Reconciliation reconciliation(SDK sdk) {
         return sdk.reconciliation();
-    }
-    /**
-     * Creates a Search sub-SDK bean if none exists.
-     *
-     * @param sdk the main SDK instance
-     * @return A configured Search instance
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    public Search search(SDK sdk) {
-        return sdk.search();
     }
     /**
      * Creates a Wallets sub-SDK bean if none exists.

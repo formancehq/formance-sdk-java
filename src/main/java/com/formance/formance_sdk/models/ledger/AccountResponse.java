@@ -12,7 +12,9 @@ import java.lang.String;
 
 
 public class AccountResponse {
-
+    /**
+     * An account together with its volumes and net balances per asset
+     */
     @JsonProperty("data")
     private AccountWithVolumesAndBalances data;
 
@@ -23,6 +25,9 @@ public class AccountResponse {
         this.data = data;
     }
 
+    /**
+     * An account together with its volumes and net balances per asset
+     */
     @JsonIgnore
     public AccountWithVolumesAndBalances data() {
         return data;
@@ -33,6 +38,9 @@ public class AccountResponse {
     }
 
 
+    /**
+     * An account together with its volumes and net balances per asset
+     */
     public AccountResponse withData(AccountWithVolumesAndBalances data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -74,6 +82,9 @@ public class AccountResponse {
         }
 
 
+        /**
+         * An account together with its volumes and net balances per asset
+         */
         public Builder data(AccountWithVolumesAndBalances data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
